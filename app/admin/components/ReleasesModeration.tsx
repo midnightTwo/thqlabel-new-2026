@@ -70,6 +70,11 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
   const [editingReleaseUPC, setEditingReleaseUPC] = useState(false);
   const [releaseUPCInput, setReleaseUPCInput] = useState('');
   const [savingReleaseUPC, setSavingReleaseUPC] = useState(false);
+  
+  // Состояние для модального окна подтверждения удаления
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [deleteType, setDeleteType] = useState<'single' | 'bulk'>('single');
+  const [deleteCount, setDeleteCount] = useState(0);
 
   useEffect(() => {
     loadReleases();
@@ -327,6 +332,39 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
     }
   };
 
+  const handleDeleteRelease = async () => {
+    if (!supabase || !selectedRelease) return;
+    
+    setDeleteType('single');
+    setDeleteCount(1);
+    setShowDeleteConfirm(true);
+  };
+  
+  const confirmDeleteRelease = async () => {
+    if (!supabase || !selectedRelease) return;
+    
+    setShowDeleteConfirm(false);
+    
+    try {
+      const tableName = selectedRelease.release_type === 'basic' ? 'releases_basic' : 'releases_exclusive';
+      
+      const { error } = await supabase
+        .from(tableName)
+        .delete()
+        .eq('id', selectedRelease.id);
+      
+      if (error) throw error;
+      
+      alert('Релиз успешно удалён');
+      setShowModal(false);
+      setSelectedRelease(null);
+      loadReleases();
+    } catch (error) {
+      console.error('Ошибка удаления релиза:', error);
+      alert('Ошибка при удалении релиза');
+    }
+  };
+
   const handleVerifyPayment = async (isVerified: boolean) => {
     if (!supabase || !selectedRelease) return;
     if (selectedRelease.release_type !== 'basic') return; // Только для Basic
@@ -419,6 +457,48 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
     } catch (error) {
       console.error('Ошибка публикации:', error);
       alert('Ошибка при публикации релизов. Проверьте консоль для деталей.');
+    } finally {
+      setIsPublishing(false);
+    }
+  };
+  
+  // Массовое удаление релизов
+  const handleBulkDelete = async () => {
+    if (!supabase || selectedReleaseIds.length === 0) return;
+    
+    setDeleteType('bulk');
+    setDeleteCount(selectedReleaseIds.length);
+    setShowDeleteConfirm(true);
+  };
+  
+  const confirmBulkDelete = async () => {
+    if (!supabase || selectedReleaseIds.length === 0) return;
+    
+    setShowDeleteConfirm(false);
+    setIsPublishing(true);
+    try {
+      const deletePromises = selectedReleaseIds.map(async releaseId => {
+        const release = releases.find(r => r.id === releaseId);
+        if (!release) return;
+        
+        const tableName = release.release_type === 'basic' ? 'releases_basic' : 'releases_exclusive';
+        
+        const { error } = await supabase
+          .from(tableName)
+          .delete()
+          .eq('id', releaseId);
+        
+        if (error) throw error;
+      });
+      
+      await Promise.all(deletePromises);
+      
+      alert(`Успешно удалено: ${selectedReleaseIds.length} релизов!`);
+      setSelectedReleaseIds([]);
+      loadReleases();
+    } catch (error) {
+      console.error('Ошибка удаления:', error);
+      alert('Ошибка при удалении релизов');
     } finally {
       setIsPublishing(false);
     }
@@ -786,25 +866,50 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
               </div>
               
               {selectedReleaseIds.length > 0 && (
-                <button
-                  onClick={handleBulkPublish}
-                  disabled={isPublishing}
-                  className="px-6 py-2 bg-emerald-500 hover:bg-emerald-400 disabled:bg-zinc-700 disabled:text-zinc-500 text-black rounded-xl font-bold transition flex items-center gap-2"
-                >
-                  {isPublishing ? (
-                    <>
-                      <div className="w-4 h-4 border-2 border-black/20 border-t-black rounded-full animate-spin"></div>
-                      Публикуем...
-                    </>
-                  ) : (
-                    <>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <polyline points="20 6 9 17 4 12" strokeWidth="3"/>
-                      </svg>
-                      Опубликовать выбранные
-                    </>
-                  )}
-                </button>
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={handleBulkPublish}
+                    disabled={isPublishing}
+                    className="px-6 py-2 bg-emerald-500 hover:bg-emerald-400 disabled:bg-zinc-700 disabled:text-zinc-500 text-black rounded-xl font-bold transition flex items-center gap-2"
+                  >
+                    {isPublishing ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-black/20 border-t-black rounded-full animate-spin"></div>
+                        Публикуем...
+                      </>
+                    ) : (
+                      <>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                          <polyline points="20 6 9 17 4 12" strokeWidth="3"/>
+                        </svg>
+                        Опубликовать выбранные
+                      </>
+                    )}
+                  </button>
+                  
+                  <button
+                    onClick={handleBulkDelete}
+                    disabled={isPublishing}
+                    className="px-6 py-2 bg-red-500/20 hover:bg-red-500/30 disabled:bg-zinc-700 disabled:text-zinc-500 border-2 border-red-500/40 hover:border-red-500/60 text-red-400 rounded-xl font-bold transition flex items-center gap-2"
+                  >
+                    {isPublishing ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-red-400/20 border-t-red-400 rounded-full animate-spin"></div>
+                        Удаляем...
+                      </>
+                    ) : (
+                      <>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <polyline points="3 6 5 6 21 6"/>
+                          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                          <line x1="10" y1="11" x2="10" y2="17"/>
+                          <line x1="14" y1="11" x2="14" y2="17"/>
+                        </svg>
+                        Удалить выбранные
+                      </>
+                    )}
+                  </button>
+                </div>
               )}
             </div>
           )}
@@ -1061,16 +1166,14 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                               <button
                                 onClick={() => {
                                   navigator.clipboard.writeText(selectedRelease.upc);
-                                  alert('UPC код скопирован в буфер обмена');
+                                  showToast('UPC код скопирован', 'success');
                                 }}
-                                className="px-3 py-2 bg-blue-500/20 hover:bg-blue-500/30 border border-blue-500/40 text-blue-300 rounded-lg transition text-xs font-bold flex items-center gap-1.5"
+                                className="px-2.5 py-1.5 bg-white/5 hover:bg-[#6050ba]/30 rounded-lg transition group"
                                 title="Копировать UPC код"
                               >
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-                                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                <svg className="w-4 h-4 text-zinc-400 group-hover:text-white transition" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                                  <path strokeLinecap="round" strokeLinejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                 </svg>
-                                Копировать
                               </button>
                               <button
                                 onClick={() => {
@@ -1270,16 +1373,14 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                                             <button
                                               onClick={() => {
                                                 navigator.clipboard.writeText(track.isrc);
-                                                alert('ISRC код скопирован в буфер обмена');
+                                                showToast('ISRC код скопирован', 'success');
                                               }}
-                                              className="px-2 py-1.5 bg-blue-500/20 hover:bg-blue-500/30 border border-blue-500/40 text-blue-300 rounded-lg transition text-xs font-bold flex items-center gap-1"
+                                              className="px-2.5 py-1.5 bg-white/5 hover:bg-[#6050ba]/30 rounded-lg transition group"
                                               title="Копировать ISRC код"
                                             >
-                                              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                              <svg className="w-4 h-4 text-zinc-400 group-hover:text-white transition" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                               </svg>
-                                              Копировать
                                             </button>
                                           </>
                                         ) : (
@@ -1560,6 +1661,22 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                   Редактировать релиз
                 </button>
 
+                {/* Кнопка удаления (только в архиве) */}
+                {viewMode === 'archive' && (
+                  <button
+                    onClick={handleDeleteRelease}
+                    className="w-full px-6 py-4 bg-gradient-to-r from-red-500/20 to-red-600/10 hover:from-red-500/30 hover:to-red-600/20 border-2 border-red-500/40 hover:border-red-500/60 rounded-xl font-bold transition-all shadow-lg hover:shadow-red-500/30 flex items-center justify-center gap-2 group text-red-300 hover:text-red-200"
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="group-hover:scale-110 transition-transform">
+                      <polyline points="3 6 5 6 21 6"/>
+                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                      <line x1="10" y1="11" x2="10" y2="17"/>
+                      <line x1="14" y1="11" x2="14" y2="17"/>
+                    </svg>
+                    Удалить релиз
+                  </button>
+                )}
+
                 {selectedRelease.status === 'pending' && (
                   <>
                     <button
@@ -1640,6 +1757,76 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                     )}
                   </div>
                 )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Красивое модальное окно подтверждения удаления */}
+      {showDeleteConfirm && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/70 backdrop-blur-md p-4 animate-in fade-in duration-200">
+          <div className="bg-gradient-to-br from-[#0d0d0f] to-[#1a1a1f] border-2 border-red-500/30 shadow-2xl shadow-red-500/20 rounded-3xl max-w-md w-full animate-in zoom-in duration-300" onClick={(e) => e.stopPropagation()}>
+            {/* Header с иконкой предупреждения */}
+            <div className="p-8 pb-6">
+              <div className="flex items-start gap-4 mb-6">
+                <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br from-red-500/30 to-rose-600/20 border-2 border-red-500/50 flex items-center justify-center animate-pulse">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-red-400" strokeWidth="2">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                    <line x1="12" y1="9" x2="12" y2="13"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-2xl font-black text-white mb-2">
+                    Подтвердите удаление
+                  </h3>
+                  <p className="text-zinc-400 text-sm leading-relaxed">
+                    {deleteType === 'single' 
+                      ? selectedRelease 
+                        ? `Вы уверены, что хотите удалить релиз "${selectedRelease.title}"?`
+                        : 'Вы уверены, что хотите удалить релиз?'
+                      : `Вы уверены, что хотите удалить ${deleteCount} ${deleteCount === 1 ? 'релиз' : deleteCount < 5 ? 'релиза' : 'релизов'}?`
+                    }
+                  </p>
+                </div>
+              </div>
+
+              {/* Блок предупреждения */}
+              <div className="p-4 bg-red-500/10 border-2 border-red-500/30 rounded-xl mb-6">
+                <div className="flex items-start gap-3">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-red-400 flex-shrink-0 mt-0.5" strokeWidth="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                  </svg>
+                  <div className="flex-1">
+                    <p className="text-red-300 text-sm font-bold">Это действие необратимо!</p>
+                    <p className="text-red-400/80 text-xs mt-1">Все данные релиза будут безвозвратно удалены из системы.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Кнопки */}
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => setShowDeleteConfirm(false)}
+                  className="flex-1 px-6 py-3 bg-white/5 hover:bg-white/10 border-2 border-white/20 hover:border-white/30 rounded-xl font-bold transition-all text-white"
+                >
+                  Отмена
+                </button>
+                <button
+                  onClick={deleteType === 'single' ? confirmDeleteRelease : confirmBulkDelete}
+                  className="flex-1 px-6 py-3 bg-gradient-to-r from-red-600 to-rose-700 hover:from-red-700 hover:to-rose-800 rounded-xl font-bold transition-all shadow-lg shadow-red-500/30 hover:shadow-red-500/50 hover:scale-[1.02] text-white flex items-center justify-center gap-2 group"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="group-hover:scale-110 transition-transform">
+                    <polyline points="3 6 5 6 21 6"/>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                    <line x1="10" y1="11" x2="10" y2="17"/>
+                    <line x1="14" y1="11" x2="14" y2="17"/>
+                  </svg>
+                  Удалить
+                </button>
               </div>
             </div>
           </div>

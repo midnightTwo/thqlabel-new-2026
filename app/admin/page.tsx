@@ -126,21 +126,21 @@ export default function AdminPage() {
       <div className="max-w-[1600px] mx-auto p-6 lg:p-8 flex flex-col lg:flex-row gap-8 items-stretch relative z-10">
         
         {/* Sidebar */}
-        <aside className="lg:w-64 w-full bg-[#0d0d0f] border border-white/5 rounded-3xl p-6 flex flex-col self-stretch">
+        <aside className="lg:w-64 w-full bg-[#0d0d0f] border border-white/5 rounded-3xl p-5 flex flex-col lg:sticky lg:top-24 lg:h-[calc(100vh-8rem)]">
           {/* Header */}
-          <div className="mb-8">
+          <div className="mb-6">
             <div className="flex items-center justify-between gap-3 mb-2">
               <img 
                 src="/logo.png" 
                 alt="thqlabel" 
-                className="h-24 w-auto drop-shadow-[0_0_25px_rgba(160,141,241,0.8)]"
+                className="h-16 w-auto drop-shadow-[0_0_25px_rgba(160,141,241,0.8)]"
               />
               <button 
                 onClick={() => router.push('/cabinet')}
-                className="w-10 h-10 bg-gradient-to-br from-[#6050ba]/20 to-[#8070da]/20 border border-[#9d8df1]/30 rounded-lg hover:from-[#6050ba]/30 hover:to-[#8070da]/30 hover:border-[#9d8df1]/50 transition-all flex items-center justify-center shrink-0 group"
+                className="w-9 h-9 bg-gradient-to-br from-[#6050ba]/20 to-[#8070da]/20 border border-[#9d8df1]/30 rounded-lg hover:from-[#6050ba]/30 hover:to-[#8070da]/30 hover:border-[#9d8df1]/50 transition-all flex items-center justify-center shrink-0 group"
                 title="Назад в кабинет"
               >
-                <svg className="w-5 h-5 text-[#9d8df1] group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-[#9d8df1] group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                 </svg>
               </button>
@@ -158,7 +158,7 @@ export default function AdminPage() {
             <p className="text-[10px] text-zinc-600 truncate mt-1">
               {userEmail}
             </p>
-            <div className="mt-3">
+            <div className="mt-2">
               <span className={`text-[9px] px-2 py-1 rounded-full font-bold uppercase ${
                 currentUserRole === 'owner' 
                   ? 'bg-purple-500/20 text-purple-400' 
@@ -170,14 +170,14 @@ export default function AdminPage() {
           </div>
 
           {/* Navigation */}
-          <nav className="space-y-2 flex-1">
+          <nav className="space-y-1.5 flex-1">
             {tabs.map((tab) => {
               const isMainTab = ['users', 'releases', 'tickets', 'payouts', 'withdrawals', 'news'].includes(tab.id);
               return (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`w-full text-left py-3 px-4 rounded-xl flex items-center gap-3 transition-all duration-300 ${
+                className={`w-full text-left py-2.5 px-3 rounded-xl flex items-center gap-3 transition-all duration-300 ${
                   activeTab === tab.id 
                     ? isMainTab 
                       ? 'bg-gradient-to-r from-[#6050ba] to-[#8070da] text-white shadow-lg shadow-[#6050ba]/30 border border-[#9d8df1]/30' 

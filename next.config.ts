@@ -20,12 +20,6 @@ const nextConfig: NextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   
-  // Экспериментальные оптимизации
-  experimental: {
-    // optimizeCss требует critters, который не установлен на Vercel
-    // optimizeCss: true,
-  },
-  
   // Оптимизация сборки
   productionBrowserSourceMaps: false, // Отключаем source maps в продакшене
   poweredByHeader: false, // Убираем заголовок X-Powered-By

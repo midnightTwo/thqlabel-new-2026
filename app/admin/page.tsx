@@ -1,25 +1,47 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo, memo, lazy, Suspense } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@supabase/supabase-js';
-import AnimatedBackground from '@/components/AnimatedBackground';
+import dynamic from 'next/dynamic';
 import Toast from '@/components/Toast';
 
-// Импорты компонентов вкладок
-import ReleasesModeration from './components/ReleasesModeration';
-import DemosTab from './components/demos/DemosTab';
-import ContractsTab from './components/contracts/ContractsTab';
-import ArchiveTab from './components/archive/ArchiveTab';
-import NewsTab from './components/news/NewsTab';
-import PayoutsTab from './components/payouts/PayoutsTab';
-import UsersTab from './components/UsersTab';
-import AdminTicketsPanel from './components/AdminTicketsPanel';
-import WithdrawalsTab from './components/withdrawals/WithdrawalsTab';
+// Ленивая загрузка тяжёлых компонентов для ускорения первоначальной загрузки
+const AnimatedBackground = dynamic(() => import('@/components/AnimatedBackground'), { 
+  ssr: false,
+  loading: () => null 
+});
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+// Ленивая загрузка вкладок - загружаются только при активации
+const ReleasesModeration = lazy(() => import('./components/ReleasesModeration'));
+const DemosTab = lazy(() => import('./components/demos/DemosTab'));
+const ContractsTab = lazy(() => import('./components/contracts/ContractsTab'));
+const ArchiveTab = lazy(() => import('./components/archive/ArchiveTab'));
+const NewsTab = lazy(() => import('./components/news/NewsTab'));
+const PayoutsTab = lazy(() => import('./components/payouts/PayoutsTab'));
+const UsersTab = lazy(() => import('./components/UsersTab'));
+const AdminTicketsPanel = lazy(() => import('./components/AdminTicketsPanel'));
+const WithdrawalsTab = lazy(() => import('./components/withdrawals/WithdrawalsTab'));
+
+// Оптимизация: singleton паттерн для supabase клиента
+let supabaseInstance: ReturnType<typeof createClient> | null = null;
+const getSupabase = () => {
+  if (!supabaseInstance) {
+    supabaseInstance = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    );
+  }
+  return supabaseInstance;
+};
+const supabase = getSupabase();
+
+// Компонент загрузки для Suspense
+const TabLoader = memo(() => (
+  <div className="flex items-center justify-center h-64">
+    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#6050ba]"></div>
+  </div>
+));
+TabLoader.displayName = 'TabLoader';
 
 type Tab = 'demos' | 'releases' | 'contracts' | 'archive' | 'payouts' | 'users' | 'news' | 'tickets' | 'withdrawals';
 
@@ -199,15 +221,17 @@ export default function AdminPage() {
 
         {/* Content */}
         <section className="flex-1 bg-[#0d0d0f] border border-white/5 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 min-h-[400px] sm:min-h-[600px]">
-          {activeTab === 'demos' && <DemosTab />}
-          {activeTab === 'releases' && <ReleasesModeration supabase={supabase} />}
-          {activeTab === 'news' && <NewsTab supabase={supabase} />}
-          {activeTab === 'withdrawals' && <WithdrawalsTab supabase={supabase} currentUserRole={currentUserRole} />}
-          {activeTab === 'payouts' && <PayoutsTab supabase={supabase} currentAdmin={userEmail} currentUserRole={currentUserRole} />}
-          {activeTab === 'tickets' && <AdminTicketsPanel supabase={supabase} />}
-          {activeTab === 'users' && <UsersTab supabase={supabase} currentUserRole={currentUserRole} />}
-          {activeTab === 'contracts' && <ContractsTab />}
-          {activeTab === 'archive' && <ArchiveTab />}
+          <Suspense fallback={<TabLoader />}>
+            {activeTab === 'demos' && <DemosTab />}
+            {activeTab === 'releases' && <ReleasesModeration supabase={supabase} />}
+            {activeTab === 'news' && <NewsTab supabase={supabase} />}
+            {activeTab === 'withdrawals' && <WithdrawalsTab supabase={supabase} currentUserRole={currentUserRole} />}
+            {activeTab === 'payouts' && <PayoutsTab supabase={supabase} currentAdmin={userEmail} currentUserRole={currentUserRole} />}
+            {activeTab === 'tickets' && <AdminTicketsPanel supabase={supabase} />}
+            {activeTab === 'users' && <UsersTab supabase={supabase} currentUserRole={currentUserRole} />}
+            {activeTab === 'contracts' && <ContractsTab />}
+            {activeTab === 'archive' && <ArchiveTab />}
+          </Suspense>
         </section>
 
       </div>

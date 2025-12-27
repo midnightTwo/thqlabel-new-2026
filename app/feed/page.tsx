@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useCallback, memo } from 'react';
 import Link from 'next/link';
 import { createClient } from '@supabase/supabase-js';
 
@@ -19,8 +19,8 @@ const RELEASES = [
   { id: 8, title: 'Холодно', artist: 'qqdie', cover: 'https://images.genius.com/ece70e671b3422967c2012217763c557.807x807x1.jpg' },
 ];
 
-// Анимированный счетчик (без багов) 
-const AnimatedCounter = ({ end, duration = 2500, suffix = '' }: { end: number; duration?: number; suffix?: string }) => {
+// Оптимизированный анимированный счетчик
+const AnimatedCounter = memo(({ end, duration = 2500, suffix = '' }: { end: number; duration?: number; suffix?: string }) => {
   const [count, setCount] = useState(0);
   const countRef = useRef(0);
   const startTimeRef = useRef<number | null>(null);
@@ -55,34 +55,48 @@ const AnimatedCounter = ({ end, duration = 2500, suffix = '' }: { end: number; d
   }, [end, duration]);
 
   // Форматирование числа с разделителями
-  const formatNumber = (num: number) => {
+  const formatNumber = useCallback((num: number) => {
     if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
     if (num >= 1000) return (num / 1000).toFixed(0) + 'K';
     return num.toString();
-  };
-
-  return <span className="tabular-nums">{formatNumber(count)}{suffix}</span>;
-};
-
-// Летающие 3D фигуры (квадраты и круги)
-const FloatingShapes = () => {
-  const [shapes, setShapes] = useState<any[]>([]);
-  
-  useEffect(() => {
-    setShapes(Array.from({ length: 15 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: 20 + Math.random() * 60,
-      duration: 15 + Math.random() * 25,
-      delay: Math.random() * -15,
-      type: Math.random() > 0.5 ? 'circle' : 'square',
-      rotateSpeed: 10 + Math.random() * 20,
-    })));
   }, []);
 
+  return <span className="tabular-nums">{formatNumber(count)}{suffix}</span>;
+});
+
+AnimatedCounter.displayName = 'AnimatedCounter';
+
+// Функция для детерминированных псевдослучайных значений
+const seededRandom = (seed: number) => {
+  const x = Math.sin(seed * 9999) * 10000;
+  return x - Math.floor(x);
+};
+
+// Оптимизированные летающие 3D фигуры (уменьшено количество)
+const FloatingShapes = memo(() => {
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Детерминированные значения для SSR
+  const shapes = useMemo(() => 
+    Array.from({ length: 10 }, (_, i) => ({
+      id: i,
+      x: seededRandom(i + 1) * 100,
+      y: seededRandom(i + 100) * 100,
+      size: 25 + seededRandom(i + 200) * 50,
+      duration: 18 + seededRandom(i + 300) * 20,
+      delay: seededRandom(i + 400) * -15,
+      type: seededRandom(i + 500) > 0.5 ? 'circle' : 'square',
+    })),
+  []);
+
+  if (!mounted) return null;
+
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0" style={{ contain: 'strict' }}>
       {shapes.map(shape => (
         <div
           key={shape.id}
@@ -92,47 +106,53 @@ const FloatingShapes = () => {
             top: `${shape.y}%`,
             width: shape.size,
             height: shape.size,
-            border: '1px solid rgba(96, 80, 186, 0.2)',
-            background: 'rgba(96, 80, 186, 0.03)',
-            animation: `float-shape ${shape.duration}s ease-in-out infinite, rotate-shape ${shape.rotateSpeed}s linear infinite`,
+            border: '1px solid rgba(96, 80, 186, 0.15)',
+            background: 'rgba(96, 80, 186, 0.02)',
+            animation: `float-shape ${shape.duration}s ease-in-out infinite`,
             animationDelay: `${shape.delay}s`,
+            willChange: 'transform',
+            transform: 'translateZ(0)',
           }}
         />
       ))}
       <style jsx>{`
         @keyframes float-shape {
-          0%, 100% { transform: translate(0, 0); }
-          25% { transform: translate(30px, -40px); }
-          50% { transform: translate(-20px, 30px); }
-          75% { transform: translate(40px, 20px); }
-        }
-        @keyframes rotate-shape {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
+          0%, 100% { transform: translate3d(0, 0, 0); }
+          25% { transform: translate3d(25px, -30px, 0); }
+          50% { transform: translate3d(-15px, 25px, 0); }
+          75% { transform: translate3d(30px, 15px, 0); }
         }
       `}</style>
     </div>
   );
-};
+});
 
-// Летающие светящиеся частицы
-const FloatingParticles = () => {
-  const [particles, setParticles] = useState<any[]>([]);
+FloatingShapes.displayName = 'FloatingShapes';
+
+// Оптимизированные летающие частицы (уменьшено количество с 40 до 20)
+const FloatingParticles = memo(() => {
+  const [mounted, setMounted] = useState(false);
   
   useEffect(() => {
-    setParticles(Array.from({ length: 40 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: 2 + Math.random() * 4,
-      duration: 20 + Math.random() * 30,
-      delay: Math.random() * -20,
-      opacity: 0.3 + Math.random() * 0.5,
-    })));
+    setMounted(true);
   }, []);
 
+  const particles = useMemo(() => 
+    Array.from({ length: 20 }, (_, i) => ({
+      id: i,
+      x: seededRandom(i + 600) * 100,
+      y: seededRandom(i + 700) * 100,
+      size: 2 + seededRandom(i + 800) * 3,
+      duration: 25 + seededRandom(i + 900) * 25,
+      delay: seededRandom(i + 1000) * -20,
+      opacity: 0.3 + seededRandom(i + 1100) * 0.4,
+    })),
+  []);
+
+  if (!mounted) return null;
+
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0" style={{ contain: 'strict' }}>
       {particles.map(p => (
         <div
           key={p.id}
@@ -143,94 +163,90 @@ const FloatingParticles = () => {
             width: p.size,
             height: p.size,
             opacity: p.opacity,
-            boxShadow: '0 0 10px #9d8df1, 0 0 20px #6050ba',
+            boxShadow: '0 0 8px rgba(157, 141, 241, 0.5)',
             animation: `particle-fly ${p.duration}s ease-in-out infinite`,
             animationDelay: `${p.delay}s`,
+            willChange: 'transform, opacity',
+            transform: 'translateZ(0)',
           }}
         />
       ))}
       <style jsx>{`
         @keyframes particle-fly {
-          0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
-          25% { transform: translate(60px, -80px) scale(1.2); opacity: 0.8; }
-          50% { transform: translate(-40px, 60px) scale(0.8); opacity: 0.5; }
-          75% { transform: translate(80px, 40px) scale(1.1); opacity: 0.7; }
+          0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.3; }
+          25% { transform: translate3d(45px, -60px, 0); opacity: 0.7; }
+          50% { transform: translate3d(-30px, 45px, 0); opacity: 0.4; }
+          75% { transform: translate3d(60px, 30px, 0); opacity: 0.6; }
         }
       `}</style>
     </div>
   );
-};
+});
 
-// 3D летающие карточки релизов по всему экрану - обновлённый дизайн
-const FloatingReleaseCard = ({ release, index, isMobile }: { release: any; index: number; isMobile: boolean }) => {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ 
-        x: (e.clientX / window.innerWidth - 0.5) * 20,
-        y: (e.clientY / window.innerHeight - 0.5) * 20
-      });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-  
-  // Распределяем карточки равномерно и симметрично
-  // Для мобильных - меньше карточек и другие позиции
-  const positionsDesktop = [
-    { x: '6%', y: '15%', rotate: -10 },
-    { x: '86%', y: '15%', rotate: 10 },
-    { x: '6%', y: '35%', rotate: 8 },
-    { x: '86%', y: '35%', rotate: -8 },
-    { x: '6%', y: '55%', rotate: -12 },
-    { x: '86%', y: '55%', rotate: 12 },
-    { x: '6%', y: '75%', rotate: 10 },
-    { x: '86%', y: '75%', rotate: -10 },
-  ];
-  
-  // 8 релизов для мобилки - распределены по всей странице равномерно
-  const positionsMobile = [
-    { x: '2%', y: '20%', rotate: -8 },
-    { x: '75%', y: '28%', rotate: 6 },
-    { x: '3%', y: '38%', rotate: -5 },
-    { x: '78%', y: '50%', rotate: 7 },
-    { x: '4%', y: '58%', rotate: 8 },
-    { x: '76%', y: '65%', rotate: -7 },
-    { x: '1%', y: '75%', rotate: 5 },
-    { x: '77%', y: '82%', rotate: -6 },
-  ];
+FloatingParticles.displayName = 'FloatingParticles';
+
+// Оптимизированная 3D летающая карточка релиза
+const FloatingReleaseCard = memo(({ release, index, isMobile }: { release: any; index: number; isMobile: boolean }) => {
+  // Мемоизированные позиции
+  const positions = useMemo(() => {
+    const positionsDesktop = [
+      { x: '6%', y: '15%', rotate: -10 },
+      { x: '86%', y: '15%', rotate: 10 },
+      { x: '6%', y: '35%', rotate: 8 },
+      { x: '86%', y: '35%', rotate: -8 },
+      { x: '6%', y: '55%', rotate: -12 },
+      { x: '86%', y: '55%', rotate: 12 },
+      { x: '6%', y: '75%', rotate: 10 },
+      { x: '86%', y: '75%', rotate: -10 },
+    ];
+    
+    const positionsMobile = [
+      { x: '2%', y: '20%', rotate: -8 },
+      { x: '75%', y: '28%', rotate: 6 },
+      { x: '3%', y: '38%', rotate: -5 },
+      { x: '78%', y: '50%', rotate: 7 },
+      { x: '4%', y: '58%', rotate: 8 },
+      { x: '76%', y: '65%', rotate: -7 },
+      { x: '1%', y: '75%', rotate: 5 },
+      { x: '77%', y: '82%', rotate: -6 },
+    ];
+    
+    return isMobile ? positionsMobile : positionsDesktop;
+  }, [isMobile]);
   
   // Показываем все 8 релизов на мобилке
   if (isMobile && index >= 8) return null;
   
-  const positions = isMobile ? positionsMobile : positionsDesktop;
   const pos = positions[index % positions.length];
+  
+  // Статический transform без mousemove для оптимизации
+  const transformStyle = useMemo(() => ({
+    left: pos.x,
+    top: pos.y,
+    transform: `perspective(1000px) rotateY(${pos.rotate}deg) translateZ(0)`,
+    zIndex: isMobile ? -1 : 10,
+  }), [pos, isMobile]);
 
   return (
     <div
       className="absolute pointer-events-none"
-      style={{
-        left: pos.x,
-        top: pos.y,
-        transform: `perspective(1000px) rotateY(${pos.rotate + mousePos.x * 0.5}deg) rotateX(${-mousePos.y * 0.3}deg)`,
-        transition: 'transform 0.1s ease-out',
-        zIndex: isMobile ? -1 : 10, // На мобилке за всем фоном
-      }}
+      style={transformStyle}
     >
       <div 
-        className="relative w-20 h-28 sm:w-24 sm:h-32 lg:w-32 lg:h-40 xl:w-36 xl:h-44 rounded-xl sm:rounded-2xl overflow-hidden backdrop-blur-md transition-all duration-500 group"
+        className="relative w-20 h-28 sm:w-24 sm:h-32 lg:w-32 lg:h-40 xl:w-36 xl:h-44 rounded-xl sm:rounded-2xl overflow-hidden backdrop-blur-md group"
         style={{
           animation: `float-card ${6 + index}s ease-in-out infinite`,
           animationDelay: `${index * 0.3}s`,
           background: isMobile 
-            ? 'rgba(0, 0, 0, 0.15)' // Едва заметный фон на мобилке
+            ? 'rgba(0, 0, 0, 0.15)'
             : 'rgba(96, 80, 186, 0.08)',
           border: '1px solid rgba(157, 141, 241, 0.25)',
           boxShadow: isMobile
-            ? '0 10px 30px -10px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(157, 141, 241, 0.1) inset' // Едва заметные тени
-            : '0 20px 60px -15px rgba(96, 80, 186, 0.5), 0 0 0 1px rgba(157, 141, 241, 0.1) inset',
-          opacity: isMobile ? 0.25 : 1, // Едва заметная видимость на мобилке
+            ? '0 10px 25px -10px rgba(0, 0, 0, 0.15)'
+            : '0 15px 50px -15px rgba(96, 80, 186, 0.4)',
+          opacity: isMobile ? 0.25 : 1,
+          willChange: 'transform',
+          transform: 'translateZ(0)',
         }}
       >
         {/* Картинка обложки с оверлеем */}
@@ -239,85 +255,77 @@ const FloatingReleaseCard = ({ release, index, isMobile }: { release: any; index
             src={release.cover} 
             alt={release.title}
             className="w-full h-full object-cover opacity-90"
+            loading="lazy"
+            decoding="async"
           />
           {/* Градиентный оверлей */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#6050ba]/20 via-transparent to-black/80" />
-          {/* Сияющая рамка */}
-          <div className="absolute inset-0 border-b border-[#9d8df1]/30" />
         </div>
 
-        {/* Инфо блок с glassmorphism */}
+        {/* Инфо блок */}
         <div className="absolute bottom-0 left-0 right-0 p-1.5 sm:p-2 lg:p-3 border-t border-[#6050ba]/30"
           style={{
-            background: isMobile 
-              ? 'rgba(0, 0, 0, 0.7)' // Менее темный для большей прозрачности
-              : 'rgba(0, 0, 0, 0.4)',
+            background: isMobile ? 'rgba(0, 0, 0, 0.7)' : 'rgba(0, 0, 0, 0.4)',
             backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)',
           }}
         >
-          <p className="text-[8px] sm:text-[9px] lg:text-[11px] font-black text-white truncate uppercase tracking-wide drop-shadow-lg">{release.title}</p>
-          <p className="text-[7px] sm:text-[8px] lg:text-[10px] text-[#9d8df1] font-bold drop-shadow-lg mt-0.5">{release.artist}</p>
-          
-          {/* Декоративная полоска */}
+          <p className="text-[8px] sm:text-[9px] lg:text-[11px] font-black text-white truncate uppercase tracking-wide">{release.title}</p>
+          <p className="text-[7px] sm:text-[8px] lg:text-[10px] text-[#9d8df1] font-bold mt-0.5">{release.artist}</p>
           <div className="mt-1 sm:mt-1.5 lg:mt-2 h-0.5 w-4 sm:w-6 lg:w-8 bg-gradient-to-r from-[#9d8df1] to-transparent rounded-full" />
         </div>
-
-        {/* Светящаяся рамка */}
-        <div 
-          className="absolute inset-0 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-          style={{
-            boxShadow: '0 0 30px rgba(157, 141, 241, 0.6) inset, 0 0 50px rgba(96, 80, 186, 0.4)',
-          }}
-        />
-
-        {/* Угловые акценты */}
-        <div className="absolute top-1 right-1 sm:top-2 sm:right-2 w-2 h-2 sm:w-3 sm:h-3 lg:w-4 lg:h-4 border-t-2 border-r-2 border-[#9d8df1]/50 rounded-tr-lg" />
-        <div className="absolute bottom-1 left-1 sm:bottom-2 sm:left-2 w-2 h-2 sm:w-3 sm:h-3 lg:w-4 lg:h-4 border-b-2 border-l-2 border-[#9d8df1]/50 rounded-bl-lg" />
       </div>
       
       <style jsx>{`
         @keyframes float-card {
-          0% { transform: translateY(0px) translateX(0px); }
-          25% { transform: translateY(-10px) translateX(5px); }
-          50% { transform: translateY(-20px) translateX(0px); }
-          75% { transform: translateY(-10px) translateX(-5px); }
-          100% { transform: translateY(0px) translateX(0px); }
+          0% { transform: translate3d(0, 0, 0); }
+          25% { transform: translate3d(5px, -8px, 0); }
+          50% { transform: translate3d(0, -15px, 0); }
+          75% { transform: translate3d(-5px, -8px, 0); }
+          100% { transform: translate3d(0, 0, 0); }
         }
       `}</style>
     </div>
   );
-};
+});
+
+FloatingReleaseCard.displayName = 'FloatingReleaseCard';
 
 export default function FeedPage() {
   const [mounted, setMounted] = useState(false);
   const [user, setUser] = useState<any>(null);
-  const [scrollY, setScrollY] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const [showCapybaraMsg, setShowCapybaraMsg] = useState(false);
+  const rafRef = useRef<number | null>(null);
 
-  const capybaraMessages = [
+  // Мемоизированные данные
+  const capybaraMessages = useMemo(() => [
     'Ок капибара 😎',
     'Капибара одобряет! 👍',
     'А ты хорош! ✨',
     'Капи капи! 💜',
     'Музыка кайф 🎵',
     'thq топ! 🚀',
-  ];
-  const [capybaraMsg, setCapybaraMsg] = useState(capybaraMessages[0]);
+  ], []);
+
+  // Оптимизированная проверка размера экрана
+  const checkMobile = useCallback(() => {
+    if (rafRef.current) return;
+    rafRef.current = requestAnimationFrame(() => {
+      setIsMobile(window.innerWidth < 1024);
+      rafRef.current = null;
+    });
+  }, []);
 
   useEffect(() => {
-    // Принудительная прокрутка в самый верх при монтировании компонента
+    // Принудительная прокрутка в самый верх
     if (typeof window !== 'undefined') {
-      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' as ScrollBehavior });
     }
     setMounted(true);
     
     // Проверяем размер экрана
-    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
     checkMobile();
-    window.addEventListener('resize', checkMobile);
+    window.addEventListener('resize', checkMobile, { passive: true });
     
     // Проверяем авторизацию
     const checkAuth = async () => {
@@ -327,20 +335,18 @@ export default function FeedPage() {
     };
     checkAuth();
     
-    // Параллакс эффект
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    
     return () => {
-      window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', checkMobile);
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
     };
-  }, []);
+  }, [checkMobile]);
 
   return (
     <main className="min-h-screen overflow-hidden relative">
-      {/* Контейнер для релизов - привязан к документу, а не к экрану */}
-      <div className="absolute inset-0 pointer-events-none">
+      {/* Контейнер для релизов */}
+      <div className="absolute inset-0 pointer-events-none" style={{ contain: 'layout' }}>
         {/* Летающие карточки релизов */}
         {mounted && RELEASES.map((release, i) => (
           <FloatingReleaseCard key={release.id} release={release} index={i} isMobile={isMobile} />
@@ -351,11 +357,22 @@ export default function FeedPage() {
       <FloatingShapes />
       <FloatingParticles />
       
-      {/* Градиентный фон с параллаксом */}
-      <div className="fixed inset-0 pointer-events-none" style={{ transform: `translateY(${scrollY * 0.3}px)` }}>
-        <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-[#6050ba]/10 rounded-full blur-[200px] animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-[#9d8df1]/10 rounded-full blur-[150px] animate-pulse" style={{ animationDelay: '2s' }} />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-[#6050ba]/5 rounded-full blur-[250px]" />
+      {/* Оптимизированный градиентный фон - без параллакса */}
+      <div className="fixed inset-0 pointer-events-none" style={{ transform: 'translateZ(0)' }}>
+        <div 
+          className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#6050ba]/08 rounded-full" 
+          style={{ filter: 'blur(150px)', animation: 'gradient-pulse 8s ease-in-out infinite' }}
+        />
+        <div 
+          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#9d8df1]/08 rounded-full" 
+          style={{ filter: 'blur(120px)', animation: 'gradient-pulse 8s ease-in-out infinite 2s' }}
+        />
+        <style jsx>{`
+          @keyframes gradient-pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+          }
+        `}</style>
       </div>
 
       {/* HERO секция */}
@@ -369,12 +386,14 @@ export default function FeedPage() {
             <img 
               src="/logo.png" 
               alt="thqlabel" 
-              className="h-40 md:h-48 lg:h-56 w-auto object-contain drop-shadow-[0_0_80px_rgba(96,80,186,0.7)] relative z-10"
+              className="h-40 md:h-48 lg:h-56 w-auto object-contain drop-shadow-[0_0_60px_rgba(96,80,186,0.6)] relative z-10"
               style={{ transform: 'scale(2.2)', transformOrigin: 'center' }}
+              loading="eager"
+              decoding="async"
             />
-            {/* Декоративные элементы - красивые большие квадраты */}
-            <div className="absolute -top-8 -right-8 w-16 h-16 border-t-2 border-r-2 border-[#6050ba]/50 animate-pulse pointer-events-none" />
-            <div className="absolute -bottom-8 -left-8 w-16 h-16 border-b-2 border-l-2 border-[#9d8df1]/50 animate-pulse pointer-events-none" style={{ animationDelay: '0.5s' }} />
+            {/* Декоративные элементы */}
+            <div className="absolute -top-8 -right-8 w-16 h-16 border-t-2 border-r-2 border-[#6050ba]/50 pointer-events-none" style={{ animation: 'pulse 2s ease-in-out infinite' }} />
+            <div className="absolute -bottom-8 -left-8 w-16 h-16 border-b-2 border-l-2 border-[#9d8df1]/50 pointer-events-none" style={{ animation: 'pulse 2s ease-in-out infinite 0.5s' }} />
           </div>
           
           {/* Лейбл ждёт тебя - компактный */}

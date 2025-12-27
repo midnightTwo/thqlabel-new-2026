@@ -2,13 +2,19 @@
 import "./globals.css";
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback, useMemo, memo } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { ModalProvider } from '../components/ModalProvider';
 import { ThemeProvider, useTheme } from '../contexts/ThemeContext';
 import { NotificationProvider } from '../contexts/NotificationContext';
-import GlobalSupportWidget from '../components/GlobalSupportWidget';
+import dynamic from 'next/dynamic';
 import SupportWidgetProvider from '../components/SupportWidgetProvider';
+
+// Динамический импорт тяжёлого компонента поддержки
+const GlobalSupportWidget = dynamic(
+  () => import('../components/GlobalSupportWidget'),
+  { ssr: false }
+);
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
@@ -21,11 +27,11 @@ if (typeof window !== 'undefined') {
   }
 }
 
-// Красивый анимированный фон с поддержкой тем
-const AnimatedBackground = () => {
+// Мемоизированный анимированный фон с поддержкой тем
+const AnimatedBackground = memo(() => {
   const { themeName } = useTheme();
   
-  const backgrounds: Record<string, string> = {
+  const backgrounds: Record<string, string> = useMemo(() => ({
     dark: `
       radial-gradient(ellipse 80% 50% at 50% -20%, rgba(96, 80, 186, 0.4), transparent),
       radial-gradient(ellipse 60% 40% at 100% 100%, rgba(157, 141, 241, 0.3), transparent),
@@ -58,43 +64,46 @@ const AnimatedBackground = () => {
       radial-gradient(ellipse 60% 40% at 100% 100%, rgba(22, 163, 74, 0.25), transparent),
       #0a1a0a
     `,
-  };
+  }), []);
+
+  // Мемоизированные стили для точек
+  const starStyles = useMemo(() => [
+    { left: '10%', top: '20%', size: 'w-2 h-2', delay: '' },
+    { left: '80%', top: '15%', size: 'w-3 h-3', delay: '1s' },
+    { left: '25%', top: '70%', size: 'w-2 h-2', delay: '0.5s' },
+    { left: '70%', top: '80%', size: 'w-2 h-2', delay: '2s' },
+    { left: '50%', top: '40%', size: 'w-1.5 h-1.5', delay: '1.5s' },
+    { left: '90%', top: '50%', size: 'w-2 h-2', delay: '0.8s' },
+  ], []);
   
   return (
     <>
       {/* Основной фиксированный фон */}
       <div 
-        className="fixed inset-0 transition-all duration-500"
+        className="fixed inset-0"
         style={{ 
           zIndex: -10,
           background: backgrounds[themeName] || backgrounds.dark,
+          transform: 'translateZ(0)',
+          willChange: 'background',
+          transition: 'background 0.5s ease',
         }}
       />
       
-      {/* Анимированные орбы */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: -5 }}>
-        <div 
-          className="absolute rounded-full"
-          style={{
-            width: '600px',
-            height: '600px',
-            top: '-10%',
-            left: '-5%',
-            background: 'radial-gradient(circle, rgba(96, 80, 186, 0.4) 0%, transparent 70%)',
-            filter: 'blur(40px)',
-            animation: 'orb-float-1 25s ease-in-out infinite',
-          }}
-        />
+      {/* Анимированные орбы - оптимизированы */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: -5, contain: 'strict' }}>
         <div 
           className="absolute rounded-full"
           style={{
             width: '500px',
             height: '500px',
-            bottom: '-5%',
-            right: '-10%',
-            background: 'radial-gradient(circle, rgba(157, 141, 241, 0.5) 0%, transparent 70%)',
-            filter: 'blur(50px)',
-            animation: 'orb-float-2 30s ease-in-out infinite',
+            top: '-10%',
+            left: '-5%',
+            background: 'radial-gradient(circle, rgba(96, 80, 186, 0.35) 0%, transparent 70%)',
+            filter: 'blur(35px)',
+            animation: 'orb-float-1 25s ease-in-out infinite',
+            willChange: 'transform',
+            transform: 'translateZ(0)',
           }}
         />
         <div 
@@ -102,26 +111,46 @@ const AnimatedBackground = () => {
           style={{
             width: '400px',
             height: '400px',
+            bottom: '-5%',
+            right: '-10%',
+            background: 'radial-gradient(circle, rgba(157, 141, 241, 0.4) 0%, transparent 70%)',
+            filter: 'blur(40px)',
+            animation: 'orb-float-2 30s ease-in-out infinite',
+            willChange: 'transform',
+            transform: 'translateZ(0)',
+          }}
+        />
+        <div 
+          className="absolute rounded-full"
+          style={{
+            width: '350px',
+            height: '350px',
             top: '50%',
             left: '50%',
-            transform: 'translate(-50%, -50%)',
-            background: 'radial-gradient(circle, rgba(96, 80, 186, 0.25) 0%, transparent 70%)',
-            filter: 'blur(60px)',
+            transform: 'translate(-50%, -50%) translateZ(0)',
+            background: 'radial-gradient(circle, rgba(96, 80, 186, 0.2) 0%, transparent 70%)',
+            filter: 'blur(50px)',
             animation: 'orb-float-3 20s ease-in-out infinite',
+            willChange: 'transform',
           }}
         />
       </div>
 
-      {/* Светящиеся точки */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: -3 }}>
-        <div className="absolute w-2 h-2 rounded-full bg-[#9d8df1]" style={{ left: '10%', top: '20%', boxShadow: '0 0 20px 5px rgba(157, 141, 241, 0.6)', animation: 'star-twinkle 3s ease-in-out infinite' }} />
-        <div className="absolute w-3 h-3 rounded-full bg-[#9d8df1]" style={{ left: '80%', top: '15%', boxShadow: '0 0 25px 8px rgba(157, 141, 241, 0.5)', animation: 'star-twinkle 4s ease-in-out infinite 1s' }} />
-        <div className="absolute w-2 h-2 rounded-full bg-[#9d8df1]" style={{ left: '25%', top: '70%', boxShadow: '0 0 20px 5px rgba(157, 141, 241, 0.6)', animation: 'star-twinkle 3.5s ease-in-out infinite 0.5s' }} />
-        <div className="absolute w-2 h-2 rounded-full bg-[#9d8df1]" style={{ left: '70%', top: '80%', boxShadow: '0 0 20px 5px rgba(157, 141, 241, 0.5)', animation: 'star-twinkle 4.5s ease-in-out infinite 2s' }} />
-        <div className="absolute w-1.5 h-1.5 rounded-full bg-[#9d8df1]" style={{ left: '50%', top: '40%', boxShadow: '0 0 15px 4px rgba(157, 141, 241, 0.6)', animation: 'star-twinkle 3s ease-in-out infinite 1.5s' }} />
-        <div className="absolute w-2 h-2 rounded-full bg-[#9d8df1]" style={{ left: '90%', top: '50%', boxShadow: '0 0 20px 5px rgba(157, 141, 241, 0.5)', animation: 'star-twinkle 4s ease-in-out infinite 0.8s' }} />
-        <div className="absolute w-1.5 h-1.5 rounded-full bg-[#9d8df1]" style={{ left: '5%', top: '60%', boxShadow: '0 0 15px 4px rgba(157, 141, 241, 0.6)', animation: 'star-twinkle 3.5s ease-in-out infinite 2.5s' }} />
-        <div className="absolute w-2 h-2 rounded-full bg-[#9d8df1]" style={{ left: '35%', top: '30%', boxShadow: '0 0 20px 5px rgba(157, 141, 241, 0.5)', animation: 'star-twinkle 4s ease-in-out infinite 1.2s' }} />
+      {/* Светящиеся точки - уменьшено количество */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: -3, contain: 'layout' }}>
+        {starStyles.map((star, i) => (
+          <div 
+            key={i}
+            className={`absolute ${star.size} rounded-full bg-[#9d8df1]`} 
+            style={{ 
+              left: star.left, 
+              top: star.top, 
+              boxShadow: '0 0 15px 4px rgba(157, 141, 241, 0.5)', 
+              animation: `star-twinkle 3.5s ease-in-out infinite ${star.delay}`,
+              willChange: 'opacity, transform',
+            }} 
+          />
+        ))}
       </div>
       
       {/* Сетка */}
@@ -131,11 +160,14 @@ const AnimatedBackground = () => {
           zIndex: -2,
           backgroundImage: 'linear-gradient(rgba(157, 141, 241, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(157, 141, 241, 0.03) 1px, transparent 1px)',
           backgroundSize: '60px 60px',
+          transform: 'translateZ(0)',
         }}
       />
     </>
   );
-};
+});
+
+AnimatedBackground.displayName = 'AnimatedBackground';
 
 function BodyContent({ children, pathname }: { children: React.ReactNode; pathname: string }) {
   const { themeName } = useTheme();
@@ -144,20 +176,35 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const [sliderStyle, setSliderStyle] = useState({ left: 0, width: 0 });
+  const rafRef = useRef<number | null>(null);
   
-  const navItems = [
+  const navItems = useMemo(() => [
     { href: '/cabinet', label: 'Кабинет' },
     { href: '/news', label: 'Новости' },
     { href: '/contacts', label: 'Контакты' },
     { href: '/faq', label: 'FAQ' },
-  ];
+  ], []);
+
+  // Оптимизированный обработчик scroll с throttle через RAF
+  const handleScroll = useCallback(() => {
+    if (rafRef.current) return;
+    
+    rafRef.current = requestAnimationFrame(() => {
+      setScrolled(window.scrollY > 20);
+      rafRef.current = null;
+    });
+  }, []);
 
   useEffect(() => {
     setMounted(true);
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current);
+      }
+    };
+  }, [handleScroll]);
   
   useEffect(() => {
     if (!mounted) return;
@@ -172,7 +219,22 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
         setSliderStyle({ left: left + 4, width: width - 8 });
       }
     }
-  }, [pathname, mounted]);
+  }, [pathname, mounted, navItems]);
+
+  // Мемоизированные стили хедера
+  const headerStyle = useMemo(() => ({
+    background: scrolled 
+      ? themeName === 'light' ? 'rgba(255, 255, 255, 0.95)' : 'rgba(8, 8, 10, 0.95)' 
+      : themeName === 'light' ? 'rgba(255, 255, 255, 0.6)' : 'rgba(8, 8, 10, 0.6)',
+    backdropFilter: 'blur(20px)',
+    WebkitBackdropFilter: 'blur(20px)',
+    borderBottom: themeName === 'light' ? '1px solid rgba(0, 0, 0, 0.1)' : '1px solid rgba(96, 80, 186, 0.15)',
+    height: '70px',
+    transform: 'translateZ(0)',
+  }), [scrolled, themeName]);
+
+  // Проверка нужно ли показывать хедер
+  const showHeader = pathname !== '/' && pathname !== '/auth' && pathname !== '/admin';
 
   return (
     <>
@@ -180,17 +242,10 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
       <AnimatedBackground />
 
       {/* Навигация */}
-      {pathname !== '/' && pathname !== '/auth' && pathname !== '/admin' && (
+      {showHeader && (
         <header 
-          className="fixed top-0 w-full z-50 transition-all duration-500"
-          style={{
-            background: scrolled 
-              ? themeName === 'light' ? 'rgba(255, 255, 255, 0.95)' : 'rgba(8, 8, 10, 0.95)' 
-              : themeName === 'light' ? 'rgba(255, 255, 255, 0.6)' : 'rgba(8, 8, 10, 0.6)',
-            backdropFilter: 'blur(20px)',
-            borderBottom: themeName === 'light' ? '1px solid rgba(0, 0, 0, 0.1)' : '1px solid rgba(96, 80, 186, 0.15)',
-            height: '70px',
-          }}
+          className="fixed top-0 w-full z-50 transition-colors duration-300"
+          style={headerStyle}
         >
           <div className="px-4 sm:px-6 md:px-10 h-full flex justify-between items-center">
             {/* Лого - визуально большое через scale с правильным свечением */}
@@ -200,6 +255,8 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
                 alt="thqlabel" 
                 className="absolute left-0 top-1/2 h-12 w-auto object-contain transition-all duration-300 group-hover:brightness-125"
                 style={{ transform: 'translateY(-50%) scale(1.6)', transformOrigin: 'left center' }}
+                loading="eager"
+                decoding="async"
               />
               <div 
                 className="absolute left-0 top-1/2 -translate-y-1/2 w-32 h-20 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" 
@@ -277,7 +334,7 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
       )}
 
       {/* Мобильное меню - боковая панель */}
-      {pathname !== '/' && pathname !== '/auth' && pathname !== '/admin' && (
+      {showHeader && (
         <>
           {/* Затемнение */}
           <div 

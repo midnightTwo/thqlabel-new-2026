@@ -1,7 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import ImageCropModal from '../ui/ImageCropModal';
+import { useState, useEffect, useCallback, useMemo, memo } from 'react';
+import dynamic from 'next/dynamic';
+
+// Ленивая загрузка тяжёлого компонента модального окна
+const ImageCropModal = dynamic(() => import('../ui/ImageCropModal'), {
+  ssr: false,
+  loading: () => <div className="fixed inset-0 bg-black/50 flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div></div>
+});
 
 export default function NewsTab({ supabase }: { supabase: any }) {
   const [news, setNews] = useState<any[]>([]);

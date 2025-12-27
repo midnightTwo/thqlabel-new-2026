@@ -211,6 +211,7 @@ export default function CreateReleasePage() {
           {/* Шаг 2: Треклист */}
           {currentStep === 'tracklist' && (
             <TracklistStep
+              releaseTitle={releaseTitle}
               tracks={tracks}
               setTracks={setTracks}
               currentTrack={currentTrack}

@@ -22,8 +22,8 @@ const nextConfig: NextConfig = {
   
   // Экспериментальные оптимизации
   experimental: {
-    // Оптимизация CSS
-    optimizeCss: true,
+    // optimizeCss требует critters, который не установлен на Vercel
+    // optimizeCss: true,
   },
   
   // Оптимизация сборки

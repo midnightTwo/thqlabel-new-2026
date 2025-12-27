@@ -65,7 +65,10 @@ export async function POST(request: NextRequest) {
       }
     }
     
-    const resetLink = `http://localhost:3000/reset-password?token=${resetToken}`;
+    // Получаем URL хоста динамически
+    const host = request.headers.get('host') || 'localhost:3000';
+    const protocol = host.includes('localhost') ? 'http' : 'https';
+    const resetLink = `${protocol}://${host}/reset-password?token=${resetToken}`;
     
     // Отправляем email через Brevo
     const nodemailer = require('nodemailer');

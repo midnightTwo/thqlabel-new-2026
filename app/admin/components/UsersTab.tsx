@@ -320,30 +320,30 @@ export default function UsersTab({ supabase, currentUserRole }: { supabase: any;
       </div>
 
       {/* Статистика по ролям */}
-      <div className="grid grid-cols-4 gap-4">
-        <div className="p-4 bg-[#8b5cf6]/5 border border-[#8b5cf6]/20 rounded-xl text-center">
-          <div className="text-3xl font-black text-[#a78bfa]">{registeredOwners.length}</div>
-          <div className="text-[10px] text-zinc-500 uppercase tracking-widest">Владельцев</div>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div className="p-3 sm:p-4 bg-[#8b5cf6]/5 border border-[#8b5cf6]/20 rounded-xl text-center">
+          <div className="text-2xl sm:text-3xl font-black text-[#a78bfa]">{registeredOwners.length}</div>
+          <div className="text-[9px] sm:text-[10px] text-zinc-500 uppercase tracking-widest">Владельцев</div>
         </div>
-        <div className="p-4 bg-[#ff4757]/5 border border-[#ff4757]/20 rounded-xl text-center">
-          <div className="text-3xl font-black text-[#ff6b81]">{registeredAdmins.length}</div>
-          <div className="text-[10px] text-zinc-500 uppercase tracking-widest">Администраторов</div>
+        <div className="p-3 sm:p-4 bg-[#ff4757]/5 border border-[#ff4757]/20 rounded-xl text-center">
+          <div className="text-2xl sm:text-3xl font-black text-[#ff6b81]">{registeredAdmins.length}</div>
+          <div className="text-[9px] sm:text-[10px] text-zinc-500 uppercase tracking-widest">Администраторов</div>
         </div>
-        <div className="p-4 bg-[#f59e0b]/5 border border-[#f59e0b]/20 rounded-xl text-center">
-          <div className="text-3xl font-black text-[#fbbf24]">{registeredExclusive.length}</div>
-          <div className="text-[10px] text-zinc-500 uppercase tracking-widest">Exclusive</div>
+        <div className="p-3 sm:p-4 bg-[#f59e0b]/5 border border-[#f59e0b]/20 rounded-xl text-center">
+          <div className="text-2xl sm:text-3xl font-black text-[#fbbf24]">{registeredExclusive.length}</div>
+          <div className="text-[9px] sm:text-[10px] text-zinc-500 uppercase tracking-widest">Exclusive</div>
         </div>
-        <div className="p-4 bg-zinc-800/30 border border-zinc-700/50 rounded-xl text-center">
-          <div className="text-3xl font-black text-zinc-400">{registeredBasic.length}</div>
-          <div className="text-[10px] text-zinc-500 uppercase tracking-widest">Basic</div>
+        <div className="p-3 sm:p-4 bg-zinc-800/30 border border-zinc-700/50 rounded-xl text-center">
+          <div className="text-2xl sm:text-3xl font-black text-zinc-400">{registeredBasic.length}</div>
+          <div className="text-[9px] sm:text-[10px] text-zinc-500 uppercase tracking-widest">Basic</div>
         </div>
       </div>
 
       {/* Список пользователей */}
       <div className="space-y-2">
         <div className="flex justify-between items-center mb-3">
-          <h3 className="font-bold text-sm">Зарегистрированные пользователи ({sortedUsers.length})</h3>
-          <button onClick={loadUsers} className="text-[10px] px-3 py-1 bg-white/5 rounded-lg hover:bg-white/10 transition">
+          <h3 className="font-bold text-xs sm:text-sm text-center lg:text-left">Зарегистрированные пользователи ({sortedUsers.length})</h3>
+          <button onClick={loadUsers} className="text-[9px] sm:text-[10px] px-2 sm:px-3 py-1 bg-white/5 rounded-lg hover:bg-white/10 transition">
             Обновить
           </button>
         </div>

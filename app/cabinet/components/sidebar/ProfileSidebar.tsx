@@ -108,23 +108,29 @@ export default function ProfileSidebar({
 
       {/* Навигация */}
       <nav className="space-y-2">
-        {[
-          { id: 'releases', label: 'Релизы' },
-          { id: 'finance', label: 'Финансы' },
-          { id: 'settings', label: 'Настройки' },
-        ].map((item) => (
-          <button 
-            key={item.id}
-            onClick={() => onTabChange(item.id as any)} 
-            className={`w-full text-left py-3.5 px-5 rounded-xl transition-all duration-200 border ${
-              activeTab === item.id 
-                ? 'bg-[#6050ba] text-white shadow-lg shadow-[#6050ba]/30 border-[#6050ba] scale-[1.02]' 
-                : 'text-zinc-300 bg-white/[0.02] hover:bg-white/[0.08] hover:text-white hover:border-white/10 border-white/5 hover:scale-[1.01] cursor-pointer'
-            }`}
-          >
-            <span className="text-sm font-bold">{item.label}</span>
-          </button>
-        ))}
+        {/* РЕЛИЗЫ - ПЕРВЫМИ! */}
+        <button 
+          onClick={() => onTabChange('releases')} 
+          className={`w-full text-left py-3.5 px-5 rounded-xl transition-all duration-200 border ${
+            activeTab === 'releases' 
+              ? 'bg-[#6050ba] text-white shadow-lg shadow-[#6050ba]/30 border-[#6050ba] scale-[1.02]' 
+              : 'text-zinc-300 bg-white/[0.02] hover:bg-white/[0.08] hover:text-white hover:border-white/10 border-white/5 hover:scale-[1.01] cursor-pointer'
+          }`}
+        >
+          <span className="text-sm font-bold">Релизы</span>
+        </button>
+        
+        {/* ФИНАНСЫ */}
+        <button 
+          onClick={() => onTabChange('finance')} 
+          className={`w-full text-left py-3.5 px-5 rounded-xl transition-all duration-200 border ${
+            activeTab === 'finance' 
+              ? 'bg-[#6050ba] text-white shadow-lg shadow-[#6050ba]/30 border-[#6050ba] scale-[1.02]' 
+              : 'text-zinc-300 bg-white/[0.02] hover:bg-white/[0.08] hover:text-white hover:border-white/10 border-white/5 hover:scale-[1.01] cursor-pointer'
+          }`}
+        >
+          <span className="text-sm font-bold">Финансы</span>
+        </button>
         
         {/* Кнопка поддержки */}
         <button 
@@ -139,6 +145,18 @@ export default function ProfileSidebar({
               </span>
             )}
           </div>
+        </button>
+
+        {/* Кнопка настроек - ПОСЛЕДНЯЯ */}
+        <button 
+          onClick={() => onTabChange('settings')} 
+          className={`w-full text-left py-3.5 px-5 rounded-xl transition-all duration-200 border ${
+            activeTab === 'settings' 
+              ? 'bg-[#6050ba] text-white shadow-lg shadow-[#6050ba]/30 border-[#6050ba] scale-[1.02]' 
+              : 'text-zinc-300 bg-white/[0.02] hover:bg-white/[0.08] hover:text-white hover:border-white/10 border-white/5 hover:scale-[1.01] cursor-pointer'
+          }`}
+        >
+          <span className="text-sm font-bold">Настройки</span>
         </button>
         
         {/* Админ ссылка */}

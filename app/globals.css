@@ -272,6 +272,18 @@ body {
   cursor: default;
 }
 
+/* Убираем горизонтальный скролл только на мобильных */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+  
+  body > div {
+    overflow-x: hidden !important;
+  }
+}
+
 .flex-1::-webkit-scrollbar {
   width: 5px;
 }
@@ -598,4 +610,88 @@ details[open] summary ~ * {
 /* Скрытие скроллбара для textarea */
 textarea::-webkit-scrollbar {
   display: none;
+}
+
+/* === МОБИЛЬНАЯ АДАПТАЦИЯ === */
+
+/* Отключаем зум на мобильных при двойном клике */
+@media (max-width: 768px) {
+  * {
+    touch-action: manipulation;
+  }
+}
+
+/* Плавный скролл для iOS */
+@supports (-webkit-overflow-scrolling: touch) {
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Кнопка активности на мобильном */
+button:active,
+a:active {
+  opacity: 0.8;
+}
+
+/* Отключение выделения текста на мобильных */
+@media (max-width: 768px) {
+  .no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+}
+
+/* Адаптация для небольших высот экрана (ландшафт на мобилках) */
+@media (max-height: 600px) {
+  .min-h-screen {
+    min-height: auto;
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+  }
+}
+
+/* Мобильное меню анимация */
+@keyframes mobile-menu-slide {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.mobile-menu-open {
+  animation: mobile-menu-slide 0.3s ease-out;
+}
+
+/* Анимация для элементов бокового меню */
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Градиентная анимация */
+@keyframes animate-gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: animate-gradient 3s ease infinite;
 }

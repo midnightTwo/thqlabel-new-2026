@@ -2,16 +2,14 @@
 
 export const STATUS_LABELS: Record<string, string> = {
   pending: 'На модерации',
-  approved: 'Одобрен',
   rejected: 'Отклонен',
-  distributed: 'Распространён',
+  distributed: 'На дистрибьюции',
   published: 'Опубликован',
   draft: 'Черновик'
 };
 
 export const STATUS_COLORS: Record<string, string> = {
   pending: 'bg-yellow-500',
-  approved: 'bg-green-500',
   rejected: 'bg-red-500',
   distributed: 'bg-blue-500',
   published: 'bg-green-500',
@@ -19,7 +17,6 @@ export const STATUS_COLORS: Record<string, string> = {
 };
 
 export const STATUS_BADGE_STYLES: Record<string, string> = {
-  approved: 'bg-emerald-500/20 text-emerald-400 ring-1 ring-emerald-500/30',
   rejected: 'bg-red-500/20 text-red-400 ring-1 ring-red-500/30',
   distributed: 'bg-blue-500/20 text-blue-400 ring-1 ring-blue-500/30',
   pending: 'bg-yellow-500/20 text-yellow-400 ring-1 ring-yellow-500/30',
@@ -28,12 +25,11 @@ export const STATUS_BADGE_STYLES: Record<string, string> = {
 };
 
 export const FILTER_OPTIONS = [
-  { value: 'all', label: 'Все', icon: '📋' },
-  { value: 'pending', label: 'На модерации', icon: '⏳' },
-  { value: 'approved', label: 'Утверждён', icon: '✅' },
-  { value: 'distributed', label: 'На дистрибьюции', icon: '🚀' },
-  { value: 'published', label: 'Опубликован', icon: '✅' },
-  { value: 'rejected', label: 'Отклонён', icon: '❌' }
+  { value: 'all', label: 'Все', icon: '' },
+  { value: 'pending', label: 'На модерации', icon: '' },
+  { value: 'distributed', label: 'На дистрибьюции', icon: '' },
+  { value: 'published', label: 'Опубликован', icon: '' },
+  { value: 'rejected', label: 'Отклонён', icon: '' }
 ];
 
 export const SORT_OPTIONS = [

@@ -9,7 +9,7 @@ interface RoleStatsProps {
 
 export function RoleStats({ ownersCount, adminsCount, exclusiveCount, basicCount }: RoleStatsProps) {
   return (
-    <div className="grid grid-cols-4 gap-4">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
       <div className="p-4 bg-[#8b5cf6]/5 border border-[#8b5cf6]/20 rounded-xl text-center">
         <div className="text-3xl font-black text-[#a78bfa]">{ownersCount}</div>
         <div className="text-[10px] text-zinc-500 uppercase tracking-widest">Владельцев</div>

@@ -6,6 +6,7 @@ import { SupabaseClient } from '@supabase/supabase-js';
 interface Release {
   id: string;
   created_at: string;
+  release_date?: string;
   release_type: 'basic' | 'exclusive';
   title: string;
   artist_name: string;
@@ -39,11 +40,16 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
   
   // Новые состояния для поиска и фильтрации
   const [searchQuery, setSearchQuery] = useState('');
-  const [filterGenre, setFilterGenre] = useState<string>('all');
+  const [filterDate, setFilterDate] = useState<string>(''); // Фильтр по дате (YYYY-MM-DD)
   const [filterUserRole, setFilterUserRole] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'date' | 'title' | 'artist'>('date');
   const [order, setOrder] = useState<'asc' | 'desc'>('desc');
   const [showFilters, setShowFilters] = useState(false);
+  
+  // Состояния для кастомного календаря
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [calendarMonth, setCalendarMonth] = useState(new Date().getMonth());
+  const [calendarYear, setCalendarYear] = useState(new Date().getFullYear());
   
   // Состояния для массового выбора в архиве
   const [selectedReleaseIds, setSelectedReleaseIds] = useState<string[]>([]);
@@ -54,10 +60,10 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
   
   const showToast = (message: string, type: 'success' | 'error' | 'info' = 'success') => {
     setToast({show: true, message, type});
-    setTimeout(() => setToast({show: false, message: '', type: 'success'}), 5000);
+    setTimeout(() => setToast({show: false, message: '', type: 'success'}), 2000);
   };
   
-  // Состояния для ISRC кодов треков и UPC кода релиза
+  // Состояния для IRSC кодов треков и UPC кода релиза
   const [editingTrackISRC, setEditingTrackISRC] = useState<{trackIndex: number, isrc: string} | null>(null);
   const [savingISRC, setSavingISRC] = useState(false);
   
@@ -78,7 +84,7 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
 
   useEffect(() => {
     loadReleases();
-  }, [statusFilter, viewMode]); // Перезагружать при изменении фильтра или режима
+  }, []); // Загружать только один раз при монтировании компонента
   
   // Сбрасывать выбор при смене режима
   useEffect(() => {
@@ -90,46 +96,19 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
     
     setLoading(true);
     try {
-      console.log('Loading releases with filter:', statusFilter, 'viewMode:', viewMode);
+      console.log('Loading all releases...');
       
-      // Загружаем релизы из обеих таблиц
+      // Загружаем ВСЕ релизы из обеих таблиц (кроме черновиков)
+      // Фильтрация будет происходить на клиенте в useMemo
       let query1 = supabase
         .from('releases_basic')
-        .select('*');
+        .select('*')
+        .neq('status', 'draft'); // Исключаем только черновики
       
       let query2 = supabase
         .from('releases_exclusive')
-        .select('*');
-      
-      // Применяем фильтр в зависимости от режима
-      if (viewMode === 'moderation') {
-        // В модерации показываем только pending
-        query1 = query1.eq('status', 'pending');
-        query2 = query2.eq('status', 'pending');
-      } else if (viewMode === 'archive') {
-        // В архиве показываем все релизы, кроме pending и draft
-        if (statusFilter === 'distributed') {
-          query1 = query1.eq('status', 'distributed');
-          query2 = query2.eq('status', 'distributed');
-        } else if (statusFilter === 'published') {
-          query1 = query1.eq('status', 'published');
-          query2 = query2.eq('status', 'published');
-        } else if (statusFilter === 'approved') {
-          query1 = query1.eq('status', 'approved');
-          query2 = query2.eq('status', 'approved');
-        } else if (statusFilter === 'rejected') {
-          query1 = query1.eq('status', 'rejected');
-          query2 = query2.eq('status', 'rejected');
-        } else {
-          // Для 'all' показываем все статусы, КРОМЕ pending и draft (черновики должны быть только у пользователя)
-          query1 = query1.neq('status', 'pending').neq('status', 'draft');
-          query2 = query2.neq('status', 'pending').neq('status', 'draft');
-        }
-      }
-      
-      // Исключаем черновики из всех запросов в админ панели
-      query1 = query1.neq('status', 'draft');
-      query2 = query2.neq('status', 'draft');
+        .select('*')
+        .neq('status', 'draft'); // Исключаем только черновики
       
       const [basicResult, exclusiveResult] = await Promise.all([
         query1,
@@ -272,7 +251,7 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
       console.log('Table Name:', tableName);
       
       const updateData = { 
-        status: 'approved',
+        status: 'distributed',
         approved_at: new Date().toISOString(),
         approved_by: user.id
       };
@@ -289,13 +268,13 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
       }
       
       console.log('Release approved successfully');
-      alert('Релиз утверждён!');
+      showToast('Релиз успешно утверждён!', 'success');
       setShowModal(false);
       setSelectedRelease(null);
       loadReleases();
     } catch (error: any) {
       console.error('Ошибка утверждения:', error);
-      alert(`Ошибка при утверждении релиза: ${error.message || 'Неизвестная ошибка'}`);
+      showToast(`Ошибка при утверждении релиза: ${error.message || 'Неизвестная ошибка'}`, 'error');
     }
   };
 
@@ -523,12 +502,12 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
       
       if (error) throw error;
       
-      alert('ISRC код сохранен');
+      showToast('IRSC код сохранен', 'success');
       setEditingTrackISRC(null);
       loadFullRelease(selectedRelease.id, selectedRelease.release_type);
     } catch (error) {
-      console.error('Ошибка сохранения ISRC:', error);
-      alert('Ошибка при сохранении ISRC кода');
+      console.error('Ошибка сохранения IRSC:', error);
+      showToast('Ошибка при сохранении IRSC кода', 'error');
     } finally {
       setSavingISRC(false);
     }
@@ -549,13 +528,13 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
       
       if (error) throw error;
       
-      alert('Имя артиста обновлено');
+      showToast('Имя артиста обновлено', 'success');
       setEditingArtistName(false);
       loadFullRelease(selectedRelease.id, selectedRelease.release_type);
       loadReleases();
     } catch (error) {
       console.error('Ошибка сохранения имени артиста:', error);
-      alert('Ошибка при сохранении имени артиста');
+      showToast('Ошибка при сохранении имени артиста', 'error');
     } finally {
       setSavingArtistName(false);
     }
@@ -576,20 +555,104 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
       
       if (error) throw error;
       
-      alert('UPC код обновлен');
+      showToast('UPC код обновлен', 'success');
       setEditingReleaseUPC(false);
       loadFullRelease(selectedRelease.id, selectedRelease.release_type);
       loadReleases();
     } catch (error) {
       console.error('Ошибка сохранения UPC кода:', error);
-      alert('Ошибка при сохранении UPC кода');
+      showToast('Ошибка при сохранении UPC кода', 'error');
     } finally {
       setSavingReleaseUPC(false);
     }
   };
   
-  // Temporary test - remove filtering
-  const sorted = useMemo(() => releases, [releases]);
+  // Фильтрация и сортировка релизов
+  const sorted = useMemo(() => {
+    let filtered = releases;
+
+    // Фильтр по режиму (модерация или архив)
+    if (viewMode === 'moderation') {
+      filtered = filtered.filter(r => r.status === 'pending');
+    } else {
+      // В архиве показываем все, кроме pending
+      filtered = filtered.filter(r => r.status !== 'pending');
+    }
+
+    // Фильтр по статусу (только в архиве)
+    if (viewMode === 'archive' && statusFilter !== 'all') {
+      filtered = filtered.filter(r => r.status === statusFilter);
+    }
+
+    // Поиск
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      filtered = filtered.filter(r => {
+        // Поиск по основным полям
+        const matchBasic = 
+          (r.title && r.title.toLowerCase().includes(query)) ||
+          (r.artist_name && r.artist_name.toLowerCase().includes(query)) ||
+          (r.user_email && r.user_email.toLowerCase().includes(query)) ||
+          (r.user_name && r.user_name.toLowerCase().includes(query));
+        
+        // Поиск по UPC коду
+        const matchUPC = r.upc && r.upc.toLowerCase().includes(query);
+        
+        // Поиск по IRSC кодам в треках
+        const matchIRSC = r.tracks && Array.isArray(r.tracks) && r.tracks.some((track: any) => 
+          track.isrc && track.isrc.toLowerCase().includes(query)
+        );
+        
+        return matchBasic || matchUPC || matchIRSC;
+      });
+    }
+
+    // Фильтр по дате
+    if (filterDate) {
+      console.log('Filtering by date:', filterDate);
+      filtered = filtered.filter(r => {
+        // Ищем только в поле release_date (дата релиза, указанная пользователем)
+        if (!r.release_date) {
+          console.log('Release without release_date:', r.id, r.title);
+          return false;
+        }
+        
+        // Создаем даты в формате YYYY-MM-DD для сравнения
+        const releaseDateStr = r.release_date.split('T')[0]; // Берем только дату без времени
+        const selectedDateStr = filterDate;
+        
+        console.log('Comparing:', releaseDateStr, 'with', selectedDateStr, 'for release:', r.title);
+        
+        return releaseDateStr === selectedDateStr;
+      });
+      console.log('Filtered releases count:', filtered.length);
+    }
+
+    // Фильтр по типу пользователя
+    if (filterUserRole !== 'all') {
+      filtered = filtered.filter(r => r.user_role === filterUserRole);
+    }
+
+    // Сортировка
+    const sortedFiltered = [...filtered].sort((a, b) => {
+      if (sortBy === 'date') {
+        return order === 'desc' 
+          ? new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+          : new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
+      } else if (sortBy === 'title') {
+        return order === 'desc'
+          ? b.title.localeCompare(a.title)
+          : a.title.localeCompare(b.title);
+      } else if (sortBy === 'artist') {
+        return order === 'desc'
+          ? b.artist_name.localeCompare(a.artist_name)
+          : a.artist_name.localeCompare(b.artist_name);
+      }
+      return 0;
+    });
+
+    return sortedFiltered;
+  }, [releases, viewMode, statusFilter, searchQuery, filterDate, filterUserRole, sortBy, order]);
   
   // Выбрать/снять выбор со всех релизов
   const toggleSelectAll = () => {
@@ -620,11 +683,11 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
   // Main render
   return (
     <div>
-      <div className="flex flex-col lg:flex-row gap-6 mb-6">
+      <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 mb-4 sm:mb-6">
         {/* Левая часть - заголовок и режимы */}
         <div className="flex-1">
-          <h2 className="text-2xl font-black uppercase tracking-tight mb-2">Управление релизами</h2>
-          <p className="text-sm text-zinc-500 mb-4">
+          <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tight mb-2 text-center lg:text-left">Управление релизами</h2>
+          <p className="text-xs sm:text-sm text-zinc-500 mb-3 sm:mb-4">
             Найдено: {sorted.length} из {releases.length}
           </p>
           
@@ -635,7 +698,7 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                 setViewMode('moderation');
                 setStatusFilter('pending');
               }}
-              className={`px-4 py-2 rounded-xl font-bold transition ${
+              className={`px-3 sm:px-4 py-2 rounded-xl text-sm font-bold transition ${
                 viewMode === 'moderation' 
                   ? 'bg-[#6050ba] text-white' 
                   : 'bg-white/5 text-zinc-400 hover:bg-white/10'
@@ -648,7 +711,7 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                 setViewMode('archive');
                 setStatusFilter('all');
               }}
-              className={`px-4 py-2 rounded-xl font-bold transition ${
+              className={`px-3 sm:px-4 py-2 rounded-xl text-sm font-bold transition ${
                 viewMode === 'archive' 
                   ? 'bg-[#6050ba] text-white' 
                   : 'bg-white/5 text-zinc-400 hover:bg-white/10'
@@ -662,35 +725,56 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
         {/* Правая часть - поиск и фильтры */}
         <div className="w-full lg:w-96 relative">
           <div className="space-y-3">
-            {/* Поиск */}
-            <div className="relative">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Поиск по названию, артисту, email..."
-                className="w-full bg-black/30 border border-white/10 rounded-xl pl-11 pr-4 py-3 text-sm placeholder:text-zinc-500 focus:border-[#6050ba]/50 focus:outline-none transition"
-              />
-              <svg 
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" 
-                fill="none" 
-                viewBox="0 0 24 24" 
-                stroke="currentColor"
+            {/* Кнопка обновления и поиск */}
+            <div className="flex gap-2">
+              {/* Кнопка обновления */}
+              <button
+                onClick={loadReleases}
+                disabled={loading}
+                className="px-4 py-2 bg-white/5 hover:bg-white/10 rounded-xl transition flex items-center gap-2 disabled:opacity-50 flex-shrink-0"
+                title="Обновить список релизов"
               >
-                <circle cx="11" cy="11" r="8" strokeWidth="2"/>
-                <path d="m21 21-4.35-4.35" strokeWidth="2"/>
-              </svg>
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery('')}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition"
+                <svg className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+              </button>
+
+              {/* Поиск */}
+              <div className="relative flex-1">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onBlur={(e) => e.target.blur()}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Escape' || e.key === 'Enter') {
+                      e.currentTarget.blur();
+                    }
+                  }}
+                  placeholder="Поиск..."
+                  className="w-full bg-black/30 border border-white/10 rounded-xl pl-9 sm:pl-11 pr-4 py-2.5 sm:py-3 text-xs sm:text-sm placeholder:text-zinc-500 focus:border-[#6050ba]/50 focus:outline-none transition"
+                />
+                <svg 
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
                 >
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <line x1="18" y1="6" x2="6" y2="18" strokeWidth="2"/>
-                    <line x1="6" y1="6" x2="18" y2="18" strokeWidth="2"/>
-                  </svg>
-                </button>
-              )}
+                  <circle cx="11" cy="11" r="8" strokeWidth="2"/>
+                  <path d="m21 21-4.35-4.35" strokeWidth="2"/>
+                </svg>
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition"
+                  >
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <line x1="18" y1="6" x2="6" y2="18" strokeWidth="2"/>
+                      <line x1="6" y1="6" x2="18" y2="18" strokeWidth="2"/>
+                    </svg>
+                  </button>
+                )}
+              </div>
             </div>
 
             {/* Кнопка показать фильтры */}
@@ -717,38 +801,89 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
 
           {/* Выпадающая панель фильтров */}
           {showFilters && (
-            <div className="absolute top-full left-0 right-0 mt-3 space-y-3 p-4 bg-[#0d0d0f] border border-white/10 rounded-xl shadow-2xl z-50">
+            <div className="absolute top-full left-0 right-0 mt-3 space-y-4 p-5 bg-gradient-to-br from-[#0d0d0f] to-[#1a1a1f] border border-white/10 rounded-2xl shadow-2xl backdrop-blur-xl z-50">
               {/* Фильтр по статусу (только в архиве) */}
               {viewMode === 'archive' && (
-                <div>
-                  <label className="text-xs text-zinc-400 mb-2 block font-medium">Статус</label>
+                <div className="space-y-2">
+                  <label className="text-xs text-zinc-400 uppercase tracking-wider font-bold flex items-center gap-2">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Статус релиза
+                  </label>
                   <div className="grid grid-cols-2 gap-2">
-                    {[
-                      { value: 'all', label: 'Все', icon: '📋' },
-                      { value: 'distributed', label: 'На дистрибьюции', icon: '🚀' },
-                      { value: 'published', label: 'Опубликован', icon: '✅' },
-                      { value: 'rejected', label: 'Отклонённые', icon: '❌' }
-                    ].map((status) => (
-                      <button
-                        key={status.value}
-                        onClick={() => setStatusFilter(status.value)}
-                        className={`px-3 py-2 rounded-lg text-xs font-medium transition ${
-                          statusFilter === status.value
-                            ? 'bg-[#6050ba] text-white'
-                            : 'bg-white/5 text-zinc-400 hover:bg-white/10'
-                        }`}
-                      >
-                        <span className="mr-1">{status.icon}</span>
-                        {status.label}
-                      </button>
-                    ))}
+                    <button
+                      onClick={() => setStatusFilter('all')}
+                      className={`group relative px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+                        statusFilter === 'all'
+                          ? 'bg-gradient-to-r from-[#6050ba] to-[#8070da] text-white shadow-lg shadow-[#6050ba]/30'
+                          : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white'
+                      }`}
+                    >
+                      <div className="flex items-center justify-center gap-2">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                        </svg>
+                        Все
+                      </div>
+                    </button>
+                    <button
+                      onClick={() => setStatusFilter('distributed')}
+                      className={`group relative px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+                        statusFilter === 'distributed'
+                          ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg shadow-blue-500/30'
+                          : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-blue-400'
+                      }`}
+                    >
+                      <div className="flex items-center justify-center gap-2">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                        На дистрибьюции
+                      </div>
+                    </button>
+                    <button
+                      onClick={() => setStatusFilter('published')}
+                      className={`group relative px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+                        statusFilter === 'published'
+                          ? 'bg-gradient-to-r from-green-500 to-green-600 text-white shadow-lg shadow-green-500/30'
+                          : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-green-400'
+                      }`}
+                    >
+                      <div className="flex items-center justify-center gap-2">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        Опубликован
+                      </div>
+                    </button>
+                    <button
+                      onClick={() => setStatusFilter('rejected')}
+                      className={`group relative px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+                        statusFilter === 'rejected'
+                          ? 'bg-gradient-to-r from-red-500 to-red-600 text-white shadow-lg shadow-red-500/30'
+                          : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-red-400'
+                      }`}
+                    >
+                      <div className="flex items-center justify-center gap-2">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                        Отклонённые
+                      </div>
+                    </button>
                   </div>
                 </div>
               )}
 
               {/* Фильтр по типу пользователя */}
-              <div>
-                <label className="text-xs text-zinc-400 mb-2 block font-medium">Тип</label>
+              <div className="space-y-2">
+                <label className="text-xs text-zinc-400 uppercase tracking-wider font-bold flex items-center gap-2">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                  Тип подписки
+                </label>
                 <div className="grid grid-cols-3 gap-2">
                   {[
                     { value: 'all', label: 'Все' },
@@ -758,10 +893,10 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                     <button
                       key={type.value}
                       onClick={() => setFilterUserRole(type.value)}
-                      className={`px-3 py-2 rounded-lg text-xs font-medium transition ${
+                      className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
                         filterUserRole === type.value
-                          ? 'bg-[#6050ba] text-white'
-                          : 'bg-white/5 text-zinc-400 hover:bg-white/10'
+                          ? 'bg-gradient-to-r from-[#6050ba] to-[#8070da] text-white shadow-lg shadow-[#6050ba]/30'
+                          : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white'
                       }`}
                     >
                       {type.label}
@@ -770,55 +905,141 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                 </div>
               </div>
 
-              {/* Фильтр по жанру */}
-              <div>
-                <label className="text-xs text-zinc-400 mb-2 block font-medium">Жанр</label>
-                <select 
-                  value={filterGenre} 
-                  onChange={(e) => setFilterGenre(e.target.value)} 
-                  className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm focus:border-[#6050ba]/50 focus:outline-none transition"
-                >
-                  <option value="all">Все жанры</option>
-                  {Array.from(new Set(releases.map(r => r.genre).filter(Boolean))).map((genre) => (
-                    <option key={genre} value={genre}>{genre}</option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Сортировка */}
-              <div>
-                <label className="text-xs text-zinc-400 mb-2 block font-medium">Сортировка</label>
-                <div className="flex gap-2">
-                  <select 
-                    value={sortBy} 
-                    onChange={(e) => setSortBy(e.target.value as any)} 
-                    className="flex-1 bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm focus:border-[#6050ba]/50 focus:outline-none transition"
+              {/* Фильтр по дате */}
+              <div className="space-y-2">
+                <label className="text-xs text-zinc-400 uppercase tracking-wider font-bold flex items-center gap-2">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  Дата релиза
+                </label>
+                <div className="relative inline-block w-full">
+                  <div 
+                    onClick={() => setShowCalendar(!showCalendar)}
+                    className="w-full inline-flex px-4 py-2.5 bg-gradient-to-br from-white/[0.07] to-white/[0.03] rounded-xl border border-white/10 cursor-pointer items-center gap-2 text-sm hover:border-[#6050ba]/50 transition"
                   >
-                    <option value="date">По дате</option>
-                    <option value="title">По названию</option>
-                    <option value="artist">По артисту</option>
-                  </select>
-                  <button 
-                    onClick={() => setOrder(order === 'asc' ? 'desc' : 'asc')} 
-                    className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition text-sm font-bold"
-                  >
-                    {order === 'asc' ? '↑' : '↓'}
-                  </button>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-[#9d8df1]">
+                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" strokeWidth="2"/>
+                      <line x1="16" y1="2" x2="16" y2="6" strokeWidth="2"/>
+                      <line x1="8" y1="2" x2="8" y2="6" strokeWidth="2"/>
+                      <line x1="3" y1="10" x2="21" y2="10" strokeWidth="2"/>
+                    </svg>
+                    <span className={filterDate ? 'text-white' : 'text-zinc-500'}>
+                      {filterDate ? new Date(filterDate + 'T00:00:00').toLocaleDateString('ru-RU', { day: '2-digit', month: 'short', year: 'numeric' }) : 'Выберите дату релиза'}
+                    </span>
+                    {filterDate && (
+                      <button
+                        onClick={(e) => { e.stopPropagation(); setFilterDate(''); }}
+                        className="ml-auto text-zinc-400 hover:text-white transition"
+                        title="Очистить дату"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    )}
+                  </div>
+                  
+                  {showCalendar && (() => {
+                    const safeMonth = Math.max(0, Math.min(11, calendarMonth));
+                    const safeYear = Math.max(2020, Math.min(2100, calendarYear));
+                    return (
+                    <div className="absolute z-50 mt-1 p-3 bg-[#0d0d0f] border border-[#6050ba]/30 rounded-xl shadow-2xl w-72">
+                      <div className="flex items-center justify-between mb-3">
+                        <button onClick={() => {
+                          if (safeMonth === 0) {
+                            setCalendarMonth(11);
+                            setCalendarYear(safeYear - 1);
+                          } else {
+                            setCalendarMonth(safeMonth - 1);
+                          }
+                        }} className="p-1 hover:bg-white/5 rounded-md">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="15 18 9 12 15 6" strokeWidth="2"/></svg>
+                        </button>
+                        <div className="font-bold text-sm">{new Date(safeYear, safeMonth).toLocaleDateString('ru-RU', { month: 'long', year: 'numeric' })}</div>
+                        <button onClick={() => {
+                          if (safeMonth === 11) {
+                            setCalendarMonth(0);
+                            setCalendarYear(safeYear + 1);
+                          } else {
+                            setCalendarMonth(safeMonth + 1);
+                          }
+                        }} className="p-1 hover:bg-white/5 rounded-md">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="9 18 15 12 9 6" strokeWidth="2"/></svg>
+                        </button>
+                      </div>
+                      <div className="grid grid-cols-7 gap-0.5 mb-1">
+                        {['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'].map(day => (
+                          <div key={day} className="text-center text-[10px] text-zinc-500 font-bold py-1">{day}</div>
+                        ))}
+                      </div>
+                      <div className="grid grid-cols-7 gap-0.5">
+                        {(() => {
+                          const firstDay = new Date(safeYear, safeMonth, 1).getDay();
+                          const daysInMonth = new Date(safeYear, safeMonth + 1, 0).getDate();
+                          const startDay = firstDay === 0 ? 6 : firstDay - 1;
+                          const days = [];
+                          
+                          // Пустые ячейки до начала месяца
+                          for (let i = 0; i < startDay; i++) {
+                            days.push(<div key={`empty-${i}`} className="w-8 h-8" />);
+                          }
+                          
+                          // Дни месяца
+                          for (let day = 1; day <= daysInMonth; day++) {
+                            const month = safeMonth + 1;
+                            const monthStr = month < 10 ? `0${month}` : `${month}`;
+                            const dayStr = day < 10 ? `0${day}` : `${day}`;
+                            const dateStr = `${safeYear}-${monthStr}-${dayStr}`;
+                            const isSelected = filterDate === dateStr;
+                            
+                            days.push(
+                              <button 
+                                key={`day-${day}`} 
+                                onClick={() => { setFilterDate(dateStr); setShowCalendar(false); }}
+                                className={`w-8 h-8 rounded-md text-xs font-medium transition-all ${
+                                  isSelected 
+                                    ? 'bg-gradient-to-br from-[#6050ba] to-[#9d8df1] text-white' 
+                                    : 'text-white hover:bg-white/10'
+                                }`}
+                              >
+                                {day}
+                              </button>
+                            );
+                          }
+                          
+                          return days;
+                        })()}
+                      </div>
+                    </div>
+                    );
+                  })()}
                 </div>
+                {filterDate && (
+                  <div className="text-xs text-zinc-500 flex items-center gap-1">
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Показаны релизы с датой выхода {new Date(filterDate).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })}
+                  </div>
+                )}
               </div>
 
               {/* Кнопка сброса */}
-              {(searchQuery || filterGenre !== 'all' || filterUserRole !== 'all' || (viewMode === 'archive' && statusFilter !== 'all')) && (
+              {(searchQuery || filterDate || filterUserRole !== 'all' || (viewMode === 'archive' && statusFilter !== 'all')) && (
                 <button
                   onClick={() => {
                     setSearchQuery('');
-                    setFilterGenre('all');
+                    setFilterDate('');
                     setFilterUserRole('all');
                     if (viewMode === 'archive') setStatusFilter('all');
                   }}
-                  className="w-full px-4 py-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-lg text-sm font-medium transition"
+                  className="w-full mt-2 px-4 py-2.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-xl font-semibold text-sm transition-all border border-red-500/20 hover:border-red-500/40 flex items-center justify-center gap-2"
                 >
-                  Сбросить фильтры
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                  Сбросить все фильтры
                 </button>
               )}
             </div>
@@ -829,7 +1050,7 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
       {sorted.length === 0 ? (
         <div className="text-center py-20 border border-dashed border-white/10 rounded-2xl">
           <div className="text-5xl mb-4">📋</div>
-          <p className="text-zinc-500">Нет релизов{searchQuery || filterGenre !== 'all' || filterUserRole !== 'all' ? ' по заданным фильтрам' : ' на модерации'}</p>
+          <p className="text-zinc-500">Нет релизов{searchQuery || filterDate || filterUserRole !== 'all' ? ' по заданным фильтрам' : ' на модерации'}</p>
         </div>
       ) : (
         <>
@@ -914,21 +1135,21 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
             </div>
           )}
 
-          <div className="grid gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4">
             {sorted.map((release) => (
             <div
               key={release.id}
               onClick={() => loadFullRelease(release.id, release.release_type)}
-              className="p-5 bg-white/[0.02] border border-white/5 rounded-xl hover:border-[#6050ba]/50 transition cursor-pointer relative"
+              className="p-3 sm:p-5 bg-white/[0.02] border border-white/5 rounded-xl hover:border-[#6050ba]/50 transition cursor-pointer relative"
             >
-              <div className="flex items-center gap-4">
+              <div className="flex items-start gap-3 sm:gap-4">
                 {/* Чекбокс для выбора (только в архиве) */}
                 {viewMode === 'archive' && (
                   <label 
                     onClick={(e) => {
                       e.stopPropagation();
                     }}
-                    className="flex-shrink-0 cursor-pointer group relative w-5 h-5 transition-transform hover:scale-110"
+                    className="flex-shrink-0 cursor-pointer group relative w-4 h-4 sm:w-5 sm:h-5 transition-transform hover:scale-110 mt-0.5"
                   >
                     <input
                       type="checkbox"
@@ -936,9 +1157,9 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                       onChange={() => toggleSelectRelease(release.id)}
                       className="peer absolute opacity-0 w-full h-full cursor-pointer z-10"
                     />
-                    <div className="w-5 h-5 rounded border-2 border-white/20 bg-white/5 peer-checked:bg-[#6050ba] peer-checked:border-[#6050ba] transition-all duration-200 group-hover:border-[#6050ba]/50 absolute inset-0"></div>
+                    <div className="w-4 h-4 sm:w-5 sm:h-5 rounded border-2 border-white/20 bg-white/5 peer-checked:bg-[#6050ba] peer-checked:border-[#6050ba] transition-all duration-200 group-hover:border-[#6050ba]/50 absolute inset-0"></div>
                     <svg 
-                      className="w-3.5 h-3.5 text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-0 peer-checked:scale-100 transition-transform duration-200 pointer-events-none" 
+                      className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-0 peer-checked:scale-100 transition-transform duration-200 pointer-events-none" 
                       viewBox="0 0 12 10" 
                       fill="none"
                     >
@@ -947,7 +1168,7 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                   </label>
                 )}
                 {/* Обложка */}
-                <div className="w-20 h-20 rounded-lg overflow-hidden bg-white/5 flex-shrink-0">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden bg-white/5 flex-shrink-0">
                   {release.cover_url ? (
                     <img src={release.cover_url} alt={release.title} className="w-full h-full object-cover" />
                   ) : (
@@ -956,9 +1177,9 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                 </div>
 
                 {/* Информация */}
-                <div className="flex-1">
+                <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1 flex-wrap">
-                    <h3 className="font-bold text-white">{release.title}</h3>
+                    <h3 className="font-bold text-white text-sm sm:text-base truncate">{release.title}</h3>
                     <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
                       release.user_role === 'basic' 
                         ? 'bg-[#6050ba]/20 text-[#9d8df1]' 
@@ -966,18 +1187,22 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                     }`}>
                       {release.user_role === 'basic' ? 'BASIC' : 'EXCLUSIVE'}
                     </span>
-                    <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                    <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold flex items-center gap-1 ${
                       release.status === 'pending' ? 'bg-yellow-500/20 text-yellow-400' :
                       release.status === 'distributed' ? 'bg-blue-500/20 text-blue-400' :
                       release.status === 'published' ? 'bg-green-500/20 text-green-400' :
-                      release.status === 'approved' ? 'bg-emerald-500/20 text-emerald-400' :
                       release.status === 'rejected' ? 'bg-red-500/20 text-red-400' :
                       'bg-zinc-500/20 text-zinc-400'
                     }`}>
+                      {(release.status === 'pending' || release.status === 'distributed') && (
+                        <svg className="animate-spin h-3 w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                      )}
                       {release.status === 'pending' ? 'НА МОДЕРАЦИИ' :
                        release.status === 'distributed' ? 'НА ДИСТРИБЬЮЦИИ' :
                        release.status === 'published' ? 'ОПУБЛИКОВАН' :
-                       release.status === 'approved' ? 'УТВЕРЖДЁН' :
                        release.status === 'rejected' ? 'ОТКЛОНЕН' : 
                        release.status.toUpperCase()}
                     </span>
@@ -1002,10 +1227,29 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                     )}
                     <p className="text-sm text-zinc-400">{release.artist_name}</p>
                   </div>
-                  <div className="flex items-center gap-4 mt-2 text-xs text-zinc-500">
-                    <span>{release.genre}</span>
-                    <span>{release.tracks_count} треков</span>
-                    <span>{new Date(release.created_at).toLocaleDateString('ru-RU')}</span>
+                  <div className="flex flex-wrap items-center gap-3 mt-2 text-xs">
+                    <span className="text-zinc-500">{release.genre}</span>
+                    <span className="text-zinc-500">{release.tracks_count} треков</span>
+                    <div className="flex items-center gap-1.5 text-zinc-400">
+                      <svg className="w-3.5 h-3.5 text-blue-400/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                        <circle cx="12" cy="12" r="10" strokeWidth={2} />
+                      </svg>
+                      <span className="font-medium">Создан:</span>
+                      <span className="text-white/80">{new Date(release.created_at).toLocaleDateString('ru-RU', { day: '2-digit', month: 'short', year: 'numeric' })}</span>
+                    </div>
+                    {release.release_date && (
+                      <div className="flex items-center gap-1.5 text-zinc-400">
+                        <svg className="w-3.5 h-3.5 text-purple-400/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" strokeWidth="2"/>
+                          <line x1="16" y1="2" x2="16" y2="6" strokeWidth="2"/>
+                          <line x1="8" y1="2" x2="8" y2="6" strokeWidth="2"/>
+                          <line x1="3" y1="10" x2="21" y2="10" strokeWidth="2"/>
+                        </svg>
+                        <span className="font-medium">Релиз:</span>
+                        <span className="text-white/80">{new Date(release.release_date).toLocaleDateString('ru-RU', { day: '2-digit', month: 'short', year: 'numeric' })}</span>
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -1022,21 +1266,54 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
 
       {/* Два модальных окна: информация о релизе (слева) и действия (справа) */}
       {showModal && selectedRelease && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-black/80 via-black/70 to-[#6050ba]/20 backdrop-blur-md p-4 gap-4 animate-in fade-in duration-200" onClick={() => setShowModal(false)}>
-          {/* ЛЕВОЕ ОКНО: Информация о релизе */}
-          <div className="bg-gradient-to-br from-[#0d0d0f] to-[#1a1a1f] border border-white/20 shadow-2xl shadow-[#6050ba]/10 rounded-3xl w-[800px] flex-shrink-0 max-h-[90vh] overflow-y-auto scrollbar-hide animate-in slide-in-from-left duration-300" onClick={(e) => e.stopPropagation()}>
-            <div className="p-8">
-              {/* Заголовок */}
-              <div className="flex items-start justify-between mb-6">
-                <div className="flex-1">
-                  <div className="w-12 h-1 bg-gradient-to-r from-[#6050ba] to-[#9d8df1] rounded-full mb-4"></div>
-                  <div className="mb-3">
-                    <span className="text-sm text-zinc-500 font-medium">Название релиза:</span>
-                    <h2 className="text-3xl font-black uppercase tracking-tight mt-1 bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">{selectedRelease.title}</h2>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-black/80 via-black/70 to-[#6050ba]/20 backdrop-blur-md p-2 sm:p-4 gap-2 sm:gap-4 animate-in fade-in duration-200" onClick={() => setShowModal(false)}>
+          
+          {/* Toast уведомление поверх модального окна */}
+          {toast.show && (
+            <div className="fixed inset-0 flex items-center justify-center z-[9999] pointer-events-none">
+              <div 
+                className="relative bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-900 border border-emerald-400/40 rounded-2xl px-8 py-4 shadow-2xl pointer-events-auto backdrop-blur-xl animate-slide-in"
+                style={{ boxShadow: '0 0 60px rgba(16, 185, 129, 0.3), 0 0 30px rgba(16, 185, 129, 0.2)' }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 via-transparent to-green-500/20 rounded-2xl" />
+                <div className="relative flex items-center gap-3">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-emerald-500/40 blur-md rounded-full animate-pulse" />
+                    <svg className="w-5 h-5 text-emerald-400 relative" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                    </svg>
                   </div>
-                  <div className="mb-2 flex items-center gap-2">
-                    <span className="text-sm text-zinc-500 font-medium">Автор:</span>
-                    <span className="font-semibold text-zinc-300">{selectedRelease.artist_name}</span>
+                  <p className="font-bold text-white text-base tracking-wide">{toast.message}</p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* ЛЕВОЕ ОКНО: Информация о релизе */}
+          <div className="bg-gradient-to-br from-[#0d0d0f] to-[#1a1a1f] border border-white/20 shadow-2xl shadow-[#6050ba]/10 rounded-2xl sm:rounded-3xl w-full lg:w-[800px] flex-shrink-0 max-h-[90vh] overflow-y-auto scrollbar-hide animate-in slide-in-from-left duration-300 relative" onClick={(e) => e.stopPropagation()}>
+            <div className="p-4 sm:p-6 lg:p-8">
+              {/* Кнопка закрытия */}
+              <button 
+                onClick={() => setShowModal(false)} 
+                className="lg:hidden absolute top-4 right-4 w-12 h-12 rounded-xl bg-red-500/20 hover:bg-red-500/30 border-2 border-red-500/50 hover:border-red-500 flex items-center justify-center flex-shrink-0 transition-all group z-50 shadow-lg"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-red-400 group-hover:text-red-300 transition-colors" strokeWidth="2.5">
+                  <line x1="18" y1="6" x2="6" y2="18"/>
+                  <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+              </button>
+              
+              {/* Заголовок */}
+              <div className="flex items-start justify-between mb-4 sm:mb-6">
+                <div className="flex-1">
+                  <div className="w-8 sm:w-12 h-1 bg-gradient-to-r from-[#6050ba] to-[#9d8df1] rounded-full mb-3 sm:mb-4"></div>
+                  <div className="mb-2 sm:mb-3">
+                    <span className="text-xs sm:text-sm text-zinc-500 font-medium">Название релиза:</span>
+                    <h2 className="text-xl sm:text-2xl lg:text-3xl font-black uppercase tracking-tight mt-1 bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent break-words">{selectedRelease.title}</h2>
+                  </div>
+                  <div className="mb-2 flex items-center gap-2 flex-wrap">
+                    <span className="text-xs sm:text-sm text-zinc-500 font-medium">Автор:</span>
+                    <span className="text-sm sm:text-base font-semibold text-zinc-300 break-words">{selectedRelease.artist_name}</span>
                   </div>
                   <div className="flex items-center gap-2 flex-wrap">
                     <span className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold border-2 backdrop-blur-sm ${
@@ -1051,19 +1328,19 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                       selectedRelease.status === 'pending' ? 'bg-gradient-to-r from-yellow-500/30 to-yellow-600/20 border-yellow-400/50 text-yellow-300 shadow-lg shadow-yellow-500/20' :
                       selectedRelease.status === 'distributed' ? 'bg-gradient-to-r from-blue-500/30 to-blue-600/20 border-blue-400/50 text-blue-300 shadow-lg shadow-blue-500/20' :
                       selectedRelease.status === 'published' ? 'bg-gradient-to-r from-green-500/30 to-green-600/20 border-green-400/50 text-green-300 shadow-lg shadow-green-500/20' :
-                      selectedRelease.status === 'approved' ? 'bg-gradient-to-r from-emerald-500/30 to-emerald-600/20 border-emerald-400/50 text-emerald-300 shadow-lg shadow-emerald-500/20' :
                       selectedRelease.status === 'rejected' ? 'bg-gradient-to-r from-red-500/30 to-red-600/20 border-red-400/50 text-red-300 shadow-lg shadow-red-500/20' :
                       'bg-gradient-to-r from-zinc-500/30 to-zinc-600/20 border-zinc-400/50 text-zinc-300 shadow-lg shadow-zinc-500/20'
                     }`}>
-                      {selectedRelease.status === 'pending' ? '⏳' :
-                       selectedRelease.status === 'distributed' ? '🚀' :
-                       selectedRelease.status === 'published' ? '✅' :
-                       selectedRelease.status === 'approved' ? '✓' :
-                       selectedRelease.status === 'rejected' ? '✕' : '•'}
+                      {selectedRelease.status === 'pending' || selectedRelease.status === 'distributed' ? (
+                        <svg className="animate-spin h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                      ) : selectedRelease.status === 'published' ? '✅' :
+                        selectedRelease.status === 'rejected' ? '✕' : '•'}
                       {selectedRelease.status === 'pending' ? 'НА МОДЕРАЦИИ' :
                        selectedRelease.status === 'distributed' ? 'НА ДИСТРИБЬЮЦИИ' :
                        selectedRelease.status === 'published' ? 'ОПУБЛИКОВАН' :
-                       selectedRelease.status === 'approved' ? 'УТВЕРЖДЁН' :
                        selectedRelease.status === 'rejected' ? 'ОТКЛОНЕН' : 
                        selectedRelease.status?.toUpperCase() || 'НЕТ СТАТУСА'}
                     </span>
@@ -1072,7 +1349,7 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
               </div>
 
               {/* Полная информация о релизе */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
                 {/* Обложка */}
                 <div className="group">
                   {selectedRelease.cover_url && (
@@ -1132,8 +1409,12 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                           <input
                             type="text"
                             value={releaseUPCInput}
-                            onChange={(e) => setReleaseUPCInput(e.target.value)}
-                            placeholder="Введите UPC код"
+                            onChange={(e) => {
+                              const value = e.target.value.replace(/[^0-9]/g, '');
+                              setReleaseUPCInput(value);
+                            }}
+                            placeholder="Введите UPC код (13 символов)"
+                            maxLength={13}
                             className="flex-1 px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:border-[#6050ba]"
                             disabled={savingReleaseUPC}
                             autoFocus
@@ -1188,7 +1469,14 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                             </>
                           ) : (
                             <>
-                              <div className="font-bold flex-1 text-zinc-500">Не указан</div>
+                              <div className="flex-1 px-3 py-2 bg-yellow-500/10 border border-yellow-500/30 rounded-lg">
+                                <div className="flex items-center gap-2">
+                                  <svg className="w-4 h-4 text-yellow-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                  </svg>
+                                  <span className="text-sm text-yellow-300">UPC код пока не добавлен</span>
+                                </div>
+                              </div>
                               <button
                                 onClick={() => {
                                   setEditingReleaseUPC(true);
@@ -1243,35 +1531,32 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                   </div>
                   <div className="space-y-3">
                     {selectedRelease.tracks.map((track: any, idx: number) => (
-                      <div key={idx} className="group relative p-5 bg-gradient-to-br from-white/10 to-white/5 border border-white/10 hover:border-[#6050ba]/50 rounded-2xl transition-all duration-300 hover:shadow-lg hover:shadow-[#6050ba]/10">
-                        <div className="flex items-start gap-4">
+                      <details key={idx} className="group relative bg-gradient-to-br from-white/10 to-white/5 border border-white/10 hover:border-[#6050ba]/50 rounded-2xl transition-all duration-300 hover:shadow-lg hover:shadow-[#6050ba]/10">
+                        <summary className="cursor-pointer p-5 list-none flex items-start gap-4">
                           <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#6050ba]/30 to-[#9d8df1]/20 border-2 border-[#6050ba]/40 flex items-center justify-center text-lg font-black flex-shrink-0 group-hover:scale-110 transition-transform shadow-lg shadow-[#6050ba]/20">
                             {idx + 1}
                           </div>
                           <div className="flex-1 min-w-0">
-                            <div className="font-bold text-lg mb-2 group-hover:text-[#9d8df1] transition-colors">{track.title}</div>
-                            
-                            {/* Метаданные трека */}
-                            <div className="flex flex-wrap gap-2 mb-3">
+                            <div className="font-bold text-lg group-hover:text-[#9d8df1] transition-colors">{track.title}</div>
+                            <div className="flex flex-wrap gap-2 mt-2">
                               {track.language && (
-                                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-gradient-to-r from-blue-500/20 to-blue-600/10 border border-blue-400/30 rounded-lg text-xs font-semibold text-blue-300">
-                                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                    <circle cx="12" cy="12" r="10"/>
-                                    <path d="M2 12h20"/>
-                                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-                                  </svg>
+                                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-gradient-to-r from-blue-500/20 to-blue-600/10 border border-blue-400/30 rounded-lg text-xs font-semibold text-blue-300">
                                   {track.language}
                                 </span>
                               )}
                               {track.hasDrugs && (
-                                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-gradient-to-r from-red-500/20 to-red-600/10 border border-red-400/30 rounded-lg text-xs font-bold text-red-300">
-                                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                                  </svg>
+                                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-gradient-to-r from-red-500/20 to-red-600/10 border border-red-400/30 rounded-lg text-xs font-bold text-red-300">
                                   Explicit
                                 </span>
                               )}
                             </div>
+                          </div>
+                          <svg className="w-5 h-5 text-zinc-400 group-open:rotate-180 transition-transform flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <polyline points="6 9 12 15 18 9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        </summary>
+                        <div className="px-5 pb-5">
+                          <div className="pt-3 border-t border-white/10">
 
                             {/* Дополнительная информация */}
                             {(track.version || track.producers || track.featuring) && (
@@ -1341,8 +1626,12 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                                       <input
                                         type="text"
                                         value={editingTrackISRC.isrc}
-                                        onChange={(e) => setEditingTrackISRC({ trackIndex: idx, isrc: e.target.value })}
-                                        placeholder="Введите ISRC код"
+                                        onChange={(e) => {
+                                          const value = e.target.value.replace(/[^A-Za-z0-9]/g, '');
+                                          setEditingTrackISRC({ trackIndex: idx, isrc: value });
+                                        }}
+                                        placeholder="Введите ISRC код (12 символов)"
+                                        maxLength={12}
                                         className="flex-1 px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-sm text-white focus:outline-none focus:border-[#6050ba]"
                                         disabled={savingISRC}
                                       />
@@ -1363,7 +1652,7 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                                     </div>
                                   ) : (
                                     <>
-                                      <div className="text-xs text-zinc-500">ISRC код:</div>
+                                      <div className="text-xs text-zinc-500 mb-1">ISRC код:</div>
                                       <div className="flex items-center gap-2 flex-1">
                                         {track.isrc ? (
                                           <>
@@ -1384,7 +1673,14 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                                             </button>
                                           </>
                                         ) : (
-                                          <span className="text-xs text-zinc-500 flex-1">Не указан</span>
+                                          <div className="flex-1 px-2 py-1.5 bg-yellow-500/10 border border-yellow-500/30 rounded-lg">
+                                            <div className="flex items-center gap-1.5">
+                                              <svg className="w-3 h-3 text-yellow-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                              </svg>
+                                              <span className="text-xs text-yellow-300">ISRC код не добавлен</span>
+                                            </div>
+                                          </div>
                                         )}
                                         <button
                                           onClick={() => setEditingTrackISRC({ trackIndex: idx, isrc: track.isrc || '' })}
@@ -1400,7 +1696,7 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                             )}
                           </div>
                         </div>
-                      </div>
+                      </details>
                     ))}
                   </div>
                 </div>
@@ -1535,11 +1831,173 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                   )}
                 </div>
               )}
+
+              {/* КНОПКИ ДЕЙСТВИЙ ДЛЯ МОБИЛКИ */}
+              <div className="lg:hidden mt-6 pt-6 border-t border-white/10">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#6050ba] to-[#9d8df1] flex items-center justify-center shadow-lg shadow-[#6050ba]/30">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                      <path d="M12.89 1.45l8 4A2 2 0 0 1 22 7.24v9.53a2 2 0 0 1-1.11 1.79l-8 4a2 2 0 0 1-1.79 0l-8-4a2 2 0 0 1-1.1-1.8V7.24a2 2 0 0 1 1.11-1.79l8-4a2 2 0 0 1 1.78 0z"/>
+                      <polyline points="12 22 12 12"/>
+                      <polyline points="12 12 2.5 6.5"/>
+                      <polyline points="12 12 21.5 6.5"/>
+                    </svg>
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-black uppercase tracking-tight bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">Действия</h3>
+                </div>
+
+                {/* Для Basic релизов: проверка платежа */}
+                {selectedRelease.user_role === 'basic' && selectedRelease.payment_status === 'pending' && (
+                  <div className="mb-4">
+                    <div className="p-4 bg-gradient-to-br from-yellow-500/20 to-orange-600/10 border-2 border-yellow-400/40 rounded-xl shadow-xl shadow-yellow-500/20">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-500/30 to-yellow-600/20 flex items-center justify-center flex-shrink-0 border-2 border-yellow-400/50">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-yellow-300" strokeWidth="2">
+                            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                            <line x1="12" y1="9" x2="12" y2="13"/>
+                            <line x1="12" y1="17" x2="12.01" y2="17"/>
+                          </svg>
+                        </div>
+                        <div>
+                          <h4 className="text-yellow-300 font-black text-sm mb-1">Требуется проверка платежа</h4>
+                          <p className="text-xs text-yellow-200/80">Подтвердите оплату перед публикацией</p>
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <button
+                          onClick={() => handlePaymentVerification(true)}
+                          className="w-full px-4 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white rounded-xl font-bold transition shadow-lg shadow-emerald-500/30"
+                        >
+                          ✓ Подтвердить платеж
+                        </button>
+                        <button
+                          onClick={() => handlePaymentVerification(false)}
+                          className="w-full px-4 py-3 bg-red-500/20 hover:bg-red-500/30 text-red-400 rounded-xl font-bold transition"
+                        >
+                          ✕ Отклонить платеж
+                        </button>
+                      </div>
+                      {selectedRelease.payment_receipt && (
+                        <div className="mt-3 p-3 bg-white/5 rounded-lg">
+                          <div className="text-xs text-zinc-400 mb-2">Чек от пользователя:</div>
+                          <a href={selectedRelease.payment_receipt} target="_blank" rel="noopener noreferrer" className="text-sm text-[#6050ba] hover:text-[#9d8df1] transition block truncate">
+                            {selectedRelease.payment_receipt}
+                          </a>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {/* Кнопки действий */}
+                <div className="space-y-3">
+                  {/* Кнопка редактирования */}
+                  <button
+                    onClick={() => {
+                      const editPath = selectedRelease.release_type === 'basic'
+                        ? `/cabinet/release-basic/edit/${selectedRelease.id}?from=admin`
+                        : `/cabinet/release/edit/${selectedRelease.id}?from=admin`;
+                      router.push(editPath);
+                    }}
+                    className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-white/10 to-white/5 hover:from-[#6050ba]/30 hover:to-[#9d8df1]/20 border-2 border-white/20 hover:border-[#6050ba]/50 rounded-xl font-bold transition-all shadow-lg hover:shadow-[#6050ba]/30 flex items-center justify-center gap-2 group text-sm sm:text-base"
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="group-hover:rotate-12 transition-transform flex-shrink-0">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                    </svg>
+                    Редактировать релиз
+                  </button>
+
+                  {/* Кнопка удаления (только в архиве) */}
+                  {viewMode === 'archive' && (
+                    <button
+                      onClick={handleDeleteRelease}
+                      className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-red-500/20 to-red-600/10 hover:from-red-500/30 hover:to-red-600/20 border-2 border-red-500/40 hover:border-red-500/60 rounded-xl font-bold transition-all shadow-lg hover:shadow-red-500/30 flex items-center justify-center gap-2 group text-red-300 hover:text-red-200 text-sm sm:text-base"
+                    >
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="group-hover:scale-110 transition-transform flex-shrink-0">
+                        <polyline points="3 6 5 6 21 6"/>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                        <line x1="10" y1="11" x2="10" y2="17"/>
+                        <line x1="14" y1="11" x2="14" y2="17"/>
+                      </svg>
+                      Удалить релиз
+                    </button>
+                  )}
+
+                  {selectedRelease.status === 'pending' && (
+                    <>
+                      <button
+                        onClick={handleApprove}
+                        disabled={selectedRelease.release_type === 'basic' && selectedRelease.payment_status !== 'verified'}
+                        className="w-full px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 disabled:from-zinc-700 disabled:to-zinc-800 disabled:text-zinc-500 text-white rounded-xl font-black transition-all shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/50 disabled:shadow-none hover:scale-[1.02] flex flex-col items-center justify-center gap-1 group text-sm sm:text-base"
+                      >
+                        <span className="flex items-center gap-2">
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="group-hover:scale-110 transition-transform flex-shrink-0">
+                            <polyline points="20 6 9 17 4 12" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                          Утвердить и отправить на дистрибьюцию
+                        </span>
+                        {selectedRelease.release_type === 'basic' && selectedRelease.payment_status !== 'verified' && (
+                          <span className="text-xs mt-1 opacity-70">Сначала подтвердите платеж</span>
+                        )}
+                      </button>
+
+                      <div>
+                        <textarea
+                          value={rejectionReason}
+                          onChange={(e) => setRejectionReason(e.target.value)}
+                          placeholder="Причина отклонения..."
+                          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl outline-none mb-2 text-sm"
+                          rows={3}
+                        />
+                        <button
+                          onClick={handleReject}
+                          disabled={!rejectionReason.trim()}
+                          className="w-full px-4 sm:px-6 py-2.5 sm:py-3 bg-red-500/20 hover:bg-red-500/30 disabled:opacity-50 text-red-400 rounded-xl font-bold transition text-sm sm:text-base"
+                        >
+                          ✕ Отклонить релиз
+                        </button>
+                      </div>
+                    </>
+                  )}
+
+                  {selectedRelease.status === 'distributed' && (
+                    <div className="p-4 bg-blue-500/10 border border-blue-500/20 rounded-xl text-center">
+                      <div className="text-blue-400 font-bold text-sm">🚀 Релиз на дистрибьюции</div>
+                      {selectedRelease.approved_at && (
+                        <div className="text-xs text-zinc-500 mt-1">
+                          {new Date(selectedRelease.approved_at).toLocaleString('ru-RU')}
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {selectedRelease.status === 'published' && (
+                    <div className="p-4 bg-green-500/10 border border-green-500/20 rounded-xl text-center">
+                      <div className="text-green-400 font-bold text-sm">✅ Релиз опубликован</div>
+                      {selectedRelease.published_at && (
+                        <div className="text-xs text-zinc-500 mt-1">
+                          {new Date(selectedRelease.published_at).toLocaleString('ru-RU')}
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {selectedRelease.status === 'rejected' && (
+                    <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
+                      <div className="text-red-400 font-bold mb-2 text-sm">Релиз отклонен</div>
+                      {selectedRelease.rejection_reason && (
+                        <div className="text-xs sm:text-sm text-zinc-400">{selectedRelease.rejection_reason}</div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
 
           {/* ПРАВОЕ ОКНО: Действия и платеж */}
-          <div className="bg-gradient-to-br from-[#0d0d0f] to-[#1a1a1f] border border-white/20 shadow-2xl shadow-[#6050ba]/10 rounded-3xl w-[500px] flex-shrink-0 max-h-[90vh] overflow-y-auto scrollbar-hide animate-in slide-in-from-right duration-300" onClick={(e) => e.stopPropagation()}>
+          <div className="hidden lg:block bg-gradient-to-br from-[#0d0d0f] to-[#1a1a1f] border border-white/20 shadow-2xl shadow-[#6050ba]/10 rounded-3xl w-[500px] flex-shrink-0 max-h-[90vh] overflow-y-auto scrollbar-hide animate-in slide-in-from-right duration-300" onClick={(e) => e.stopPropagation()}>
             <div className="p-6">
               {/* Заголовок правого окна */}
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
@@ -1736,7 +2194,7 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                   </div>
                 )}
 
-                {selectedRelease.status === 'approved' && (
+                {selectedRelease.status === 'distributed' && (
                   <div className="p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-center">
                     <div className="text-emerald-400 font-bold">Релиз одобрен</div>
                     {selectedRelease.approved_at && (

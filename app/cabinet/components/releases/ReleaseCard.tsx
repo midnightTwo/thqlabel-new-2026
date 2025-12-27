@@ -30,6 +30,20 @@ export default function ReleaseCard({ release, onClick, onDelete, onDragStart, o
     draft: 'Черновик'
   }[release.status] || release.status;
 
+  // Кружок для статуса
+  const getStatusDot = () => {
+    const colors = {
+      pending: 'bg-yellow-400',
+      distributed: 'bg-blue-400',
+      published: 'bg-green-400',
+      rejected: 'bg-red-400',
+      draft: 'bg-zinc-400'
+    };
+    return colors[release.status as keyof typeof colors] || 'bg-zinc-400';
+  };
+
+  const shouldAnimate = release.status === 'pending' || release.status === 'distributed';
+
   const dragImageRef = React.useRef<HTMLElement | null>(null);
   const cardRef = React.useRef<HTMLDivElement>(null);
 
@@ -120,7 +134,7 @@ export default function ReleaseCard({ release, onClick, onDelete, onDragStart, o
           e.dataTransfer.dropEffect = 'move';
         }
       }}
-      className={`relative group p-4 bg-white/5 border border-white/10 rounded-2xl ${
+      className={`relative group p-3 sm:p-4 bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl ${
         isDraft ? 'cursor-grab active:cursor-grabbing' : 'cursor-pointer'
       } ${
         isDragging ? 'opacity-0 scale-75 pointer-events-none' : 'opacity-100 scale-100'
@@ -147,34 +161,40 @@ export default function ReleaseCard({ release, onClick, onDelete, onDragStart, o
       }}
     >
       {/* Обложка */}
-      <div className="w-full h-40 rounded-xl overflow-hidden bg-black/20 flex items-center justify-center">
+      <div className="w-full h-32 sm:h-40 rounded-lg sm:rounded-xl overflow-hidden bg-black/20 flex items-center justify-center">
         {release.cover_url ? (
           <img src={release.cover_url} className="w-full h-full object-cover" alt="" draggable="false" />
         ) : (
-          <div className="text-3xl">🎵</div>
+          <div className="text-2xl sm:text-3xl">🎵</div>
         )}
       </div>
 
       {/* Информация */}
-      <div className="mt-3">
-        <div className="font-bold text-white truncate">{release.title}</div>
-        <div className="text-sm text-zinc-400 truncate">{release.artist_name || release.artist}</div>
+      <div className="mt-2 sm:mt-3">
+        <div className="font-bold text-white truncate text-sm sm:text-base">{release.title}</div>
+        <div className="text-xs sm:text-sm text-zinc-400 truncate">{release.artist_name || release.artist}</div>
       </div>
 
       {/* Статус и дата */}
-      <div className="mt-3 flex items-center justify-between">
-        <div className={`text-[9px] px-2 py-1 rounded-full text-white font-bold ${statusColor}`}>
-          {statusLabel}
-        </div>
-        <div className="text-[11px] text-zinc-400">
-          {formatDate(release.date || release.created_at)}
+      <div className="mt-2 sm:mt-3">
+        <div className={`text-[8px] sm:text-[9px] px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-white font-bold flex items-center gap-1 sm:gap-1.5 w-fit ${statusColor}`}>
+          {shouldAnimate ? (
+            <svg className="animate-spin h-2.5 w-2.5 sm:h-3 sm:w-3" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+          ) : (
+            <span className={`w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full ${getStatusDot()}`}></span>
+          )}
+          <span className="hidden sm:inline">{statusLabel}</span>
+          <span className="inline sm:hidden truncate max-w-[60px]">{statusLabel.slice(0, 6)}</span>
         </div>
       </div>
       
       {/* Индикатор редактирования для pending релизов */}
       {release.status === 'pending' && (
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl flex items-end justify-center pb-4">
-          <div className="text-xs font-bold text-white flex items-center gap-1">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-xl sm:rounded-2xl flex items-end justify-center pb-3 sm:pb-4">
+          <div className="text-[10px] sm:text-xs font-bold text-white flex items-center gap-1">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" strokeWidth="2"/>
               <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" strokeWidth="2"/>
@@ -186,9 +206,9 @@ export default function ReleaseCard({ release, onClick, onDelete, onDragStart, o
       
       {/* Индикатор перетаскивания для черновиков */}
       {isDraft && (
-        <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300">
-          <div className="p-2 bg-gradient-to-br from-purple-500/20 to-blue-500/20 backdrop-blur-sm rounded-lg border border-purple-400/30 shadow-lg shadow-purple-500/20">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-purple-300">
+        <div className="absolute top-2 sm:top-3 right-2 sm:right-3 opacity-0 group-hover:opacity-100 transition-all duration-300">
+          <div className="p-1.5 sm:p-2 bg-gradient-to-br from-purple-500/20 to-blue-500/20 backdrop-blur-sm rounded-lg border border-purple-400/30 shadow-lg shadow-purple-500/20">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-purple-300 sm:w-4 sm:h-4">
               <circle cx="9" cy="5" r="1" fill="currentColor"/>
               <circle cx="9" cy="12" r="1" fill="currentColor"/>
               <circle cx="9" cy="19" r="1" fill="currentColor"/>
@@ -212,7 +232,7 @@ interface AddReleaseCardProps {
 export function AddReleaseCard({ onClick }: AddReleaseCardProps) {
   return (
     <div 
-      className={`relative group p-4 bg-white/5 border border-white/10 rounded-2xl cursor-pointer hover:scale-[1.03] hover:shadow-xl hover:shadow-purple-500/30 hover:border-purple-500/30 transition-all duration-200 ease-out`}
+      className={`relative group p-3 sm:p-4 bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl cursor-pointer hover:scale-[1.03] hover:shadow-xl hover:shadow-purple-500/30 hover:border-purple-500/30 transition-all duration-200 ease-out`}
       onClick={onClick}
       style={{
         transformStyle: 'preserve-3d',
@@ -220,22 +240,22 @@ export function AddReleaseCard({ onClick }: AddReleaseCardProps) {
       }}
     >
       {/* Обложка */}
-      <div className="w-full h-40 rounded-xl overflow-hidden bg-black/20 flex items-center justify-center">
-        <div className="text-3xl">＋</div>
+      <div className="w-full h-32 sm:h-40 rounded-lg sm:rounded-xl overflow-hidden bg-black/20 flex items-center justify-center">
+        <div className="text-2xl sm:text-3xl">＋</div>
       </div>
 
       {/* Информация */}
-      <div className="mt-3 text-center">
-        <div className="font-bold text-white">Добавить релиз</div>
-        <div className="text-sm text-zinc-400 truncate" style={{ visibility: 'hidden' }}>.</div>
+      <div className="mt-2 sm:mt-3 text-center">
+        <div className="font-bold text-white text-sm sm:text-base">Добавить релиз</div>
+        <div className="text-xs sm:text-sm text-zinc-400 truncate" style={{ visibility: 'hidden' }}>.</div>
       </div>
 
       {/* Статус и дата */}
-      <div className="mt-3 flex items-center justify-between">
-        <div className={`text-[9px] px-2 py-1 rounded-full text-white font-bold bg-zinc-500`} style={{ visibility: 'hidden' }}>
+      <div className="mt-2 sm:mt-3 flex items-center justify-between">
+        <div className={`text-[8px] sm:text-[9px] px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-white font-bold bg-zinc-500`} style={{ visibility: 'hidden' }}>
           .
         </div>
-        <div className="text-[11px] text-zinc-400" style={{ visibility: 'hidden' }}>
+        <div className="text-[9px] sm:text-[11px] text-zinc-400" style={{ visibility: 'hidden' }}>
           .
         </div>
       </div>

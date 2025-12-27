@@ -467,8 +467,8 @@ CREATE TRIGGER update_news_updated_at
 /*
 -- Тестовые новости
 INSERT INTO news (title, slug, excerpt, content, is_published, published_at) VALUES
-('Запуск THQ Label', 'launch-thq-label', 'Мы рады объявить о запуске THQ Label!', 
- 'THQ Label - это новый музыкальный лейбл...', true, NOW()),
+('Запуск thq label', 'launch-thq-label', 'Мы рады объявить о запуске thq label!', 
+ 'thq label - это новый музыкальный лейбл...', true, NOW()),
 ('Новые возможности для артистов', 'new-features', 'Обновление платформы с новыми функциями',
  'Мы добавили множество новых возможностей...', true, NOW());
 */

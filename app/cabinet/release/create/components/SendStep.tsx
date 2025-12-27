@@ -193,8 +193,8 @@ export default function SendStep({
         </div>
       )}
 
-      <div className="mt-8 pt-6 border-white/10 flex justify-between">
-        <button onClick={onBack} className="px-6 py-3 bg-white/5 hover:bg-white/10 rounded-xl font-bold transition flex items-center gap-2">
+      <div className="mt-8 pt-6 border-white/10 flex flex-col sm:flex-row gap-3 sm:gap-0 justify-between">
+        <button onClick={onBack} className="w-full sm:w-auto px-6 py-3 bg-white/5 hover:bg-white/10 rounded-xl font-bold transition flex items-center justify-center gap-2">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="15 18 9 12 15 6" strokeWidth="2"/></svg>
           Назад
         </button>
@@ -311,7 +311,7 @@ export default function SendStep({
             }
           }}
           disabled={!allValid || submitting}
-          className={`px-8 py-4 rounded-xl font-black transition flex items-center gap-2 ${
+          className={`w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold sm:font-black transition flex items-center justify-center gap-2 ${
             allValid && !submitting
               ? 'bg-emerald-500 hover:bg-emerald-400 text-black cursor-pointer' 
               : 'bg-zinc-800 text-zinc-600 cursor-not-allowed'

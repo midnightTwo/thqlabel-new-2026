@@ -44,8 +44,8 @@ export function UserProfileModal({
     'bg-zinc-500/20 text-zinc-300';
 
   return (
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center p-4 overflow-y-auto">
-      <div className="bg-gradient-to-br from-[#1a1a1f] to-[#0d0d0f] border border-white/10 rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
+      <div className="bg-gradient-to-br from-[#1a1a1f] to-[#0d0d0f] border border-white/10 rounded-2xl sm:rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
         {/* Шапка профиля */}
         <div className="sticky top-0 bg-[#1a1a1f]/95 backdrop-blur border-b border-white/10 p-6 flex items-center justify-between z-10">
           <div className="flex items-center gap-4">
@@ -99,7 +99,7 @@ export function UserProfileModal({
                 <h3 className="font-bold text-[#a78bfa] flex items-center gap-2">
                   <span>♛</span> Редактирование профиля (Owner)
                 </h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
                   <div>
                     <label className="text-xs text-zinc-500 block mb-1">Никнейм</label>
                     <input
@@ -161,7 +161,7 @@ export function UserProfileModal({
             {/* Дополнительная информация */}
             <div className="p-4 bg-white/[0.02] border border-white/5 rounded-xl">
               <h3 className="font-bold mb-4">Информация о профиле</h3>
-              <div className="grid grid-cols-2 gap-4 text-sm">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-sm">
                 <div>
                   <span className="text-zinc-500">ID пользователя:</span>
                   <span className="ml-2 text-zinc-300 font-mono text-xs">{user.id}</span>

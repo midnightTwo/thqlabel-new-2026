@@ -253,18 +253,18 @@ export default function PromoStep({
           </div>
 
           <div className="space-y-3">
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               <input
                 value={photoInput}
                 onChange={(e) => setPhotoInput(e.target.value)}
                 placeholder="https://disk.yandex.ru/..."
                 disabled={promoPhotos.length >= 5}
-                className="flex-1 px-4 py-3 bg-gradient-to-br from-white/[0.07] to-white/[0.03] placeholder:text-zinc-600 rounded-xl border border-white/10 outline-none disabled:opacity-50"
+                className="flex-1 px-3 sm:px-4 py-3 bg-gradient-to-br from-white/[0.07] to-white/[0.03] placeholder:text-zinc-600 rounded-xl border border-white/10 outline-none disabled:opacity-50 text-xs sm:text-sm break-all"
               />
               <button
                 onClick={addPromoPhoto}
                 disabled={promoPhotos.length >= 5 || !photoInput.trim()}
-                className="px-6 py-3 bg-[#6050ba] hover:bg-[#7060ca] disabled:opacity-50 disabled:cursor-not-allowed rounded-xl font-medium transition"
+                className="w-full sm:w-auto px-4 sm:px-6 py-3 bg-[#6050ba] hover:bg-[#7060ca] disabled:opacity-50 disabled:cursor-not-allowed rounded-xl font-medium transition text-sm"
               >
                 Добавить
               </button>
@@ -273,14 +273,14 @@ export default function PromoStep({
             {promoPhotos.length > 0 && (
               <div className="space-y-2">
                 {promoPhotos.map((photo, idx) => (
-                  <div key={idx} className="flex items-center gap-3 p-3 bg-white/5 rounded-lg">
-                    <div className="w-8 h-8 rounded-md bg-[#6050ba]/20 flex items-center justify-center text-sm font-bold text-[#9d8df1]">
+                  <div key={idx} className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-white/5 rounded-lg overflow-x-hidden">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-md bg-[#6050ba]/20 flex items-center justify-center text-xs sm:text-sm font-bold text-[#9d8df1] flex-shrink-0">
                       {idx + 1}
                     </div>
-                    <div className="flex-1 text-sm text-zinc-300 truncate">{photo}</div>
+                    <div className="flex-1 text-xs sm:text-sm text-zinc-300 truncate min-w-0">{photo}</div>
                     <button
                       onClick={() => removePromoPhoto(idx)}
-                      className="px-3 py-1.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-md text-sm transition"
+                      className="px-2 sm:px-3 py-1 sm:py-1.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-md text-xs sm:text-sm transition flex-shrink-0"
                     >
                       Удалить
                     </button>

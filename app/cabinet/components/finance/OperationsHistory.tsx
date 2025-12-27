@@ -68,7 +68,7 @@ export default function OperationsHistory({ payouts, withdrawalRequests }: Opera
   };
 
   return (
-    <div className="space-y-2 max-h-96 overflow-y-auto pr-2" 
+    <div className="space-y-2 max-h-64 sm:max-h-96 overflow-y-auto pr-1 sm:pr-2" 
          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
       <style jsx>{`
         div::-webkit-scrollbar {
@@ -81,19 +81,19 @@ export default function OperationsHistory({ payouts, withdrawalRequests }: Opera
           return (
             <div
               key={`payout-${op.id}`}
-              className="group p-3 bg-black/20 border border-white/5 rounded-lg hover:border-emerald-500/50 transition-all flex items-center gap-3"
+              className="group p-2 sm:p-3 bg-black/20 border border-white/5 rounded-lg hover:border-emerald-500/50 transition-all flex items-center gap-2 sm:gap-3"
             >
-              <div className="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center text-base flex-shrink-0">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center text-sm sm:text-base flex-shrink-0">
                 💰
               </div>
               <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-sm font-bold">Начисление</span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400">
+                <div className="flex items-center gap-1.5 sm:gap-2 mb-0.5 sm:mb-1">
+                  <span className="text-xs sm:text-sm font-bold">Начисление</span>
+                  <span className="text-[9px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400">
                     ✓ Выдано
                   </span>
                 </div>
-                <div className="text-xs text-zinc-500 space-y-0.5">
+                <div className="text-[10px] sm:text-xs text-zinc-500 space-y-0.5">
                   <div>Q{op.quarter} {op.year}</div>
                   {op.transaction_id ? (
                     <div className="text-[10px] text-emerald-400/80 font-mono flex items-center gap-1">
@@ -112,7 +112,7 @@ export default function OperationsHistory({ payouts, withdrawalRequests }: Opera
                   )}
                 </div>
               </div>
-              <div className="text-base font-black text-emerald-400 flex-shrink-0">
+              <div className="text-sm sm:text-base font-black text-emerald-400 flex-shrink-0">
                 + {Number(op.amount).toLocaleString('ru-RU').replace(/\s/g, '.')} ₽
               </div>
             </div>
@@ -123,21 +123,21 @@ export default function OperationsHistory({ payouts, withdrawalRequests }: Opera
           return (
             <div
               key={`withdrawal-${op.id}`}
-              className="group p-3 bg-black/20 border border-white/5 rounded-lg hover:border-red-500/50 transition-all flex items-center gap-3"
+              className="group p-2 sm:p-3 bg-black/20 border border-white/5 rounded-lg hover:border-red-500/50 transition-all flex items-center gap-2 sm:gap-3"
             >
-              <div className="w-10 h-10 rounded-lg bg-red-500/20 flex items-center justify-center text-base flex-shrink-0">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-red-500/20 flex items-center justify-center text-sm sm:text-base flex-shrink-0">
                 💸
               </div>
               <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-sm font-bold">Вывод</span>
-                  <span className={`text-[10px] px-2 py-0.5 rounded-full ${badge.bg} ${badge.text}`}>
+                <div className="flex items-center gap-1.5 sm:gap-2 mb-0.5 sm:mb-1">
+                  <span className="text-xs sm:text-sm font-bold">Вывод</span>
+                  <span className={`text-[9px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 rounded-full ${badge.bg} ${badge.text}`}>
                     {badge.icon} {badge.label}
                   </span>
                 </div>
-                <div className="text-xs text-zinc-500 space-y-0.5">
+                <div className="text-[10px] sm:text-xs text-zinc-500 space-y-0.5">
                   <div>{new Date(op.date).toLocaleDateString('ru-RU')}</div>
-                  <div className="text-[10px] text-zinc-600 font-mono">№ {op.id.slice(0, 8)}</div>
+                  <div className="text-[9px] sm:text-[10px] text-zinc-600 font-mono">№ {op.id.slice(0, 8)}</div>
                   {op.transaction_id ? (
                     <div className="text-[10px] text-red-400/80 font-mono flex items-center gap-1">
                       <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">

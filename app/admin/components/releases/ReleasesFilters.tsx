@@ -41,8 +41,8 @@ export default function ReleasesFilters({
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Поиск по названию, артисту, email..."
-            className="w-full px-4 py-2 pl-10 bg-zinc-900 border border-zinc-800 rounded-lg text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500 transition-colors"
+            placeholder="Поиск..."
+            className="w-full px-3 sm:px-4 py-2 pl-9 sm:pl-10 bg-zinc-900 border border-zinc-800 rounded-lg text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500 transition-colors"
           />
           <svg className="w-4 h-4 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -75,7 +75,7 @@ export default function ReleasesFilters({
       {/* Расширенные фильтры */}
       {showFilters && (
         <div className="p-4 bg-zinc-900/50 border border-zinc-800 rounded-xl space-y-4">
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {/* Жанр */}
             <div>
               <label className="block text-xs text-zinc-500 mb-1">Жанр</label>

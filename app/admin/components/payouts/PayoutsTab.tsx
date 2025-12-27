@@ -265,7 +265,7 @@ export default function PayoutsTab({ supabase, currentAdmin, currentUserRole }: 
         </div>
       )}
 
-      <div className={`grid grid-cols-1 ${currentUserRole === 'owner' ? 'lg:grid-cols-2' : ''} gap-6`}>
+      <div className={`grid grid-cols-1 ${currentUserRole === 'owner' ? 'lg:grid-cols-2' : ''} gap-4 sm:gap-6`}>
         {/* Форма выплаты - только для owner */}
         {currentUserRole === 'owner' && (
         <div className="p-6 bg-white/[0.02] border border-white/5 rounded-2xl">

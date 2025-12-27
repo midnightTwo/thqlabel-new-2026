@@ -511,23 +511,23 @@ export default function AdminTicketsPanel({ supabase }: { supabase: any }) {
       )}
 
       {/* Заголовок */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-black uppercase tracking-tight text-white">Тикеты поддержки</h2>
+          <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-white text-center lg:text-left">Тикеты поддержки</h2>
           <p className="text-sm text-zinc-500 mt-1">
             {tickets.length} тикетов • {tickets.filter(t => t.status !== 'closed').length} активных
           </p>
         </div>
 
         {/* Поиск */}
-        <div className="flex items-center gap-3">
-          <div className="relative">
+        <div className="flex items-center gap-3 w-full sm:w-auto">
+          <div className="relative w-full sm:w-80">
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Поиск по ID, email, имени, тегу..."
-              className="w-80 px-4 py-2 pl-10 bg-zinc-900 border border-zinc-800 rounded-lg text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-blue-500 transition-colors"
+              placeholder="Поиск..."
+              className="w-full px-4 py-2 pl-10 bg-zinc-900 border border-zinc-800 rounded-lg text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-blue-500 transition-colors"
             />
             <svg className="w-4 h-4 text-zinc-500 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -558,7 +558,7 @@ export default function AdminTicketsPanel({ supabase }: { supabase: any }) {
             <button
               key={f.id}
               onClick={() => setFilter(f.id as any)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+              className={`px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors ${
                 filter === f.id
                   ? 'bg-blue-600 text-white'
                   : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700'
@@ -1023,7 +1023,7 @@ export default function AdminTicketsPanel({ supabase }: { supabase: any }) {
                                     <div className="flex items-center gap-1 mt-0.5">
                                       <span className="text-[9px] px-1 py-0.5 rounded bg-purple-500/20 text-purple-300">
                                         {selectedTicket.release.status === 'pending' && '⏳ На модерации'}
-                                        {selectedTicket.release.status === 'approved' && '✅ Одобрен'}
+                                        {selectedTicket.release.status === 'distributed' && '🚀 На дистрибьюции'}
                                         {selectedTicket.release.status === 'rejected' && '❌ Отклонён'}
                                         {selectedTicket.release.status === 'published' && '🎵 Опубликован'}
                                       </span>
@@ -1411,7 +1411,7 @@ export default function AdminTicketsPanel({ supabase }: { supabase: any }) {
                   {viewingRelease.status && (() => {
                     const statusConfig: Record<string, { label: string; color: string; emoji: string }> = {
                       pending: { label: 'На модерации', color: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/40', emoji: '⏳' },
-                      approved: { label: 'Одобрен', color: 'bg-green-500/20 text-green-300 border-green-500/40', emoji: '✅' },
+                      distributed: { label: 'На дистрибьюции', color: 'bg-blue-500/20 text-blue-300 border-blue-500/40', emoji: '🚀' },
                       rejected: { label: 'Отклонен', color: 'bg-red-500/20 text-red-300 border-red-500/40', emoji: '❌' },
                       published: { label: 'Опубликован', color: 'bg-purple-500/20 text-purple-300 border-purple-500/40', emoji: '🎵' }
                     };

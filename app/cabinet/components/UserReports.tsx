@@ -46,7 +46,7 @@ export default function UserReports({ userId }: UserReportsProps) {
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = `THQ_Report_${report.period}.csv`;
+    link.download = `thq_Report_${report.period}.csv`;
     link.click();
   };
 

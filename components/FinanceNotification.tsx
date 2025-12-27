@@ -81,25 +81,25 @@ const FinanceNotificationToast: React.FC<FinanceNotificationToastProps> = ({ not
   return (
     <div
       className={`
-        flex items-start gap-3 p-4 rounded-lg border backdrop-blur-xl
+        flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-lg border backdrop-blur-xl
         ${style.bg} ${style.border}
         transition-all duration-300 ease-out
         ${isVisible && !isLeaving ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}
         shadow-2xl
       `}
-      style={{ minWidth: '320px', maxWidth: '400px' }}
+      style={{ minWidth: '280px', maxWidth: '95vw' }}
     >
       {/* Иконка */}
-      <div className={`w-10 h-10 rounded-lg ${style.iconBg} flex items-center justify-center text-lg flex-shrink-0`}>
+      <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg ${style.iconBg} flex items-center justify-center text-base sm:text-lg flex-shrink-0`}>
         {style.icon}
       </div>
 
       {/* Контент */}
       <div className="flex-1 min-w-0">
-        <div className={`text-sm font-bold ${style.text} mb-1`}>
+        <div className={`text-xs sm:text-sm font-bold ${style.text} mb-0.5`}>
           {notification.message}
         </div>
-        <div className="text-xs text-zinc-400">
+        <div className="text-[10px] sm:text-xs text-zinc-400">
           {Number(notification.amount).toLocaleString('ru-RU').replace(/\s/g, '.')} ₽
         </div>
       </div>
@@ -122,8 +122,8 @@ interface FinanceNotificationContainerProps {
 
 export const FinanceNotificationContainer: React.FC<FinanceNotificationContainerProps> = ({ notifications, onClose }) => {
   return (
-    <div className="fixed top-20 right-6 z-[9999] flex flex-col gap-3 pointer-events-none">
-      <div className="flex flex-col gap-3 pointer-events-auto">
+    <div className="fixed top-20 right-2 sm:right-6 z-[9999] flex flex-col gap-2 sm:gap-3 pointer-events-none max-w-[calc(100vw-1rem)] sm:max-w-none">
+      <div className="flex flex-col gap-2 sm:gap-3 pointer-events-auto">
         {notifications.map((notification) => (
           <FinanceNotificationToast
             key={notification.id}

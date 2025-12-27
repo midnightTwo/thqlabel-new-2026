@@ -141,6 +141,7 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
   const { themeName } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const [sliderStyle, setSliderStyle] = useState({ left: 0, width: 0 });
   
@@ -191,7 +192,7 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
             height: '70px',
           }}
         >
-          <div className="px-6 md:px-10 h-full flex justify-between items-center">
+          <div className="px-4 sm:px-6 md:px-10 h-full flex justify-between items-center">
             {/* Лого - визуально большое через scale с правильным свечением */}
             <Link href="/feed" className="relative group flex-shrink-0" style={{ width: '128px', height: '77px' }}>
               <img 
@@ -208,8 +209,8 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
               />
             </Link>
 
-            {/* Навигация с плавным ползунком */}
-            <nav className="relative flex items-center rounded-2xl" style={{
+            {/* Навигация с плавным ползунком - скрывается на мобилке */}
+            <nav className="hidden md:flex relative items-center rounded-2xl" style={{
               background: themeName === 'light' 
                 ? 'linear-gradient(135deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.02) 100%)'
                 : 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)',
@@ -243,7 +244,7 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
                     key={item.href}
                     ref={(el) => { navRefs.current[index] = el; }}
                     href={item.href}
-                    className="relative px-5 md:px-7 py-3 md:py-3.5 text-[10px] md:text-[11px] uppercase tracking-[0.15em] font-black transition-all duration-300 z-10"
+                    className="relative px-4 md:px-5 lg:px-7 py-2.5 md:py-3 lg:py-3.5 text-[9px] md:text-[10px] lg:text-[11px] uppercase tracking-[0.15em] font-black transition-all duration-300 z-10"
                     style={{
                       color: isActive 
                         ? themeName === 'light' ? '#000' : '#fff'
@@ -258,12 +259,170 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
                 );
               })}
             </nav>
+
+            {/* Мобильное меню - гамбургер */}
+            <div className="md:hidden">
+              <button 
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="relative w-10 h-10 flex flex-col items-center justify-center gap-1.5 group"
+                aria-label="Меню"
+              >
+                <span className={`w-6 h-0.5 bg-current transition-all duration-300 ${mobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} style={{ color: themeName === 'light' ? '#000' : '#fff' }} />
+                <span className={`w-6 h-0.5 bg-current transition-all duration-300 ${mobileMenuOpen ? 'opacity-0' : ''}`} style={{ color: themeName === 'light' ? '#000' : '#fff' }} />
+                <span className={`w-6 h-0.5 bg-current transition-all duration-300 ${mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} style={{ color: themeName === 'light' ? '#000' : '#fff' }} />
+              </button>
+            </div>
           </div>
         </header>
       )}
+
+      {/* Мобильное меню - боковая панель */}
+      {pathname !== '/' && pathname !== '/auth' && pathname !== '/admin' && (
+        <>
+          {/* Затемнение */}
+          <div 
+            className={`md:hidden fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-all duration-300 ${mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          
+          {/* Боковая панель */}
+          <div 
+            className={`md:hidden fixed top-0 right-0 bottom-0 z-50 w-72 transform transition-all duration-500 ease-out ${
+              mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+            }`}
+            style={{
+              background: themeName === 'light' 
+                ? 'linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(248,248,248,0.95) 50%, rgba(240,240,245,0.98) 100%)'
+                : 'linear-gradient(135deg, rgba(13,13,15,0.98) 0%, rgba(20,20,24,0.96) 50%, rgba(96,80,186,0.05) 100%)',
+              backdropFilter: 'blur(30px) saturate(150%)',
+              borderLeft: themeName === 'light' ? '1px solid rgba(0,0,0,0.1)' : '1px solid rgba(157,141,241,0.3)',
+              boxShadow: '-20px 0 60px rgba(0,0,0,0.6), -5px 0 20px rgba(96,80,186,0.3)',
+            }}
+          >
+            <div className="flex flex-col h-full p-6 relative overflow-hidden">
+              {/* Декоративный фон с эффектом глубины */}
+              <div className="absolute inset-0 opacity-30 pointer-events-none">
+                <div className="absolute top-0 right-0 w-64 h-64 rounded-full" style={{ background: 'radial-gradient(circle, rgba(157,141,241,0.4) 0%, transparent 70%)', filter: 'blur(60px)' }} />
+                <div className="absolute bottom-0 left-0 w-56 h-56 rounded-full" style={{ background: 'radial-gradient(circle, rgba(96,80,186,0.3) 0%, transparent 70%)', filter: 'blur(50px)' }} />
+              </div>
+
+              {/* Заголовок с кнопкой закрытия */}
+              <div className="flex items-center justify-between mb-8 pb-5 border-b relative z-10" style={{ borderColor: themeName === 'light' ? 'rgba(0,0,0,0.1)' : 'rgba(157,141,241,0.2)' }}>
+                <div className="flex items-center gap-3 flex-1 pr-2">
+                  <div className="relative group flex-shrink-0">
+                    <img src="/logo.png" alt="thqlabel" className="h-10 w-auto relative z-10 transition-transform duration-300 group-hover:scale-110" />
+                    <div className="absolute inset-0 blur-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-300" style={{ background: 'linear-gradient(135deg, #6050ba, #9d8df1)' }}></div>
+                  </div>
+                  <div className="flex-1">
+                    <span className="text-lg font-black bg-gradient-to-r from-[#6050ba] via-[#8070da] to-[#9d8df1] bg-clip-text text-transparent block animate-gradient leading-tight">Навигация</span>
+                    <span className="text-[8px] font-semibold whitespace-nowrap" style={{ color: themeName === 'light' ? '#999' : '#666' }}>ГЛАВНОЕ МЕНЮ</span>
+                  </div>
+                </div>
+                <button 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-11 h-11 rounded-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:rotate-90 active:scale-95 group relative overflow-hidden"
+                  style={{
+                    background: themeName === 'light' 
+                      ? 'linear-gradient(135deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.05) 100%)' 
+                      : 'linear-gradient(135deg, rgba(96,80,186,0.3), rgba(157,141,241,0.2))',
+                    color: themeName === 'light' ? '#000' : '#9d8df1',
+                    boxShadow: themeName === 'light' ? '0 2px 8px rgba(0,0,0,0.1)' : '0 4px 16px rgba(96,80,186,0.3), inset 0 1px 0 rgba(255,255,255,0.1)',
+                  }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <svg className="w-6 h-6 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Навигация с иконками и 3D эффектами */}
+              <nav className="flex-1 space-y-3 overflow-y-auto pr-2 relative z-10" style={{ scrollbarWidth: 'thin', scrollbarColor: 'rgba(157,141,241,0.3) transparent' }}>
+                {navItems.map((item, index) => {
+                  const isActive = pathname === item.href;
+                  const icons = {
+                    '/cabinet': '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>',
+                    '/news': '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" /></svg>',
+                    '/contacts': '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>',
+                    '/faq': '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>'
+                  };
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center gap-3 py-4 px-5 rounded-2xl font-bold text-sm uppercase tracking-wide transition-all duration-500 relative overflow-hidden group"
+                      style={{
+                        background: isActive 
+                          ? themeName === 'light'
+                            ? 'linear-gradient(135deg, rgba(96,80,186,0.15) 0%, rgba(157,141,241,0.1) 100%)'
+                            : 'linear-gradient(135deg, #6050ba 0%, #7c6dd6 50%, #8070da 100%)'
+                          : themeName === 'light' 
+                            ? 'rgba(0,0,0,0.04)' 
+                            : 'rgba(255,255,255,0.04)',
+                        color: isActive 
+                          ? themeName === 'light' ? '#6050ba' : '#fff'
+                          : themeName === 'light' ? '#666' : '#a1a1aa',
+                        border: themeName === 'light' 
+                          ? isActive 
+                            ? '2px solid rgba(96,80,186,0.3)' 
+                            : '2px solid rgba(0,0,0,0.04)'
+                          : isActive 
+                            ? '2px solid rgba(157,141,241,0.5)'
+                            : '2px solid rgba(255,255,255,0.04)',
+                        boxShadow: isActive 
+                          ? themeName === 'light'
+                            ? '0 4px 20px rgba(96,80,186,0.2), inset 0 1px 0 rgba(255,255,255,0.5)'
+                            : '0 10px 30px rgba(96,80,186,0.5), 0 0 20px rgba(157,141,241,0.3), inset 0 1px 0 rgba(255,255,255,0.2)'
+                          : 'none',
+                        boxSizing: 'border-box',
+                        animation: mobileMenuOpen ? `slide-in-right 0.4s ease-out ${index * 0.08}s backwards` : 'none',
+                      }}
+                    >
+                      {isActive && (
+                        <>
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" style={{ animationDuration: '2.5s' }}></div>
+                          <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent" />
+                        </>
+                      )}
+                      <div className="relative z-10 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" dangerouslySetInnerHTML={{ __html: icons[item.href as keyof typeof icons] || '' }} />
+                      <span className="relative z-10 flex-1">{item.label}</span>
+                      <div className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${isActive ? 'bg-gradient-to-r from-[#6050ba] to-[#9d8df1] scale-100' : 'scale-0'}`} />
+                    </Link>
+                  );
+                })}
+              </nav>
+
+              {/* Нижняя часть с градиентом */}
+              <div className="pt-5 mt-5 border-t relative z-10" style={{ borderColor: themeName === 'light' ? 'rgba(0,0,0,0.1)' : 'rgba(157,141,241,0.2)' }}>
+                <div className="text-center space-y-3 p-4 rounded-2xl" style={{
+                  background: themeName === 'light'
+                    ? 'linear-gradient(135deg, rgba(96,80,186,0.08) 0%, rgba(157,141,241,0.05) 100%)'
+                    : 'linear-gradient(135deg, rgba(96,80,186,0.15) 0%, rgba(157,141,241,0.1) 100%)',
+                  border: themeName === 'light' ? '1px solid rgba(96,80,186,0.1)' : '1px solid rgba(157,141,241,0.2)',
+                }}>
+                  <div className="flex items-center justify-center gap-2.5">
+                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-[#6050ba] to-[#9d8df1] animate-pulse" style={{ boxShadow: '0 0 10px rgba(157,141,241,0.8)' }} />
+                    <span className="font-black text-sm bg-gradient-to-r from-[#6050ba] via-[#8070da] to-[#9d8df1] bg-clip-text text-transparent animate-gradient">thqlabel</span>
+                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-[#9d8df1] to-[#6050ba] animate-pulse" style={{ boxShadow: '0 0 10px rgba(96,80,186,0.8)', animationDelay: '0.5s' }} />
+                  </div>
+                  <p className="text-[10px] font-semibold" style={{ color: themeName === 'light' ? '#999' : '#666' }}>
+                    © 2025 Все права защищены
+                  </p>
+                  <div className="flex items-center justify-center gap-2 pt-2">
+                    <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#6050ba] to-transparent opacity-30" />
+                    <span className="text-[8px] font-bold" style={{ color: themeName === 'light' ? '#bbb' : '#555' }}>MUSIC LABEL</span>
+                    <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#9d8df1] to-transparent opacity-30" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
       
       {/* Контент */}
-      <div className="relative" style={{ zIndex: 1 }}>
+      <div className="relative md:overflow-x-visible overflow-x-hidden" style={{ zIndex: 1 }}>
         <ModalProvider>
           {children}
         </ModalProvider>
@@ -283,7 +442,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ru" suppressHydrationWarning>
       <head>
         <title>thqlabel</title>
-        <meta name="description" content="THQ Label - Современный музыкальный лейбл" />
+        <meta name="description" content="thq label - Современный музыкальный лейбл" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=2" />
         <link rel="icon" type="image/png" sizes="512x512" href="/icon.png?v=2" />
         <link rel="apple-touch-icon" sizes="512x512" href="/icon.png?v=2" />

@@ -6,7 +6,17 @@ import Link from 'next/link';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
-const supabase = (supabaseUrl && supabaseAnonKey) ? createClient(supabaseUrl, supabaseAnonKey) : null;
+
+// Создаем один экземпляр клиента
+let supabaseInstance: ReturnType<typeof createClient> | null = null;
+const getSupabase = () => {
+  if (!supabaseInstance && supabaseUrl && supabaseAnonKey) {
+    supabaseInstance = createClient(supabaseUrl, supabaseAnonKey);
+  }
+  return supabaseInstance;
+};
+
+const supabase = getSupabase();
 
 // Летающие светящиеся частицы
 const FloatingParticles = () => {
@@ -106,12 +116,24 @@ export default function AuthPage() {
         userEmail = profile.email;
       }
 
-      const { error } = await supabase.auth.resetPasswordForEmail(userEmail, {
-        redirectTo: `${window.location.origin}/reset-password`,
+      console.log('Отправка письма для восстановления пароля на:', userEmail);
+
+      // Отправляем через наш серверный API
+      const response = await fetch('/api/send-password-reset', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: userEmail }),
       });
 
-      if (error) throw error;
+      const data = await response.json();
 
+      if (!response.ok) {
+        throw new Error(data.error || 'Не удалось отправить письмо');
+      }
+
+      console.log('Письмо отправлено успешно');
       showNotification('Письмо со ссылкой для сброса пароля отправлено на почту', 'success');
       setMode('login');
       setEmail('');
@@ -218,11 +240,16 @@ export default function AuthPage() {
       console.error('Ошибка авторизации:', err);
       
       if (err.message?.includes('Invalid login credentials')) {
-        alert('❌ Неверный email или пароль');
+        showNotification('Неверный email или пароль. Проверьте данные и попробуйте снова.', 'error');
       } else if (err.message?.includes('Email not confirmed')) {
+        showNotification('Email не подтверждён. Проверьте почту!', 'error');
         setMode('waiting-confirmation');
+      } else if (err.message?.includes('User already registered')) {
+        showNotification('Этот email уже зарегистрирован. Войдите или восстановите пароль.', 'error');
+      } else if (err.message?.includes('Password should be at least')) {
+        showNotification('Пароль должен быть не менее 6 символов', 'error');
       } else {
-        alert('❌ Ошибка: ' + (err.message || 'Неизвестная ошибка'));
+        showNotification(err.message || 'Произошла ошибка. Попробуйте позже.', 'error');
       }
     } finally {
       setLoading(false);
@@ -250,31 +277,45 @@ export default function AuthPage() {
 
       {/* Уведомление */}
       {notification.show && (
-        <div className="fixed top-6 right-6 z-50 animate-[slideIn_0.3s_ease-out]">
-          <div className={`px-6 py-4 rounded-xl backdrop-blur-xl border shadow-lg ${
+        <div className="fixed top-6 right-6 z-[9999] animate-[slideIn_0.4s_cubic-bezier(0.68,-0.55,0.265,1.55)]">
+          <div className={`px-5 py-3.5 rounded-2xl backdrop-blur-2xl border-2 shadow-2xl max-w-[380px] ${
             notification.type === 'success' 
-              ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400' 
-              : 'bg-red-500/10 border-red-500/30 text-red-400'
+              ? 'bg-gradient-to-br from-emerald-500/20 to-green-600/20 border-emerald-400/50 shadow-emerald-500/20' 
+              : 'bg-gradient-to-br from-red-500/20 to-rose-600/20 border-red-400/50 shadow-red-500/20'
           }`}>
-            <div className="flex items-center gap-3">
-              {notification.type === 'success' ? (
-                <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-              ) : (
-                <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              )}
-              <p className="text-sm font-medium">{notification.message}</p>
+            <div className="flex items-center gap-4">
+              <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${
+                notification.type === 'success' 
+                  ? 'bg-emerald-500/30 text-emerald-300' 
+                  : 'bg-red-500/30 text-red-300'
+              }`}>
+                {notification.type === 'success' ? (
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                  </svg>
+                ) : (
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
+                )}
+              </div>
+              <div className="flex-1">
+                <p className="text-sm text-white font-medium leading-relaxed">{notification.message}</p>
+              </div>
             </div>
           </div>
         </div>
       )}
       <style jsx>{`
         @keyframes slideIn {
-          from { transform: translateX(100%); opacity: 0; }
-          to { transform: translateX(0); opacity: 1; }
+          from { 
+            transform: translateX(400px) scale(0.8); 
+            opacity: 0; 
+          }
+          to { 
+            transform: translateX(0) scale(1); 
+            opacity: 1; 
+          }
         }
       `}</style>
 
@@ -282,7 +323,7 @@ export default function AuthPage() {
       <div className="fixed top-6 left-6 z-50">
         <Link 
           href="/feed" 
-          className="inline-flex items-center gap-2 px-5 py-3 bg-white/10 hover:bg-white/15 backdrop-blur-xl border border-white/20 rounded-xl text-sm font-bold uppercase tracking-widest transition-all hover:scale-105 shadow-lg"
+          className="inline-flex items-center gap-2 px-5 py-3 bg-white/10 hover:bg-white/15 backdrop-blur-xl border border-white/20 rounded-xl text-sm font-bold uppercase tracking-widest transition-all hover:scale-105 shadow-lg text-white hover:text-white"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -293,25 +334,32 @@ export default function AuthPage() {
 
       {/* Контейнер: лого СБОКУ слева, форма справа */}
       <div className={`relative z-10 w-full transition-all duration-700 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
-        <div className="min-h-screen flex items-center">
+        <div className="min-h-screen flex flex-col lg:flex-row items-center">
           
-          {/* Левая часть: большое лого фиксированной ширины */}
+          {/* Мобильное лого вверху */}
+          <div className="lg:hidden w-full pt-24 pb-10 flex items-center justify-center">
+            <img 
+              src="/logo.png" 
+              alt="thqlabel" 
+              className="h-24 w-auto object-contain drop-shadow-[0_0_50px_rgba(96,80,186,0.7)]"
+            />
+          </div>
+
+          {/* Левая часть: большое лого фиксированной ширины (только desktop) */}
           <div className="hidden lg:block w-[500px] flex-shrink-0 pl-8">
             <div className="flex items-center justify-start">
-              <Link href="/feed" className="inline-block">
-                <img 
-                  src="/logo.png" 
-                  alt="thqlabel" 
-                  className="h-40 w-auto object-contain drop-shadow-[0_0_80px_rgba(96,80,186,0.8)] hover:brightness-125 transition-all cursor-pointer"
-                  style={{ transform: 'scale(4)', transformOrigin: 'left center' }}
-                />
-              </Link>
+              <img 
+                src="/logo.png" 
+                alt="thqlabel" 
+                className="h-40 w-auto object-contain drop-shadow-[0_0_80px_rgba(96,80,186,0.8)]"
+                style={{ transform: 'scale(4)', transformOrigin: 'left center' }}
+              />
             </div>
           </div>
 
           {/* Правая часть: форма нормального размера */}
-          <div className="flex-1 flex items-center justify-center px-8 lg:px-12">
-            <div className="w-full max-w-md ml-auto lg:mr-12">
+          <div className="flex-1 flex items-center justify-center px-8 lg:px-12 w-full">
+            <div className="w-full max-w-md lg:ml-auto lg:mr-12">
               {/* Форма авторизации/регистрации */}
               <div 
                 className="bg-[#0c0c0e]/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-10"
@@ -378,17 +426,18 @@ export default function AuthPage() {
                     </button>
                   </div>
                 ) : mode === 'forgot-password' ? (
-                  <div className="space-y-6 animate-[fadeIn_0.3s_ease-in-out]">
+                  <form onSubmit={(e) => { e.preventDefault(); handleForgotPassword(); }} className="space-y-6 animate-[fadeIn_0.3s_ease-in-out]">
                     <div className="flex items-center gap-4 mb-8">
                       <button
+                        type="button"
                         onClick={() => setMode('login')}
-                        className="text-zinc-500 hover:text-white transition"
+                        className="text-zinc-400 hover:text-white transition"
                       >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                         </svg>
                       </button>
-                      <h2 className="text-xl font-bold">Восстановление пароля</h2>
+                      <h2 className="text-xl font-bold text-white">Восстановление пароля</h2>
                     </div>
 
                     <p className="text-sm text-zinc-400 leading-relaxed">
@@ -396,19 +445,19 @@ export default function AuthPage() {
                     </p>
 
                     <div>
-                      <label className="text-[10px] text-zinc-500 uppercase tracking-widest block mb-2">Email или никнейм</label>
+                      <label className="text-[10px] text-zinc-400 uppercase tracking-widest block mb-2">Email или никнейм</label>
                       <input 
                         value={email} 
                         onChange={(e) => setEmail(e.target.value)} 
                         placeholder="email@example.com или ваш никнейм" 
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-sm outline-none focus:border-[#6050ba] focus:bg-white/10 transition placeholder-zinc-600"
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white outline-none focus:border-[#6050ba] focus:bg-white/10 transition placeholder-zinc-500"
                       />
                     </div>
 
                     <button 
-                      onClick={handleForgotPassword}
+                      type="submit"
                       disabled={loading || !email}
-                      className={`w-full py-4 rounded-xl text-[12px] font-black uppercase tracking-widest transition-all ${
+                      className={`w-full py-4 rounded-xl text-[12px] font-black uppercase tracking-widest transition-all text-white ${
                         loading || !email
                           ? 'bg-[#6050ba]/30 cursor-wait' 
                           : 'bg-gradient-to-r from-[#6050ba] to-[#7060ca] hover:shadow-lg hover:shadow-[#6050ba]/40'
@@ -424,7 +473,7 @@ export default function AuthPage() {
                         </span>
                       ) : 'Отправить письмо'}
                     </button>
-                  </div>
+                  </form>
                 ) : (
                   <>
                 {/* Табы */}
@@ -454,44 +503,62 @@ export default function AuthPage() {
                 <form onSubmit={handleSubmit} className="space-y-5">
                   {mode === 'signup' && (
                     <div className="animate-[fadeIn_0.3s_ease-in-out]">
-                      <label className="text-[10px] text-zinc-500 uppercase tracking-widest block mb-2">Никнейм</label>
+                      <label className="text-[10px] text-zinc-400 uppercase tracking-widest block mb-2">Никнейм</label>
                       <input 
                         value={nickname} 
-                        onChange={(e) => setNickname(e.target.value)} 
+                        onChange={(e) => setNickname(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === 'Escape') {
+                            e.currentTarget.blur();
+                          }
+                        }}
+                        onBlur={(e) => e.target.blur()}
                         placeholder="Твой псевдоним" 
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-sm outline-none focus:border-[#6050ba] focus:bg-white/10 transition placeholder-zinc-600"
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white outline-none focus:border-[#6050ba] focus:bg-white/10 transition placeholder-zinc-500"
                       />
                     </div>
                   )}
                   
                   <div>
-                    <label className="text-[10px] text-zinc-500 uppercase tracking-widest block mb-2">Email</label>
+                    <label className="text-[10px] text-zinc-400 uppercase tracking-widest block mb-2">Email</label>
                     <input 
                       required 
                       value={email} 
-                      onChange={(e) => setEmail(e.target.value)} 
+                      onChange={(e) => setEmail(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === 'Escape') {
+                          e.currentTarget.blur();
+                        }
+                      }}
+                      onBlur={(e) => e.target.blur()}
                       placeholder="email@example.com" 
                       type="email" 
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-sm outline-none focus:border-[#6050ba] focus:bg-white/10 transition placeholder-zinc-600"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white outline-none focus:border-[#6050ba] focus:bg-white/10 transition placeholder-zinc-500"
                     />
                   </div>
                   
                   <div>
-                    <label className="text-[10px] text-zinc-500 uppercase tracking-widest block mb-2">Пароль</label>
+                    <label className="text-[10px] text-zinc-400 uppercase tracking-widest block mb-2">Пароль</label>
                     <input 
                       required 
                       value={password} 
-                      onChange={(e) => setPassword(e.target.value)} 
+                      onChange={(e) => setPassword(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === 'Escape') {
+                          e.currentTarget.blur();
+                        }
+                      }}
+                      onBlur={(e) => e.target.blur()}
                       placeholder="••••••••" 
                       type="password" 
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-sm outline-none focus:border-[#6050ba] focus:bg-white/10 transition placeholder-zinc-600"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white outline-none focus:border-[#6050ba] focus:bg-white/10 transition placeholder-zinc-500"
                     />
                   </div>
                   
                   <button 
                     type="submit" 
                     disabled={loading} 
-                    className={`w-full py-4 rounded-xl text-[12px] font-black uppercase tracking-widest transition-all mt-6 ${
+                    className={`w-full py-4 rounded-xl text-[12px] font-black uppercase tracking-widest transition-all mt-6 text-white ${
                       loading 
                         ? 'bg-[#6050ba]/30 cursor-wait' 
                         : 'bg-[#6050ba] hover:bg-[#7060ca] hover:scale-[1.02] shadow-lg shadow-[#6050ba]/30'

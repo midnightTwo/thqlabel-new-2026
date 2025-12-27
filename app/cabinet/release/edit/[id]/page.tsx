@@ -383,14 +383,14 @@ export default function EditExclusiveReleasePage() {
   const progress = (completedSteps / totalRequiredSteps) * 100;
 
   return (
-    <div className="min-h-screen pt-20 text-white relative z-10">
+    <div className="min-h-screen pt-16 sm:pt-20 text-white relative z-10">
       <AnimatedBackground />
-      <div className="max-w-[1600px] mx-auto p-6 lg:p-8 flex flex-col lg:flex-row gap-8 items-stretch relative z-10">
+      <div className="max-w-[1600px] mx-auto p-3 sm:p-4 md:p-6 lg:p-8 flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8 items-stretch relative z-10">
         
         {/* Боковая панель с шагами */}
-        <aside className="lg:w-64 w-full bg-[#0d0d0f] border border-white/5 rounded-3xl p-6 flex flex-col lg:self-start lg:sticky lg:top-24">
-          <div className="mb-6">
-            <h3 className="font-bold text-lg">Редактирование релиза</h3>
+        <aside className="lg:w-64 w-full bg-[#0d0d0f] border border-white/5 rounded-2xl sm:rounded-3xl p-4 sm:p-5 lg:p-6 flex flex-col lg:self-start lg:sticky lg:top-24">
+          <div className="mb-4 sm:mb-6">
+            <h3 className="font-bold text-base sm:text-lg">Редактирование релиза</h3>
           </div>
           
           <div className="space-y-2">
@@ -402,13 +402,13 @@ export default function EditExclusiveReleasePage() {
                 <button 
                   key={step.id} 
                   onClick={() => setCurrentStep(step.id)}
-                  className={`w-full text-left py-3 px-4 rounded-xl flex items-center gap-3 transition-all ${
+                  className={`w-full text-left py-2.5 sm:py-3 px-3 sm:px-4 rounded-xl flex items-center gap-2 sm:gap-3 transition-all ${
                     isCurrent 
                       ? 'bg-[#6050ba] text-white shadow-lg shadow-[#6050ba]/20' 
                       : 'text-zinc-400 hover:bg-white/5 hover:text-white'
                   }`}
                 >
-                  <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
+                  <span className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center text-xs font-bold ${
                     isComplete ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/10'
                   }`}>
                     {isComplete ? (
@@ -419,9 +419,9 @@ export default function EditExclusiveReleasePage() {
                       step.icon
                     )}
                   </span>
-                  <span className="text-sm font-medium">{step.label}</span>
+                  <span className="text-xs sm:text-sm font-medium">{step.label}</span>
                   {isCurrent && (
-                    <span className="ml-auto w-2 h-2 rounded-full bg-white animate-pulse" />
+                    <span className="ml-auto w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white animate-pulse" />
                   )}
                 </button>
               );
@@ -429,7 +429,7 @@ export default function EditExclusiveReleasePage() {
           </div>
 
           {/* Прогресс */}
-          <div className="mt-auto pt-6 border-t border-white/5">
+          <div className="mt-auto pt-4 sm:pt-6 border-t border-white/5">
             <div className="text-xs text-zinc-500 mb-2">Прогресс заполнения</div>
             <div className="h-2 bg-white/5 rounded-full overflow-hidden">
               <div 
@@ -444,11 +444,11 @@ export default function EditExclusiveReleasePage() {
 
           {/* Кнопки сохранения */}
           {isDraftMode && releaseStatus === 'draft' ? (
-            <div className="space-y-3 mt-4">
+            <div className="space-y-2 sm:space-y-3 mt-3 sm:mt-4">
               <button
                 onClick={() => handleSave(false)}
                 disabled={saving}
-                className={`w-full py-3 rounded-xl font-bold transition ${
+                className={`w-full py-2.5 sm:py-3 rounded-xl text-sm sm:text-base font-bold transition ${
                   saving
                     ? 'bg-zinc-800 text-zinc-600 cursor-not-allowed'
                     : 'bg-white/10 hover:bg-white/20 text-white'
@@ -459,7 +459,7 @@ export default function EditExclusiveReleasePage() {
               <button
                 onClick={() => handleSave(true)}
                 disabled={saving || progress < 100}
-                className={`w-full py-4 rounded-xl font-bold transition ${
+                className={`w-full py-3 sm:py-4 rounded-xl text-sm sm:text-base font-bold transition ${
                   saving || progress < 100
                     ? 'bg-zinc-800 text-zinc-600 cursor-not-allowed'
                     : 'bg-emerald-500 hover:bg-emerald-400 text-black shadow-lg shadow-emerald-500/20'
@@ -477,7 +477,7 @@ export default function EditExclusiveReleasePage() {
             <button
               onClick={() => handleSave(false)}
               disabled={saving}
-              className={`w-full mt-4 py-4 rounded-xl font-bold transition ${
+              className={`w-full mt-3 sm:mt-4 py-3 sm:py-4 rounded-xl text-sm sm:text-base font-bold transition ${
                 saving
                   ? 'bg-zinc-800 text-zinc-600 cursor-not-allowed'
                   : 'bg-emerald-500 hover:bg-emerald-400 text-black shadow-lg shadow-emerald-500/20'
@@ -489,18 +489,19 @@ export default function EditExclusiveReleasePage() {
         </aside>
 
         {/* Основной контент */}
-        <section className="flex-1 bg-[#0d0d0f] border border-white/5 rounded-3xl p-10 min-h-[600px]">
+        <section className="flex-1 bg-[#0d0d0f] border border-white/5 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-10 min-h-[600px]">
           
           {/* Кнопка возврата */}
-          <div className="mb-6 pb-4 border-b border-white/5">
+          <div className="mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-white/5">
             <button 
               onClick={() => router.push(fromPage === 'admin' ? '/admin' : '/cabinet')}
-              className="px-6 py-3 bg-white/5 hover:bg-white/10 rounded-xl font-medium transition flex items-center gap-2"
+              className="px-4 sm:px-6 py-2 sm:py-3 bg-white/5 hover:bg-white/10 rounded-xl text-sm sm:text-base font-medium transition flex items-center gap-2"
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="flex-shrink-0">
                 <polyline points="15 18 9 12 15 6" strokeWidth="2"/>
               </svg>
-              {fromPage === 'admin' ? 'Вернуться в админ панель' : 'Вернуться в кабинет'}
+              <span className="hidden sm:inline">{fromPage === 'admin' ? 'Вернуться в админ панель' : 'Вернуться в кабинет'}</span>
+              <span className="sm:hidden">Назад</span>
             </button>
           </div>
 

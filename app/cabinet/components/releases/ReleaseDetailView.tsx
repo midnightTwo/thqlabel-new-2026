@@ -17,6 +17,8 @@ export default function ReleaseDetailView({
   showCopyToast, 
   setShowCopyToast 
 }: ReleaseDetailViewProps) {
+  const shouldAnimate = release.status === 'pending' || release.status === 'distributed';
+  
   const handleCopyUPC = async (upc: string) => {
     const success = await copyToClipboard(upc);
     if (success) {
@@ -30,13 +32,13 @@ export default function ReleaseDetailView({
       {/* Кнопка назад */}
       <button
         onClick={onBack}
-        className="flex items-center gap-2 mb-6 px-5 py-2.5 bg-gradient-to-r from-white/5 to-white/10 hover:from-white/10 hover:to-white/15 rounded-2xl transition-all duration-300 group border border-white/10"
+        className="flex items-center gap-2 mb-4 sm:mb-6 px-3 sm:px-5 py-2 sm:py-2.5 bg-gradient-to-r from-white/5 to-white/10 hover:from-white/10 hover:to-white/15 rounded-xl sm:rounded-2xl transition-all duration-300 group border border-white/10"
       >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="group-hover:-translate-x-1 transition-transform">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="sm:w-[18px] sm:h-[18px] group-hover:-translate-x-1 transition-transform">
           <line x1="19" y1="12" x2="5" y2="12" strokeWidth="2.5" strokeLinecap="round"/>
           <polyline points="12 19 5 12 12 5" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
-        <span className="font-semibold">Назад к релизам</span>
+        <span className="font-semibold text-sm sm:text-base">Назад к релизам</span>
       </button>
 
 
@@ -79,23 +81,25 @@ export default function ReleaseDetailView({
 
 // Шапка релиза
 function ReleaseHeader({ release }: { release: Release }) {
+  const shouldAnimate = release.status === 'pending' || release.status === 'distributed';
+  
   return (
-    <div className="relative mb-8 overflow-hidden rounded-3xl bg-gradient-to-br from-zinc-900/90 via-zinc-800/90 to-zinc-900/90 backdrop-blur-xl border border-white/10">
+    <div className="relative mb-4 sm:mb-8 overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-br from-zinc-900/90 via-zinc-800/90 to-zinc-900/90 backdrop-blur-xl border border-white/10">
       <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5" />
       
-      <div className="relative grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-8 p-8">
+      <div className="relative grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-4 sm:gap-8 p-4 sm:p-8">
         {/* Обложка */}
-        <div className="relative group">
-          <div className="absolute -inset-4 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-3xl blur-2xl opacity-50 group-hover:opacity-75 transition-opacity" />
+        <div className="relative group mx-auto w-full max-w-xs lg:max-w-none">
+          <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-2xl sm:rounded-3xl blur-xl sm:blur-2xl opacity-50 group-hover:opacity-75 transition-opacity" />
           {release.cover_url ? (
             <img 
               src={release.cover_url} 
               alt={release.title} 
-              className="relative w-full aspect-square rounded-2xl object-cover shadow-2xl ring-1 ring-white/10" 
+              className="relative w-full aspect-square rounded-xl sm:rounded-2xl object-cover shadow-2xl ring-1 ring-white/10" 
             />
           ) : (
-            <div className="relative w-full aspect-square rounded-2xl bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center shadow-2xl ring-1 ring-white/10">
-              <svg className="w-20 h-20 text-zinc-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <div className="relative w-full aspect-square rounded-xl sm:rounded-2xl bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center shadow-2xl ring-1 ring-white/10">
+              <svg className="w-16 h-16 sm:w-20 sm:h-20 text-zinc-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <path d="M9 18V5l12-2v13M9 18l-7 2V7l7-2M9 18l12-2M9 9l12-2"/>
               </svg>
             </div>
@@ -105,28 +109,45 @@ function ReleaseHeader({ release }: { release: Release }) {
         {/* Информация */}
         <div className="flex flex-col justify-between">
           <div>
-            <div className="flex items-center gap-3 mb-4">
-              <span className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide ${STATUS_BADGE_STYLES[release.status] || STATUS_BADGE_STYLES.draft}`}>
-                {release.status === 'approved' ? 'Одобрен' : 
-                 release.status === 'rejected' ? 'Отклонен' : 
-                 release.status === 'distributed' ? 'Распространён' :
-                 release.status === 'pending' ? 'На модерации' : 
-                 release.status}
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+              <span className={`px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wide flex items-center gap-1.5 sm:gap-2 ${STATUS_BADGE_STYLES[release.status] || STATUS_BADGE_STYLES.draft}`}>
+                {shouldAnimate ? (
+                  <svg className="animate-spin h-2.5 w-2.5 sm:h-3 sm:w-3" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                ) : (
+                  <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-current"></span>
+                )}
+                <span className="hidden xs:inline">
+                  {release.status === 'distributed' ? 'На дистрибьюции' : 
+                   release.status === 'rejected' ? 'Отклонен' : 
+                   release.status === 'published' ? 'Опубликован' :
+                   release.status === 'pending' ? 'На модерации' : 
+                   release.status}
+                </span>
+                <span className="inline xs:hidden">
+                  {release.status === 'distributed' ? 'Дистр.' : 
+                   release.status === 'rejected' ? 'Откл.' : 
+                   release.status === 'published' ? 'Опубл.' :
+                   release.status === 'pending' ? 'Модер.' : 
+                   release.status}
+                </span>
               </span>
               {release.release_type && (
-                <span className="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide bg-purple-500/20 text-purple-400 ring-1 ring-purple-500/30">
+                <span className="px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wide bg-purple-500/20 text-purple-400 ring-1 ring-purple-500/30">
                   {release.release_type === 'basic' ? 'Basic' : 'Exclusive'}
                 </span>
               )}
             </div>
             
-            <h1 className="text-5xl font-black uppercase tracking-tight mb-3 bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent leading-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-5xl font-black uppercase tracking-tight mb-2 sm:mb-3 bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent leading-tight break-words">
               {release.title}
             </h1>
-            <p className="text-2xl font-semibold text-zinc-400 mb-6">{release.artist_name || release.artist}</p>
+            <p className="text-lg sm:text-xl lg:text-2xl font-semibold text-zinc-400 mb-4 sm:mb-6 break-words">{release.artist_name || release.artist}</p>
 
             {/* Метаданные */}
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
+            <div className="flex flex-wrap items-center gap-x-3 sm:gap-x-6 gap-y-2 sm:gap-y-3 text-xs sm:text-sm">
               {release.genre && (
                 <MetadataItem icon="music" color="purple" text={release.genre} />
               )}
@@ -143,8 +164,22 @@ function ReleaseHeader({ release }: { release: Release }) {
           </div>
 
           {/* Дополнительные данные */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-6">
-            {release.upc && <InfoBadge label="UPC" value={release.upc} mono />}
+          <div className="grid grid-cols-2 gap-2 sm:gap-3 mt-4 sm:mt-6">
+            {release.upc ? (
+              <InfoBadge label="UPC" value={release.upc} mono />
+            ) : (
+              <div className="px-2.5 sm:px-4 py-2 sm:py-3 bg-yellow-500/10 rounded-lg sm:rounded-xl border border-yellow-500/30">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <svg className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
+                  <div className="min-w-0">
+                    <div className="text-[9px] sm:text-[10px] text-yellow-300 uppercase tracking-wide mb-0.5">UPC</div>
+                    <div className="text-[10px] sm:text-xs text-yellow-300 truncate">Не добавлен</div>
+                  </div>
+                </div>
+              </div>
+            )}
             {release.language && <InfoBadge label="Язык" value={release.language} />}
             {release.created_at && <InfoBadge label="Создан" value={formatDate(release.created_at)} />}
           </div>
@@ -171,11 +206,11 @@ function MetadataItem({ icon, color, text }: { icon: string; color: string; text
   };
 
   return (
-    <div className="flex items-center gap-2">
-      <svg className={`w-4 h-4 ${colorClasses[color]}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <div className="flex items-center gap-1.5 sm:gap-2">
+      <svg className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${colorClasses[color]} flex-shrink-0`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         {icons[icon]}
       </svg>
-      <span className="text-zinc-400">{text}</span>
+      <span className="text-zinc-400 text-xs sm:text-sm truncate">{text}</span>
     </div>
   );
 }
@@ -183,9 +218,9 @@ function MetadataItem({ icon, color, text }: { icon: string; color: string; text
 // Бейдж информации
 function InfoBadge({ label, value, mono }: { label: string; value: string; mono?: boolean }) {
   return (
-    <div className="px-4 py-3 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition-colors">
-      <div className="text-[10px] text-zinc-500 uppercase tracking-wide mb-1">{label}</div>
-      <div className={`font-${mono ? 'mono' : 'semibold'} font-bold text-xs text-white`}>{value}</div>
+    <div className="px-2.5 sm:px-4 py-2 sm:py-3 bg-white/5 rounded-lg sm:rounded-xl border border-white/10 hover:bg-white/10 transition-colors">
+      <div className="text-[9px] sm:text-[10px] text-zinc-500 uppercase tracking-wide mb-0.5 sm:mb-1">{label}</div>
+      <div className={`font-${mono ? 'mono' : 'semibold'} font-bold text-[10px] sm:text-xs text-white truncate`}>{value}</div>
     </div>
   );
 }
@@ -193,15 +228,15 @@ function InfoBadge({ label, value, mono }: { label: string; value: string; mono?
 // Секция Copyright
 function CopyrightSection({ copyright }: { copyright: string }) {
   return (
-    <div className="mb-6 p-4 bg-white/5 rounded-2xl border border-white/10">
-      <div className="flex items-start gap-3">
-        <svg className="w-5 h-5 text-zinc-400 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-white/5 rounded-xl sm:rounded-2xl border border-white/10">
+      <div className="flex items-start gap-2 sm:gap-3">
+        <svg className="w-4 h-4 sm:w-5 sm:h-5 text-zinc-400 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <circle cx="12" cy="12" r="10"/>
           <path d="M15 9a3 3 0 1 0 0 6"/>
         </svg>
-        <div>
-          <div className="text-xs text-zinc-500 uppercase tracking-wide mb-1">Copyright</div>
-          <div className="text-sm text-zinc-300">{copyright}</div>
+        <div className="min-w-0 flex-1">
+          <div className="text-[10px] sm:text-xs text-zinc-500 uppercase tracking-wide mb-1">Copyright</div>
+          <div className="text-xs sm:text-sm text-zinc-300 break-words">{copyright}</div>
         </div>
       </div>
     </div>
@@ -211,17 +246,17 @@ function CopyrightSection({ copyright }: { copyright: string }) {
 // Секция стран
 function CountriesSection({ countries }: { countries: string[] }) {
   return (
-    <div className="mb-6 p-5 bg-gradient-to-br from-white/5 to-white/[0.02] rounded-2xl border border-white/10">
-      <div className="flex items-center gap-2 mb-4">
-        <svg className="w-5 h-5 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <div className="mb-4 sm:mb-6 p-3 sm:p-5 bg-gradient-to-br from-white/5 to-white/[0.02] rounded-xl sm:rounded-2xl border border-white/10">
+      <div className="flex items-center gap-2 mb-3 sm:mb-4">
+        <svg className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <circle cx="12" cy="12" r="10"/>
           <line x1="2" y1="12" x2="22" y2="12"/>
           <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
         </svg>
-        <h3 className="font-bold text-lg">Страны распространения</h3>
-        <span className="ml-auto text-xs text-zinc-500 bg-white/5 px-3 py-1 rounded-full">{countries.length} стран</span>
+        <h3 className="font-bold text-base sm:text-lg">Страны распространения</h3>
+        <span className="ml-auto text-[10px] sm:text-xs text-zinc-500 bg-white/5 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full">{countries.length} стран</span>
       </div>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-1.5 sm:gap-2">
         {countries.map((country, idx) => (
           <span key={idx} className="px-3 py-1.5 bg-white/10 hover:bg-white/15 rounded-lg text-xs font-medium transition-colors border border-white/10">
             {country}
@@ -258,48 +293,19 @@ function TracklistSection({ tracks, onCopyUPC }: { tracks: Track[]; onCopyUPC: (
 // Компонент трека
 function TrackItem({ track, index, onCopyUPC }: { track: Track; index: number; onCopyUPC: (upc: string) => void }) {
   return (
-    <div className="group relative p-5 bg-gradient-to-br from-white/5 to-white/[0.02] rounded-2xl hover:from-white/10 hover:to-white/5 transition-all duration-300 border border-white/10 hover:border-purple-500/30">
-      <div className="flex items-start gap-5">
-        {/* Номер трека */}
-        <div className="relative flex-shrink-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
-          <div className="relative w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center text-base font-black ring-1 ring-white/10">
-            {index + 1}
-          </div>
-        </div>
-        
-        <div className="flex-1 relative min-w-0">
-          {/* UPC код */}
-          {track.upc && (
-            <div className="absolute top-0 right-0 z-10">
-              <div 
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onCopyUPC(track.upc!);
-                }}
-                className="relative inline-flex items-center gap-2 px-3 py-2 bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 border border-white/20 rounded-xl cursor-pointer hover:border-purple-500/50 transition-all group/upc backdrop-blur-xl"
-                style={{ boxShadow: '0 0 20px rgba(147, 51, 234, 0.1)' }}
-                title="Нажмите, чтобы скопировать"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5 rounded-xl" />
-                <div className="relative">
-                  <svg className="w-4 h-4 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-                  </svg>
-                </div>
-                <div className="relative">
-                  <div className="text-[9px] text-purple-400 font-bold uppercase tracking-wider">UPC</div>
-                  <div className="text-xs font-mono text-white font-bold group-hover/upc:text-purple-300 transition-colors">
-                    {track.upc}
-                  </div>
-                </div>
-              </div>
+    <details className="group relative bg-gradient-to-br from-white/5 to-white/[0.02] rounded-2xl hover:from-white/10 hover:to-white/5 transition-all duration-300 border border-white/10 hover:border-purple-500/30">
+      <summary className="cursor-pointer p-5 list-none">
+        <div className="flex items-start gap-5">
+          {/* Номер трека */}
+          <div className="relative flex-shrink-0">
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="relative w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center text-base font-black ring-1 ring-white/10">
+              {index + 1}
             </div>
-          )}
+          </div>
           
-          {/* Название и продюсеры */}
-          <div className="mb-3 pr-32">
+          <div className="flex-1 relative min-w-0">
+            {/* Название и базовая информация */}
             <h4 className="font-bold text-lg mb-1 text-white group-hover:text-purple-100 transition-colors">
               {track.title}
             </h4>
@@ -310,45 +316,57 @@ function TrackItem({ track, index, onCopyUPC }: { track: Track; index: number; o
             )}
           </div>
 
-          {/* Метаданные трека */}
-          <TrackMetadata track={track} />
+          {/* Стрелка раскрытия */}
+          <svg className="w-5 h-5 text-zinc-400 group-open:rotate-180 transition-transform flex-shrink-0 mt-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <polyline points="6 9 12 15 18 9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </div>
+      </summary>
 
-          {/* Explicit badge */}
-          {track.explicit && (
-            <div className="mb-3">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-red-500/20 text-red-400 rounded-lg text-xs font-bold ring-1 ring-red-500/30">
-                <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
-                </svg>
-                EXPLICIT CONTENT
-              </span>
-            </div>
-          )}
+      {/* Развернутый контент */}
+      <div className="px-5 pb-5">
+        <div className="pt-3 border-t border-white/10">
+          <div className="flex-1 relative min-w-0">
+            {/* Метаданные трека */}
+            <TrackMetadata track={track} />
 
-          {/* Текст песни */}
-          {track.lyrics && (
-            <details className="mt-3 group/lyrics">
-              <summary className="cursor-pointer text-sm text-purple-400 hover:text-purple-300 font-medium flex items-center gap-2 transition-colors">
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                  <polyline points="14 2 14 8 20 8"/>
-                  <line x1="16" y1="13" x2="8" y2="13"/>
-                  <line x1="16" y1="17" x2="8" y2="17"/>
-                  <polyline points="10 9 9 9 8 9"/>
-                </svg>
-                <span>Текст песни</span>
-                <svg className="w-4 h-4 group-open/lyrics:rotate-180 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <polyline points="6 9 12 15 18 9"/>
-                </svg>
-              </summary>
-              <div className="mt-3 p-4 bg-black/30 rounded-xl text-sm text-zinc-300 whitespace-pre-wrap leading-relaxed border border-white/10">
-                {track.lyrics}
+            {/* Explicit badge */}
+            {track.explicit && (
+              <div className="mb-3">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-red-500/20 text-red-400 rounded-lg text-xs font-bold ring-1 ring-red-500/30">
+                  <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                  </svg>
+                  EXPLICIT CONTENT
+                </span>
               </div>
-            </details>
-          )}
+            )}
+
+            {/* Текст песни */}
+            {track.lyrics && (
+              <details className="mt-3 group/lyrics">
+                <summary className="cursor-pointer text-sm text-purple-400 hover:text-purple-300 font-medium flex items-center gap-2 transition-colors">
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                    <polyline points="10 9 9 9 8 9"/>
+                  </svg>
+                  <span>Текст песни</span>
+                  <svg className="w-4 h-4 group-open/lyrics:rotate-180 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <polyline points="6 9 12 15 18 9"/>
+                  </svg>
+                </summary>
+                <div className="mt-3 p-4 bg-black/30 rounded-xl text-sm text-zinc-300 whitespace-pre-wrap leading-relaxed border border-white/10">
+                  {track.lyrics}
+                </div>
+              </details>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </details>
   );
 }
 
@@ -359,8 +377,17 @@ function TrackMetadata({ track }: { track: Track }) {
       {track.language && (
         <MetadataBadge color="blue" icon="globe" label={track.language} />
       )}
-      {track.isrc && (
+      {track.isrc ? (
         <MetadataBadge color="green" icon="grid" label="ISRC" value={track.isrc} />
+      ) : (
+        <div className="px-2.5 py-1.5 bg-yellow-500/10 rounded-lg border border-yellow-500/30">
+          <div className="flex items-center gap-1.5">
+            <svg className="w-3 h-3 text-yellow-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            <span className="text-xs text-yellow-300">ISRC не добавлен</span>
+          </div>
+        </div>
       )}
       {track.version && (
         <MetadataBadge color="orange" icon="tag" label={track.version} />

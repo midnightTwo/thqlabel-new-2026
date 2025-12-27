@@ -233,7 +233,7 @@ export default function ReleaseInfoStep({
               <label className="text-sm text-zinc-400 mb-2 block">
                 Поджанры {subgenres.length > 0 && <span className="text-zinc-600 text-xs">({subgenres.length}/5)</span>}
               </label>
-              <div className="flex gap-2">
+              <div className="flex flex-col sm:flex-row gap-2">
                 <input 
                   value={subgenreInput} 
                   onChange={(e) => setSubgenreInput(e.target.value)}
@@ -246,7 +246,7 @@ export default function ReleaseInfoStep({
                   }}
                   placeholder="Dark Pop" 
                   disabled={subgenres.length >= 5}
-                  className="flex-1 px-4 py-3 bg-gradient-to-br from-white/[0.07] to-white/[0.03] placeholder:text-zinc-600 rounded-xl border border-white/10 outline-none disabled:opacity-50"
+                  className="flex-1 px-3 sm:px-4 py-3 bg-gradient-to-br from-white/[0.07] to-white/[0.03] placeholder:text-zinc-600 rounded-xl border border-white/10 outline-none disabled:opacity-50 text-sm"
                 />
                 <button 
                   onClick={() => {
@@ -256,17 +256,17 @@ export default function ReleaseInfoStep({
                     }
                   }}
                   disabled={subgenres.length >= 5}
-                  className="px-4 py-3 bg-[#6050ba] hover:bg-[#7060ca] rounded-xl text-sm font-medium transition disabled:opacity-50"
+                  className="w-full sm:w-auto px-4 py-3 bg-[#6050ba] hover:bg-[#7060ca] rounded-xl text-sm font-medium transition disabled:opacity-50"
                 >
-                  +
+                  Добавить
                 </button>
               </div>
               {subgenres.length > 0 && (
-                <div className="flex flex-wrap gap-2 mt-2">
+                <div className="flex flex-wrap gap-2 mt-2 max-w-full overflow-x-hidden">
                   {subgenres.map((sub, idx) => (
-                    <div key={idx} className="px-3 py-1.5 bg-white/5 rounded-lg text-sm flex items-center gap-2">
-                      <span>{sub}</span>
-                      <button onClick={() => setSubgenres(subgenres.filter((_, i) => i !== idx))} className="text-zinc-400 hover:text-white">×</button>
+                    <div key={idx} className="px-3 py-1.5 bg-white/5 rounded-lg text-xs sm:text-sm flex items-center gap-2 max-w-full break-all">
+                      <span className="truncate">{sub}</span>
+                      <button onClick={() => setSubgenres(subgenres.filter((_, i) => i !== idx))} className="text-zinc-400 hover:text-white flex-shrink-0">×</button>
                     </div>
                   ))}
                 </div>

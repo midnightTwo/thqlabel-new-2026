@@ -5,15 +5,57 @@ import { usePathname } from 'next/navigation';
 import SupportSidebar from '@/app/cabinet/components/SupportSidebar';
 import { fetchWithAuth } from '@/app/cabinet/lib/fetchWithAuth';
 import { useSupportWidget } from '@/lib/useSupportWidget';
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+const supabase = (supabaseUrl && supabaseAnonKey) ? createClient(supabaseUrl, supabaseAnonKey) : null;
 
 export default function GlobalSupportWidget() {
   const pathname = usePathname();
   const supportWidget = useSupportWidget();
   const [unreadCount, setUnreadCount] = useState(0);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Проверка на мобильное устройство
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Не показываем на админ панели, странице авторизации и регистрации
   const isAdminPage = pathname?.startsWith('/admin');
   const isAuthPage = pathname === '/auth' || pathname === '/register' || pathname === '/reset-password' || pathname === '/change-email';
+
+  // Проверка авторизации
+  useEffect(() => {
+    const checkAuth = async () => {
+      if (!supabase) {
+        setIsAuthenticated(false);
+        return;
+      }
+      
+      const { data: { user } } = await supabase.auth.getUser();
+      setIsAuthenticated(!!user);
+    };
+
+    checkAuth();
+
+    // Подписываемся на изменения состояния авторизации
+    if (supabase) {
+      const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+        setIsAuthenticated(!!session?.user);
+      });
+
+      return () => subscription.unsubscribe();
+    }
+  }, []);
 
   const loadUnreadCount = useCallback(async () => {
     try {
@@ -28,15 +70,18 @@ export default function GlobalSupportWidget() {
   }, []);
 
   useEffect(() => {
-    if (!isAdminPage && !isAuthPage) {
+    if (!isAdminPage && !isAuthPage && isAuthenticated) {
       loadUnreadCount();
       const interval = setInterval(loadUnreadCount, 30000);
       return () => clearInterval(interval);
     }
-  }, [isAdminPage, isAuthPage, loadUnreadCount]);
+  }, [isAdminPage, isAuthPage, isAuthenticated, loadUnreadCount]);
 
-  // Не рендерим на админ панели и странице авторизации
-  if (isAdminPage || isAuthPage) {
+  // Не рендерим если:
+  // 1. Админ панель
+  // 2. Страница авторизации
+  // 3. Пользователь НЕ авторизован
+  if (isAdminPage || isAuthPage || !isAuthenticated) {
     return null;
   }
 
@@ -52,6 +97,7 @@ export default function GlobalSupportWidget() {
       onClose={handleClose}
       unreadCount={unreadCount}
       onUpdateUnreadCount={loadUnreadCount}
+      isMobile={isMobile}
     />
   );
 }

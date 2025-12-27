@@ -26,11 +26,11 @@ export default function FinanceTab({
   const [showWithdrawalForm, setShowWithdrawalForm] = useState(false);
 
   return (
-    <div className="animate-fade-up space-y-4">
+    <div className="animate-fade-up space-y-3 sm:space-y-4">
       {/* Заголовок */}
-      <div className="mb-6">
-        <h2 className="text-2xl font-black uppercase tracking-tight">Финансы</h2>
-        <p className="text-sm text-zinc-500 mt-1">Баланс и вывод средств</p>
+      <div className="mb-4 sm:mb-6">
+        <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tight">Финансы</h2>
+        <p className="text-xs sm:text-sm text-zinc-500 mt-1">Баланс и вывод средств</p>
       </div>
       
       {/* Баланс */}
@@ -53,17 +53,17 @@ export default function FinanceTab({
       )}
       
       {/* История операций */}
-      <div className="mt-6">
-        <div className="p-5 bg-white/[0.02] border border-white/5 rounded-xl">
+      <div className="mt-4 sm:mt-6">
+        <div className="p-3 sm:p-5 bg-white/[0.02] border border-white/5 rounded-xl">
           
           {/* Заголовок */}
-          <div className="flex items-center gap-3 mb-5 pb-4 border-b border-white/5">
-            <div className="w-11 h-11 rounded-lg bg-[#6050ba]/20 flex items-center justify-center text-xl">
+          <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-5 pb-3 sm:pb-4 border-b border-white/5">
+            <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-lg bg-[#6050ba]/20 flex items-center justify-center text-lg sm:text-xl">
               📊
             </div>
             <div className="flex-1">
-              <h3 className="text-xl font-bold">История операций</h3>
-              <p className="text-xs text-zinc-500 mt-0.5">Все начисления и выводы</p>
+              <h3 className="text-base sm:text-xl font-bold">История операций</h3>
+              <p className="text-[10px] sm:text-xs text-zinc-500 mt-0.5">Все начисления и выводы</p>
             </div>
           </div>
           
@@ -73,10 +73,10 @@ export default function FinanceTab({
           />
           
           {/* Информационная плашка */}
-          <div className="mt-8 p-4 bg-gradient-to-r from-zinc-900/50 to-black/30 backdrop-blur-sm border border-white/10 rounded-2xl">
-            <div className="flex items-start gap-3">
-              <div className="text-2xl flex-shrink-0">💡</div>
-              <p className="text-xs text-zinc-400 leading-relaxed">
+          <div className="mt-4 sm:mt-8 p-3 sm:p-4 bg-gradient-to-r from-zinc-900/50 to-black/30 backdrop-blur-sm border border-white/10 rounded-xl sm:rounded-2xl">
+            <div className="flex items-start gap-2 sm:gap-3">
+              <div className="text-xl sm:text-2xl flex-shrink-0">💡</div>
+              <p className="text-[10px] sm:text-xs text-zinc-400 leading-relaxed">
                 Здесь отображаются все финансовые операции в хронологическом порядке: <span className="text-emerald-400 font-semibold">начисления на баланс</span> (зелёные карточки) и <span className="text-red-400 font-semibold">выводы средств</span> с различными статусами обработки.
               </p>
             </div>

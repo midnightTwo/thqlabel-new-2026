@@ -357,9 +357,9 @@ export default function TracklistStep({
             />
           </div>
 
-          <div>
+          <div className="overflow-x-hidden">
             <label className="text-sm text-zinc-400 mb-2 block">Ссылка на трек (Яндекс Диск / Google Drive) *</label>
-            <input value={trackLink} onChange={(e) => setTrackLink(e.target.value)} placeholder="https://..." className="w-full px-4 py-3 bg-gradient-to-br from-white/[0.07] to-white/[0.03] placeholder:text-zinc-600 rounded-xl border border-white/10 outline-none" />
+            <input value={trackLink} onChange={(e) => setTrackLink(e.target.value)} placeholder="https://..." className="w-full px-3 sm:px-4 py-3 bg-gradient-to-br from-white/[0.07] to-white/[0.03] placeholder:text-zinc-600 rounded-xl border border-white/10 outline-none break-all text-xs sm:text-sm" />
           </div>
 
           <div>

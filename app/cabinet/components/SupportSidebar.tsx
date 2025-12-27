@@ -9,15 +9,16 @@ interface SupportSidebarProps {
   onOpen: () => void;
   unreadCount: number;
   onUpdateUnreadCount?: () => void;
+  isMobile?: boolean;
 }
 
-export default function SupportSidebar({ isOpen, onClose, onOpen, unreadCount, onUpdateUnreadCount }: SupportSidebarProps) {
+export default function SupportSidebar({ isOpen, onClose, onOpen, unreadCount, onUpdateUnreadCount, isMobile = false }: SupportSidebarProps) {
   const [isWidgetHidden, setIsWidgetHidden] = useState(false);
 
   return (
     <>
-      {/* Виджет поддержки */}
-      {!isOpen && !isWidgetHidden && (
+      {/* Виджет поддержки - скрыт на мобилке */}
+      {!isOpen && !isWidgetHidden && !isMobile && (
         <div className="fixed bottom-6 right-6 z-[9999]">
           <div 
             onClick={onOpen}

@@ -131,7 +131,7 @@ CREATE TRIGGER update_news_updated_at
 -- Создаём первую новость для проверки
 INSERT INTO news (title, content, category, image) VALUES 
 (
-  'Добро пожаловать в THQ LABEL!',
+  'Добро пожаловать в thq label!',
   'Это первая новость в вашей системе.
 
 ## Что дальше?

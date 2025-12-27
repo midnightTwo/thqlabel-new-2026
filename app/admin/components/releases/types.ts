@@ -39,7 +39,6 @@ export interface Track {
 
 export const statusConfig: Record<string, { label: string; color: string; emoji: string }> = {
   pending: { label: 'На модерации', color: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30', emoji: '⏳' },
-  approved: { label: 'Одобрен', color: 'bg-green-500/20 text-green-400 border-green-500/30', emoji: '✅' },
   distributed: { label: 'На дистрибуции', color: 'bg-blue-500/20 text-blue-400 border-blue-500/30', emoji: '🚀' },
   published: { label: 'Опубликован', color: 'bg-purple-500/20 text-purple-400 border-purple-500/30', emoji: '🎵' },
   rejected: { label: 'Отклонен', color: 'bg-red-500/20 text-red-400 border-red-500/30', emoji: '❌' },

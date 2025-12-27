@@ -51,19 +51,19 @@ export default function Toast({ show = true, message, type, onClose, duration = 
   const config = colors[type];
 
   return (
-    <div className="fixed bottom-6 right-6 z-[9999] animate-slide-up">
-      <div className={`flex items-center gap-3 px-4 py-3 rounded-xl border backdrop-blur-xl ${config.bg} ${config.border} shadow-2xl min-w-[280px] max-w-[400px]`}>
-        <div className={`w-8 h-8 rounded-full ${config.bg} border ${config.border} flex items-center justify-center ${config.text} font-bold text-lg shrink-0`}>
+    <div className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-[9999] animate-slide-up">
+      <div className={`flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border backdrop-blur-xl ${config.bg} ${config.border} shadow-2xl min-w-[250px] sm:min-w-[280px] max-w-[340px] sm:max-w-[400px]`}>
+        <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full ${config.bg} border ${config.border} flex items-center justify-center ${config.text} font-bold text-base sm:text-lg shrink-0`}>
           {config.icon}
         </div>
         <div className="flex-1 min-w-0">
-          <p className={`text-sm font-medium ${config.text}`}>{message}</p>
+          <p className={`text-xs sm:text-sm font-medium ${config.text}`}>{message}</p>
         </div>
         <button
           onClick={onClose}
-          className="shrink-0 w-6 h-6 rounded-lg hover:bg-white/10 transition flex items-center justify-center text-zinc-400 hover:text-white"
+          className="shrink-0 w-5 h-5 sm:w-6 sm:h-6 rounded-lg hover:bg-white/10 transition flex items-center justify-center text-zinc-400 hover:text-white"
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>

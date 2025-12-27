@@ -103,11 +103,11 @@ export function SortableReleaseCard({
       </div>
 
       {/* Статус и дата */}
-      <div className="flex items-center justify-between">
-        <div className={`text-[9px] px-2 py-1 rounded-full text-white font-bold ${statusColor}`}>
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+        <div className={`text-[9px] px-2 py-1 rounded-full text-white font-bold whitespace-nowrap ${statusColor}`}>
           {statusLabel}
         </div>
-        <div className="text-[10px] text-zinc-400">
+        <div className="text-[10px] text-zinc-400 whitespace-nowrap">
           {formatDate(release.date || release.created_at)}
         </div>
       </div>

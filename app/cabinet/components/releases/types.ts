@@ -7,7 +7,7 @@ export interface Release {
   artist_name?: string;
   artist?: string;
   cover_url?: string;
-  status: 'draft' | 'pending' | 'approved' | 'rejected' | 'distributed' | 'published';
+  status: 'draft' | 'pending' | 'rejected' | 'distributed' | 'published';
   release_type?: 'basic' | 'exclusive';
   date?: string;
   created_at?: string;

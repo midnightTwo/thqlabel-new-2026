@@ -6,7 +6,17 @@ import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+// Создаем один экземпляр клиента для всего приложения
+let supabaseInstance: ReturnType<typeof createClient> | null = null;
+const getSupabase = () => {
+  if (!supabaseInstance) {
+    supabaseInstance = createClient(supabaseUrl, supabaseAnonKey);
+  }
+  return supabaseInstance;
+};
+
+const supabase = getSupabase();
 
 export default function ResetPasswordPage() {
   const [newPassword, setNewPassword] = useState('');
@@ -19,65 +29,26 @@ export default function ResetPasswordPage() {
 
   useEffect(() => {
     setMounted(true);
+    setIsValidToken(true); // Показываем форму сразу
     
-    let tokenFound = false;
-    
-    // Подписываемся на изменения аутентификации для обработки токена восстановления
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
-      console.log('Auth event:', event, 'Session:', session);
-      
-      if (event === 'PASSWORD_RECOVERY') {
-        tokenFound = true;
-        setIsValidToken(true);
-      } else if (event === 'SIGNED_IN' && session) {
-        tokenFound = true;
-        setIsValidToken(true);
-      } else if (event === 'USER_UPDATED') {
-        console.log('Password updated successfully');
-      }
-    });
+    let cleanup = false;
 
-    // Проверяем наличие токена в URL hash
-    const checkToken = async () => {
-      // Ждем немного для обработки hash параметров
-      await new Promise(resolve => setTimeout(resolve, 1000));
+    const handleAuthChange = async () => {
+      // Проверяем есть ли сессия
+      const { data: { session } } = await supabase.auth.getSession();
       
-      // Проверяем hash параметры в URL
-      const hashParams = new URLSearchParams(window.location.hash.substring(1));
-      const accessToken = hashParams.get('access_token');
-      const type = hashParams.get('type');
-      
-      console.log('Hash params - token:', accessToken, 'type:', type);
-      
-      if (accessToken && type === 'recovery') {
-        console.log('Recovery token found in URL');
-        tokenFound = true;
-        setIsValidToken(true);
-        return;
-      }
-      
-      // Проверяем текущую сессию
-      const { data: { session }, error } = await supabase.auth.getSession();
-      console.log('Session check:', session, error);
-      
-      if (session && !error) {
-        tokenFound = true;
-        setIsValidToken(true);
-        return;
-      }
-      
-      // Если через 2 секунды токен не найден - показываем ошибку
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      if (!tokenFound) {
-        showNotification('Недействительная или истекшая ссылка восстановления', 'error');
-        setTimeout(() => router.push('/auth'), 3000);
+      if (!session) {
+        console.log('No active session - user needs to use recovery link');
+        // Не перенаправляем сразу, даем возможность работать с формой
+      } else {
+        console.log('Active session found');
       }
     };
-    
-    checkToken();
+
+    handleAuthChange();
 
     return () => {
-      subscription.unsubscribe();
+      cleanup = true;
     };
   }, [router]);
 
@@ -100,21 +71,48 @@ export default function ResetPasswordPage() {
     }
 
     setLoading(true);
+    
     try {
-      const { error } = await supabase.auth.updateUser({ 
-        password: newPassword 
+      // Проверяем URL параметры (query) и hash параметры
+      const searchParams = new URLSearchParams(window.location.search);
+      const hashParams = new URLSearchParams(window.location.hash.substring(1));
+      
+      const tokenHash = searchParams.get('token') || hashParams.get('access_token');
+      
+      if (!tokenHash) {
+        throw new Error('Токен восстановления не найден в URL. Запросите новую ссылку.');
+      }
+
+      console.log('Sending password reset request to server');
+      
+      // Отправляем запрос на серверный API endpoint
+      const response = await fetch('/api/reset-password', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          token: tokenHash,
+          newPassword: newPassword
+        })
       });
 
-      if (error) throw error;
+      const data = await response.json();
 
-      showNotification('Пароль успешно изменен! Перенаправление...', 'success');
+      if (!response.ok) {
+        throw new Error(data.error || 'Не удалось обновить пароль');
+      }
+
+      console.log('Password updated successfully');
+      showNotification('Пароль обновлен успешно', 'success');
       
       setTimeout(() => {
-        router.push('/cabinet');
+        router.push('/auth');
       }, 2000);
+      
     } catch (err: any) {
       console.error('Ошибка смены пароля:', err);
-      showNotification(err.message || 'Не удалось сменить пароль', 'error');
+      showNotification(err.message || 'Не удалось сменить пароль. Запросите новую ссылку.', 'error');
     } finally {
       setLoading(false);
     }
@@ -185,7 +183,7 @@ export default function ResetPasswordPage() {
           {/* Form */}
           <form onSubmit={handleResetPassword} className="space-y-5">
             <div>
-              <label className="text-[10px] text-zinc-500 uppercase tracking-widest block mb-2">
+              <label className="text-[10px] text-zinc-400 uppercase tracking-widest block mb-2">
                 Новый пароль
               </label>
               <input 
@@ -194,12 +192,12 @@ export default function ResetPasswordPage() {
                 value={newPassword} 
                 onChange={(e) => setNewPassword(e.target.value)} 
                 placeholder="Минимум 6 символов" 
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white outline-none focus:border-[#6050ba] focus:bg-white/10 transition placeholder-zinc-600"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white outline-none focus:border-[#6050ba] focus:bg-white/10 transition placeholder-zinc-500"
               />
             </div>
 
             <div>
-              <label className="text-[10px] text-zinc-500 uppercase tracking-widest block mb-2">
+              <label className="text-[10px] text-zinc-400 uppercase tracking-widest block mb-2">
                 Подтвердите пароль
               </label>
               <input 
@@ -208,7 +206,7 @@ export default function ResetPasswordPage() {
                 value={confirmPassword} 
                 onChange={(e) => setConfirmPassword(e.target.value)} 
                 placeholder="Повторите пароль" 
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white outline-none focus:border-[#6050ba] focus:bg-white/10 transition placeholder-zinc-600"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white outline-none focus:border-[#6050ba] focus:bg-white/10 transition placeholder-zinc-500"
               />
             </div>
 

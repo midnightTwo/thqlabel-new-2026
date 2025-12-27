@@ -387,15 +387,16 @@ export default function CreateReleaseBasicPage() {
         <section className="flex-1 bg-[#0d0d0f] border border-white/5 rounded-3xl p-10 min-h-[600px]">
           
           {/* Кнопка возврата */}
-          <div className="mb-6 pb-4 border-b border-white/5">
+          <div className="mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-white/5">
             <button 
               onClick={() => router.push('/cabinet')}
-              className="px-6 py-3 bg-white/5 hover:bg-white/10 rounded-xl font-medium transition flex items-center gap-2"
+              className="px-4 sm:px-6 py-2.5 sm:py-3 bg-white/5 hover:bg-white/10 rounded-xl font-medium transition flex items-center gap-2 text-sm sm:text-base"
             >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="flex-shrink-0">
                 <polyline points="15 18 9 12 15 6" strokeWidth="2"/>
               </svg>
-              Вернуться в кабинет
+              <span className="hidden sm:inline">Вернуться в кабинет</span>
+              <span className="sm:hidden">Назад</span>
             </button>
           </div>
 

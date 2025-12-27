@@ -25,7 +25,7 @@ export default function UserProfileModal({
 
   return (
     <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={onClose}>
-      <div className="bg-zinc-900 border border-blue-500/30 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+      <div className="bg-zinc-900 border border-blue-500/30 rounded-xl sm:rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
         {/* Хедер профиля */}
         <div className="sticky top-0 bg-gradient-to-r from-blue-900/50 to-purple-900/50 backdrop-blur-sm border-b border-blue-500/30 p-6 flex items-center justify-between z-10">
           <div className="flex items-center gap-4">
@@ -59,7 +59,7 @@ export default function UserProfileModal({
         ) : (
           <div className="p-6 space-y-6">
             {/* Статистика */}
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
               <div className="p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-center">
                 <div className="text-2xl font-black text-emerald-400">
                   {Number(viewingUser.balance || 0).toLocaleString('ru-RU', {minimumFractionDigits: 2, maximumFractionDigits: 2}).replace(/\s/g, '.')} ₽
@@ -86,7 +86,7 @@ export default function UserProfileModal({
             {/* Дополнительная информация */}
             <div className="p-4 bg-white/[0.02] border border-white/5 rounded-xl">
               <h3 className="font-bold mb-4">Информация о профиле</h3>
-              <div className="grid grid-cols-2 gap-4 text-sm">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-sm">
                 <div>
                   <span className="text-zinc-500">ID пользователя:</span>
                   <span className="ml-2 text-zinc-300 font-mono text-xs">{viewingUser.id}</span>

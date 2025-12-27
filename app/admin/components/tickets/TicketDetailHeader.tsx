@@ -85,7 +85,7 @@ export default function TicketDetailHeader({
 function ReleaseCard({ release, onClick }: { release: any; onClick: () => void }) {
   const statusConfig: Record<string, { label: string; color: string; emoji: string }> = {
     pending: { label: 'На модерации', color: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/40', emoji: '⏳' },
-    approved: { label: 'Одобрен', color: 'bg-green-500/20 text-green-300 border-green-500/40', emoji: '✅' },
+    distributed: { label: 'На дистрибьюции', color: 'bg-blue-500/20 text-blue-300 border-blue-500/40', emoji: '🚀' },
     rejected: { label: 'Отклонен', color: 'bg-red-500/20 text-red-300 border-red-500/40', emoji: '❌' },
     published: { label: 'Опубликован', color: 'bg-purple-500/20 text-purple-300 border-purple-500/40', emoji: '🎵' }
   };

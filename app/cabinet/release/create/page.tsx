@@ -13,7 +13,7 @@ import {
   SendStep,
 } from './components';
 
-// Компонент боковой панели шагов
+// Компонент боковой панели шагов (адаптивный)
 function StepsSidebar({ 
   currentStep, 
   setCurrentStep,
@@ -58,13 +58,13 @@ function StepsSidebar({
   };
 
   const steps = [
-    { id: 'release', label: 'Релиз', icon: '1' },
-    { id: 'tracklist', label: 'Треклист', icon: '2' },
-    { id: 'countries', label: 'Страны', icon: '3' },
-    { id: 'contract', label: 'Договор', icon: '4' },
-    { id: 'platforms', label: 'Площадки', icon: '5' },
-    { id: 'promo', label: 'Промо', icon: '6' },
-    { id: 'send', label: 'Отправка', icon: 'send' },
+    { id: 'release', label: 'Релиз', shortLabel: 'Релиз', icon: '1' },
+    { id: 'tracklist', label: 'Треклист', shortLabel: 'Треки', icon: '2' },
+    { id: 'countries', label: 'Страны', shortLabel: 'Страны', icon: '3' },
+    { id: 'contract', label: 'Договор', shortLabel: 'Договор', icon: '4' },
+    { id: 'platforms', label: 'Площадки', shortLabel: 'Площадки', icon: '5' },
+    { id: 'promo', label: 'Промо', shortLabel: 'Промо', icon: '6' },
+    { id: 'send', label: 'Отправка', shortLabel: 'Отправка', icon: 'send' },
   ];
 
   // Подсчёт заполненных обязательных шагов
@@ -75,65 +75,125 @@ function StepsSidebar({
   const progress = (completedSteps / totalRequiredSteps) * 100;
 
   return (
-    <aside className="lg:w-64 w-full bg-[#0d0d0f] border border-white/5 rounded-3xl p-6 flex flex-col lg:self-start lg:sticky lg:top-24">
-      <div className="mb-6">
-        <h3 className="font-bold text-lg">Создание релиза</h3>
-      </div>
-      
-      <div className="space-y-2">
-        {steps.map((step, idx) => {
-          const isComplete = isStepComplete(step.id);
-          const isCurrent = currentStep === step.id;
-          
-          return (
-            <button 
-              key={step.id} 
-              onClick={() => setCurrentStep(step.id)}
-              className={`w-full text-left py-3 px-4 rounded-xl flex items-center gap-3 transition-all ${
-                isCurrent 
-                  ? 'bg-[#6050ba] text-white shadow-lg shadow-[#6050ba]/20' 
-                  : 'text-zinc-400 hover:bg-white/5 hover:text-white'
-              }`}
-            >
-              <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
-                isComplete ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/10'
-              }`}>
-                {isComplete && step.id !== 'send' ? (
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <polyline points="20 6 9 17 4 12" strokeWidth="3"/>
-                  </svg>
-                ) : step.id === 'send' ? (
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <line x1="22" y1="2" x2="11" y2="13"/>
-                    <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-                  </svg>
-                ) : (
-                  step.icon
+    <>
+      {/* Десктоп версия - вертикальная боковая панель */}
+      <aside className="hidden lg:flex lg:w-64 w-full bg-[#0d0d0f] border border-white/5 rounded-3xl p-6 flex-col lg:self-start lg:sticky lg:top-24">
+        <div className="mb-6">
+          <h3 className="font-bold text-lg">Создание релиза</h3>
+        </div>
+        
+        <div className="space-y-2">
+          {steps.map((step, idx) => {
+            const isComplete = isStepComplete(step.id);
+            const isCurrent = currentStep === step.id;
+            
+            return (
+              <button 
+                key={step.id} 
+                onClick={() => setCurrentStep(step.id)}
+                className={`w-full text-left py-3 px-4 rounded-xl flex items-center gap-3 transition-all ${
+                  isCurrent 
+                    ? 'bg-[#6050ba] text-white shadow-lg shadow-[#6050ba]/20' 
+                    : 'text-zinc-400 hover:bg-white/5 hover:text-white'
+                }`}
+              >
+                <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
+                  isComplete ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/10'
+                }`}>
+                  {isComplete && step.id !== 'send' ? (
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <polyline points="20 6 9 17 4 12" strokeWidth="3"/>
+                    </svg>
+                  ) : step.id === 'send' ? (
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <line x1="22" y1="2" x2="11" y2="13"/>
+                      <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                    </svg>
+                  ) : (
+                    step.icon
+                  )}
+                </span>
+                <span className="text-sm font-medium">{step.label}</span>
+                {isCurrent && (
+                  <span className="ml-auto w-2 h-2 rounded-full bg-white animate-pulse" />
                 )}
-              </span>
-              <span className="text-sm font-medium">{step.label}</span>
-              {isCurrent && (
-                <span className="ml-auto w-2 h-2 rounded-full bg-white animate-pulse" />
-              )}
-            </button>
-          );
-        })}
-      </div>
+              </button>
+            );
+          })}
+        </div>
 
-      {/* Прогресс */}
-      <div className="mt-auto pt-6 border-t border-white/5">
-        <div className="text-xs text-zinc-500 mb-2">Прогресс заполнения</div>
-        <div className="h-2 bg-white/5 rounded-full overflow-hidden">
-          <div 
-            className="h-full bg-gradient-to-r from-[#6050ba] to-[#9d8df1] transition-all duration-500"
-            style={{ width: `${progress}%` }}
-          />
+        {/* Прогресс */}
+        <div className="mt-auto pt-6 border-t border-white/5">
+          <div className="text-xs text-zinc-500 mb-2">Прогресс заполнения</div>
+          <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+            <div 
+              className="h-full bg-gradient-to-r from-[#6050ba] to-[#9d8df1] transition-all duration-500"
+              style={{ width: `${progress}%` }}
+            />
+          </div>
+          <div className="text-xs text-zinc-400 mt-2 text-center">
+            {completedSteps} из {totalRequiredSteps} шагов
+          </div>
         </div>
-        <div className="text-xs text-zinc-400 mt-2 text-center">
-          {completedSteps} из {totalRequiredSteps} шагов
+      </aside>
+
+      {/* Мобильная версия - горизонтальная прокручиваемая полоса */}
+      <div className="lg:hidden w-full mb-4">
+        {/* Заголовок */}
+        <div className="bg-[#0d0d0f] border border-white/5 rounded-2xl p-4 mb-3">
+          <h3 className="font-bold text-base mb-2">Создание релиза</h3>
+          <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
+            <div 
+              className="h-full bg-gradient-to-r from-[#6050ba] to-[#9d8df1] transition-all duration-500"
+              style={{ width: `${progress}%` }}
+            />
+          </div>
+          <div className="text-xs text-zinc-400 mt-1.5">
+            {completedSteps} из {totalRequiredSteps} шагов
+          </div>
+        </div>
+        
+        {/* Горизонтальный скролл шагов */}
+        <div className="overflow-x-auto -mx-4 px-4 pb-2" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+          <div className="flex gap-2 min-w-min">
+            {steps.map((step) => {
+              const isComplete = isStepComplete(step.id);
+              const isCurrent = currentStep === step.id;
+              
+              return (
+                <button 
+                  key={step.id} 
+                  onClick={() => setCurrentStep(step.id)}
+                  className={`flex-shrink-0 py-2.5 px-4 rounded-xl flex items-center gap-2 transition-all text-sm font-medium ${
+                    isCurrent 
+                      ? 'bg-[#6050ba] text-white shadow-lg shadow-[#6050ba]/20' 
+                      : 'bg-[#0d0d0f] text-zinc-400 border border-white/5'
+                  }`}
+                >
+                  <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
+                    isComplete ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/10'
+                  }`}>
+                    {isComplete && step.id !== 'send' ? (
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <polyline points="20 6 9 17 4 12" strokeWidth="3"/>
+                      </svg>
+                    ) : step.id === 'send' ? (
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <line x1="22" y1="2" x2="11" y2="13"/>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                      </svg>
+                    ) : (
+                      step.icon
+                    )}
+                  </span>
+                  <span className="whitespace-nowrap">{step.shortLabel}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
-    </aside>
+    </>
   );
 }
 
@@ -362,11 +422,11 @@ export default function CreateReleasePage() {
   }
 
   return (
-    <div className="min-h-screen pt-20 text-white relative z-10">
+    <div className="min-h-screen pt-16 sm:pt-20 text-white relative z-10">
       <AnimatedBackground />
-      <div className="max-w-[1600px] mx-auto p-6 lg:p-8 flex flex-col lg:flex-row gap-8 items-stretch relative z-10">
+      <div className="max-w-[1600px] mx-auto p-3 sm:p-6 lg:p-8 flex flex-col lg:flex-row gap-4 lg:gap-8 items-stretch relative z-10">
         
-        {/* Боковая панель с шагами */}
+        {/* Боковая панель с шагами (адаптивная) */}
         <StepsSidebar 
           currentStep={currentStep} 
           setCurrentStep={setCurrentStep}
@@ -380,18 +440,19 @@ export default function CreateReleasePage() {
         />
 
         {/* Основной контент */}
-        <section className="flex-1 bg-[#0d0d0f] border border-white/5 rounded-3xl p-10 min-h-[600px]">
+        <section className="flex-1 bg-[#0d0d0f] border border-white/5 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-10 min-h-[500px]">
           
           {/* Кнопка возврата */}
-          <div className="mb-6 pb-4 border-b border-white/5">
+          <div className="mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-white/5">
             <button 
               onClick={() => router.push('/cabinet')}
-              className="px-6 py-3 bg-white/5 hover:bg-white/10 rounded-xl font-medium transition flex items-center gap-2"
+              className="px-4 sm:px-6 py-2.5 sm:py-3 bg-white/5 hover:bg-white/10 rounded-xl font-medium transition flex items-center gap-2 text-sm sm:text-base"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <polyline points="15 18 9 12 15 6" strokeWidth="2"/>
               </svg>
-              Вернуться в кабинет
+              <span className="hidden sm:inline">Вернуться в кабинет</span>
+              <span className="sm:hidden">Назад</span>
             </button>
           </div>
 

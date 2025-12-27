@@ -25,83 +25,52 @@ export default function ReleasesFilters({
   const genres = Array.from(new Set(releases.map(r => r.genre).filter(Boolean))) as string[];
 
   return (
-    <div className="w-full lg:w-96 relative">
-      <div className="space-y-3">
-        {/* Поиск */}
-        <SearchInput 
-          value={filters.searchQuery}
-          onChange={(value) => setFilters(prev => ({ ...prev, searchQuery: value }))}
-        />
-
-        {/* Кнопка показать фильтры */}
+    <div className="space-y-3 sm:space-y-4">
+      {/* Поиск и кнопка фильтров */}
+      <div className="flex items-center gap-2 sm:gap-3">
+        <div className="relative flex-1">
+          <input
+            type="text"
+            value={filters.searchQuery}
+            onChange={(e) => setFilters(prev => ({ ...prev, searchQuery: e.target.value }))}
+            placeholder="Поиск..."
+            className="w-full px-3 sm:px-4 py-2 pl-9 sm:pl-10 bg-zinc-900 border border-zinc-800 rounded-lg text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500 transition-colors"
+          />
+          <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-zinc-500 absolute left-2.5 sm:left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          {filters.searchQuery && (
+            <button
+              onClick={() => setFilters(prev => ({ ...prev, searchQuery: '' }))}
+              className="absolute right-2.5 sm:right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-300"
+            >
+              <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          )}
+        </div>
+        
         <button
           onClick={() => setShowFilters(!showFilters)}
-          className="w-full flex items-center justify-between px-4 py-3 bg-black/30 border border-white/10 rounded-xl text-sm hover:border-[#6050ba]/50 transition"
+          className={`px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors flex items-center gap-1.5 sm:gap-2 flex-shrink-0 ${
+            showFilters ? 'bg-purple-600 text-white' : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700'
+          }`}
         >
-          <div className="flex items-center gap-2">
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" strokeWidth="2"/>
-            </svg>
-            <span>Фильтры и сортировка</span>
-          </div>
-          <svg 
-            className={`w-4 h-4 transition-transform ${showFilters ? 'rotate-180' : ''}`}
-            fill="none" 
-            viewBox="0 0 24 24" 
-            stroke="currentColor"
-          >
-            <polyline points="6 9 12 15 18 9" strokeWidth="2"/>
+          <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
           </svg>
+          <span className="hidden sm:inline">Фильтры</span>
         </button>
       </div>
 
-      {/* Выпадающая панель фильтров */}
+      {/* Расширенные фильтры */}
       {showFilters && (
         <FilterPanel 
           filters={filters}
           setFilters={setFilters}
           genres={genres}
         />
-      )}
-    </div>
-  );
-}
-
-// Компонент поиска
-interface SearchInputProps {
-  value: string;
-  onChange: (value: string) => void;
-}
-
-function SearchInput({ value, onChange }: SearchInputProps) {
-  return (
-    <div className="relative">
-      <input
-        type="text"
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        placeholder="Поиск по названию, артисту, жанру..."
-        className="w-full bg-black/30 border border-white/10 rounded-xl pl-11 pr-4 py-3 text-sm placeholder:text-zinc-500 focus:border-[#6050ba]/50 focus:outline-none transition"
-      />
-      <svg 
-        className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" 
-        fill="none" 
-        viewBox="0 0 24 24" 
-        stroke="currentColor"
-      >
-        <circle cx="11" cy="11" r="8" strokeWidth="2"/>
-        <path d="m21 21-4.35-4.35" strokeWidth="2"/>
-      </svg>
-      {value && (
-        <button
-          onClick={() => onChange('')}
-          className="absolute right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition"
-        >
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <line x1="18" y1="6" x2="6" y2="18" strokeWidth="2"/>
-            <line x1="6" y1="6" x2="18" y2="18" strokeWidth="2"/>
-          </svg>
-        </button>
       )}
     </div>
   );
@@ -118,79 +87,84 @@ function FilterPanel({ filters, setFilters, genres }: FilterPanelProps) {
   const hasActiveFilters = filters.searchQuery || filters.filterStatus !== 'all' || filters.filterGenre !== 'all';
 
   return (
-    <div className="absolute top-full left-0 right-0 mt-3 space-y-3 p-4 bg-[#0d0d0f] border border-white/10 rounded-xl shadow-2xl z-50">
-      {/* Фильтр по статусу */}
-      <div>
-        <label className="text-xs text-zinc-400 mb-2 block font-medium">Статус</label>
-        <div className="grid grid-cols-2 gap-2">
-          {FILTER_OPTIONS.map((status) => (
-            <button
-              key={status.value}
-              onClick={() => setFilters(prev => ({ ...prev, filterStatus: status.value }))}
-              className={`px-3 py-2 rounded-lg text-xs font-medium transition ${
-                filters.filterStatus === status.value
-                  ? 'bg-[#6050ba] text-white'
-                  : 'bg-white/5 text-zinc-400 hover:bg-white/10'
-              }`}
-            >
-              <span className="mr-1">{status.icon}</span>
-              {status.label}
-            </button>
-          ))}
+    <div className="p-3 sm:p-4 bg-zinc-900/50 border border-zinc-800 rounded-xl space-y-3 sm:space-y-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+        {/* Фильтр по статусу */}
+        <div>
+          <label className="block text-xs text-zinc-500 mb-1.5 sm:mb-1">Статус</label>
+          <select
+            value={filters.filterStatus}
+            onChange={(e) => setFilters(prev => ({ ...prev, filterStatus: e.target.value }))}
+            className="w-full px-3 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-xs sm:text-sm text-white focus:outline-none focus:border-purple-500"
+          >
+            {FILTER_OPTIONS.map((status) => (
+              <option key={status.value} value={status.value}>
+                {status.label}
+              </option>
+            ))}
+          </select>
         </div>
-      </div>
 
-      {/* Фильтр по жанру */}
-      <div>
-        <label className="text-xs text-zinc-400 mb-2 block font-medium">Жанр</label>
-        <select 
-          value={filters.filterGenre} 
-          onChange={(e) => setFilters(prev => ({ ...prev, filterGenre: e.target.value }))} 
-          className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm focus:border-[#6050ba]/50 focus:outline-none transition"
-        >
-          <option value="all">Все жанры</option>
-          {genres.map((genre) => (
-            <option key={genre} value={genre}>{genre}</option>
-          ))}
-        </select>
-      </div>
+        {/* Фильтр по жанру */}
+        <div>
+          <label className="block text-xs text-zinc-500 mb-1.5 sm:mb-1">Жанр</label>
+          <select 
+            value={filters.filterGenre} 
+            onChange={(e) => setFilters(prev => ({ ...prev, filterGenre: e.target.value }))} 
+            className="w-full px-3 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-xs sm:text-sm text-white focus:outline-none focus:border-purple-500"
+          >
+            <option value="all">Все жанры</option>
+            {genres.map((genre) => (
+              <option key={genre} value={genre}>{genre}</option>
+            ))}
+          </select>
+        </div>
 
-      {/* Сортировка */}
-      <div>
-        <label className="text-xs text-zinc-400 mb-2 block font-medium">Сортировка</label>
-        <div className="flex gap-2">
+        {/* Сортировка */}
+        <div>
+          <label className="block text-xs text-zinc-500 mb-1.5 sm:mb-1">Сортировка</label>
           <select 
             value={filters.sortBy} 
             onChange={(e) => setFilters(prev => ({ ...prev, sortBy: e.target.value as any }))} 
-            className="flex-1 bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm focus:border-[#6050ba]/50 focus:outline-none transition"
+            className="w-full px-3 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-xs sm:text-sm text-white focus:outline-none focus:border-purple-500"
           >
             {SORT_OPTIONS.map(opt => (
               <option key={opt.value} value={opt.value}>{opt.label}</option>
             ))}
           </select>
-          <button 
-            onClick={() => setFilters(prev => ({ ...prev, order: prev.order === 'asc' ? 'desc' : 'asc' }))} 
-            className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg hover:bg-white/10 transition text-sm font-bold"
-          >
-            {filters.order === 'asc' ? '↑' : '↓'}
-          </button>
         </div>
       </div>
 
-      {/* Кнопка сброса */}
-      {hasActiveFilters && (
+      {/* Порядок сортировки и кнопка сброса */}
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 sm:gap-0">
+        <div className="flex items-center gap-2">
+          <label className="text-xs text-zinc-500">Порядок:</label>
+          <button
+            onClick={() => setFilters(prev => ({ ...prev, order: prev.order === 'asc' ? 'desc' : 'asc' }))}
+            className="px-3 py-1.5 bg-zinc-800 border border-zinc-700 rounded-lg text-xs text-white hover:bg-zinc-700 transition-colors"
+          >
+            {filters.order === 'desc' ? '↓ Сначала новые' : '↑ Сначала старые'}
+          </button>
+        </div>
+
+        {/* Кнопка сброса */}
         <button
           onClick={() => setFilters(prev => ({
             ...prev,
             searchQuery: '',
             filterStatus: 'all',
-            filterGenre: 'all'
+            filterGenre: 'all',
+            sortBy: 'date',
+            order: 'desc'
           }))}
-          className="w-full px-4 py-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-lg text-sm font-medium transition"
+          className="px-4 py-1.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 rounded-lg text-xs font-medium transition-colors flex items-center gap-1.5"
         >
+          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
           Сбросить фильтры
         </button>
-      )}
+      </div>
     </div>
   );
 }

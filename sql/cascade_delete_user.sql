@@ -1,14 +1,14 @@
--- КАСКАДНОЕ УДАЛЕНИЕ ПОЛЬЗОВАТЕЛЕЙ (УПРОЩЁННАЯ ВЕРСИЯ)
--- При удалении из profiles автоматически удаляется из auth.users
--- Освобождается email, никнейм и все данные
+п»ї-- РљРђРЎРљРђР”РќРћР• РЈР”РђР›Р•РќРР• РџРћР›Р¬Р—РћР’РђРўР•Р›Р•Р™ (РЈРџР РћР©РЃРќРќРђРЇ Р’Р•Р РЎРРЇ)
+-- РџСЂРё СѓРґР°Р»РµРЅРёРё РёР· profiles Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё СѓРґР°Р»СЏРµС‚СЃСЏ РёР· auth.users
+-- РћСЃРІРѕР±РѕР¶РґР°РµС‚СЃСЏ email, РЅРёРєРЅРµР№Рј Рё РІСЃРµ РґР°РЅРЅС‹Рµ
 
 -- ========================================
--- ВАЖНО! Этот скрипт делает 2 вещи:
--- 1. При удалении из auth.users  удаляется из profiles (стандартно)
--- 2. При удалении из profiles  удаляется из auth.users (новое!)
+-- Р’РђР–РќРћ! Р­С‚РѕС‚ СЃРєСЂРёРїС‚ РґРµР»Р°РµС‚ 2 РІРµС‰Рё:
+-- 1. РџСЂРё СѓРґР°Р»РµРЅРёРё РёР· auth.users  СѓРґР°Р»СЏРµС‚СЃСЏ РёР· profiles (СЃС‚Р°РЅРґР°СЂС‚РЅРѕ)
+-- 2. РџСЂРё СѓРґР°Р»РµРЅРёРё РёР· profiles  СѓРґР°Р»СЏРµС‚СЃСЏ РёР· auth.users (РЅРѕРІРѕРµ!)
 -- ========================================
 
--- Шаг 1: Убедимся что есть CASCADE от auth.users к profiles
+-- РЁР°Рі 1: РЈР±РµРґРёРјСЃСЏ С‡С‚Рѕ РµСЃС‚СЊ CASCADE РѕС‚ auth.users Рє profiles
 ALTER TABLE profiles 
   DROP CONSTRAINT IF EXISTS profiles_id_fkey,
   ADD CONSTRAINT profiles_id_fkey 
@@ -16,21 +16,21 @@ ALTER TABLE profiles
     REFERENCES auth.users(id) 
     ON DELETE CASCADE;
 
--- Шаг 2: Создаем функцию для обратного удаления (profiles  auth.users)
+-- РЁР°Рі 2: РЎРѕР·РґР°РµРј С„СѓРЅРєС†РёСЋ РґР»СЏ РѕР±СЂР°С‚РЅРѕРіРѕ СѓРґР°Р»РµРЅРёСЏ (profiles  auth.users)
 CREATE OR REPLACE FUNCTION delete_auth_user_on_profile_delete()
 RETURNS TRIGGER AS $$
 BEGIN
-  -- Удаляем пользователя из auth.users
-  -- Используем SECURITY DEFINER чтобы обойти RLS
+  -- РЈРґР°Р»СЏРµРј РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РёР· auth.users
+  -- РСЃРїРѕР»СЊР·СѓРµРј SECURITY DEFINER С‡С‚РѕР±С‹ РѕР±РѕР№С‚Рё RLS
   DELETE FROM auth.users WHERE id = OLD.id;
   
-  RAISE NOTICE 'Пользователь % удалён из auth.users и profiles', OLD.email;
+  RAISE NOTICE 'РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ % СѓРґР°Р»С‘РЅ РёР· auth.users Рё profiles', OLD.email;
   
   RETURN OLD;
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
 
--- Шаг 3: Создаем триггер на удаление из profiles
+-- РЁР°Рі 3: РЎРѕР·РґР°РµРј С‚СЂРёРіРіРµСЂ РЅР° СѓРґР°Р»РµРЅРёРµ РёР· profiles
 DROP TRIGGER IF EXISTS on_profile_delete_cascade_auth ON profiles;
 
 CREATE TRIGGER on_profile_delete_cascade_auth
@@ -39,22 +39,22 @@ CREATE TRIGGER on_profile_delete_cascade_auth
   EXECUTE FUNCTION delete_auth_user_on_profile_delete();
 
 -- ========================================
--- ИНСТРУКЦИЯ ПО ИСПОЛЬЗОВАНИЮ:
+-- РРќРЎРўР РЈРљР¦РРЇ РџРћ РРЎРџРћР›Р¬Р—РћР’РђРќРР®:
 -- ========================================
 -- 
--- Теперь ты можешь просто удалять из profiles:
+-- РўРµРїРµСЂСЊ С‚С‹ РјРѕР¶РµС€СЊ РїСЂРѕСЃС‚Рѕ СѓРґР°Р»СЏС‚СЊ РёР· profiles:
 -- 
 -- DELETE FROM profiles WHERE id = 'user-uuid-here';
 -- 
--- И автоматически:
---  Удалится из auth.users
---  Освободится email
---  Освободится никнейм
---  Удалятся все связанные данные
+-- Р Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё:
+--  РЈРґР°Р»РёС‚СЃСЏ РёР· auth.users
+--  РћСЃРІРѕР±РѕРґРёС‚СЃСЏ email
+--  РћСЃРІРѕР±РѕРґРёС‚СЃСЏ РЅРёРєРЅРµР№Рј
+--  РЈРґР°Р»СЏС‚СЃСЏ РІСЃРµ СЃРІСЏР·Р°РЅРЅС‹Рµ РґР°РЅРЅС‹Рµ
 --
 -- ========================================
 
--- Проверка что триггер создан
+-- РџСЂРѕРІРµСЂРєР° С‡С‚Рѕ С‚СЂРёРіРіРµСЂ СЃРѕР·РґР°РЅ
 SELECT 
   trigger_name,
   event_manipulation,
@@ -63,4 +63,4 @@ SELECT
 FROM information_schema.triggers
 WHERE trigger_name = 'on_profile_delete_cascade_auth';
 
-SELECT ' Каскадное удаление настроено! Можешь удалять из profiles - всё остальное удалится автоматически' as status;
+SELECT ' РљР°СЃРєР°РґРЅРѕРµ СѓРґР°Р»РµРЅРёРµ РЅР°СЃС‚СЂРѕРµРЅРѕ! РњРѕР¶РµС€СЊ СѓРґР°Р»СЏС‚СЊ РёР· profiles - РІСЃС‘ РѕСЃС‚Р°Р»СЊРЅРѕРµ СѓРґР°Р»РёС‚СЃСЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё' as status;

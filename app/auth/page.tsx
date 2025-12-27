@@ -231,28 +231,39 @@ export default function AuthPage() {
         showNotification('Письмо с подтверждением отправлено. Проверьте почту!', 'success');
         
       } else if (mode === 'login') {
-        // ВХОД - проверяем подтверждение email
+        // ВХОД - строгая проверка подтверждения email
         const { data, error } = await supabase.auth.signInWithPassword({ email, password });
         
         if (error) {
           // Если ошибка про неподтверждённый email
           if (error.message?.includes('Email not confirmed')) {
             await supabase.auth.signOut();
+            showNotification('Email не подтверждён. Проверьте почту и перейдите по ссылке!', 'error');
             setMode('waiting-confirmation');
             return;
           }
           throw error;
         }
         
-        // Дополнительная проверка подтверждения email
-        if (data.user && !data.user.email_confirmed_at && !data.user.confirmed_at) {
-          // Email НЕ подтверждён - блокируем вход!
+        // СТРОГАЯ проверка подтверждения email
+        // Проверяем ВСЕ возможные поля подтверждения
+        const isEmailConfirmed = !!(
+          data.user?.email_confirmed_at || 
+          data.user?.confirmed_at ||
+          data.user?.user_metadata?.email_verified
+        );
+        
+        if (!isEmailConfirmed) {
+          // Email НЕ подтверждён - БЛОКИРУЕМ вход!
+          console.warn('Попытка входа с неподтверждённым email:', email);
           await supabase.auth.signOut();
+          showNotification('⚠️ Email не подтверждён! Проверьте почту и перейдите по ссылке из письма.', 'error');
           setMode('waiting-confirmation');
           return;
         }
         
         // Email подтверждён - пускаем в систему
+        console.log('Успешный вход, email подтверждён:', email);
         router.push('/cabinet');
       }
     } catch (err: any) {

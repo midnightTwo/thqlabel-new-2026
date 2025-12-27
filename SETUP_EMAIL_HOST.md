@@ -25,42 +25,12 @@ https://thq-git-main-nazarbekansar2108-svgs-projects.vercel.app/cabinet
 
 ## Шаг 2: Email Templates (Шаблоны писем)
 
+⚠️ **ВАЖНО:** Эти шаблоны используются только для смены email через Supabase.
+Регистрация и сброс пароля работают через наш SMTP!
+
 Перейдите в **Authentication → Email Templates**
 
-### 📝 Confirm Signup (Подтверждение регистрации)
-
-**Subject:**
-```
-Подтвердите email для THQ Label
-```
-
-**Message Body (HTML):**
-```html
-<h2>Добро пожаловать в THQ Label!</h2>
-<p>Нажмите на кнопку ниже, чтобы подтвердить email:</p>
-<p><a href="{{ .ConfirmationURL }}" style="background: #6050ba; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; display: inline-block;">Подтвердить email</a></p>
-<p>Или скопируйте эту ссылку:</p>
-<p>{{ .ConfirmationURL }}</p>
-```
-
-### 🔑 Reset Password (Сброс пароля)
-
-**Subject:**
-```
-Сброс пароля для THQ Label
-```
-
-**Message Body (HTML):**
-```html
-<h2>Сброс пароля</h2>
-<p>Вы запросили сброс пароля. Нажмите на кнопку ниже:</p>
-<p><a href="{{ .ConfirmationURL }}" style="background: #6050ba; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; display: inline-block;">Сбросить пароль</a></p>
-<p>Или скопируйте эту ссылку:</p>
-<p>{{ .ConfirmationURL }}</p>
-<p>Если вы не запрашивали сброс пароля, просто проигнорируйте это письмо.</p>
-```
-
-### ✉️ Change Email (Смена email)
+### ✉️ Change Email (Смена email) - ОБЯЗАТЕЛЬНО ОБНОВИТЬ!
 
 **Subject:**
 ```
@@ -69,12 +39,108 @@ https://thq-git-main-nazarbekansar2108-svgs-projects.vercel.app/cabinet
 
 **Message Body (HTML):**
 ```html
-<h2>Подтверждение смены email</h2>
-<p>Вы запросили смену email. Нажмите на кнопку ниже для подтверждения:</p>
-<p><a href="{{ .ConfirmationURL }}" style="background: #6050ba; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; display: inline-block;">Подтвердить новый email</a></p>
-<p>Или скопируйте эту ссылку:</p>
-<p>{{ .ConfirmationURL }}</p>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подтверждение email - THQ Label</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #ffffff;" bgcolor="#ffffff">
+    <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #ffffff; padding: 40px 20px;" bgcolor="#ffffff">
+        <tr>
+            <td align="center">
+                <!-- Черная карточка -->
+                <table role="presentation" style="max-width: 600px; width: 100%; border-collapse: collapse; background-color: #0c0c0e; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; overflow: hidden; box-shadow: 0 0 80px rgba(96, 80, 186, 0.15);" bgcolor="#0c0c0e">
+                    
+                    <!-- Шапка с фиолетовым градиентом -->
+                    <tr>
+                        <td style="background: linear-gradient(135deg, #6050ba 0%, #9d8df1 100%); padding: 40px 20px; text-align: center;">
+                            <h1 style="margin: 0; color: white; font-size: 32px; font-weight: 900; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); letter-spacing: -1px;">
+                                thqlabel
+                            </h1>
+                            <p style="margin: 10px 0 0 0; color: rgba(255, 255, 255, 0.9); font-size: 14px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;">
+                                Music Label
+                            </p>
+                        </td>
+                    </tr>
+                    
+                    <!-- Контент на черном фоне -->
+                    <tr>
+                        <td style="padding: 40px 30px;">
+                            <h2 style="margin: 0 0 20px 0; color: white; font-size: 24px; font-weight: 800;">
+                                Подтверждение нового email
+                            </h2>
+                            
+                            <p style="margin: 0 0 20px 0; color: rgba(255, 255, 255, 0.7); font-size: 15px; line-height: 1.6;">
+                                Вы запросили изменение email адреса вашего аккаунта.
+                            </p>
+                            
+                            <p style="margin: 0 0 30px 0; color: rgba(255, 255, 255, 0.7); font-size: 15px; line-height: 1.6;">
+                                Чтобы подтвердить новый email, нажмите на кнопку ниже:
+                            </p>
+                            
+                            <!-- Кнопка -->
+                            <table role="presentation" style="width: 100%; border-collapse: collapse; margin: 0 0 30px 0;">
+                                <tr>
+                                    <td align="center">
+                                        <a href="{{ .ConfirmationURL }}" style="display: inline-block; padding: 16px 40px; background: linear-gradient(135deg, #6050ba 0%, #7060ca 100%); color: white; text-decoration: none; border-radius: 12px; font-weight: 700; font-size: 15px; letter-spacing: 0.5px; box-shadow: 0 4px 15px rgba(96, 80, 186, 0.3);">
+                                            Подтвердить Email
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <!-- Информационный блок -->
+                            <table role="presentation" style="width: 100%; border-collapse: collapse; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px; margin: 0 0 20px 0;">
+                                <tr>
+                                    <td style="color: rgba(255, 255, 255, 0.6); font-size: 13px; line-height: 1.6;">
+                                        <p style="margin: 0 0 10px 0;">
+                                            • Ссылка действительна в течение 60 минут
+                                        </p>
+                                        <p style="margin: 0 0 10px 0;">
+                                            • После подтверждения вы сможете войти с новым email
+                                        </p>
+                                        <p style="margin: 0;">
+                                            • Если вы не запрашивали смену email, проигнорируйте это письмо
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <hr style="border: none; border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 30px 0;">
+                            
+                            <p style="margin: 0; color: rgba(255, 255, 255, 0.5); font-size: 13px; line-height: 1.6;">
+                                Если вы не запрашивали изменение email, просто проигнорируйте это письмо — с вашим аккаунтом всё в порядке.
+                            </p>
+                        </td>
+                    </tr>
+                    
+                    <!-- Подвал -->
+                    <tr>
+                        <td style="background: rgba(255, 255, 255, 0.02); padding: 30px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05);">
+                            <p style="margin: 0 0 10px 0; color: rgba(255, 255, 255, 0.4); font-size: 12px;">
+                                © 2025 thqlabel. Все права защищены.
+                            </p>
+                            <p style="margin: 0; color: rgba(255, 255, 255, 0.3); font-size: 11px;">
+                                Это автоматическое письмо, пожалуйста, не отвечайте на него.
+                            </p>
+                        </td>
+                    </tr>
+                    
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
 ```
+
+### 📝 Confirm Signup - МОЖНО ПРОПУСТИТЬ
+(Не используется - регистрация идет через наш SMTP)
+
+### 🔑 Reset Password - МОЖНО ПРОПУСТИТЬ  
+(Не используется - сброс пароля идет через наш SMTP)
 
 ---
 

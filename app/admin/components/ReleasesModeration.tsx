@@ -22,6 +22,8 @@ interface Release {
   user_nickname?: string;
   tracks_count: number;
   user_role: 'basic' | 'exclusive';
+  upc?: string;
+  tracks?: any[];
 }
 
 interface ReleasesModerationProps {

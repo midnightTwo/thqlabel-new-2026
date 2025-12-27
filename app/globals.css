@@ -12,9 +12,39 @@
 [class*="animate-"],
 .transition-transform,
 .transition-all {
-  transform: translateZ(0);
+  transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* Оптимизация для мобильных устройств */
+@media (max-width: 768px), (hover: none) {
+  /* Отключаем тяжёлые эффекты на мобильных */
+  .backdrop-blur-sm,
+  .backdrop-blur,
+  .backdrop-blur-md,
+  .backdrop-blur-lg {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  
+  /* Упрощаем тени */
+  .shadow-lg,
+  .shadow-xl,
+  .shadow-2xl {
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1) !important;
+  }
+  
+  /* Замедляем анимации для плавности */
+  [class*="animate-"] {
+    animation-duration: 1s !important;
+  }
+  
+  /* Отключаем hover эффекты на тач-устройствах */
+  .hover\:scale-105:hover,
+  .hover\:scale-110:hover {
+    transform: none !important;
+  }
 }
 
 /* Оптимизированный will-change только для активных анимаций */

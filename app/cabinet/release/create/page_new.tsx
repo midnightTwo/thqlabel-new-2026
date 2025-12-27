@@ -11,6 +11,7 @@ import {
   PlatformsStep,
   PromoStep,
   SendStep,
+  LocalizationStep,
 } from './components';
 
 // Компонент боковой панели шагов
@@ -115,6 +116,22 @@ export default function CreateReleasePage() {
   const [trackHasDrugs, setTrackHasDrugs] = useState(false);
   const [trackLyrics, setTrackLyrics] = useState('');
   const [trackLanguage, setTrackLanguage] = useState('');
+
+  // Countries state
+  const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
+
+  // Contract state
+  const [agreedToContract, setAgreedToContract] = useState(false);
+
+  // Platforms state
+  const [selectedPlatforms, setSelectedPlatforms] = useState(5);
+  const [selectedPlatformsList, setSelectedPlatformsList] = useState<string[]>([]);
+
+  // Promo state
+  const [focusTrack, setFocusTrack] = useState('');
+  const [focusTrackPromo, setFocusTrackPromo] = useState('');
+  const [albumDescription, setAlbumDescription] = useState('');
+  const [promoPhotos, setPromoPhotos] = useState<string[]>([]);
 
   useEffect(() => {
     const getUser = async () => {
@@ -242,6 +259,8 @@ export default function CreateReleasePage() {
           {/* Шаг 4: Договор */}
           {currentStep === 'contract' && (
             <ContractStep
+              agreedToContract={agreedToContract}
+              setAgreedToContract={setAgreedToContract}
               onNext={() => setCurrentStep('platforms')}
               onBack={() => setCurrentStep('countries')}
             />
@@ -250,6 +269,10 @@ export default function CreateReleasePage() {
           {/* Шаг 5: Площадки */}
           {currentStep === 'platforms' && (
             <PlatformsStep
+              selectedPlatforms={selectedPlatforms}
+              setSelectedPlatforms={setSelectedPlatforms}
+              selectedPlatformsList={selectedPlatformsList}
+              setSelectedPlatformsList={setSelectedPlatformsList}
               onNext={() => setCurrentStep('localization')}
               onBack={() => setCurrentStep('contract')}
             />
@@ -267,8 +290,22 @@ export default function CreateReleasePage() {
           {currentStep === 'send' && (
             <SendStep
               releaseTitle={releaseTitle}
+              artistName={nickname}
               genre={genre}
               tracksCount={tracks.length}
+              coverFile={coverFile}
+              collaborators={collaborators}
+              subgenres={subgenres}
+              releaseDate={releaseDate}
+              selectedPlatforms={selectedPlatforms}
+              agreedToContract={agreedToContract}
+              focusTrack={focusTrack}
+              focusTrackPromo={focusTrackPromo}
+              albumDescription={albumDescription}
+              promoPhotos={promoPhotos}
+              tracks={tracks}
+              platforms={selectedPlatformsList}
+              countries={selectedCountries}
               onBack={() => setCurrentStep('localization')}
             />
           )}

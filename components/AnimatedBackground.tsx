@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useMemo, useCallback, memo } from 'react';
+import React, { useState, useEffect, useMemo, memo } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
 
 // Функция для генерации детерминированных значений на основе индекса
@@ -8,27 +8,46 @@ const seededRandom = (seed: number) => {
   return x - Math.floor(x);
 };
 
-// Оптимизированные летающие 3D фигуры (уменьшено количество)
+// Хук для определения мобильного устройства
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768 || 'ontouchstart' in window);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile, { passive: true });
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
+  return isMobile;
+};
+
+// Оптимизированные летающие 3D фигуры
 export const FloatingShapes = memo(() => {
   const { themeName } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const isMobile = useIsMobile();
   
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Генерируем формы с детерминированными значениями для SSR
+  // На мобильных - 6 фигур, на ПК - 10
+  const shapeCount = isMobile ? 6 : 10;
+  
   const shapes = useMemo(() => 
-    Array.from({ length: 12 }, (_, i) => ({
+    Array.from({ length: shapeCount }, (_, i) => ({
       id: i,
       x: seededRandom(i + 1) * 100,
       y: seededRandom(i + 100) * 100,
-      size: 30 + seededRandom(i + 200) * 50,
-      duration: 20 + seededRandom(i + 300) * 20,
+      size: isMobile ? 25 + seededRandom(i + 200) * 35 : 30 + seededRandom(i + 200) * 50,
+      duration: isMobile ? 30 + seededRandom(i + 300) * 20 : 20 + seededRandom(i + 300) * 20,
       delay: seededRandom(i + 400) * -15,
       type: seededRandom(i + 500) > 0.5 ? 'circle' : 'square',
     })),
-  []);
+  [shapeCount, isMobile]);
 
   if (!mounted) return null;
 
@@ -45,10 +64,10 @@ export const FloatingShapes = memo(() => {
             height: shape.size,
             border: themeName === 'light' ? '1px solid rgba(0, 0, 0, 0.08)' : '1px solid rgba(96, 80, 186, 0.15)',
             background: themeName === 'light' ? 'rgba(0, 0, 0, 0.02)' : 'rgba(96, 80, 186, 0.02)',
-            animation: `float-shape ${shape.duration}s ease-in-out infinite`,
+            animation: `float-shape ${shape.duration}s linear infinite`,
             animationDelay: `${shape.delay}s`,
-            willChange: 'transform',
-            transform: 'translateZ(0)',
+            willChange: 'auto',
+            transform: 'translate3d(0,0,0)',
             backfaceVisibility: 'hidden',
           }}
         />
@@ -56,9 +75,7 @@ export const FloatingShapes = memo(() => {
       <style jsx>{`
         @keyframes float-shape {
           0%, 100% { transform: translate3d(0, 0, 0); }
-          25% { transform: translate3d(20px, -30px, 0); }
-          50% { transform: translate3d(-15px, 20px, 0); }
-          75% { transform: translate3d(25px, 15px, 0); }
+          50% { transform: translate3d(15px, -20px, 0); }
         }
       `}</style>
     </div>
@@ -67,27 +84,30 @@ export const FloatingShapes = memo(() => {
 
 FloatingShapes.displayName = 'FloatingShapes';
 
-// Оптимизированные частицы (уменьшено количество с 80 до 25)
+// Оптимизированные частицы - минимум на мобильных
 export const FloatingParticles = memo(() => {
   const { themeName } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const isMobile = useIsMobile();
   
   useEffect(() => {
     setMounted(true);
   }, []);
   
-  // Генерируем частицы с детерминированными значениями для SSR
+  // На мобильных - 8 частиц, на ПК - 18
+  const particleCount = isMobile ? 8 : 18;
+  
   const particles = useMemo(() => 
-    Array.from({ length: 25 }, (_, i) => ({
+    Array.from({ length: particleCount }, (_, i) => ({
       id: i,
       x: seededRandom(i + 600) * 100,
       y: seededRandom(i + 700) * 100,
-      size: 2 + seededRandom(i + 800) * 3,
-      duration: 25 + seededRandom(i + 900) * 25,
+      size: isMobile ? 2 + seededRandom(i + 800) * 2 : 2 + seededRandom(i + 800) * 3,
+      duration: isMobile ? 40 + seededRandom(i + 900) * 20 : 25 + seededRandom(i + 900) * 25,
       delay: seededRandom(i + 1000) * -20,
-      opacity: 0.3 + seededRandom(i + 1100) * 0.4,
+      opacity: 0.3 + seededRandom(i + 1100) * 0.3,
     })),
-  []);
+  [particleCount, isMobile]);
 
   if (!mounted) return null;
 
@@ -103,20 +123,18 @@ export const FloatingParticles = memo(() => {
             width: p.size,
             height: p.size,
             opacity: p.opacity,
-            boxShadow: themeName === 'light' ? '0 0 8px rgba(0,0,0,0.15)' : '0 0 8px rgba(157, 141, 241, 0.5)',
-            animation: `particle-fly ${p.duration}s ease-in-out infinite`,
+            boxShadow: isMobile ? 'none' : (themeName === 'light' ? '0 0 6px rgba(0,0,0,0.1)' : '0 0 6px rgba(157, 141, 241, 0.4)'),
+            animation: `particle-fly ${p.duration}s linear infinite`,
             animationDelay: `${p.delay}s`,
-            willChange: 'transform, opacity',
-            transform: 'translateZ(0)',
+            willChange: 'auto',
+            transform: 'translate3d(0,0,0)',
           }}
         />
       ))}
       <style jsx>{`
         @keyframes particle-fly {
-          0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.3; }
-          25% { transform: translate3d(40px, -50px, 0); opacity: 0.6; }
-          50% { transform: translate3d(-25px, 40px, 0); opacity: 0.4; }
-          75% { transform: translate3d(50px, 25px, 0); opacity: 0.5; }
+          0%, 100% { transform: translate3d(0, 0, 0); }
+          50% { transform: translate3d(25px, -30px, 0); }
         }
       `}</style>
     </div>
@@ -125,46 +143,54 @@ export const FloatingParticles = memo(() => {
 
 FloatingParticles.displayName = 'FloatingParticles';
 
-// Оптимизированный градиентный фон БЕЗ параллакса (убирает layout thrashing)
+// Оптимизированный градиентный фон
 export const ParallaxGradient = memo(() => {
   const { themeName } = useTheme();
+  const isMobile = useIsMobile();
+  
+  // На мобильных - без blur для производительности
+  const blurAmount = isMobile ? 80 : 150;
   
   return (
-    <div className="fixed inset-0 pointer-events-none" style={{ transform: 'translateZ(0)' }}>
+    <div className="fixed inset-0 pointer-events-none" style={{ transform: 'translate3d(0,0,0)' }}>
       <div 
-        className={`absolute top-0 left-1/4 w-[600px] h-[600px] ${themeName === 'light' ? 'bg-gray-300/15' : 'bg-[#6050ba]/08'} rounded-full`}
+        className={`absolute top-0 left-1/4 ${isMobile ? 'w-[300px] h-[300px]' : 'w-[600px] h-[600px]'} ${themeName === 'light' ? 'bg-gray-300/15' : 'bg-[#6050ba]/08'} rounded-full`}
         style={{ 
-          filter: 'blur(150px)',
-          willChange: 'opacity',
-          animation: 'gradient-pulse 8s ease-in-out infinite',
+          filter: `blur(${blurAmount}px)`,
+          willChange: 'auto',
         }}
       />
-      <div 
-        className={`absolute bottom-1/4 right-1/4 w-[500px] h-[500px] ${themeName === 'light' ? 'bg-gray-400/10' : 'bg-[#9d8df1]/08'} rounded-full`}
-        style={{ 
-          filter: 'blur(120px)',
-          willChange: 'opacity',
-          animation: 'gradient-pulse 8s ease-in-out infinite 2s',
-        }}
-      />
-      <style jsx>{`
-        @keyframes gradient-pulse {
-          0%, 100% { opacity: 0.8; }
-          50% { opacity: 1; }
-        }
-      `}</style>
+      {!isMobile && (
+        <div 
+          className={`absolute bottom-1/4 right-1/4 w-[500px] h-[500px] ${themeName === 'light' ? 'bg-gray-400/10' : 'bg-[#9d8df1]/08'} rounded-full`}
+          style={{ 
+            filter: 'blur(120px)',
+            willChange: 'auto',
+          }}
+        />
+      )}
     </div>
   );
 });
 
 ParallaxGradient.displayName = 'ParallaxGradient';
 
-// Оптимизированный эффект стекла
+// Оптимизированный эффект стекла - упрощён для мобильных
 export const GlassOverlay = memo(() => {
   const { themeName } = useTheme();
+  const isMobile = useIsMobile();
+  
+  // На мобильных - без backdrop-filter (очень тяжёлый для GPU)
+  if (isMobile) {
+    return (
+      <div className="fixed inset-0 pointer-events-none z-[1]" style={{ transform: 'translate3d(0,0,0)' }}>
+        <div className={`absolute inset-0 ${themeName === 'dark' ? 'bg-black/50' : 'bg-white/40'}`} />
+      </div>
+    );
+  }
   
   return (
-    <div className="fixed inset-0 pointer-events-none z-[1]" style={{ transform: 'translateZ(0)' }}>
+    <div className="fixed inset-0 pointer-events-none z-[1]" style={{ transform: 'translate3d(0,0,0)' }}>
       {themeName === 'dark' ? (
         <>
           <div 
@@ -196,8 +222,12 @@ GlassOverlay.displayName = 'GlassOverlay';
 const AnimatedBackground = memo(() => {
   const [isVisible, setIsVisible] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Проверяем мобильное устройство
+    setIsMobile(window.innerWidth < 768 || 'ontouchstart' in window);
+    
     // Проверяем настройки пользователя на уменьшенную анимацию
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     setReducedMotion(mediaQuery.matches);
@@ -223,6 +253,16 @@ const AnimatedBackground = memo(() => {
 
   if (!isVisible) {
     return null;
+  }
+
+  // На мобильных - упрощённый фон без частиц
+  if (isMobile) {
+    return (
+      <>
+        <ParallaxGradient />
+        <GlassOverlay />
+      </>
+    );
   }
 
   return (

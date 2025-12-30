@@ -78,29 +78,6 @@ export default function AuthPage() {
 
   useEffect(() => {
     setMounted(true);
-    
-    // Проверяем URL параметры для сообщений после верификации email
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      const verified = params.get('verified');
-      const error = params.get('error');
-      
-      if (verified === 'true') {
-        showNotification('Email успешно подтверждён! Теперь вы можете войти.', 'success');
-        // Очищаем URL
-        window.history.replaceState({}, '', '/auth');
-      } else if (error) {
-        const errorMessages: Record<string, string> = {
-          'invalid_token': 'Неверная ссылка подтверждения',
-          'token_expired': 'Ссылка устарела. Зарегистрируйтесь заново.',
-          'registration_failed': 'Ошибка регистрации. Попробуйте снова.',
-          'verification_failed': 'Ошибка подтверждения. Попробуйте снова.'
-        };
-        showNotification(errorMessages[error] || 'Произошла ошибка', 'error');
-        // Очищаем URL
-        window.history.replaceState({}, '', '/auth');
-      }
-    }
   }, []);
 
   // Таймер для повторной отправки
@@ -169,27 +146,14 @@ export default function AuthPage() {
   };
 
   const resendConfirmation = async () => {
-    if (!email || resendTimer > 0) return;
+    if (!supabase || !email || resendTimer > 0) return;
     setResendLoading(true);
     try {
-      const response = await fetch('/api/send-verification-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ 
-          email, 
-          password: 'temp_password_' + Date.now(), // Временный пароль для повторной отправки
-          nickname: email.split('@')[0]
-        }),
+      const { error } = await supabase.auth.resend({
+        type: 'signup',
+        email: email,
       });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Не удалось отправить письмо');
-      }
-      
+      if (error) throw error;
       showNotification('Письмо отправлено повторно. Проверьте почту и папку "Спам".', 'success');
       setResendTimer(60); // 60 секунд до следующей отправки
     } catch (err: any) {
@@ -206,64 +170,70 @@ export default function AuthPage() {
     setLoading(true);
     try {
       if (mode === 'signup') {
-        // РЕГИСТРАЦИЯ через наш кастомный API с SMTP
-        const response = await fetch('/api/send-verification-email', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ 
-            email, 
-            password,
-            nickname: nickname || email.split('@')[0]
-          }),
+        // РЕГИСТРАЦИЯ с обязательным подтверждением email
+        const { data: authData, error: authError } = await supabase.auth.signUp({ 
+          email, 
+          password, 
+          options: { 
+            emailRedirectTo: `${window.location.origin}/cabinet`,
+            data: { 
+              nickname: nickname || email.split('@')[0],
+              display_name: nickname || email.split('@')[0],
+              full_name: nickname || email.split('@')[0]
+            } 
+          } 
         });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-          throw new Error(data.error || 'Не удалось отправить письмо');
+        
+        if (authError) {
+          // Если ошибка говорит что пользователь уже существует
+          if (authError.message?.includes('User already registered') || 
+              authError.message?.includes('already registered')) {
+            // Пробуем отправить письмо повторно
+            const { error: resendError } = await supabase.auth.resend({
+              type: 'signup',
+              email: email,
+            });
+            
+            if (resendError) {
+              throw new Error('Email уже зарегистрирован. Проверьте почту или восстановите пароль.');
+            }
+            
+            showNotification('Письмо с подтверждением отправлено повторно. Проверьте почту.', 'success');
+          } else {
+            throw authError;
+          }
         }
+        
+        // Выходим из системы (на случай если автоматически вошли)
+        await supabase.auth.signOut();
         
         // Переходим на экран ожидания подтверждения
         setMode('waiting-confirmation');
         setPassword('');
-        showNotification('Письмо с подтверждением отправлено. Проверьте почту!', 'success');
         
       } else if (mode === 'login') {
-        // ВХОД - строгая проверка подтверждения email
+        // ВХОД - проверяем подтверждение email
         const { data, error } = await supabase.auth.signInWithPassword({ email, password });
         
         if (error) {
           // Если ошибка про неподтверждённый email
           if (error.message?.includes('Email not confirmed')) {
             await supabase.auth.signOut();
-            showNotification('Email не подтверждён. Проверьте почту и перейдите по ссылке!', 'error');
             setMode('waiting-confirmation');
             return;
           }
           throw error;
         }
         
-        // СТРОГАЯ проверка подтверждения email
-        // Проверяем ВСЕ возможные поля подтверждения
-        const isEmailConfirmed = !!(
-          data.user?.email_confirmed_at || 
-          data.user?.confirmed_at ||
-          data.user?.user_metadata?.email_verified
-        );
-        
-        if (!isEmailConfirmed) {
-          // Email НЕ подтверждён - БЛОКИРУЕМ вход!
-          console.warn('Попытка входа с неподтверждённым email:', email);
+        // Дополнительная проверка подтверждения email
+        if (data.user && !data.user.email_confirmed_at && !data.user.confirmed_at) {
+          // Email НЕ подтверждён - блокируем вход!
           await supabase.auth.signOut();
-          showNotification('⚠️ Email не подтверждён! Проверьте почту и перейдите по ссылке из письма.', 'error');
           setMode('waiting-confirmation');
           return;
         }
         
         // Email подтверждён - пускаем в систему
-        console.log('Успешный вход, email подтверждён:', email);
         router.push('/cabinet');
       }
     } catch (err: any) {

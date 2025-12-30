@@ -17,7 +17,7 @@ import {
   CopyToast,
   NotificationModal,
   ConfirmDialog,
-  AvatarUploadModal 
+  AvatarCropModal 
 } from './components/modals';
 
 // Компоненты вкладок
@@ -34,6 +34,43 @@ import { useNotifications } from './hooks/useNotifications';
 
 export default function CabinetPage() {
   const router = useRouter();
+  
+  // Состояние скролла для эффекта слияния с хедером
+  const [scrolled, setScrolled] = useState(false);
+  const [animationTriggers, setAnimationTriggers] = useState<Set<string>>(new Set());
+  
+  // Обработчик скролла с улучшенными эффектами
+  useEffect(() => {
+    let ticking = false;
+    
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          setScrolled(scrollY > 50);
+          
+          // Триггеры для анимаций при скролле
+          const sections = document.querySelectorAll('[data-animate]');
+          sections.forEach((section) => {
+            const rect = section.getBoundingClientRect();
+            const id = section.getAttribute('data-animate');
+            
+            if (rect.top < window.innerHeight * 0.8 && rect.bottom > 0) {
+              if (id && !animationTriggers.has(id)) {
+                setAnimationTriggers(prev => new Set([...prev, id]));
+              }
+            }
+          });
+          
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [animationTriggers]);
   
   // Основные состояния
   const [tab, setTab] = useState<'releases' | 'finance' | 'settings'>('releases');
@@ -57,8 +94,6 @@ export default function CabinetPage() {
   // UI состояние
   const [showToast, setShowToast] = useState(false);
   const [showAvatarModal, setShowAvatarModal] = useState(false);
-  const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
-  const [avatarFile, setAvatarFile] = useState<File | null>(null);
   const [uploadingAvatar, setUploadingAvatar] = useState(false);
   
   // Уведомления
@@ -71,6 +106,24 @@ export default function CabinetPage() {
     handleConfirm,
     handleCancel
   } = useNotifications();
+  
+  // Отслеживание скролла для эффекта слияния с хедером
+  useEffect(() => {
+    let ticking = false;
+    
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 80);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   
   // Виджет поддержки
   const supportWidget = useSupportWidget();
@@ -308,74 +361,79 @@ export default function CabinetPage() {
     setTimeout(() => setShowToast(false), 2000);
   };
 
-  const handleAvatarFileSelect = (file: File) => {
-    setAvatarFile(file);
-    const reader = new FileReader();
-    reader.onload = (e) => setAvatarPreview(e.target?.result as string);
-    reader.readAsDataURL(file);
-  };
-
-  const handleAvatarSave = async () => {
-    if (!avatarFile || !supabase || !user) return;
+  const handleAvatarSave = async (croppedImageBlob: Blob) => {
+    if (!supabase || !user) return;
     
     setUploadingAvatar(true);
     try {
+      // Удаляем старый аватар если он есть
       if (avatar && avatar.includes('avatars/')) {
         const oldPath = avatar.split('/avatars/')[1];
         await supabase.storage.from('avatars').remove([oldPath]);
       }
       
-      const fileExt = avatarFile.name.split('.').pop();
-      const fileName = `${user.id}/${Date.now()}.${fileExt}`;
+      // Создаем имя файла
+      const fileName = `${user.id}/${Date.now()}.jpg`;
       
+      // Загружаем новый аватар
       const { error: uploadError } = await supabase.storage
         .from('avatars')
-        .upload(fileName, avatarFile);
+        .upload(fileName, croppedImageBlob, {
+          contentType: 'image/jpeg',
+          upsert: false
+        });
       
       if (uploadError) throw uploadError;
       
+      // Получаем публичный URL
       const { data: { publicUrl } } = supabase.storage
         .from('avatars')
         .getPublicUrl(fileName);
       
+      // Обновляем профиль
       await supabase.from('profiles').update({ avatar: publicUrl }).eq('email', user.email);
       
       setAvatar(publicUrl);
-      setShowAvatarModal(false);
-      setAvatarPreview(null);
-      setAvatarFile(null);
       showNotification('Аватар обновлён', 'success');
     } catch (error: any) {
       showNotification('Ошибка загрузки: ' + error.message, 'error');
     } finally {
       setUploadingAvatar(false);
+      setShowAvatarModal(false);
     }
   };
 
-  const handleAvatarDelete = () => {
-    if (!confirm('Удалить текущий аватар?')) return;
+  const handleAvatarDelete = async () => {
+    const confirmed = await confirm(
+      'Удалить аватар?',
+      'Это действие нельзя отменить',
+      'error'
+    );
     
-    (async () => {
+    if (!confirmed) return;
+    
+    setUploadingAvatar(true);
+    
+    try {
       if (!supabase || !user) return;
-      try {
-        if (avatar.includes('avatars/')) {
-          const filePath = avatar.split('/avatars/')[1];
-          await supabase.storage.from('avatars').remove([filePath]);
-        }
-        await supabase.from('profiles').update({ avatar: null }).eq('email', user.email);
-        setAvatar('');
-        setShowAvatarModal(false);
-        showNotification('Аватар удалён', 'success');
-      } catch (error: any) {
-        showNotification('Ошибка удаления: ' + error.message, 'error');
+      
+      if (avatar.includes('avatars/')) {
+        const filePath = avatar.split('/avatars/')[1];
+        await supabase.storage.from('avatars').remove([filePath]);
       }
-    })();
+      await supabase.from('profiles').update({ avatar: null }).eq('email', user.email);
+      setAvatar('');
+      showNotification('Аватар удалён', 'success');
+    } catch (error: any) {
+      showNotification('Ошибка удаления: ' + error.message, 'error');
+    } finally {
+      setUploadingAvatar(false);
+      setShowAvatarModal(false);
+    }
   };
 
   const handleCloseAvatarModal = () => {
     setShowAvatarModal(false);
-    setAvatarPreview(null);
-    setAvatarFile(null);
   };
 
   // Экран загрузки
@@ -389,12 +447,37 @@ export default function CabinetPage() {
   }
 
   return (
-    <div className="min-h-screen pt-20 text-white relative z-10">
+    <div className="min-h-screen text-white relative z-10" style={{ paddingTop: scrolled ? '90px' : '70px' }}>
       <AnimatedBackground />
-      <div className="max-w-[1600px] mx-auto p-6 lg:p-8 flex flex-col lg:flex-row gap-8 items-start relative z-10">
+      
+      {/* Декоративные элементы */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-purple-400/10 to-pink-400/10 rounded-full blur-xl floating-element"></div>
+        <div className="absolute top-60 right-20 w-24 h-24 bg-gradient-to-r from-blue-400/10 to-cyan-400/10 rounded-full blur-lg floating-element" style={{animationDelay: '2s'}}></div>
+        <div className="absolute bottom-40 left-1/4 w-16 h-16 bg-gradient-to-r from-indigo-400/10 to-purple-400/10 rounded-full blur-md floating-element" style={{animationDelay: '4s'}}></div>
+      </div>
+      
+      <div 
+        className="max-w-[1600px] mx-auto flex flex-col lg:flex-row items-start relative z-10 transition-all duration-500"
+        style={{ 
+          padding: scrolled ? '20px 24px 32px' : '20px 24px 32px',
+          marginTop: scrolled ? '0' : '0px',
+          gap: scrolled ? '32px' : '0px'
+        }}
+      >
         
         {/* Сайдбар */}
-        <aside className="lg:w-64 w-full bg-[#0d0d0f] border border-white/5 rounded-3xl p-6 flex flex-col lg:sticky lg:top-24">
+        <aside 
+          className="lg:w-64 w-full glass-morphism-sidebar glass-card-hover interactive-glass flex flex-col lg:sticky transition-all duration-500" 
+          style={{
+            borderRadius: scrolled ? '24px' : '16px 16px 0 0',
+            top: scrolled ? '110px' : '90px',
+            padding: scrolled ? '24px' : '24px 24px 24px 24px',
+            marginTop: scrolled ? '0px' : '0px',
+            borderTop: scrolled ? '1px solid rgba(157, 141, 241, 0.15)' : 'none',
+          }}
+          data-animate="sidebar"
+        >
           {creatingRelease ? (
             <CreateReleaseSidebar
               createTab={createTab}
@@ -419,7 +502,16 @@ export default function CabinetPage() {
         </aside>
 
         {/* Контент */}
-        <section className="flex-1 bg-[#0d0d0f] border border-white/5 rounded-3xl p-10 min-h-[600px]">
+        <section 
+          className="flex-1 glass-morphism-card glass-card-hover interactive-glass transition-all duration-500"
+          style={{
+            borderRadius: scrolled ? '24px' : '16px 16px 0 0',
+            padding: scrolled ? '40px' : '40px 40px 40px 40px',
+            minHeight: '600px',
+            marginTop: scrolled ? '0px' : '0px',
+            borderTop: scrolled ? '1px solid rgba(157, 141, 241, 0.15)' : 'none',
+          }}
+        >
           
           {tab === 'releases' && (
             <div className="animate-fade-up">
@@ -461,6 +553,22 @@ export default function CabinetPage() {
         </section>
       </div>
 
+      {/* Плавающие декоративные частицы */}
+      <div className="fixed inset-0 pointer-events-none z-5 overflow-hidden">
+        {[...Array(5)].map((_, i) => (
+          <div 
+            key={i}
+            className={`absolute w-2 h-2 bg-gradient-to-r from-purple-400/30 to-pink-400/30 rounded-full glow-element`}
+            style={{
+              left: `${20 + i * 15}%`,
+              top: `${30 + i * 10}%`,
+              animationDelay: `${i * 2}s`,
+              animationDuration: `${3 + i}s`
+            }}
+          />
+        ))}
+      </div>
+
       {/* Toast уведомление о копировании */}
       <CopyToast show={showToast} />
       
@@ -484,19 +592,16 @@ export default function CabinetPage() {
         onCancel={handleCancel}
       />
       
-      {/* Модалка аватара */}
-      <AvatarUploadModal
+      {/* Модалка аватара с кадрированием */}
+      <AvatarCropModal
         show={showAvatarModal}
         onClose={handleCloseAvatarModal}
         avatar={avatar}
-        avatarPreview={avatarPreview}
         nickname={nickname}
         role={role}
         uploadingAvatar={uploadingAvatar}
-        onFileSelect={handleAvatarFileSelect}
-        onSave={handleAvatarSave}
+        onSaveImage={handleAvatarSave}
         onDelete={handleAvatarDelete}
-        onClearPreview={() => { setAvatarPreview(null); setAvatarFile(null); }}
         showNotification={showNotification}
       />
     </div>

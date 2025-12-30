@@ -2,6 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { UserRole, ROLE_CONFIG } from '../../lib/types';
+import { useAvatarScrollEffect } from '../../hooks/useAvatarScrollEffect';
 
 interface ProfileSidebarProps {
   user: any;
@@ -31,6 +32,9 @@ export default function ProfileSidebar({
   showToast,
 }: ProfileSidebarProps) {
   const config = ROLE_CONFIG[role];
+  
+  // Эффект медленного скролла для аватара (работает на desktop и mobile)
+  const { avatarRef, transform } = useAvatarScrollEffect();
 
   // DEBUG: Логируем memberId
   React.useEffect(() => {
@@ -55,17 +59,36 @@ export default function ProfileSidebar({
     <>
       {/* Профиль */}
       <div className="mb-6">
-        {/* Аватар - кликабельный */}
+        {/* Аватар - кликабельный с эффектом медленного скролла */}
         <div className="relative mb-5 flex justify-start">
           <button 
+            ref={avatarRef}
             onClick={onShowAvatarModal}
-            className={`relative w-20 h-20 rounded-xl ${avatar ? 'bg-cover bg-center' : `bg-gradient-to-br ${config.color}`} flex items-center justify-center text-3xl font-black border-2 ${config.borderColor} ${role === 'exclusive' ? 'ring-2 ring-[#fbbf24] ring-offset-2 ring-offset-[#0d0d0f]' : role === 'admin' ? 'ring-2 ring-[#ff6b81] ring-offset-2 ring-offset-[#0d0d0f]' : ''} overflow-hidden cursor-pointer hover:opacity-80 transition-opacity group`}
+            className={`relative w-20 h-20 rounded-xl ${avatar ? '' : `bg-gradient-to-br ${config.color}`} flex items-center justify-center text-3xl font-black border-2 ${config.borderColor} ${role === 'exclusive' ? 'ring-2 ring-[#fbbf24] ring-offset-2 ring-offset-[#0d0d0f]' : role === 'admin' ? 'ring-2 ring-[#ff6b81] ring-offset-2 ring-offset-[#0d0d0f]' : ''} overflow-hidden cursor-pointer hover:opacity-80 transition-opacity group`}
             style={{ 
               boxShadow: `0 0 30px ${config.glowColor}`,
-              backgroundImage: avatar ? `url(${avatar})` : 'none'
+              willChange: 'transform, opacity',
+              transition: 'transform 0.1s ease-out, opacity 0.1s ease-out',
             }}
           >
-            {!avatar && nickname.charAt(0).toUpperCase()}
+            {avatar ? (
+              <img 
+                src={avatar} 
+                alt="Avatar" 
+                className="w-full h-full object-cover rounded-lg"
+                style={{
+                  transform: `translateY(${transform.translateY}px)`,
+                  opacity: transform.opacity,
+                }}
+              />
+            ) : (
+              <span style={{
+                transform: `translateY(${transform.translateY}px)`,
+                opacity: transform.opacity,
+              }}>
+                {nickname.charAt(0).toUpperCase()}
+              </span>
+            )}
             <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
               <span className="text-white text-xs font-bold">Изменить</span>
             </div>
@@ -113,8 +136,8 @@ export default function ProfileSidebar({
           onClick={() => onTabChange('releases')} 
           className={`w-full text-left py-3.5 px-5 rounded-xl transition-all duration-200 border ${
             activeTab === 'releases' 
-              ? 'bg-[#6050ba] text-white shadow-lg shadow-[#6050ba]/30 border-[#6050ba] scale-[1.02]' 
-              : 'text-zinc-300 bg-white/[0.02] hover:bg-white/[0.08] hover:text-white hover:border-white/10 border-white/5 hover:scale-[1.01] cursor-pointer'
+              ? 'glass-morphism-button text-white shadow-lg scale-[1.02]' 
+              : 'text-zinc-300 glass-morphism hover:text-white hover:scale-[1.01] cursor-pointer'
           }`}
         >
           <span className="text-sm font-bold">Релизы</span>
@@ -125,8 +148,8 @@ export default function ProfileSidebar({
           onClick={() => onTabChange('finance')} 
           className={`w-full text-left py-3.5 px-5 rounded-xl transition-all duration-200 border ${
             activeTab === 'finance' 
-              ? 'bg-[#6050ba] text-white shadow-lg shadow-[#6050ba]/30 border-[#6050ba] scale-[1.02]' 
-              : 'text-zinc-300 bg-white/[0.02] hover:bg-white/[0.08] hover:text-white hover:border-white/10 border-white/5 hover:scale-[1.01] cursor-pointer'
+              ? 'glass-morphism-button text-white shadow-lg scale-[1.02]' 
+              : 'text-zinc-300 glass-morphism hover:text-white hover:scale-[1.01] cursor-pointer'
           }`}
         >
           <span className="text-sm font-bold">Финансы</span>
@@ -135,7 +158,7 @@ export default function ProfileSidebar({
         {/* Кнопка поддержки */}
         <button 
           onClick={onSupportToggle} 
-          className="relative w-full text-left py-3.5 px-5 rounded-xl transition-all duration-200 border text-zinc-300 bg-white/[0.02] hover:bg-white/[0.08] hover:text-white hover:border-white/10 border-white/5 hover:scale-[1.01] cursor-pointer"
+          className="relative w-full text-left py-3.5 px-5 rounded-xl transition-all duration-200 border text-zinc-300 glass-morphism hover:text-white hover:scale-[1.01] cursor-pointer"
         >
           <div className="flex items-center justify-between">
             <span className="text-sm font-bold">Поддержка</span>
@@ -152,8 +175,8 @@ export default function ProfileSidebar({
           onClick={() => onTabChange('settings')} 
           className={`w-full text-left py-3.5 px-5 rounded-xl transition-all duration-200 border ${
             activeTab === 'settings' 
-              ? 'bg-[#6050ba] text-white shadow-lg shadow-[#6050ba]/30 border-[#6050ba] scale-[1.02]' 
-              : 'text-zinc-300 bg-white/[0.02] hover:bg-white/[0.08] hover:text-white hover:border-white/10 border-white/5 hover:scale-[1.01] cursor-pointer'
+              ? 'glass-morphism-button text-white shadow-lg scale-[1.02]' 
+              : 'text-zinc-300 glass-morphism hover:text-white hover:scale-[1.01] cursor-pointer'
           }`}
         >
           <span className="text-sm font-bold">Настройки</span>

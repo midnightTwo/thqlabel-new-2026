@@ -182,13 +182,8 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
       {/* Навигация */}
       {pathname !== '/' && pathname !== '/auth' && pathname !== '/admin' && (
         <header 
-          className="fixed top-0 w-full z-50 transition-all duration-500"
+          className="fixed top-0 w-full z-50 transition-all duration-500 glass-morphism-header"
           style={{
-            background: scrolled 
-              ? themeName === 'light' ? 'rgba(255, 255, 255, 0.95)' : 'rgba(8, 8, 10, 0.95)' 
-              : themeName === 'light' ? 'rgba(255, 255, 255, 0.6)' : 'rgba(8, 8, 10, 0.6)',
-            backdropFilter: 'blur(20px)',
-            borderBottom: themeName === 'light' ? '1px solid rgba(0, 0, 0, 0.1)' : '1px solid rgba(96, 80, 186, 0.15)',
             height: '70px',
           }}
         >
@@ -210,31 +205,58 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
             </Link>
 
             {/* Навигация с плавным ползунком - скрывается на мобилке */}
-            <nav className="hidden md:flex relative items-center rounded-2xl" style={{
-              background: themeName === 'light' 
-                ? 'linear-gradient(135deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.02) 100%)'
-                : 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)',
-              border: themeName === 'light' ? '1px solid rgba(0,0,0,0.08)' : '1px solid rgba(255,255,255,0.08)',
-              boxShadow: themeName === 'light' 
-                ? 'inset 0 1px 0 rgba(0,0,0,0.1), 0 4px 20px rgba(0,0,0,0.1)'
-                : 'inset 0 1px 0 rgba(255,255,255,0.1), 0 4px 20px rgba(0,0,0,0.3)',
-            }}>
+            <nav className="hidden md:flex relative items-center rounded-2xl p-1">
+              {/* Water ripple effect container */}
+              <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
+                {/* Animated water drops */}
+                <div 
+                  className="absolute w-2 h-2 bg-gradient-to-r from-blue-400/30 to-cyan-300/30 rounded-full blur-sm"
+                  style={{
+                    left: '10%',
+                    top: '20%',
+                    animation: 'water-drop 2s ease-in-out infinite 0.5s',
+                  }}
+                />
+                <div 
+                  className="absolute w-1.5 h-1.5 bg-gradient-to-r from-blue-300/20 to-cyan-200/20 rounded-full blur-sm"
+                  style={{
+                    right: '15%',
+                    top: '30%',
+                    animation: 'water-drop 2.5s ease-in-out infinite 1.2s',
+                  }}
+                />
+                <div 
+                  className="absolute w-1 h-1 bg-gradient-to-r from-cyan-400/25 to-blue-300/25 rounded-full blur-sm"
+                  style={{
+                    left: '60%',
+                    bottom: '25%',
+                    animation: 'water-drop 3s ease-in-out infinite 2s',
+                  }}
+                />
+              </div>
               {/* Анимированный ползунок на точных координатах (скрыт на главной странице feed) */}
               {mounted && sliderStyle.width > 0 && pathname !== '/feed' && (
                 <div 
-                  className="absolute rounded-xl transition-all duration-300 ease-out"
+                  className="absolute rounded-xl transition-all duration-500 ease-out glass-morphism-button"
                   style={{
                     left: `${sliderStyle.left}px`,
                     top: '4px',
                     bottom: '4px',
                     width: `${sliderStyle.width}px`,
-                    background: themeName === 'light'
-                      ? 'linear-gradient(135deg, rgba(96, 80, 186, 0.2) 0%, rgba(157, 141, 241, 0.2) 100%)'
-                      : 'linear-gradient(135deg, rgba(96, 80, 186, 0.6) 0%, rgba(157, 141, 241, 0.4) 100%)',
-                    border: themeName === 'light' ? '1px solid rgba(96, 80, 186, 0.3)' : '1px solid rgba(157, 141, 241, 0.4)',
-                    animation: 'slider-glow 2s ease-in-out infinite',
+                    animation: 'water-drop 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
                   }}
-                />
+                >
+                  {/* Water ripple effect on active tab */}
+                  <div className="absolute inset-0 rounded-xl overflow-hidden">
+                    <div 
+                      className="absolute inset-0 rounded-xl"
+                      style={{
+                        background: 'radial-gradient(circle at center, rgba(96, 80, 186, 0.3) 0%, transparent 70%)',
+                        animation: 'water-ripple 0.8s ease-out',
+                      }}
+                    />
+                  </div>
+                </div>
               )}
               
               {navItems.map((item, index) => {
@@ -244,7 +266,7 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
                     key={item.href}
                     ref={(el) => { navRefs.current[index] = el; }}
                     href={item.href}
-                    className="relative px-4 md:px-5 lg:px-7 py-2.5 md:py-3 lg:py-3.5 text-[9px] md:text-[10px] lg:text-[11px] uppercase tracking-[0.15em] font-black transition-all duration-300 z-10"
+                    className="relative px-4 md:px-5 lg:px-7 py-2.5 md:py-3 lg:py-3.5 text-[9px] md:text-[10px] lg:text-[11px] uppercase tracking-[0.15em] font-black transition-all duration-300 z-10 group"
                     style={{
                       color: isActive 
                         ? themeName === 'light' ? '#000' : '#fff'
@@ -254,7 +276,19 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
                         : 'none',
                     }}
                   >
-                    <span className="relative">{item.label}</span>
+                    <span className="relative">
+                      {item.label}
+                      {/* Glass reflection effect on hover */}
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-hidden rounded">
+                        <div 
+                          className="absolute inset-0"
+                          style={{
+                            background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(255,255,255,0.1) 100%)',
+                            animation: 'glass-shine 2s ease-in-out infinite',
+                          }}
+                        />
+                      </div>
+                    </span>
                   </Link>
                 );
               })}
@@ -287,17 +321,9 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
           
           {/* Боковая панель */}
           <div 
-            className={`md:hidden fixed top-0 right-0 bottom-0 z-50 w-72 transform transition-all duration-500 ease-out ${
+            className={`md:hidden fixed top-0 right-0 bottom-0 z-50 w-72 transform transition-all duration-500 ease-out glass-morphism-sidebar ${
               mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
             }`}
-            style={{
-              background: themeName === 'light' 
-                ? 'linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(248,248,248,0.95) 50%, rgba(240,240,245,0.98) 100%)'
-                : 'linear-gradient(135deg, rgba(13,13,15,0.98) 0%, rgba(20,20,24,0.96) 50%, rgba(96,80,186,0.05) 100%)',
-              backdropFilter: 'blur(30px) saturate(150%)',
-              borderLeft: themeName === 'light' ? '1px solid rgba(0,0,0,0.1)' : '1px solid rgba(157,141,241,0.3)',
-              boxShadow: '-20px 0 60px rgba(0,0,0,0.6), -5px 0 20px rgba(96,80,186,0.3)',
-            }}
           >
             <div className="flex flex-col h-full p-6 relative overflow-hidden">
               {/* Декоративный фон с эффектом глубины */}

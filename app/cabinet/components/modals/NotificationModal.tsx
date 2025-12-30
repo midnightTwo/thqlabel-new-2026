@@ -34,7 +34,7 @@ export default function NotificationModal({ show, message, type, onClose, durati
   
   return (
     <div className={`
-      fixed top-8 left-1/2 -translate-x-1/2 z-[9999]
+      fixed top-24 left-1/2 -translate-x-1/2 z-[99999]
       transition-all duration-400 ease-out
       ${isVisible 
         ? 'opacity-100 translate-y-0 scale-100' 

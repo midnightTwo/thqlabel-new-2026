@@ -236,7 +236,7 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
       <AnimatedBackground />
 
       {/* Навигация */}
-      {pathname !== '/' && pathname !== '/auth' && pathname !== '/admin' && (
+      {pathname !== '/' && pathname !== '/auth' && pathname !== '/admin' && pathname !== '/feed' && (
         <header 
           className="fixed top-0 w-full z-50 transition-all duration-500"
           style={{
@@ -282,8 +282,8 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
                   background: themeName === 'light'
                     ? 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(245,245,250,0.9) 50%, rgba(255,255,255,0.85) 100%)'
                     : 'linear-gradient(135deg, rgba(96,80,186,0.35) 0%, rgba(80,65,160,0.3) 50%, rgba(70,55,140,0.25) 100%)',
-                  backdropFilter: 'blur(24px) saturate(200%) brightness(1.1)',
-                  WebkitBackdropFilter: 'blur(24px) saturate(200%) brightness(1.1)',
+                  backdropFilter: 'none',
+                  WebkitBackdropFilter: 'none',
                   boxShadow: themeName === 'light'
                     ? '0 2px 8px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.12), inset 0 2px 4px rgba(255,255,255,1), inset 0 -2px 4px rgba(0,0,0,0.05), 0 0 0 1px rgba(255,255,255,0.5)'
                     : '0 2px 8px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.2), inset 0 2px 4px rgba(255,255,255,0.1), inset 0 -1px 2px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.08)',
@@ -312,14 +312,10 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
                           ? '0 1px 1px rgba(255,255,255,1), 0 2px 0 rgba(255,255,255,0.9), 0 3px 8px rgba(0,0,0,0.2), 0 5px 12px rgba(0,0,0,0.15), 0 -1px 1px rgba(200,200,200,0.4)'
                           : '0 -1px 1px rgba(0,0,0,0.8), 0 1px 2px rgba(255,255,255,0.5), 0 2px 4px rgba(255,255,255,0.3), 0 4px 16px rgba(96,80,186,0.5)'
                         : 'none',
-                      transform: isActive ? 'scale(1.12) translateZ(10px)' : 'scale(1)',
+                      transform: isActive ? 'translateZ(10px)' : 'scale(1)',
                       fontWeight: isActive ? '900' : '800',
                       letterSpacing: isActive ? '0.18em' : '0.15em',
-                      filter: isActive 
-                        ? themeName === 'light'
-                          ? 'drop-shadow(0 4px 12px rgba(0,0,0,0.15)) brightness(1.05) contrast(1.1)'
-                          : 'drop-shadow(0 4px 16px rgba(96,80,186,0.4)) brightness(1.15) saturate(1.3)'
-                        : 'none',
+                      filter: 'none',
                       WebkitTextStroke: isActive && themeName === 'light' ? '0.3px rgba(0,0,0,0.1)' : 'none',
                     }}
                   >
@@ -491,8 +487,8 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
         </ModalProvider>
       </div>
 
-      {/* Глобальный виджет поддержки */}
-      <GlobalSupportWidget />
+      {/* Глобальный виджет поддержки - скрыт на странице feed */}
+      {pathname !== '/feed' && <GlobalSupportWidget />}
     </>
   );
 }

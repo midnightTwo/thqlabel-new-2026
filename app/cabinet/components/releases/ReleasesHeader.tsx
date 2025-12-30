@@ -19,7 +19,7 @@ export default function ReleasesHeader({
 
   if (showArchive) {
     return (
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 mb-6">
         <button
           onClick={() => setShowArchive(false)}
           className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-xl transition-all border border-white/10"
@@ -40,7 +40,7 @@ export default function ReleasesHeader({
   }
 
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between mb-6">
       <div>
         <h2 className="text-2xl font-black uppercase tracking-tight">Мои релизы</h2>
         <p className="text-sm text-zinc-500 mt-1">

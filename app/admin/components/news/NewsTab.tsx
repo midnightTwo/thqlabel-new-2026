@@ -584,16 +584,43 @@ export default function NewsTab({ supabase }: { supabase: any }) {
                 {drafts.map((draft) => (
                   <div
                     key={draft.id}
-                    className="bg-gradient-to-br from-white/[0.03] to-white/[0.01] border border-white/10 rounded-xl p-4 hover:border-[#6050ba]/50 transition-all group"
+                    className="bg-zinc-900/80 border border-zinc-800 rounded-xl p-4 hover:border-purple-500/50 transition-all cursor-pointer"
                   >
                     <div className="flex gap-4">
+                      {/* Иконка новости */}
+                      <div className="flex-shrink-0">
+                        <div className="w-20 h-20 rounded-lg bg-gradient-to-br from-amber-600 to-orange-600 flex items-center justify-center">
+                          <svg className="w-8 h-8 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                          </svg>
+                        </div>
+                      </div>
+
+                      {/* Информация */}
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className="text-[10px] px-2.5 py-1 bg-amber-500/20 text-amber-300 rounded-full font-bold">
+                        <div className="flex items-start justify-between gap-2 mb-1">
+                          <h4 className="font-bold text-white truncate">
+                            {draft.title || 'Без заголовка'}
+                          </h4>
+                          <span className="flex-shrink-0 text-[10px] px-2 py-0.5 rounded-full border bg-amber-500/20 text-amber-400 border-amber-500/30 flex items-center gap-1.5">
+                            <span className="w-1.5 h-1.5 rounded-full bg-current"></span>
+                            <span>ЧЕРНОВИК</span>
+                          </span>
+                        </div>
+                        
+                        <p className="text-sm text-zinc-400 line-clamp-2 mb-2">
+                          {draft.content || 'Пустой черновик'}
+                        </p>
+                        
+                        <div className="flex items-center gap-2 flex-wrap">
+                          {/* Категория */}
+                          <span className="text-[10px] px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-400 border border-purple-500/30">
                             {draft.category || 'Новость'}
                           </span>
-                          <span className="text-[9px] text-zinc-600">
-                            {new Date(draft.updated_at).toLocaleString('ru-RU', { 
+                          
+                          {/* Дата обновления */}
+                          <span className="text-[10px] text-zinc-500">
+                            Изменено: {new Date(draft.updated_at).toLocaleString('ru-RU', { 
                               day: 'numeric', 
                               month: 'short', 
                               hour: '2-digit', 
@@ -601,30 +628,32 @@ export default function NewsTab({ supabase }: { supabase: any }) {
                             })}
                           </span>
                         </div>
-                        <h4 className="font-bold text-white mb-1 line-clamp-1">
-                          {draft.title || 'Без заголовка'}
-                        </h4>
-                        <p className="text-xs text-zinc-400 line-clamp-2">
-                          {draft.content || 'Пустой черновик'}
-                        </p>
-                      </div>
-                      <div className="flex gap-2 flex-shrink-0">
-                        <button
-                          onClick={() => handleLoadDraft(draft)}
-                          className="px-4 py-2 bg-[#6050ba]/20 hover:bg-[#6050ba]/40 rounded-lg text-xs font-bold transition"
-                        >
-                          Загрузить
-                        </button>
-                        <button
-                          onClick={() => handleDeleteDraft(draft.id)}
-                          className="px-4 py-2 bg-red-500/10 hover:bg-red-500/30 text-red-400 rounded-lg text-xs font-bold transition flex items-center gap-1.5"
-                          title="Удалить черновик"
-                        >
-                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                          </svg>
-                          Удалить
-                        </button>
+
+                        {/* Кнопки действий */}
+                        <div className="flex gap-2 mt-3">
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleLoadDraft(draft);
+                            }}
+                            className="px-4 py-2 bg-purple-500/20 hover:bg-purple-500/40 text-purple-300 rounded-lg text-xs font-bold transition"
+                          >
+                            Загрузить
+                          </button>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleDeleteDraft(draft.id);
+                            }}
+                            className="px-4 py-2 bg-red-500/10 hover:bg-red-500/30 text-red-400 rounded-lg text-xs font-bold transition flex items-center gap-1.5"
+                            title="Удалить черновик"
+                          >
+                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                            Удалить
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>

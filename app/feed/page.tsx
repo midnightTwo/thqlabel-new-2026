@@ -9,14 +9,26 @@ const supabase = (supabaseUrl && supabaseAnonKey) ? createClient(supabaseUrl, su
 
 // Релизы thq label
 const RELEASES = [
-  { id: 1, title: 'не в сети', artist: 'angelgrind', cover: 'https://t2.genius.com/unsafe/430x430/https%3A%2F%2Fimages.genius.com%2Fd4892b6202a4051f807a8a847f44adc0.1000x1000x1.png' },
-  { id: 2, title: 'заколки & кости', artist: 'kweetee', cover: 'https://t2.genius.com/unsafe/600x600/https%3A%2F%2Fimages.genius.com%2F9fa9951f735a169c17e47baf71ab45c7.1000x1000x1.png' },
-  { id: 3, title: 'механизм', artist: 'athysue', cover: 'https://t2.genius.com/unsafe/430x430/https%3A%2F%2Fimages.genius.com%2Fa4b2333f9c0768cf4f07d1252caff125.1000x1000x1.png' },
+  { id: 1, title: 'Neon Dreams', artist: 'Night Drive', cover: 'https://t2.genius.com/unsafe/430x430/https%3A%2F%2Fimages.genius.com%2Fd4892b6202a4051f807a8a847f44adc0.1000x1000x1.png' },
+  { id: 2, title: 'Apex', artist: 'The Summit', cover: 'https://t2.genius.com/unsafe/600x600/https%3A%2F%2Fimages.genius.com%2F9fa9951f735a169c17e47baf71ab45c7.1000x1000x1.png' },
+  { id: 3, title: 'Luna', artist: 'Stardust', cover: 'https://t2.genius.com/unsafe/430x430/https%3A%2F%2Fimages.genius.com%2Fa4b2333f9c0768cf4f07d1252caff125.1000x1000x1.png' },
   { id: 4, title: 'девчачий рок-альбом', artist: 'тенденция', cover: 'https://images.genius.com/2fa8d85da644fad7afc1ba3d40d0d513.1000x1000x1.png' },
   { id: 5, title: 'tired of you / what pain is', artist: 'breakfall', cover: 'https://cdn-images.dzcdn.net/images/cover/7101d738b828553e74b9f0035a6dfa1a/500x500-000000-80-0-0.jpg' },
   { id: 6, title: 'LABEL', artist: 'YUUKKII', cover: 'https://t2.genius.com/unsafe/430x430/https%3A%2F%2Fimages.genius.com%2F4dbc0ecc8a3f9924cc950ec1ae1390c4.600x600x1.webp' },
   { id: 7, title: 'кейон', artist: 'ева киллер', cover: 'https://m.media-amazon.com/images/I/51knFhnMP0L._UX716_FMwebp_QL85_.jpg' },
   { id: 8, title: 'Холодно', artist: 'qqdie', cover: 'https://images.genius.com/ece70e671b3422967c2012217763c557.807x807x1.jpg' },
+];
+
+// Услуги лейбла
+const SERVICES = [
+  'Дистрибуция на все платформы',
+  'Маркетинг и PR',
+  'Синхронизация с соцсетями',
+  'Защита авторских прав',
+  'Аналитика и отчетность',
+  'Продвижение в плейлистах',
+  'Создание контента',
+  'Консультации по развитию карьеры',
 ];
 
 // Оптимизированный анимированный счетчик
@@ -308,21 +320,72 @@ const FloatingReleaseCard = memo(({ release, index, isMobile }: { release: any; 
 
 FloatingReleaseCard.displayName = 'FloatingReleaseCard';
 
+// Модальное окно для услуг
+const ServicesModal = memo(({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <div 
+        className="relative max-w-2xl w-full bg-gradient-to-br from-[#1a1a2e] to-[#16213e] rounded-3xl p-8 border border-[#9d8df1]/30 shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Кнопка закрытия */}
+        <button 
+          onClick={onClose}
+          className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-all hover:scale-110 border border-white/10"
+        >
+          <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        {/* Заголовок */}
+        <h3 className="text-3xl font-black text-white mb-2 uppercase tracking-wider">
+          Услуги <span className="text-[#9d8df1]">Лейбла</span>
+        </h3>
+        <p className="text-sm text-white/60 mb-8">Полный спектр услуг для артистов</p>
+
+        {/* Список услуг */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {SERVICES.map((service, index) => (
+            <div 
+              key={index}
+              className="flex items-start gap-3 p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#9d8df1]/30 transition-all group"
+            >
+              <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gradient-to-br from-[#6050ba] to-[#9d8df1] flex items-center justify-center text-white text-xs font-bold group-hover:scale-110 transition-transform">
+                ✓
+              </div>
+              <p className="text-white text-sm font-semibold">{service}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Кнопка закрыть внизу */}
+        <button
+          onClick={onClose}
+          className="mt-8 w-full py-4 rounded-xl bg-gradient-to-r from-[#6050ba] to-[#9d8df1] text-white font-bold uppercase tracking-wider hover:scale-105 transition-transform shadow-lg hover:shadow-[#6050ba]/50"
+        >
+          Закрыть
+        </button>
+      </div>
+    </div>
+  );
+});
+
+ServicesModal.displayName = 'ServicesModal';
+
 export default function FeedPage() {
   const [mounted, setMounted] = useState(false);
   const [user, setUser] = useState<any>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [servicesModalOpen, setServicesModalOpen] = useState(false);
+  const [news, setNews] = useState<any[]>([]);
   const rafRef = useRef<number | null>(null);
-
-  // Мемоизированные данные
-  const capybaraMessages = useMemo(() => [
-    'Ок капибара 😎',
-    'Капибара одобряет! 👍',
-    'А ты хорош! ✨',
-    'Капи капи! 💜',
-    'Музыка кайф 🎵',
-    'thq топ! 🚀',
-  ], []);
+  const [showIntro, setShowIntro] = useState(true);
 
   // Оптимизированная проверка размера экрана
   const checkMobile = useCallback(() => {
@@ -338,7 +401,12 @@ export default function FeedPage() {
     if (typeof window !== 'undefined') {
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' as ScrollBehavior });
     }
-    setMounted(true);
+    
+    // Таймер для скрытия intro и показа контента
+    const introTimer = setTimeout(() => {
+      setShowIntro(false);
+      setMounted(true);
+    }, 1500);
     
     // Проверяем размер экрана
     checkMobile();
@@ -351,8 +419,23 @@ export default function FeedPage() {
       setUser(user);
     };
     checkAuth();
+
+    // Загружаем новости
+    const loadNews = async () => {
+      if (!supabase) return;
+      try {
+        const { data, error } = await supabase.from('news').select('*').order('created_at', { ascending: false }).limit(3);
+        if (data && !error) {
+          setNews(data);
+        }
+      } catch (e) {
+        console.error('Ошибка загрузки новостей:', e);
+      }
+    };
+    loadNews();
     
     return () => {
+      clearTimeout(introTimer);
       window.removeEventListener('resize', checkMobile);
       if (rafRef.current) {
         cancelAnimationFrame(rafRef.current);
@@ -362,152 +445,250 @@ export default function FeedPage() {
 
   return (
     <main className="min-h-screen overflow-hidden relative">
-      {/* Контейнер для релизов */}
-      <div className="absolute inset-0 pointer-events-none" style={{ contain: 'layout' }}>
-        {/* Летающие карточки релизов */}
-        {mounted && RELEASES.map((release, i) => (
-          <FloatingReleaseCard key={release.id} release={release} index={i} isMobile={isMobile} />
-        ))}
-      </div>
+      {/* Intro анимация с большим логотипом */}
+      {showIntro && (
+        <div 
+          className="fixed inset-0 z-[100] flex items-center justify-center"
+          style={{
+            background: 'linear-gradient(to bottom, #08080a 0%, #0d0d1a 50%, #08080a 100%)',
+            animation: 'fade-out 0.5s ease-out 1s forwards',
+          }}
+        >
+          <img 
+            src="/logo.png" 
+            alt="thqlabel" 
+            className="w-[80vw] max-w-[1200px] h-auto"
+            style={{
+              filter: 'drop-shadow(0 0 60px rgba(96,80,186,0.9))',
+              animation: 'logo-intro 1.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
+            }}
+          />
+        </div>
+      )}
+      
+      {/* Модальное окно услуг */}
+      <ServicesModal isOpen={servicesModalOpen} onClose={() => setServicesModalOpen(false)} />
 
       {/* Летающие 3D фигуры и частицы */}
       <FloatingShapes />
       <FloatingParticles />
       
-      {/* Оптимизированный градиентный фон - без параллакса */}
+      {/* Усиленный градиентный фон */}
       <div className="fixed inset-0 pointer-events-none" style={{ transform: 'translateZ(0)' }}>
         <div 
-          className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#6050ba]/08 rounded-full" 
+          className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#6050ba]/12 rounded-full" 
           style={{ filter: 'blur(150px)', animation: 'gradient-pulse 8s ease-in-out infinite' }}
         />
         <div 
-          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#9d8df1]/08 rounded-full" 
+          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#9d8df1]/12 rounded-full" 
           style={{ filter: 'blur(120px)', animation: 'gradient-pulse 8s ease-in-out infinite 2s' }}
+        />
+        <div 
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#c4b5fd]/08 rounded-full" 
+          style={{ filter: 'blur(180px)', animation: 'gradient-pulse 10s ease-in-out infinite 1s' }}
         />
         <style jsx>{`
           @keyframes gradient-pulse {
-            0%, 100% { opacity: 0.8; }
-            50% { opacity: 1; }
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
           }
         `}</style>
       </div>
 
-      {/* HERO секция */}
-      <section className="relative z-20 min-h-screen flex flex-col items-center justify-center px-6 pt-32">
+      {/* Основной контент */}
+      <div className="relative z-20 w-full h-screen px-4 md:px-6 lg:px-8">
         
-        {/* Заголовок */}
-        <div className={`text-center mb-8 transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        {/* Grid layout - фиксированная высота экрана */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 h-full py-4">
           
-          {/* Большой логотип */}
-          <div className="relative mb-12 flex justify-center">
-            <img 
-              src="/logo.png" 
-              alt="thqlabel" 
-              className="h-40 md:h-48 lg:h-56 w-auto object-contain drop-shadow-[0_0_60px_rgba(96,80,186,0.6)] relative z-10"
-              style={{ transform: 'scale(2.2)', transformOrigin: 'center' }}
-              loading="eager"
-              decoding="async"
-            />
-            {/* Декоративные элементы */}
-            <div className="absolute -top-8 -right-8 w-16 h-16 border-t-2 border-r-2 border-[#6050ba]/50 pointer-events-none" style={{ animation: 'pulse 2s ease-in-out infinite' }} />
-            <div className="absolute -bottom-8 -left-8 w-16 h-16 border-b-2 border-l-2 border-[#9d8df1]/50 pointer-events-none" style={{ animation: 'pulse 2s ease-in-out infinite 0.5s' }} />
-          </div>
-          
-          {/* Лейбл ждёт тебя - компактный */}
-          <div className="mb-4">
-            <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] text-white uppercase tracking-[0.2em] font-black px-4 py-2 border-2 border-[#9d8df1] rounded-full bg-[#6050ba]/20 shadow-lg shadow-[#6050ba]/50">
-              <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
-              Лейбл ждёт тебя
-            </span>
-          </div>
-          
-          <p className="text-white text-base sm:text-lg md:text-xl max-w-xl mx-auto leading-relaxed mb-6 px-4 font-medium">
-            Дистрибуция музыки на <span className="text-white font-bold">все платформы</span> мира. 
-            <br/>Мы помогаем артистам стать <span className="text-[#c4b5fd] font-bold">услышанными</span>.
-          </p>
+          {/* Левая колонка - Текст, кнопки и релизы (компактно) */}
+          <div className="lg:col-span-3 flex flex-col justify-between">
+            <div className={`transition-all duration-1000 ${mounted ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
+              {/* Текст и кнопки */}
+              <h1 className="text-xl md:text-2xl lg:text-3xl font-black text-white mb-3 lg:mb-4 leading-tight">
+                Продвигаем вашу музыку на новый уровень
+              </h1>
+              <p className="text-xs md:text-sm lg:text-base text-white/80 mb-4 lg:mb-5 leading-relaxed">
+                Полный спектр услуг для артистов: дистрибуция, маркетинг, PR и синхронизация.
+              </p>
 
-          {/* Статистика сразу видна */}
-          <div className={`flex flex-wrap justify-center gap-8 md:gap-12 mb-10 transition-all duration-1000 delay-300 ${mounted ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-br from-[#9d8df1] to-[#6050ba]">
-                <AnimatedCounter end={150} suffix="+" />
+              {/* Кнопки */}
+              <div className="flex flex-wrap gap-2 lg:gap-3 mb-4">
+                <Link 
+                  href="/cabinet"
+                  className="px-4 lg:px-5 py-2 lg:py-2.5 rounded-lg text-[10px] lg:text-xs font-bold uppercase tracking-wider transition-all hover:scale-105 text-white"
+                  style={{
+                    background: 'linear-gradient(135deg, #6050ba 0%, #9d8df1 100%)',
+                  }}
+                >
+                  Кабинет
+                </Link>
+                
+                <button 
+                  onClick={() => setServicesModalOpen(true)}
+                  className="px-4 lg:px-5 py-2 lg:py-2.5 border border-white/30 rounded-lg text-[10px] lg:text-xs font-bold uppercase tracking-wider hover:bg-white/10 transition-all text-white"
+                >
+                  Услуги лейбла
+                </button>
               </div>
-              <div className="text-xs sm:text-sm text-white uppercase tracking-widest mt-2 font-bold">Релизов</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-br from-[#9d8df1] to-[#6050ba]">
-                <AnimatedCounter end={50} suffix="+" />
+
+            {/* Релизы внизу */}
+            <div className={`mt-auto pt-4 transition-all duration-1000 delay-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+              <h2 className="text-[10px] font-black text-white uppercase mb-1.5">
+                Популярные Релизы
+              </h2>
+              <div className="grid grid-cols-3 gap-1.5">
+                {RELEASES.slice(0, 6).map((release) => (
+                  <div 
+                    key={release.id}
+                    className="group rounded overflow-hidden transition-all hover:scale-105"
+                    style={{
+                      background: 'rgba(96, 80, 186, 0.08)',
+                      border: '1px solid rgba(157, 141, 241, 0.25)',
+                    }}
+                  >
+                    <div className="relative aspect-square overflow-hidden">
+                      <img 
+                        src={release.cover} 
+                        alt={release.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                      />
+                    </div>
+                    <div className="p-1">
+                      <p className="text-[8px] font-bold text-white truncate">{release.title}</p>
+                      <p className="text-[7px] text-[#9d8df1] font-semibold truncate">{release.artist}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <div className="text-xs sm:text-sm text-white uppercase tracking-widest mt-2 font-bold">Артистов</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-br from-[#9d8df1] to-[#6050ba]">
-                <AnimatedCounter end={1000000} suffix="+" duration={3000} />
-              </div>
-              <div className="text-xs sm:text-sm text-white uppercase tracking-widest mt-2 font-bold">Прослушиваний</div>
             </div>
           </div>
-        </div>
 
-        {/* Кнопки */}
-        <div className={`flex flex-col sm:flex-row gap-4 mb-16 transition-all duration-1000 delay-500 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <Link 
-            href={user ? "/cabinet" : "/auth"}
-            className="group relative px-10 py-5 rounded-2xl text-sm font-black uppercase tracking-widest transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3 overflow-hidden text-white"
-            style={{
-              background: 'linear-gradient(135deg, #6050ba 0%, #9d8df1 100%)',
-              boxShadow: '0 10px 40px -10px rgba(96, 80, 186, 0.5), inset 0 1px 0 rgba(255,255,255,0.2)',
-            }}
-          >
-            <span className="relative z-10">{user ? 'Кабинет' : 'Войти'}</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-[#9d8df1] to-[#6050ba] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          </Link>
-          
-          <Link 
-            href="/news"
-            className="group px-10 py-5 bg-white/5 border border-white/10 rounded-2xl text-sm font-black uppercase tracking-widest hover:bg-white/10 hover:border-[#6050ba]/50 transition-all hover:scale-105 flex items-center justify-center gap-3 backdrop-blur-sm text-white"
-          >
-            <span>Новости</span>
-          </Link>
-        </div>
+          {/* Центральная колонка - Логотип и информация */}
+          <div className="lg:col-span-6 flex flex-col justify-center items-center">
+            {/* Логотип чуть выше центра */}
+            <div className={`relative mb-6 transition-all duration-1000 delay-200 ${mounted ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+              <div className="absolute inset-0 blur-[100px] opacity-70 bg-gradient-to-br from-[#6050ba] via-[#9d8df1] to-[#c4b5fd]" style={{ animation: 'glow-pulse 3s ease-in-out infinite' }} />
+              <img 
+                src="/logo.png" 
+                alt="thqlabel" 
+                className="relative z-10 w-full max-w-[500px] lg:max-w-[650px] h-auto object-contain"
+                style={{ 
+                  filter: 'drop-shadow(0 0 60px rgba(96,80,186,0.9))',
+                }}
+                loading="eager"
+                decoding="async"
+              />
+            </div>
 
-        {/* Платформы */}
-        <div className={`text-center transition-all duration-1000 delay-700 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
-          <p className="text-xs sm:text-sm text-white uppercase tracking-widest mb-6 font-bold">Дистрибуция на платформы</p>
-          <div className="flex flex-wrap gap-4 md:gap-6 justify-center">
-            {[
-              { name: 'Spotify', color: 'hover:text-green-400 hover:border-green-400/30 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)]' },
-              { name: 'Apple Music', color: 'hover:text-pink-400 hover:border-pink-400/30 hover:shadow-[0_0_20px_rgba(236,72,153,0.3)]' },
-              { name: 'YouTube Music', color: 'hover:text-red-400 hover:border-red-400/30 hover:shadow-[0_0_20px_rgba(239,68,68,0.3)]' },
-              { name: 'Яндекс Музыка', color: 'hover:text-yellow-400 hover:border-yellow-400/30 hover:shadow-[0_0_20px_rgba(250,204,21,0.3)]' },
-              { name: 'VK Music', color: 'hover:text-blue-400 hover:border-blue-400/30 hover:shadow-[0_0_20px_rgba(96,165,250,0.3)]' },
-            ].map((platform) => (
-              <div 
-                key={platform.name}
-                className={`px-4 py-2.5 rounded-full border border-white/20 bg-white/10 text-white text-sm font-semibold transition-all duration-300 cursor-pointer hover:scale-110 ${platform.color}`}
-              >
-                {platform.name}
+            {/* Информация под логотипом - по центру снизу */}
+            <div className={`text-center w-full transition-all duration-1000 delay-400 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
+              <p className="text-white text-sm md:text-base mb-5 leading-relaxed max-w-2xl mx-auto">
+                Дистрибуция музыки на все платформы мира.<br/>
+                Мы помогаем артистам стать услышанными.
+              </p>
+              
+              {/* Статистика */}
+              <div className="flex flex-wrap justify-center gap-8 md:gap-10 lg:gap-12 mb-4">
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-[#a89ef5] via-[#c4b5fd] to-white">
+                    <AnimatedCounter end={150} suffix="+" />
+                  </div>
+                  <div className="text-[10px] text-white/70 uppercase tracking-wider font-bold">Релизов</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-[#a89ef5] via-[#c4b5fd] to-white">
+                    <AnimatedCounter end={50} suffix="+" />
+                  </div>
+                  <div className="text-[10px] text-white/70 uppercase tracking-wider font-bold">Артистов</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-[#a89ef5] via-[#c4b5fd] to-white">
+                    <AnimatedCounter end={1000000} suffix="+" />
+                  </div>
+                  <div className="text-[10px] text-white/70 uppercase tracking-wider font-bold">Прослушиваний</div>
+                </div>
               </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Ссылки внизу */}
-        <div className={`flex flex-wrap justify-center gap-6 mt-16 mb-10 transition-all duration-1000 delay-900 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
-          {[
-            { href: '/faq', label: 'FAQ' },
-            { href: '/contacts', label: 'Контакты' },
-          ].map((link) => (
-            <Link 
-              key={link.href}
-              href={link.href} 
-              className="text-white hover:text-[#c4b5fd] text-sm font-bold uppercase tracking-widest transition-all hover:scale-105"
-            >
-              {link.label}
-            </Link>
-          ))}
+              {/* Кнопка "В лейбл ждёт тебя" */}
+              <div className="mb-3">
+                <div className="inline-flex items-center gap-2 text-[10px] text-white uppercase tracking-wider font-black px-4 py-2 border-2 border-[#9d8df1]/80 rounded-full bg-gradient-to-r from-[#6050ba]/30 to-[#9d8df1]/30 shadow-xl backdrop-blur-sm">
+                  <span className="relative">
+                    <span className="w-1.5 h-1.5 rounded-full bg-white block animate-pulse" />
+                    <span className="absolute inset-0 w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+                  </span>
+                  В лейбл ждёт тебя
+                </div>
+              </div>
+
+              {/* Футер ссылки */}
+              <div className="flex flex-wrap justify-center gap-4">
+                {[
+                  { href: '/faq', label: 'FAQ' },
+                  { href: '/contacts', label: 'Контакты' },
+                  { href: '/news', label: 'Новости' },
+                ].map((link) => (
+                  <Link 
+                    key={link.href}
+                    href={link.href} 
+                    className="text-white/70 hover:text-white text-[10px] font-bold uppercase tracking-wider transition-all hover:scale-105"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Правая колонка - Новости */}
+          <div className="lg:col-span-3">
+            <div className={`transition-all duration-1000 delay-400 ${mounted ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
+              <h2 className="text-sm font-black text-white mb-2 uppercase">
+                Новости и События
+              </h2>
+              <div className="space-y-2">
+                {news.length > 0 ? news.map((item) => (
+                  <Link
+                    key={item.id}
+                    href="/news"
+                    className="block p-2.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#9d8df1]/30 transition-all group"
+                  >
+                    <div className="text-[#9d8df1] font-bold text-[10px] mb-0.5">
+                      {new Date(item.created_at).toLocaleDateString('ru-RU', { day: 'numeric', month: 'numeric' })}
+                    </div>
+                    <h3 className="text-white font-bold text-xs mb-0.5 group-hover:text-[#c4b5fd] transition-colors line-clamp-2">
+                      {item.title}
+                    </h3>
+                    {item.content && (
+                      <p className="text-white/60 text-[10px] line-clamp-2">{item.content.substring(0, 60)}...</p>
+                    )}
+                  </Link>
+                )) : (
+                  <>
+                    <div className="p-2.5 rounded-lg bg-white/5 border border-white/10">
+                      <div className="text-[#9d8df1] font-bold text-[10px] mb-0.5">28.10</div>
+                      <h3 className="text-white font-bold text-xs mb-0.5">Анонс нового альбома</h3>
+                      <p className="text-white/60 text-[10px]">Скоро релиз от группы Spectrum</p>
+                    </div>
+                    <div className="p-2.5 rounded-lg bg-white/5 border border-white/10">
+                      <div className="text-[#9d8df1] font-bold text-[10px] mb-0.5">25.10</div>
+                      <h3 className="text-white font-bold text-xs mb-0.5">"Luna" на премию</h3>
+                      <p className="text-white/60 text-[10px]">Номинация в категории</p>
+                    </div>
+                    <div className="p-2.5 rounded-lg bg-white/5 border border-white/10">
+                      <div className="text-[#9d8df1] font-bold text-[10px] mb-0.5">20.10</div>
+                      <h3 className="text-white font-bold text-xs mb-0.5">Расширение сети</h3>
+                      <p className="text-white/60 text-[10px]">Новые партнеры для артистов</p>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+
         </div>
-      </section>
+      </div>
     </main>
   );
 }

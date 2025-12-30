@@ -39,6 +39,12 @@ export default function CabinetPage() {
   const [scrolled, setScrolled] = useState(false);
   const [animationTriggers, setAnimationTriggers] = useState<Set<string>>(new Set());
   
+  // Основные состояния (перемещено наверх, чтобы showArchive был доступен в useEffect)
+  const [tab, setTab] = useState<'releases' | 'finance' | 'settings'>('releases');
+  const [creatingRelease, setCreatingRelease] = useState(false);
+  const [createTab, setCreateTab] = useState<'release'|'tracklist'|'countries'|'contract'|'platforms'|'localization'|'send'|'events'|'promo'>('release');
+  const [showArchive, setShowArchive] = useState(false);
+  
   // Обработчик скролла с улучшенными эффектами
   useEffect(() => {
     let ticking = false;
@@ -47,7 +53,13 @@ export default function CabinetPage() {
       if (!ticking) {
         requestAnimationFrame(() => {
           const scrollY = window.scrollY;
-          setScrolled(scrollY > 50);
+          // В архиве черновиков скролл не должен разделять панели
+          const isScrolled = showArchive ? false : scrollY > 10;
+          
+          if (isScrolled !== scrolled) {
+            console.log('Scroll state changed:', { scrollY, isScrolled, showArchive });
+            setScrolled(isScrolled);
+          }
           
           // Триггеры для анимаций при скролле
           const sections = document.querySelectorAll('[data-animate]');
@@ -68,14 +80,12 @@ export default function CabinetPage() {
       }
     };
 
+    // Вызываем сразу при монтировании
+    handleScroll();
+    
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [animationTriggers]);
-  
-  // Основные состояния
-  const [tab, setTab] = useState<'releases' | 'finance' | 'settings'>('releases');
-  const [creatingRelease, setCreatingRelease] = useState(false);
-  const [createTab, setCreateTab] = useState<'release'|'tracklist'|'countries'|'contract'|'platforms'|'localization'|'send'|'events'|'promo'>('release');
+  }, [animationTriggers, scrolled, showArchive]);
   
   // Данные пользователя
   const [user, setUser] = useState<any>(null);
@@ -455,24 +465,31 @@ export default function CabinetPage() {
       </div>
       
       <div 
-        className="max-w-[1600px] mx-auto flex flex-col lg:flex-row items-start relative z-10 transition-all duration-500"
+        className="max-w-[1600px] mx-auto flex flex-col lg:flex-row items-start relative z-10"
         style={{ 
           padding: scrolled ? '20px 24px 32px' : '0px 24px 32px',
           marginTop: '0',
-          gap: scrolled ? '20px' : '0px'
+          gap: scrolled ? '20px' : '0px',
+          maxWidth: scrolled ? '2200px' : '1600px',
+          transition: 'gap 0.5s ease, max-width 0.5s ease, padding 0.5s ease',
         }}
       >
         
         {/* Сайдбар */}
         <aside 
-          className="lg:w-64 w-full glass-morphism-sidebar glass-card-hover interactive-glass flex flex-col lg:sticky transition-all duration-500" 
+          className="lg:w-64 w-full glass-morphism-sidebar glass-card-hover interactive-glass flex flex-col lg:sticky" 
           style={{
             borderRadius: scrolled ? '24px' : '16px 0 0 0',
             top: '70px',
             padding: scrolled ? '24px' : '24px 24px 24px 24px',
             marginTop: scrolled ? '0px' : '0px',
+            height: scrolled ? 'fit-content' : 'calc(100vh - 70px)',
+            maxHeight: scrolled ? 'none' : 'calc(100vh - 70px)',
             borderTop: scrolled ? '1px solid rgba(157, 141, 241, 0.15)' : '1px solid transparent',
-            borderRight: scrolled ? '1px solid rgba(157, 141, 241, 0.08)' : 'none',
+            borderRight: scrolled ? '1px solid rgba(157, 141, 241, 0.08)' : '1px solid transparent',
+            borderBottom: scrolled ? '1px solid rgba(157, 141, 241, 0.08)' : '1px solid transparent',
+            boxSizing: 'border-box',
+            transition: 'border-radius 0.5s ease, height 1s cubic-bezier(0.4, 0, 0.2, 1), max-height 1s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.5s ease',
           }}
           data-animate="sidebar"
         >
@@ -549,14 +566,17 @@ export default function CabinetPage() {
 
         {/* Контент */}
         <section 
-          className="flex-1 glass-morphism-card glass-card-hover interactive-glass transition-all duration-500"
+          className="flex-1 glass-morphism-card glass-card-hover interactive-glass"
           style={{
             borderRadius: scrolled ? '24px' : '0 16px 0 0',
             padding: scrolled ? '40px' : '40px 40px 40px 40px',
-            minHeight: '600px',
+            minHeight: scrolled ? '600px' : 'calc(100vh - 70px)',
             marginTop: scrolled ? '0px' : '0px',
             borderTop: scrolled ? '1px solid rgba(157, 141, 241, 0.15)' : '1px solid transparent',
-            borderLeft: scrolled ? '1px solid rgba(157, 141, 241, 0.08)' : 'none',
+            borderLeft: scrolled ? '1px solid rgba(157, 141, 241, 0.08)' : '1px solid transparent',
+            borderBottom: scrolled ? '1px solid rgba(157, 141, 241, 0.08)' : '1px solid transparent',
+            boxSizing: 'border-box',
+            transition: 'border-radius 0.5s ease, min-height 0.5s ease, border-color 0.5s ease',
           }}
         >
           
@@ -574,6 +594,7 @@ export default function CabinetPage() {
                 }} 
                 userRole={role}
                 showNotification={showNotification}
+                onShowArchiveChange={setShowArchive}
               />
             </div>
           )}

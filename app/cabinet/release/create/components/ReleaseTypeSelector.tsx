@@ -1,5 +1,40 @@
 "use client";
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import AnimatedBackground from '@/components/AnimatedBackground';
+
+// Компонент для анимированного счетчика
+const AnimatedCounter = ({ value, className }: { value: number; className?: string }) => {
+  const [displayValue, setDisplayValue] = useState(value);
+  const [isAnimating, setIsAnimating] = useState(false);
+  
+  useEffect(() => {
+    if (displayValue !== value) {
+      setIsAnimating(true);
+      const diff = value - displayValue;
+      const step = diff / 10;
+      let current = displayValue;
+      
+      const interval = setInterval(() => {
+        current += step;
+        if ((step > 0 && current >= value) || (step < 0 && current <= value)) {
+          setDisplayValue(value);
+          setIsAnimating(false);
+          clearInterval(interval);
+        } else {
+          setDisplayValue(Math.round(current));
+        }
+      }, 30);
+      
+      return () => clearInterval(interval);
+    }
+  }, [value, displayValue]);
+  
+  return (
+    <span className={`${className} ${isAnimating ? 'animate-pulse' : ''}`}>
+      {displayValue.toLocaleString('ru-RU')}
+    </span>
+  );
+};
 
 interface ReleaseTypeSelectorProps {
   onSelectType: (type: 'single' | 'ep' | 'album') => void;
@@ -7,16 +42,15 @@ interface ReleaseTypeSelectorProps {
 }
 
 export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTypeSelectorProps) {
+  const [epTracks, setEpTracks] = useState(2); // 2-7
+  const [albumTracks, setAlbumTracks] = useState(8); // 8-50
+  
+  const epPrice = epTracks * 300;
+  const albumPrice = albumTracks * 300;
+  
   return (
-    <div className="h-screen bg-gradient-to-br from-[#0a0a0b] via-[#12121a] to-[#0a0a0b] flex items-center justify-center p-6 relative overflow-hidden">
-      {/* Animated background grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(96,80,186,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(96,80,186,0.03)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" />
-      
-      {/* Floating particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#6050ba]/5 rounded-full blur-[100px] animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#8a6fff]/5 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '2s' }} />
-      </div>
+    <div className="min-h-screen relative flex items-center justify-center p-6">
+      <AnimatedBackground />
 
       <div className="max-w-6xl w-full relative z-10">
         {/* Заголовок */}
@@ -30,76 +64,81 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
         </div>
 
         {/* Карточки выбора */}
-        <div className="grid md:grid-cols-3 gap-5">
+        <div className="grid md:grid-cols-3 gap-6">
           {/* Сингл */}
           <button
             onClick={() => onSelectType('single')}
-            className="group relative rounded-2xl p-6 text-left overflow-hidden transition-all duration-500 hover:scale-[1.05] hover:-translate-y-2 will-change-transform"
-            style={{
-              background: 'linear-gradient(135deg, rgba(96, 80, 186, 0.15) 0%, rgba(74, 58, 154, 0.1) 100%)',
-              backdropFilter: 'blur(10px)',
-              border: '1px solid rgba(96, 80, 186, 0.3)',
-              transformStyle: 'preserve-3d',
-              perspective: '1000px',
-              backgroundColor: 'rgba(20, 20, 30, 0.5)'
-            }}
+            className="group relative rounded-3xl p-6 text-left overflow-hidden transition-all duration-500 hover:scale-[1.03] hover:-translate-y-2 will-change-transform bg-gradient-to-br from-zinc-900/90 via-zinc-900/80 to-black/90 backdrop-blur-xl border border-zinc-800/50 hover:border-purple-500/70 shadow-2xl hover:shadow-purple-500/20"
           >
-            {/* 3D Background layers */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#6050ba]/30 via-[#4a3a9a]/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" style={{ transform: 'translateZ(-10px)' }} />
+            {/* Фон карточки с анимированными градиентами */}
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-transparent to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute -top-20 -right-20 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl group-hover:bg-purple-500/20 transition-all duration-700" />
             
-            {/* Animated glow */}
-            <div className="absolute -inset-[1px] bg-gradient-to-r from-[#6050ba] via-[#8a6fff] to-[#6050ba] rounded-2xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 blur-sm" style={{ transform: 'translateZ(-5px)' }} />
+            {/* Светящийся эффект при наведении */}
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
             
-            {/* Shimmer wave */}
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+            {/* Блик */}
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
             </div>
             
-            {/* Popular badge */}
-            <div className="absolute -top-2 -right-2 px-4 py-1.5 bg-gradient-to-r from-[#7d6fd9] via-[#8a6fff] to-[#9d7fff] rounded-full text-xs font-black text-white shadow-lg shadow-[#8a6fff]/70 animate-pulse border border-white/20">
-              ⭐ ХИТ
+            {/* Бейдж ХИТ */}
+            <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 bg-gradient-to-r from-purple-500/30 to-pink-500/30 backdrop-blur-sm rounded-full text-[10px] font-bold text-purple-300 border border-purple-400/40 shadow-lg shadow-purple-500/20">
+              <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+              ХИТ
             </div>
             
-            <div className="relative" style={{ transform: 'translateZ(20px)' }}>
-              {/* Icon with 3D effect */}
-              <div className="w-14 h-14 bg-gradient-to-br from-[#6050ba] to-[#4a3a9a] rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-700 shadow-lg shadow-[#6050ba]/50 group-hover:shadow-2xl group-hover:shadow-[#6050ba]/70" style={{ transform: 'translateZ(30px)' }}>
-                <svg className="w-7 h-7 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="12" cy="12" r="10" />
-                  <polygon points="10 8 16 12 10 16 10 8" fill="currentColor" />
+            <div className="relative z-10">
+              {/* Icon с музыкальной ноткой */}
+              <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-purple-800 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-all duration-300 shadow-lg shadow-purple-500/30">
+                <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 18V5l12-2v13" />
+                  <circle cx="6" cy="18" r="3" />
+                  <circle cx="18" cy="16" r="3" />
                 </svg>
               </div>
 
-              {/* Text */}
-              <h3 className="text-2xl font-black mb-2 text-white group-hover:text-[#a78bfa] transition-colors duration-300">Сингл</h3>
-              <p className="text-zinc-400 text-xs mb-4 group-hover:text-zinc-300 transition-colors">
+              {/* Заголовок */}
+              <h3 className="text-xl font-black mb-1.5 text-white group-hover:text-purple-300 transition-colors duration-300">Сингл</h3>
+              <p className="text-zinc-400 text-xs mb-4 group-hover:text-zinc-300 transition-colors font-medium">
                 Один мощный трек
               </p>
 
-              {/* Features */}
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-xs text-zinc-400">
-                  <div className="w-4 h-4 rounded-full bg-[#6050ba]/20 flex items-center justify-center group-hover:bg-[#6050ba]/40 transition-colors">
-                    <svg className="w-2.5 h-2.5 text-[#6050ba]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+              {/* Особенности */}
+              <div className="space-y-2 mb-4">
+                <div className="flex items-center gap-2 text-xs">
+                  <div className="w-4 h-4 rounded-full bg-purple-500/20 flex items-center justify-center shrink-0">
+                    <svg className="w-2.5 h-2.5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <span className="font-semibold text-white">1 трек</span>
+                  <span className="font-bold text-white">1 трек</span>
                 </div>
-                <div className="flex items-center gap-2 text-xs text-zinc-400">
-                  <div className="w-4 h-4 rounded-full bg-[#6050ba]/20 flex items-center justify-center group-hover:bg-[#6050ba]/40 transition-colors">
-                    <svg className="w-2.5 h-2.5 text-[#6050ba]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                <div className="flex items-center gap-2 text-xs">
+                  <div className="w-4 h-4 rounded-full bg-purple-500/20 flex items-center justify-center shrink-0">
+                    <svg className="w-2.5 h-2.5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
                     </svg>
                   </div>
-                  <span className="font-bold text-[#6050ba]">500 ₽</span>
+                  <span className="font-bold text-purple-400">500 ₽</span>
                 </div>
               </div>
 
-              {/* Action button */}
-              <div className="mt-5 flex items-center justify-between px-3 py-2 bg-gradient-to-r from-[#6050ba]/20 to-transparent rounded-xl border border-[#6050ba]/30 group-hover:border-[#6050ba] group-hover:from-[#6050ba]/30 transition-all duration-300">
-                <span className="text-xs font-bold text-[#6050ba] group-hover:text-white transition-colors">Выбрать</span>
-                <svg className="w-4 h-4 text-[#6050ba] group-hover:text-white transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              {/* Итоговая стоимость */}
+              <div className="mb-3 p-2.5 bg-purple-500/10 rounded-lg border border-purple-500/20 backdrop-blur-sm">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wide">Итого</span>
+                  <span className="text-lg font-black text-purple-400">500 ₽</span>
+                </div>
+              </div>
+
+              {/* Кнопка выбора */}
+              <div className="flex items-center justify-between px-3 py-2 bg-gradient-to-r from-purple-600/20 to-purple-600/5 rounded-lg border border-purple-500/30 group-hover:border-purple-500 group-hover:bg-purple-600/30 transition-all duration-300">
+                <span className="text-xs font-bold text-white">Выбрать</span>
+                <svg className="w-4 h-4 text-purple-400 group-hover:text-white transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </div>
             </div>
@@ -108,75 +147,101 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
           {/* EP */}
           <button
             onClick={() => onSelectType('ep')}
-            className="group relative rounded-2xl p-6 text-left overflow-hidden transition-all duration-500 hover:scale-[1.05] hover:-translate-y-2 will-change-transform"
-            style={{
-              background: 'linear-gradient(135deg, rgba(125, 111, 217, 0.15) 0%, rgba(96, 80, 186, 0.1) 100%)',
-              backdropFilter: 'blur(10px)',
-              border: '1px solid rgba(125, 111, 217, 0.3)',
-              transformStyle: 'preserve-3d',
-              perspective: '1000px',
-              backgroundColor: 'rgba(20, 20, 30, 0.5)'
-            }}
+            className="group relative rounded-3xl p-6 text-left overflow-hidden transition-all duration-500 hover:scale-[1.03] hover:-translate-y-2 will-change-transform bg-gradient-to-br from-zinc-900/90 via-zinc-900/80 to-black/90 backdrop-blur-xl border border-zinc-800/50 hover:border-blue-500/70 shadow-2xl hover:shadow-blue-500/20"
           >
-            {/* 3D Background layers */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#7d6fd9]/30 via-[#6050ba]/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" style={{ transform: 'translateZ(-10px)' }} />
+            {/* Фон карточки с анимированными градиентами */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-900/30 via-transparent to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute -top-20 -right-20 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-all duration-700" />
             
-            {/* Animated glow */}
-            <div className="absolute -inset-[1px] bg-gradient-to-r from-[#7d6fd9] via-[#8a6fff] to-[#7d6fd9] rounded-2xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 blur-sm" style={{ transform: 'translateZ(-5px)' }} />
+            {/* Светящийся эффект при наведении */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
             
-            {/* Shimmer wave */}
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            {/* Блик */}
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
             </div>
             
-            <div className="relative" style={{ transform: 'translateZ(20px)' }}>
-              {/* Icon with 3D effect */}
-              <div className="w-14 h-14 bg-gradient-to-br from-[#7d6fd9] to-[#6050ba] rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-700 shadow-lg shadow-[#7d6fd9]/50 group-hover:shadow-2xl group-hover:shadow-[#7d6fd9]/70" style={{ transform: 'translateZ(30px)' }}>
-                <svg className="w-7 h-7 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M9 18V5l12-2v13" />
-                  <circle cx="6" cy="18" r="3" fill="currentColor" />
-                  <circle cx="18" cy="16" r="3" fill="currentColor" />
+            {/* Бейдж ХИТ */}
+            <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 bg-gradient-to-r from-blue-500/30 to-cyan-500/30 backdrop-blur-sm rounded-full text-[10px] font-bold text-blue-300 border border-blue-400/40 shadow-lg shadow-blue-500/20">
+              <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+              ХИТ
+            </div>
+            
+            <div className="relative z-10">
+              {/* Icon с пластинками */}
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-all duration-300 shadow-lg shadow-blue-500/30">
+                <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <circle cx="12" cy="12" r="3" />
+                  <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
                 </svg>
               </div>
 
-              {/* Text */}
-              <h3 className="text-2xl font-black mb-2 text-white group-hover:text-[#a78bfa] transition-colors duration-300">EP</h3>
-              <p className="text-zinc-400 text-xs mb-4 group-hover:text-zinc-300 transition-colors">
+              {/* Заголовок */}
+              <h3 className="text-xl font-black mb-1.5 text-white group-hover:text-blue-300 transition-colors duration-300">EP</h3>
+              <p className="text-zinc-400 text-xs mb-4 group-hover:text-zinc-300 transition-colors font-medium">
                 Мини-альбом 2-7 треков
               </p>
 
-              {/* Features */}
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-xs text-zinc-400">
-                  <div className="w-4 h-4 rounded-full bg-[#7d6fd9]/20 flex items-center justify-center group-hover:bg-[#7d6fd9]/40 transition-colors">
-                    <svg className="w-2.5 h-2.5 text-[#7d6fd9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <span className="font-semibold text-white">2-7 треков</span>
+              {/* Ползунок выбора количества треков */}
+              <div className="mb-4 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wide">Количество треков</span>
+                  <span className="text-xl font-black text-blue-400 tabular-nums">{epTracks}</span>
                 </div>
-                <div className="flex items-center gap-2 text-xs text-zinc-400">
-                  <div className="w-4 h-4 rounded-full bg-[#7d6fd9]/20 flex items-center justify-center group-hover:bg-[#7d6fd9]/40 transition-colors">
-                    <svg className="w-2.5 h-2.5 text-[#7d6fd9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                    </svg>
+                
+                <div className="relative pt-1" onClick={(e) => e.stopPropagation()}>
+                  <input
+                    type="range"
+                    min="2"
+                    max="7"
+                    value={epTracks}
+                    onChange={(e) => setEpTracks(Number(e.target.value))}
+                    className="w-full h-1.5 bg-zinc-800 rounded-lg appearance-none cursor-pointer slider-blue"
+                    style={{
+                      background: `linear-gradient(to right, rgb(59 130 246) 0%, rgb(59 130 246) ${((epTracks - 2) / 5) * 100}%, rgb(39 39 42) ${((epTracks - 2) / 5) * 100}%, rgb(39 39 42) 100%)`
+                    }}
+                  />
+                  <div className="flex justify-between mt-0.5 text-[9px] text-zinc-600 font-semibold">
+                    <span>2</span>
+                    <span>7</span>
                   </div>
-                  <span className="font-bold text-[#7d6fd9]">300 ₽/трек</span>
                 </div>
               </div>
 
-              {/* Price hint */}
-              <div className="mt-3 px-2 py-1.5 bg-[#7d6fd9]/10 rounded-lg border border-[#7d6fd9]/20">
-                <div className="text-[10px] text-zinc-500">
-                  💰 От 600₽ до 2100₽
+              {/* Особенности */}
+              <div className="space-y-2 mb-4">
+                <div className="flex items-center gap-2 text-xs">
+                  <div className="w-4 h-4 rounded-full bg-blue-500/20 flex items-center justify-center shrink-0">
+                    <svg className="w-2.5 h-2.5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                    </svg>
+                  </div>
+                  <span className="font-bold text-blue-400">300 ₽/трек</span>
                 </div>
               </div>
 
-              {/* Action button */}
-              <div className="mt-4 flex items-center justify-between px-3 py-2 bg-gradient-to-r from-[#7d6fd9]/20 to-transparent rounded-xl border border-[#7d6fd9]/30 group-hover:border-[#7d6fd9] group-hover:from-[#7d6fd9]/30 transition-all duration-300">
-                <span className="text-xs font-bold text-[#7d6fd9] group-hover:text-white transition-colors">Выбрать</span>
-                <svg className="w-4 h-4 text-[#7d6fd9] group-hover:text-white transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              {/* Итоговая стоимость */}
+              <div className="mb-3 p-2.5 bg-gradient-to-br from-blue-500/20 to-blue-500/5 rounded-lg border border-blue-500/30 backdrop-blur-sm transition-all duration-300">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wide">Итого к оплате</span>
+                  <div className="flex items-center gap-1">
+                    <AnimatedCounter value={epPrice} className="text-xl font-black text-blue-400 tabular-nums" />
+                    <span className="text-xl font-black text-blue-400">₽</span>
+                  </div>
+                </div>
+                <div className="text-[9px] text-zinc-500 text-right">
+                  {epTracks} {epTracks === 1 ? 'трек' : epTracks < 5 ? 'трека' : 'треков'} × 300₽
+                </div>
+              </div>
+
+              {/* Кнопка выбора */}
+              <div className="flex items-center justify-between px-3 py-2 bg-gradient-to-r from-blue-600/20 to-blue-600/5 rounded-lg border border-blue-500/30 group-hover:border-blue-500 group-hover:bg-blue-600/30 transition-all duration-300">
+                <span className="text-xs font-bold text-white">Выбрать</span>
+                <svg className="w-4 h-4 text-blue-400 group-hover:text-white transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </div>
             </div>
@@ -185,75 +250,103 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
           {/* Альбом */}
           <button
             onClick={() => onSelectType('album')}
-            className="group relative rounded-2xl p-6 text-left overflow-hidden transition-all duration-500 hover:scale-[1.05] hover:-translate-y-2 will-change-transform"
-            style={{
-              background: 'linear-gradient(135deg, rgba(138, 111, 255, 0.15) 0%, rgba(96, 80, 186, 0.1) 100%)',
-              backdropFilter: 'blur(10px)',
-              border: '1px solid rgba(138, 111, 255, 0.3)',
-              transformStyle: 'preserve-3d',
-              perspective: '1000px',
-              backgroundColor: 'rgba(20, 20, 30, 0.5)'
-            }}
+            className="group relative rounded-3xl p-6 text-left overflow-hidden transition-all duration-500 hover:scale-[1.03] hover:-translate-y-2 will-change-transform bg-gradient-to-br from-zinc-900/90 via-zinc-900/80 to-black/90 backdrop-blur-xl border border-zinc-800/50 hover:border-emerald-500/70 shadow-2xl hover:shadow-emerald-500/20"
           >
-            {/* 3D Background layers */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#8a6fff]/30 via-[#6050ba]/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" style={{ transform: 'translateZ(-10px)' }} />
+            {/* Фон карточки с анимированными градиентами */}
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/30 via-transparent to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute -top-20 -right-20 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl group-hover:bg-emerald-500/20 transition-all duration-700" />
             
-            {/* Animated glow */}
-            <div className="absolute -inset-[1px] bg-gradient-to-r from-[#8a6fff] via-[#7d6fd9] to-[#8a6fff] rounded-2xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 blur-sm" style={{ transform: 'translateZ(-5px)' }} />
+            {/* Светящий эффект при наведении */}
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
             
-            {/* Shimmer wave */}
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            {/* Блик */}
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
             </div>
             
-            <div className="relative" style={{ transform: 'translateZ(20px)' }}>
-              {/* Icon with 3D effect */}
-              <div className="w-14 h-14 bg-gradient-to-br from-[#8a6fff] to-[#6050ba] rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-700 shadow-lg shadow-[#8a6fff]/50 group-hover:shadow-2xl group-hover:shadow-[#8a6fff]/70" style={{ transform: 'translateZ(30px)' }}>
-                <svg className="w-7 h-7 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                  <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" />
-                  <polyline points="21 15 16 10 5 21" />
+            {/* Бейдж ЛУЧШЕЕ */}
+            <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 bg-gradient-to-r from-emerald-500/30 to-teal-500/30 backdrop-blur-sm rounded-full text-[10px] font-bold text-emerald-300 border border-emerald-400/40 shadow-lg shadow-emerald-500/20">
+              <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              ЛУЧШЕЕ
+            </div>
+            
+            <div className="relative z-10">
+              {/* Icon с альбомом */}
+              <div className="w-12 h-12 bg-gradient-to-br from-emerald-600 to-emerald-800 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-all duration-300 shadow-lg shadow-emerald-500/30">
+                <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M2 6h4M2 10h4M2 14h4M2 18h4" />
+                  <rect x="8" y="4" width="14" height="16" rx="2" />
+                  <line x1="12" y1="9" x2="18" y2="9" />
+                  <line x1="12" y1="13" x2="18" y2="13" />
+                  <line x1="12" y1="17" x2="18" y2="17" />
                 </svg>
               </div>
 
-              {/* Text */}
-              <h3 className="text-2xl font-black mb-2 text-white group-hover:text-[#a78bfa] transition-colors duration-300">Альбом</h3>
-              <p className="text-zinc-400 text-xs mb-4 group-hover:text-zinc-300 transition-colors">
+              {/* Заголовок */}
+              <h3 className="text-xl font-black mb-1.5 text-white group-hover:text-emerald-300 transition-colors duration-300">Альбом</h3>
+              <p className="text-zinc-400 text-xs mb-4 group-hover:text-zinc-300 transition-colors font-medium">
                 Полноценный релиз 8-50 треков
               </p>
 
-              {/* Features */}
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-xs text-zinc-400">
-                  <div className="w-4 h-4 rounded-full bg-[#8a6fff]/20 flex items-center justify-center group-hover:bg-[#8a6fff]/40 transition-colors">
-                    <svg className="w-2.5 h-2.5 text-[#8a6fff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <span className="font-semibold text-white">8-50 треков</span>
+              {/* Ползунок выбора количества треков */}
+              <div className="mb-4 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wide">Количество треков</span>
+                  <span className="text-xl font-black text-emerald-400 tabular-nums">{albumTracks}</span>
                 </div>
-                <div className="flex items-center gap-2 text-xs text-zinc-400">
-                  <div className="w-4 h-4 rounded-full bg-[#8a6fff]/20 flex items-center justify-center group-hover:bg-[#8a6fff]/40 transition-colors">
-                    <svg className="w-2.5 h-2.5 text-[#8a6fff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                    </svg>
+                
+                <div className="relative pt-1" onClick={(e) => e.stopPropagation()}>
+                  <input
+                    type="range"
+                    min="8"
+                    max="50"
+                    value={albumTracks}
+                    onChange={(e) => setAlbumTracks(Number(e.target.value))}
+                    className="w-full h-1.5 bg-zinc-800 rounded-lg appearance-none cursor-pointer slider-emerald"
+                    style={{
+                      background: `linear-gradient(to right, rgb(52 211 153) 0%, rgb(52 211 153) ${((albumTracks - 8) / 42) * 100}%, rgb(39 39 42) ${((albumTracks - 8) / 42) * 100}%, rgb(39 39 42) 100%)`
+                    }}
+                  />
+                  <div className="flex justify-between mt-0.5 text-[9px] text-zinc-600 font-semibold">
+                    <span>8</span>
+                    <span>50</span>
                   </div>
-                  <span className="font-bold text-[#8a6fff]">300 ₽/трек</span>
                 </div>
               </div>
 
-              {/* Price hint */}
-              <div className="mt-3 px-2 py-1.5 bg-[#8a6fff]/10 rounded-lg border border-[#8a6fff]/20">
-                <div className="text-[10px] text-zinc-500">
-                  🎵 От 2400₽ до 15000₽
+              {/* Особенности */}
+              <div className="space-y-2 mb-4">
+                <div className="flex items-center gap-2 text-xs">
+                  <div className="w-4 h-4 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0">
+                    <svg className="w-2.5 h-2.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                    </svg>
+                  </div>
+                  <span className="font-bold text-emerald-400">300 ₽/трек</span>
                 </div>
               </div>
 
-              {/* Action button */}
-              <div className="mt-4 flex items-center justify-between px-3 py-2 bg-gradient-to-r from-[#8a6fff]/20 to-transparent rounded-xl border border-[#8a6fff]/30 group-hover:border-[#8a6fff] group-hover:from-[#8a6fff]/30 transition-all duration-300">
-                <span className="text-xs font-bold text-[#8a6fff] group-hover:text-white transition-colors">Выбрать</span>
-                <svg className="w-4 h-4 text-[#8a6fff] group-hover:text-white transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              {/* Итоговая стоимость */}
+              <div className="mb-3 p-2.5 bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 rounded-lg border border-emerald-500/30 backdrop-blur-sm transition-all duration-300">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wide">Итого к оплате</span>
+                  <div className="flex items-center gap-1">
+                    <AnimatedCounter value={albumPrice} className="text-xl font-black text-emerald-400 tabular-nums" />
+                    <span className="text-xl font-black text-emerald-400">₽</span>
+                  </div>
+                </div>
+                <div className="text-[9px] text-zinc-500 text-right">
+                  {albumTracks} {albumTracks === 1 ? 'трек' : albumTracks < 5 ? 'трека' : 'треков'} × 300₽
+                </div>
+              </div>
+
+              {/* Кнопка выбора */}
+              <div className="flex items-center justify-between px-3 py-2 bg-gradient-to-r from-emerald-600/20 to-emerald-600/5 rounded-lg border border-emerald-500/30 group-hover:border-emerald-500 group-hover:bg-emerald-600/30 transition-all duration-300">
+                <span className="text-xs font-bold text-white">Выбрать</span>
+                <svg className="w-4 h-4 text-emerald-400 group-hover:text-white transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </div>
             </div>
@@ -261,31 +354,31 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
         </div>
 
         {/* Подсказка внизу */}
-        <div className="mt-6 flex justify-center">
-          <div className="inline-flex items-center gap-2.5 px-4 py-2 bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl">
-            <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#6050ba] to-[#8a6fff] flex items-center justify-center flex-shrink-0">
-              <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        <div className="mt-8 flex justify-center">
+          <div className="inline-flex items-center gap-3 px-5 py-3 bg-zinc-900/80 backdrop-blur-xl border border-zinc-800 rounded-xl shadow-xl">
+            <div className="w-7 h-7 rounded-full bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center shrink-0">
+              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <p className="text-xs text-zinc-400">
-              <strong className="text-white">Важно:</strong> EP от <span className="text-[#7d6fd9]">2 треков</span>, Альбом от <span className="text-[#8a6fff]">8 треков</span>
+            <p className="text-sm text-zinc-300">
+              <strong className="text-white font-bold">Важно:</strong> EP от <span className="text-blue-400 font-bold">2 треков</span>, Альбом от <span className="text-emerald-400 font-bold">8 треков</span>
             </p>
           </div>
         </div>
 
-        {/* Красивая кнопка Назад внизу */}
-        <div className="mt-8 flex justify-center">
+        {/* Кнопка Назад */}
+        <div className="mt-6 flex justify-center">
           <button
             onClick={onBack}
-            className="group flex items-center gap-3 px-6 py-3.5 bg-gradient-to-r from-zinc-800/80 via-zinc-700/80 to-zinc-800/80 hover:from-zinc-700 hover:via-zinc-600 hover:to-zinc-700 backdrop-blur-xl border border-zinc-600/50 hover:border-zinc-500 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-purple-500/20 hover:scale-105"
+            className="group flex items-center gap-3 px-6 py-3 bg-zinc-900/80 hover:bg-zinc-800 backdrop-blur-xl border border-zinc-800 hover:border-zinc-700 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
           >
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#6050ba] to-[#8a6fff] flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-purple-500/30">
-              <svg className="w-4 h-4 text-white group-hover:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600 to-purple-800 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <svg className="w-4 h-4 text-white group-hover:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
               </svg>
             </div>
-            <span className="text-base font-bold text-white group-hover:text-zinc-100 transition-colors">Назад</span>
+            <span className="text-base font-bold text-white">Назад</span>
           </button>
         </div>
       </div>

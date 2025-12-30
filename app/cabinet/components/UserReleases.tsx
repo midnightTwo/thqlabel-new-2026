@@ -21,9 +21,10 @@ interface UserReleasesProps {
   onOpenUpload?: () => void;
   userRole?: UserRole;
   showNotification?: (message: string, type: 'success' | 'error') => void;
+  onShowArchiveChange?: (showArchive: boolean) => void;
 }
 
-export default function UserReleases({ userId, nickname, onOpenUpload, userRole, showNotification }: UserReleasesProps) {
+export default function UserReleases({ userId, nickname, onOpenUpload, userRole, showNotification, onShowArchiveChange }: UserReleasesProps) {
   // Загрузка релизов
   const { releases, loading, tracksMap, setTracksMap, reloadReleases } = useReleases(userId);
   
@@ -69,7 +70,11 @@ export default function UserReleases({ userId, nickname, onOpenUpload, userRole,
     if (typeof window !== 'undefined') {
       localStorage.setItem('showArchive', filters.showArchive.toString());
     }
-  }, [filters.showArchive]);
+    // Уведомляем родительский компонент об изменении состояния архива
+    if (onShowArchiveChange) {
+      onShowArchiveChange(filters.showArchive);
+    }
+  }, [filters.showArchive, onShowArchiveChange]);
 
   // Обработчик клика по релизу
   const handleReleaseClick = async (release: Release) => {

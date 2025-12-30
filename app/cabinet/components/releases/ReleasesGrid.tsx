@@ -159,7 +159,10 @@ function EmptyState({
   const isEmpty = totalCount === 0;
 
   return (
-    <div className="col-span-full flex items-center justify-center py-24">
+    <div 
+      className="col-span-full flex items-center justify-center py-24" 
+      style={{ minHeight: showArchive ? 'auto' : '800px' }}
+    >
       <div className="text-center max-w-md">
         {/* Иконка */}
         <div className="relative inline-block mb-6">

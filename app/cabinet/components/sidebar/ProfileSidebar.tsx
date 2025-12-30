@@ -59,12 +59,13 @@ export default function ProfileSidebar({
     <>
       {/* Профиль */}
       <div className="mb-6">
-        {/* Аватар - кликабельный с эффектом медленного скролла */}
-        <div className="relative mb-5 flex justify-start">
+        {/* Аватар + Ник + Роль в одну строку */}
+        <div className="flex items-center gap-4 mb-4">
+          {/* Аватар - кликабельный с эффектом медленного скролла */}
           <button 
             ref={avatarRef}
             onClick={onShowAvatarModal}
-            className={`relative w-20 h-20 rounded-xl ${avatar ? '' : `bg-gradient-to-br ${config.color}`} flex items-center justify-center text-3xl font-black border-2 ${config.borderColor} ${role === 'exclusive' ? 'ring-2 ring-[#fbbf24] ring-offset-2 ring-offset-[#0d0d0f]' : role === 'admin' ? 'ring-2 ring-[#ff6b81] ring-offset-2 ring-offset-[#0d0d0f]' : ''} overflow-hidden cursor-pointer hover:opacity-80 transition-opacity group`}
+            className={`relative w-20 h-20 flex-shrink-0 rounded-xl ${avatar ? '' : `bg-gradient-to-br ${config.color}`} flex items-center justify-center text-3xl font-black border-2 ${config.borderColor} ${role === 'exclusive' ? 'ring-2 ring-[#fbbf24] ring-offset-2 ring-offset-[#0d0d0f]' : role === 'admin' ? 'ring-2 ring-[#ff6b81] ring-offset-2 ring-offset-[#0d0d0f]' : ''} overflow-hidden cursor-pointer hover:opacity-80 transition-opacity group`}
             style={{ 
               boxShadow: `0 0 30px ${config.glowColor}`,
               willChange: 'transform, opacity',
@@ -93,17 +94,19 @@ export default function ProfileSidebar({
               <span className="text-white text-xs font-bold">Изменить</span>
             </div>
           </button>
-        </div>
 
-        {/* Никнейм */}
-        <h3 className="text-xl font-black mb-3 text-left">{nickname}</h3>
-
-        {/* Статус */}
-        <div 
-          className={`inline-flex items-center px-4 py-2 rounded-lg text-[11px] font-black uppercase tracking-wider ${config.bgColor} ${config.textColor} border ${config.borderColor} ${role === 'exclusive' ? 'animate-pulse' : ''}`}
-          style={{ boxShadow: `0 0 15px ${config.glowColor}` }}
-        >
-          <span>{config.shortLabel}</span>
+          {/* Никнейм и роль */}
+          <div className="flex-1 min-w-0">
+            <h3 className="text-xl font-black mb-2 text-left truncate">{nickname}</h3>
+            
+            {/* Статус */}
+            <div 
+              className={`inline-flex items-center px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-wider ${config.bgColor} ${config.textColor} border ${config.borderColor} ${role === 'exclusive' ? 'animate-pulse' : ''}`}
+              style={{ boxShadow: `0 0 15px ${config.glowColor}` }}
+            >
+              <span>{config.shortLabel}</span>
+            </div>
+          </div>
         </div>
 
         {/* ID участника с копированием */}

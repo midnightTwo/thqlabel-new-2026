@@ -113,7 +113,7 @@ export default function AuthPage() {
         if (!profile) {
           throw new Error('Пользователь с таким никнеймом не найден');
         }
-        userEmail = profile.email;
+        userEmail = (profile && typeof profile === 'object' && 'email' in profile) ? (profile as any).email : null;
       }
 
       console.log('Отправка письма для восстановления пароля на:', userEmail);

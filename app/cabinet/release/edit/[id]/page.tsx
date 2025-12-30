@@ -290,9 +290,6 @@ export default function EditExclusiveReleasePage() {
         updateQuery = updateQuery.eq('user_id', user.id);
       }
       
-      // select() ДОЛЖЕН быть последним в цепочке
-      updateQuery = updateQuery.select();
-      
       const { error, data } = await updateQuery;
 
       if (error) {
@@ -304,14 +301,6 @@ export default function EditExclusiveReleasePage() {
       
       console.log('=== УСПЕШНОЕ СОХРАНЕНИЕ ===');
       console.log('Updated data:', data);
-      console.log('Количество обновленных строк:', data?.length || 0);
-      
-      if (!data || data.length === 0) {
-        console.error('ПРЕДУПРЕЖДЕНИЕ: Ни одна строка не была обновлена!');
-        console.error('Release ID:', releaseId);
-        console.error('User ID:', user.id);
-        console.error('Is Admin:', isAdmin);
-      }
 
       setIsFadingOut(false);
       setShowSuccessToast(true);
@@ -532,7 +521,6 @@ export default function EditExclusiveReleasePage() {
                 coverFile={coverFile}
                 setCoverFile={setCoverFile}
               existingCoverUrl={existingCoverUrl}
-              onBack={() => router.push('/cabinet')}
               onNext={() => setCurrentStep('tracklist')}
             />
           )}

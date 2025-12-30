@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { randomUUID } from 'crypto';
+import nodemailer from 'nodemailer';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
@@ -10,7 +11,7 @@ declare global {
   var resetTokensStore: Map<string, { email: string, expiresAt: number }> | undefined;
 }
 
-export const resetTokens = globalThis.resetTokensStore ?? new Map<string, { email: string, expiresAt: number }>();
+const resetTokens = globalThis.resetTokensStore ?? new Map<string, { email: string, expiresAt: number }>();
 
 if (process.env.NODE_ENV !== 'production') {
   globalThis.resetTokensStore = resetTokens;
@@ -68,8 +69,6 @@ export async function POST(request: NextRequest) {
     const resetLink = `http://localhost:3000/reset-password?token=${resetToken}`;
     
     // Отправляем email через Brevo
-    const nodemailer = require('nodemailer');
-    
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: parseInt(process.env.SMTP_PORT || '587'),

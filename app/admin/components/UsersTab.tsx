@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo, memo } from 'react';
 
 export default function UsersTab({ supabase, currentUserRole }: { supabase: any; currentUserRole: 'admin' | 'owner' }) {
   const [users, setUsers] = useState<any[]>([]);
@@ -236,13 +236,15 @@ export default function UsersTab({ supabase, currentUserRole }: { supabase: any;
     }
   };
 
-  const filteredUsers = users.filter(u => 
+  // Мемоизация фильтрации для производительности
+  const filteredUsers = useMemo(() => users.filter(u => 
     !search || 
     u.email?.toLowerCase().includes(search.toLowerCase()) ||
     u.nickname?.toLowerCase().includes(search.toLowerCase())
-  );
+  ), [users, search]);
 
-  const sortedUsers = [...filteredUsers].sort((a, b) => {
+  // Мемоизация сортировки для производительности
+  const sortedUsers = useMemo(() => [...filteredUsers].sort((a, b) => {
     let aVal: any = a[sortBy];
     let bVal: any = b[sortBy];
     
@@ -260,17 +262,25 @@ export default function UsersTab({ supabase, currentUserRole }: { supabase: any;
     if (aVal < bVal) return sortOrder === 'asc' ? -1 : 1;
     if (aVal > bVal) return sortOrder === 'asc' ? 1 : -1;
     return 0;
-  });
+  }), [filteredUsers, sortBy, sortOrder]);
 
-  const registeredOwners = users.filter((u: any) => u.role === 'owner');
-  const registeredAdmins = users.filter((u: any) => {
-    const role = (u.role && u.role !== '') ? u.role : 'basic';
-    return role === 'admin';
-  });
-  const registeredExclusive = users.filter((u: any) => {
-    const role = (u.role && u.role !== '') ? u.role : 'basic';
-    return role === 'exclusive';
-  });
+  // Мемоизация статистики ролей
+  const roleStats = useMemo(() => {
+    const owners = users.filter((u: any) => u.role === 'owner');
+    const admins = users.filter((u: any) => {
+      const role = (u.role && u.role !== '') ? u.role : 'basic';
+      return role === 'admin';
+    });
+    const exclusive = users.filter((u: any) => {
+      const role = (u.role && u.role !== '') ? u.role : 'basic';
+      return role === 'exclusive';
+    });
+    return { owners, admins, exclusive };
+  }, [users]);
+
+  const registeredOwners = roleStats.owners;
+  const registeredAdmins = roleStats.admins;
+  const registeredExclusive = roleStats.exclusive;
   const registeredBasic = users.filter((u: any) => {
     const role = (u.role && u.role !== '') ? u.role : 'basic';
     return role === 'basic';

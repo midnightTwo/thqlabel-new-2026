@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
@@ -157,10 +157,19 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const theme = themes[themeName];
+  // Мемоизация темы для предотвращения лишних ререндеров
+  const theme = useMemo(() => themes[themeName], [themeName]);
+  
+  // Мемоизация контекста
+  const contextValue = useMemo(() => ({ 
+    theme, 
+    themeName, 
+    setTheme: handleSetTheme, 
+    loading 
+  }), [theme, themeName, loading]);
 
   return (
-    <ThemeContext.Provider value={{ theme, themeName, setTheme: handleSetTheme, loading }}>
+    <ThemeContext.Provider value={contextValue}>
       {children}
     </ThemeContext.Provider>
   );

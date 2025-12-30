@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, memo } from 'react';
 import { useRouter } from 'next/navigation';
 import { SupabaseClient } from '@supabase/supabase-js';
 
@@ -22,6 +22,8 @@ interface Release {
   user_nickname?: string;
   tracks_count: number;
   user_role: 'basic' | 'exclusive';
+  upc?: string;
+  tracks?: any[];
 }
 
 interface ReleasesModerationProps {
@@ -1865,13 +1867,13 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                       </div>
                       <div className="space-y-2">
                         <button
-                          onClick={() => handlePaymentVerification(true)}
+                          onClick={() => handleVerifyPayment(true)}
                           className="w-full px-4 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white rounded-xl font-bold transition shadow-lg shadow-emerald-500/30"
                         >
                           ✓ Подтвердить платеж
                         </button>
                         <button
-                          onClick={() => handlePaymentVerification(false)}
+                          onClick={() => handleVerifyPayment(false)}
                           className="w-full px-4 py-3 bg-red-500/20 hover:bg-red-500/30 text-red-400 rounded-xl font-bold transition"
                         >
                           ✕ Отклонить платеж

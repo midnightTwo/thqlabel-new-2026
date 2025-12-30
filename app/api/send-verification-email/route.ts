@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { randomUUID } from 'crypto';
+import nodemailer from 'nodemailer';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
@@ -10,7 +11,7 @@ declare global {
   var verificationTokensStore: Map<string, { email: string, password: string, nickname: string, expiresAt: number }> | undefined;
 }
 
-export const verificationTokens = globalThis.verificationTokensStore ?? new Map<string, { email: string, password: string, nickname: string, expiresAt: number }>();
+const verificationTokens = globalThis.verificationTokensStore ?? new Map<string, { email: string, password: string, nickname: string, expiresAt: number }>();
 
 if (process.env.NODE_ENV !== 'production') {
   globalThis.verificationTokensStore = verificationTokens;
@@ -71,8 +72,6 @@ export async function POST(request: NextRequest) {
     const verificationLink = `${protocol}://${host}/api/verify-email?token=${verificationToken}`;
     
     // Отправляем email через Brevo
-    const nodemailer = require('nodemailer');
-    
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: parseInt(process.env.SMTP_PORT || '587'),

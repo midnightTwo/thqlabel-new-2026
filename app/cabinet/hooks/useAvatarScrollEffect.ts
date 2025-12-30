@@ -43,19 +43,29 @@ export function useAvatarScrollEffect() {
         progress = 0.3; // Максимальное значение эффекта
       }
 
-      // Вычисляем параметры анимации
-      const clipPercentage = Math.min(progress * 100, 30); // Максимум 30% обрезания
-      const translateY = progress * 15; // Смещение до 15px
-      const opacity = Math.max(1 - progress * 1.5, 0.7); // Минимум 70% прозрачности
+      // Вычисляем параметры анимации с округлением для уменьшения частоты обновлений
+      const clipPercentage = Math.round(Math.min(progress * 100, 30) * 10) / 10; // Округляем до 1 десятичного знака
+      const translateY = Math.round(progress * 15 * 10) / 10;
+      const opacity = Math.round(Math.max(1 - progress * 1.5, 0.7) * 100) / 100;
 
-      setTransform({
-        clipPath: `inset(${clipPercentage}% 0 0 0)`,
-        translateY,
-        opacity,
+      // Обновляем только если значения реально изменились
+      setTransform(prev => {
+        if (
+          Math.abs(parseFloat(prev.clipPath.match(/[\d.]+/)?.[0] || '0') - clipPercentage) < 0.5 &&
+          Math.abs(prev.translateY - translateY) < 0.5 &&
+          Math.abs(prev.opacity - opacity) < 0.01
+        ) {
+          return prev; // Не обновляем если изменения минимальны
+        }
+        return {
+          clipPath: `inset(${clipPercentage}% 0 0 0)`,
+          translateY,
+          opacity,
+        };
       });
     };
 
-    // Обработчик скролла с RAF для производительности
+    // Обработчик скролла с RAF для производительности и дебаунсингом
     const handleScroll = () => {
       lastKnownScrollPosition = window.scrollY;
 
@@ -81,7 +91,7 @@ export function useAvatarScrollEffect() {
       const diff = touchStartY - touchY;
       
       // Эмулируем скролл для обновления эффекта
-      if (Math.abs(diff) > 5) {
+      if (Math.abs(diff) > 10) { // Увеличен порог для уменьшения частоты обновлений
         handleScroll();
       }
     };

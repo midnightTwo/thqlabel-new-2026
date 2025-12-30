@@ -148,7 +148,7 @@ export default function AdminPage() {
       <div className="max-w-[1600px] mx-auto p-3 sm:p-4 md:p-6 lg:p-8 flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8 items-stretch relative z-10">
         
         {/* Sidebar - адаптивный */}
-        <aside className="w-full lg:w-64 bg-[#0d0d0f] border border-white/5 rounded-2xl sm:rounded-3xl p-3 sm:p-4 lg:p-5 flex flex-col lg:sticky lg:top-24 lg:h-[calc(100vh-8rem)]">
+        <aside className="w-full lg:w-64 backdrop-blur-xl bg-[#0d0d0f]/40 border border-white/10 rounded-2xl sm:rounded-3xl p-3 sm:p-4 lg:p-5 flex flex-col lg:sticky lg:top-24 lg:h-[calc(100vh-8rem)] shadow-2xl" style={{ boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)' }}>
           {/* Header */}
           <div className="mb-4 sm:mb-6">
             <div className="flex items-center justify-between gap-2 sm:gap-3 mb-2">
@@ -203,11 +203,11 @@ export default function AdminPage() {
                 className={`flex-shrink-0 lg:w-full text-left py-2 sm:py-2.5 px-2.5 sm:px-3 rounded-xl flex items-center gap-2 sm:gap-3 transition-all duration-300 whitespace-nowrap ${
                   activeTab === tab.id 
                     ? isMainTab 
-                      ? 'bg-gradient-to-r from-[#6050ba] to-[#8070da] text-white shadow-lg shadow-[#6050ba]/30 border border-[#9d8df1]/30' 
-                      : 'bg-[#6050ba] text-white shadow-lg shadow-[#6050ba]/20'
+                      ? 'bg-gradient-to-r from-[#6050ba]/30 to-[#8070da]/30 backdrop-blur-md text-white shadow-lg border border-[#9d8df1]/40' 
+                      : 'bg-[#6050ba]/30 backdrop-blur-md text-white shadow-lg border border-[#6050ba]/40'
                     : isMainTab
-                      ? 'text-white bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#6050ba]/30'
-                      : 'text-zinc-400 bg-white/5 hover:bg-white/10 hover:text-white border border-white/10 hover:border-[#6050ba]/30'
+                      ? 'text-white bg-white/5 backdrop-blur-sm hover:bg-white/10 border border-white/10 hover:border-[#6050ba]/30'
+                      : 'text-zinc-400 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:text-white border border-white/10 hover:border-[#6050ba]/30'
                 }`}
               >
                 <span className="text-base sm:text-lg">{tab.icon}</span>
@@ -220,7 +220,7 @@ export default function AdminPage() {
         </aside>
 
         {/* Content */}
-        <section className="flex-1 bg-[#0d0d0f] border border-white/5 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 min-h-[400px] sm:min-h-[600px]">
+        <section className="flex-1 backdrop-blur-xl bg-[#0d0d0f]/40 border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 min-h-[400px] sm:min-h-[600px] shadow-2xl" style={{ boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)' }}>
           <Suspense fallback={<TabLoader />}>
             {activeTab === 'demos' && <DemosTab />}
             {activeTab === 'releases' && <ReleasesModeration supabase={supabase} />}

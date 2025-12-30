@@ -37,7 +37,7 @@ const AnimatedCounter = ({ value, className }: { value: number; className?: stri
 };
 
 interface ReleaseTypeSelectorProps {
-  onSelectType: (type: 'single' | 'ep' | 'album') => void;
+  onSelectType: (type: 'single' | 'ep' | 'album', tracksCount?: number) => void;
   onBack: () => void;
 }
 
@@ -67,7 +67,7 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
         <div className="grid md:grid-cols-3 gap-6">
           {/* Сингл */}
           <button
-            onClick={() => onSelectType('single')}
+            onClick={() => onSelectType('single', 1)}
             className="group relative rounded-3xl p-6 text-left overflow-hidden transition-all duration-500 hover:scale-[1.03] hover:-translate-y-2 will-change-transform bg-gradient-to-br from-zinc-900/90 via-zinc-900/80 to-black/90 backdrop-blur-xl border border-zinc-800/50 hover:border-purple-500/70 shadow-2xl hover:shadow-purple-500/20"
           >
             {/* Фон карточки с анимированными градиентами */}
@@ -146,7 +146,7 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
 
           {/* EP */}
           <button
-            onClick={() => onSelectType('ep')}
+            onClick={() => onSelectType('ep', epTracks)}
             className="group relative rounded-3xl p-6 text-left overflow-hidden transition-all duration-500 hover:scale-[1.03] hover:-translate-y-2 will-change-transform bg-gradient-to-br from-zinc-900/90 via-zinc-900/80 to-black/90 backdrop-blur-xl border border-zinc-800/50 hover:border-blue-500/70 shadow-2xl hover:shadow-blue-500/20"
           >
             {/* Фон карточки с анимированными градиентами */}
@@ -189,7 +189,7 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
               <div className="mb-4 space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wide">Количество треков</span>
-                  <span className="text-xl font-black text-blue-400 tabular-nums">{epTracks}</span>
+                  <AnimatedCounter value={epTracks} className="text-xl font-black text-blue-400 tabular-nums" />
                 </div>
                 
                 <div className="relative pt-1" onClick={(e) => e.stopPropagation()}>
@@ -232,8 +232,9 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
                     <span className="text-xl font-black text-blue-400">₽</span>
                   </div>
                 </div>
-                <div className="text-[9px] text-zinc-500 text-right">
-                  {epTracks} {epTracks === 1 ? 'трек' : epTracks < 5 ? 'трека' : 'треков'} × 300₽
+                <div className="text-[9px] text-zinc-500 text-right flex items-center justify-end gap-1">
+                  <AnimatedCounter value={epTracks} className="tabular-nums" />
+                  <span>{epTracks === 1 ? 'трек' : epTracks < 5 ? 'трека' : 'треков'} × 300₽</span>
                 </div>
               </div>
 
@@ -249,7 +250,7 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
 
           {/* Альбом */}
           <button
-            onClick={() => onSelectType('album')}
+            onClick={() => onSelectType('album', albumTracks)}
             className="group relative rounded-3xl p-6 text-left overflow-hidden transition-all duration-500 hover:scale-[1.03] hover:-translate-y-2 will-change-transform bg-gradient-to-br from-zinc-900/90 via-zinc-900/80 to-black/90 backdrop-blur-xl border border-zinc-800/50 hover:border-emerald-500/70 shadow-2xl hover:shadow-emerald-500/20"
           >
             {/* Фон карточки с анимированными градиентами */}
@@ -294,7 +295,7 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
               <div className="mb-4 space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wide">Количество треков</span>
-                  <span className="text-xl font-black text-emerald-400 tabular-nums">{albumTracks}</span>
+                  <AnimatedCounter value={albumTracks} className="text-xl font-black text-emerald-400 tabular-nums" />
                 </div>
                 
                 <div className="relative pt-1" onClick={(e) => e.stopPropagation()}>
@@ -337,8 +338,9 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
                     <span className="text-xl font-black text-emerald-400">₽</span>
                   </div>
                 </div>
-                <div className="text-[9px] text-zinc-500 text-right">
-                  {albumTracks} {albumTracks === 1 ? 'трек' : albumTracks < 5 ? 'трека' : 'треков'} × 300₽
+                <div className="text-[9px] text-zinc-500 text-right flex items-center justify-end gap-1">
+                  <AnimatedCounter value={albumTracks} className="tabular-nums" />
+                  <span>{albumTracks === 1 ? 'трек' : albumTracks < 5 ? 'трека' : 'треков'} × 300₽</span>
                 </div>
               </div>
 

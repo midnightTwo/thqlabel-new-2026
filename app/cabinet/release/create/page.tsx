@@ -21,6 +21,7 @@ function StepsSidebar({
   currentStep, 
   setCurrentStep,
   releaseTitle,
+  releaseType,
   genre,
   coverFile,
   tracksCount,
@@ -31,6 +32,7 @@ function StepsSidebar({
   currentStep: string; 
   setCurrentStep: (step: string) => void;
   releaseTitle: string;
+  releaseType: ReleaseType | null;
   genre: string;
   coverFile: File | null;
   tracksCount: number;
@@ -83,7 +85,78 @@ function StepsSidebar({
       <aside className="hidden lg:flex lg:w-64 w-full bg-[#0d0d0f] border border-white/5 rounded-3xl p-6 flex-col lg:self-start lg:sticky lg:top-24">
         <div className="mb-6">
           <h3 className="font-bold text-lg">Создание релиза</h3>
+          <p className="text-xs text-zinc-500 mt-1">Exclusive Plan</p>
         </div>
+        
+        {/* Индикатор типа релиза */}
+        {releaseType && (
+          <div className="mb-4 p-4 bg-gradient-to-br from-purple-500/10 to-blue-500/10 border border-purple-500/20 rounded-xl relative overflow-hidden group hover:border-purple-500/40 transition-all">
+            {/* Фоновый блик */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+            
+            <div className="relative z-10">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-xs font-semibold text-zinc-400 uppercase tracking-wide">Формат</span>
+                <button
+                  onClick={() => setCurrentStep('type')}
+                  className="flex items-center gap-1.5 px-2.5 py-1 bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/30 hover:border-purple-500/50 rounded-lg text-xs font-semibold text-purple-400 hover:text-purple-300 transition-all group/btn"
+                  title="Изменить тип релиза"
+                >
+                  <svg className="w-3.5 h-3.5 group-hover/btn:rotate-90 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                  <span>Изменить</span>
+                </button>
+              </div>
+              
+              <div className="flex items-center gap-2.5">
+                {/* Иконка типа */}
+                <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
+                  releaseType === 'single' ? 'bg-purple-500/20' :
+                  releaseType === 'ep' ? 'bg-blue-500/20' :
+                  'bg-emerald-500/20'
+                }`}>
+                  {releaseType === 'single' && (
+                    <svg className="w-4 h-4 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <path d="M9 18V5l12-2v13" />
+                      <circle cx="6" cy="18" r="3" />
+                      <circle cx="18" cy="16" r="3" />
+                    </svg>
+                  )}
+                  {releaseType === 'ep' && (
+                    <svg className="w-4 h-4 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <circle cx="12" cy="12" r="10" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                  )}
+                  {releaseType === 'album' && (
+                    <svg className="w-4 h-4 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    </svg>
+                  )}
+                </div>
+                
+                {/* Текст */}
+                <div className="flex-1">
+                  <div className="font-black text-base text-white mb-0.5">
+                    {releaseType === 'single' && 'Сингл'}
+                    {releaseType === 'ep' && 'EP'}
+                    {releaseType === 'album' && 'Альбом'}
+                  </div>
+                  <div className={`text-xs font-medium ${
+                    releaseType === 'single' ? 'text-purple-400' :
+                    releaseType === 'ep' ? 'text-blue-400' :
+                    'text-emerald-400'
+                  }`}>
+                    {releaseType === 'single' && '1 трек'}
+                    {releaseType === 'ep' && '2-7 треков'}
+                    {releaseType === 'album' && '8-50 треков'}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
         
         <div className="space-y-2">
           {steps.map((step, idx) => {
@@ -448,6 +521,7 @@ export default function CreateReleasePage() {
           currentStep={currentStep} 
           setCurrentStep={setCurrentStep}
           releaseTitle={releaseTitle}
+          releaseType={releaseType}
           genre={genre}
           coverFile={coverFile}
           tracksCount={tracks.length}
@@ -508,6 +582,7 @@ export default function CreateReleasePage() {
           {currentStep === 'tracklist' && (
             <TracklistStep
               releaseTitle={releaseTitle}
+              releaseType={releaseType}
               tracks={tracks}
               setTracks={setTracks}
               currentTrack={currentTrack}

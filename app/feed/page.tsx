@@ -95,6 +95,21 @@ const AnimatedCounter = memo(({ end, duration = 2500, suffix = '' }: { end: numb
 
 AnimatedCounter.displayName = 'AnimatedCounter';
 
+// Функция для очистки Markdown-разметки из текста
+const cleanMarkdown = (text: string): string => {
+  if (!text) return '';
+  return text
+    .replace(/^#{1,6}\s+/gm, '') // Удаляем заголовки (# ## ### и т.д.)
+    .replace(/\*\*(.+?)\*\*/g, '$1') // Удаляем жирный текст
+    .replace(/\*(.+?)\*/g, '$1') // Удаляем курсив
+    .replace(/`(.+?)`/g, '$1') // Удаляем код
+    .replace(/\[(.+?)\]\(.+?\)/g, '$1') // Заменяем ссылки на текст
+    .replace(/^>\s+/gm, '') // Удаляем цитаты
+    .replace(/^-\s+/gm, '') // Удаляем маркеры списка
+    .replace(/\n+/g, ' ') // Заменяем переносы строк на пробелы
+    .trim();
+};
+
 // Функция для детерминированных псевдослучайных значений
 const seededRandom = (seed: number) => {
   const x = Math.sin(seed * 9999) * 10000;
@@ -502,65 +517,72 @@ export default function FeedPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 h-full py-4">
           
           {/* Левая колонка - Текст, кнопки и релизы (компактно) */}
-          <div className="lg:col-span-3 flex flex-col justify-between">
+          <div className="lg:col-span-3 flex flex-col justify-between h-full">
             <div className={`transition-all duration-1000 ${mounted ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-              {/* Текст и кнопки */}
-              <h1 className="text-xl md:text-2xl lg:text-3xl font-black text-white mb-3 lg:mb-4 leading-tight">
-                Продвигаем вашу музыку на новый уровень
-              </h1>
-              <p className="text-xs md:text-sm lg:text-base text-white/80 mb-4 lg:mb-5 leading-relaxed">
-                Полный спектр услуг для артистов: дистрибуция, маркетинг, PR и синхронизация.
-              </p>
+              {/* Текст и кнопки с стеклянным эффектом */}
+              <div className="backdrop-blur-sm bg-white/5 rounded-2xl p-4 lg:p-6 border border-white/10 shadow-2xl">
+                <h1 className="text-xl md:text-2xl lg:text-3xl font-black bg-gradient-to-r from-white via-[#c4b5fd] to-white bg-clip-text text-transparent mb-3 lg:mb-4 leading-tight">
+                  Продвигаем вашу музыку на новый уровень
+                </h1>
+                <p className="text-xs md:text-sm lg:text-base text-white/90 mb-4 lg:mb-5 leading-relaxed">
+                  Полный спектр услуг для артистов: дистрибуция, маркетинг, PR и синхронизация.
+                </p>
 
-              {/* Кнопки */}
-              <div className="flex flex-wrap gap-2 lg:gap-3 mb-4">
-                <Link 
-                  href="/cabinet"
-                  className="px-4 lg:px-5 py-2 lg:py-2.5 rounded-lg text-[10px] lg:text-xs font-bold uppercase tracking-wider transition-all hover:scale-105 text-white"
-                  style={{
-                    background: 'linear-gradient(135deg, #6050ba 0%, #9d8df1 100%)',
-                  }}
-                >
-                  Кабинет
-                </Link>
-                
-                <button 
-                  onClick={() => setServicesModalOpen(true)}
-                  className="px-4 lg:px-5 py-2 lg:py-2.5 border border-white/30 rounded-lg text-[10px] lg:text-xs font-bold uppercase tracking-wider hover:bg-white/10 transition-all text-white"
-                >
-                  Услуги лейбла
-                </button>
+                {/* Кнопки в одну строку */}
+                <div className="flex gap-2 lg:gap-3">
+                  <Link 
+                    href="/cabinet"
+                    className="flex-1 px-4 lg:px-5 py-2.5 lg:py-3 rounded-xl text-xs lg:text-sm font-bold uppercase tracking-wider transition-all hover:scale-105 hover:shadow-2xl text-white shadow-lg text-center"
+                    style={{
+                      background: 'linear-gradient(135deg, #6050ba 0%, #9d8df1 100%)',
+                      boxShadow: '0 10px 40px rgba(96, 80, 186, 0.4)',
+                    }}
+                  >
+                    Кабинет
+                  </Link>
+                  
+                  <button 
+                    onClick={() => setServicesModalOpen(true)}
+                    className="flex-1 px-4 lg:px-5 py-2.5 lg:py-3 backdrop-blur-md bg-white/10 border border-white/30 rounded-xl text-xs lg:text-sm font-bold uppercase tracking-wider hover:bg-white/20 transition-all text-white hover:scale-105 shadow-lg"
+                  >
+                    Услуги
+                  </button>
+                </div>
               </div>
             </div>
 
-            {/* Релизы внизу */}
-            <div className={`mt-auto pt-4 transition-all duration-1000 delay-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-              <h2 className="text-[10px] font-black text-white uppercase mb-1.5">
-                Популярные Релизы
-              </h2>
-              <div className="grid grid-cols-3 gap-1.5">
-                {RELEASES.slice(0, 6).map((release) => (
-                  <div 
-                    key={release.id}
-                    className="group rounded overflow-hidden transition-all hover:scale-105"
-                    style={{
-                      background: 'rgba(96, 80, 186, 0.08)',
-                      border: '1px solid rgba(157, 141, 241, 0.25)',
-                    }}
-                  >
-                    <div className="relative aspect-square overflow-hidden">
-                      <img 
-                        src={release.cover} 
-                        alt={release.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform"
-                      />
+            {/* Релизы - подняты выше */}
+            <div className={`mb-8 transition-all duration-1000 delay-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+              <div className="backdrop-blur-sm bg-white/5 rounded-2xl p-3 lg:p-4 border border-white/10 shadow-xl">
+                <h2 className="text-xs font-black bg-gradient-to-r from-[#9d8df1] to-[#c4b5fd] bg-clip-text text-transparent uppercase mb-3">
+                  Популярные Релизы
+                </h2>
+                <div className="grid grid-cols-3 gap-2">
+                  {RELEASES.slice(0, 6).map((release) => (
+                    <div 
+                      key={release.id}
+                      className="group rounded-xl overflow-hidden transition-all hover:scale-105 hover:shadow-2xl"
+                      style={{
+                        background: 'rgba(96, 80, 186, 0.15)',
+                        border: '1px solid rgba(157, 141, 241, 0.3)',
+                        boxShadow: '0 4px 15px rgba(96, 80, 186, 0.2)',
+                      }}
+                    >
+                      <div className="relative aspect-square overflow-hidden">
+                        <img 
+                          src={release.cover} 
+                          alt={release.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
+                      <div className="p-2 bg-gradient-to-b from-black/60 to-black/80">
+                        <p className="text-[10px] font-bold text-white truncate leading-tight">{release.title}</p>
+                        <p className="text-[9px] text-[#c4b5fd] font-semibold truncate leading-tight">{release.artist}</p>
+                      </div>
                     </div>
-                    <div className="p-1">
-                      <p className="text-[8px] font-bold text-white truncate">{release.title}</p>
-                      <p className="text-[7px] text-[#9d8df1] font-semibold truncate">{release.artist}</p>
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -569,13 +591,17 @@ export default function FeedPage() {
           <div className="lg:col-span-6 flex flex-col justify-center items-center">
             {/* Логотип чуть выше центра */}
             <div className={`relative mb-6 transition-all duration-1000 delay-200 ${mounted ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-              <div className="absolute inset-0 blur-[100px] opacity-70 bg-gradient-to-br from-[#6050ba] via-[#9d8df1] to-[#c4b5fd]" style={{ animation: 'glow-pulse 3s ease-in-out infinite' }} />
+              <div 
+                className="absolute inset-0 blur-[120px] opacity-70 bg-gradient-to-br from-[#6050ba] via-[#9d8df1] to-[#c4b5fd]" 
+                style={{ animation: 'logo-glow 4s ease-in-out infinite' }} 
+              />
               <img 
                 src="/logo.png" 
                 alt="thqlabel" 
-                className="relative z-10 w-full max-w-[500px] lg:max-w-[650px] h-auto object-contain"
+                className="relative z-10 w-full max-w-[700px] lg:max-w-[900px] h-auto object-contain"
                 style={{ 
                   filter: 'drop-shadow(0 0 60px rgba(96,80,186,0.9))',
+                  animation: 'logo-float 6s ease-in-out infinite, logo-pulse 3s ease-in-out infinite',
                 }}
                 loading="eager"
                 decoding="async"
@@ -661,7 +687,7 @@ export default function FeedPage() {
                       {item.title}
                     </h3>
                     {item.content && (
-                      <p className="text-white/60 text-[10px] line-clamp-2">{item.content.substring(0, 60)}...</p>
+                      <p className="text-white/60 text-[10px] line-clamp-2">{cleanMarkdown(item.content).substring(0, 80)}...</p>
                     )}
                   </Link>
                 )) : (

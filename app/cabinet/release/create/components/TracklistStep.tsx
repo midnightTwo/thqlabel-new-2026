@@ -13,6 +13,7 @@ interface Track {
 
 interface TracklistStepProps {
   releaseTitle: string;
+  releaseType?: 'single' | 'ep' | 'album' | null;
   tracks: Track[];
   setTracks: (tracks: Track[]) => void;
   currentTrack: number | null;
@@ -39,6 +40,7 @@ interface TracklistStepProps {
 
 export default function TracklistStep({
   releaseTitle,
+  releaseType,
   tracks,
   setTracks,
   currentTrack,
@@ -131,7 +133,27 @@ export default function TracklistStep({
     <div className="animate-fade-up">
       <div className="mb-6">
         <h2 className="text-3xl font-black uppercase tracking-tight">Треклист</h2>
-        <p className="text-sm text-zinc-500 mt-1">Добавьте треки в ваш релиз</p>
+        <p className="text-sm text-zinc-500 mt-1">
+          {releaseType === 'single' && 'Добавьте трек в ваш сингл (макс. 1)'}
+          {releaseType === 'ep' && 'Добавьте треки в ваш EP (от 2 до 7)'}
+          {releaseType === 'album' && 'Добавьте треки в ваш альбом (от 8 до 50)'}
+          {!releaseType && 'Добавьте треки в ваш релиз'}
+        </p>
+        
+        {/* Счетчик треков */}
+        {releaseType && tracks.length > 0 && (
+          <div className="mt-3 inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-purple-500/20 to-blue-500/20 border border-purple-500/30 rounded-lg">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polygon points="10 8 16 12 10 16 10 8"/>
+            </svg>
+            <span className="text-sm font-semibold">
+              {releaseType === 'single' && `Треков: ${tracks.length} / 1`}
+              {releaseType === 'ep' && `Треков: ${tracks.length} / 7 (минимум 2)`}
+              {releaseType === 'album' && `Треков: ${tracks.length} / 50 (минимум 8)`}
+            </span>
+          </div>
+        )}
       </div>
 
       {currentTrack === null ? (

@@ -6,4 +6,5 @@ export { default as PlatformsStep } from './PlatformsStep';
 export { default as PromoStep } from './PromoStep';
 export { default as SendStep } from './SendStep';
 export { default as ReleaseTypeSelector } from './ReleaseTypeSelector';
+export { default as CoverUploader } from './CoverUploader';
 

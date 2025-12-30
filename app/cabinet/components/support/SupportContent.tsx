@@ -77,7 +77,8 @@ export default function SupportContent({ onClose, onUpdateUnreadCount }: Support
       {/* Кнопка создания тикета */}
       <button
         onClick={() => setShowCreateForm(true)}
-        className="w-full py-3.5 px-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl font-bold text-sm transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02] flex items-center justify-center gap-2"
+        className="w-full py-3.5 px-4 bg-gradient-to-r from-blue-500/30 to-purple-500/30 backdrop-blur-md hover:from-blue-500/40 hover:to-purple-500/40 border border-white/20 text-white rounded-xl font-bold text-sm transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02] flex items-center justify-center gap-2"
+        style={{ boxShadow: '0 8px 32px 0 rgba(59, 130, 246, 0.3)' }}
       >
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -90,7 +91,7 @@ export default function SupportContent({ onClose, onUpdateUnreadCount }: Support
         <h3 className="text-sm font-bold text-zinc-400 uppercase tracking-wider">Ваши тикеты</h3>
         <button
           onClick={loadTickets}
-          className="p-2 bg-zinc-800 hover:bg-zinc-700 rounded-lg transition-colors"
+          className="p-2 bg-white/5 backdrop-blur-md hover:bg-white/10 border border-white/10 rounded-lg transition-all"
           title="Обновить"
         >
           <svg className="w-4 h-4 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -105,7 +106,7 @@ export default function SupportContent({ onClose, onUpdateUnreadCount }: Support
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
         </div>
       ) : error ? (
-        <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 text-sm">
+        <div className="p-4 bg-red-500/10 backdrop-blur-md border border-red-500/30 rounded-lg text-red-400 text-sm">
           {error}
         </div>
       ) : tickets.length === 0 ? (

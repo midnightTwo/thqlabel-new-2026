@@ -32,7 +32,8 @@ export default function SupportSidebar({ isOpen, onClose, onOpen, unreadCount, o
         <div className="fixed bottom-6 right-6 z-[9999]">
           <div 
             onClick={onOpen}
-            className="relative bg-gradient-to-br from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 border-2 border-blue-400/30 rounded-full shadow-2xl p-3 cursor-pointer transition-all hover:scale-110 group"
+            className="relative bg-gradient-to-br from-blue-500/20 to-purple-500/20 backdrop-blur-md hover:from-blue-500/30 hover:to-purple-500/30 border border-white/20 rounded-full shadow-2xl p-3 cursor-pointer transition-all hover:scale-110 group"
+            style={{ boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)' }}
             title="Открыть поддержку"
           >
             <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -50,7 +51,7 @@ export default function SupportSidebar({ isOpen, onClose, onOpen, unreadCount, o
       {/* Overlay */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-black/10 backdrop-blur-[2px] z-[9998]"
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[9998]"
           onClick={onClose}
         />
       )}
@@ -59,15 +60,16 @@ export default function SupportSidebar({ isOpen, onClose, onOpen, unreadCount, o
       <div
         className="fixed top-0 right-0 h-full w-[380px] z-[9999] transform transition-all duration-500 ease-in-out"
         style={{
-          background: scrolled ? 'rgb(24, 24, 27)' : 'transparent',
-          borderLeft: scrolled ? '1px solid rgb(39, 39, 42)' : '1px solid transparent',
-          boxShadow: scrolled ? '0 0 50px rgba(0,0,0,0.5)' : 'none',
-          backdropFilter: scrolled ? 'blur(20px)' : 'none',
+          background: 'rgba(24, 24, 27, 0.7)',
+          borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
+          boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
           transform: isOpen ? 'translateX(0)' : 'translateX(100%)',
         }}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-zinc-800 bg-zinc-900/95">
+        <div className="flex items-center justify-between p-4 border-b border-white/10 bg-zinc-900/40 backdrop-blur-md">
           <h2 className="text-base font-bold text-white flex items-center gap-2">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />

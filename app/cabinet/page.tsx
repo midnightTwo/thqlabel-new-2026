@@ -481,15 +481,17 @@ export default function CabinetPage() {
           style={{
             borderRadius: scrolled ? '24px' : '16px 0 0 0',
             top: '70px',
-            padding: scrolled ? '24px' : '24px 24px 24px 24px',
-            marginTop: scrolled ? '0px' : '0px',
+            padding: '24px',
+            marginTop: '0px',
             height: scrolled ? 'fit-content' : 'calc(100vh - 70px)',
-            maxHeight: scrolled ? 'none' : 'calc(100vh - 70px)',
+            maxHeight: scrolled ? 'calc(100vh - 70px)' : 'calc(100vh - 70px)',
             borderTop: scrolled ? '1px solid rgba(157, 141, 241, 0.15)' : '1px solid transparent',
             borderRight: scrolled ? '1px solid rgba(157, 141, 241, 0.08)' : '1px solid transparent',
             borderBottom: scrolled ? '1px solid rgba(157, 141, 241, 0.08)' : '1px solid transparent',
             boxSizing: 'border-box',
-            transition: 'border-radius 0.5s ease, height 1s cubic-bezier(0.4, 0, 0.2, 1), max-height 1s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.5s ease',
+            transition: 'border-radius 0.3s ease, height 0.3s ease, border-color 0.3s ease',
+            willChange: 'border-radius, height, border-color',
+            overflow: 'hidden auto',
           }}
           data-animate="sidebar"
         >

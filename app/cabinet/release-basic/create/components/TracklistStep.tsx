@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+interface AudioMetadata {
+  format: string;
+  duration?: number;
+  bitrate?: string;
+  sampleRate?: string;
+  size: number;
+}
 
 interface Track {
   title: string;
   link: string;
+  audioFile?: File | null;
+  audioMetadata?: AudioMetadata | null;
   hasDrugs: boolean;
   lyrics: string;
   language: string;
@@ -13,6 +23,8 @@ interface Track {
 
 interface TracklistStepProps {
   releaseTitle: string;
+  releaseType?: 'single' | 'ep' | 'album' | null;
+  selectedTracksCount?: number;
   tracks: Track[];
   setTracks: (tracks: Track[]) => void;
   currentTrack: number | null;
@@ -21,6 +33,10 @@ interface TracklistStepProps {
   setTrackTitle: (value: string) => void;
   trackLink: string;
   setTrackLink: (value: string) => void;
+  trackAudioFile?: File | null;
+  setTrackAudioFile?: (value: File | null) => void;
+  trackAudioMetadata?: AudioMetadata | null;
+  setTrackAudioMetadata?: (value: AudioMetadata | null) => void;
   trackHasDrugs: boolean;
   setTrackHasDrugs: (value: boolean) => void;
   trackLyrics: string;
@@ -39,6 +55,8 @@ interface TracklistStepProps {
 
 export default function TracklistStep({
   releaseTitle,
+  releaseType,
+  selectedTracksCount,
   tracks,
   setTracks,
   currentTrack,
@@ -47,6 +65,10 @@ export default function TracklistStep({
   setTrackTitle,
   trackLink,
   setTrackLink,
+  trackAudioFile,
+  setTrackAudioFile,
+  trackAudioMetadata,
+  setTrackAudioMetadata,
   trackHasDrugs,
   setTrackHasDrugs,
   trackLyrics,
@@ -64,6 +86,103 @@ export default function TracklistStep({
 }: TracklistStepProps) {
   const [draggedIndex, setDraggedIndex] = React.useState<number | null>(null);
   const [dragOverIndex, setDragOverIndex] = React.useState<number | null>(null);
+  const [uploadError, setUploadError] = useState<string>('');
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+
+  // Функция для анализа аудиофайла
+  const analyzeAudioFile = async (file: File): Promise<AudioMetadata | null> => {
+    try {
+      setIsAnalyzing(true);
+      setUploadError('');
+
+      // Проверка расширения файла
+      const fileName = file.name.toLowerCase();
+      const isWav = fileName.endsWith('.wav');
+      const isFlac = fileName.endsWith('.flac');
+      
+      if (!isWav && !isFlac) {
+        setUploadError('❌ MP3 не принимается. Загрузите WAV или FLAC');
+        return null;
+      }
+
+      // Базовая метаинформация
+      const metadata: AudioMetadata = {
+        format: isWav ? 'WAV' : 'FLAC',
+        size: file.size,
+      };
+
+      // Попытка получить duration через Web Audio API
+      try {
+        const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+        const arrayBuffer = await file.arrayBuffer();
+        const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+        
+        metadata.duration = audioBuffer.duration;
+        metadata.sampleRate = `${audioBuffer.sampleRate / 1000} kHz`;
+        
+        // Проверка частоты дискретизации
+        if (audioBuffer.sampleRate < 44100) {
+          setUploadError(`⚠️ Частота дискретизации слишком низкая: ${audioBuffer.sampleRate / 1000} kHz. Минимум: 44.1 kHz`);
+          return null;
+        }
+        
+        audioContext.close();
+      } catch (e) {
+        console.warn('Не удалось получить метаданные через Web Audio API:', e);
+      }
+
+      return metadata;
+    } catch (error) {
+      console.error('Ошибка анализа файла:', error);
+      setUploadError('Ошибка анализа файла');
+      return null;
+    } finally {
+      setIsAnalyzing(false);
+    }
+  };
+
+  // Обработчик загрузки аудиофайла
+  const handleAudioFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const metadata = await analyzeAudioFile(file);
+    if (metadata && setTrackAudioFile && setTrackAudioMetadata) {
+      setTrackAudioFile(file);
+      setTrackAudioMetadata(metadata);
+    } else if (!metadata) {
+      // Если файл не прошел валидацию, сбрасываем input
+      e.target.value = '';
+      if (setTrackAudioFile) setTrackAudioFile(null);
+      if (setTrackAudioMetadata) setTrackAudioMetadata(null);
+    }
+  };
+
+  // Функция форматирования размера файла
+  const formatFileSize = (bytes: number): string => {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+  };
+
+  // Функция форматирования длительности
+  const formatDuration = (seconds: number): string => {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  // Определяем максимальное количество треков
+  const getMaxTracks = () => {
+    if (releaseType === 'single') return 1;
+    if (releaseType === 'ep') return selectedTracksCount || 7;
+    if (releaseType === 'album') return selectedTracksCount || 50;
+    return 50;
+  };
+
+  const maxTracks = getMaxTracks();
 
   const handleDragStart = (index: number) => {
     setDraggedIndex(index);
@@ -131,7 +250,29 @@ export default function TracklistStep({
     <div className="animate-fade-up">
       <div className="mb-6">
         <h2 className="text-3xl font-black uppercase tracking-tight">Треклист</h2>
-        <p className="text-sm text-zinc-500 mt-1">Добавьте треки в ваш релиз</p>
+        <p className="text-sm text-zinc-500 mt-1">
+          {releaseType === 'single' && 'Добавьте трек в ваш сингл (макс. 1)'}
+          {releaseType === 'ep' && selectedTracksCount && `Добавьте треки в ваш EP (макс. ${selectedTracksCount})`}
+          {releaseType === 'ep' && !selectedTracksCount && 'Добавьте треки в ваш EP (от 2 до 7)'}
+          {releaseType === 'album' && selectedTracksCount && `Добавьте треки в ваш альбом (макс. ${selectedTracksCount})`}
+          {releaseType === 'album' && !selectedTracksCount && 'Добавьте треки в ваш альбом (от 8 до 50)'}
+          {!releaseType && 'Добавьте треки в ваш релиз'}
+        </p>
+        
+        {/* Счетчик треков */}
+        {releaseType && tracks.length > 0 && (
+          <div className="mt-3 inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-purple-500/20 to-blue-500/20 border border-purple-500/30 rounded-lg">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polygon points="10 8 16 12 10 16 10 8"/>
+            </svg>
+            <span className="text-sm font-semibold">
+              {releaseType === 'single' && `Треков: ${tracks.length} / 1`}
+              {releaseType === 'ep' && `Треков: ${tracks.length} / ${maxTracks} (минимум 2)`}
+              {releaseType === 'album' && `Треков: ${tracks.length} / ${maxTracks} (минимум 8)`}
+            </span>
+          </div>
+        )}
       </div>
 
       {currentTrack === null ? (
@@ -252,6 +393,8 @@ export default function TracklistStep({
                           setCurrentTrack(idx);
                           setTrackTitle(track.title);
                           setTrackLink(track.link);
+                          if (setTrackAudioFile) setTrackAudioFile(track.audioFile || null);
+                          if (setTrackAudioMetadata) setTrackAudioMetadata(track.audioMetadata || null);
                           setTrackHasDrugs(track.hasDrugs);
                           setTrackLyrics(track.lyrics);
                           setTrackLanguage(track.language);
@@ -301,12 +444,94 @@ export default function TracklistStep({
           )}
 
           <button
-            onClick={() => setCurrentTrack(tracks.length)}
-            className="w-full px-6 py-6 bg-white/[0.02] hover:bg-[#6050ba]/10 border-2 border-dashed border-white/10 hover:border-[#6050ba]/50 rounded-2xl font-bold transition flex items-center justify-center gap-3"
+            onClick={() => {
+              // Проверка ограничений для каждого типа
+              if (releaseType === 'single' && tracks.length >= 1) {
+                alert('❌ Для сингла можно добавить только 1 трек');
+                return;
+              }
+              if (releaseType === 'ep' && tracks.length >= maxTracks) {
+                alert(`❌ Для EP вы выбрали максимум ${maxTracks} треков`);
+                return;
+              }
+              if (releaseType === 'album' && tracks.length >= maxTracks) {
+                alert(`❌ Для альбома вы выбрали максимум ${maxTracks} треков`);
+                return;
+              }
+              setCurrentTrack(tracks.length);
+            }}
+            disabled={
+              (releaseType === 'single' && tracks.length >= 1) ||
+              (releaseType === 'ep' && tracks.length >= maxTracks) ||
+              (releaseType === 'album' && tracks.length >= maxTracks)
+            }
+            className={`w-full px-6 py-6 border-2 border-dashed rounded-2xl font-bold transition flex items-center justify-center gap-3 ${
+              (releaseType === 'single' && tracks.length >= 1) ||
+              (releaseType === 'ep' && tracks.length >= maxTracks) ||
+              (releaseType === 'album' && tracks.length >= maxTracks)
+                ? 'bg-white/[0.02] border-white/5 text-zinc-600 cursor-not-allowed'
+                : 'bg-white/[0.02] hover:bg-[#6050ba]/10 border-white/10 hover:border-[#6050ba]/50'
+            }`}
           >
             <span className="text-2xl">+</span>
-            <span>Добавить трек</span>
+            <span>
+              {releaseType === 'single' && tracks.length >= 1 
+                ? 'Сингл может содержать только 1 трек'
+                : releaseType === 'ep' && tracks.length >= maxTracks
+                  ? `Вы выбрали максимум ${maxTracks} треков для EP`
+                  : releaseType === 'album' && tracks.length >= maxTracks
+                    ? `Вы выбрали максимум ${maxTracks} треков для альбома`
+                    : 'Добавить трек'}
+            </span>
           </button>
+          
+          {/* Подсказки для разных типов */}
+          {releaseType === 'single' && tracks.length === 1 && (
+            <div className="flex items-start gap-3 p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-emerald-400 flex-shrink-0 mt-0.5" strokeWidth="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 16v-4M12 8h.01"/>
+              </svg>
+              <div className="text-sm">
+                <div className="font-semibold text-emerald-400 mb-1">✓ Сингл готов</div>
+                <div className="text-emerald-300/80">Название трека автоматически совпадает с названием релиза</div>
+              </div>
+            </div>
+          )}
+          
+          {releaseType === 'ep' && tracks.length < 2 && (
+            <div className="flex items-start gap-3 p-4 bg-orange-500/10 border border-orange-500/20 rounded-xl">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-orange-400 flex-shrink-0 mt-0.5" strokeWidth="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 8v4M12 16h.01"/>
+              </svg>
+              <div className="text-sm">
+                <div className="font-semibold text-orange-400 mb-1">⚠️ Требования для EP</div>
+                <div className="text-orange-300/80">
+                  Минимум: 2 трека • Максимум: {maxTracks} треков
+                  <br />
+                  Нужно добавить ещё {2 - tracks.length} трек{2 - tracks.length === 1 ? '' : 'а'}
+                </div>
+              </div>
+            </div>
+          )}
+          
+          {releaseType === 'album' && tracks.length < 8 && (
+            <div className="flex items-start gap-3 p-4 bg-orange-500/10 border border-orange-500/20 rounded-xl">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-orange-400 flex-shrink-0 mt-0.5" strokeWidth="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 8v4M12 16h.01"/>
+              </svg>
+              <div className="text-sm">
+                <div className="font-semibold text-orange-400 mb-1">⚠️ Требования для Альбома</div>
+                <div className="text-orange-300/80">
+                  Минимум: 8 треков • Максимум: {maxTracks} треков
+                  <br />
+                  Нужно добавить ещё {8 - tracks.length} треков
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Кнопки навигации */}
           <div className="mt-8 pt-6 border-t border-white/10 flex justify-between">
@@ -315,8 +540,27 @@ export default function TracklistStep({
               Назад
             </button>
             <button 
-              onClick={onNext}
-              disabled={tracks.length === 0}
+              onClick={() => {
+                // Валидация минимального количества треков
+                if (releaseType === 'ep' && tracks.length < 2) {
+                  alert('❌ Для EP требуется минимум 2 трека');
+                  return;
+                }
+                if (releaseType === 'album' && tracks.length < 8) {
+                  alert('❌ Для альбома требуется минимум 8 треков');
+                  return;
+                }
+                if (tracks.length === 0) {
+                  alert('❌ Добавьте хотя бы один трек');
+                  return;
+                }
+                onNext();
+              }}
+              disabled={
+                tracks.length === 0 ||
+                (releaseType === 'ep' && tracks.length < 2) ||
+                (releaseType === 'album' && tracks.length < 8)
+              }
               className="px-8 py-3 bg-[#6050ba] hover:bg-[#7060ca] disabled:opacity-50 disabled:cursor-not-allowed rounded-xl font-bold transition flex items-center gap-2"
             >
               Далее
@@ -342,24 +586,126 @@ export default function TracklistStep({
           <div>
             <label className="text-sm text-zinc-400 mb-2 block">
               Название трека *
-              {((tracks.length === 1 && currentTrack < tracks.length) || (tracks.length === 0 && currentTrack === 0)) && (
+              {releaseType === 'single' && (
+                <span className="ml-2 text-xs text-emerald-400">(Автоматически совпадает с названием сингла)</span>
+              )}
+              {((tracks.length === 1 && currentTrack < tracks.length) || (tracks.length === 0 && currentTrack === 0)) && releaseType !== 'single' && (
                 <span className="ml-2 text-xs text-emerald-400">(Автоматически совпадает с названием релиза)</span>
               )}
             </label>
             <input 
-              value={(tracks.length === 1 && currentTrack < tracks.length) || (tracks.length === 0 && currentTrack === 0) ? releaseTitle : trackTitle} 
+              value={releaseType === 'single' || (tracks.length === 1 && currentTrack < tracks.length) || (tracks.length === 0 && currentTrack === 0) ? releaseTitle : trackTitle} 
               onChange={(e) => setTrackTitle(e.target.value)} 
               placeholder={releaseTitle || "Введите название"}
-              disabled={(tracks.length === 1 && currentTrack < tracks.length) || (tracks.length === 0 && currentTrack === 0)}
+              disabled={releaseType === 'single' || (tracks.length === 1 && currentTrack < tracks.length) || (tracks.length === 0 && currentTrack === 0)}
               className={`w-full px-4 py-3 bg-gradient-to-br from-white/[0.07] to-white/[0.03] placeholder:text-zinc-600 rounded-xl border border-white/10 outline-none transition-all ${
-                ((tracks.length === 1 && currentTrack < tracks.length) || (tracks.length === 0 && currentTrack === 0)) ? 'opacity-60 cursor-not-allowed ring-2 ring-emerald-500/20' : 'hover:border-white/20 focus:border-[#6050ba] focus:ring-2 focus:ring-[#6050ba]/20'
+                releaseType === 'single' || ((tracks.length === 1 && currentTrack < tracks.length) || (tracks.length === 0 && currentTrack === 0)) ? 'opacity-60 cursor-not-allowed ring-2 ring-emerald-500/20' : 'hover:border-white/20 focus:border-[#6050ba] focus:ring-2 focus:ring-[#6050ba]/20'
               }`}
             />
           </div>
 
           <div>
-            <label className="text-sm text-zinc-400 mb-2 block">Ссылка на трек (Яндекс Диск / Google Drive) *</label>
-            <input value={trackLink} onChange={(e) => setTrackLink(e.target.value)} placeholder="https://..." className="w-full px-4 py-3 bg-gradient-to-br from-white/[0.07] to-white/[0.03] placeholder:text-zinc-600 rounded-xl border border-white/10 outline-none" />
+            <label className="text-sm text-zinc-400 mb-2 block">
+              Аудиофайл трека * 
+              <span className="ml-2 text-xs text-zinc-500">(WAV или FLAC, минимум 44.1kHz)</span>
+            </label>
+            
+            {/* Загрузчик файла */}
+            <div className="space-y-3">
+              <label className="flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-br from-white/[0.07] to-white/[0.03] border-2 border-dashed border-white/20 rounded-xl cursor-pointer hover:border-purple-500/50 hover:bg-white/10 transition-all group">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-zinc-400 group-hover:text-purple-400 transition" strokeWidth="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="17 8 12 3 7 8"/>
+                  <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+                <div className="text-center">
+                  <div className="text-sm font-medium text-white group-hover:text-purple-300 transition">
+                    {trackAudioFile ? trackAudioFile.name : 'Нажмите для выбора файла'}
+                  </div>
+                  <div className="text-xs text-zinc-500 mt-1">
+                    Только WAV или FLAC
+                  </div>
+                </div>
+                <input 
+                  type="file" 
+                  accept=".wav,.flac,audio/wav,audio/x-wav,audio/flac"
+                  onChange={handleAudioFileChange}
+                  className="hidden"
+                  disabled={isAnalyzing}
+                />
+              </label>
+
+              {/* Индикатор загрузки */}
+              {isAnalyzing && (
+                <div className="flex items-center gap-2 px-4 py-3 bg-blue-500/10 border border-blue-500/20 rounded-xl">
+                  <svg className="animate-spin h-5 w-5 text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  <span className="text-sm text-blue-400">Анализ файла...</span>
+                </div>
+              )}
+
+              {/* Ошибка валидации */}
+              {uploadError && (
+                <div className="flex items-start gap-2 px-4 py-3 bg-red-500/10 border border-red-500/20 rounded-xl">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-red-400 flex-shrink-0 mt-0.5" strokeWidth="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                  </svg>
+                  <span className="text-sm text-red-400">{uploadError}</span>
+                </div>
+              )}
+
+              {/* Метаданные файла */}
+              {trackAudioFile && trackAudioMetadata && !uploadError && (
+                <div className="p-4 bg-gradient-to-br from-emerald-500/10 to-blue-500/10 border border-emerald-500/20 rounded-xl">
+                  <div className="flex items-center gap-2 mb-3">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-emerald-400" strokeWidth="2">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    <span className="text-sm font-bold text-emerald-400">Файл загружен</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3 text-xs">
+                    <div>
+                      <div className="text-zinc-500 mb-1">Формат</div>
+                      <div className="font-mono text-white bg-white/5 px-2 py-1 rounded">{trackAudioMetadata.format}</div>
+                    </div>
+                    <div>
+                      <div className="text-zinc-500 mb-1">Размер</div>
+                      <div className="font-mono text-white bg-white/5 px-2 py-1 rounded">{formatFileSize(trackAudioMetadata.size)}</div>
+                    </div>
+                    {trackAudioMetadata.duration && (
+                      <div>
+                        <div className="text-zinc-500 mb-1">Длительность</div>
+                        <div className="font-mono text-white bg-white/5 px-2 py-1 rounded">{formatDuration(trackAudioMetadata.duration)}</div>
+                      </div>
+                    )}
+                    {trackAudioMetadata.sampleRate && (
+                      <div>
+                        <div className="text-zinc-500 mb-1">Частота</div>
+                        <div className="font-mono text-white bg-white/5 px-2 py-1 rounded">{trackAudioMetadata.sampleRate}</div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* Опциональное поле для ссылки */}
+              <div className="pt-2">
+                <label className="text-sm text-zinc-400 mb-2 block">
+                  Или ссылка на файл 
+                  <span className="ml-2 text-xs text-zinc-500">(Яндекс Диск / Google Drive - опционально)</span>
+                </label>
+                <input 
+                  value={trackLink} 
+                  onChange={(e) => setTrackLink(e.target.value)} 
+                  placeholder="https://..." 
+                  className="w-full px-4 py-3 bg-gradient-to-br from-white/[0.07] to-white/[0.03] placeholder:text-zinc-600 rounded-xl border border-white/10 outline-none hover:border-white/20 focus:border-[#6050ba] focus:ring-2 focus:ring-[#6050ba]/20 transition-all" 
+                />
+              </div>
+            </div>
           </div>
 
           <div>
@@ -507,10 +853,22 @@ export default function TracklistStep({
                   return;
                 }
                 
-                if (!finalTitle || !finalTitle.trim() || !trackLink || !trackLink.trim()) { alert('Заполните название и ссылку'); return; }
+                // Валидация: нужен либо файл, либо ссылка
+                if (!finalTitle || !finalTitle.trim()) { 
+                  alert('Заполните название трека'); 
+                  return; 
+                }
+                
+                if (!trackAudioFile && (!trackLink || !trackLink.trim())) { 
+                  alert('Загрузите аудиофайл или укажите ссылку на трек'); 
+                  return; 
+                }
+                
                 const newTrack = { 
                   title: finalTitle, 
-                  link: trackLink, 
+                  link: trackLink,
+                  audioFile: trackAudioFile || undefined,
+                  audioMetadata: trackAudioMetadata || undefined,
                   hasDrugs: trackHasDrugs, 
                   lyrics: trackLyrics, 
                   language: trackLanguage,
@@ -525,7 +883,10 @@ export default function TracklistStep({
                 }
                 setCurrentTrack(null); 
                 setTrackTitle(''); 
-                setTrackLink(''); 
+                setTrackLink('');
+                if (setTrackAudioFile) setTrackAudioFile(null);
+                if (setTrackAudioMetadata) setTrackAudioMetadata(null);
+                setUploadError('');
                 setTrackHasDrugs(false); 
                 setTrackLyrics(''); 
                 setTrackLanguage('');
@@ -540,7 +901,10 @@ export default function TracklistStep({
             <button onClick={() => { 
               setCurrentTrack(null); 
               setTrackTitle(''); 
-              setTrackLink(''); 
+              setTrackLink('');
+              if (setTrackAudioFile) setTrackAudioFile(null);
+              if (setTrackAudioMetadata) setTrackAudioMetadata(null);
+              setUploadError('');
               setTrackHasDrugs(false); 
               setTrackLyrics(''); 
               setTrackLanguage('');

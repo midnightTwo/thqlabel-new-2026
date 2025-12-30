@@ -207,10 +207,10 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
 
   return (
     <div className="flex flex-col h-full">
-      <div className="p-4 border-b border-zinc-800">
+      <div className="p-4 border-b border-white/10 bg-white/5 backdrop-blur-md">
         <button
           onClick={onBack}
-          className="mb-3 px-3 py-2 flex items-center gap-2 text-zinc-300 bg-zinc-800/50 hover:bg-zinc-700/70 rounded-lg transition-all duration-200 border border-zinc-700/50 hover:border-zinc-600 group"
+          className="mb-3 px-3 py-2 flex items-center gap-2 text-zinc-300 bg-white/5 backdrop-blur-md hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-lg transition-all duration-200 group"
         >
           <svg className="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -273,11 +273,13 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
                   </div>
                 </div>
 
-                <div className={`px-3 py-2 rounded-lg ${
+                <div className={`px-3 py-2 rounded-lg backdrop-blur-md border ${
                   isFromAdmin
-                    ? 'bg-gradient-to-br from-green-500/20 to-emerald-500/20 border border-green-500/30'
-                    : 'bg-gradient-to-br from-blue-500/20 to-indigo-500/20 border border-blue-500/30'
-                }`}>
+                    ? 'bg-green-500/20 border-green-500/40'
+                    : 'bg-blue-500/20 border-blue-500/40'
+                }`}
+                style={{ boxShadow: isFromAdmin ? '0 4px 16px 0 rgba(34, 197, 94, 0.2)' : '0 4px 16px 0 rgba(59, 130, 246, 0.2)' }}
+                >
                   {msg.message && <p className="text-sm text-white whitespace-pre-wrap break-words">{msg.message}</p>}
 
                   {msg.images && msg.images.length > 0 && (
@@ -336,7 +338,7 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
 
         {adminTyping && (
           <div className="flex justify-start px-4 py-1 animate-fade-in">
-            <div className="bg-zinc-800/50 rounded-lg px-3 py-1.5 border border-zinc-700/50">
+            <div className="bg-white/5 backdrop-blur-md rounded-lg px-3 py-1.5 border border-white/10">
               <div className="flex items-center gap-2">
                 <span className="text-xs text-zinc-300">{adminTypingName}</span>
                 <span className="text-[10px] text-zinc-500">печатает</span>
@@ -353,7 +355,7 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
 
       {/* Input */}
       {ticket.status !== 'closed' && (
-        <div className="p-4 border-t border-zinc-800">
+        <div className="p-4 border-t border-white/10 bg-white/5 backdrop-blur-md">
           <form onSubmit={handleSendMessage} className="space-y-3">
             <textarea
               value={newMessage}
@@ -376,14 +378,14 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
                 }
               }}
               placeholder="Отправить сообщение"
-              className="w-full px-3 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-sm text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+              className="w-full px-3 py-2 bg-white/5 backdrop-blur-md border border-white/10 rounded-lg text-sm text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 resize-none"
               rows={2}
             />
 
             <div className="flex items-center gap-2">
               <label className="flex-1 cursor-pointer">
                 <input type="file" accept="image/*" multiple onChange={handleImageUpload} disabled={uploading} className="hidden" />
-                <div className="px-3 py-2 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 rounded-lg text-sm text-zinc-400 hover:text-white transition-colors flex items-center gap-2">
+                <div className="px-3 py-2 bg-white/5 backdrop-blur-md hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-lg text-sm text-zinc-400 hover:text-white transition-all flex items-center gap-2">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
@@ -394,7 +396,8 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
               <button
                 type="submit"
                 disabled={sending || uploading || (!newMessage.trim() && images.length === 0)}
-                className="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                className="px-4 py-2 bg-gradient-to-r from-blue-500/40 to-purple-500/40 backdrop-blur-md hover:from-blue-500/50 hover:to-purple-500/50 border border-white/20 text-white rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                style={{ boxShadow: '0 4px 16px 0 rgba(59, 130, 246, 0.3)' }}
               >
                 {sending ? (
                   <>
@@ -432,7 +435,7 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
             )}
 
             {error && (
-              <div className="p-2 bg-red-500/10 border border-red-500/20 rounded text-red-400 text-xs">{error}</div>
+              <div className="p-2 bg-red-500/10 backdrop-blur-md border border-red-500/30 rounded text-red-400 text-xs">{error}</div>
             )}
           </form>
         </div>

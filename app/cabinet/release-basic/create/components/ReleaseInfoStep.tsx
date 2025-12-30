@@ -1,5 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
+import CoverUploaderNew from './CoverUploaderNew';
 
 interface ReleaseInfoStepProps {
   releaseTitle: string;
@@ -59,17 +60,6 @@ export default function ReleaseInfoStep({
   onNext,
 }: ReleaseInfoStepProps) {
   const [showGenreDropdown, setShowGenreDropdown] = useState(false);
-  const [coverError, setCoverError] = useState('');
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  
-  const handleCoverClick = () => {
-    fileInputRef.current?.click();
-  };
-  
-  const handleDeleteCover = () => {
-    setCoverFile(null);
-    setCoverError('');
-  };
   
   const genres = [
     'Поп',
@@ -373,159 +363,10 @@ export default function ReleaseInfoStep({
         {/* Правая колонка - обложка */}
         <div className="lg:w-80">
           <label className="text-sm text-zinc-400 mb-3 block font-medium">Обложка *</label>
-          <div className={`w-full aspect-square rounded-2xl overflow-hidden transition-all duration-300 flex items-center justify-center relative ${
-            coverFile || existingCoverUrl 
-              ? 'shadow-2xl shadow-purple-500/30 border-2 border-white/20 hover:border-[#6050ba] hover:shadow-purple-500/50' 
-              : 'bg-gradient-to-br from-white/[0.03] to-white/[0.01] border-2 border-white/10 hover:border-[#6050ba] hover:bg-white/[0.02] hover:shadow-xl hover:shadow-[#6050ba]/30'
-          }`}>
-            {/* Внутренняя рамка для загруженных изображений */}
-            {(coverFile || existingCoverUrl) && (
-              <div className="absolute inset-1 rounded-xl border border-white/10 pointer-events-none"></div>
-            )}
-            {coverFile ? (
-              <div className="group relative w-full h-full">
-                <img src={URL.createObjectURL(coverFile)} alt="cover" className="object-cover w-full h-full" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center gap-3">
-                  <button 
-                    type="button" 
-                    onClick={(e) => { e.stopPropagation(); handleCoverClick(); }} 
-                    className="group/btn relative overflow-hidden p-3 bg-gradient-to-br from-white/30 to-white/10 hover:from-[#6050ba] hover:to-[#7060ca] rounded-2xl border border-white/30 hover:border-[#6050ba] transition-all duration-300 hover:scale-110 hover:rotate-3 hover:shadow-2xl hover:shadow-[#6050ba]/60 active:scale-95"
-                    title="Заменить обложку"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700"></div>
-                    <svg className="w-5 h-5 text-white drop-shadow-2xl relative z-10 group-hover/btn:rotate-180 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-                    </svg>
-                    <div className="absolute inset-0 rounded-2xl bg-[#6050ba] opacity-0 group-hover/btn:opacity-30 blur-2xl transition-all duration-300"></div>
-                  </button>
-                  <button 
-                    type="button" 
-                    onClick={(e) => { e.stopPropagation(); handleDeleteCover(); }} 
-                    className="group/btn relative overflow-hidden p-3 bg-gradient-to-br from-white/30 to-white/10 hover:from-red-500 hover:to-red-600 rounded-2xl border border-white/30 hover:border-red-400 transition-all duration-300 hover:scale-110 hover:-rotate-3 hover:shadow-2xl hover:shadow-red-500/60 active:scale-95"
-                    title="Удалить обложку"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700"></div>
-                    <svg className="w-5 h-5 text-white drop-shadow-2xl relative z-10 group-hover/btn:scale-110 group-hover/btn:rotate-12 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                    </svg>
-                    <div className="absolute inset-0 rounded-2xl bg-red-500 opacity-0 group-hover/btn:opacity-30 blur-2xl transition-all duration-300"></div>
-                  </button>
-                </div>
-              </div>
-            ) : existingCoverUrl ? (
-              <div className="group relative w-full h-full">
-                <img src={existingCoverUrl} alt="cover" className="object-cover w-full h-full" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center gap-3">
-                  <button 
-                    type="button" 
-                    onClick={(e) => { e.stopPropagation(); handleCoverClick(); }} 
-                    className="group/btn relative overflow-hidden p-3 bg-gradient-to-br from-white/30 to-white/10 hover:from-[#6050ba] hover:to-[#7060ca] rounded-2xl border border-white/30 hover:border-[#6050ba] transition-all duration-300 hover:scale-110 hover:rotate-3 hover:shadow-2xl hover:shadow-[#6050ba]/60 active:scale-95"
-                    title="Заменить обложку"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700"></div>
-                    <svg className="w-5 h-5 text-white drop-shadow-2xl relative z-10 group-hover/btn:rotate-180 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-                    </svg>
-                    <div className="absolute inset-0 rounded-2xl bg-[#6050ba] opacity-0 group-hover/btn:opacity-30 blur-2xl transition-all duration-300"></div>
-                  </button>
-                  <button 
-                    type="button" 
-                    onClick={(e) => { e.stopPropagation(); handleDeleteCover(); }} 
-                    className="group/btn relative overflow-hidden p-3 bg-gradient-to-br from-white/30 to-white/10 hover:from-red-500 hover:to-red-600 rounded-2xl border border-white/30 hover:border-red-400 transition-all duration-300 hover:scale-110 hover:-rotate-3 hover:shadow-2xl hover:shadow-red-500/60 active:scale-95"
-                    title="Удалить обложку"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700"></div>
-                    <svg className="w-5 h-5 text-white drop-shadow-2xl relative z-10 group-hover/btn:scale-110 group-hover/btn:rotate-12 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                    </svg>
-                    <div className="absolute inset-0 rounded-2xl bg-red-500 opacity-0 group-hover/btn:opacity-30 blur-2xl transition-all duration-300"></div>
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-3 rounded-2xl bg-white/5 flex items-center justify-center">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-zinc-400">
-                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" strokeWidth="2"/>
-                    <circle cx="8.5" cy="8.5" r="1.5" strokeWidth="2"/>
-                    <polyline points="21 15 16 10 5 21" strokeWidth="2"/>
-                  </svg>
-                </div>
-                <div className="text-zinc-300 mb-1 text-sm font-medium">Загрузите обложку</div>
-                <div className="text-[11px] text-zinc-500 mb-4">JPG/PNG • 3000×3000 • до 10 МБ</div>
-                <label className="inline-flex items-center px-4 py-2 bg-[#6050ba] hover:bg-[#7060ca] rounded-xl cursor-pointer text-sm font-medium transition">
-                  <input
-                    type="file" 
-                    accept="image/png, image/jpeg" 
-                    className="hidden" 
-                    onChange={(e) => { 
-                      const f = e.target.files?.[0]; 
-                      if(f) {
-                        // Проверка типа файла
-                        const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg'];
-                        if(!allowedTypes.includes(f.type)) {
-                          setCoverError('Можно загружать только изображения формата JPG или PNG');
-                          setCoverFile(null);
-                          e.target.value = '';
-                          return;
-                        }
-                        
-                        // Проверка размера файла
-                        const maxSize = 10 * 1024 * 1024; // 10 МБ в байтах
-                        if(f.size > maxSize) {
-                          setCoverError('Максимальный размер файла должен быть до 10 МБ');
-                          setCoverFile(null);
-                          e.target.value = '';
-                        } else {
-                          setCoverError('');
-                          setCoverFile(f);
-                        }
-                      }
-                    }} 
-                  />
-                  Выбрать файл
-                </label>
-                {coverError && (
-                  <div className="mt-3 p-3 bg-red-500/10 border border-red-500/30 rounded-lg">
-                    <div className="flex items-start gap-2">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-red-400 flex-shrink-0 mt-0.5">
-                        <circle cx="12" cy="12" r="10" strokeWidth="2"/>
-                        <line x1="12" y1="8" x2="12" y2="12" strokeWidth="2"/>
-                        <line x1="12" y1="16" x2="12.01" y2="16" strokeWidth="2"/>
-                      </svg>
-                      <span className="text-xs text-red-400">{coverError}</span>
-                    </div>
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-          
-          {/* Скрытый input для замены обложки */}
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="image/png, image/jpeg"
-            className="hidden"
-            onChange={(e) => {
-              const f = e.target.files?.[0];
-              if (f) {
-                const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg'];
-                if (!allowedTypes.includes(f.type)) {
-                  setCoverError('Можно загружать только изображения формата JPG или PNG');
-                  e.target.value = '';
-                  return;
-                }
-                if (f.size > 10 * 1024 * 1024) {
-                  setCoverError('Размер файла не должен превышать 10 МБ');
-                  e.target.value = '';
-                  return;
-                }
-                setCoverFile(f);
-                setCoverError('');
-                e.target.value = '';
-              }
-            }}
+          <CoverUploaderNew
+            coverFile={coverFile}
+            setCoverFile={setCoverFile}
+            previewUrl={existingCoverUrl}
           />
         </div>
       </div>

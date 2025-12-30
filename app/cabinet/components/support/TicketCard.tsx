@@ -35,11 +35,12 @@ export default function TicketCard({ ticket, onClick }: TicketCardProps) {
   return (
     <div
       onClick={onClick}
-      className={`p-3 rounded-lg border transition-all cursor-pointer ${
+      className={`p-3 rounded-lg border backdrop-blur-md transition-all cursor-pointer ${
         hasUnread
-          ? 'bg-blue-500/10 border-blue-500/30 hover:bg-blue-500/20'
-          : 'bg-zinc-800/50 border-zinc-700/50 hover:bg-zinc-800'
+          ? 'bg-blue-500/20 border-blue-500/40 hover:bg-blue-500/30'
+          : 'bg-white/5 border-white/10 hover:bg-white/10'
       }`}
+      style={{ boxShadow: hasUnread ? '0 4px 16px 0 rgba(59, 130, 246, 0.2)' : '0 4px 16px 0 rgba(0, 0, 0, 0.1)' }}
     >
       <div className="flex items-start justify-between gap-2 mb-2">
         <h3 className="text-sm font-medium text-white flex-1 line-clamp-1">

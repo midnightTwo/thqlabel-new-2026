@@ -71,7 +71,10 @@ export default function ReleasesGrid({
 
   return (
     <div 
-      className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4"
+      className="grid grid-cols-5 gap-3 sm:gap-4 auto-rows-fr"
+      style={{
+        gridAutoRows: '1fr'
+      }}
       onDrop={onDrop}
       onDragOver={(e) => e.preventDefault()}
     >
@@ -157,33 +160,17 @@ function EmptyState({
   onResetFilters 
 }: EmptyStateProps) {
   const isEmpty = totalCount === 0;
-  const [isSticky, setIsSticky] = React.useState(false);
-
-  React.useEffect(() => {
-    const handleScroll = () => {
-      setIsSticky(window.scrollY > 100);
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
     <div 
-      className={`col-span-full flex items-center transition-all duration-500 ${
-        isSticky ? 'sticky top-1/2 -translate-y-1/2 z-10 justify-center' : 'justify-center pt-12 pb-24'
-      }`}
-      style={{ minHeight: showArchive ? 'auto' : (isSticky ? 'auto' : '600px') }}
+      className="col-span-full flex items-center justify-center pt-12 pb-24"
+      style={{ minHeight: showArchive ? 'auto' : '600px' }}
     >
-      <div className={`text-center max-w-md transition-all duration-500 ${
-        isSticky ? 'backdrop-blur-md bg-zinc-900/40 rounded-3xl p-8 shadow-2xl' : 'p-8'
-      }`}>
+      <div className="text-center max-w-md p-8">
         {/* Иконка */}
         <div className="relative inline-block mb-6">
           <div className={`absolute inset-0 blur-2xl rounded-full ${isEmpty ? 'bg-gradient-to-br from-purple-500/20 to-blue-500/20' : 'bg-gradient-to-br from-zinc-500/20 to-zinc-600/20'}`} />
-          <div className={`relative w-32 h-32 mx-auto rounded-3xl flex items-center justify-center transition-all ${
-            isSticky ? 'bg-gradient-to-br from-zinc-800/60 to-zinc-900/60 backdrop-blur-sm' : 'bg-gradient-to-br from-zinc-800 to-zinc-900'
-          }`}>
+          <div className="relative w-32 h-32 mx-auto rounded-3xl flex items-center justify-center bg-gradient-to-br from-zinc-800 to-zinc-900">
             {isEmpty ? (
               <svg className="w-16 h-16 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z" />

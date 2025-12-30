@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Link from 'next/link';
-import CoverUploaderNew from './CoverUploaderNew';
+import { useRouter } from 'next/navigation';
+import CoverUploader from './CoverUploader';
 
 interface ReleaseInfoStepProps {
   releaseTitle: string;
@@ -59,6 +59,7 @@ export default function ReleaseInfoStep({
   existingCoverUrl,
   onNext,
 }: ReleaseInfoStepProps) {
+  const router = useRouter();
   const [showGenreDropdown, setShowGenreDropdown] = useState(false);
   
   const genres = [
@@ -363,7 +364,7 @@ export default function ReleaseInfoStep({
         {/* Правая колонка - обложка */}
         <div className="lg:w-80">
           <label className="text-sm text-zinc-400 mb-3 block font-medium">Обложка *</label>
-          <CoverUploaderNew
+          <CoverUploader
             coverFile={coverFile}
             setCoverFile={setCoverFile}
             previewUrl={existingCoverUrl}
@@ -373,9 +374,12 @@ export default function ReleaseInfoStep({
 
       {/* Кнопки навигации */}
       <div className="mt-8 pt-6 border-t border-white/10 flex justify-between">
-        <Link href="/cabinet" className="px-6 py-3 bg-white/5 hover:bg-white/10 rounded-xl font-bold transition">
+        <button 
+          onClick={() => router.push('/cabinet')} 
+          className="px-6 py-3 bg-white/5 hover:bg-white/10 rounded-xl font-bold transition"
+        >
           Отмена
-        </Link>
+        </button>
         <button 
           onClick={onNext}
           className="px-8 py-3 bg-[#6050ba] hover:bg-[#7060ca] rounded-xl font-bold transition flex items-center gap-2"

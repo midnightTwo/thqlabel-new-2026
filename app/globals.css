@@ -5,12 +5,6 @@
   --color-brand-light: #9d8df1;
 }
 
-/* Tabular Numbers for Price Animation */
-.tabular-nums {
-  font-variant-numeric: tabular-nums;
-  font-feature-settings: "tnum";
-}
-
 /* Glass Morphism Styles - Enhanced */
 .glass-morphism {
   background: rgba(255, 255, 255, 0.02);
@@ -19,6 +13,9 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
   position: relative;
   overflow: hidden;
+  /* Оптимизация для устранения дерганья */
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .glass-morphism::before {
@@ -49,6 +46,10 @@
     0 0 0 1px rgba(157, 141, 241, 0.01);
   position: relative;
   overflow: hidden;
+  /* Оптимизация для устранения дерганья */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  contain: layout style paint;
 }
 
 .glass-morphism-card::before {
@@ -69,6 +70,11 @@
   box-shadow: 
     0 25px 50px rgba(0, 0, 0, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  /* Оптимизация для устранения дерганья при скролле */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+  contain: layout style paint;
 }
 
 .glass-morphism-button {
@@ -82,6 +88,10 @@
   position: relative;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Оптимизация для устранения дерганья */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform, box-shadow;
 }
 
 .glass-morphism-button::before {
@@ -209,15 +219,22 @@
 .interactive-glass {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
+  /* Оптимизация для устранения дерганья */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform;
 }
 
 .interactive-glass:hover {
-  transform: translateY(-2px);
+  transform: translateY(-2px) translateZ(0);
   filter: brightness(1.05);
 }
 
 .glass-card-hover {
   animation: glass-pulse 4s ease-in-out infinite;
+  /* Оптимизация для устранения дерганья */
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .glass-card-hover:hover {
@@ -878,6 +895,18 @@ body {
   box-shadow: 0 0 20px rgba(255, 71, 87, 0.5), 0 0 40px rgba(255, 107, 129, 0.2);
 }
 
+/* Скрытие главного scrollbar на всех страницах */
+body::-webkit-scrollbar,
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body,
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
 /* Скрытие scrollbar */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
@@ -1062,150 +1091,5 @@ a:active {
   }
   50% { 
     transform: translate(10px, -10px); 
-  }
-}
-
-/* Feed intro animations */
-@keyframes logo-intro {
-  0% {
-    transform: scale(2);
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes fade-out {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-@keyframes logo-float {
-  0%, 100% {
-    transform: translateY(0px) translateX(0px);
-  }
-  25% {
-    transform: translateY(-10px) translateX(5px);
-  }
-  50% {
-    transform: translateY(-5px) translateX(-5px);
-  }
-  75% {
-    transform: translateY(-15px) translateX(3px);
-  }
-}
-
-@keyframes logo-pulse {
-  0%, 100% {
-    filter: drop-shadow(0 0 60px rgba(96,80,186,0.9));
-  }
-  50% {
-    filter: drop-shadow(0 0 80px rgba(157,141,241,1));
-  }
-}
-
-@keyframes logo-glow {
-  0%, 100% {
-    opacity: 0.7;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.9;
-    transform: scale(1.05);
-  }
-}
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  cursor: pointer;
-  border: 3px solid white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 0 4px rgba(255, 255, 255, 0.1);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-input[type="range"]::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  cursor: pointer;
-  border: 3px solid white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 0 4px rgba(255, 255, 255, 0.1);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Blue slider for EP */
-.slider-blue::-webkit-slider-thumb {
-  background: rgb(59 130 246);
-}
-
-.slider-blue::-moz-range-thumb {
-  background: rgb(59 130 246);
-}
-
-.slider-blue:hover::-webkit-slider-thumb {
-  transform: scale(1.2);
-  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6), 0 0 0 6px rgba(59, 130, 246, 0.2);
-}
-
-.slider-blue:hover::-moz-range-thumb {
-  transform: scale(1.2);
-  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6), 0 0 0 6px rgba(59, 130, 246, 0.2);
-}
-
-.slider-blue:active::-webkit-slider-thumb {
-  transform: scale(1.1);
-}
-
-.slider-blue:active::-moz-range-thumb {
-  transform: scale(1.1);
-}
-
-/* Emerald slider for Album */
-.slider-emerald::-webkit-slider-thumb {
-  background: rgb(52 211 153);
-}
-
-.slider-emerald::-moz-range-thumb {
-  background: rgb(52 211 153);
-}
-
-.slider-emerald:hover::-webkit-slider-thumb {
-  transform: scale(1.2);
-  box-shadow: 0 6px 20px rgba(52, 211, 153, 0.6), 0 0 0 6px rgba(52, 211, 153, 0.2);
-}
-
-.slider-emerald:hover::-moz-range-thumb {
-  transform: scale(1.2);
-  box-shadow: 0 6px 20px rgba(52, 211, 153, 0.6), 0 0 0 6px rgba(52, 211, 153, 0.2);
-}
-
-.slider-emerald:active::-webkit-slider-thumb {
-  transform: scale(1.1);
-}
-
-.slider-emerald:active::-moz-range-thumb {
-  transform: scale(1.1);
-}
-
-/* Price pulse animation */
-@keyframes price-pulse {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
   }
 }

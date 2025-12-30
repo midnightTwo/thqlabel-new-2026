@@ -1,7 +1,9 @@
 "use client";
 import React, { useState, useEffect, useMemo, useCallback, memo } from 'react';
+import { createPortal } from 'react-dom';
 import { useRouter } from 'next/navigation';
 import { SupabaseClient } from '@supabase/supabase-js';
+import AudioPlayer from '@/components/AudioPlayer';
 
 interface Release {
   id: string;
@@ -62,7 +64,7 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
   
   const showToast = (message: string, type: 'success' | 'error' | 'info' = 'success') => {
     setToast({show: true, message, type});
-    setTimeout(() => setToast({show: false, message: '', type: 'success'}), 2000);
+    setTimeout(() => setToast({show: false, message: '', type: 'success'}), 3000);
   };
   
   // Состояния для IRSC кодов треков и UPC кода релиза
@@ -83,6 +85,26 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [deleteType, setDeleteType] = useState<'single' | 'bulk'>('single');
   const [deleteCount, setDeleteCount] = useState(0);
+  
+  // Состояние для Portal (client-side only)
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Блокировка скролла body когда модальное окно открыто
+  useEffect(() => {
+    if (showModal || showDeleteConfirm) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [showModal, showDeleteConfirm]);
 
   useEffect(() => {
     loadReleases();
@@ -1051,7 +1073,11 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
 
       {sorted.length === 0 ? (
         <div className="text-center py-20 border border-dashed border-white/10 rounded-2xl">
-          <div className="text-5xl mb-4">📋</div>
+          <div className="flex justify-center mb-4">
+            <svg className="w-16 h-16 text-zinc-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          </div>
           <p className="text-zinc-500">Нет релизов{searchQuery || filterDate || filterUserRole !== 'all' ? ' по заданным фильтрам' : ' на модерации'}</p>
         </div>
       ) : (
@@ -1174,7 +1200,11 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                   {release.cover_url ? (
                     <img src={release.cover_url} alt={release.title} className="w-full h-full object-cover" />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center text-2xl">🎵</div>
+                    <div className="w-full h-full flex items-center justify-center">
+                      <svg className="w-8 h-8 text-zinc-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                      </svg>
+                    </div>
                   )}
                 </div>
 
@@ -1197,9 +1227,15 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                       'bg-zinc-500/20 text-zinc-400'
                     }`}>
                       {(release.status === 'pending' || release.status === 'distributed') && (
-                        <svg className="animate-spin h-3 w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <svg className="animate-spin h-3 w-3 mr-0.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                      )}
+                      {release.status === 'rejected' && (
+                        <svg className="h-3 w-3 -mr-0.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                          <line x1="18" y1="6" x2="6" y2="18"/>
+                          <line x1="6" y1="6" x2="18" y2="18"/>
                         </svg>
                       )}
                       {release.status === 'pending' ? 'НА МОДЕРАЦИИ' :
@@ -1267,14 +1303,14 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
       )}
 
       {/* Два модальных окна: информация о релизе (слева) и действия (справа) */}
-      {showModal && selectedRelease && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-black/80 via-black/70 to-[#6050ba]/20 backdrop-blur-md p-2 sm:p-4 gap-2 sm:gap-4 animate-in fade-in duration-200" onClick={() => setShowModal(false)}>
+      {showModal && selectedRelease && mounted && createPortal(
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-gradient-to-br from-black/80 via-black/70 to-[#6050ba]/20 backdrop-blur-md p-2 sm:p-4 gap-2 sm:gap-4 animate-in fade-in duration-200" onClick={() => setShowModal(false)}>
           
           {/* Toast уведомление поверх модального окна */}
           {toast.show && (
-            <div className="fixed inset-0 flex items-center justify-center z-[9999] pointer-events-none">
+            <div className="fixed inset-0 flex items-center justify-center z-[10000] pointer-events-none">
               <div 
-                className="relative bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-900 border border-emerald-400/40 rounded-2xl px-8 py-4 shadow-2xl pointer-events-auto backdrop-blur-xl animate-slide-in"
+                className="relative bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-900 border border-emerald-400/40 rounded-2xl px-8 py-4 shadow-2xl pointer-events-auto backdrop-blur-xl animate-in fade-in zoom-in duration-300"
                 style={{ boxShadow: '0 0 60px rgba(16, 185, 129, 0.3), 0 0 30px rgba(16, 185, 129, 0.2)' }}
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 via-transparent to-green-500/20 rounded-2xl" />
@@ -1299,9 +1335,9 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                 onClick={() => setShowModal(false)} 
                 className="lg:hidden absolute top-4 right-4 w-12 h-12 rounded-xl bg-red-500/20 hover:bg-red-500/30 border-2 border-red-500/50 hover:border-red-500 flex items-center justify-center flex-shrink-0 transition-all group z-50 shadow-lg"
               >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-red-400 group-hover:text-red-300 transition-colors" strokeWidth="2.5">
-                  <line x1="18" y1="6" x2="6" y2="18"/>
-                  <line x1="6" y1="6" x2="18" y2="18"/>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" strokeWidth="2.5">
+                  <line x1="18" y1="6" x2="6" y2="18" stroke="#ef4444" strokeWidth="2.5"/>
+                  <line x1="6" y1="6" x2="18" y2="18" stroke="#ef4444" strokeWidth="2.5"/>
                 </svg>
               </button>
               
@@ -1326,7 +1362,7 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                       <span className="w-2 h-2 rounded-full animate-pulse" style={{background: selectedRelease.user_role === 'basic' ? '#60a5fa' : '#c084fc'}}></span>
                       {selectedRelease.user_role === 'basic' ? 'BASIC' : 'EXCLUSIVE'}
                     </span>
-                    <span className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold border-2 backdrop-blur-sm ${
+                    <span className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold border-2 backdrop-blur-sm ${
                       selectedRelease.status === 'pending' ? 'bg-gradient-to-r from-yellow-500/30 to-yellow-600/20 border-yellow-400/50 text-yellow-300 shadow-lg shadow-yellow-500/20' :
                       selectedRelease.status === 'distributed' ? 'bg-gradient-to-r from-blue-500/30 to-blue-600/20 border-blue-400/50 text-blue-300 shadow-lg shadow-blue-500/20' :
                       selectedRelease.status === 'published' ? 'bg-gradient-to-r from-green-500/30 to-green-600/20 border-green-400/50 text-green-300 shadow-lg shadow-green-500/20' :
@@ -1373,7 +1409,7 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                       </svg>
                       <div className="text-xs text-zinc-500">Тип аккаунта</div>
                     </div>
-                    <div className="font-bold text-lg">{selectedRelease.user_role === 'basic' ? 'Basic' : 'Exclusive'}</div>
+                    <div className="font-bold text-lg text-white">{selectedRelease.user_role === 'basic' ? 'Basic' : 'Exclusive'}</div>
                   </div>
 
                   <div className="p-4 bg-gradient-to-br from-white/10 to-white/5 border border-white/10 rounded-xl hover:border-[#6050ba]/50 transition-all group">
@@ -1385,11 +1421,11 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                       </svg>
                       <div className="text-xs text-zinc-500">Жанр</div>
                     </div>
-                    <div className="font-bold text-lg">{selectedRelease.genre}</div>
+                    <div className="font-bold text-lg text-white">{selectedRelease.genre}</div>
                     {selectedRelease.subgenres?.length > 0 && (
                       <div className="flex flex-wrap gap-1 mt-2">
                         {selectedRelease.subgenres.map((sub: string, idx: number) => (
-                          <span key={idx} className="px-2 py-1 bg-white/5 rounded text-xs">{sub}</span>
+                          <span key={idx} className="px-2 py-1 bg-white/5 rounded text-xs text-white">{sub}</span>
                         ))}
                       </div>
                     )}
@@ -1398,7 +1434,7 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                   {selectedRelease.release_date && (
                     <div className="p-4 bg-white/5 rounded-xl">
                       <div className="text-xs text-zinc-500 mb-1">Дата релиза</div>
-                      <div className="font-bold">{new Date(selectedRelease.release_date).toLocaleDateString('ru-RU')}</div>
+                      <div className="font-bold text-white">{new Date(selectedRelease.release_date).toLocaleDateString('ru-RU')}</div>
                     </div>
                   )}
 
@@ -1535,11 +1571,11 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                     {selectedRelease.tracks.map((track: any, idx: number) => (
                       <details key={idx} className="group relative bg-gradient-to-br from-white/10 to-white/5 border border-white/10 hover:border-[#6050ba]/50 rounded-2xl transition-all duration-300 hover:shadow-lg hover:shadow-[#6050ba]/10">
                         <summary className="cursor-pointer p-5 list-none flex items-start gap-4">
-                          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#6050ba]/30 to-[#9d8df1]/20 border-2 border-[#6050ba]/40 flex items-center justify-center text-lg font-black flex-shrink-0 group-hover:scale-110 transition-transform shadow-lg shadow-[#6050ba]/20">
+                          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#6050ba]/30 to-[#9d8df1]/20 border-2 border-[#6050ba]/40 flex items-center justify-center text-lg font-black text-white flex-shrink-0 group-hover:scale-110 transition-transform shadow-lg shadow-[#6050ba]/20">
                             {idx + 1}
                           </div>
                           <div className="flex-1 min-w-0">
-                            <div className="font-bold text-lg group-hover:text-[#9d8df1] transition-colors">{track.title}</div>
+                            <div className="font-bold text-lg text-white group-hover:text-[#9d8df1] transition-colors">{track.title}</div>
                             <div className="flex flex-wrap gap-2 mt-2">
                               {track.language && (
                                 <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-gradient-to-r from-blue-500/20 to-blue-600/10 border border-blue-400/30 rounded-lg text-xs font-semibold text-blue-300">
@@ -1588,22 +1624,18 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                               </div>
                             )}
 
+                            {/* Аудиоплеер */}
                             {track.link && (
-                              <a 
-                                href={track.link} 
-                                target="_blank" 
-                                rel="noopener noreferrer" 
-                                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#6050ba]/20 to-[#9d8df1]/10 hover:from-[#6050ba]/30 hover:to-[#9d8df1]/20 border border-[#6050ba]/30 hover:border-[#6050ba]/50 rounded-xl text-sm font-semibold text-[#9d8df1] transition-all group/link"
-                              >
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="group-hover/link:scale-110 transition-transform">
-                                  <polygon points="5 3 19 12 5 21 5 3"/>
-                                </svg>
-                                Прослушать трек
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="group-hover/link:translate-x-1 transition-transform">
-                                  <line x1="5" y1="12" x2="19" y2="12"/>
-                                  <polyline points="12 5 19 12 12 19"/>
-                                </svg>
-                              </a>
+                              <div className="mt-3">
+                                <AudioPlayer
+                                  releaseId={selectedRelease.id}
+                                  releaseType={selectedRelease.release_type}
+                                  trackIndex={idx}
+                                  supabase={supabase}
+                                  variant="full"
+                                  className="w-full"
+                                />
+                              </div>
                             )}
                             
                             {track.lyrics && (
@@ -1707,10 +1739,10 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
               {/* Страны */}
               {selectedRelease.countries?.length > 0 && (
                 <div className="mb-6">
-                  <h3 className="font-bold mb-3">Страны распространения ({selectedRelease.countries.length})</h3>
+                  <h3 className="font-bold mb-3 text-white">Страны распространения ({selectedRelease.countries.length})</h3>
                   <div className="flex flex-wrap gap-2">
                     {selectedRelease.countries.map((country: string, idx: number) => (
-                      <span key={idx} className="px-3 py-1 bg-white/5 rounded-lg text-sm">{country}</span>
+                      <span key={idx} className="px-3 py-1 bg-white/5 rounded-lg text-sm text-white">{country}</span>
                     ))}
                   </div>
                 </div>
@@ -1719,7 +1751,7 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
               {/* Платформы */}
               {selectedRelease.platforms?.length > 0 && (
                 <div className="mb-6">
-                  <h3 className="font-bold mb-3">Платформы ({selectedRelease.platforms.filter((p: string) => 
+                  <h3 className="font-bold mb-3 text-white">Платформы ({selectedRelease.platforms.filter((p: string) => 
                     ['Spotify', 'Apple Music', 'YouTube Music', 'VK Музыка', 'Яндекс Музыка'].includes(p)
                   ).length})</h3>
                   <div className="flex flex-wrap gap-2">
@@ -1728,7 +1760,7 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                         ['Spotify', 'Apple Music', 'YouTube Music', 'VK Музыка', 'Яндекс Музыка'].includes(platform)
                       )
                       .map((platform: string, idx: number) => (
-                        <span key={idx} className="px-3 py-1 bg-white/5 rounded-lg text-sm">{platform}</span>
+                        <span key={idx} className="px-3 py-1 bg-white/5 rounded-lg text-sm text-white">{platform}</span>
                       ))}
                   </div>
                 </div>
@@ -1737,12 +1769,12 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
               {/* Промо */}
               {(selectedRelease.focus_track || selectedRelease.focus_track_promo || selectedRelease.album_description) && (
                 <div className="mb-6 space-y-3">
-                  <h3 className="font-bold mb-3">Промо-информация</h3>
+                  <h3 className="font-bold mb-3 text-white">Промо-информация</h3>
                   
                   {/* Фокус-трек и промо */}
                   {(selectedRelease.focus_track || selectedRelease.focus_track_promo) && (
                     <details className="p-4 bg-white/5 rounded-xl border border-white/10 hover:border-[#6050ba]/50 transition group">
-                      <summary className="cursor-pointer font-medium flex items-center justify-between">
+                      <summary className="cursor-pointer font-medium flex items-center justify-between text-white">
                         <span className="flex items-center gap-2">
                           <svg className="w-5 h-5 text-[#6050ba]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             <circle cx="12" cy="12" r="10"/>
@@ -1774,7 +1806,7 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                   {/* Описание альбома (только если больше одного трека) */}
                   {selectedRelease.album_description && selectedRelease.tracks?.length > 1 && (
                     <details className="p-4 bg-white/5 rounded-xl border border-white/10 hover:border-[#6050ba]/50 transition group">
-                      <summary className="cursor-pointer font-medium flex items-center justify-between">
+                      <summary className="cursor-pointer font-medium flex items-center justify-between text-white">
                         <span className="flex items-center gap-2">
                           <svg className="w-5 h-5 text-[#6050ba]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
@@ -1795,7 +1827,7 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                   {/* Промо-фотографии */}
                   {selectedRelease.promo_photos && selectedRelease.promo_photos.length > 0 && (
                     <details className="p-4 bg-white/5 rounded-xl border border-white/10 hover:border-[#6050ba]/50 transition group">
-                      <summary className="cursor-pointer font-medium flex items-center justify-between">
+                      <summary className="cursor-pointer font-medium flex items-center justify-between text-white">
                         <span className="flex items-center gap-2">
                           <svg className="w-5 h-5 text-[#6050ba]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
@@ -1965,7 +1997,12 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
 
                   {selectedRelease.status === 'distributed' && (
                     <div className="p-4 bg-blue-500/10 border border-blue-500/20 rounded-xl text-center">
-                      <div className="text-blue-400 font-bold text-sm">🚀 Релиз на дистрибьюции</div>
+                      <div className="text-blue-400 font-bold text-sm flex items-center justify-center gap-2">
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                        Релиз на дистрибьюции
+                      </div>
                       {selectedRelease.approved_at && (
                         <div className="text-xs text-zinc-500 mt-1">
                           {new Date(selectedRelease.approved_at).toLocaleString('ru-RU')}
@@ -1987,7 +2024,13 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
 
                   {selectedRelease.status === 'rejected' && (
                     <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
-                      <div className="text-red-400 font-bold mb-2 text-sm">Релиз отклонен</div>
+                      <div className="text-red-400 font-bold mb-2 text-sm flex items-center gap-2">
+                        <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                          <line x1="18" y1="6" x2="6" y2="18"/>
+                          <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                        Релиз отклонен
+                      </div>
                       {selectedRelease.rejection_reason && (
                         <div className="text-xs sm:text-sm text-zinc-400">{selectedRelease.rejection_reason}</div>
                       )}
@@ -2014,10 +2057,10 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                   </div>
                   <h3 className="text-xl font-black uppercase tracking-tight bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">Действия</h3>
                 </div>
-                <button onClick={() => setShowModal(false)} className="w-10 h-10 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-red-500/50 flex items-center justify-center flex-shrink-0 transition-all group">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="group-hover:text-red-400 transition-colors" strokeWidth="2">
-                    <line x1="18" y1="6" x2="6" y2="18"/>
-                    <line x1="6" y1="6" x2="18" y2="18"/>
+                <button onClick={() => setShowModal(false)} className="w-10 h-10 rounded-xl bg-red-500/20 hover:bg-red-500/30 border-2 border-red-500/50 hover:border-red-500 flex items-center justify-center flex-shrink-0 transition-all group shadow-lg">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" strokeWidth="2.5">
+                    <line x1="18" y1="6" x2="6" y2="18" stroke="#ef4444"/>
+                    <line x1="6" y1="6" x2="18" y2="18" stroke="#ef4444"/>
                   </svg>
                 </button>
               </div>
@@ -2112,7 +2155,7 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                       : `/cabinet/release/edit/${selectedRelease.id}?from=admin`;
                     router.push(editPath);
                   }}
-                  className="w-full px-6 py-4 bg-gradient-to-r from-white/10 to-white/5 hover:from-[#6050ba]/30 hover:to-[#9d8df1]/20 border-2 border-white/20 hover:border-[#6050ba]/50 rounded-xl font-bold transition-all shadow-lg hover:shadow-[#6050ba]/30 flex items-center justify-center gap-2 group"
+                  className="w-full px-6 py-4 bg-gradient-to-r from-white/10 to-white/5 hover:from-[#6050ba]/30 hover:to-[#9d8df1]/20 border-2 border-white/20 hover:border-[#6050ba]/50 rounded-xl font-bold transition-all shadow-lg hover:shadow-[#6050ba]/30 flex items-center justify-center gap-2 group text-white"
                 >
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="group-hover:rotate-12 transition-transform">
                     <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
@@ -2121,11 +2164,48 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                   Редактировать релиз
                 </button>
 
+                {/* Кнопка скачивания Excel метаданных */}
+                <button
+                  onClick={async () => {
+                    try {
+                      const url = `/api/admin/export-release-metadata?releaseId=${selectedRelease.id}&releaseType=${selectedRelease.release_type}`;
+                      const response = await fetch(url);
+                      
+                      if (!response.ok) {
+                        throw new Error('Ошибка при генерации файла');
+                      }
+                      
+                      const blob = await response.blob();
+                      const downloadUrl = window.URL.createObjectURL(blob);
+                      const a = document.createElement('a');
+                      a.href = downloadUrl;
+                      a.download = `${selectedRelease.catalog_number || 'RELEASE'}_metadata.xlsx`;
+                      document.body.appendChild(a);
+                      a.click();
+                      window.URL.revokeObjectURL(downloadUrl);
+                      document.body.removeChild(a);
+                      
+                      showToast('Excel файл успешно скачан!', 'success');
+                    } catch (error) {
+                      console.error('Error downloading Excel:', error);
+                      showToast('Ошибка при скачивании файла', 'error');
+                    }
+                  }}
+                  className="w-full px-6 py-4 bg-gradient-to-r from-green-500/20 to-green-600/10 hover:from-green-500/30 hover:to-green-600/20 border-2 border-green-500/40 hover:border-green-500/60 rounded-xl font-bold transition-all shadow-lg hover:shadow-green-500/30 flex items-center justify-center gap-2 group text-white"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="group-hover:scale-110 transition-transform">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                  </svg>
+                  Скачать метаданные (.xlsx)
+                </button>
+
                 {/* Кнопка удаления (только в архиве) */}
                 {viewMode === 'archive' && (
                   <button
                     onClick={handleDeleteRelease}
-                    className="w-full px-6 py-4 bg-gradient-to-r from-red-500/20 to-red-600/10 hover:from-red-500/30 hover:to-red-600/20 border-2 border-red-500/40 hover:border-red-500/60 rounded-xl font-bold transition-all shadow-lg hover:shadow-red-500/30 flex items-center justify-center gap-2 group text-red-300 hover:text-red-200"
+                    className="w-full px-6 py-4 bg-gradient-to-r from-red-500/20 to-red-600/10 hover:from-red-500/30 hover:to-red-600/20 border-2 border-red-500/40 hover:border-red-500/60 rounded-xl font-bold transition-all shadow-lg hover:shadow-red-500/30 flex items-center justify-center gap-2 group text-white"
                   >
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="group-hover:scale-110 transition-transform">
                       <polyline points="3 6 5 6 21 6"/>
@@ -2176,7 +2256,12 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
 
                 {selectedRelease.status === 'distributed' && (
                   <div className="p-4 bg-blue-500/10 border border-blue-500/20 rounded-xl text-center">
-                    <div className="text-blue-400 font-bold">🚀 Релиз на дистрибьюции</div>
+                    <div className="text-blue-400 font-bold flex items-center justify-center gap-2">
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                      Релиз на дистрибьюции
+                    </div>
                     {selectedRelease.approved_at && (
                       <div className="text-xs text-zinc-500 mt-1">
                         {new Date(selectedRelease.approved_at).toLocaleString('ru-RU')}
@@ -2220,12 +2305,13 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
               </div>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/* Красивое модальное окно подтверждения удаления */}
-      {showDeleteConfirm && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/70 backdrop-blur-md p-4 animate-in fade-in duration-200">
+      {showDeleteConfirm && mounted && createPortal(
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/70 backdrop-blur-md p-4 animate-in fade-in duration-200">
           <div className="bg-gradient-to-br from-[#0d0d0f] to-[#1a1a1f] border-2 border-red-500/30 shadow-2xl shadow-red-500/20 rounded-3xl max-w-md w-full animate-in zoom-in duration-300" onClick={(e) => e.stopPropagation()}>
             {/* Header с иконкой предупреждения */}
             <div className="p-8 pb-6">
@@ -2290,7 +2376,8 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
               </div>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

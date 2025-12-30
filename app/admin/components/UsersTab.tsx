@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useMemo, memo } from 'react';
+import { copyToClipboard } from '@/lib/clipboard';
 
 export default function UsersTab({ supabase, currentUserRole }: { supabase: any; currentUserRole: 'admin' | 'owner' }) {
   const [users, setUsers] = useState<any[]>([]);
@@ -25,7 +26,7 @@ export default function UsersTab({ supabase, currentUserRole }: { supabase: any;
 
   const showToast = (message: string, type: 'success' | 'error' | 'info' = 'success') => {
     setToast({show: true, message, type});
-    setTimeout(() => setToast({show: false, message: '', type: 'success'}), 5000);
+    setTimeout(() => setToast({show: false, message: '', type: 'success'}), 3000);
   };
 
   const loadUsers = async () => {
@@ -303,12 +304,17 @@ export default function UsersTab({ supabase, currentUserRole }: { supabase: any;
           </p>
         </div>
         <div className="flex gap-2 items-center w-full md:w-auto">
-          <input 
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="🔍 Поиск по email или никнейму..."
-            className="flex-1 md:w-64 bg-black/30 border border-white/10 rounded-xl px-4 py-2 text-sm outline-none focus:border-[#6050ba]"
-          />
+          <div className="relative flex-1 md:w-64">
+            <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <input 
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Поиск по email или никнейму..."
+              className="w-full bg-black/30 border border-white/10 rounded-xl pl-10 pr-4 py-2 text-sm outline-none focus:border-[#6050ba]"
+            />
+          </div>
           <select 
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as any)}
@@ -367,9 +373,14 @@ export default function UsersTab({ supabase, currentUserRole }: { supabase: any;
         {loading ? (
           <div className="text-zinc-600 py-8 text-center">Загрузка пользователей...</div>
         ) : sortedUsers.length === 0 ? (
-          <div className="text-zinc-600 py-8 text-center">
-            <p>Пользователей не найдено</p>
-            <p className="text-xs mt-2">Всего в базе: {users.length}</p>
+          <div className="text-center py-12">
+            <div className="flex justify-center mb-4">
+              <svg className="w-16 h-16 text-zinc-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+            <p className="text-zinc-500">Пользователей не найдено</p>
+            <p className="text-xs text-zinc-600 mt-2">Всего в базе: {users.length}</p>
           </div>
         ) : (
           <div className="max-h-[600px] overflow-y-auto space-y-2 pr-2" style={{ scrollbarWidth: 'none' }}>
@@ -407,17 +418,32 @@ export default function UsersTab({ supabase, currentUserRole }: { supabase: any;
                     <p className="text-xs text-zinc-500 truncate">{user.email}</p>
                     <button
                       onClick={() => {
-                        navigator?.clipboard?.writeText(user.email);
+                        copyToClipboard(user.email);
                         showToast('Email скопирован', 'success');
                       }}
-                      className="p-1 hover:bg-white/10 rounded transition flex-shrink-0"
+                      className="hover:opacity-70 transition flex-shrink-0"
+                      title="Копировать email"
                     >
-                      <svg className="w-3 h-3 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-3.5 h-3.5 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                       </svg>
                     </button>
                   </div>
-                  <div className="text-[10px] text-zinc-600">ID: {user.member_id || user.id?.slice(0, 8)}</div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] text-zinc-600">ID: {user.member_id || user.id?.slice(0, 8)}</span>
+                    <button
+                      onClick={() => {
+                        copyToClipboard(user.member_id || user.id);
+                        showToast('ID скопирован', 'success');
+                      }}
+                      className="hover:opacity-70 transition flex-shrink-0"
+                      title="Копировать ID"
+                    >
+                      <svg className="w-3 h-3 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
                 
                 {/* Баланс */}
@@ -451,8 +477,8 @@ export default function UsersTab({ supabase, currentUserRole }: { supabase: any;
 
       {/* Модальное окно профиля пользователя */}
       {viewingUser && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-gradient-to-br from-[#1a1a1f] to-[#0d0d0f] border border-white/10 rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-start justify-center overflow-y-auto p-4 pt-16 pb-8">
+          <div className="bg-gradient-to-br from-[#1a1a1f] to-[#0d0d0f] border border-white/10 rounded-3xl max-w-4xl w-full overflow-y-auto">
             {/* Шапка профиля */}
             <div className="sticky top-0 bg-[#1a1a1f]/95 backdrop-blur border-b border-white/10 p-6 flex items-center justify-between z-10">
               <div className="flex items-center gap-4">
@@ -695,14 +721,14 @@ export default function UsersTab({ supabase, currentUserRole }: { supabase: any;
 
       {/* Toast уведомление */}
       {toast.show && (
-        <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 animate-in fade-in slide-in-from-top-4 duration-300">
-          <div className={`px-6 py-3 rounded-lg shadow-lg border ${
+        <div className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none">
+          <div className={`px-6 py-3 rounded-lg shadow-lg border pointer-events-auto ${
             toast.type === 'success' 
               ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300' 
               : toast.type === 'info'
               ? 'bg-blue-500/10 border-blue-500/30 text-blue-300'
               : 'bg-red-500/10 border-red-500/30 text-red-300'
-          } backdrop-blur-sm`}>
+          } backdrop-blur-sm animate-in fade-in zoom-in duration-300`}>
             <div className="flex items-center gap-3">
               <span className="text-xl">{toast.type === 'success' ? '✓' : toast.type === 'info' ? 'ℹ' : '✗'}</span>
               <span className="font-medium whitespace-pre-line">{toast.message}</span>

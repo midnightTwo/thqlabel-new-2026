@@ -15,6 +15,7 @@ import {
 } from './components';
 
 export type ReleaseType = 'single' | 'ep' | 'album';
+export type PromoStatus = 'not-started' | 'skipped' | 'filled';
 
 // Компонент боковой панели шагов (адаптивный)
 function StepsSidebar({ 
@@ -27,7 +28,8 @@ function StepsSidebar({
   tracksCount,
   agreedToContract,
   selectedPlatforms,
-  selectedCountries
+  selectedCountries,
+  promoStatus
 }: { 
   currentStep: string; 
   setCurrentStep: (step: string) => void;
@@ -39,6 +41,7 @@ function StepsSidebar({
   agreedToContract: boolean;
   selectedPlatforms: number;
   selectedCountries: string[];
+  promoStatus: PromoStatus;
 }) {
   // Проверка заполненности каждого шага
   const isStepComplete = (stepId: string): boolean => {
@@ -54,12 +57,19 @@ function StepsSidebar({
       case 'platforms':
         return selectedPlatforms > 0;
       case 'promo':
-        return false; // Опциональный шаг, не отмечаем автоматически
+        return promoStatus !== 'not-started'; // Завершён если skipped или filled
       case 'send':
         return false; // Финальный шаг
       default:
         return false;
     }
+  };
+  
+  // Получение статуса для promo (для разных цветов галочки)
+  const getPromoStepStatus = (): 'complete' | 'skipped' | 'incomplete' => {
+    if (promoStatus === 'filled') return 'complete';
+    if (promoStatus === 'skipped') return 'skipped';
+    return 'incomplete';
   };
 
   const steps = [
@@ -82,24 +92,27 @@ function StepsSidebar({
   return (
     <>
       {/* Десктоп версия - вертикальная боковая панель */}
-      <aside className="hidden lg:flex lg:w-64 w-full bg-[#0d0d0f] border border-white/5 rounded-3xl p-6 flex-col lg:self-start lg:sticky lg:top-24">
-        <div className="mb-6">
-          <h3 className="font-bold text-lg">Создание релиза</h3>
-          <p className="text-xs text-zinc-500 mt-1">Exclusive Plan</p>
+      <aside className="hidden lg:flex lg:w-64 w-full backdrop-blur-xl bg-gradient-to-br from-white/[0.07] to-white/[0.02] border border-white/10 rounded-3xl p-6 flex-col lg:self-start lg:sticky lg:top-24 shadow-2xl shadow-black/20 relative overflow-hidden">
+        {/* Декоративный градиент */}
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5 pointer-events-none" />
+        
+        <div className="mb-6 relative z-10">
+          <h3 className="font-bold text-lg bg-gradient-to-r from-white to-zinc-300 bg-clip-text text-transparent">Создание релиза</h3>
+          <p className="text-xs text-zinc-400 mt-1">Exclusive Plan</p>
         </div>
         
         {/* Индикатор типа релиза */}
         {releaseType && (
-          <div className="mb-4 p-4 bg-gradient-to-br from-purple-500/10 to-blue-500/10 border border-purple-500/20 rounded-xl relative overflow-hidden group hover:border-purple-500/40 transition-all">
+          <div className="mb-4 p-4 backdrop-blur-lg bg-gradient-to-br from-purple-500/20 via-purple-500/10 to-blue-500/20 border border-white/20 rounded-xl relative overflow-hidden group hover:border-white/30 hover:shadow-lg hover:shadow-purple-500/20 transition-all">
             {/* Фоновый блик */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
             
             <div className="relative z-10">
               <div className="flex items-center justify-between mb-3">
                 <span className="text-xs font-semibold text-zinc-400 uppercase tracking-wide">Формат</span>
                 <button
                   onClick={() => setCurrentStep('type')}
-                  className="flex items-center gap-1.5 px-2.5 py-1 bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/30 hover:border-purple-500/50 rounded-lg text-xs font-semibold text-purple-400 hover:text-purple-300 transition-all group/btn"
+                  className="flex items-center gap-1.5 px-2.5 py-1 backdrop-blur-md bg-purple-500/20 hover:bg-purple-500/30 border border-purple-400/40 hover:border-purple-400/60 rounded-lg text-xs font-semibold text-purple-300 hover:text-purple-200 transition-all group/btn shadow-lg shadow-purple-500/10"
                   title="Изменить тип релиза"
                 >
                   <svg className="w-3.5 h-3.5 group-hover/btn:rotate-90 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -158,25 +171,32 @@ function StepsSidebar({
           </div>
         )}
         
-        <div className="space-y-2">
+        <div className="space-y-2 relative z-10">
           {steps.map((step, idx) => {
             const isComplete = isStepComplete(step.id);
             const isCurrent = currentStep === step.id;
+            const isPromoSkipped = step.id === 'promo' && promoStatus === 'skipped';
+            const isPromoFilled = step.id === 'promo' && promoStatus === 'filled';
             
             return (
               <button 
                 key={step.id} 
                 onClick={() => setCurrentStep(step.id)}
-                className={`w-full text-left py-3 px-4 rounded-xl flex items-center gap-3 transition-all ${
+                className={`w-full text-left py-3 px-4 rounded-xl flex items-center gap-3 transition-all relative overflow-hidden group/step ${
                   isCurrent 
-                    ? 'bg-[#6050ba] text-white shadow-lg shadow-[#6050ba]/20' 
-                    : 'text-zinc-400 hover:bg-white/5 hover:text-white'
+                    ? 'backdrop-blur-md bg-gradient-to-r from-purple-500/40 to-purple-600/40 text-white shadow-lg shadow-purple-500/30 border border-white/20' 
+                    : 'backdrop-blur-sm bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white border border-transparent hover:border-white/10'
                 }`}
               >
+                {/* Hover эффект */}
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-purple-500/10 to-purple-500/0 opacity-0 group-hover/step:opacity-100 transition-opacity duration-300" />
+                <div className="relative z-10 flex items-center gap-3 w-full">
                 <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
+                  isPromoSkipped ? 'bg-yellow-500/20 text-yellow-400' :
+                  isPromoFilled ? 'bg-emerald-500/20 text-emerald-400' :
                   isComplete ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/10'
                 }`}>
-                  {isComplete && step.id !== 'send' ? (
+                  {(isComplete || isPromoSkipped || isPromoFilled) && step.id !== 'send' ? (
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                       <polyline points="20 6 9 17 4 12" strokeWidth="3"/>
                     </svg>
@@ -191,23 +211,24 @@ function StepsSidebar({
                 </span>
                 <span className="text-sm font-medium">{step.label}</span>
                 {isCurrent && (
-                  <span className="ml-auto w-2 h-2 rounded-full bg-white animate-pulse" />
+                  <span className="ml-auto w-2 h-2 rounded-full bg-white animate-pulse shadow-lg shadow-white/50" />
                 )}
+                </div>
               </button>
             );
           })}
         </div>
 
         {/* Прогресс */}
-        <div className="mt-auto pt-6 border-t border-white/5">
-          <div className="text-xs text-zinc-500 mb-2">Прогресс заполнения</div>
-          <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+        <div className="mt-auto pt-6 border-t border-white/10 relative z-10">
+          <div className="text-xs text-zinc-400 mb-2 font-medium">Прогресс заполнения</div>
+          <div className="h-2.5 backdrop-blur-sm bg-white/5 rounded-full overflow-hidden border border-white/10 shadow-inner">
             <div 
-              className="h-full bg-gradient-to-r from-[#6050ba] to-[#9d8df1] transition-all duration-500"
+              className="h-full bg-gradient-to-r from-purple-500 via-purple-400 to-blue-500 transition-all duration-500 shadow-lg shadow-purple-500/50"
               style={{ width: `${progress}%` }}
             />
           </div>
-          <div className="text-xs text-zinc-400 mt-2 text-center">
+          <div className="text-xs text-zinc-300 mt-2 text-center font-medium">
             {completedSteps} из {totalRequiredSteps} шагов
           </div>
         </div>
@@ -216,16 +237,21 @@ function StepsSidebar({
       {/* Мобильная версия - горизонтальная прокручиваемая полоса */}
       <div className="lg:hidden w-full mb-4">
         {/* Заголовок */}
-        <div className="bg-[#0d0d0f] border border-white/5 rounded-2xl p-4 mb-3">
-          <h3 className="font-bold text-base mb-2">Создание релиза</h3>
-          <div className="h-1.5 bg-white/5 rounded-full overflow-hidden">
+        <div className="backdrop-blur-xl bg-gradient-to-br from-white/[0.07] to-white/[0.02] border border-white/10 rounded-2xl p-4 mb-3 shadow-xl shadow-black/10 relative overflow-hidden">
+          {/* Декоративный градиент */}
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5 pointer-events-none" />
+          
+          <div className="relative z-10">
+          <h3 className="font-bold text-base mb-2 bg-gradient-to-r from-white to-zinc-300 bg-clip-text text-transparent">Создание релиза</h3>
+          <div className="h-2 backdrop-blur-sm bg-white/5 rounded-full overflow-hidden border border-white/10 shadow-inner">
             <div 
-              className="h-full bg-gradient-to-r from-[#6050ba] to-[#9d8df1] transition-all duration-500"
+              className="h-full bg-gradient-to-r from-purple-500 via-purple-400 to-blue-500 transition-all duration-500 shadow-lg shadow-purple-500/50"
               style={{ width: `${progress}%` }}
             />
           </div>
-          <div className="text-xs text-zinc-400 mt-1.5">
+          <div className="text-xs text-zinc-300 mt-1.5 font-medium">
             {completedSteps} из {totalRequiredSteps} шагов
+          </div>
           </div>
         </div>
         
@@ -235,21 +261,28 @@ function StepsSidebar({
             {steps.map((step) => {
               const isComplete = isStepComplete(step.id);
               const isCurrent = currentStep === step.id;
+              const isPromoSkipped = step.id === 'promo' && promoStatus === 'skipped';
+              const isPromoFilled = step.id === 'promo' && promoStatus === 'filled';
               
               return (
                 <button 
                   key={step.id} 
                   onClick={() => setCurrentStep(step.id)}
-                  className={`flex-shrink-0 py-2.5 px-4 rounded-xl flex items-center gap-2 transition-all text-sm font-medium ${
+                  className={`flex-shrink-0 py-2.5 px-4 rounded-xl flex items-center gap-2 transition-all text-sm font-medium relative overflow-hidden group/step ${
                     isCurrent 
-                      ? 'bg-[#6050ba] text-white shadow-lg shadow-[#6050ba]/20' 
-                      : 'bg-[#0d0d0f] text-zinc-400 border border-white/5'
+                      ? 'backdrop-blur-md bg-gradient-to-r from-purple-500/40 to-purple-600/40 text-white shadow-lg shadow-purple-500/30 border border-white/20' 
+                      : 'backdrop-blur-sm bg-white/5 text-zinc-400 border border-white/10 hover:border-white/20 hover:bg-white/10'
                   }`}
                 >
+                  {/* Hover эффект */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-purple-500/10 to-purple-500/0 opacity-0 group-hover/step:opacity-100 transition-opacity duration-300" />
+                  <div className="relative z-10 flex items-center gap-2">
                   <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
+                    isPromoSkipped ? 'bg-yellow-500/20 text-yellow-400' :
+                    isPromoFilled ? 'bg-emerald-500/20 text-emerald-400' :
                     isComplete ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/10'
                   }`}>
-                    {isComplete && step.id !== 'send' ? (
+                    {(isComplete || isPromoSkipped || isPromoFilled) && step.id !== 'send' ? (
                       <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                         <polyline points="20 6 9 17 4 12" strokeWidth="3"/>
                       </svg>
@@ -263,6 +296,7 @@ function StepsSidebar({
                     )}
                   </span>
                   <span className="whitespace-nowrap">{step.shortLabel}</span>
+                  </div>
                 </button>
               );
             })}
@@ -298,9 +332,19 @@ export default function CreateReleasePage() {
   const [calendarYear, setCalendarYear] = useState(new Date().getFullYear());
   
   // Tracklist state
+  interface AudioMetadata {
+    format: string;
+    duration?: number;
+    bitrate?: string;
+    sampleRate?: string;
+    size: number;
+  }
+  
   const [tracks, setTracks] = useState<Array<{
     title: string;
     link: string;
+    audioFile?: File | null;
+    audioMetadata?: AudioMetadata | null;
     hasDrugs: boolean;
     lyrics: string;
     language: string;
@@ -311,6 +355,8 @@ export default function CreateReleasePage() {
   const [currentTrack, setCurrentTrack] = useState<number | null>(null);
   const [trackTitle, setTrackTitle] = useState('');
   const [trackLink, setTrackLink] = useState('');
+  const [trackAudioFile, setTrackAudioFile] = useState<File | null>(null);
+  const [trackAudioMetadata, setTrackAudioMetadata] = useState<AudioMetadata | null>(null);
   const [trackHasDrugs, setTrackHasDrugs] = useState(false);
   const [trackLyrics, setTrackLyrics] = useState('');
   const [trackLanguage, setTrackLanguage] = useState('');
@@ -333,6 +379,7 @@ export default function CreateReleasePage() {
   const [focusTrackPromo, setFocusTrackPromo] = useState('');
   const [albumDescription, setAlbumDescription] = useState('');
   const [promoPhotos, setPromoPhotos] = useState<string[]>([]);
+  const [promoStatus, setPromoStatus] = useState<PromoStatus>('not-started');
   
   // Draft state
   const [draftId, setDraftId] = useState<string | null>(null);
@@ -528,16 +575,20 @@ export default function CreateReleasePage() {
           agreedToContract={agreedToContract}
           selectedPlatforms={selectedPlatforms}
           selectedCountries={selectedCountries}
+          promoStatus={promoStatus}
         />
 
         {/* Основной контент */}
-        <section className="flex-1 bg-[#0d0d0f] border border-white/5 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-10 min-h-[500px]">
+        <section className="flex-1 backdrop-blur-xl bg-gradient-to-br from-white/[0.07] to-white/[0.02] border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-10 min-h-[500px] shadow-2xl shadow-black/20 relative overflow-hidden">
+          {/* Декоративный градиент */}
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5 pointer-events-none" />
           
+          <div className="relative z-10">
           {/* Кнопка возврата */}
-          <div className="mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-white/5">
+          <div className="mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-white/10">
             <button 
               onClick={() => router.push('/cabinet')}
-              className="px-4 sm:px-6 py-2.5 sm:py-3 bg-white/5 hover:bg-white/10 rounded-xl font-medium transition flex items-center gap-2 text-sm sm:text-base"
+              className="px-4 sm:px-6 py-2.5 sm:py-3 backdrop-blur-sm bg-white/5 hover:bg-white/10 rounded-xl font-medium transition flex items-center gap-2 text-sm sm:text-base border border-transparent hover:border-white/10"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <polyline points="15 18 9 12 15 6" strokeWidth="2"/>
@@ -583,6 +634,7 @@ export default function CreateReleasePage() {
             <TracklistStep
               releaseTitle={releaseTitle}
               releaseType={releaseType}
+              coverFile={coverFile}
               tracks={tracks}
               setTracks={setTracks}
               currentTrack={currentTrack}
@@ -591,6 +643,10 @@ export default function CreateReleasePage() {
               setTrackTitle={setTrackTitle}
               trackLink={trackLink}
               setTrackLink={setTrackLink}
+              trackAudioFile={trackAudioFile}
+              setTrackAudioFile={setTrackAudioFile}
+              trackAudioMetadata={trackAudioMetadata}
+              setTrackAudioMetadata={setTrackAudioMetadata}
               trackHasDrugs={trackHasDrugs}
               setTrackHasDrugs={setTrackHasDrugs}
               trackLyrics={trackLyrics}
@@ -654,6 +710,8 @@ export default function CreateReleasePage() {
               setPromoPhotos={setPromoPhotos}
               onNext={() => setCurrentStep('send')}
               onBack={() => setCurrentStep('platforms')}
+              onSkip={() => setPromoStatus('skipped')}
+              onFilled={() => setPromoStatus('filled')}
             />
           )}
 
@@ -680,6 +738,7 @@ export default function CreateReleasePage() {
               onBack={() => setCurrentStep('promo')}
             />
           )}
+          </div>
         </section>
       </div>
     </div>

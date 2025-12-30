@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { createClient } from '@supabase/supabase-js';
 import AnimatedBackground from '@/components/AnimatedBackground';
 
@@ -58,7 +59,7 @@ const NewsModal = ({ news, onClose }: any) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 pt-16 sm:pt-20 pb-4 sm:pb-6 animate-fadeIn" onClick={onClose}>
       <div className="absolute inset-0 bg-black/95 backdrop-blur-2xl" />
-      <div className="relative w-full max-w-4xl h-full overflow-y-auto bg-gradient-to-b from-[#0d0d0f] to-black rounded-2xl sm:rounded-3xl border border-white/20 shadow-2xl [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[#6050ba]/50 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:hover:bg-[#6050ba]/70" onClick={(e) => e.stopPropagation()}>
+      <div className="relative w-full max-w-4xl h-full overflow-y-auto bg-gradient-to-b from-[#0d0d0f] to-black rounded-2xl sm:rounded-3xl border border-white/20 shadow-2xl [&::-webkit-scrollbar]:hidden" onClick={(e) => e.stopPropagation()}>
         <div className="relative h-[220px] sm:h-[280px] md:h-[400px]">
           {news.image ? (
             <img src={news.image} alt={news.title} className="w-full h-full object-cover" />
@@ -106,9 +107,24 @@ const NewsModal = ({ news, onClose }: any) => {
 };
 
 export default function NewsPage() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const newsId = searchParams.get('id');
   const [news, setNews] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedNews, setSelectedNews] = useState<any>(null);
+
+  // Функция для открытия новости с обновлением URL
+  const openNews = (newsItem: any) => {
+    setSelectedNews(newsItem);
+    router.push(`/news?id=${newsItem.id}`, { scroll: false });
+  };
+
+  // Функция для закрытия новости с очисткой URL
+  const closeNews = () => {
+    setSelectedNews(null);
+    router.push('/news', { scroll: false });
+  };
 
   useEffect(() => {
     const loadNews = async () => {
@@ -125,7 +141,16 @@ export default function NewsPage() {
           setNews(DEFAULT_NEWS);
         } else {
           // Если есть новости в БД - показываем их, иначе дефолтные
-          setNews(data && data.length > 0 ? data : DEFAULT_NEWS);
+          const loadedNews = data && data.length > 0 ? data : DEFAULT_NEWS;
+          setNews(loadedNews);
+          
+          // Автоматически открываем новость по ID из URL
+          if (newsId && loadedNews.length > 0) {
+            const newsItem = loadedNews.find((item: any) => item.id.toString() === newsId);
+            if (newsItem) {
+              setSelectedNews(newsItem);
+            }
+          }
         }
       } catch (e) {
         console.error('Исключение при загрузке новостей:', e);
@@ -135,7 +160,7 @@ export default function NewsPage() {
       }
     };
     loadNews();
-  }, []);
+  }, [newsId]);
 
   return (
     <main className="min-h-screen pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 md:px-8 relative overflow-hidden">
@@ -187,12 +212,12 @@ export default function NewsPage() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-7 lg:gap-8">
             {news.map((item, index) => (
-              <NewsCard key={item.id} news={item} featured={index === 0} onClick={() => setSelectedNews(item)} />
+              <NewsCard key={item.id} news={item} featured={index === 0} onClick={() => openNews(item)} />
             ))}
           </div>
         )}
       </div>
-      {selectedNews && <NewsModal news={selectedNews} onClose={() => setSelectedNews(null)} />}
+      {selectedNews && <NewsModal news={selectedNews} onClose={closeNews} />}
     </main>
   );
 }

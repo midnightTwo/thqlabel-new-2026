@@ -76,8 +76,8 @@ export default function PaymentModal({ isOpen, onClose, userId }: PaymentModalPr
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm" onClick={onClose}>
-      <div className="bg-[#0d0d0f] border border-white/10 rounded-3xl p-8 max-w-md w-full mx-4 relative" onClick={(e) => e.stopPropagation()}>
+    <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/70 backdrop-blur-sm p-4 pt-16 pb-8" onClick={onClose}>
+      <div className="bg-[#0d0d0f] border border-white/10 rounded-3xl p-8 max-w-md w-full relative" onClick={(e) => e.stopPropagation()}>
         {/* Кнопка закрытия */}
         <button 
           onClick={onClose}

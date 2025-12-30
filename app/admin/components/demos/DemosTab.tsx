@@ -101,7 +101,11 @@ export default function DemosTab() {
           <div className="flex justify-between items-start">
             <div className="flex gap-4">
               <div className="w-24 h-24 bg-black/20 rounded-lg overflow-hidden flex items-center justify-center">
-                {group.coverUrl ? <img src={group.coverUrl} className="w-full h-full object-cover" alt="Cover" /> : <div className="text-3xl">🎵</div>}
+                {group.coverUrl ? <img src={group.coverUrl} className="w-full h-full object-cover" alt="Cover" /> : (
+                  <svg className="w-12 h-12 text-zinc-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                  </svg>
+                )}
               </div>
               <div className="space-y-1">
                 <h3 className="font-bold text-white">{group.releaseTitle || group.items[0].title || group.items[0].track_name}</h3>

@@ -67,7 +67,7 @@ export function SortableReleaseCard({
         onClick();
       }}
       className={`
-        relative group p-4 rounded-2xl border-2
+        relative group p-4 rounded-2xl border-2 w-full max-w-[280px] mx-auto
         ${isDraft ? 'cursor-grab active:cursor-grabbing' : 'cursor-pointer'}
         ${isOverlay 
           ? 'bg-white/10 border-purple-400 shadow-2xl shadow-purple-500/50 scale-105 rotate-2' 
@@ -83,7 +83,7 @@ export function SortableReleaseCard({
       )}
 
       {/* Обложка */}
-      <div className="w-full h-40 rounded-xl overflow-hidden bg-black/20 flex items-center justify-center mb-3">
+      <div className="w-full aspect-square rounded-xl overflow-hidden bg-black/20 flex items-center justify-center mb-3">
         {release.cover_url ? (
           <img 
             src={release.cover_url} 

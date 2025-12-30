@@ -53,6 +53,7 @@ export interface Track {
   producers?: string | string[];
   producer?: string;
   explicit?: boolean;
+  hasDrugs?: boolean; // Алиас для explicit - указывает на наркотики/ненормативную лексику
   lyrics?: string;
 }
 

@@ -247,11 +247,11 @@ export default function UserReleases({ userId, nickname, onOpenUpload, userRole,
 
   // Обработчик добавления релиза
   const handleAddRelease = () => {
-    // Проверяем количество черновиков
+    // Проверяем количество черновиков (лимит: 10)
     const draftsCount = releases.filter(r => r.status === 'draft').length;
     if (draftsCount >= 10) {
       if (showNotification) {
-        showNotification('Достигнут лимит черновиков (10). Удалите или опубликуйте существующие черновики', 'error');
+        showNotification('Лимит достигнут! У вас уже 10 черновиков. Удалите или отправьте существующие черновики на модерацию.', 'error');
       }
       return;
     }
@@ -286,6 +286,7 @@ export default function UserReleases({ userId, nickname, onOpenUpload, userRole,
           onBack={() => setSelectedRelease(null)}
           showCopyToast={showCopyToast}
           setShowCopyToast={setShowCopyToast}
+          supabase={supabase}
         />
       ) : (
         <div>
@@ -360,7 +361,7 @@ export default function UserReleases({ userId, nickname, onOpenUpload, userRole,
           
           {/* Модальное окно подтверждения удаления */}
           {showDeleteModal && draftToDelete && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fade-in">
+            <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto p-4 pt-16 pb-8 animate-fade-in">
               <div className="bg-zinc-900 border border-red-500/30 rounded-2xl p-6 max-w-md w-full shadow-2xl shadow-red-500/20 animate-scale-in">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="p-3 bg-red-500/20 rounded-xl">

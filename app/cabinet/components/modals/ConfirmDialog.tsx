@@ -58,7 +58,7 @@ export default function ConfirmDialog({
   return (
     <div 
       className={`
-        fixed inset-0 z-[9999] flex items-center justify-center p-4
+        fixed inset-0 z-[9999] flex items-start justify-center overflow-y-auto p-4 pt-16 pb-8
         bg-black/70 backdrop-blur-md
         transition-opacity duration-300
         ${isVisible ? 'opacity-100' : 'opacity-0'}

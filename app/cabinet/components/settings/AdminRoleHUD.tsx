@@ -237,7 +237,7 @@ export default function AdminRoleHUD({ currentRole, originalRole, userId, onRole
 
       {/* Анимация загрузки при смене роли */}
       {isChangingRole && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-start justify-center overflow-y-auto pt-16 pb-8">
           <div className="bg-[#0d0d0f] border-2 border-purple-500/50 rounded-2xl p-8 flex flex-col items-center gap-4">
             <svg className="animate-spin h-12 w-12 text-purple-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>

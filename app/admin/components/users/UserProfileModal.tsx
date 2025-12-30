@@ -44,8 +44,8 @@ export function UserProfileModal({
     'bg-zinc-500/20 text-zinc-300';
 
   return (
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
-      <div className="bg-gradient-to-br from-[#1a1a1f] to-[#0d0d0f] border border-white/10 rounded-2xl sm:rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-start justify-center overflow-y-auto p-2 sm:p-4 pt-16 pb-8">
+      <div className="bg-gradient-to-br from-[#1a1a1f] to-[#0d0d0f] border border-white/10 rounded-2xl sm:rounded-3xl max-w-4xl w-full overflow-y-auto">
         {/* Шапка профиля */}
         <div className="sticky top-0 bg-[#1a1a1f]/95 backdrop-blur border-b border-white/10 p-6 flex items-center justify-between z-10">
           <div className="flex items-center gap-4">
@@ -63,6 +63,17 @@ export function UserProfileModal({
                   {user.role?.toUpperCase() || 'BASIC'}
                 </span>
                 <span className="text-[10px] text-zinc-500">{user.member_id}</span>
+                <button
+                  onClick={() => {
+                    navigator?.clipboard?.writeText(user.member_id || user.id);
+                  }}
+                  className="hover:opacity-70 transition flex-shrink-0"
+                  title="Копировать ID"
+                >
+                  <svg className="w-3 h-3 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
+                </button>
               </div>
             </div>
           </div>

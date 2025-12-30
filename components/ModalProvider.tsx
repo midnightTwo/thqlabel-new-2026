@@ -148,7 +148,7 @@ export function ModalProvider({ children }: { children: ReactNode }) {
 
       {/* Confirm Modal */}
       {isOpen && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[9999] flex items-center justify-center p-4 animate-in fade-in duration-200">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[9999] flex items-start justify-center overflow-y-auto p-4 pt-16 pb-8 animate-in fade-in duration-200">
           <div
             className={`bg-gradient-to-br from-[#1a1a1f] to-[#0d0d0f] border ${colors.border} rounded-3xl p-8 max-w-md w-full animate-in zoom-in-95 duration-200 relative overflow-hidden`}
             style={{ boxShadow: `0 0 60px ${colors.glow}` }}

@@ -127,7 +127,7 @@ export default function CoverUploader({ coverFile, setCoverFile, previewUrl }: C
             : error
             ? 'border-red-500/50 bg-red-500/5'
             : coverFile
-            ? 'border-transparent bg-green-500/10 shadow-[0_0_40px_rgba(34,197,94,0.4)]'
+            ? 'border-green-500/50 bg-green-500/5'
             : 'border-white/10 bg-white/[0.02] hover:border-white/20'
         }`}
         onDragEnter={handleDrag}

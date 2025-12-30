@@ -21,6 +21,11 @@ export default function ReleaseCard({ release, onClick, onDelete, onDragStart, o
   const lastEnterTimeRef = useRef<number>(0);
   const [isDragStarting, setIsDragStarting] = useState(false);
   
+  // Проверяем есть ли explicit контент в релизе
+  const hasExplicitContent = release.tracks?.some(track => 
+    track.explicit || track.hasDrugs
+  ) ?? false;
+  
   const statusLabel = {
     pending: 'На модерации',
     approved: 'Утвержден',
@@ -134,7 +139,7 @@ export default function ReleaseCard({ release, onClick, onDelete, onDragStart, o
           e.dataTransfer.dropEffect = 'move';
         }
       }}
-      className={`relative group p-3 sm:p-4 glass-morphism-card glass-card-hover interactive-glass rounded-xl sm:rounded-2xl overflow-hidden ${
+      className={`relative group p-3 sm:p-4 glass-morphism-card glass-card-hover interactive-glass rounded-xl sm:rounded-2xl overflow-hidden w-full max-w-[280px] mx-auto ${
         isDraft ? 'cursor-grab active:cursor-grabbing' : 'cursor-pointer'
       } ${
         isDragging ? 'opacity-0 scale-75 pointer-events-none' : 'opacity-100 scale-100'
@@ -165,7 +170,7 @@ export default function ReleaseCard({ release, onClick, onDelete, onDragStart, o
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none" />
       
       {/* Обложка с улучшенными эффектами */}
-      <div className="w-full h-32 sm:h-40 rounded-lg sm:rounded-xl overflow-hidden bg-black/20 flex items-center justify-center relative group/cover">
+      <div className="w-full aspect-square rounded-lg sm:rounded-xl overflow-hidden bg-black/20 flex items-center justify-center relative group/cover">
         {release.cover_url ? (
           <img 
             src={release.cover_url} 
@@ -178,6 +183,20 @@ export default function ReleaseCard({ release, onClick, onDelete, onDragStart, o
         )}
         {/* Overlay при наведении на обложку */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        
+        {/* Бейдж 18+ для explicit контента */}
+        {hasExplicitContent && (
+          <div className="absolute top-1.5 left-1.5 sm:top-2 sm:left-2 z-10">
+            <div className="px-1.5 py-0.5 sm:px-2 sm:py-1 bg-red-600/90 backdrop-blur-sm rounded text-[8px] sm:text-[10px] font-black text-white shadow-lg shadow-red-500/50 border border-red-400/30 flex items-center gap-0.5 sm:gap-1">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="sm:w-3 sm:h-3">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                <line x1="12" y1="9" x2="12" y2="13"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+              </svg>
+              18+
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Информация с анимационными эффектами */}
@@ -247,7 +266,7 @@ interface AddReleaseCardProps {
 export function AddReleaseCard({ onClick }: AddReleaseCardProps) {
   return (
     <div 
-      className={`relative group p-3 sm:p-4 glass-morphism-card rounded-xl sm:rounded-2xl cursor-pointer hover:scale-[1.03] hover:shadow-xl hover:shadow-purple-500/30 hover:border-purple-500/30 transition-all duration-200 ease-out`}
+      className={`relative group p-3 sm:p-4 glass-morphism-card rounded-xl sm:rounded-2xl cursor-pointer hover:scale-[1.03] hover:shadow-xl hover:shadow-purple-500/30 hover:border-purple-500/30 transition-all duration-200 ease-out w-full max-w-[280px] mx-auto`}
       onClick={onClick}
       style={{
         transformStyle: 'preserve-3d',
@@ -255,7 +274,7 @@ export function AddReleaseCard({ onClick }: AddReleaseCardProps) {
       }}
     >
       {/* Обложка */}
-      <div className="w-full h-32 sm:h-40 rounded-lg sm:rounded-xl overflow-hidden bg-black/20 flex items-center justify-center">
+      <div className="w-full aspect-square rounded-lg sm:rounded-xl overflow-hidden bg-black/20 flex items-center justify-center">
         <div className="text-2xl sm:text-3xl">＋</div>
       </div>
 

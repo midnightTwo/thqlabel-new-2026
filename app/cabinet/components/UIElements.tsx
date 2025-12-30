@@ -61,7 +61,7 @@ export function ConfirmDialog({ show, message, onConfirm, onCancel }: ConfirmDia
   if (!show) return null;
   
   return (
-    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] flex items-start justify-center overflow-y-auto p-4 pt-16 pb-8">
       <div className="bg-[#1a1a1f] border border-white/10 rounded-2xl p-6 max-w-sm w-full animate-in fade-in zoom-in-95 duration-200">
         <h3 className="text-lg font-bold mb-4">Подтверждение</h3>
         <p className="text-zinc-400 mb-6">{message}</p>
@@ -96,7 +96,7 @@ export function PayoutModal({ show, payout, onClose, onMarkRead }: PayoutModalPr
   if (!show || !payout) return null;
   
   return (
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-start justify-center overflow-y-auto p-4 pt-16 pb-8">
       <div className="bg-gradient-to-br from-[#1a1a1f] to-[#0d0d0f] border border-emerald-500/30 rounded-3xl p-8 max-w-md w-full animate-in fade-in zoom-in-95 duration-300"
            style={{ boxShadow: '0 0 60px rgba(16, 185, 129, 0.2)' }}>
         {/* Иконка */}

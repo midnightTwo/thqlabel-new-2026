@@ -3,19 +3,23 @@ import React, { ReactNode } from 'react';
 import { Release, Track } from './types';
 import { STATUS_BADGE_STYLES, formatDate, formatDateFull, getTracksWord, copyToClipboard } from './constants';
 import { PlatformBadge, MAIN_PLATFORMS } from './PlatformIcons';
+import AudioPlayer from '@/components/AudioPlayer';
+import { SupabaseClient } from '@supabase/supabase-js';
 
 interface ReleaseDetailViewProps {
   release: Release;
   onBack: () => void;
   showCopyToast: boolean;
   setShowCopyToast: (show: boolean) => void;
+  supabase?: SupabaseClient;
 }
 
 export default function ReleaseDetailView({ 
   release, 
   onBack, 
   showCopyToast, 
-  setShowCopyToast 
+  setShowCopyToast,
+  supabase
 }: ReleaseDetailViewProps) {
   const shouldAnimate = release.status === 'pending' || release.status === 'distributed';
   
@@ -59,6 +63,10 @@ export default function ReleaseDetailView({
         <TracklistSection 
           tracks={release.tracks} 
           onCopyUPC={handleCopyUPC}
+          releaseId={release.id}
+          releaseType={release.release_type}
+          status={release.status}
+          supabase={supabase}
         />
       )}
 
@@ -268,7 +276,24 @@ function CountriesSection({ countries }: { countries: string[] }) {
 }
 
 // Секция треклиста
-function TracklistSection({ tracks, onCopyUPC }: { tracks: Track[]; onCopyUPC: (upc: string) => void }) {
+function TracklistSection({ 
+  tracks, 
+  onCopyUPC, 
+  releaseId, 
+  releaseType, 
+  status,
+  supabase
+}: { 
+  tracks: Track[]; 
+  onCopyUPC: (upc: string) => void;
+  releaseId: string;
+  releaseType: 'basic' | 'exclusive';
+  status: string;
+  supabase?: SupabaseClient;
+}) {
+  // Плеер доступен только для опубликованных и на дистрибьюции релизов
+  const canPlay = status === 'published' || status === 'distributed';
+
   return (
     <div className="mb-6">
       <div className="flex items-center gap-3 mb-5">
@@ -283,7 +308,16 @@ function TracklistSection({ tracks, onCopyUPC }: { tracks: Track[]; onCopyUPC: (
       </div>
       <div className="space-y-2">
         {tracks.map((track, idx) => (
-          <TrackItem key={idx} track={track} index={idx} onCopyUPC={onCopyUPC} />
+          <TrackItem 
+            key={idx} 
+            track={track} 
+            index={idx} 
+            onCopyUPC={onCopyUPC}
+            canPlay={canPlay}
+            releaseId={releaseId}
+            releaseType={releaseType}
+            supabase={supabase}
+          />
         ))}
       </div>
     </div>
@@ -291,17 +325,45 @@ function TracklistSection({ tracks, onCopyUPC }: { tracks: Track[]; onCopyUPC: (
 }
 
 // Компонент трека
-function TrackItem({ track, index, onCopyUPC }: { track: Track; index: number; onCopyUPC: (upc: string) => void }) {
+function TrackItem({ 
+  track, 
+  index, 
+  onCopyUPC,
+  canPlay,
+  releaseId,
+  releaseType,
+  supabase
+}: { 
+  track: Track; 
+  index: number; 
+  onCopyUPC: (upc: string) => void;
+  canPlay: boolean;
+  releaseId: string;
+  releaseType: 'basic' | 'exclusive';
+  supabase?: SupabaseClient;
+}) {
   return (
     <details className="group relative bg-gradient-to-br from-white/5 to-white/[0.02] rounded-2xl hover:from-white/10 hover:to-white/5 transition-all duration-300 border border-white/10 hover:border-purple-500/30">
       <summary className="cursor-pointer p-5 list-none">
         <div className="flex items-start gap-5">
-          {/* Номер трека */}
+          {/* Номер трека / Кнопка плеера */}
           <div className="relative flex-shrink-0">
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
-            <div className="relative w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center text-base font-black ring-1 ring-white/10">
-              {index + 1}
-            </div>
+            {canPlay && supabase && track.link ? (
+              <AudioPlayer
+                releaseId={releaseId}
+                releaseType={releaseType}
+                trackIndex={index}
+                supabase={supabase}
+                variant="compact"
+              />
+            ) : (
+              <>
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="relative w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center text-base font-black ring-1 ring-white/10">
+                  {index + 1}
+                </div>
+              </>
+            )}
           </div>
           
           <div className="flex-1 relative min-w-0">

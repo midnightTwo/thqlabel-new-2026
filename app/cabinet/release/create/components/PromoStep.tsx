@@ -17,6 +17,8 @@ interface PromoStepProps {
   setPromoPhotos?: (value: string[]) => void;
   onNext: () => void;
   onBack: () => void;
+  onSkip?: () => void;  // Пропустить промо
+  onFilled?: () => void; // Промо заполнено
 }
 
 export default function PromoStep({ 
@@ -30,7 +32,9 @@ export default function PromoStep({
   promoPhotos: externalPromoPhotos,
   setPromoPhotos: setExternalPromoPhotos,
   onNext, 
-  onBack 
+  onBack,
+  onSkip,
+  onFilled
 }: PromoStepProps) {
   const [localPromoPhotos, setLocalPromoPhotos] = useState<string[]>(externalPromoPhotos || []);
   const [photoInput, setPhotoInput] = useState('');
@@ -62,6 +66,12 @@ export default function PromoStep({
     }
     
     setErrors({});
+    onFilled?.(); // Устанавливаем статус "заполнено"
+    onNext();
+  };
+  
+  const handleSkip = () => {
+    onSkip?.(); // Устанавливаем статус "пропущено"
     onNext();
   };
 
@@ -290,15 +300,26 @@ export default function PromoStep({
         </div>
       </div>
 
-      <div className="mt-8 pt-6 border-t border-white/10 flex justify-between">
-        <button onClick={onBack} className="px-6 py-3 bg-white/5 hover:bg-white/10 rounded-xl font-bold transition flex items-center gap-2">
+      <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row gap-3 sm:justify-between">
+        <button onClick={onBack} className="px-6 py-3 bg-white/5 hover:bg-white/10 rounded-xl font-bold transition flex items-center justify-center gap-2 order-2 sm:order-1">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="15 18 9 12 15 6" strokeWidth="2"/></svg>
           Назад
         </button>
-        <button onClick={validateAndNext} className="px-8 py-3 bg-[#6050ba] hover:bg-[#7060ca] rounded-xl font-bold transition flex items-center gap-2">
-          Далее
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="9 18 15 12 9 6" strokeWidth="2"/></svg>
-        </button>
+        <div className="flex flex-col sm:flex-row gap-3 order-1 sm:order-2">
+          {onSkip && (
+            <button onClick={handleSkip} className="px-6 py-3 bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-400 rounded-xl font-bold transition flex items-center justify-center gap-2 border border-yellow-500/30">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <polyline points="13 17 18 12 13 7"/>
+                <polyline points="6 17 11 12 6 7"/>
+              </svg>
+              Пропустить
+            </button>
+          )}
+          <button onClick={validateAndNext} className="px-8 py-3 bg-[#6050ba] hover:bg-[#7060ca] rounded-xl font-bold transition flex items-center justify-center gap-2">
+            Далее
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="9 18 15 12 9 6" strokeWidth="2"/></svg>
+          </button>
+        </div>
       </div>
     </div>
   );

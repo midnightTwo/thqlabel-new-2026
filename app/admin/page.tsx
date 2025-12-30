@@ -13,7 +13,6 @@ const AnimatedBackground = dynamic(() => import('@/components/AnimatedBackground
 
 // Ленивая загрузка вкладок - загружаются только при активации
 const ReleasesModeration = lazy(() => import('./components/ReleasesModeration'));
-const DemosTab = lazy(() => import('./components/demos/DemosTab'));
 const ContractsTab = lazy(() => import('./components/contracts/ContractsTab'));
 const ArchiveTab = lazy(() => import('./components/archive/ArchiveTab'));
 const NewsTab = lazy(() => import('./components/news/NewsTab'));
@@ -43,7 +42,7 @@ const TabLoader = memo(() => (
 ));
 TabLoader.displayName = 'TabLoader';
 
-type Tab = 'demos' | 'releases' | 'contracts' | 'archive' | 'payouts' | 'users' | 'news' | 'tickets' | 'withdrawals';
+type Tab = 'releases' | 'contracts' | 'archive' | 'payouts' | 'users' | 'news' | 'tickets' | 'withdrawals';
 
 export default function AdminPage() {
   const [checkingAuth, setCheckingAuth] = useState(true);
@@ -52,10 +51,15 @@ export default function AdminPage() {
   const [currentUserRole, setCurrentUserRole] = useState<'admin' | 'owner'>('admin');
   const [activeTab, setActiveTab] = useState<Tab>(() => {
     if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('adminActiveTab');
-      return (saved as Tab) || 'demos';
+      const saved = localStorage.getItem('adminActiveTab') as Tab;
+      const validTabs: Tab[] = ['releases', 'contracts', 'archive', 'payouts', 'users', 'news', 'tickets', 'withdrawals'];
+      // Проверяем, что сохраненная вкладка валидна, иначе открываем 'users'
+      if (saved && validTabs.includes(saved)) {
+        return saved;
+      }
+      return 'users';
     }
-    return 'demos';
+    return 'users';
   });
   const router = useRouter();
   
@@ -222,7 +226,6 @@ export default function AdminPage() {
         {/* Content */}
         <section className="flex-1 backdrop-blur-xl bg-[#0d0d0f]/40 border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 min-h-[400px] sm:min-h-[600px] shadow-2xl" style={{ boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)' }}>
           <Suspense fallback={<TabLoader />}>
-            {activeTab === 'demos' && <DemosTab />}
             {activeTab === 'releases' && <ReleasesModeration supabase={supabase} />}
             {activeTab === 'news' && <NewsTab supabase={supabase} />}
             {activeTab === 'withdrawals' && <WithdrawalsTab supabase={supabase} currentUserRole={currentUserRole} />}

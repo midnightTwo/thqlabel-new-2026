@@ -10,6 +10,7 @@ import {
   ContractStep,
   PlatformsStep,
   PromoStep,
+  PaymentStep,
   SendStep,
   ReleaseTypeSelector,
 } from './components';
@@ -31,7 +32,8 @@ function StepsSidebar({
   selectedCountries,
   focusTrack,
   focusTrackPromo,
-  albumDescription
+  albumDescription,
+  paymentReceiptUrl
 }: { 
   currentStep: string; 
   setCurrentStep: (step: string) => void;
@@ -47,6 +49,7 @@ function StepsSidebar({
   focusTrack: string;
   focusTrackPromo: string;
   albumDescription: string;
+  paymentReceiptUrl: string;
 }) {
   // Проверка заполненности каждого шага
   const isStepComplete = (stepId: string): boolean => {
@@ -67,6 +70,8 @@ function StepsSidebar({
           (focusTrack && focusTrackPromo) || 
           albumDescription
         );
+      case 'payment':
+        return !!paymentReceiptUrl;
       case 'send':
         return false; // Финальный шаг
       default:
@@ -81,6 +86,7 @@ function StepsSidebar({
     { id: 'contract', label: 'Договор', icon: '4' },
     { id: 'platforms', label: 'Площадки', icon: '5' },
     { id: 'promo', label: 'Промо', icon: '6' },
+    { id: 'payment', label: 'Оплата', icon: '₽' },
     { id: 'send', label: 'Отправка', icon: '✈' },
   ];
 
@@ -92,24 +98,27 @@ function StepsSidebar({
   const progress = (completedSteps / totalRequiredSteps) * 100;
 
   return (
-    <aside className="lg:w-64 w-full bg-[#0d0d0f] border border-white/5 rounded-3xl p-6 flex flex-col lg:self-start lg:sticky lg:top-24">
-      <div className="mb-6">
-        <h3 className="font-bold text-lg">Создание релиза</h3>
-        <p className="text-xs text-zinc-500 mt-1">Basic Plan</p>
+    <aside className="lg:w-64 w-full backdrop-blur-xl bg-gradient-to-br from-white/[0.07] to-white/[0.02] border border-white/10 rounded-3xl p-6 flex flex-col lg:self-start lg:sticky lg:top-24 shadow-2xl shadow-black/20 relative overflow-hidden">
+      {/* Декоративный градиент */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5 pointer-events-none" />
+      
+      <div className="mb-6 relative z-10">
+        <h3 className="font-bold text-lg bg-gradient-to-r from-white to-zinc-300 bg-clip-text text-transparent">Создание релиза</h3>
+        <p className="text-xs text-zinc-400 mt-1">Basic Plan</p>
       </div>
       
       {/* Индикатор типа релиза */}
       {releaseType && (
-        <div className="mb-4 p-4 bg-gradient-to-br from-purple-500/10 to-blue-500/10 border border-purple-500/20 rounded-xl relative overflow-hidden group hover:border-purple-500/40 transition-all">
+        <div className="mb-4 p-4 backdrop-blur-lg bg-gradient-to-br from-purple-500/20 via-purple-500/10 to-blue-500/20 border border-white/20 rounded-xl relative overflow-hidden group hover:border-white/30 hover:shadow-lg hover:shadow-purple-500/20 transition-all">
           {/* Фоновый блик */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
           
           <div className="relative z-10">
             <div className="flex items-center justify-between mb-3">
               <span className="text-xs font-semibold text-zinc-400 uppercase tracking-wide">Формат</span>
               <button
                 onClick={() => setCurrentStep('type')}
-                className="flex items-center gap-1.5 px-2.5 py-1 bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/30 hover:border-purple-500/50 rounded-lg text-xs font-semibold text-purple-400 hover:text-purple-300 transition-all group/btn"
+                className="flex items-center gap-1.5 px-2.5 py-1 backdrop-blur-md bg-purple-500/20 hover:bg-purple-500/30 border border-purple-400/40 hover:border-purple-400/60 rounded-lg text-xs font-semibold text-purple-300 hover:text-purple-200 transition-all group/btn shadow-lg shadow-purple-500/10"
                 title="Изменить тип релиза"
               >
                 <svg className="w-3.5 h-3.5 group-hover/btn:rotate-90 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -168,7 +177,7 @@ function StepsSidebar({
         </div>
       )}
       
-      <div className="space-y-2">
+      <div className="space-y-2 relative z-10">
         {steps.map((step, idx) => {
           const isComplete = isStepComplete(step.id);
           const isCurrent = currentStep === step.id;
@@ -177,12 +186,15 @@ function StepsSidebar({
             <button 
               key={step.id} 
               onClick={() => setCurrentStep(step.id)}
-              className={`w-full text-left py-3 px-4 rounded-xl flex items-center gap-3 transition-all ${
+              className={`w-full text-left py-3 px-4 rounded-xl flex items-center gap-3 transition-all relative overflow-hidden group/step ${
                 isCurrent 
-                  ? 'bg-[#6050ba] text-white shadow-lg shadow-[#6050ba]/20' 
-                  : 'text-zinc-400 hover:bg-white/5 hover:text-white'
+                  ? 'backdrop-blur-md bg-gradient-to-r from-purple-500/40 to-purple-600/40 text-white shadow-lg shadow-purple-500/30 border border-white/20' 
+                  : 'backdrop-blur-sm bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white border border-transparent hover:border-white/10'
               }`}
             >
+              {/* Hover эффект */}
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-purple-500/10 to-purple-500/0 opacity-0 group-hover/step:opacity-100 transition-opacity duration-300" />
+              <div className="relative z-10 flex items-center gap-3 w-full">
               <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
                 isComplete && step.id !== 'send' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/10'
               }`}>
@@ -201,23 +213,24 @@ function StepsSidebar({
               </span>
               <span className="text-sm font-medium">{step.label}</span>
               {isCurrent && (
-                <span className="ml-auto w-2 h-2 rounded-full bg-white animate-pulse" />
+                <span className="ml-auto w-2 h-2 rounded-full bg-white animate-pulse shadow-lg shadow-white/50" />
               )}
+              </div>
             </button>
           );
         })}
       </div>
 
       {/* Прогресс */}
-      <div className="mt-auto pt-6 border-t border-white/5">
-        <div className="text-xs text-zinc-500 mb-2">Прогресс заполнения</div>
-        <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+      <div className="mt-auto pt-6 border-t border-white/10 relative z-10">
+        <div className="text-xs text-zinc-400 mb-2 font-medium">Прогресс заполнения</div>
+        <div className="h-2.5 backdrop-blur-sm bg-white/5 rounded-full overflow-hidden border border-white/10 shadow-inner">
           <div 
-            className="h-full bg-gradient-to-r from-[#6050ba] to-[#9d8df1] transition-all duration-500"
+            className="h-full bg-gradient-to-r from-purple-500 via-purple-400 to-blue-500 transition-all duration-500 shadow-lg shadow-purple-500/50"
             style={{ width: `${progress}%` }}
           />
         </div>
-        <div className="text-xs text-zinc-400 mt-2 text-center">
+        <div className="text-xs text-zinc-300 mt-2 text-center font-medium">
           {completedSteps} из {totalRequiredSteps} шагов
         </div>
       </div>
@@ -268,10 +281,6 @@ export default function CreateReleaseBasicPage() {
     version?: string;
     producers?: string[];
     featuring?: string[];
-    isInstrumental?: boolean;
-    tiktokPreviewStart?: string;
-    composers?: string[];
-    lyricists?: string[];
   }>>([]);
   const [currentTrack, setCurrentTrack] = useState<number | null>(null);
   const [trackTitle, setTrackTitle] = useState('');
@@ -290,10 +299,6 @@ export default function CreateReleaseBasicPage() {
   const [trackVersion, setTrackVersion] = useState('');
   const [trackProducers, setTrackProducers] = useState<string[]>([]);
   const [trackFeaturing, setTrackFeaturing] = useState<string[]>([]);
-  const [trackIsInstrumental, setTrackIsInstrumental] = useState(false);
-  const [trackTiktokPreviewStart, setTrackTiktokPreviewStart] = useState('');
-  const [trackComposers, setTrackComposers] = useState<string[]>([]);
-  const [trackLyricists, setTrackLyricists] = useState<string[]>([]);
   
   // Countries state
   const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
@@ -310,7 +315,9 @@ export default function CreateReleaseBasicPage() {
   const [focusTrackPromo, setFocusTrackPromo] = useState('');
   const [albumDescription, setAlbumDescription] = useState('');
   const [promoPhotos, setPromoPhotos] = useState<string[]>([]);
-  const [promoPhotoFiles, setPromoPhotoFiles] = useState<Array<{file: File; preview: string}>>([]);
+  
+  // Payment state
+  const [paymentReceiptUrl, setPaymentReceiptUrl] = useState('');
   
   // Draft state
   const [draftId, setDraftId] = useState<string | null>(null);
@@ -501,16 +508,20 @@ export default function CreateReleaseBasicPage() {
           focusTrack={focusTrack}
           focusTrackPromo={focusTrackPromo}
           albumDescription={albumDescription}
+          paymentReceiptUrl={paymentReceiptUrl}
         />
 
         {/* Основной контент */}
-        <section className="flex-1 bg-[#0d0d0f] border border-white/5 rounded-3xl p-10 min-h-[600px]">
+        <section className="flex-1 backdrop-blur-xl bg-gradient-to-br from-white/[0.07] to-white/[0.02] border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-10 min-h-[500px] shadow-2xl shadow-black/20 relative overflow-hidden">
+          {/* Декоративный градиент */}
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5 pointer-events-none" />
           
+          <div className="relative z-10">
           {/* Кнопка возврата */}
-          <div className="mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-white/5">
+          <div className="mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-white/10">
             <button 
               onClick={() => router.push('/cabinet')}
-              className="px-4 sm:px-6 py-2.5 sm:py-3 bg-white/5 hover:bg-white/10 rounded-xl font-medium transition flex items-center gap-2 text-sm sm:text-base"
+              className="px-4 sm:px-6 py-2.5 sm:py-3 backdrop-blur-sm bg-white/5 hover:bg-white/10 rounded-xl font-medium transition flex items-center gap-2 text-sm sm:text-base border border-transparent hover:border-white/10"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="flex-shrink-0">
                 <polyline points="15 18 9 12 15 6" strokeWidth="2"/>
@@ -581,14 +592,6 @@ export default function CreateReleaseBasicPage() {
               setTrackProducers={setTrackProducers}
               trackFeaturing={trackFeaturing}
               setTrackFeaturing={setTrackFeaturing}
-              trackIsInstrumental={trackIsInstrumental}
-              setTrackIsInstrumental={setTrackIsInstrumental}
-              trackTiktokPreviewStart={trackTiktokPreviewStart}
-              setTrackTiktokPreviewStart={setTrackTiktokPreviewStart}
-              trackComposers={trackComposers}
-              setTrackComposers={setTrackComposers}
-              trackLyricists={trackLyricists}
-              setTrackLyricists={setTrackLyricists}
               onNext={() => setCurrentStep('countries')}
               onBack={() => setCurrentStep('release')}
             />
@@ -638,14 +641,22 @@ export default function CreateReleaseBasicPage() {
               setAlbumDescription={setAlbumDescription}
               promoPhotos={promoPhotos}
               setPromoPhotos={setPromoPhotos}
-              promoPhotoFiles={promoPhotoFiles}
-              setPromoPhotoFiles={setPromoPhotoFiles}
-              onNext={() => setCurrentStep('send')}
+              onNext={() => setCurrentStep('payment')}
               onBack={() => setCurrentStep('platforms')}
             />
           )}
 
-          {/* Шаг 7: Отправка */}
+          {/* Шаг 7: Оплата */}
+          {currentStep === 'payment' && (
+            <PaymentStep
+              userId={user?.id}
+              onPaymentSubmit={(receiptUrl) => setPaymentReceiptUrl(receiptUrl)}
+              onNext={() => setCurrentStep('send')}
+              onBack={() => setCurrentStep('promo')}
+            />
+          )}
+
+          {/* Шаг 8: Отправка */}
           {currentStep === 'send' && (
             <SendStep
               releaseTitle={releaseTitle}
@@ -665,9 +676,11 @@ export default function CreateReleaseBasicPage() {
               tracks={tracks}
               platforms={selectedPlatformsList}
               countries={selectedCountries}
-              onBack={() => setCurrentStep('promo')}
+              onBack={() => setCurrentStep('payment')}
+              paymentReceiptUrl={paymentReceiptUrl}
             />
           )}
+          </div>
         </section>
       </div>
     </div>

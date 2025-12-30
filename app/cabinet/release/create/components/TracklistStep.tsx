@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+interface AudioMetadata {
+  format: string;
+  duration?: number;
+  bitrate?: string;
+  sampleRate?: string;
+  size: number;
+}
 
 interface Track {
   title: string;
   link: string;
+  audioFile?: File | null;
+  audioMetadata?: AudioMetadata | null;
   hasDrugs: boolean;
   lyrics: string;
   language: string;
@@ -22,6 +32,10 @@ interface TracklistStepProps {
   setTrackTitle: (value: string) => void;
   trackLink: string;
   setTrackLink: (value: string) => void;
+  trackAudioFile?: File | null;
+  setTrackAudioFile?: (value: File | null) => void;
+  trackAudioMetadata?: AudioMetadata | null;
+  setTrackAudioMetadata?: (value: AudioMetadata | null) => void;
   trackHasDrugs: boolean;
   setTrackHasDrugs: (value: boolean) => void;
   trackLyrics: string;
@@ -49,6 +63,10 @@ export default function TracklistStep({
   setTrackTitle,
   trackLink,
   setTrackLink,
+  trackAudioFile,
+  setTrackAudioFile,
+  trackAudioMetadata,
+  setTrackAudioMetadata,
   trackHasDrugs,
   setTrackHasDrugs,
   trackLyrics,
@@ -66,6 +84,93 @@ export default function TracklistStep({
 }: TracklistStepProps) {
   const [draggedIndex, setDraggedIndex] = React.useState<number | null>(null);
   const [dragOverIndex, setDragOverIndex] = React.useState<number | null>(null);
+  const [uploadError, setUploadError] = useState<string>('');
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+
+  // Функция для анализа аудиофайла
+  const analyzeAudioFile = async (file: File): Promise<AudioMetadata | null> => {
+    try {
+      setIsAnalyzing(true);
+      setUploadError('');
+
+      // Проверка расширения файла
+      const fileName = file.name.toLowerCase();
+      const isWav = fileName.endsWith('.wav');
+      const isFlac = fileName.endsWith('.flac');
+      
+      if (!isWav && !isFlac) {
+        setUploadError('❌ MP3 не принимается. Загрузите WAV или FLAC');
+        return null;
+      }
+
+      // Базовая метаинформация
+      const metadata: AudioMetadata = {
+        format: isWav ? 'WAV' : 'FLAC',
+        size: file.size,
+      };
+
+      // Попытка получить duration через Web Audio API
+      try {
+        const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+        const arrayBuffer = await file.arrayBuffer();
+        const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+        
+        metadata.duration = audioBuffer.duration;
+        metadata.sampleRate = `${audioBuffer.sampleRate / 1000} kHz`;
+        
+        // Проверка частоты дискретизации
+        if (audioBuffer.sampleRate < 44100) {
+          setUploadError(`⚠️ Частота дискретизации слишком низкая: ${audioBuffer.sampleRate / 1000} kHz. Минимум: 44.1 kHz`);
+          return null;
+        }
+        
+        audioContext.close();
+      } catch (e) {
+        console.warn('Не удалось получить метаданные через Web Audio API:', e);
+      }
+
+      return metadata;
+    } catch (error) {
+      console.error('Ошибка анализа файла:', error);
+      setUploadError('Ошибка анализа файла');
+      return null;
+    } finally {
+      setIsAnalyzing(false);
+    }
+  };
+
+  // Обработчик загрузки аудиофайла
+  const handleAudioFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const metadata = await analyzeAudioFile(file);
+    if (metadata && setTrackAudioFile && setTrackAudioMetadata) {
+      setTrackAudioFile(file);
+      setTrackAudioMetadata(metadata);
+    } else if (!metadata) {
+      // Если файл не прошел валидацию, сбрасываем input
+      e.target.value = '';
+      if (setTrackAudioFile) setTrackAudioFile(null);
+      if (setTrackAudioMetadata) setTrackAudioMetadata(null);
+    }
+  };
+
+  // Функция форматирования размера файла
+  const formatFileSize = (bytes: number): string => {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+  };
+
+  // Функция форматирования длительности
+  const formatDuration = (seconds: number): string => {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
 
   const handleDragStart = (index: number) => {
     setDraggedIndex(index);
@@ -168,22 +273,18 @@ export default function TracklistStep({
                 Треки в релизе ({tracks.length})
               </h4>
               <div className="space-y-3">
-                {tracks.map((track, idx) => {
-                  // Скрываем перетаскиваемый элемент полностью из DOM
-                  if (draggedIndex === idx) {
-                    return null;
-                  }
-                  
-                  return (
+                {tracks.map((track, idx) => (
                   <div 
-                    key={`${track.title}-${track.link}-${idx}`} 
+                    key={`track-${idx}-${track.title}`} 
                     draggable
                     onDragStart={() => handleDragStart(idx)}
                     onDragOver={(e) => handleDragOver(e, idx)}
                     onDrop={(e) => handleDrop(e, idx)}
                     onDragEnd={handleDragEnd}
                     className={`relative flex items-center gap-4 p-5 rounded-2xl border-2 transition-all duration-300 ${
-                        dragOverIndex === idx
+                        draggedIndex === idx
+                        ? 'opacity-50 scale-95 border-purple-500/50 bg-purple-500/10'
+                        : dragOverIndex === idx
                         ? 'bg-gradient-to-br from-purple-500/20 to-blue-500/20 border-purple-500 shadow-2xl shadow-purple-500/20 scale-[1.02]'
                         : 'bg-gradient-to-br from-white/[0.07] to-white/[0.03] border-white/10 hover:border-white/20 hover:shadow-xl hover:scale-[1.01]'
                     } group backdrop-blur-sm`}
@@ -316,8 +417,7 @@ export default function TracklistStep({
                       </button>
                     </div>
                   </div>
-                  );
-                })}
+                ))}
               </div>
             </div>
           )}
@@ -379,9 +479,96 @@ export default function TracklistStep({
             />
           </div>
 
-          <div className="overflow-x-hidden">
-            <label className="text-sm text-zinc-400 mb-2 block">Ссылка на трек (Яндекс Диск / Google Drive) *</label>
-            <input value={trackLink} onChange={(e) => setTrackLink(e.target.value)} placeholder="https://..." className="w-full px-3 sm:px-4 py-3 bg-gradient-to-br from-white/[0.07] to-white/[0.03] placeholder:text-zinc-600 rounded-xl border border-white/10 outline-none break-all text-xs sm:text-sm" />
+          {/* Загрузка аудиофайла */}
+          <div className="space-y-3">
+            <div>
+              <label className="text-sm text-zinc-400 mb-2 block">
+                Аудиофайл * <span className="text-zinc-500 text-xs">(WAV или FLAC, минимум 44.1 kHz)</span>
+              </label>
+              
+              <div className="relative">
+                <input
+                  type="file"
+                  accept=".wav,.flac"
+                  onChange={handleAudioFileChange}
+                  className="hidden"
+                  id="audio-upload"
+                />
+                <label
+                  htmlFor="audio-upload"
+                  className={`flex items-center justify-center gap-3 w-full px-6 py-5 border-2 border-dashed rounded-2xl cursor-pointer transition-all ${
+                    trackAudioFile && trackAudioMetadata && !uploadError
+                      ? 'border-emerald-500/50 bg-emerald-500/5 hover:bg-emerald-500/10'
+                      : 'border-white/20 bg-white/[0.02] hover:border-purple-500/50 hover:bg-purple-500/5'
+                  }`}
+                >
+                  {isAnalyzing ? (
+                    <>
+                      <svg className="animate-spin w-6 h-6 text-purple-400" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"/>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
+                      </svg>
+                      <span className="text-sm font-medium text-purple-300">Анализ файла...</span>
+                    </>
+                  ) : trackAudioFile && trackAudioMetadata ? (
+                    <>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-emerald-400" strokeWidth="2">
+                        <polyline points="20 6 9 17 4 12"/>
+                      </svg>
+                      <span className="text-sm font-medium text-emerald-300">{trackAudioFile.name}</span>
+                    </>
+                  ) : (
+                    <>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-purple-400" strokeWidth="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="17 8 12 3 7 8"/>
+                        <line x1="12" y1="3" x2="12" y2="15"/>
+                      </svg>
+                      <span className="text-sm font-medium text-zinc-300">Нажмите для загрузки WAV/FLAC файла</span>
+                    </>
+                  )}
+                </label>
+              </div>
+
+              {uploadError && (
+                <div className="flex items-start gap-2 mt-3 px-4 py-3 bg-red-500/10 border border-red-500/20 rounded-xl">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-red-400 flex-shrink-0 mt-0.5" strokeWidth="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                  </svg>
+                  <span className="text-sm text-red-400">{uploadError}</span>
+                </div>
+              )}
+
+              {/* Метаданные файла */}
+              {trackAudioFile && trackAudioMetadata && !uploadError && (
+                <div className="mt-3 p-4 bg-gradient-to-br from-emerald-500/10 to-blue-500/10 border border-emerald-500/20 rounded-xl">
+                  <div className="grid grid-cols-2 gap-3 text-xs">
+                    <div>
+                      <div className="text-zinc-500 mb-1">Формат</div>
+                      <div className="font-mono text-white bg-white/5 px-2 py-1 rounded">{trackAudioMetadata.format}</div>
+                    </div>
+                    <div>
+                      <div className="text-zinc-500 mb-1">Размер</div>
+                      <div className="font-mono text-white bg-white/5 px-2 py-1 rounded">{formatFileSize(trackAudioMetadata.size)}</div>
+                    </div>
+                    {trackAudioMetadata.duration && (
+                      <div>
+                        <div className="text-zinc-500 mb-1">Длительность</div>
+                        <div className="font-mono text-white bg-white/5 px-2 py-1 rounded">{formatDuration(trackAudioMetadata.duration)}</div>
+                      </div>
+                    )}
+                    {trackAudioMetadata.sampleRate && (
+                      <div>
+                        <div className="text-zinc-500 mb-1">Частота</div>
+                        <div className="font-mono text-white bg-white/5 px-2 py-1 rounded">{trackAudioMetadata.sampleRate}</div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
 
           <div>
@@ -529,10 +716,21 @@ export default function TracklistStep({
                   return;
                 }
                 
-                if (!finalTitle || !finalTitle.trim() || !trackLink || !trackLink.trim()) { alert('Заполните название и ссылку'); return; }
+                // Проверяем наличие названия и аудиофайла
+                if (!finalTitle || !finalTitle.trim()) { 
+                  alert('Заполните название трека'); 
+                  return; 
+                }
+                if (!trackAudioFile) { 
+                  alert('Загрузите аудиофайл (WAV или FLAC)'); 
+                  return; 
+                }
+                
                 const newTrack = { 
                   title: finalTitle, 
-                  link: trackLink, 
+                  link: '', // Оставляем для совместимости, но не используем
+                  audioFile: trackAudioFile,
+                  audioMetadata: trackAudioMetadata,
                   hasDrugs: trackHasDrugs, 
                   lyrics: trackLyrics, 
                   language: trackLanguage,
@@ -548,6 +746,8 @@ export default function TracklistStep({
                 setCurrentTrack(null); 
                 setTrackTitle(''); 
                 setTrackLink(''); 
+                if (setTrackAudioFile) setTrackAudioFile(null);
+                if (setTrackAudioMetadata) setTrackAudioMetadata(null);
                 setTrackHasDrugs(false); 
                 setTrackLyrics(''); 
                 setTrackLanguage('');
@@ -563,6 +763,8 @@ export default function TracklistStep({
               setCurrentTrack(null); 
               setTrackTitle(''); 
               setTrackLink(''); 
+              if (setTrackAudioFile) setTrackAudioFile(null);
+              if (setTrackAudioMetadata) setTrackAudioMetadata(null);
               setTrackHasDrugs(false); 
               setTrackLyrics(''); 
               setTrackLanguage('');

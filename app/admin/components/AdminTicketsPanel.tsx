@@ -571,13 +571,9 @@ export default function AdminTicketsPanel({ supabase }: { supabase: any }) {
       </div>
 
       {/* Контент */}
-      <div className={`grid grid-cols-1 lg:grid-cols-3 gap-6 ${
-        selectedTicket ? 'overflow-hidden' : ''
-      }`}>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Список тикетов */}
-        <div className={`lg:col-span-1 space-y-2 max-h-[700px] pr-2 scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-zinc-900 hover:scrollbar-thumb-zinc-600 ${
-          selectedTicket ? 'overflow-hidden' : 'overflow-y-auto'
-        }`}>
+        <div className="lg:col-span-1 space-y-2 max-h-[700px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-zinc-900 hover:scrollbar-thumb-zinc-600">
           {(() => {
             let filteredTickets = tickets.filter(t => {
               if (filter === 'all') {
@@ -1174,8 +1170,8 @@ export default function AdminTicketsPanel({ supabase }: { supabase: any }) {
 
       {/* Модальное окно профиля пользователя */}
       {viewingUser && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-gradient-to-br from-[#1a1a1f] to-[#0d0d0f] border border-white/10 rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-start justify-center overflow-y-auto p-4 pt-16 pb-8">
+          <div className="bg-gradient-to-br from-[#1a1a1f] to-[#0d0d0f] border border-white/10 rounded-3xl max-w-4xl w-full overflow-y-auto">
             {/* Шапка профиля */}
             <div className="sticky top-0 bg-[#1a1a1f]/95 backdrop-blur border-b border-white/10 p-6 flex items-center justify-between z-10">
               <div className="flex items-center gap-4">
@@ -1358,8 +1354,8 @@ export default function AdminTicketsPanel({ supabase }: { supabase: any }) {
 
       {/* Модальное окно с информацией о релизе */}
       {viewingRelease && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setViewingRelease(null)}>
-          <div className="bg-zinc-900 border border-purple-500/30 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-zinc-900" onClick={(e) => e.stopPropagation()}>
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-start justify-center overflow-y-auto p-4 pt-16 pb-8" onClick={() => setViewingRelease(null)}>
+          <div className="bg-zinc-900 border border-purple-500/30 rounded-2xl shadow-2xl max-w-2xl w-full overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-zinc-900" onClick={(e) => e.stopPropagation()}>
             {/* Хедер */}
             <div className="sticky top-0 bg-gradient-to-r from-purple-900/50 to-blue-900/50 backdrop-blur-sm border-b border-purple-500/30 p-6 flex items-center justify-between z-10">
               <div className="flex items-center gap-3">

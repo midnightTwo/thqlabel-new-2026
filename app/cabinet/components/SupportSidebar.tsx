@@ -25,6 +25,19 @@ export default function SupportSidebar({ isOpen, onClose, onOpen, unreadCount, o
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Блокировка скролла body когда виджет открыт
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   return (
     <>
       {/* Виджет поддержки - скрыт на мобилке */}
@@ -94,7 +107,7 @@ export default function SupportSidebar({ isOpen, onClose, onOpen, unreadCount, o
         </div>
 
         {/* Content */}
-        <div className="h-[calc(100%-65px)] overflow-y-auto">
+        <div className="h-[calc(100%-65px)] overflow-y-auto scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           <SupportContent onClose={onClose} onUpdateUnreadCount={onUpdateUnreadCount} />
         </div>
       </div>

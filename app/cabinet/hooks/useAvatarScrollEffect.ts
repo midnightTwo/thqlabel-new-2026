@@ -19,9 +19,18 @@ export function useAvatarScrollEffect() {
 
     let ticking = false;
     let lastKnownScrollPosition = 0;
+    let lastUpdateTime = 0;
+    const minUpdateInterval = 16; // Ограничиваем до ~60fps
 
     const updateAvatarEffect = (scrollPos: number) => {
       if (!avatar) return;
+
+      // Проверяем, прошло ли достаточно времени с последнего обновления
+      const now = Date.now();
+      if (now - lastUpdateTime < minUpdateInterval) {
+        return;
+      }
+      lastUpdateTime = now;
 
       const rect = avatar.getBoundingClientRect();
       const elementTop = rect.top;
@@ -51,9 +60,9 @@ export function useAvatarScrollEffect() {
       // Обновляем только если значения реально изменились
       setTransform(prev => {
         if (
-          Math.abs(parseFloat(prev.clipPath.match(/[\d.]+/)?.[0] || '0') - clipPercentage) < 0.5 &&
-          Math.abs(prev.translateY - translateY) < 0.5 &&
-          Math.abs(prev.opacity - opacity) < 0.01
+          Math.abs(parseFloat(prev.clipPath.match(/[\d.]+/)?.[0] || '0') - clipPercentage) < 1 &&
+          Math.abs(prev.translateY - translateY) < 1 &&
+          Math.abs(prev.opacity - opacity) < 0.02
         ) {
           return prev; // Не обновляем если изменения минимальны
         }

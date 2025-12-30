@@ -71,11 +71,11 @@ export default function ContractStep({ agreedToContract, setAgreedToContract, on
 
       {/* Модальное окно с договором */}
       {showContractModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fade-in" onClick={() => setShowContractModal(false)}>
+        <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto p-4 pt-16 pb-8 animate-fade-in" onClick={() => setShowContractModal(false)}>
           <div className="bg-[#0d0d0f] border border-white/10 rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl animate-scale-up" onClick={(e) => e.stopPropagation()}>
             {/* Заголовок */}
             <div className="flex items-center justify-between p-4 border-b border-white/10 bg-[#0d0d0f]">
-              <h3 className="text-lg font-bold bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">Договор публичной оферты</h3>
+              <h3 className="text-lg font-bold bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">Договор о релизе</h3>
               <button 
                 onClick={() => setShowContractModal(false)}
                 className="w-8 h-8 rounded-xl bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors"
@@ -90,13 +90,13 @@ export default function ContractStep({ agreedToContract, setAgreedToContract, on
             {/* Содержимое договора */}
             <div className="p-5 overflow-y-auto max-h-[55vh] text-xs leading-relaxed space-y-3 text-zinc-300 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
               <p className="font-semibold text-white text-sm">
-                ООО «Звезда» (далее — Исполнитель) предлагает договор публичной оферты для физических и юридических лиц (далее — Заказчик) о нижеследующем.
+                ООО «Звезда» (далее — Исполнитель) предлагает договор о релизе для физических и юридических лиц (далее — Заказчик) о нижеследующем.
               </p>
 
               <div className="space-y-3">
                 <h4 className="text-sm font-bold text-white mt-4">1. Термины и определения</h4>
                 
-                <p>1.1 Оферта — документ «Договор публичной оферты об оказании услуг», опубликованный на сайте Исполнителя <a href="http://www.zwezda.ru" target="_blank" className="text-green-400 hover:text-green-300 underline">http://www.zwezda.ru/</a>.</p>
+                <p>1.1 Договор — документ «Договор о релизе музыкального контента», опубликованный на сайте Исполнителя <a href="http://www.zwezda.ru" target="_blank" className="text-green-400 hover:text-green-300 underline">http://www.zwezda.ru/</a>.</p>
                 
                 <p>1.2. Договор Оферты — договор между Исполнителем и Заказчиком об оказании услуг, который заключается через сайт Оферты.</p>
                 

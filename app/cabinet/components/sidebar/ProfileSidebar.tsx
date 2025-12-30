@@ -2,7 +2,6 @@
 import React from 'react';
 import Link from 'next/link';
 import { UserRole, ROLE_CONFIG } from '../../lib/types';
-import { useAvatarScrollEffect } from '../../hooks/useAvatarScrollEffect';
 
 interface ProfileSidebarProps {
   user: any;
@@ -32,9 +31,6 @@ export default function ProfileSidebar({
   showToast,
 }: ProfileSidebarProps) {
   const config = ROLE_CONFIG[role];
-  
-  // Эффект медленного скролла для аватара (работает на desktop и mobile)
-  const { avatarRef, transform } = useAvatarScrollEffect();
 
   // DEBUG: Логируем memberId
   React.useEffect(() => {
@@ -63,13 +59,12 @@ export default function ProfileSidebar({
         <div className="flex items-center gap-4 mb-4">
           {/* Аватар - кликабельный с эффектом медленного скролла */}
           <button 
-            ref={avatarRef}
             onClick={onShowAvatarModal}
             className={`relative w-20 h-20 flex-shrink-0 rounded-xl ${avatar ? '' : `bg-gradient-to-br ${config.color}`} flex items-center justify-center text-3xl font-black border-2 ${config.borderColor} ${role === 'exclusive' ? 'ring-2 ring-[#fbbf24] ring-offset-2 ring-offset-[#0d0d0f]' : role === 'admin' ? 'ring-2 ring-[#ff6b81] ring-offset-2 ring-offset-[#0d0d0f]' : ''} overflow-hidden cursor-pointer hover:opacity-80 transition-opacity group`}
             style={{ 
               boxShadow: `0 0 30px ${config.glowColor}`,
-              willChange: 'transform, opacity',
-              transition: 'transform 0.1s ease-out, opacity 0.1s ease-out',
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden',
             }}
           >
             {avatar ? (
@@ -77,16 +72,9 @@ export default function ProfileSidebar({
                 src={avatar} 
                 alt="Avatar" 
                 className="w-full h-full object-cover rounded-lg"
-                style={{
-                  transform: `translateY(${transform.translateY}px)`,
-                  opacity: transform.opacity,
-                }}
               />
             ) : (
-              <span style={{
-                transform: `translateY(${transform.translateY}px)`,
-                opacity: transform.opacity,
-              }}>
+              <span>
                 {nickname.charAt(0).toUpperCase()}
               </span>
             )}

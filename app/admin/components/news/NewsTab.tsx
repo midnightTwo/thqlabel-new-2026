@@ -484,7 +484,7 @@ export default function NewsTab({ supabase }: { supabase: any }) {
       
       {/* Диалог подтверждения */}
       {confirmDialog.show && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[200] flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[200] flex items-start justify-center overflow-y-auto p-4 pt-16 pb-8">
           <div className="bg-[#1a1a1f] border border-white/10 rounded-2xl p-6 max-w-sm w-full animate-in fade-in zoom-in-95 duration-200">
             <h3 className="text-lg font-bold mb-4">Подтверждение</h3>
             <p className="text-zinc-400 mb-6">{confirmDialog.message}</p>
@@ -511,7 +511,7 @@ export default function NewsTab({ supabase }: { supabase: any }) {
       
       {/* Диалог вставки ссылки */}
       {showLinkDialog && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] flex items-start justify-center overflow-y-auto p-4 pt-16 pb-8">
           <div className="bg-[#1a1a1f] border border-white/10 rounded-2xl p-6 max-w-md w-full animate-in fade-in zoom-in-95 duration-200">
             <h3 className="text-lg font-bold mb-4">Вставить ссылку</h3>
             <div className="space-y-4">
@@ -561,8 +561,8 @@ export default function NewsTab({ supabase }: { supabase: any }) {
       
       {/* Модальное окно черновиков */}
       {showDraftsModal && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
-          <div className="bg-[#1a1a1f] border border-white/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 max-w-3xl w-full max-h-[80vh] overflow-auto animate-in fade-in zoom-in-95 duration-200">
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] flex items-start justify-center overflow-y-auto p-4 pt-16 pb-8">
+          <div className="bg-[#1a1a1f] border border-white/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 max-w-3xl w-full overflow-auto animate-in fade-in zoom-in-95 duration-200">
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-2xl font-bold">Мои черновики</h3>
               <button

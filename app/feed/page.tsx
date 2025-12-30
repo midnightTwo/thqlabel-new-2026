@@ -9,11 +9,11 @@ const supabase = (supabaseUrl && supabaseAnonKey) ? createClient(supabaseUrl, su
 
 // Релизы thq label
 const RELEASES = [
-  { id: 1, title: 'Neon Dreams', artist: 'Night Drive', cover: 'https://t2.genius.com/unsafe/430x430/https%3A%2F%2Fimages.genius.com%2Fd4892b6202a4051f807a8a847f44adc0.1000x1000x1.png' },
-  { id: 2, title: 'Apex', artist: 'The Summit', cover: 'https://t2.genius.com/unsafe/600x600/https%3A%2F%2Fimages.genius.com%2F9fa9951f735a169c17e47baf71ab45c7.1000x1000x1.png' },
-  { id: 3, title: 'Luna', artist: 'Stardust', cover: 'https://t2.genius.com/unsafe/430x430/https%3A%2F%2Fimages.genius.com%2Fa4b2333f9c0768cf4f07d1252caff125.1000x1000x1.png' },
-  { id: 4, title: 'девчачий рок-альбом', artist: 'тенденция', cover: 'https://images.genius.com/2fa8d85da644fad7afc1ba3d40d0d513.1000x1000x1.png' },
-  { id: 5, title: 'tired of you / what pain is', artist: 'breakfall', cover: 'https://cdn-images.dzcdn.net/images/cover/7101d738b828553e74b9f0035a6dfa1a/500x500-000000-80-0-0.jpg' },
+  { id: 1, title: 'НЕ В СЕТИ', artist: 'angelgrind', cover: 'https://t2.genius.com/unsafe/430x430/https%3A%2F%2Fimages.genius.com%2Fd4892b6202a4051f807a8a847f44adc0.1000x1000x1.png' },
+  { id: 2, title: 'ЗАКОЛКИ & КОСТИ', artist: 'kweetee', cover: 'https://t2.genius.com/unsafe/600x600/https%3A%2F%2Fimages.genius.com%2F9fa9951f735a169c17e47baf71ab45c7.1000x1000x1.png' },
+  { id: 3, title: 'МЕХАНИЗМ', artist: 'athygue', cover: 'https://t2.genius.com/unsafe/430x430/https%3A%2F%2Fimages.genius.com%2Fa4b2333f9c0768cf4f07d1252caff125.1000x1000x1.png' },
+  { id: 4, title: 'ДЕВЧАЧИЙ РОК-АЛЬБОМ', artist: 'тенденция', cover: 'https://images.genius.com/2fa8d85da644fad7afc1ba3d40d0d513.1000x1000x1.png' },
+  { id: 5, title: 'TIRED OF YOU / WHAT PAIN IS', artist: 'breakfall', cover: 'https://cdn-images.dzcdn.net/images/cover/7101d738b828553e74b9f0035a6dfa1a/500x500-000000-80-0-0.jpg' },
   { id: 6, title: 'LABEL', artist: 'YUUKKII', cover: 'https://t2.genius.com/unsafe/430x430/https%3A%2F%2Fimages.genius.com%2F4dbc0ecc8a3f9924cc950ec1ae1390c4.600x600x1.webp' },
   { id: 7, title: 'кейон', artist: 'ева киллер', cover: 'https://m.media-amazon.com/images/I/51knFhnMP0L._UX716_FMwebp_QL85_.jpg' },
   { id: 8, title: 'Холодно', artist: 'qqdie', cover: 'https://images.genius.com/ece70e671b3422967c2012217763c557.807x807x1.jpg' },
@@ -32,7 +32,7 @@ const SERVICES = [
 ];
 
 // Оптимизированный анимированный счетчик
-const AnimatedCounter = memo(({ end, duration = 2500, suffix = '' }: { end: number; duration?: number; suffix?: string }) => {
+const AnimatedCounter = memo(({ end, duration = 2500, suffix = '', delay = 0 }: { end: number; duration?: number; suffix?: string; delay?: number }) => {
   const [count, setCount] = useState(0);
   const countRef = useRef(0);
   const startTimeRef = useRef<number | null>(null);
@@ -73,7 +73,7 @@ const AnimatedCounter = memo(({ end, duration = 2500, suffix = '' }: { end: numb
     
     const timer = setTimeout(() => {
       rafRef.current = requestAnimationFrame(animate);
-    }, 200);
+    }, delay);
     
     return () => {
       clearTimeout(timer);
@@ -81,7 +81,7 @@ const AnimatedCounter = memo(({ end, duration = 2500, suffix = '' }: { end: numb
         cancelAnimationFrame(rafRef.current);
       }
     };
-  }, []);
+  }, [delay]);
 
   // Форматирование числа с разделителями
   const formatNumber = useCallback((num: number) => {
@@ -341,7 +341,7 @@ const ServicesModal = memo(({ isOpen, onClose }: { isOpen: boolean; onClose: () 
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto p-4 pt-16 pb-8 bg-black/70 backdrop-blur-sm"
       onClick={onClose}
     >
       <div 
@@ -608,8 +608,19 @@ export default function FeedPage() {
               />
             </div>
 
+            {/* Кнопка "Лейбл ждёт тебя" под логотипом */}
+            <div className={`mb-6 transition-all duration-1000 delay-300 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
+              <div className="inline-flex items-center gap-2 text-[10px] text-white uppercase tracking-wider font-black px-4 py-2 border-2 border-[#9d8df1]/80 rounded-full bg-gradient-to-r from-[#6050ba]/30 to-[#9d8df1]/30 shadow-xl backdrop-blur-sm">
+                <span className="relative">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white block animate-pulse" />
+                  <span className="absolute inset-0 w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+                </span>
+                Лейбл ждёт тебя
+              </div>
+            </div>
+
             {/* Информация под логотипом - по центру снизу */}
-            <div className={`text-center w-full transition-all duration-1000 delay-400 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
+            <div className={`text-center w-full transition-all duration-1000 delay-[1200ms] ${mounted ? 'opacity-100' : 'opacity-0'}`}>
               <p className="text-white text-sm md:text-base mb-5 leading-relaxed max-w-2xl mx-auto">
                 Дистрибуция музыки на все платформы мира.<br/>
                 Мы помогаем артистам стать услышанными.
@@ -619,36 +630,23 @@ export default function FeedPage() {
               <div className="flex flex-wrap justify-center gap-8 md:gap-10 lg:gap-12 mb-4">
                 <div className="text-center">
                   <div className="text-3xl md:text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-[#a89ef5] via-[#c4b5fd] to-white">
-                    <AnimatedCounter end={150} suffix="+" />
+                    <AnimatedCounter end={150} suffix="+" delay={2200} />
                   </div>
                   <div className="text-[10px] text-white/70 uppercase tracking-wider font-bold">Релизов</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl md:text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-[#a89ef5] via-[#c4b5fd] to-white">
-                    <AnimatedCounter end={50} suffix="+" />
+                    <AnimatedCounter end={50} suffix="+" delay={2200} />
                   </div>
                   <div className="text-[10px] text-white/70 uppercase tracking-wider font-bold">Артистов</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl md:text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-[#a89ef5] via-[#c4b5fd] to-white">
-                    <AnimatedCounter end={1000000} suffix="+" />
+                    <AnimatedCounter end={1000000} suffix="+" delay={2200} />
                   </div>
                   <div className="text-[10px] text-white/70 uppercase tracking-wider font-bold">Прослушиваний</div>
                 </div>
-              </div>
-
-              {/* Кнопка "В лейбл ждёт тебя" */}
-              <div className="mb-3">
-                <div className="inline-flex items-center gap-2 text-[10px] text-white uppercase tracking-wider font-black px-4 py-2 border-2 border-[#9d8df1]/80 rounded-full bg-gradient-to-r from-[#6050ba]/30 to-[#9d8df1]/30 shadow-xl backdrop-blur-sm">
-                  <span className="relative">
-                    <span className="w-1.5 h-1.5 rounded-full bg-white block animate-pulse" />
-                    <span className="absolute inset-0 w-1.5 h-1.5 rounded-full bg-white animate-ping" />
-                  </span>
-                  В лейбл ждёт тебя
-                </div>
-              </div>
-
-              {/* Футер ссылки */}
+              </div>              {/* Футер ссылки */}
               <div className="flex flex-wrap justify-center gap-4">
                 {[
                   { href: '/faq', label: 'FAQ' },
@@ -677,7 +675,7 @@ export default function FeedPage() {
                 {news.length > 0 ? news.map((item) => (
                   <Link
                     key={item.id}
-                    href="/news"
+                    href={`/news?id=${item.id}`}
                     className="block p-2.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#9d8df1]/30 transition-all group"
                   >
                     <div className="text-[#9d8df1] font-bold text-[10px] mb-0.5">

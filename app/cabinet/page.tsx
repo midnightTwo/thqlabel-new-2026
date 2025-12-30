@@ -45,19 +45,39 @@ export default function CabinetPage() {
   const [createTab, setCreateTab] = useState<'release'|'tracklist'|'countries'|'contract'|'platforms'|'localization'|'send'|'events'|'promo'>('release');
   const [showArchive, setShowArchive] = useState(false);
   
-  // Обработчик скролла с улучшенными эффектами
+  // Обработчик скролла с улучшенными эффектами и дебаунсингом
   useEffect(() => {
     let ticking = false;
+    let lastScrollY = 0;
+    let lastUpdateTime = 0;
+    const scrollThreshold = 10;
+    const minUpdateInterval = 50; // Ограничиваем обновления до 20fps для плавности
     
     const handleScroll = () => {
       if (!ticking) {
         requestAnimationFrame(() => {
+          const now = Date.now();
           const scrollY = window.scrollY;
+          
+          // Проверяем, прошло ли достаточно времени с последнего обновления
+          if (now - lastUpdateTime < minUpdateInterval) {
+            ticking = false;
+            return;
+          }
+          
+          // Проверяем изменение больше порога, чтобы избежать частых обновлений
+          if (Math.abs(scrollY - lastScrollY) < 10) {
+            ticking = false;
+            return;
+          }
+          
+          lastScrollY = scrollY;
+          lastUpdateTime = now;
+          
           // В архиве черновиков скролл не должен разделять панели
-          const isScrolled = showArchive ? false : scrollY > 10;
+          const isScrolled = showArchive ? false : scrollY > scrollThreshold;
           
           if (isScrolled !== scrolled) {
-            console.log('Scroll state changed:', { scrollY, isScrolled, showArchive });
             setScrolled(isScrolled);
           }
           
@@ -118,24 +138,6 @@ export default function CabinetPage() {
     handleConfirm,
     handleCancel
   } = useNotifications();
-  
-  // Отслеживание скролла для эффекта слияния с хедером
-  useEffect(() => {
-    let ticking = false;
-    
-    const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          setScrolled(window.scrollY > 80);
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-    
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
   
   // Виджет поддержки
   const supportWidget = useSupportWidget();
@@ -483,15 +485,17 @@ export default function CabinetPage() {
             top: '70px',
             padding: '24px',
             marginTop: '0px',
-            height: scrolled ? 'fit-content' : 'calc(100vh - 70px)',
-            maxHeight: scrolled ? 'calc(100vh - 70px)' : 'calc(100vh - 70px)',
+            height: 'calc(100vh - 70px)',
+            minHeight: 'calc(100vh - 70px)',
+            maxHeight: 'calc(100vh - 70px)',
             borderTop: scrolled ? '1px solid rgba(157, 141, 241, 0.15)' : '1px solid transparent',
             borderRight: scrolled ? '1px solid rgba(157, 141, 241, 0.08)' : '1px solid transparent',
             borderBottom: scrolled ? '1px solid rgba(157, 141, 241, 0.08)' : '1px solid transparent',
             boxSizing: 'border-box',
-            transition: 'border-radius 0.3s ease, height 0.3s ease, border-color 0.3s ease',
-            willChange: 'border-radius, height, border-color',
-            overflow: 'hidden auto',
+            transition: 'border-radius 0.3s ease, border-color 0.3s ease',
+            willChange: 'transform',
+            overflow: 'auto',
+            overscrollBehavior: 'contain',
           }}
           data-animate="sidebar"
         >
@@ -571,19 +575,19 @@ export default function CabinetPage() {
           className="flex-1 glass-morphism-card glass-card-hover interactive-glass"
           style={{
             borderRadius: scrolled ? '24px' : '0 16px 0 0',
-            padding: scrolled ? '40px' : '40px 40px 40px 40px',
-            minHeight: scrolled ? '600px' : 'calc(100vh - 70px)',
-            marginTop: scrolled ? '0px' : '0px',
+            padding: '40px',
+            minHeight: 'calc(100vh - 70px)',
+            marginTop: '0px',
             borderTop: scrolled ? '1px solid rgba(157, 141, 241, 0.15)' : '1px solid transparent',
             borderLeft: scrolled ? '1px solid rgba(157, 141, 241, 0.08)' : '1px solid transparent',
             borderBottom: scrolled ? '1px solid rgba(157, 141, 241, 0.08)' : '1px solid transparent',
             boxSizing: 'border-box',
-            transition: 'border-radius 0.5s ease, min-height 0.5s ease, border-color 0.5s ease',
+            transition: 'border-radius 0.3s ease, border-color 0.3s ease',
           }}
         >
           
           {tab === 'releases' && (
-            <div className="animate-fade-up" style={{ animationDelay: '0.1s' }}>
+            <div className="transition-all duration-300 ease-out" style={{ opacity: 1 }}>
               <UserReleases 
                 userId={user?.id} 
                 nickname={nickname} 
@@ -602,7 +606,7 @@ export default function CabinetPage() {
           )}
           
           {tab === 'finance' && (
-            <div className="animate-fade-up" style={{ animationDelay: '0.1s' }}>
+            <div className="transition-all duration-300 ease-out" style={{ opacity: 1 }}>
               <FinanceTab
                 userId={user?.id}
                 balance={balance}
@@ -616,7 +620,7 @@ export default function CabinetPage() {
           )}
           
           {tab === 'settings' && (
-            <div className="animate-fade-up" style={{ animationDelay: '0.1s' }}>
+            <div className="transition-all duration-300 ease-out" style={{ opacity: 1 }}>
               <SettingsTab
                 user={user}
                 nickname={nickname}

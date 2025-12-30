@@ -30,6 +30,7 @@ interface SendStepProps {
   platforms: string[];
   countries: string[];
   onBack: () => void;
+  paymentReceiptUrl?: string;
 }
 
 export default function SendStep({ 
@@ -50,7 +51,8 @@ export default function SendStep({
   focusTrackPromo,
   albumDescription,
   promoPhotos,
-  onBack 
+  onBack,
+  paymentReceiptUrl
 }: SendStepProps) {
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
@@ -92,6 +94,11 @@ export default function SendStep({
       issues: !((focusTrack && focusTrackPromo) || albumDescription) 
         ? ['Не заполнена промо-информация (фокус-трек с описанием или описание альбома)'] 
         : []
+    },
+    {
+      name: 'Оплата',
+      isValid: !!paymentReceiptUrl,
+      issues: !paymentReceiptUrl ? ['Не загружен чек оплаты'] : []
     }
   ];
 
@@ -248,6 +255,8 @@ export default function SendStep({
                 promo_photos: promoPhotos,
                 status: 'pending',
                 payment_status: 'pending',
+                payment_receipt_url: paymentReceiptUrl,
+                payment_amount: 500,
               };
               
               // Отладка: проверяем данные треков

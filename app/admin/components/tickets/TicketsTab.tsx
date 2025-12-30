@@ -238,7 +238,11 @@ export default function TicketsTab({ supabase }: { supabase: any }) {
             <div className="text-zinc-600 py-8 text-center">Загрузка тикетов...</div>
           ) : filteredTickets.length === 0 ? (
             <div className="text-zinc-600 py-8 text-center">
-              <p className="text-4xl mb-4">📭</p>
+              <div className="flex justify-center mb-4">
+                <svg className="w-16 h-16 text-zinc-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
               <p>Тикетов не найдено</p>
               {filter !== 'all' && (
                 <button onClick={() => setFilter('all')} className="text-[#9d8df1] text-sm mt-2">
@@ -247,7 +251,7 @@ export default function TicketsTab({ supabase }: { supabase: any }) {
               )}
             </div>
           ) : (
-            <div className="space-y-3">
+            <div className="space-y-3 max-h-[600px] overflow-y-auto pr-2">
               {filteredTickets.map(ticket => {
                 const sc = statusColors[ticket.status];
                 return (
@@ -366,7 +370,11 @@ export default function TicketsTab({ supabase }: { supabase: any }) {
                     title={msg.user_nickname || msg.user_email || (msg.is_admin ? 'Администратор' : 'Пользователь')}
                   >
                     {!msg.user_avatar && (
-                      msg.is_admin ? '👤' : (msg.user_nickname?.charAt(0)?.toUpperCase() || msg.user_email?.charAt(0)?.toUpperCase() || 'U')
+                      msg.is_admin ? (
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                        </svg>
+                      ) : (msg.user_nickname?.charAt(0)?.toUpperCase() || msg.user_email?.charAt(0)?.toUpperCase() || 'U')
                     )}
                   </div>
                   
@@ -392,9 +400,12 @@ export default function TicketsTab({ supabase }: { supabase: any }) {
                         href={msg.attachment_url} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="text-xs text-[#9d8df1] hover:underline mt-2 inline-block"
+                        className="text-xs text-[#9d8df1] hover:underline mt-2 inline-flex items-center gap-1"
                       >
-                        📎 Вложение
+                        <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
+                        </svg>
+                        Вложение
                       </a>
                     )}
                   </div>

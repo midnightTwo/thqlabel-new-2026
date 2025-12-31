@@ -20,6 +20,14 @@ interface SendStepProps {
   tracks: Array<{
     title: string;
     link: string;
+    audioFile?: File | null;
+    audioMetadata?: {
+      format: string;
+      duration?: number;
+      bitrate?: string;
+      sampleRate?: string;
+      size: number;
+    } | null;
     hasDrugs: boolean;
     lyrics: string;
     language: string;
@@ -229,6 +237,86 @@ export default function SendStep({
                 coverUrl = publicUrl;
               }
               
+              // Загрузка аудиофайлов треков
+              console.log('📤 Загружаем аудиофайлы треков (Exclusive)...');
+              const tracksWithUrls = await Promise.all(tracks.map(async (track, index) => {
+                // Если есть audioFile, загружаем его
+                if (track.audioFile) {
+                  try {
+                    const audioFileExt = track.audioFile.name.split('.').pop();
+                    const audioFileName = `${user.id}/${Date.now()}-track-${index}.${audioFileExt}`;
+                    
+                    const { data: audioUploadData, error: audioUploadError } = await supabase.storage
+                      .from('release-audio')
+                      .upload(audioFileName, track.audioFile, {
+                        contentType: track.audioFile.type,
+                        upsert: true
+                      });
+                    
+                    if (audioUploadError) {
+                      console.error(`Ошибка загрузки аудио для трека ${index}:`, audioUploadError);
+                      return {
+                        title: track.title,
+                        link: track.link || '',
+                        hasDrugs: track.hasDrugs,
+                        lyrics: track.lyrics,
+                        language: track.language,
+                        version: track.version,
+                        producers: track.producers,
+                        featuring: track.featuring,
+                        audioMetadata: track.audioMetadata,
+                      };
+                    }
+                    
+                    const { data: { publicUrl: audioUrl } } = supabase.storage
+                      .from('release-audio')
+                      .getPublicUrl(audioFileName);
+                    
+                    console.log(`✅ Аудио для трека ${index} загружено: ${audioUrl}`);
+                    
+                    return {
+                      title: track.title,
+                      link: audioUrl,
+                      audio_url: audioUrl,
+                      hasDrugs: track.hasDrugs,
+                      lyrics: track.lyrics,
+                      language: track.language,
+                      version: track.version,
+                      producers: track.producers,
+                      featuring: track.featuring,
+                      audioMetadata: track.audioMetadata,
+                    };
+                  } catch (err) {
+                    console.error(`Ошибка при загрузке аудио для трека ${index}:`, err);
+                    return {
+                      title: track.title,
+                      link: track.link || '',
+                      hasDrugs: track.hasDrugs,
+                      lyrics: track.lyrics,
+                      language: track.language,
+                      version: track.version,
+                      producers: track.producers,
+                      featuring: track.featuring,
+                      audioMetadata: track.audioMetadata,
+                    };
+                  }
+                }
+                
+                return {
+                  title: track.title,
+                  link: track.link || '',
+                  hasDrugs: track.hasDrugs,
+                  lyrics: track.lyrics,
+                  language: track.language,
+                  version: track.version,
+                  producers: track.producers,
+                  featuring: track.featuring,
+                  audioMetadata: track.audioMetadata,
+                };
+              }));
+              
+              console.log('✅ Все аудиофайлы загружены (Exclusive)');
+              
               // Создание или обновление релиза в базе (Exclusive - бесплатные релизы)
               const releaseData = {
                 user_id: user.id,
@@ -239,7 +327,7 @@ export default function SendStep({
                 subgenres: subgenres,
                 release_date: releaseDate,
                 collaborators: collaborators,
-                tracks: tracks,
+                tracks: tracksWithUrls,
                 countries: countries,
                 contract_agreed: agreedToContract,
                 contract_agreed_at: agreedToContract ? new Date().toISOString() : null,
@@ -271,17 +359,7 @@ export default function SendStep({
               }
               
               // Отладка: проверяем данные треков
-              console.log('Треки для сохранения (Exclusive):', JSON.stringify(tracks, null, 2));
-              
-              const { error: insertError } = await supabase
-                .from('releases_exclusive')
-                .insert(releaseData);
-              
-              if (insertError) {
-                console.error('Ошибка вставки в БД:', insertError);
-                console.error('Данные релиза:', releaseData);
-                throw insertError;
-              }
+              console.log('Треки для сохранения (Exclusive):', JSON.stringify(tracksWithUrls, null, 2));
               
               alert('Релиз успешно отправлен на модерацию!');
               router.push('/cabinet');

@@ -5,6 +5,582 @@
   --color-brand-light: #9d8df1;
 }
 
+/* ========================================
+   КРИТИЧЕСКИЙ CSS ДЛЯ ПРЕДОТВРАЩЕНИЯ МИГАНИЯ
+   Цвета должны совпадать с layout.tsx!
+   ======================================== */
+
+/* Тёмная тема - по умолчанию */
+html {
+  background-color: #08080a;
+}
+
+body {
+  background-color: #08080a;
+}
+
+/* Светлая тема - ГОЛОГРАФИЧЕСКИЙ ФОН */
+html.light {
+  background: linear-gradient(135deg, 
+    #e8e0f0 0%, 
+    #f0e8f8 25%,
+    #e0e8f8 50%,
+    #f0e0f0 75%,
+    #e8e0f0 100%
+  );
+  background-attachment: fixed;
+}
+
+html.light body {
+  background: transparent;
+}
+
+/* ========================================
+   СИСТЕМА ТЕМ - CSS ПЕРЕМЕННЫЕ
+   ======================================== */
+
+/* Тёмная тема (по умолчанию) */
+:root {
+  /* Основные фоны */
+  --bg-primary: #08080a;
+  --bg-secondary: rgba(24, 24, 27, 0.5);
+  --bg-tertiary: rgba(39, 39, 42, 0.3);
+  --bg-card: rgba(255, 255, 255, 0.02);
+  --bg-hover: rgba(255, 255, 255, 0.05);
+  --bg-active: rgba(255, 255, 255, 0.08);
+  
+  /* Текст */
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1aa;
+  --text-tertiary: #71717a;
+  --text-muted: #52525b;
+  
+  /* Границы */
+  --border-primary: rgba(63, 63, 70, 0.5);
+  --border-secondary: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.15);
+  
+  /* Акценты (брендовые цвета) */
+  --accent-primary: #6050ba;
+  --accent-light: #9d8df1;
+  --accent-hover: #7060ca;
+  --accent-bg: rgba(96, 80, 186, 0.15);
+  --accent-border: rgba(157, 141, 241, 0.3);
+  
+  /* Статусы */
+  --success: #10b981;
+  --success-bg: rgba(16, 185, 129, 0.15);
+  --error: #ef4444;
+  --error-bg: rgba(239, 68, 68, 0.15);
+  --warning: #f59e0b;
+  --warning-bg: rgba(245, 158, 11, 0.15);
+  --info: #3b82f6;
+  --info-bg: rgba(59, 130, 246, 0.15);
+  
+  /* Тени */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 30px rgba(96, 80, 186, 0.3);
+  
+  /* Glass эффекты */
+  --glass-bg: rgba(255, 255, 255, 0.02);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-blur: blur(25px);
+}
+
+/* Светлая тема */
+:root.light {
+  /* Основные фоны - МЯГКИЕ серо-фиолетовые тона */
+  --bg-primary: #c8c4d8;
+  --bg-secondary: #d5d0e5;
+  --bg-tertiary: #e0dcea;
+  --bg-card: #d5d0e5;
+  --bg-hover: rgba(80, 64, 160, 0.08);
+  --bg-active: rgba(80, 64, 160, 0.12);
+  
+  /* Текст */
+  --text-primary: #2a2550;
+  --text-secondary: #4a4570;
+  --text-tertiary: #5a5580;
+  --text-muted: #7a7590;
+  
+  /* Границы */
+  --border-primary: #b5b0c8;
+  --border-secondary: #a5a0b8;
+  --border-hover: #9590a8;
+  
+  /* Акценты (брендовые цвета - чуть темнее для контраста) */
+  --accent-primary: #5040a0;
+  --accent-light: #6050ba;
+  --accent-hover: #4030a0;
+  --accent-bg: rgba(96, 80, 186, 0.15);
+  --accent-border: rgba(96, 80, 186, 0.4);
+  
+  /* Статусы */
+  --success: #059669;
+  --success-bg: rgba(5, 150, 105, 0.15);
+  --error: #dc2626;
+  --error-bg: rgba(220, 38, 38, 0.15);
+  --warning: #d97706;
+  --warning-bg: rgba(217, 119, 6, 0.15);
+  --info: #2563eb;
+  --info-bg: rgba(37, 99, 235, 0.15);
+  
+  /* Тени */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 0 30px rgba(96, 80, 186, 0.2);
+  
+  /* Glass эффекты */
+  --glass-bg: rgba(200, 196, 216, 0.9);
+  --glass-border: rgba(0, 0, 0, 0.1);
+  --glass-blur: blur(20px);
+}
+
+/* ========================================
+   УТИЛИТАРНЫЕ КЛАССЫ ДЛЯ ТЕМ
+   ======================================== */
+
+/* Фоны */
+.theme-bg { background-color: var(--bg-primary); }
+.theme-bg-secondary { background-color: var(--bg-secondary); }
+.theme-bg-tertiary { background-color: var(--bg-tertiary); }
+.theme-bg-card { background-color: var(--bg-card); }
+.theme-bg-hover:hover { background-color: var(--bg-hover); }
+.theme-bg-active:active { background-color: var(--bg-active); }
+
+/* Текст */
+.theme-text { color: var(--text-primary); }
+.theme-text-secondary { color: var(--text-secondary); }
+.theme-text-tertiary { color: var(--text-tertiary); }
+.theme-text-muted { color: var(--text-muted); }
+
+/* Границы */
+.theme-border { border-color: var(--border-primary); }
+.theme-border-secondary { border-color: var(--border-secondary); }
+.theme-border-hover:hover { border-color: var(--border-hover); }
+
+/* Акценты */
+.theme-accent { color: var(--accent-primary); }
+.theme-accent-bg { background-color: var(--accent-bg); }
+.theme-accent-border { border-color: var(--accent-border); }
+
+/* Статусы */
+.theme-success { color: var(--success); }
+.theme-success-bg { background-color: var(--success-bg); }
+.theme-error { color: var(--error); }
+.theme-error-bg { background-color: var(--error-bg); }
+.theme-warning { color: var(--warning); }
+.theme-warning-bg { background-color: var(--warning-bg); }
+
+/* Тени */
+.theme-shadow-sm { box-shadow: var(--shadow-sm); }
+.theme-shadow-md { box-shadow: var(--shadow-md); }
+.theme-shadow-lg { box-shadow: var(--shadow-lg); }
+.theme-shadow-glow { box-shadow: var(--shadow-glow); }
+
+/* Glass морфизм с поддержкой тем */
+.theme-glass {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+}
+
+/* ========================================
+   INTRO SCREEN - CSS классы для тем
+   Работает через html.light класс который
+   устанавливается ДО загрузки React
+   ======================================== */
+
+/* Фон интро экрана - тёмный по умолчанию */
+.intro-screen {
+  background: #08080a;
+}
+
+/* Голографический фон - скрыт по умолчанию (для тёмной темы) */
+.intro-holographic {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+/* Тёмный фон - показан по умолчанию */
+.intro-dark-bg {
+  background: radial-gradient(ellipse at center, #1a1a2e 0%, #08080a 100%);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+/* Звёзды - белые по умолчанию (для тёмной темы) */
+.intro-star {
+  background: white;
+  animation: twinkle 2.5s ease-in-out infinite;
+  opacity: 0.7;
+  box-shadow: 0 0 6px rgba(255,255,255,0.8);
+}
+
+/* Лого - белое свечение по умолчанию */
+.intro-logo {
+  filter: drop-shadow(0 0 40px rgba(255,255,255,1)) drop-shadow(0 0 60px rgba(147,112,219,0.8));
+}
+
+/* Внешнее свечение */
+.intro-outer-glow {
+  background: radial-gradient(circle, rgba(96,80,186,0.6) 0%, rgba(96,80,186,0.2) 40%, transparent 70%);
+}
+
+/* Планета */
+.intro-planet {
+  background: 
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15) 0%, transparent 50%),
+    linear-gradient(135deg, #a78bfa 0%, #8b7dd8 20%, #6050ba 40%, #4a3d8f 70%, #2d2557 100%);
+  box-shadow: 
+    inset -8px -8px 20px rgba(0,0,0,0.5),
+    inset 5px 5px 15px rgba(255,255,255,0.1),
+    0 0 40px rgba(96,80,186,0.6),
+    0 0 80px rgba(96,80,186,0.4);
+}
+
+/* Кольца */
+.intro-ring-1 {
+  border-top-color: rgba(139,125,216,0.8);
+  border-bottom-color: rgba(139,125,216,0.8);
+  box-shadow: 0 0 30px rgba(96,80,186,0.5), inset 0 0 20px rgba(96,80,186,0.3);
+}
+
+.intro-ring-2 {
+  border-top-color: rgba(167,139,250,0.5);
+  border-bottom-color: rgba(167,139,250,0.5);
+}
+
+.intro-ring-3 {
+  border: 2px dashed rgba(196,181,253,0.4);
+}
+
+/* Частицы */
+.intro-particle {
+  background: radial-gradient(circle, #c4b5fd 0%, #6050ba 100%);
+  box-shadow: 0 0 10px rgba(196,181,253,0.9), 0 0 20px rgba(96,80,186,0.6);
+}
+
+/* Текст */
+.intro-text-thq {
+  color: white;
+  text-shadow: 0 0 20px rgba(255,255,255,0.5);
+}
+
+/* Текст загрузки */
+.intro-loading-text {
+  color: rgba(255,255,255,0.4);
+}
+
+/* Точки загрузки */
+.intro-loading-dot {
+  background-color: #9d8df1;
+}
+
+/* Градиенты внутри голографического блока */
+.intro-gradient-1 {
+  background: linear-gradient(135deg, 
+    rgba(255,200,210,0.25) 0%, 
+    rgba(255,230,200,0.2) 20%, 
+    rgba(230,255,230,0.2) 40%, 
+    rgba(200,230,255,0.25) 60%, 
+    rgba(230,200,240,0.25) 80%, 
+    rgba(255,200,210,0.25) 100%
+  );
+  animation: holographic-shift 15s ease-in-out infinite;
+}
+
+.intro-gradient-2 {
+  background: 
+    radial-gradient(ellipse at 20% 30%, rgba(255,180,210,0.3) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 70%, rgba(180,210,255,0.3) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 50%, rgba(210,180,240,0.25) 0%, transparent 60%);
+  animation: holographic-glow 12s ease-in-out infinite;
+}
+
+.intro-shimmer {
+  background: linear-gradient(45deg, 
+    transparent 0%, 
+    rgba(255,255,255,0.2) 30%, 
+    transparent 50%, 
+    rgba(255,255,255,0.15) 70%, 
+    transparent 100%
+  );
+  background-size: 250% 250%;
+  animation: shimmer 8s linear infinite;
+}
+
+.intro-blob-1 {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  top: -10%;
+  left: -10%;
+  background: radial-gradient(circle, rgba(255,150,180,0.25) 0%, rgba(255,200,150,0.12) 50%, transparent 70%);
+  filter: blur(80px);
+  animation: float-blob 20s ease-in-out infinite;
+}
+
+.intro-blob-2 {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  bottom: -5%;
+  right: -5%;
+  background: radial-gradient(circle, rgba(150,200,255,0.25) 0%, rgba(200,150,240,0.12) 50%, transparent 70%);
+  filter: blur(70px);
+  animation: float-blob 18s ease-in-out infinite reverse;
+}
+
+.intro-blob-3 {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  top: 30%;
+  right: 20%;
+  background: radial-gradient(circle, rgba(150,240,200,0.2) 0%, rgba(240,240,150,0.1) 50%, transparent 70%);
+  filter: blur(60px);
+  animation: float-blob 15s ease-in-out infinite 3s;
+}
+
+/* ========================================
+   INTRO - СВЕТЛАЯ ТЕМА (html.light)
+   ======================================== */
+
+/* Фон интро для светлой темы - ГОЛОГРАФИЧЕСКИЙ */
+html.light .intro-screen {
+  background: linear-gradient(135deg, 
+    #e8e0f0 0%, 
+    #f0e8f8 25%,
+    #e0e8f8 50%,
+    #f0e0f0 75%,
+    #e8e0f0 100%
+  );
+}
+
+/* Показываем голографический фон */
+html.light .intro-holographic {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Скрываем тёмный фон */
+html.light .intro-dark-bg {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Скрываем тёмные пятна */
+html.light .intro-dark-spots {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Звёзды - мягкие голографические с контрастом */
+html.light .intro-star {
+  background: linear-gradient(135deg, 
+    rgba(180,140,220,0.9) 0%, 
+    rgba(140,180,220,0.9) 50%, 
+    rgba(200,160,200,0.9) 100%);
+  opacity: 1 !important;
+  border: 1px solid rgba(100,80,140,0.4);
+  box-shadow: 
+    0 0 2px rgba(100,80,140,0.5),
+    0 0 6px rgba(180,140,220,0.4),
+    0 0 12px rgba(140,180,220,0.3);
+  animation: sparkle-light 2.5s ease-in-out infinite;
+}
+
+/* Анимация для блёсток светлой темы */
+@keyframes sparkle-light {
+  0%, 100% { 
+    opacity: 0.5; 
+    transform: scale(1);
+    box-shadow: 
+      0 0 2px rgba(100,80,140,0.4),
+      0 0 5px rgba(180,140,220,0.3);
+  }
+  50% { 
+    opacity: 0.9; 
+    transform: scale(1.3);
+    box-shadow: 
+      0 0 3px rgba(100,80,140,0.5),
+      0 0 8px rgba(180,140,220,0.5),
+      0 0 14px rgba(140,180,220,0.3);
+  }
+}
+
+/* Лого - фиолетовое свечение */
+html.light .intro-logo {
+  filter: drop-shadow(0 0 30px rgba(96,80,186,0.5)) drop-shadow(0 0 50px rgba(96,80,186,0.3));
+}
+
+/* Внешнее свечение - светлые тона */
+html.light .intro-outer-glow {
+  background: radial-gradient(circle, rgba(200,150,255,0.4) 0%, rgba(150,200,255,0.2) 40%, transparent 70%);
+}
+
+/* Планета - яркая для светлой темы */
+html.light .intro-planet {
+  background: 
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,0.6) 0%, transparent 50%),
+    linear-gradient(135deg, #e0b0ff 0%, #c090ff 20%, #a070ff 40%, #8050ff 70%, #6030e0 100%);
+  box-shadow: 
+    inset -8px -8px 20px rgba(0,0,0,0.15),
+    inset 5px 5px 15px rgba(255,255,255,0.6),
+    0 0 40px rgba(160,100,255,0.5),
+    0 0 80px rgba(130,80,230,0.3);
+}
+
+/* Кольца - яркие */
+html.light .intro-ring-1 {
+  border-top-color: rgba(180,140,255,0.6);
+  border-bottom-color: rgba(180,140,255,0.6);
+  box-shadow: 0 0 30px rgba(160,120,255,0.5), inset 0 0 20px rgba(160,120,255,0.3);
+}
+
+html.light .intro-ring-2 {
+  border-top-color: rgba(200,160,255,0.5);
+  border-bottom-color: rgba(200,160,255,0.5);
+}
+
+html.light .intro-ring-3 {
+  border: 2px dashed rgba(180,140,255,0.4);
+}
+
+/* Частицы - яркие */
+html.light .intro-particle {
+  background: radial-gradient(circle, #c090ff 0%, #8050e0 100%);
+  box-shadow: 0 0 10px rgba(200,150,255,0.9), 0 0 20px rgba(160,100,230,0.6);
+}
+
+/* Текст - тёмный */
+html.light .intro-text-thq {
+  color: #4a3080;
+  text-shadow: 0 2px 15px rgba(100,60,180,0.3);
+}
+
+/* Текст загрузки */
+html.light .intro-loading-text {
+  color: rgba(80,64,140,0.6);
+}
+
+/* Точки загрузки */
+html.light .intro-loading-dot {
+  background-color: #a080e0;
+}
+
+/* Анимации для intro */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.5); }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.4; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+@keyframes shimmer {
+  0% { background-position: 250% 250%; }
+  100% { background-position: -250% -250%; }
+}
+
+@keyframes float-blob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(15px, -15px) scale(1.03); }
+  66% { transform: translate(-10px, 10px) scale(0.98); }
+}
+
+@keyframes holographic-shift {
+  0%, 100% { filter: hue-rotate(0deg) brightness(1); }
+  50% { filter: hue-rotate(15deg) brightness(1.03); }
+}
+
+@keyframes holographic-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.7; }
+}
+
+/* ========================================
+   ГОЛОГРАФИЧЕСКИЙ ЭФФЕКТ ДЛЯ СВЕТЛОЙ ТЕМЫ
+   ======================================== */
+
+@keyframes holographic-shift {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    filter: hue-rotate(0deg);
+  }
+  25% {
+    transform: translate(2%, -2%) scale(1.02);
+    filter: hue-rotate(15deg);
+  }
+  50% {
+    transform: translate(-1%, 1%) scale(0.98);
+    filter: hue-rotate(30deg);
+  }
+  75% {
+    transform: translate(1%, 2%) scale(1.01);
+    filter: hue-rotate(15deg);
+  }
+}
+
+/* Glass карточки для светлой темы (как на примере) */
+.light-glass-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 24px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+}
+
+.light-glass-card:hover {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+/* Голографическая карточка */
+.holographic-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(25px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  overflow: hidden;
+}
+
+.holographic-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 200, 220, 0.15) 0%,
+    rgba(200, 220, 255, 0.15) 50%,
+    rgba(220, 255, 240, 0.15) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.holographic-card:hover::before {
+  opacity: 1;
+}
+
 /* Анимации для главной страницы */
 @keyframes logo-float {
   0%, 100% { transform: translateY(0px); }
@@ -19,6 +595,39 @@
 @keyframes logo-glow {
   0%, 100% { opacity: 0.6; transform: scale(1); }
   50% { opacity: 0.9; transform: scale(1.05); }
+}
+
+/* Анимации для планеты Сатурн на основной странице */
+@keyframes ring-rotate-main {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes glow-pulse-main {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.15); }
+}
+
+@keyframes planet-pulse-main {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+@keyframes logo-glow-main {
+  0%, 100% { filter: drop-shadow(0 0 20px rgba(255,255,255,0.9)); transform: scale(1); }
+  50% { filter: drop-shadow(0 0 30px rgba(255,255,255,1)); transform: scale(1.03); }
+}
+
+@keyframes particle-orbit-main {
+  0% { transform: rotate(0deg) translateX(200px) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: rotate(360deg) translateX(200px) rotate(-360deg); opacity: 0; }
+}
+
+@keyframes band-shimmer {
+  0%, 100% { opacity: 0.5; transform: translateX(-5px); }
+  50% { opacity: 1; transform: translateX(5px); }
 }
 
 /* Glass Morphism Styles - Enhanced */
@@ -91,6 +700,107 @@
   backface-visibility: hidden;
   -webkit-font-smoothing: subpixel-antialiased;
   contain: layout style paint;
+}
+
+/* Светлая тема кабинета - сайдбар (стиль glass) */
+.cabinet-sidebar-light {
+  background: rgba(25, 25, 30, 0.78) !important;
+  backdrop-filter: blur(30px) saturate(180%) !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  box-shadow: 
+    0 25px 50px rgba(0,0,0,0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+  contain: layout style paint;
+}
+
+/* Светлая тема кабинета - контент (стиль glass) */
+.cabinet-content-light {
+  background: rgba(25, 25, 30, 0.75) !important;
+  backdrop-filter: blur(25px) saturate(150%) !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  box-shadow: 
+    0 20px 40px rgba(0,0,0,0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Светлая тема - glass-morphism-card (стиль glass) */
+html.light .glass-morphism-card {
+  background: rgba(25, 25, 30, 0.72);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 
+    0 15px 35px rgba(0,0,0,0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 0 0 1px rgba(255,255,255,0.05);
+}
+
+html.light .glass-morphism-card::before {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+}
+
+/* Светлая тема - цвета текста в карточках */
+html.light .glass-morphism-card .text-white {
+  color: #ffffff;
+}
+
+html.light .glass-morphism-card .text-zinc-400 {
+  color: rgba(255,255,255,0.6);
+}
+
+html.light .glass-morphism-card .text-zinc-300 {
+  color: rgba(255,255,255,0.7);
+}
+
+html.light .glass-morphism-card .group-hover\:text-purple-300:hover {
+  color: #c4b5fd;
+}
+
+/* Светлая тема - стили для контента кабинета (glass) - тёмный фон, светлый текст */
+html.light .cabinet-content-light .text-zinc-500 {
+  color: rgba(255,255,255,0.6);
+}
+
+html.light .cabinet-content-light .text-zinc-600 {
+  color: rgba(255,255,255,0.5);
+}
+
+html.light .cabinet-content-light .text-zinc-400 {
+  color: rgba(255,255,255,0.65);
+}
+
+/* Светлая тема - инпуты в контенте кабинета (glass) - тёмный стиль */
+html.light .cabinet-content-light input,
+html.light .cabinet-content-light textarea,
+html.light .cabinet-content-light select {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.15);
+  color: #ffffff;
+}
+
+html.light .cabinet-content-light input:disabled,
+html.light .cabinet-content-light textarea:disabled {
+  background: rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.4);
+}
+
+html.light .cabinet-content-light input::placeholder,
+html.light .cabinet-content-light textarea::placeholder {
+  color: rgba(255,255,255,0.4);
+}
+
+/* Светлая тема - кнопки в контенте (glass) */
+html.light .cabinet-content-light .bg-white\/5 {
+  background: rgba(255,255,255,0.08);
+}
+
+html.light .cabinet-content-light .border-white\/10 {
+  border-color: rgba(255,255,255,0.12);
+}
+
+html.light .cabinet-content-light .hover\:bg-purple-600\/20:hover {
+  background: rgba(96,80,186,0.15);
 }
 
 .glass-morphism-button {

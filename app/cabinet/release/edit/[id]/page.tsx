@@ -235,6 +235,56 @@ export default function EditExclusiveReleasePage() {
         coverUrl = publicUrl;
       }
 
+      // Загрузка новых аудиофайлов треков
+      console.log('📤 Проверяем и загружаем новые аудиофайлы (Exclusive)...');
+      const tracksWithUrls = await Promise.all(tracks.map(async (track, index) => {
+        // Если есть новый audioFile, загружаем его
+        if (track.audioFile && track.audioFile instanceof File) {
+          try {
+            const audioFileExt = track.audioFile.name.split('.').pop();
+            const audioFileName = `${user.id}/${Date.now()}-track-${index}.${audioFileExt}`;
+            
+            const { data: audioUploadData, error: audioUploadError } = await supabase.storage
+              .from('release-audio')
+              .upload(audioFileName, track.audioFile, {
+                contentType: track.audioFile.type,
+                upsert: true
+              });
+            
+            if (audioUploadError) {
+              console.error(`Ошибка загрузки аудио для трека ${index}:`, audioUploadError);
+              const { audioFile, ...trackWithoutFile } = track;
+              return trackWithoutFile;
+            }
+            
+            const { data: { publicUrl: audioUrl } } = supabase.storage
+              .from('release-audio')
+              .getPublicUrl(audioFileName);
+            
+            console.log(`✅ Аудио для трека ${index} загружено: ${audioUrl}`);
+            
+            const { audioFile, ...trackWithoutFile } = track;
+            return {
+              ...trackWithoutFile,
+              link: audioUrl,
+              audio_url: audioUrl,
+            };
+          } catch (err) {
+            console.error(`Ошибка при загрузке аудио для трека ${index}:`, err);
+            const { audioFile, ...trackWithoutFile } = track;
+            return trackWithoutFile;
+          }
+        }
+        
+        // Убираем audioFile из объекта перед сохранением
+        if (track.audioFile) {
+          const { audioFile, ...trackWithoutFile } = track;
+          return trackWithoutFile;
+        }
+        
+        return track;
+      }));
+
       // Обновляем релиз
       const updateData: any = {
         title: releaseTitle,
@@ -243,7 +293,7 @@ export default function EditExclusiveReleasePage() {
         subgenres: subgenres,
         release_date: releaseDate,
         collaborators: collaborators,
-        tracks: tracks,
+        tracks: tracksWithUrls,
         countries: selectedCountries,
         contract_agreed: agreedToContract,
         contract_agreed_at: agreedToContract ? new Date().toISOString() : null,
@@ -267,7 +317,7 @@ export default function EditExclusiveReleasePage() {
       
       // Отладка: проверяем данные треков и промо
       console.log('=== SAVING EXCLUSIVE RELEASE ===');
-      console.log('Треки для обновления:', JSON.stringify(tracks, null, 2));
+      console.log('Треки для обновления:', JSON.stringify(tracksWithUrls, null, 2));
       console.log('Focus Track:', focusTrack);
       console.log('Focus Track Promo:', focusTrackPromo);
       console.log('Album Description:', albumDescription);

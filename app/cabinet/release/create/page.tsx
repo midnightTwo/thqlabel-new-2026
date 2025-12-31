@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import AnimatedBackground from '@/components/AnimatedBackground';
 import { supabase } from '../../lib/supabase';
+import { useTheme } from '@/contexts/ThemeContext';
 import {
   ReleaseInfoStep,
   TracklistStep,
@@ -29,7 +30,8 @@ function StepsSidebar({
   agreedToContract,
   selectedPlatforms,
   selectedCountries,
-  promoStatus
+  promoStatus,
+  isLight
 }: { 
   currentStep: string; 
   setCurrentStep: (step: string) => void;
@@ -42,6 +44,7 @@ function StepsSidebar({
   selectedPlatforms: number;
   selectedCountries: string[];
   promoStatus: PromoStatus;
+  isLight: boolean;
 }) {
   // Проверка заполненности каждого шага
   const isStepComplete = (stepId: string): boolean => {
@@ -99,7 +102,11 @@ function StepsSidebar({
   return (
     <>
       {/* Десктоп версия - вертикальная боковая панель */}
-      <aside className="hidden lg:flex lg:w-64 w-full backdrop-blur-xl bg-gradient-to-br from-white/[0.07] to-white/[0.02] border border-white/10 rounded-3xl p-6 flex-col lg:self-start lg:sticky lg:top-24 shadow-2xl shadow-black/20 relative overflow-hidden">
+      <aside className={`hidden lg:flex lg:w-64 w-full backdrop-blur-xl border rounded-3xl p-6 flex-col lg:self-start lg:sticky lg:top-24 shadow-2xl relative overflow-hidden ${
+        isLight
+          ? 'bg-[rgba(25,25,30,0.85)] border-purple-500/30 shadow-black/30'
+          : 'bg-gradient-to-br from-white/[0.07] to-white/[0.02] border-white/10 shadow-black/20'
+      }`}>
         {/* Декоративный градиент */}
         <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5 pointer-events-none" />
         
@@ -244,7 +251,11 @@ function StepsSidebar({
       {/* Мобильная версия - горизонтальная прокручиваемая полоса */}
       <div className="lg:hidden w-full mb-4">
         {/* Заголовок */}
-        <div className="backdrop-blur-xl bg-gradient-to-br from-white/[0.07] to-white/[0.02] border border-white/10 rounded-2xl p-4 mb-3 shadow-xl shadow-black/10 relative overflow-hidden">
+        <div className={`backdrop-blur-xl border rounded-2xl p-4 mb-3 shadow-xl relative overflow-hidden ${
+          isLight
+            ? 'bg-[rgba(25,25,30,0.85)] border-purple-500/30 shadow-black/20'
+            : 'bg-gradient-to-br from-white/[0.07] to-white/[0.02] border-white/10 shadow-black/10'
+        }`}>
           {/* Декоративный градиент */}
           <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5 pointer-events-none" />
           
@@ -316,6 +327,8 @@ function StepsSidebar({
 
 export default function CreateReleasePage() {
   const router = useRouter();
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
   const [user, setUser] = useState<any>(null);
   const [nickname, setNickname] = useState('');
   const [loading, setLoading] = useState(true);
@@ -568,7 +581,7 @@ export default function CreateReleasePage() {
   return (
     <div className="min-h-screen pt-16 sm:pt-20 text-white relative z-10">
       <AnimatedBackground />
-      <div className="max-w-[1600px] mx-auto p-3 sm:p-6 lg:p-8 flex flex-col lg:flex-row gap-4 lg:gap-8 items-stretch relative z-10">
+      <div className="max-w-[1600px] mx-auto p-3 sm:p-6 lg:p-8 flex flex-col lg:flex-row gap-4 lg:gap-8 items-stretch relative z-20">
         
         {/* Боковая панель с шагами (адаптивная) */}
         <StepsSidebar 
@@ -583,10 +596,15 @@ export default function CreateReleasePage() {
           selectedPlatforms={selectedPlatforms}
           selectedCountries={selectedCountries}
           promoStatus={promoStatus}
+          isLight={isLight}
         />
 
         {/* Основной контент */}
-        <section className="flex-1 backdrop-blur-xl bg-gradient-to-br from-white/[0.07] to-white/[0.02] border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-10 min-h-[500px] shadow-2xl shadow-black/20 relative overflow-hidden">
+        <section className={`flex-1 backdrop-blur-xl border rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-10 min-h-[500px] shadow-2xl relative overflow-hidden ${
+          isLight
+            ? 'bg-[rgba(25,25,30,0.85)] border-purple-500/30 shadow-black/30'
+            : 'bg-gradient-to-br from-white/[0.07] to-white/[0.02] border-white/10 shadow-black/20'
+        }`}>
           {/* Декоративный градиент */}
           <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5 pointer-events-none" />
           

@@ -228,6 +228,58 @@ export default function EditBasicReleasePage() {
         coverUrl = publicUrl;
       }
 
+      // Загрузка новых аудиофайлов треков
+      console.log('📤 Проверяем и загружаем новые аудиофайлы...');
+      const tracksWithUrls = await Promise.all(tracks.map(async (track: any, index: number) => {
+        // Если есть новый audioFile, загружаем его
+        if (track.audioFile && track.audioFile instanceof File) {
+          try {
+            const audioFileExt = track.audioFile.name.split('.').pop();
+            const audioFileName = `${user.id}/${Date.now()}-track-${index}.${audioFileExt}`;
+            
+            const { data: audioUploadData, error: audioUploadError } = await supabase.storage
+              .from('release-audio')
+              .upload(audioFileName, track.audioFile, {
+                contentType: track.audioFile.type,
+                upsert: true
+              });
+            
+            if (audioUploadError) {
+              console.error(`Ошибка загрузки аудио для трека ${index}:`, audioUploadError);
+              // Возвращаем трек с существующим link
+              const { audioFile, ...trackWithoutFile } = track;
+              return trackWithoutFile;
+            }
+            
+            const { data: { publicUrl: audioUrl } } = supabase.storage
+              .from('release-audio')
+              .getPublicUrl(audioFileName);
+            
+            console.log(`✅ Аудио для трека ${index} загружено: ${audioUrl}`);
+            
+            // Возвращаем трек с новым URL (без audioFile)
+            const { audioFile, ...trackWithoutFile } = track;
+            return {
+              ...trackWithoutFile,
+              link: audioUrl,
+              audio_url: audioUrl,
+            };
+          } catch (err) {
+            console.error(`Ошибка при загрузке аудио для трека ${index}:`, err);
+            const { audioFile, ...trackWithoutFile } = track;
+            return trackWithoutFile;
+          }
+        }
+        
+        // Убираем audioFile из объекта (если есть) перед сохранением в БД
+        if (track.audioFile) {
+          const { audioFile, ...trackWithoutFile } = track;
+          return trackWithoutFile;
+        }
+        
+        return track;
+      }));
+
       // Обновляем релиз
       const updateData: any = {
         title: releaseTitle,
@@ -236,7 +288,7 @@ export default function EditBasicReleasePage() {
         subgenres: subgenres,
         release_date: releaseDate,
         collaborators: collaborators,
-        tracks: tracks,
+        tracks: tracksWithUrls,
         countries: selectedCountries,
         contract_agreed: agreedToContract,
         contract_agreed_at: agreedToContract ? new Date().toISOString() : null,
@@ -260,7 +312,7 @@ export default function EditBasicReleasePage() {
       
       // Отладка: проверяем данные треков и промо
       console.log('=== SAVING BASIC RELEASE ===');
-      console.log('Треки для обновления:', JSON.stringify(tracks, null, 2));
+      console.log('Треки для обновления:', JSON.stringify(tracksWithUrls, null, 2));
       console.log('Focus Track:', focusTrack);
       console.log('Focus Track Promo:', focusTrackPromo);
       console.log('Album Description:', albumDescription);

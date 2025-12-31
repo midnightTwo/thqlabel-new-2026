@@ -35,10 +35,10 @@ export interface Theme {
 export const themes: Record<ThemeName, Theme> = {
   dark: {
     name: 'dark',
-    label: '🌙 Темная',
+    label: 'Тёмная',
     icon: () => (
       <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor" />
+        <path d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" fill="currentColor" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
     colors: {
@@ -61,11 +61,11 @@ export const themes: Record<ThemeName, Theme> = {
   },
   light: {
     name: 'light',
-    label: '☀️ Светлая',
+    label: 'Светлая',
     icon: () => (
       <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="5" fill="currentColor" />
-        <path d="M12 1v6m0 6v6m11-7h-6m-6 0H1m17.66-5.66l-4.24 4.24m-6.84 0l-4.24-4.24m0 13.32l4.24-4.24m6.84 0l4.24 4.24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <circle cx="12" cy="12" r="4" fill="currentColor" />
+        <path d="M12 2v2m0 16v2m10-10h-2M4 12H2m15.364-5.364l-1.414 1.414M7.05 16.95l-1.414 1.414m12.728 0l-1.414-1.414M7.05 7.05L5.636 5.636" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
       </svg>
     ),
     colors: {
@@ -101,6 +101,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [themeName, setThemeName] = useState<ThemeName>('dark');
   const [loading, setLoading] = useState(true);
 
+  // Применяем класс темы на <html> элемент
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList.remove('dark', 'light');
+    root.classList.add(themeName);
+  }, [themeName]);
+
   useEffect(() => {
     loadTheme();
   }, []);
@@ -126,9 +133,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       }
 
       // Если не удалось - берем из localStorage
-      const savedTheme = localStorage.getItem('theme') as ThemeName | null;
+      const savedTheme = localStorage.getItem('thqlabel_theme') as ThemeName | null;
       if (savedTheme && (savedTheme === 'dark' || savedTheme === 'light')) {
         setThemeName(savedTheme);
+        // Синхронизируем cookie
+        document.cookie = `thqlabel_theme=${savedTheme};path=/;max-age=31536000`;
       }
     } catch (error) {
       console.error('Ошибка загрузки темы:', error);
@@ -139,7 +148,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   const handleSetTheme = async (newTheme: ThemeName) => {
     setThemeName(newTheme);
-    localStorage.setItem('theme', newTheme);
+    localStorage.setItem('thqlabel_theme', newTheme);
+    // Также сохраняем в cookie для SSR
+    document.cookie = `thqlabel_theme=${newTheme};path=/;max-age=31536000`;
 
     // Сохраняем в БД
     if (supabase) {

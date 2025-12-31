@@ -870,6 +870,15 @@ export default function TracklistStep({
                   return; 
                 }
                 
+                // Диагностика: проверяем File объект
+                console.log('🎵 Сохранение трека:', {
+                  title: finalTitle,
+                  hasAudioFile: !!trackAudioFile,
+                  isFileInstance: trackAudioFile instanceof File,
+                  fileName: trackAudioFile?.name,
+                  fileSize: trackAudioFile?.size
+                });
+                
                 const newTrack = { 
                   title: finalTitle, 
                   link: '', // Оставляем для совместимости
@@ -882,6 +891,9 @@ export default function TracklistStep({
                   producers: trackProducers && trackProducers.filter(p => p.trim()).length > 0 ? trackProducers.filter(p => p.trim()) : undefined,
                   featuring: trackFeaturing && trackFeaturing.filter(f => f.trim()).length > 0 ? trackFeaturing.filter(f => f.trim()) : undefined
                 };
+                
+                console.log('🎵 newTrack.audioFile:', newTrack.audioFile instanceof File ? 'File object' : typeof newTrack.audioFile);
+                
                 if (currentTrack < tracks.length) {
                   setTracks(tracks.map((t, i) => i === currentTrack ? newTrack : t));
                 } else {

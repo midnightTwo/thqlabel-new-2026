@@ -20,6 +20,14 @@ interface SendStepProps {
   tracks: Array<{
     title: string;
     link: string;
+    audioFile?: File | null;
+    audioMetadata?: {
+      format: string;
+      duration?: number;
+      bitrate?: string;
+      sampleRate?: string;
+      size: number;
+    } | null;
     hasDrugs: boolean;
     lyrics: string;
     language: string;
@@ -207,6 +215,21 @@ export default function SendStep({
           onClick={async () => {
             if (!allValid || submitting) return;
             
+            // Диагностика: проверяем состояние треков перед отправкой
+            console.log('=== ДИАГНОСТИКА ТРЕКОВ ===');
+            console.log('Количество треков:', tracks.length);
+            tracks.forEach((track, i) => {
+              console.log(`Трек ${i}:`, {
+                title: track.title,
+                hasAudioFile: !!track.audioFile,
+                audioFileType: track.audioFile ? track.audioFile.constructor.name : 'null',
+                isFileInstance: track.audioFile instanceof File,
+                fileSize: track.audioFile instanceof File ? track.audioFile.size : 'N/A',
+                link: track.link || 'пусто'
+              });
+            });
+            console.log('==========================');
+            
             setSubmitting(true);
             
             try {
@@ -234,6 +257,105 @@ export default function SendStep({
                 coverUrl = publicUrl;
               }
               
+              // Загрузка аудиофайлов треков
+              console.log('📤 Загружаем аудиофайлы треков...');
+              console.log('📋 Треки для загрузки:', tracks.map((t, i) => ({
+                index: i,
+                title: t.title,
+                hasAudioFile: !!t.audioFile,
+                isFileInstance: t.audioFile instanceof File,
+                fileSize: t.audioFile instanceof File ? t.audioFile.size : 'N/A',
+                fileName: t.audioFile instanceof File ? t.audioFile.name : 'N/A',
+                link: t.link || 'нет'
+              })));
+              
+              const tracksWithUrls = await Promise.all(tracks.map(async (track, index) => {
+                // Проверяем, что audioFile - это реальный File объект
+                const isValidFile = track.audioFile && 
+                  track.audioFile instanceof File && 
+                  track.audioFile.size > 0;
+                
+                console.log(`🎵 Трек ${index}: isValidFile=${isValidFile}, audioFile type=${typeof track.audioFile}, instanceof File=${track.audioFile instanceof File}`);
+                
+                if (isValidFile) {
+                  try {
+                    console.log(`📤 Загружаем аудио для трека ${index}: ${track.audioFile.name} (${track.audioFile.size} bytes)`);
+                    const audioFileExt = track.audioFile.name.split('.').pop();
+                    const audioFileName = `${user.id}/${Date.now()}-track-${index}.${audioFileExt}`;
+                    
+                    const { data: audioUploadData, error: audioUploadError } = await supabase.storage
+                      .from('release-audio')
+                      .upload(audioFileName, track.audioFile, {
+                        contentType: track.audioFile.type,
+                        upsert: true
+                      });
+                    
+                    if (audioUploadError) {
+                      console.error(`Ошибка загрузки аудио для трека ${index}:`, audioUploadError);
+                      // Продолжаем без URL, если ошибка
+                      return {
+                        title: track.title,
+                        link: track.link || '',
+                        hasDrugs: track.hasDrugs,
+                        lyrics: track.lyrics,
+                        language: track.language,
+                        version: track.version,
+                        producers: track.producers,
+                        featuring: track.featuring,
+                        audioMetadata: track.audioMetadata,
+                      };
+                    }
+                    
+                    const { data: { publicUrl: audioUrl } } = supabase.storage
+                      .from('release-audio')
+                      .getPublicUrl(audioFileName);
+                    
+                    console.log(`✅ Аудио для трека ${index} загружено: ${audioUrl}`);
+                    
+                    return {
+                      title: track.title,
+                      link: audioUrl, // Записываем URL загруженного файла
+                      audio_url: audioUrl, // Дублируем для совместимости
+                      hasDrugs: track.hasDrugs,
+                      lyrics: track.lyrics,
+                      language: track.language,
+                      version: track.version,
+                      producers: track.producers,
+                      featuring: track.featuring,
+                      audioMetadata: track.audioMetadata,
+                    };
+                  } catch (err) {
+                    console.error(`Ошибка при загрузке аудио для трека ${index}:`, err);
+                    return {
+                      title: track.title,
+                      link: track.link || '',
+                      hasDrugs: track.hasDrugs,
+                      lyrics: track.lyrics,
+                      language: track.language,
+                      version: track.version,
+                      producers: track.producers,
+                      featuring: track.featuring,
+                      audioMetadata: track.audioMetadata,
+                    };
+                  }
+                }
+                
+                // Если audioFile нет, возвращаем трек как есть (без File объекта)
+                return {
+                  title: track.title,
+                  link: track.link || '',
+                  hasDrugs: track.hasDrugs,
+                  lyrics: track.lyrics,
+                  language: track.language,
+                  version: track.version,
+                  producers: track.producers,
+                  featuring: track.featuring,
+                  audioMetadata: track.audioMetadata,
+                };
+              }));
+              
+              console.log('✅ Все аудиофайлы загружены');
+              
               // Создание релиза в базе (Basic - платные релизы)
               const releaseData: any = {
                 user_id: user.id,
@@ -244,7 +366,7 @@ export default function SendStep({
                 subgenres: subgenres,
                 release_date: releaseDate,
                 collaborators: collaborators,
-                tracks: tracks,
+                tracks: tracksWithUrls,
                 countries: countries,
                 contract_agreed: agreedToContract,
                 contract_agreed_at: agreedToContract ? new Date().toISOString() : null,
@@ -260,7 +382,7 @@ export default function SendStep({
               };
               
               // Отладка: проверяем данные треков
-              console.log('Треки для сохранения:', JSON.stringify(tracks, null, 2));
+              console.log('Треки для сохранения:', JSON.stringify(tracksWithUrls, null, 2));
               
               const { error: insertError } = await supabase
                 .from('releases_basic')

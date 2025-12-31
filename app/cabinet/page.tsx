@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import AnimatedBackground from '@/components/AnimatedBackground';
+import { useTheme } from '@/contexts/ThemeContext';
 
 // Локальные модули
 import { supabase } from './lib/supabase';
@@ -35,6 +36,8 @@ import { useNotifications } from './hooks/useNotifications';
 
 export default function CabinetPage() {
   const router = useRouter();
+  const { theme, themeName } = useTheme();
+  const isLight = themeName === 'light';
   
   // Состояние скролла для эффекта слияния с хедером
   const [scrolled, setScrolled] = useState(false);
@@ -460,14 +463,14 @@ export default function CabinetPage() {
   }
 
   return (
-    <div className="min-h-screen text-white relative z-10" style={{ paddingTop: '70px' }}>
+    <div className={`min-h-screen relative z-10 text-white`} style={{ paddingTop: '70px' }}>
       <AnimatedBackground />
       
       {/* Декоративные элементы */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-purple-400/10 to-pink-400/10 rounded-full blur-xl floating-element"></div>
-        <div className="absolute top-60 right-20 w-24 h-24 bg-gradient-to-r from-blue-400/10 to-cyan-400/10 rounded-full blur-lg floating-element" style={{animationDelay: '2s'}}></div>
-        <div className="absolute bottom-40 left-1/4 w-16 h-16 bg-gradient-to-r from-indigo-400/10 to-purple-400/10 rounded-full blur-md floating-element" style={{animationDelay: '4s'}}></div>
+        <div className={`absolute top-20 left-10 w-32 h-32 rounded-full blur-xl floating-element ${isLight ? 'bg-gradient-to-r from-purple-300/20 to-pink-300/20' : 'bg-gradient-to-r from-purple-400/10 to-pink-400/10'}`}></div>
+        <div className={`absolute top-60 right-20 w-24 h-24 rounded-full blur-lg floating-element ${isLight ? 'bg-gradient-to-r from-blue-300/20 to-cyan-300/20' : 'bg-gradient-to-r from-blue-400/10 to-cyan-400/10'}`} style={{animationDelay: '2s'}}></div>
+        <div className={`absolute bottom-40 left-1/4 w-16 h-16 rounded-full blur-md floating-element ${isLight ? 'bg-gradient-to-r from-indigo-300/20 to-purple-300/20' : 'bg-gradient-to-r from-indigo-400/10 to-purple-400/10'}`} style={{animationDelay: '4s'}}></div>
       </div>
       
       <div 
@@ -483,7 +486,7 @@ export default function CabinetPage() {
         
         {/* Сайдбар */}
         <aside 
-          className="lg:w-64 w-full glass-morphism-sidebar glass-card-hover interactive-glass flex flex-col lg:sticky" 
+          className={`lg:w-64 w-full glass-card-hover interactive-glass flex flex-col lg:sticky ${isLight ? 'cabinet-sidebar-light' : 'glass-morphism-sidebar'}`}
           style={{
             borderRadius: scrolled ? '24px' : '16px 0 0 0',
             top: '70px',
@@ -492,9 +495,15 @@ export default function CabinetPage() {
             height: 'calc(100vh - 70px)',
             minHeight: 'calc(100vh - 70px)',
             maxHeight: 'calc(100vh - 70px)',
-            borderTop: scrolled ? '1px solid rgba(157, 141, 241, 0.15)' : '1px solid transparent',
-            borderRight: scrolled ? '1px solid rgba(157, 141, 241, 0.08)' : '1px solid transparent',
-            borderBottom: scrolled ? '1px solid rgba(157, 141, 241, 0.08)' : '1px solid transparent',
+            borderTop: scrolled 
+              ? `1px solid ${isLight ? 'rgba(100,80,140,0.2)' : 'rgba(157, 141, 241, 0.15)'}` 
+              : '1px solid transparent',
+            borderRight: scrolled 
+              ? `1px solid ${isLight ? 'rgba(100,80,140,0.1)' : 'rgba(157, 141, 241, 0.08)'}` 
+              : '1px solid transparent',
+            borderBottom: scrolled 
+              ? `1px solid ${isLight ? 'rgba(255,255,255,0.1)' : 'rgba(157, 141, 241, 0.08)'}` 
+              : '1px solid transparent',
             boxSizing: 'border-box',
             transition: 'border-radius 0.3s ease, border-color 0.3s ease',
             willChange: 'transform',
@@ -522,6 +531,7 @@ export default function CabinetPage() {
               onShowAvatarModal={() => setShowAvatarModal(true)}
               onSupportToggle={() => supportWidget.toggle()}
               showToast={handleShowToast}
+              isLight={isLight}
             />
           )}
         </aside>
@@ -540,8 +550,12 @@ export default function CabinetPage() {
             className="absolute inset-y-0 flex items-center justify-center transition-all duration-500"
             style={{
               width: '1px',
-              background: 'linear-gradient(to bottom, transparent 0%, rgba(157, 141, 241, 0.3) 10%, rgba(157, 141, 241, 0.5) 50%, rgba(157, 141, 241, 0.3) 90%, transparent 100%)',
-              boxShadow: '0 0 20px rgba(157, 141, 241, 0.3)',
+              background: isLight 
+                ? 'linear-gradient(to bottom, transparent 0%, rgba(180,140,220,0.4) 10%, rgba(140,180,220,0.6) 50%, rgba(180,140,220,0.4) 90%, transparent 100%)'
+                : 'linear-gradient(to bottom, transparent 0%, rgba(157, 141, 241, 0.3) 10%, rgba(157, 141, 241, 0.5) 50%, rgba(157, 141, 241, 0.3) 90%, transparent 100%)',
+              boxShadow: isLight 
+                ? '0 0 20px rgba(180,140,220,0.3)'
+                : '0 0 20px rgba(157, 141, 241, 0.3)',
             }}
           />
           {/* Декоративные точки */}
@@ -549,8 +563,12 @@ export default function CabinetPage() {
             className="absolute w-2 h-2 rounded-full animate-pulse"
             style={{
               top: '20%',
-              background: 'radial-gradient(circle, rgba(157, 141, 241, 0.8) 0%, transparent 70%)',
-              boxShadow: '0 0 10px rgba(157, 141, 241, 0.6)',
+              background: isLight 
+                ? 'radial-gradient(circle, rgba(180,140,220,0.8) 0%, transparent 70%)'
+                : 'radial-gradient(circle, rgba(157, 141, 241, 0.8) 0%, transparent 70%)',
+              boxShadow: isLight 
+                ? '0 0 10px rgba(180,140,220,0.6)'
+                : '0 0 10px rgba(157, 141, 241, 0.6)',
               animation: 'pulse 3s ease-in-out infinite',
             }}
           />
@@ -558,8 +576,12 @@ export default function CabinetPage() {
             className="absolute w-2 h-2 rounded-full animate-pulse"
             style={{
               top: '50%',
-              background: 'radial-gradient(circle, rgba(157, 141, 241, 0.8) 0%, transparent 70%)',
-              boxShadow: '0 0 10px rgba(157, 141, 241, 0.6)',
+              background: isLight 
+                ? 'radial-gradient(circle, rgba(180,140,220,0.8) 0%, transparent 70%)'
+                : 'radial-gradient(circle, rgba(157, 141, 241, 0.8) 0%, transparent 70%)',
+              boxShadow: isLight 
+                ? '0 0 10px rgba(180,140,220,0.6)'
+                : '0 0 10px rgba(157, 141, 241, 0.6)',
               animation: 'pulse 3s ease-in-out infinite 1s',
             }}
           />
@@ -567,8 +589,12 @@ export default function CabinetPage() {
             className="absolute w-2 h-2 rounded-full animate-pulse"
             style={{
               top: '80%',
-              background: 'radial-gradient(circle, rgba(157, 141, 241, 0.8) 0%, transparent 70%)',
-              boxShadow: '0 0 10px rgba(157, 141, 241, 0.6)',
+              background: isLight 
+                ? 'radial-gradient(circle, rgba(180,140,220,0.8) 0%, transparent 70%)'
+                : 'radial-gradient(circle, rgba(157, 141, 241, 0.8) 0%, transparent 70%)',
+              boxShadow: isLight 
+                ? '0 0 10px rgba(180,140,220,0.6)'
+                : '0 0 10px rgba(157, 141, 241, 0.6)',
               animation: 'pulse 3s ease-in-out infinite 2s',
             }}
           />
@@ -576,15 +602,21 @@ export default function CabinetPage() {
 
         {/* Контент */}
         <section 
-          className="flex-1 glass-morphism-card glass-card-hover interactive-glass"
+          className={`flex-1 glass-card-hover interactive-glass ${isLight ? 'cabinet-content-light' : 'glass-morphism-card'}`}
           style={{
             borderRadius: scrolled ? '24px' : '0 16px 0 0',
             padding: '40px',
             minHeight: 'calc(100vh - 70px)',
             marginTop: '0px',
-            borderTop: scrolled ? '1px solid rgba(157, 141, 241, 0.15)' : '1px solid transparent',
-            borderLeft: scrolled ? '1px solid rgba(157, 141, 241, 0.08)' : '1px solid transparent',
-            borderBottom: scrolled ? '1px solid rgba(157, 141, 241, 0.08)' : '1px solid transparent',
+            borderTop: scrolled 
+              ? `1px solid ${isLight ? 'rgba(100,80,140,0.2)' : 'rgba(157, 141, 241, 0.15)'}` 
+              : '1px solid transparent',
+            borderLeft: scrolled 
+              ? `1px solid ${isLight ? 'rgba(100,80,140,0.1)' : 'rgba(157, 141, 241, 0.08)'}` 
+              : '1px solid transparent',
+            borderBottom: scrolled 
+              ? `1px solid ${isLight ? 'rgba(255,255,255,0.1)' : 'rgba(157, 141, 241, 0.08)'}` 
+              : '1px solid transparent',
             boxSizing: 'border-box',
             transition: 'border-radius 0.3s ease, border-color 0.3s ease',
           }}

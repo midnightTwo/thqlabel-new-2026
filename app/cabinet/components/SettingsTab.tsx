@@ -191,7 +191,7 @@ export default function SettingsTab({
           <ThemeSelector />
         </div>
 
-        {/* Секция смены пароля */}
+        {/* Секция безопасности */}
         <div>
           <label className="text-[10px] text-zinc-500 uppercase tracking-widest mb-3 block">Безопасность</label>
           
@@ -201,14 +201,19 @@ export default function SettingsTab({
               className="w-full py-3 px-4 bg-white/5 border border-white/10 text-zinc-300 text-sm font-medium rounded-xl hover:bg-white/10 hover:border-white/20 transition-all flex items-center justify-center gap-2"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
               </svg>
               Изменить пароль
             </button>
           ) : (
             <div className="space-y-4 p-4 bg-white/[0.03] border border-white/10 rounded-xl animate-[fadeIn_0.3s_ease-in-out]">
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-sm font-bold">Смена пароля</h3>
+                <h3 className="text-sm font-bold flex items-center gap-2">
+                  <svg className="w-4 h-4 text-[#9d8df1]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                  </svg>
+                  Смена пароля
+                </h3>
                 <button
                   onClick={() => {
                     setShowPasswordChange(false);
@@ -226,13 +231,19 @@ export default function SettingsTab({
               </div>
 
               {passwordError && (
-                <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 text-xs">
+                <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 text-xs flex items-center gap-2">
+                  <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
                   {passwordError}
                 </div>
               )}
 
               {passwordSuccess && (
-                <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-lg text-emerald-400 text-xs">
+                <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-lg text-emerald-400 text-xs flex items-center gap-2">
+                  <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
                   {passwordSuccess}
                 </div>
               )}

@@ -7,12 +7,21 @@ const nextConfig: NextConfig = {
   // Автоматическая очистка кэша при сборке
   cleanDistDir: true,
   
+  // Полное отключение кэширования данных
+  experimental: {
+    // Отключаем статическую генерацию для всех страниц
+    staleTimes: {
+      dynamic: 0,
+      static: 0,
+    },
+  },
+  
   // Отключаем кэширование в dev режиме для свежих данных
   onDemandEntries: {
     // Период в мс, в течение которого страница хранится в буфере
-    maxInactiveAge: 15 * 1000, // 15 секунд
+    maxInactiveAge: 5 * 1000, // 5 секунд - моментальное обновление
     // Количество страниц, которые должны храниться одновременно
-    pagesBufferLength: 2,
+    pagesBufferLength: 1,
   },
   
   // Оптимизация производительности
@@ -39,6 +48,24 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
+        // Отключаем кэширование HTML страниц - всегда свежий контент
+        source: '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|jpg|png|webp|avif|woff|woff2|ico)).*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-cache, no-store, must-revalidate',
+          },
+          {
+            key: 'Pragma',
+            value: 'no-cache',
+          },
+          {
+            key: 'Expires',
+            value: '0',
+          },
+        ],
+      },
+      {
         source: '/:all*(svg|jpg|png|webp|avif|woff|woff2|ico)',
         headers: [
           {
@@ -58,12 +85,12 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        // Кэширование данных API
+        // API - короткое кэширование с revalidate
         source: '/api/:path*',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, s-maxage=60, stale-while-revalidate=300',
+            value: 'no-cache, no-store, must-revalidate',
           },
         ],
       },

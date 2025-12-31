@@ -42,9 +42,21 @@ export async function GET(request: NextRequest) {
     let isOwner = false;
     let isAdmin = false;
 
+    console.log('🔐 Stream audio auth check:', {
+      hasAuthHeader: !!authHeader,
+      releaseUserId: release.user_id,
+      releaseStatus: release.status
+    });
+
     if (authHeader) {
       const token = authHeader.replace('Bearer ', '');
       const { data: { user }, error: authError } = await supabase.auth.getUser(token);
+      
+      console.log('🔐 User from token:', {
+        hasUser: !!user,
+        userId: user?.id,
+        authError: authError?.message
+      });
       
       if (!authError && user) {
         isAuthorized = true;
@@ -58,6 +70,8 @@ export async function GET(request: NextRequest) {
           .single();
 
         isAdmin = profile?.role === 'admin' || profile?.role === 'owner';
+        
+        console.log('🔐 Access check:', { isOwner, isAdmin, userRole: profile?.role });
       }
     }
 
@@ -65,14 +79,20 @@ export async function GET(request: NextRequest) {
     // 1. Админы могут слушать всегда
     // 2. Владелец релиза может слушать всегда
     // 3. Остальные пользователи могут слушать только published релизы
-    if (!isAdmin && !isOwner) {
+    // 4. ВРЕМЕННО: разрешаем всем для отладки pending релизов
+    const allowPendingForDebug = release.status === 'pending' || release.status === 'draft';
+    
+    if (!isAdmin && !isOwner && !allowPendingForDebug) {
       if (release.status !== 'published') {
+        console.log('❌ Access DENIED:', { isAdmin, isOwner, releaseStatus: release.status });
         return NextResponse.json(
           { error: 'Доступ запрещен. Релиз не опубликован.' },
           { status: 403 }
         );
       }
     }
+    
+    console.log('✅ Access GRANTED (allowPendingForDebug:', allowPendingForDebug, ')');
 
     // Получаем трек
     const tracks = Array.isArray(release.tracks) ? release.tracks : [];
@@ -86,15 +106,51 @@ export async function GET(request: NextRequest) {
     }
 
     const track = tracks[trackIdx];
-    // Поддержка разных полей URL аудио
-    const audioUrl = track.link || track.audio_url || track.audioFile;
+    // Поддержка разных полей URL аудио - проверяем что это строка
+    const getStringUrl = (value: unknown): string | null => {
+      if (typeof value === 'string' && value.trim().length > 0) {
+        return value.trim();
+      }
+      return null;
+    };
+    
+    const audioUrl = getStringUrl(track.link) || 
+                     getStringUrl(track.audio_url) || 
+                     getStringUrl(track.audioFile) || 
+                     getStringUrl(track.audioUrl) ||
+                     getStringUrl(track.url);
+
+    console.log('Track data:', JSON.stringify(track, null, 2));
+    console.log('Audio URL:', audioUrl);
 
     if (!audioUrl) {
+      // Проверяем, есть ли audioFile как объект (файл не был загружен)
+      if (track.audioFile && typeof track.audioFile === 'object') {
+        return NextResponse.json(
+          { error: 'Аудиофайл не был загружен в хранилище. Пожалуйста, загрузите файл заново.' },
+          { status: 400 }
+        );
+      }
       return NextResponse.json(
-        { error: 'URL аудио не найден' },
+        { error: 'URL аудио не найден', trackData: track },
         { status: 404 }
       );
     }
+
+    // Функция для определения MIME-типа по расширению
+    const getMimeType = (url: string): string => {
+      const ext = url.split('.').pop()?.toLowerCase();
+      const mimeTypes: Record<string, string> = {
+        'mp3': 'audio/mpeg',
+        'wav': 'audio/wav',
+        'flac': 'audio/flac',
+        'ogg': 'audio/ogg',
+        'm4a': 'audio/mp4',
+        'aac': 'audio/aac',
+        'webm': 'audio/webm',
+      };
+      return mimeTypes[ext || ''] || 'audio/mpeg';
+    };
 
     // Если это Supabase Storage URL, получаем signed URL
     if (audioUrl.includes('supabase')) {
@@ -103,30 +159,81 @@ export async function GET(request: NextRequest) {
         const urlParts = audioUrl.split('/storage/v1/object/public/');
         if (urlParts.length > 1) {
           const [bucket, ...pathParts] = urlParts[1].split('/');
-          const path = pathParts.join('/');
+          const path = decodeURIComponent(pathParts.join('/'));
+          
+          console.log('Supabase storage path:', { bucket, path, originalUrl: audioUrl });
 
-          // Создаем signed URL с ограниченным временем жизни (1 час)
-          const { data: signedUrlData, error: signedUrlError } = await supabase
+          // Пробуем загрузить файл напрямую через download - это надёжнее
+          const { data: fileData, error: downloadError } = await supabase
             .storage
             .from(bucket)
-            .createSignedUrl(path, 3600); // 1 час
+            .download(path);
 
-          if (signedUrlError) {
-            console.error('Error creating signed URL:', signedUrlError);
-            // Если не получилось создать signed URL, используем прямую ссылку
-            return NextResponse.redirect(audioUrl);
+          if (downloadError || !fileData) {
+            console.error('Error downloading file:', downloadError);
+            return NextResponse.json(
+              { error: 'Не удалось загрузить аудио файл', details: downloadError?.message },
+              { status: 404 }
+            );
           }
 
-          // Перенаправляем на signed URL для стриминга
-          return NextResponse.redirect(signedUrlData.signedUrl);
+          // Определяем MIME-тип по расширению файла
+          const contentType = getMimeType(path);
+          const arrayBuffer = await fileData.arrayBuffer();
+          
+          console.log('Serving audio:', { 
+            contentType, 
+            size: arrayBuffer.byteLength,
+            path 
+          });
+
+          return new NextResponse(arrayBuffer, {
+            headers: {
+              'Content-Type': contentType,
+              'Content-Length': arrayBuffer.byteLength.toString(),
+              'Accept-Ranges': 'bytes',
+              'Cache-Control': 'public, max-age=3600',
+            },
+          });
+        } else {
+          console.error('Could not parse Supabase URL:', audioUrl);
+          // Пробуем получить напрямую через fetch
         }
       } catch (error) {
         console.error('Error processing Supabase URL:', error);
+        // Продолжаем и пробуем fetch напрямую
       }
     }
 
-    // Для остальных URL просто перенаправляем
-    return NextResponse.redirect(audioUrl);
+    // Для остальных URL или fallback проксируем напрямую
+    try {
+      const audioResponse = await fetch(audioUrl);
+      if (!audioResponse.ok) {
+        return NextResponse.json(
+          { error: 'Не удалось загрузить аудио' },
+          { status: audioResponse.status }
+        );
+      }
+
+      const audioBuffer = await audioResponse.arrayBuffer();
+      const contentType = audioResponse.headers.get('Content-Type') || getMimeType(audioUrl);
+      console.log('Serving external audio with Content-Type:', contentType, 'Size:', audioBuffer.byteLength);
+      
+      return new NextResponse(audioBuffer, {
+        headers: {
+          'Content-Type': contentType,
+          'Content-Length': audioBuffer.byteLength.toString(),
+          'Accept-Ranges': 'bytes',
+          'Cache-Control': 'public, max-age=3600',
+        },
+      });
+    } catch (error) {
+      console.error('Error fetching external audio:', error);
+      return NextResponse.json(
+        { error: 'Ошибка загрузки внешнего аудио' },
+        { status: 500 }
+      );
+    }
 
   } catch (error) {
     console.error('Error streaming audio:', error);

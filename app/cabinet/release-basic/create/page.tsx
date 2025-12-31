@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import AnimatedBackground from '@/components/AnimatedBackground';
 import { supabase } from '../../lib/supabase';
+import { useTheme } from '@/contexts/ThemeContext';
 import {
   ReleaseInfoStep,
   TracklistStep,
@@ -33,7 +34,8 @@ function StepsSidebar({
   focusTrack,
   focusTrackPromo,
   albumDescription,
-  paymentReceiptUrl
+  paymentReceiptUrl,
+  isLight
 }: { 
   currentStep: string; 
   setCurrentStep: (step: string) => void;
@@ -50,6 +52,7 @@ function StepsSidebar({
   focusTrackPromo: string;
   albumDescription: string;
   paymentReceiptUrl: string;
+  isLight: boolean;
 }) {
   // Проверка заполненности каждого шага
   const isStepComplete = (stepId: string): boolean => {
@@ -105,7 +108,11 @@ function StepsSidebar({
   };
 
   return (
-    <aside className="lg:w-64 w-full backdrop-blur-xl bg-gradient-to-br from-white/[0.07] to-white/[0.02] border border-white/10 rounded-3xl p-6 flex flex-col lg:self-start lg:sticky lg:top-24 shadow-2xl shadow-black/20 relative overflow-hidden">
+    <aside className={`lg:w-64 w-full backdrop-blur-xl border rounded-3xl p-6 flex flex-col lg:self-start lg:sticky lg:top-24 shadow-2xl relative overflow-hidden ${
+      isLight
+        ? 'bg-[rgba(25,25,30,0.85)] border-purple-500/30 shadow-black/30'
+        : 'bg-gradient-to-br from-white/[0.07] to-white/[0.02] border-white/10 shadow-black/20'
+    }`}>
       {/* Декоративный градиент */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5 pointer-events-none" />
       
@@ -247,6 +254,8 @@ function StepsSidebar({
 
 export default function CreateReleaseBasicPage() {
   const router = useRouter();
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
   const [user, setUser] = useState<any>(null);
   const [nickname, setNickname] = useState('');
   const [loading, setLoading] = useState(true);
@@ -392,6 +401,20 @@ export default function CreateReleaseBasicPage() {
         }
       }
       
+      // Подготавливаем треки для сохранения (без File объектов, которые не сериализуются)
+      const tracksForSave = tracks.map(track => ({
+        title: track.title,
+        link: track.link || '',
+        hasDrugs: track.hasDrugs,
+        lyrics: track.lyrics,
+        language: track.language,
+        version: track.version,
+        producers: track.producers,
+        featuring: track.featuring,
+        audioMetadata: track.audioMetadata,
+        // НЕ включаем audioFile - File объекты не сериализуются в JSON
+      }));
+      
       const draftData = {
         user_id: user.id,
         title: releaseTitle || 'Без названия',
@@ -401,6 +424,7 @@ export default function CreateReleaseBasicPage() {
         subgenres: subgenres.length > 0 ? subgenres : null,
         release_date: releaseDate,
         collaborators: collaborators.length > 0 ? collaborators : null,
+        tracks: tracksForSave.length > 0 ? tracksForSave : null,
         status: 'draft',
         created_at: new Date().toISOString()
       };
@@ -497,7 +521,7 @@ export default function CreateReleaseBasicPage() {
   return (
     <div className="min-h-screen pt-20 text-white relative z-10">
       <AnimatedBackground />
-      <div className="max-w-[1600px] mx-auto p-6 lg:p-8 flex flex-col lg:flex-row gap-8 items-stretch relative z-10">
+      <div className="max-w-[1600px] mx-auto p-6 lg:p-8 flex flex-col lg:flex-row gap-8 items-stretch relative z-20">
         
         {/* Боковая панель с шагами */}
         <StepsSidebar 
@@ -516,10 +540,15 @@ export default function CreateReleaseBasicPage() {
           focusTrackPromo={focusTrackPromo}
           albumDescription={albumDescription}
           paymentReceiptUrl={paymentReceiptUrl}
+          isLight={isLight}
         />
 
         {/* Основной контент */}
-        <section className="flex-1 backdrop-blur-xl bg-gradient-to-br from-white/[0.07] to-white/[0.02] border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-10 min-h-[500px] shadow-2xl shadow-black/20 relative overflow-hidden">
+        <section className={`flex-1 backdrop-blur-xl border rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-10 min-h-[500px] shadow-2xl relative overflow-hidden ${
+          isLight
+            ? 'bg-[rgba(25,25,30,0.85)] border-purple-500/30 shadow-black/30'
+            : 'bg-gradient-to-br from-white/[0.07] to-white/[0.02] border-white/10 shadow-black/20'
+        }`}>
           {/* Декоративный градиент */}
           <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5 pointer-events-none" />
           

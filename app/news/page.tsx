@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { createClient } from '@supabase/supabase-js';
 import AnimatedBackground from '@/components/AnimatedBackground';
+import { useTheme } from '@/contexts/ThemeContext';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
@@ -12,7 +13,7 @@ const supabase = (supabaseUrl && supabaseAnonKey) ? createClient(supabaseUrl, su
 const DEFAULT_NEWS: any[] = [];
 
 // Компонент карточки новости
-const NewsCard = ({ news, onClick, featured = false }: any) => {
+const NewsCard = ({ news, onClick, featured = false, isLight = false }: any) => {
   const date = new Date(news.created_at).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
   
   return (
@@ -20,25 +21,37 @@ const NewsCard = ({ news, onClick, featured = false }: any) => {
       onClick={onClick}
       className={`group cursor-pointer ${featured ? 'md:col-span-2 md:row-span-2' : ''}`}
     >
-      <div className={`relative overflow-hidden rounded-2xl sm:rounded-3xl border border-white/10 hover:border-[#6050ba]/60 transition-all duration-700 transform hover:scale-[1.02] hover:shadow-2xl ${featured ? 'h-[300px] sm:h-[400px] md:h-[550px]' : 'h-[280px] sm:h-[320px]'}`}>
+      <div className={`relative overflow-hidden rounded-2xl sm:rounded-3xl border-2 transition-all duration-700 transform hover:scale-[1.02] hover:shadow-2xl ${
+        isLight 
+          ? 'border-[#6050ba]/40 hover:border-[#6050ba]/70 bg-[rgba(25,25,30,0.7)] backdrop-blur-xl hover:shadow-[#6050ba]/30' 
+          : 'border-[#6050ba]/30 hover:border-[#6050ba]/60 hover:shadow-[#6050ba]/30'
+      } ${featured ? 'h-[300px] sm:h-[400px] md:h-[550px]' : 'h-[280px] sm:h-[320px]'}`}>
         {news.image ? (
           <img src={news.image} alt={news.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 group-hover:rotate-1" />
         ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-[#6050ba]/30 via-[#9d8df1]/20 to-[#0a0a0c]" />
+          <div className={`absolute inset-0 ${isLight ? 'bg-gradient-to-br from-[#8070da]/40 via-[#a090ea]/30 to-[#1a1a1f]' : 'bg-gradient-to-br from-[#6050ba]/30 via-[#9d8df1]/20 to-[#0a0a0c]'}`} />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
         <div className="absolute inset-0 p-5 sm:p-7 flex flex-col justify-end">
           {news.category && (
             <div className="mb-3 sm:mb-4 animate-fadeIn">
-              <span className="px-3 sm:px-4 py-1 sm:py-1.5 bg-gradient-to-r from-[#6050ba] to-[#8b7dd8] rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-widest shadow-lg">{news.category}</span>
+              <span className={`px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-widest shadow-lg ${
+                isLight 
+                  ? 'bg-gradient-to-r from-[#8070da] to-[#a090ea]' 
+                  : 'bg-gradient-to-r from-[#6050ba] to-[#8b7dd8]'
+              }`}>{news.category}</span>
             </div>
           )}
-          <h3 className={`text-white font-black uppercase tracking-tight mb-4 sm:mb-5 group-hover:text-[#c4b5fd] transition-all duration-500 leading-tight ${featured ? 'text-2xl sm:text-3xl md:text-4xl' : 'text-lg sm:text-xl'}`}>
+          <h3 className={`text-white font-black uppercase tracking-tight mb-4 sm:mb-5 transition-all duration-500 leading-tight ${
+            isLight ? 'group-hover:text-[#d4c5fd]' : 'group-hover:text-[#c4b5fd]'
+          } ${featured ? 'text-2xl sm:text-3xl md:text-4xl' : 'text-lg sm:text-xl'}`}>
             {news.title}
           </h3>
           <div className="flex items-center gap-4 sm:gap-5">
             <span className="text-[10px] sm:text-[11px] text-white/70 uppercase tracking-widest font-semibold">{date}</span>
-            <div className="flex items-center gap-2 text-[10px] sm:text-[11px] text-purple-400 font-black uppercase tracking-widest group-hover:gap-3 transition-all">
+            <div className={`flex items-center gap-2 text-[10px] sm:text-[11px] font-black uppercase tracking-widest group-hover:gap-3 transition-all ${
+              isLight ? 'text-[#c4b5fd]' : 'text-purple-400'
+            }`}>
               <span>Читать</span>
               <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
@@ -46,7 +59,11 @@ const NewsCard = ({ news, onClick, featured = false }: any) => {
             </div>
           </div>
         </div>
-        <div className="absolute inset-0 bg-gradient-to-br from-[#6050ba]/0 via-[#6050ba]/0 to-[#6050ba]/20 group-hover:from-[#6050ba]/20 group-hover:via-[#6050ba]/10 group-hover:to-[#6050ba]/30 transition-all duration-700" />
+        <div className={`absolute inset-0 transition-all duration-700 ${
+          isLight 
+            ? 'bg-gradient-to-br from-[#8070da]/0 via-[#8070da]/0 to-[#8070da]/20 group-hover:from-[#8070da]/20 group-hover:via-[#8070da]/10 group-hover:to-[#8070da]/30'
+            : 'bg-gradient-to-br from-[#6050ba]/0 via-[#6050ba]/0 to-[#6050ba]/20 group-hover:from-[#6050ba]/20 group-hover:via-[#6050ba]/10 group-hover:to-[#6050ba]/30'
+        }`} />
       </div>
     </div>
   );
@@ -58,8 +75,8 @@ const NewsModal = ({ news, onClose }: any) => {
   
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 pt-16 sm:pt-20 pb-4 sm:pb-6 animate-fadeIn" onClick={onClose}>
-      <div className="absolute inset-0 bg-black/95 backdrop-blur-2xl" />
-      <div className="relative w-full max-w-4xl h-full overflow-y-auto bg-gradient-to-b from-[#0d0d0f] to-black rounded-2xl sm:rounded-3xl border border-white/20 shadow-2xl [&::-webkit-scrollbar]:hidden" onClick={(e) => e.stopPropagation()}>
+      <div className="absolute inset-0 bg-black/85 backdrop-blur-2xl" />
+      <div className="relative w-full max-w-4xl h-full overflow-y-auto bg-gradient-to-b from-[#1a1a1f] to-[#0d0d0f] rounded-2xl sm:rounded-3xl border border-white/20 shadow-2xl [&::-webkit-scrollbar]:hidden" onClick={(e) => e.stopPropagation()}>
         <div className="relative h-[220px] sm:h-[280px] md:h-[400px]">
           {news.image ? (
             <img src={news.image} alt={news.title} className="w-full h-full object-cover" />
@@ -109,6 +126,8 @@ const NewsModal = ({ news, onClose }: any) => {
 export default function NewsPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
   const newsId = searchParams.get('id');
   const [news, setNews] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -163,26 +182,149 @@ export default function NewsPage() {
   }, [newsId]);
 
   return (
-    <main className="min-h-screen pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 md:px-8 relative overflow-hidden">
-      <AnimatedBackground />
+    <main className="min-h-screen pt-16 sm:pt-20 md:pt-24 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 md:px-8 relative overflow-hidden">
+      {/* Тёмная тема - AnimatedBackground */}
+      {!isLight && <AnimatedBackground />}
       
-      {/* Декоративные элементы */}
-      <div className="absolute top-20 left-10 w-64 h-64 bg-gradient-to-r from-[#6050ba]/20 to-[#9d8df1]/20 rounded-full blur-[100px] animate-pulse"></div>
-      <div className="absolute top-40 right-20 w-96 h-96 bg-gradient-to-l from-[#8b7dd8]/15 to-[#c4b5fd]/15 rounded-full blur-[120px] animate-pulse" style={{animationDelay: '2s'}}></div>
+      {/* Голографический фон для светлой темы как на фиде */}
+      {isLight && (
+        <div className="fixed inset-0 pointer-events-none z-0" style={{ transform: 'translateZ(0)' }}>
+          {/* Основной мягкий градиент */}
+          <div 
+            className="absolute inset-0"
+            style={{
+              background: `
+                linear-gradient(135deg, 
+                  rgba(255,200,210,0.3) 0%, 
+                  rgba(255,230,200,0.25) 20%, 
+                  rgba(230,255,230,0.25) 40%, 
+                  rgba(200,230,255,0.3) 60%, 
+                  rgba(230,200,240,0.3) 80%, 
+                  rgba(255,200,210,0.3) 100%
+                )
+              `,
+              animation: 'holographic-bg-shift 20s ease-in-out infinite',
+            }}
+          />
+          {/* Мягкие радужные переливы */}
+          <div 
+            className="absolute inset-0"
+            style={{
+              background: `
+                radial-gradient(ellipse at 15% 25%, rgba(255,180,210,0.35) 0%, transparent 50%),
+                radial-gradient(ellipse at 85% 75%, rgba(180,210,255,0.35) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(210,180,240,0.3) 0%, transparent 60%)
+              `,
+              animation: 'holographic-bg-glow 15s ease-in-out infinite',
+            }}
+          />
+          {/* Лёгкие блики */}
+          <div 
+            className="absolute inset-0"
+            style={{
+              background: `
+                linear-gradient(45deg, 
+                  transparent 0%, 
+                  rgba(255,255,255,0.2) 30%, 
+                  transparent 50%, 
+                  rgba(255,255,255,0.15) 70%, 
+                  transparent 100%
+                )
+              `,
+              backgroundSize: '300% 300%',
+              animation: 'shimmer-bg 12s linear infinite',
+            }}
+          />
+          {/* Плавающие мягкие пятна */}
+          <div 
+            className="absolute w-[500px] h-[500px] rounded-full"
+            style={{
+              top: '-10%',
+              left: '-10%',
+              background: 'radial-gradient(circle, rgba(255,150,180,0.3) 0%, rgba(255,200,150,0.15) 50%, transparent 70%)',
+              filter: 'blur(80px)',
+              animation: 'float-bg-blob 25s ease-in-out infinite',
+            }}
+          />
+          <div 
+            className="absolute w-[450px] h-[450px] rounded-full"
+            style={{
+              bottom: '-5%',
+              right: '-10%',
+              background: 'radial-gradient(circle, rgba(150,200,255,0.3) 0%, rgba(200,150,240,0.15) 50%, transparent 70%)',
+              filter: 'blur(70px)',
+              animation: 'float-bg-blob 30s ease-in-out infinite reverse',
+            }}
+          />
+          {/* Звёздочки/блёстки */}
+          {Array.from({ length: 40 }, (_, i) => (
+            <div
+              key={i}
+              className="absolute rounded-full"
+              style={{
+                width: `${(i % 3) + 2}px`,
+                height: `${(i % 3) + 2}px`,
+                left: `${(i * 37) % 100}%`,
+                top: `${(i * 23) % 100}%`,
+                background: 'linear-gradient(135deg, rgba(180,140,220,0.8) 0%, rgba(140,180,220,0.8) 50%, rgba(200,160,200,0.8) 100%)',
+                boxShadow: '0 0 6px rgba(180,140,220,0.5)',
+                animation: `twinkle-light ${2 + (i % 3)}s ease-in-out infinite ${(i % 10) * 0.2}s`,
+              }}
+            />
+          ))}
+          <style jsx>{`
+            @keyframes holographic-bg-shift {
+              0%, 100% { filter: hue-rotate(0deg) brightness(1); }
+              50% { filter: hue-rotate(10deg) brightness(1.02); }
+            }
+            @keyframes holographic-bg-glow {
+              0%, 100% { opacity: 0.6; }
+              50% { opacity: 0.9; }
+            }
+            @keyframes shimmer-bg {
+              0% { background-position: 300% 300%; }
+              100% { background-position: -300% -300%; }
+            }
+            @keyframes float-bg-blob {
+              0%, 100% { transform: translate(0, 0) scale(1); }
+              33% { transform: translate(15px, -10px) scale(1.02); }
+              66% { transform: translate(-10px, 10px) scale(0.98); }
+            }
+            @keyframes twinkle-light {
+              0%, 100% { opacity: 0.4; transform: scale(1); }
+              50% { opacity: 1; transform: scale(1.3); }
+            }
+          `}</style>
+        </div>
+      )}
       
       <div className="max-w-7xl mx-auto relative z-20">
-        <div className="mb-10 sm:mb-12 md:mb-16 text-center">
-          <div className="inline-block mb-4">
-            <span className="px-4 py-1.5 bg-gradient-to-r from-[#6050ba]/20 to-[#9d8df1]/20 border border-[#6050ba]/30 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-[#c4b5fd]">
-              THQLABEL Updates
+        <div className={`mb-6 sm:mb-8 md:mb-10 text-center py-4 sm:py-6 px-4 sm:px-6 ${
+          isLight 
+            ? 'rounded-3xl bg-white/40 backdrop-blur-xl border border-white/50 shadow-xl' 
+            : ''
+        }`}>
+          <div className="inline-block mb-2">
+            <span className={`px-4 py-1.5 rounded-full text-[10px] sm:text-[11px] font-black tracking-widest lowercase ${
+              isLight 
+                ? 'bg-white/60 border border-purple-300/50 text-gray-700' 
+                : 'bg-[#6050ba] text-white'
+            }`}>
+              thqlabel updates
             </span>
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tighter mb-4 sm:mb-5 leading-none">
-            <span className="inline-block bg-gradient-to-r from-white via-[#c4b5fd] to-white bg-clip-text text-transparent animate-gradient">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-wide mb-2 leading-none">
+            <span className={`inline-block ${
+              isLight 
+                ? 'text-gray-800' 
+                : 'bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient bg-gradient-to-r from-[#6050ba] via-[#c4b5fd] to-[#6050ba]'
+            }`}>
               Новости
             </span>
           </h1>
-          <p className="text-zinc-400 text-sm sm:text-base tracking-wide max-w-2xl mx-auto">
+          <p className={`text-sm sm:text-base tracking-wide max-w-2xl mx-auto ${
+            isLight ? 'text-gray-600' : 'text-zinc-400'
+          }`}>
             Последние обновления, анонсы релизов и важные события от лейбла
           </p>
         </div>
@@ -190,29 +332,37 @@ export default function NewsPage() {
         {loading ? (
           <div className="text-center py-20 sm:py-28">
             <div className="inline-block">
-              <div className="w-12 h-12 border-4 border-[#6050ba]/30 border-t-[#6050ba] rounded-full animate-spin"></div>
-              <div className="text-sm sm:text-base text-zinc-500 mt-4 font-semibold">Загрузка новостей...</div>
+              <div className={`w-12 h-12 border-4 rounded-full animate-spin ${
+                isLight ? 'border-[#8070da]/30 border-t-[#8070da]' : 'border-[#6050ba]/30 border-t-[#6050ba]'
+              }`}></div>
+              <div className={`text-sm sm:text-base mt-4 font-semibold ${isLight ? 'text-gray-600' : 'text-zinc-500'}`}>Загрузка новостей...</div>
             </div>
           </div>
         ) : news.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-28 sm:py-36 px-4">
             <div className="relative mb-6 sm:mb-8">
-              <div className="absolute inset-0 bg-[#6050ba]/20 blur-3xl rounded-full animate-pulse"></div>
-              <div className="relative w-24 h-24 sm:w-28 sm:h-28 bg-gradient-to-br from-[#6050ba]/40 to-[#9d8df1]/20 rounded-2xl border-2 border-[#6050ba]/40 flex items-center justify-center shadow-2xl">
-                <svg className="w-12 h-12 sm:w-14 sm:h-14 text-[#c4b5fd]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className={`absolute inset-0 blur-3xl rounded-full animate-pulse ${
+                isLight ? 'bg-[#8070da]/25' : 'bg-[#6050ba]/20'
+              }`}></div>
+              <div className={`relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl border-2 flex items-center justify-center shadow-2xl ${
+                isLight 
+                  ? 'bg-gradient-to-br from-[#8070da]/50 to-[#a090ea]/30 border-[#8070da]/50' 
+                  : 'bg-gradient-to-br from-[#6050ba]/40 to-[#9d8df1]/20 border-[#6050ba]/40'
+              }`}>
+                <svg className={`w-12 h-12 sm:w-14 sm:h-14 ${isLight ? 'text-[#d4c5fd]' : 'text-[#c4b5fd]'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
                 </svg>
               </div>
             </div>
-            <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white mb-3 text-center">Новостей пока нет</h3>
-            <p className="text-zinc-400 text-sm sm:text-base text-center max-w-md leading-relaxed">
+            <h3 className={`text-2xl sm:text-3xl font-black uppercase tracking-tight mb-3 text-center ${isLight ? 'text-gray-900' : 'text-white'}`}>Новостей пока нет</h3>
+            <p className={`text-sm sm:text-base text-center max-w-md leading-relaxed ${isLight ? 'text-gray-600' : 'text-zinc-400'}`}>
               Следите за обновлениями — скоро здесь появятся важные анонсы и события от лейбла
             </p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-7 lg:gap-8">
             {news.map((item, index) => (
-              <NewsCard key={item.id} news={item} featured={index === 0} onClick={() => openNews(item)} />
+              <NewsCard key={item.id} news={item} featured={index === 0} onClick={() => openNews(item)} isLight={isLight} />
             ))}
           </div>
         )}

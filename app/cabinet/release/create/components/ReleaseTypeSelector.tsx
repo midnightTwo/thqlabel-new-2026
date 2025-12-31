@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import AnimatedBackground from '@/components/AnimatedBackground';
+import { useTheme } from '@/contexts/ThemeContext';
 
 interface ReleaseTypeSelectorProps {
   onSelectType: (type: 'single' | 'ep' | 'album') => void;
@@ -8,17 +9,22 @@ interface ReleaseTypeSelectorProps {
 }
 
 export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTypeSelectorProps) {
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
+  
   return (
-    <div className="min-h-screen relative flex items-center justify-center p-6">
+    <div className="min-h-screen relative flex items-center justify-center p-6 pt-24 bg-black">
       <AnimatedBackground />
+      {/* Тёмный overlay для светлой темы */}
+      {isLight && <div className="fixed inset-0 bg-black/5 z-10" />}
 
-      <div className="max-w-6xl w-full relative z-10">
+      <div className="max-w-6xl w-full relative z-20">
         {/* Заголовок */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-black mb-3 bg-gradient-to-r from-white via-zinc-100 to-zinc-400 bg-clip-text text-transparent">
+          <h1 className="text-4xl font-black mb-3 text-white">
             Выберите тип релиза
           </h1>
-          <p className="text-zinc-500 text-sm">
+          <p className="text-sm text-white/70">
             Exclusive Plan · Все функции бесплатно
           </p>
         </div>
@@ -28,7 +34,11 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
           {/* Сингл */}
           <button
             onClick={() => onSelectType('single')}
-            className="group relative rounded-3xl p-6 text-left overflow-hidden transition-all duration-500 hover:scale-[1.03] hover:-translate-y-2 will-change-transform bg-gradient-to-br from-zinc-900/90 via-zinc-900/80 to-black/90 backdrop-blur-xl border border-zinc-800/50 hover:border-purple-500/70 shadow-2xl hover:shadow-purple-500/20"
+            className={`group relative rounded-3xl p-6 text-left overflow-hidden transition-all duration-500 hover:scale-[1.03] hover:-translate-y-2 will-change-transform backdrop-blur-xl border shadow-2xl ${
+              isLight 
+                ? 'bg-[rgba(25,25,30,0.75)] border-purple-500/30 hover:border-purple-500/70 hover:shadow-purple-500/30' 
+                : 'bg-gradient-to-br from-zinc-900/90 via-zinc-900/80 to-black/90 border-zinc-800/50 hover:border-purple-500/70 hover:shadow-purple-500/20'
+            }`}
           >
             {/* Фон карточки с анимированными градиентами */}
             <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-transparent to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -91,7 +101,11 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
           {/* EP */}
           <button
             onClick={() => onSelectType('ep')}
-            className="group relative rounded-3xl p-6 text-left overflow-hidden transition-all duration-500 hover:scale-[1.03] hover:-translate-y-2 will-change-transform bg-gradient-to-br from-zinc-900/90 via-zinc-900/80 to-black/90 backdrop-blur-xl border border-zinc-800/50 hover:border-blue-500/70 shadow-2xl hover:shadow-blue-500/20"
+            className={`group relative rounded-3xl p-6 text-left overflow-hidden transition-all duration-500 hover:scale-[1.03] hover:-translate-y-2 will-change-transform backdrop-blur-xl border shadow-2xl ${
+              isLight 
+                ? 'bg-[rgba(25,25,30,0.75)] border-blue-500/30 hover:border-blue-500/70 hover:shadow-blue-500/30' 
+                : 'bg-gradient-to-br from-zinc-900/90 via-zinc-900/80 to-black/90 border-zinc-800/50 hover:border-blue-500/70 hover:shadow-blue-500/20'
+            }`}
           >
             {/* Фон карточки с анимированными градиентами */}
             <div className="absolute inset-0 bg-gradient-to-br from-blue-900/30 via-transparent to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -154,7 +168,11 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
           {/* Альбом */}
           <button
             onClick={() => onSelectType('album')}
-            className="group relative rounded-3xl p-6 text-left overflow-hidden transition-all duration-500 hover:scale-[1.03] hover:-translate-y-2 will-change-transform bg-gradient-to-br from-zinc-900/90 via-zinc-900/80 to-black/90 backdrop-blur-xl border border-zinc-800/50 hover:border-emerald-500/70 shadow-2xl hover:shadow-emerald-500/20"
+            className={`group relative rounded-3xl p-6 text-left overflow-hidden transition-all duration-500 hover:scale-[1.03] hover:-translate-y-2 will-change-transform backdrop-blur-xl border shadow-2xl ${
+              isLight 
+                ? 'bg-[rgba(25,25,30,0.75)] border-emerald-500/30 hover:border-emerald-500/70 hover:shadow-emerald-500/30' 
+                : 'bg-gradient-to-br from-zinc-900/90 via-zinc-900/80 to-black/90 border-zinc-800/50 hover:border-emerald-500/70 hover:shadow-emerald-500/20'
+            }`}
           >
             {/* Фон карточки с анимированными градиентами */}
             <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/30 via-transparent to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -226,14 +244,18 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
         </div>
 
         {/* Подсказка снизу */}
-        <div className="mt-8 flex items-start gap-3 p-4 bg-gradient-to-r from-purple-500/10 to-blue-500/10 border border-purple-500/20 rounded-xl max-w-3xl mx-auto">
+        <div className={`mt-8 flex items-start gap-3 p-4 border rounded-xl max-w-3xl mx-auto ${
+          isLight 
+            ? 'bg-[rgba(25,25,30,0.75)] border-purple-500/30' 
+            : 'bg-gradient-to-r from-purple-500/10 to-blue-500/10 border-purple-500/20'
+        }`}>
           <svg className="w-5 h-5 text-purple-400 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <circle cx="12" cy="12" r="10"/>
             <path d="M12 16v-4M12 8h.01"/>
           </svg>
           <div className="text-sm">
             <div className="font-semibold text-purple-400 mb-1">Exclusive Plan включает</div>
-            <div className="text-zinc-300 text-xs">Все функции без ограничений · Бесплатная публикация · Приоритетная поддержка</div>
+            <div className="text-white text-xs">Все функции без ограничений · Бесплатная публикация · Приоритетная поддержка</div>
           </div>
         </div>
 
@@ -241,7 +263,11 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
         <div className="mt-8 text-center">
           <button
             onClick={onBack}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-xl font-semibold transition-all group"
+            className={`inline-flex items-center gap-2 px-6 py-3 border rounded-xl font-semibold transition-all group ${
+              isLight 
+                ? 'bg-[rgba(25,25,30,0.75)] hover:bg-[rgba(25,25,30,0.85)] border-purple-500/30 hover:border-purple-500/50 text-white' 
+                : 'bg-white/5 hover:bg-white/10 border-white/10 hover:border-white/20'
+            }`}
           >
             <svg className="w-4 h-4 group-hover:-translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />

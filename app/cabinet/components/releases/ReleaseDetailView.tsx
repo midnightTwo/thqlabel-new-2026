@@ -100,11 +100,29 @@ function ReleaseHeader({ release }: { release: Release }) {
         <div className="relative group mx-auto w-full max-w-xs lg:max-w-none">
           <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-2xl sm:rounded-3xl blur-xl sm:blur-2xl opacity-50 group-hover:opacity-75 transition-opacity" />
           {release.cover_url ? (
-            <img 
-              src={release.cover_url} 
-              alt={release.title} 
-              className="relative w-full aspect-square rounded-xl sm:rounded-2xl object-cover shadow-2xl ring-1 ring-white/10" 
-            />
+            <div className="relative">
+              <img 
+                src={release.cover_url} 
+                alt={release.title} 
+                className="relative w-full aspect-square rounded-xl sm:rounded-2xl object-cover shadow-2xl ring-1 ring-white/10" 
+              />
+              {/* Кнопка скачивания обложки */}
+              <a
+                href={release.cover_url}
+                download={`${release.title || 'cover'}_cover.jpg`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute bottom-3 right-3 p-2.5 bg-black/60 hover:bg-black/80 backdrop-blur-sm rounded-xl border border-white/20 hover:border-purple-500/50 transition-all duration-300 group/download hover:scale-105 active:scale-95"
+                title="Скачать обложку"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <svg className="w-5 h-5 text-white group-hover/download:text-purple-300 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+              </a>
+            </div>
           ) : (
             <div className="relative w-full aspect-square rounded-xl sm:rounded-2xl bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center shadow-2xl ring-1 ring-white/10">
               <svg className="w-16 h-16 sm:w-20 sm:h-20 text-zinc-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -377,6 +395,25 @@ function TrackItem({
               </p>
             )}
           </div>
+
+          {/* Кнопка скачивания трека */}
+          {track.link && (
+            <a
+              href={track.link}
+              download={`${track.title || 'track'}.wav`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-shrink-0 p-2.5 bg-gradient-to-br from-emerald-500/20 to-emerald-600/10 hover:from-emerald-500/30 hover:to-emerald-600/20 rounded-xl border border-emerald-500/30 hover:border-emerald-400/50 transition-all duration-300 hover:scale-105 active:scale-95 group/dl"
+              title="Скачать трек"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <svg className="w-5 h-5 text-emerald-400 group-hover/dl:text-emerald-300 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+            </a>
+          )}
 
           {/* Стрелка раскрытия */}
           <svg className="w-5 h-5 text-zinc-400 group-open:rotate-180 transition-transform flex-shrink-0 mt-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">

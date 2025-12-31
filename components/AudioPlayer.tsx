@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { SupabaseClient } from '@supabase/supabase-js';
 
 interface AudioPlayerProps {
@@ -10,6 +10,60 @@ interface AudioPlayerProps {
   className?: string;
   variant?: 'full' | 'compact'; // full - с полосой прогресса, compact - только кнопка
 }
+
+// Плавная анимация кнопки воспроизведения
+const PlayIcon = ({ className = '' }: { className?: string }) => (
+  <svg 
+    className={`transition-transform duration-200 ${className}`} 
+    width="18" 
+    height="18" 
+    viewBox="0 0 24 24" 
+    fill="currentColor"
+  >
+    <path d="M8 5.14v14l11-7-11-7z" />
+  </svg>
+);
+
+const PauseIcon = ({ className = '' }: { className?: string }) => (
+  <svg 
+    className={`transition-transform duration-200 ${className}`} 
+    width="18" 
+    height="18" 
+    viewBox="0 0 24 24" 
+    fill="currentColor"
+  >
+    <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
+  </svg>
+);
+
+const LoadingSpinner = () => (
+  <svg 
+    className="animate-spin h-5 w-5" 
+    xmlns="http://www.w3.org/2000/svg" 
+    fill="none" 
+    viewBox="0 0 24 24"
+  >
+    <circle 
+      className="opacity-25" 
+      cx="12" 
+      cy="12" 
+      r="10" 
+      stroke="currentColor" 
+      strokeWidth="3"
+    />
+    <path 
+      className="opacity-90" 
+      fill="currentColor" 
+      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+    />
+  </svg>
+);
+
+const ErrorIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+  </svg>
+);
 
 export default function AudioPlayer({ 
   releaseId, 
@@ -24,7 +78,13 @@ export default function AudioPlayer({
   const [duration, setDuration] = useState(0);
   const [loading, setLoading] = useState(false);
   const [isAudioReady, setIsAudioReady] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [isHovering, setIsHovering] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const blobUrlRef = useRef<string | null>(null);
+  const progressRef = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<number | null>(null);
 
   useEffect(() => {
     // Очистка при размонтировании
@@ -33,14 +93,26 @@ export default function AudioPlayer({
         audioRef.current.pause();
         audioRef.current.src = '';
       }
+      // Освобождаем blob URL
+      if (blobUrlRef.current) {
+        URL.revokeObjectURL(blobUrlRef.current);
+        blobUrlRef.current = null;
+      }
       setIsAudioReady(false);
+      setError(null);
     };
   }, [releaseId, trackIndex]);
 
-  const getAudioUrl = async () => {
+  const getAudioUrl = async (): Promise<string | null> => {
     try {
       const { data: { session } } = await supabase.auth.getSession();
       const token = session?.access_token;
+      
+      console.log('🔐 AudioPlayer auth:', {
+        hasSession: !!session,
+        hasToken: !!token,
+        userId: session?.user?.id
+      });
 
       const url = `/api/stream-audio?releaseId=${releaseId}&releaseType=${releaseType}&trackIndex=${trackIndex}`;
       
@@ -50,7 +122,50 @@ export default function AudioPlayer({
         headers['Authorization'] = `Bearer ${token}`;
       }
 
-      return url;
+      // Делаем fetch с заголовками авторизации
+      const response = await fetch(url, { headers });
+      
+      // Проверяем тип ответа - если JSON, значит это ошибка
+      const contentType = response.headers.get('content-type') || '';
+      
+      console.log('Audio response:', {
+        status: response.status,
+        contentType,
+        contentLength: response.headers.get('content-length')
+      });
+      
+      if (contentType.includes('application/json')) {
+        const errorData = await response.json();
+        console.error('API Error:', errorData.error || 'Неизвестная ошибка');
+        return null;
+      }
+      
+      if (!response.ok) {
+        console.error('HTTP Error:', response.status, response.statusText);
+        return null;
+      }
+      
+      // Проверяем, что это аудио
+      if (!contentType.includes('audio/')) {
+        console.error('Invalid content type:', contentType);
+        return null;
+      }
+
+      // Создаём blob URL для воспроизведения
+      const blob = await response.blob();
+      
+      // Проверяем размер blob
+      if (blob.size === 0) {
+        console.error('Empty audio file received');
+        return null;
+      }
+      
+      console.log('Audio blob:', { size: blob.size, type: blob.type });
+      
+      // Создаём blob с правильным типом если он не установлен
+      const audioBlob = blob.type ? blob : new Blob([blob], { type: contentType });
+      const blobUrl = URL.createObjectURL(audioBlob);
+      return blobUrl;
     } catch (error) {
       console.error('Error getting audio URL:', error);
       return null;
@@ -61,13 +176,19 @@ export default function AudioPlayer({
     if (!audioRef.current) {
       // Инициализация аудио элемента
       setLoading(true);
-      const url = await getAudioUrl();
-      if (!url) {
+      setError(null);
+      
+      const blobUrl = await getAudioUrl();
+      if (!blobUrl) {
         setLoading(false);
+        setError('Не удалось загрузить аудио');
         return;
       }
 
-      const audio = new Audio(url);
+      // Сохраняем blob URL для последующей очистки
+      blobUrlRef.current = blobUrl;
+      
+      const audio = new Audio(blobUrl);
       audioRef.current = audio;
       setIsAudioReady(true);
 
@@ -87,8 +208,28 @@ export default function AudioPlayer({
       });
 
       audio.addEventListener('error', (e) => {
-        const error = audio.error;
-        console.error('Audio error:', error?.message || error?.code || 'Unknown audio error');
+        const audioError = audio.error;
+        let errorMsg = 'Ошибка воспроизведения';
+        
+        if (audioError && audioError.code) {
+          const errorMessages: Record<number, string> = {
+            1: 'Загрузка прервана',
+            2: 'Ошибка сети',
+            3: 'Ошибка декодирования аудио',
+            4: 'Формат не поддерживается браузером'
+          };
+          errorMsg = errorMessages[audioError.code] || audioError.message || `Код ошибки: ${audioError.code}`;
+        }
+        
+        // Логируем детали для отладки
+        console.warn('🔊 Audio playback issue:', {
+          errorCode: audioError?.code,
+          errorMessage: audioError?.message,
+          networkState: audio.networkState,
+          readyState: audio.readyState
+        });
+        
+        setError(errorMsg);
         setLoading(false);
         setIsPlaying(false);
       });
@@ -115,6 +256,56 @@ export default function AudioPlayer({
     }
   };
 
+  // Обработка перетаскивания и клика по прогресс-бару
+  const handleMouseDown = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (!progressRef.current || !isAudioReady || !duration) return;
+    
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(true);
+    
+    // Сразу устанавливаем позицию при клике
+    const rect = progressRef.current.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const width = rect.width;
+    const newTime = Math.max(0, Math.min((clickX / width) * duration, duration));
+    
+    setCurrentTime(newTime);
+    if (audioRef.current) {
+      audioRef.current.currentTime = newTime;
+    }
+  }, [isAudioReady, duration]);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isDragging || !progressRef.current || !duration) return;
+      
+      const rect = progressRef.current.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const width = rect.width;
+      const newTime = Math.max(0, Math.min((clickX / width) * duration, duration));
+      
+      setCurrentTime(newTime);
+      if (audioRef.current) {
+        audioRef.current.currentTime = newTime;
+      }
+    };
+
+    const handleMouseUp = () => {
+      setIsDragging(false);
+    };
+
+    if (isDragging) {
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+    }
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [isDragging, duration]);
+
   const formatTime = (seconds: number) => {
     if (isNaN(seconds)) return '0:00';
     const mins = Math.floor(seconds / 60);
@@ -122,82 +313,208 @@ export default function AudioPlayer({
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
+  const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
+
   if (variant === 'compact') {
     // Компактная версия - только кнопка Play/Pause
     return (
       <button
         onClick={togglePlay}
         disabled={loading}
-        className={`w-10 h-10 rounded-lg bg-gradient-to-br from-[#6050ba] to-[#9d8df1] hover:from-[#7060ca] hover:to-[#ad9dff] flex items-center justify-center transition-all shadow-lg hover:shadow-[#6050ba]/50 disabled:opacity-50 disabled:cursor-not-allowed ${className}`}
-        title={isPlaying ? 'Пауза' : 'Воспроизвести'}
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}
+        className={`
+          group relative w-11 h-11 rounded-xl overflow-hidden
+          ${error 
+            ? 'bg-gradient-to-br from-red-500 to-red-600' 
+            : 'bg-gradient-to-br from-[#6050ba] to-[#9d8df1]'
+          }
+          flex items-center justify-center
+          transition-all duration-300 ease-out
+          shadow-lg hover:shadow-xl hover:shadow-[#6050ba]/40
+          hover:scale-105 active:scale-95
+          disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100
+          ${className}
+        `}
+        title={error || (isPlaying ? 'Пауза' : 'Воспроизвести')}
       >
-        {loading ? (
-          <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-          </svg>
-        ) : isPlaying ? (
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
-            <rect x="6" y="4" width="4" height="16" />
-            <rect x="14" y="4" width="4" height="16" />
-          </svg>
-        ) : (
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
-            <polygon points="5 3 19 12 5 21 5 3" />
-          </svg>
+        {/* Glow effect */}
+        <div className={`
+          absolute inset-0 bg-gradient-to-t from-white/0 to-white/20 
+          opacity-0 group-hover:opacity-100 transition-opacity duration-300
+        `} />
+        
+        {/* Ripple effect on playing */}
+        {isPlaying && !loading && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="absolute w-full h-full bg-white/20 rounded-xl animate-ping opacity-30" />
+          </div>
         )}
+        
+        <span className="relative z-10 text-white flex items-center justify-center">
+          {loading ? (
+            <LoadingSpinner />
+          ) : error ? (
+            <ErrorIcon />
+          ) : isPlaying ? (
+            <PauseIcon className="group-hover:scale-110" />
+          ) : (
+            <PlayIcon className="group-hover:scale-110 translate-x-0.5" />
+          )}
+        </span>
       </button>
     );
   }
 
   // Полная версия с полосой прогресса
   return (
-    <div className={`flex items-center gap-3 ${className}`}>
+    <div 
+      className={`
+        flex items-center gap-4 p-1 rounded-xl
+        transition-all duration-300 ease-out
+        ${className}
+      `}
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
+    >
+      {/* Play/Pause Button */}
       <button
         onClick={togglePlay}
         disabled={loading}
-        className="w-10 h-10 flex-shrink-0 rounded-lg bg-gradient-to-br from-[#6050ba] to-[#9d8df1] hover:from-[#7060ca] hover:to-[#ad9dff] flex items-center justify-center transition-all shadow-lg hover:shadow-[#6050ba]/50 disabled:opacity-50 disabled:cursor-not-allowed"
-        title={isPlaying ? 'Пауза' : 'Воспроизвести'}
+        className={`
+          group relative w-11 h-11 flex-shrink-0 rounded-xl overflow-hidden
+          ${error 
+            ? 'bg-gradient-to-br from-red-500 to-red-600' 
+            : 'bg-gradient-to-br from-[#6050ba] to-[#9d8df1]'
+          }
+          flex items-center justify-center
+          transition-all duration-300 ease-out
+          shadow-lg hover:shadow-xl hover:shadow-[#6050ba]/40
+          hover:scale-105 active:scale-95
+          disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100
+        `}
+        title={error || (isPlaying ? 'Пауза' : 'Воспроизвести')}
       >
-        {loading ? (
-          <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-          </svg>
-        ) : isPlaying ? (
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
-            <rect x="6" y="4" width="4" height="16" />
-            <rect x="14" y="4" width="4" height="16" />
-          </svg>
-        ) : (
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
-            <polygon points="5 3 19 12 5 21 5 3" />
-          </svg>
+        {/* Glow effect */}
+        <div className="absolute inset-0 bg-gradient-to-t from-white/0 to-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        
+        {/* Ripple effect on playing */}
+        {isPlaying && !loading && (
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="absolute w-8 h-8 bg-white/30 rounded-full animate-ping opacity-40" 
+              style={{ animationDuration: '1.5s' }} 
+            />
+          </div>
         )}
+        
+        <span className="relative z-10 text-white flex items-center justify-center">
+          {loading ? (
+            <LoadingSpinner />
+          ) : error ? (
+            <ErrorIcon />
+          ) : isPlaying ? (
+            <PauseIcon className="group-hover:scale-110 transition-transform duration-200" />
+          ) : (
+            <PlayIcon className="group-hover:scale-110 translate-x-0.5 transition-transform duration-200" />
+          )}
+        </span>
       </button>
 
-      <div className="flex-1 flex items-center gap-2">
-        <span className="text-xs text-zinc-400 font-mono w-10 text-right">
-          {formatTime(currentTime)}
-        </span>
-        <input
-          type="range"
-          min="0"
-          max={duration || 0}
-          value={currentTime}
-          onChange={handleSeek}
-          disabled={!isAudioReady}
-          className="flex-1 h-2 bg-white/10 rounded-full appearance-none cursor-pointer disabled:cursor-not-allowed [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-gradient-to-br [&::-webkit-slider-thumb]:from-[#6050ba] [&::-webkit-slider-thumb]:to-[#9d8df1] [&::-webkit-slider-thumb]:shadow-lg [&::-webkit-slider-thumb]:shadow-[#6050ba]/50 [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:w-3 [&::-moz-range-thumb]:h-3 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-gradient-to-br [&::-moz-range-thumb]:from-[#6050ba] [&::-moz-range-thumb]:to-[#9d8df1] [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:shadow-lg [&::-moz-range-thumb]:shadow-[#6050ba]/50 [&::-moz-range-thumb]:cursor-pointer"
-          style={{
-            background: isAudioReady 
-              ? `linear-gradient(to right, #6050ba 0%, #9d8df1 ${(currentTime / duration) * 100}%, rgba(255,255,255,0.1) ${(currentTime / duration) * 100}%, rgba(255,255,255,0.1) 100%)`
-              : 'rgba(255,255,255,0.1)'
-          }}
-        />
-        <span className="text-xs text-zinc-400 font-mono w-10">
-          {formatTime(duration)}
-        </span>
-      </div>
+      {error ? (
+        <span className="flex-1 text-sm text-red-400 font-medium animate-pulse">{error}</span>
+      ) : (
+        <div className="flex-1 flex items-center gap-3">
+          {/* Current Time */}
+          <span className={`
+            text-xs font-medium font-mono w-10 text-right tabular-nums
+            transition-colors duration-300
+            ${isPlaying ? 'text-[#9d8df1]' : 'text-zinc-400'}
+          `}>
+            {formatTime(currentTime)}
+          </span>
+          
+          {/* Progress Bar Container */}
+          <div 
+            ref={progressRef}
+            onMouseDown={handleMouseDown}
+            onClick={(e) => e.stopPropagation()}
+            className={`
+              relative flex-1 h-2 rounded-full overflow-hidden cursor-pointer
+              transition-all duration-300 ease-out
+              ${isHovering || isDragging ? 'h-3' : 'h-2'}
+              ${!isAudioReady ? 'cursor-not-allowed opacity-50' : ''}
+            `}
+            style={{ backgroundColor: 'rgba(255,255,255,0.08)' }}
+          >
+            {/* Background Track */}
+            <div className="absolute inset-0 rounded-full bg-white/[0.06]" />
+            
+            {/* Buffered/Loading indicator */}
+            {loading && (
+              <div className="absolute inset-0 overflow-hidden rounded-full">
+                <div 
+                  className="h-full w-1/3 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"
+                  style={{ 
+                    animation: 'shimmer 1.5s ease-in-out infinite',
+                  }}
+                />
+              </div>
+            )}
+            
+            {/* Progress Fill */}
+            <div 
+              className={`
+                absolute inset-y-0 left-0 rounded-full
+                bg-gradient-to-r from-[#6050ba] via-[#7a6bd4] to-[#9d8df1]
+                transition-all ease-out
+                ${isDragging ? 'duration-0' : 'duration-100'}
+              `}
+              style={{ 
+                width: `${progress}%`,
+                boxShadow: isPlaying ? '0 0 12px rgba(157, 141, 241, 0.5)' : 'none'
+              }}
+            />
+            
+            {/* Glow effect on progress */}
+            {isPlaying && progress > 0 && (
+              <div 
+                className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-[#6050ba]/50 to-[#9d8df1]/50 blur-sm"
+                style={{ width: `${progress}%` }}
+              />
+            )}
+            
+            {/* Thumb/Handle */}
+            <div 
+              className={`
+                absolute top-1/2 -translate-y-1/2 -translate-x-1/2
+                rounded-full bg-white shadow-lg
+                transition-all duration-200 ease-out
+                ${isHovering || isDragging ? 'w-4 h-4 opacity-100 scale-100' : 'w-3 h-3 opacity-0 scale-75'}
+                ${isDragging ? 'scale-110 shadow-xl shadow-[#6050ba]/50' : ''}
+              `}
+              style={{ 
+                left: `${progress}%`,
+                boxShadow: isDragging 
+                  ? '0 0 0 4px rgba(157, 141, 241, 0.3), 0 2px 8px rgba(0,0,0,0.3)'
+                  : '0 2px 4px rgba(0,0,0,0.2)'
+              }}
+            />
+          </div>
+          
+          {/* Duration */}
+          <span className="text-xs text-zinc-500 font-medium font-mono w-10 tabular-nums">
+            {formatTime(duration)}
+          </span>
+        </div>
+      )}
+      
+      {/* Add shimmer keyframes */}
+      <style jsx>{`
+        @keyframes shimmer {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(400%); }
+        }
+      `}</style>
     </div>
   );
 }

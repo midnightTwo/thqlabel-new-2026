@@ -30,11 +30,11 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'No file provided' }, { status: 400 });
     }
 
-    // Проверка формата (только WAV и FLAC)
-    const allowedTypes = ['audio/wav', 'audio/x-wav', 'audio/flac', 'audio/x-flac'];
+    // Проверка формата (WAV, FLAC и MP3)
+    const allowedTypes = ['audio/wav', 'audio/x-wav', 'audio/flac', 'audio/x-flac', 'audio/mpeg', 'audio/mp3'];
     if (!allowedTypes.includes(file.type)) {
       return NextResponse.json({ 
-        error: 'Invalid file type. Only WAV and FLAC are allowed' 
+        error: 'Invalid file type. Only WAV, FLAC and MP3 are allowed' 
       }, { status: 400 });
     }
 

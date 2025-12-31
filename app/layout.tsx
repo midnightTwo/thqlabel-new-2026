@@ -34,9 +34,18 @@ const AnimatedBackground = () => {
       #08080a
     `,
     light: `
-      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(96, 80, 186, 0.1), transparent),
-      radial-gradient(ellipse 60% 40% at 100% 100%, rgba(157, 141, 241, 0.08), transparent),
-      #ffffff
+      linear-gradient(135deg, 
+        rgba(255, 200, 220, 0.4) 0%, 
+        rgba(200, 220, 255, 0.4) 25%,
+        rgba(220, 255, 240, 0.3) 50%,
+        rgba(255, 240, 200, 0.3) 75%,
+        rgba(240, 200, 255, 0.4) 100%
+      ),
+      radial-gradient(ellipse 80% 60% at 20% 20%, rgba(255, 180, 200, 0.5), transparent),
+      radial-gradient(ellipse 60% 50% at 80% 30%, rgba(180, 200, 255, 0.5), transparent),
+      radial-gradient(ellipse 70% 50% at 50% 80%, rgba(200, 255, 220, 0.4), transparent),
+      radial-gradient(ellipse 50% 40% at 30% 60%, rgba(255, 220, 180, 0.3), transparent),
+      #f8f6ff
     `,
     midnight: `
       radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 102, 241, 0.4), transparent),
@@ -71,66 +80,105 @@ const AnimatedBackground = () => {
         }}
       />
       
-      {/* Анимированные орбы */}
+      {/* Голографический эффект для светлой темы */}
+      {themeName === 'light' && (
+        <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: -8 }}>
+          <div 
+            className="absolute w-full h-full"
+            style={{
+              background: `
+                radial-gradient(ellipse 100% 80% at 30% 20%, rgba(255, 180, 200, 0.35), transparent 50%),
+                radial-gradient(ellipse 80% 60% at 70% 80%, rgba(180, 220, 255, 0.35), transparent 50%),
+                radial-gradient(ellipse 90% 70% at 80% 30%, rgba(200, 255, 220, 0.3), transparent 50%),
+                radial-gradient(ellipse 70% 50% at 20% 70%, rgba(255, 220, 180, 0.3), transparent 50%)
+              `,
+              animation: 'holographic-shift 15s ease-in-out infinite',
+            }}
+          />
+          <div 
+            className="absolute w-full h-full"
+            style={{
+              background: `
+                radial-gradient(ellipse 60% 40% at 60% 40%, rgba(230, 200, 255, 0.25), transparent 50%),
+                radial-gradient(ellipse 50% 35% at 40% 60%, rgba(200, 230, 255, 0.25), transparent 50%)
+              `,
+              animation: 'holographic-shift 20s ease-in-out infinite reverse',
+            }}
+          />
+        </div>
+      )}
+      
+      {/* Анимированные орбы - разные для темной и светлой тем */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: -5 }}>
         <div 
-          className="absolute rounded-full"
+          className="absolute rounded-full transition-all duration-500"
           style={{
             width: '600px',
             height: '600px',
             top: '-10%',
             left: '-5%',
-            background: 'radial-gradient(circle, rgba(96, 80, 186, 0.4) 0%, transparent 70%)',
+            background: themeName === 'light' 
+              ? 'radial-gradient(circle, rgba(255, 180, 220, 0.4) 0%, transparent 70%)'
+              : 'radial-gradient(circle, rgba(96, 80, 186, 0.4) 0%, transparent 70%)',
             filter: 'blur(40px)',
             animation: 'orb-float-1 25s ease-in-out infinite',
           }}
         />
         <div 
-          className="absolute rounded-full"
+          className="absolute rounded-full transition-all duration-500"
           style={{
             width: '500px',
             height: '500px',
             bottom: '-5%',
             right: '-10%',
-            background: 'radial-gradient(circle, rgba(157, 141, 241, 0.5) 0%, transparent 70%)',
+            background: themeName === 'light'
+              ? 'radial-gradient(circle, rgba(180, 200, 255, 0.5) 0%, transparent 70%)'
+              : 'radial-gradient(circle, rgba(157, 141, 241, 0.5) 0%, transparent 70%)',
             filter: 'blur(50px)',
             animation: 'orb-float-2 30s ease-in-out infinite',
           }}
         />
         <div 
-          className="absolute rounded-full"
+          className="absolute rounded-full transition-all duration-500"
           style={{
             width: '400px',
             height: '400px',
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            background: 'radial-gradient(circle, rgba(96, 80, 186, 0.25) 0%, transparent 70%)',
+            background: themeName === 'light'
+              ? 'radial-gradient(circle, rgba(200, 255, 220, 0.35) 0%, transparent 70%)'
+              : 'radial-gradient(circle, rgba(96, 80, 186, 0.25) 0%, transparent 70%)',
             filter: 'blur(60px)',
             animation: 'orb-float-3 20s ease-in-out infinite',
           }}
         />
       </div>
 
-      {/* Светящиеся точки */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: -3 }}>
-        <div className="absolute w-2 h-2 rounded-full bg-[#9d8df1]" style={{ left: '10%', top: '20%', boxShadow: '0 0 20px 5px rgba(157, 141, 241, 0.6)', animation: 'star-twinkle 3s ease-in-out infinite' }} />
-        <div className="absolute w-3 h-3 rounded-full bg-[#9d8df1]" style={{ left: '80%', top: '15%', boxShadow: '0 0 25px 8px rgba(157, 141, 241, 0.5)', animation: 'star-twinkle 4s ease-in-out infinite 1s' }} />
-        <div className="absolute w-2 h-2 rounded-full bg-[#9d8df1]" style={{ left: '25%', top: '70%', boxShadow: '0 0 20px 5px rgba(157, 141, 241, 0.6)', animation: 'star-twinkle 3.5s ease-in-out infinite 0.5s' }} />
-        <div className="absolute w-2 h-2 rounded-full bg-[#9d8df1]" style={{ left: '70%', top: '80%', boxShadow: '0 0 20px 5px rgba(157, 141, 241, 0.5)', animation: 'star-twinkle 4.5s ease-in-out infinite 2s' }} />
-        <div className="absolute w-1.5 h-1.5 rounded-full bg-[#9d8df1]" style={{ left: '50%', top: '40%', boxShadow: '0 0 15px 4px rgba(157, 141, 241, 0.6)', animation: 'star-twinkle 3s ease-in-out infinite 1.5s' }} />
-        <div className="absolute w-2 h-2 rounded-full bg-[#9d8df1]" style={{ left: '90%', top: '50%', boxShadow: '0 0 20px 5px rgba(157, 141, 241, 0.5)', animation: 'star-twinkle 4s ease-in-out infinite 0.8s' }} />
-        <div className="absolute w-1.5 h-1.5 rounded-full bg-[#9d8df1]" style={{ left: '5%', top: '60%', boxShadow: '0 0 15px 4px rgba(157, 141, 241, 0.6)', animation: 'star-twinkle 3.5s ease-in-out infinite 2.5s' }} />
-        <div className="absolute w-2 h-2 rounded-full bg-[#9d8df1]" style={{ left: '35%', top: '30%', boxShadow: '0 0 20px 5px rgba(157, 141, 241, 0.5)', animation: 'star-twinkle 4s ease-in-out infinite 1.2s' }} />
-      </div>
+      {/* Светящиеся точки - скрыты в светлой теме */}
+      {themeName !== 'light' && (
+        <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: -3 }}>
+          <div className="absolute w-2 h-2 rounded-full bg-[#9d8df1]" style={{ left: '10%', top: '20%', boxShadow: '0 0 20px 5px rgba(157, 141, 241, 0.6)', animation: 'star-twinkle 3s ease-in-out infinite' }} />
+          <div className="absolute w-3 h-3 rounded-full bg-[#9d8df1]" style={{ left: '80%', top: '15%', boxShadow: '0 0 25px 8px rgba(157, 141, 241, 0.5)', animation: 'star-twinkle 4s ease-in-out infinite 1s' }} />
+          <div className="absolute w-2 h-2 rounded-full bg-[#9d8df1]" style={{ left: '25%', top: '70%', boxShadow: '0 0 20px 5px rgba(157, 141, 241, 0.6)', animation: 'star-twinkle 3.5s ease-in-out infinite 0.5s' }} />
+          <div className="absolute w-2 h-2 rounded-full bg-[#9d8df1]" style={{ left: '70%', top: '80%', boxShadow: '0 0 20px 5px rgba(157, 141, 241, 0.5)', animation: 'star-twinkle 4.5s ease-in-out infinite 2s' }} />
+          <div className="absolute w-1.5 h-1.5 rounded-full bg-[#9d8df1]" style={{ left: '50%', top: '40%', boxShadow: '0 0 15px 4px rgba(157, 141, 241, 0.6)', animation: 'star-twinkle 3s ease-in-out infinite 1.5s' }} />
+          <div className="absolute w-2 h-2 rounded-full bg-[#9d8df1]" style={{ left: '90%', top: '50%', boxShadow: '0 0 20px 5px rgba(157, 141, 241, 0.5)', animation: 'star-twinkle 4s ease-in-out infinite 0.8s' }} />
+          <div className="absolute w-1.5 h-1.5 rounded-full bg-[#9d8df1]" style={{ left: '5%', top: '60%', boxShadow: '0 0 15px 4px rgba(157, 141, 241, 0.6)', animation: 'star-twinkle 3.5s ease-in-out infinite 2.5s' }} />
+          <div className="absolute w-2 h-2 rounded-full bg-[#9d8df1]" style={{ left: '35%', top: '30%', boxShadow: '0 0 20px 5px rgba(157, 141, 241, 0.5)', animation: 'star-twinkle 4s ease-in-out infinite 1.2s' }} />
+        </div>
+      )}
       
-      {/* Сетка */}
+      {/* Сетка - адаптивная под тему */}
       <div 
-        className="fixed inset-0 pointer-events-none"
+        className="fixed inset-0 pointer-events-none transition-opacity duration-500"
         style={{ 
           zIndex: -2,
-          backgroundImage: 'linear-gradient(rgba(157, 141, 241, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(157, 141, 241, 0.03) 1px, transparent 1px)',
+          backgroundImage: themeName === 'light'
+            ? 'linear-gradient(rgba(96, 80, 186, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(96, 80, 186, 0.04) 1px, transparent 1px)'
+            : 'linear-gradient(rgba(157, 141, 241, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(157, 141, 241, 0.03) 1px, transparent 1px)',
           backgroundSize: '60px 60px',
+          opacity: themeName === 'light' ? 0.5 : 1,
         }}
       />
     </>
@@ -241,10 +289,22 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
           className="fixed top-0 w-full z-50 transition-all duration-500"
           style={{
             height: '70px',
-            background: scrolled ? 'rgba(8, 8, 10, 0.3)' : 'transparent',
-            backdropFilter: scrolled ? 'blur(30px) saturate(150%)' : 'none',
-            borderBottom: scrolled ? '1px solid rgba(157, 141, 241, 0.08)' : '1px solid transparent',
-            boxShadow: scrolled ? '0 4px 20px rgba(0, 0, 0, 0.15)' : 'none',
+            background: themeName === 'light' 
+              ? 'rgba(25, 25, 30, 0.82)'
+              : scrolled 
+                ? 'rgba(8, 8, 10, 0.3)' 
+                : 'transparent',
+            backdropFilter: themeName === 'light' ? 'blur(30px) saturate(180%)' : (scrolled ? 'blur(30px) saturate(150%)' : 'none'),
+            borderBottom: themeName === 'light'
+              ? '1px solid rgba(255,255,255,0.12)'
+              : scrolled 
+                ? '1px solid rgba(157, 141, 241, 0.08)'
+                : '1px solid transparent',
+            boxShadow: themeName === 'light'
+              ? '0 4px 30px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.08)'
+              : scrolled 
+                ? '0 4px 20px rgba(0, 0, 0, 0.15)'
+                : 'none',
           }}
           suppressHydrationWarning
         >
@@ -280,15 +340,15 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
                   opacity: sliderStyle.width > 0 ? 1 : 0,
                   pointerEvents: 'none',
                   background: themeName === 'light'
-                    ? 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(245,245,250,0.9) 50%, rgba(255,255,255,0.85) 100%)'
+                    ? 'rgba(255,255,255,0.25)'
                     : 'linear-gradient(135deg, rgba(96,80,186,0.35) 0%, rgba(80,65,160,0.3) 50%, rgba(70,55,140,0.25) 100%)',
-                  backdropFilter: 'none',
-                  WebkitBackdropFilter: 'none',
+                  backdropFilter: themeName === 'light' ? 'blur(10px)' : 'none',
+                  WebkitBackdropFilter: themeName === 'light' ? 'blur(10px)' : 'none',
                   boxShadow: themeName === 'light'
-                    ? '0 2px 8px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.12), inset 0 2px 4px rgba(255,255,255,1), inset 0 -2px 4px rgba(0,0,0,0.05), 0 0 0 1px rgba(255,255,255,0.5)'
+                    ? '0 2px 10px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.5), 0 0 0 1px rgba(255,255,255,0.2)'
                     : '0 2px 8px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.2), inset 0 2px 4px rgba(255,255,255,0.1), inset 0 -1px 2px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.08)',
                   border: themeName === 'light'
-                    ? '1.5px solid rgba(255,255,255,0.9)'
+                    ? '1px solid rgba(255,255,255,0.3)'
                     : '1px solid rgba(255,255,255,0.08)',
                   transform: 'translateZ(0) perspective(1000px)',
                 }}
@@ -305,18 +365,15 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
                     className="relative px-4 md:px-5 lg:px-7 py-2.5 md:py-3 lg:py-3.5 text-[9px] md:text-[10px] lg:text-[11px] uppercase tracking-[0.15em] font-black transition-all duration-500 z-10 group"
                     style={{
                       color: isActive 
-                        ? themeName === 'light' ? '#0a0a0a' : '#ffffff'
-                        : themeName === 'light' ? '#888' : '#999',
+                        ? '#ffffff'
+                        : themeName === 'light' ? 'rgba(255,255,255,0.6)' : '#999',
                       textShadow: isActive 
-                        ? themeName === 'light' 
-                          ? '0 1px 1px rgba(255,255,255,1), 0 2px 0 rgba(255,255,255,0.9), 0 3px 8px rgba(0,0,0,0.2), 0 5px 12px rgba(0,0,0,0.15), 0 -1px 1px rgba(200,200,200,0.4)'
-                          : '0 -1px 1px rgba(0,0,0,0.8), 0 1px 2px rgba(255,255,255,0.5), 0 2px 4px rgba(255,255,255,0.3), 0 4px 16px rgba(96,80,186,0.5)'
+                        ? '0 -1px 1px rgba(0,0,0,0.8), 0 1px 2px rgba(255,255,255,0.5), 0 2px 4px rgba(255,255,255,0.3), 0 4px 16px rgba(96,80,186,0.5)'
                         : 'none',
                       transform: isActive ? 'translateZ(10px)' : 'scale(1)',
                       fontWeight: isActive ? '900' : '800',
                       letterSpacing: isActive ? '0.18em' : '0.15em',
                       filter: 'none',
-                      WebkitTextStroke: isActive && themeName === 'light' ? '0.3px rgba(0,0,0,0.1)' : 'none',
                     }}
                   >
                     <span className="relative">
@@ -497,14 +554,56 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const pathname = usePathname();
   const isAdminPage = pathname === '/admin';
 
+  // КРИТИЧЕСКИЙ БЛОКИРУЮЩИЙ СКРИПТ - выполняется ДО рендера
+  // Читает тему из localStorage/cookie и применяет стили МГНОВЕННО
+  const themeInitScript = `
+    (function() {
+      var savedTheme = null;
+      try {
+        savedTheme = localStorage.getItem('thqlabel_theme');
+      } catch(e) {}
+      
+      if (!savedTheme) {
+        try {
+          var cookies = document.cookie.split(';');
+          for (var i = 0; i < cookies.length; i++) {
+            var c = cookies[i].trim();
+            if (c.indexOf('thqlabel_theme=') === 0) {
+              savedTheme = c.substring(15);
+              break;
+            }
+          }
+        } catch(e) {}
+      }
+      
+      var html = document.documentElement;
+      if (savedTheme === 'light') {
+        html.classList.add('light');
+        html.style.background = 'linear-gradient(135deg,#e8e0f0 0%,#f0e8f8 25%,#e0e8f8 50%,#f0e0f0 75%,#e8e0f0 100%)';
+        html.style.backgroundAttachment = 'fixed';
+      } else {
+        html.classList.remove('light');
+        html.style.background = '#08080a';
+      }
+    })();
+  `;
+
   return (
     <html lang="ru" suppressHydrationWarning>
       <head>
+        {/* ПЕРВЫМ - блокирующий скрипт для темы */}
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <title>thqlabel</title>
         <meta name="description" content="thq label - Современный музыкальный лейбл" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=2" />
         <link rel="icon" type="image/png" sizes="512x512" href="/icon.png?v=2" />
         <link rel="apple-touch-icon" sizes="512x512" href="/icon.png?v=2" />
+        {/* CSS fallback для тем - если JS отключён */}
+        <style dangerouslySetInnerHTML={{ __html: `
+          html { background: #08080a; }
+          body { background: transparent; margin: 0; }
+          html.light { background: linear-gradient(135deg, #e8e0f0 0%, #f0e8f8 25%, #e0e8f8 50%, #f0e0f0 75%, #e8e0f0 100%); background-attachment: fixed; }
+        `}} />
         <style>{`
           @keyframes orb-float-1 {
             0%, 100% { transform: translate(0, 0) scale(1); }

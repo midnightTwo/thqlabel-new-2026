@@ -252,7 +252,7 @@ export default function SettingsTab({
           {!showEmailChange ? (
             <button
               onClick={() => setShowEmailChange(true)}
-              className="text-xs text-[#6050ba] hover:text-[#7060ca] transition flex items-center gap-1"
+              className="text-xs text-[#a090ea] hover:text-[#c4b5fd] transition flex items-center gap-1 font-semibold"
             >
               <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
@@ -303,8 +303,8 @@ export default function SettingsTab({
                 disabled={emailLoading || !newEmail}
                 className={`w-full py-2 rounded text-xs font-bold uppercase tracking-widest transition-all ${
                   emailLoading || !newEmail
-                    ? 'bg-[#6050ba]/30 cursor-not-allowed text-zinc-500'
-                    : 'bg-gradient-to-r from-[#6050ba] to-[#7060ca] hover:shadow-lg hover:shadow-[#6050ba]/40 text-white'
+                    ? 'bg-[#8070da]/30 cursor-not-allowed text-zinc-400'
+                    : 'bg-gradient-to-r from-[#8070da] to-[#a090ea] hover:shadow-lg hover:shadow-[#8070da]/40 text-white'
                 }`}
               >
                 {emailLoading ? (
@@ -378,8 +378,8 @@ export default function SettingsTab({
                 disabled={passwordLoading}
                 className={`w-full py-3 rounded-lg text-xs font-bold uppercase tracking-widest transition-all ${
                   passwordLoading
-                    ? 'bg-[#6050ba]/30 cursor-not-allowed text-zinc-500'
-                    : 'bg-gradient-to-r from-[#6050ba] to-[#7060ca] hover:shadow-lg hover:shadow-[#6050ba]/40 text-white'
+                    ? 'bg-[#8070da]/30 cursor-not-allowed text-zinc-400'
+                    : 'bg-gradient-to-r from-[#8070da] to-[#a090ea] hover:shadow-lg hover:shadow-[#8070da]/40 text-white'
                 }`}
               >
                 {passwordLoading ? (
@@ -431,20 +431,10 @@ export default function SettingsTab({
           <ThemeSelector />
         </div>
 
-        {/* Разделитель */}
-        <div className="relative my-8">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-white/5"></div>
-          </div>
-          <div className="relative flex justify-center">
-            <span className="px-3 bg-[#0d0d0f] text-[10px] text-zinc-600 uppercase tracking-wider">Безопасность</span>
-          </div>
-        </div>
-
         {/* Кнопка выхода */}
         <button 
           onClick={onSignOut}
-          className="group w-full py-3.5 px-4 bg-gradient-to-r from-red-500/10 to-red-600/10 border border-red-500/30 text-red-400 text-sm font-bold uppercase tracking-wider rounded-xl hover:from-red-500/20 hover:to-red-600/20 hover:border-red-500/50 hover:text-red-300 hover:shadow-lg hover:shadow-red-500/20 transition-all duration-300 flex items-center justify-center gap-2"
+          className="group w-full py-3.5 px-4 bg-gradient-to-r from-zinc-700/30 to-zinc-800/30 border border-zinc-600/30 text-zinc-300 text-sm font-bold uppercase tracking-wider rounded-xl hover:from-zinc-600/40 hover:to-zinc-700/40 hover:border-zinc-500/50 hover:text-white hover:shadow-lg hover:shadow-zinc-900/30 transition-all duration-300 flex items-center justify-center gap-2"
         >
           <svg className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />

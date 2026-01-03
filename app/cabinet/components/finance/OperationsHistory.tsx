@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import { useTheme } from '@/contexts/ThemeContext';
 
 interface Operation {
   type: 'payout' | 'withdrawal';
@@ -23,6 +24,9 @@ interface OperationsHistoryProps {
 }
 
 export default function OperationsHistory({ payouts, withdrawalRequests }: OperationsHistoryProps) {
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
+
   // Объединяем payouts и withdrawals в одну ленту
   const allOperations: Operation[] = [
     ...payouts.map(p => ({
@@ -52,14 +56,31 @@ export default function OperationsHistory({ payouts, withdrawalRequests }: Opera
 
   if (allOperations.length === 0) {
     return (
-      <div className="text-center py-12 border border-dashed border-white/10 rounded-2xl">
-        <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-[#6050ba]/10 flex items-center justify-center">
-          <svg className="w-8 h-8 text-[#9d8df1]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div 
+        className="text-center py-12 rounded-2xl transition-all duration-300"
+        style={{
+          border: isLight 
+            ? '1px dashed rgba(138, 99, 210, 0.3)' 
+            : '1px dashed rgba(255, 255, 255, 0.1)',
+          background: isLight 
+            ? 'rgba(255, 255, 255, 0.4)' 
+            : 'transparent'
+        }}
+      >
+        <div 
+          className="w-16 h-16 mx-auto mb-4 rounded-2xl flex items-center justify-center"
+          style={{
+            background: isLight 
+              ? 'linear-gradient(135deg, rgba(138, 99, 210, 0.15) 0%, rgba(167, 139, 250, 0.1) 100%)' 
+              : 'rgba(96, 80, 186, 0.1)'
+          }}
+        >
+          <svg className={`w-8 h-8 ${isLight ? 'text-[#8a63d2]' : 'text-[#9d8df1]'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
           </svg>
         </div>
-        <p className="text-zinc-500">История операций пуста</p>
-        <p className="text-xs text-zinc-600 mt-2">Здесь будут отображаться начисления на баланс и выводы средств</p>
+        <p className={isLight ? 'text-[#5c5580]' : 'text-zinc-500'}>История операций пуста</p>
+        <p className={`text-xs mt-2 ${isLight ? 'text-[#7a7596]' : 'text-zinc-600'}`}>Здесь будут отображаться начисления на баланс и выводы средств</p>
       </div>
     );
   }
@@ -85,24 +106,39 @@ export default function OperationsHistory({ payouts, withdrawalRequests }: Opera
           return (
             <div
               key={`payout-${op.id}`}
-              className="group p-2 sm:p-3 bg-black/20 border border-white/5 rounded-lg hover:border-emerald-500/50 transition-all flex items-center gap-2 sm:gap-3"
+              className="group p-2 sm:p-3 rounded-xl hover:border-emerald-500/50 transition-all flex items-center gap-2 sm:gap-3"
+              style={{
+                background: isLight 
+                  ? 'rgba(255, 255, 255, 0.5)' 
+                  : 'rgba(0, 0, 0, 0.2)',
+                border: isLight 
+                  ? '1px solid rgba(255, 255, 255, 0.7)' 
+                  : '1px solid rgba(255, 255, 255, 0.05)'
+              }}
             >
-              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center flex-shrink-0">
-                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
+              <div 
+                className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+                style={{
+                  background: isLight 
+                    ? 'rgba(16, 185, 129, 0.15)' 
+                    : 'rgba(16, 185, 129, 0.2)'
+                }}
+              >
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" />
                 </svg>
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-1.5 sm:gap-2 mb-0.5 sm:mb-1">
-                  <span className="text-xs sm:text-sm font-bold">Начисление</span>
-                  <span className="text-[9px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400">
+                  <span className={`text-xs sm:text-sm font-bold ${isLight ? 'text-[#1a1535]' : 'text-white'}`}>Начисление</span>
+                  <span className="text-[9px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-500">
                     ✓ Выдано
                   </span>
                 </div>
-                <div className="text-[10px] sm:text-xs text-zinc-500 space-y-0.5">
+                <div className={`text-[10px] sm:text-xs space-y-0.5 ${isLight ? 'text-[#5c5580]' : 'text-zinc-500'}`}>
                   <div>Q{op.quarter} {op.year}</div>
                   {op.transaction_id ? (
-                    <div className="text-[10px] text-emerald-400/80 font-mono flex items-center gap-1">
+                    <div className="text-[10px] text-emerald-500/80 font-mono flex items-center gap-1">
                       <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clipRule="evenodd"/>
                       </svg>
@@ -118,7 +154,7 @@ export default function OperationsHistory({ payouts, withdrawalRequests }: Opera
                   )}
                 </div>
               </div>
-              <div className="text-sm sm:text-base font-black text-emerald-400 flex-shrink-0">
+              <div className="text-sm sm:text-base font-black text-emerald-500 flex-shrink-0">
                 + {Number(op.amount).toLocaleString('ru-RU').replace(/\s/g, '.')} ₽
               </div>
             </div>
@@ -129,25 +165,40 @@ export default function OperationsHistory({ payouts, withdrawalRequests }: Opera
           return (
             <div
               key={`withdrawal-${op.id}`}
-              className="group p-2 sm:p-3 bg-black/20 border border-white/5 rounded-lg hover:border-red-500/50 transition-all flex items-center gap-2 sm:gap-3"
+              className="group p-2 sm:p-3 rounded-xl hover:border-red-500/50 transition-all flex items-center gap-2 sm:gap-3"
+              style={{
+                background: isLight 
+                  ? 'rgba(255, 255, 255, 0.5)' 
+                  : 'rgba(0, 0, 0, 0.2)',
+                border: isLight 
+                  ? '1px solid rgba(255, 255, 255, 0.7)' 
+                  : '1px solid rgba(255, 255, 255, 0.05)'
+              }}
             >
-              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-red-500/20 flex items-center justify-center flex-shrink-0">
-                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+              <div 
+                className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+                style={{
+                  background: isLight 
+                    ? 'rgba(239, 68, 68, 0.15)' 
+                    : 'rgba(239, 68, 68, 0.2)'
+                }}
+              >
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M5 2a2 2 0 00-2 2v14l3.5-2 3.5 2 3.5-2 3.5 2V4a2 2 0 00-2-2H5zm2.5 3a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm6.207.293a1 1 0 00-1.414 0l-6 6a1 1 0 101.414 1.414l6-6a1 1 0 000-1.414zM12.5 10a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" clipRule="evenodd" />
                 </svg>
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-1.5 sm:gap-2 mb-0.5 sm:mb-1">
-                  <span className="text-xs sm:text-sm font-bold">Вывод</span>
+                  <span className={`text-xs sm:text-sm font-bold ${isLight ? 'text-[#1a1535]' : 'text-white'}`}>Вывод</span>
                   <span className={`text-[9px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 rounded-full ${badge.bg} ${badge.text} inline-flex items-center gap-1`}>
                     {badge.icon} {badge.label}
                   </span>
                 </div>
-                <div className="text-[10px] sm:text-xs text-zinc-500 space-y-0.5">
+                <div className={`text-[10px] sm:text-xs space-y-0.5 ${isLight ? 'text-[#5c5580]' : 'text-zinc-500'}`}>
                   <div>{new Date(op.date).toLocaleDateString('ru-RU')}</div>
-                  <div className="text-[9px] sm:text-[10px] text-zinc-600 font-mono">№ {op.id.slice(0, 8)}</div>
+                  <div className={`text-[9px] sm:text-[10px] font-mono ${isLight ? 'text-[#7a7596]' : 'text-zinc-600'}`}>№ {op.id.slice(0, 8)}</div>
                   {op.transaction_id ? (
-                    <div className="text-[10px] text-red-400/80 font-mono flex items-center gap-1">
+                    <div className="text-[10px] text-red-500/80 font-mono flex items-center gap-1">
                       <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clipRule="evenodd"/>
                       </svg>
@@ -163,7 +214,7 @@ export default function OperationsHistory({ payouts, withdrawalRequests }: Opera
                   )}
                 </div>
               </div>
-              <div className="text-base font-black text-red-400 flex-shrink-0">
+              <div className="text-base font-black text-red-500 flex-shrink-0">
                 − {Number(op.amount).toLocaleString('ru-RU').replace(/\s/g, '.')} ₽
               </div>
             </div>

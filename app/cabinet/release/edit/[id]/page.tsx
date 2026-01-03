@@ -224,7 +224,7 @@ export default function EditExclusiveReleasePage() {
         
         const { error: uploadError } = await supabase.storage
           .from('release-covers')
-          .upload(fileName, coverFile);
+          .upload(fileName, coverFile, { contentType: coverFile.type, upsert: true });
         
         if (uploadError) throw uploadError;
         

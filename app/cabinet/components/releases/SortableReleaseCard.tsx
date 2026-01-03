@@ -23,11 +23,11 @@ export function SortableReleaseCard({
   
   const statusLabel = {
     pending: 'На модерации',
-    approved: 'Утвержден',
     rejected: 'Отклонен',
     distributed: 'На дистрибьюции',
     published: 'Опубликован',
-    draft: 'Черновик'
+    draft: 'Черновик',
+    awaiting_payment: 'Ожидает оплаты'
   }[release.status] || release.status;
 
   // Настройка sortable только для черновиков
@@ -137,6 +137,19 @@ export function SortableReleaseCard({
               <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" strokeWidth="2"/>
             </svg>
             Редактировать
+          </div>
+        </div>
+      )}
+
+      {/* Индикатор оплаты для awaiting_payment релизов */}
+      {release.status === 'awaiting_payment' && (
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl flex items-end justify-center pb-4">
+          <div className="text-xs font-bold text-orange-400 flex items-center gap-1">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+              <line x1="1" y1="10" x2="23" y2="10"/>
+            </svg>
+            Оплатить
           </div>
         </div>
       )}

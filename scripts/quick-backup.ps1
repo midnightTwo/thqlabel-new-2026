@@ -4,7 +4,12 @@
 $date = Get-Date -Format "yyyy-MM-dd_HH-mm"
 $backup = "C:\Backups\thq-label_$date"
 
+# Go up one level from scripts/ to project root
+$projectRoot = (Get-Item $PSScriptRoot).Parent.FullName
+Set-Location $projectRoot
+
 Write-Host "Creating backup at: $backup" -ForegroundColor Cyan
+Write-Host "Source: $projectRoot" -ForegroundColor Gray
 
 New-Item -Path $backup -ItemType Directory -Force | Out-Null
 

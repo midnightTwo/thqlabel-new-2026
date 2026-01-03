@@ -3,6 +3,7 @@ import React from 'react';
 import { Release } from './types';
 import { UserRole } from '../../lib/types';
 import ReleaseCard, { AddReleaseCard } from './ReleaseCard';
+import { useTheme } from '@/contexts/ThemeContext';
 
 interface ReleasesGridProps {
   releases: Release[];
@@ -11,6 +12,7 @@ interface ReleasesGridProps {
   onReleaseClick: (release: Release) => void;
   onAddRelease: () => void;
   totalCount: number;
+  draftsCount?: number;
   hasFilters: boolean;
   onResetFilters: () => void;
   onDeleteDraft?: (releaseId: string) => void;
@@ -29,6 +31,7 @@ export default function ReleasesGrid({
   onReleaseClick,
   onAddRelease,
   totalCount,
+  draftsCount = 0,
   hasFilters,
   onResetFilters,
   onDeleteDraft,
@@ -62,6 +65,7 @@ export default function ReleasesGrid({
     return <EmptyState 
       showArchive={showArchive}
       totalCount={totalCount}
+      draftsCount={draftsCount}
       userRole={userRole}
       hasFilters={hasFilters}
       onAddRelease={onAddRelease}
@@ -139,6 +143,7 @@ export default function ReleasesGrid({
 interface EmptyStateProps {
   showArchive: boolean;
   totalCount: number;
+  draftsCount: number;
   userRole?: UserRole;
   hasFilters: boolean;
   onAddRelease: () => void;
@@ -148,12 +153,19 @@ interface EmptyStateProps {
 function EmptyState({ 
   showArchive, 
   totalCount, 
+  draftsCount,
   userRole, 
   hasFilters, 
   onAddRelease,
   onResetFilters 
 }: EmptyStateProps) {
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
+  
+  // Нет релизов (кроме черновиков) - показываем "Начните свой путь"
   const isEmpty = totalCount === 0;
+  // Показываем кнопку создания в обычном режиме (не архив)
+  const showAddButton = !showArchive;
 
   return (
     <div 
@@ -161,24 +173,57 @@ function EmptyState({
       style={{ minHeight: showArchive ? 'auto' : '600px' }}
     >
       <div className="text-center max-w-md p-8">
-        {/* Иконка */}
-        <div className="relative inline-block mb-6">
-          <div className={`absolute inset-0 blur-2xl rounded-full ${isEmpty ? 'bg-gradient-to-br from-purple-500/20 to-blue-500/20' : 'bg-gradient-to-br from-zinc-500/20 to-zinc-600/20'}`} />
-          <div className="relative w-32 h-32 mx-auto rounded-3xl flex items-center justify-center bg-gradient-to-br from-zinc-800 to-zinc-900">
-            {isEmpty ? (
-              <svg className="w-16 h-16 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+        {/* Иконка - улучшенный дизайн с glassmorphism */}
+        <div className="relative inline-block mb-8">
+          {/* Размытое свечение */}
+          <div 
+            className="absolute inset-0 rounded-3xl"
+            style={{ 
+              background: isLight 
+                ? 'radial-gradient(circle, rgba(138, 99, 210, 0.25) 0%, transparent 70%)'
+                : 'radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, transparent 70%)',
+              filter: 'blur(30px)',
+              transform: 'scale(1.5)',
+            }}
+          />
+          {/* Контейнер иконки */}
+          <div 
+            className="relative w-32 h-32 mx-auto rounded-3xl flex items-center justify-center"
+            style={{
+              background: isLight 
+                ? 'linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%)'
+                : 'linear-gradient(145deg, rgba(39, 39, 42, 0.8) 0%, rgba(24, 24, 27, 0.9) 100%)',
+              backdropFilter: 'blur(20px)',
+              border: isLight 
+                ? '1px solid rgba(255, 255, 255, 0.8)'
+                : '1px solid rgba(255, 255, 255, 0.1)',
+              boxShadow: isLight 
+                ? '0 20px 60px rgba(138, 99, 210, 0.2), inset 0 1px 0 rgba(255, 255, 255, 1)'
+                : '0 20px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+            }}
+          >
+            {/* Музыкальная иконка с градиентом */}
+            <div 
+              className="w-16 h-16 rounded-2xl flex items-center justify-center"
+              style={{
+                background: 'linear-gradient(135deg, #8a63d2 0%, #a78bfa 100%)',
+                boxShadow: '0 8px 24px rgba(138, 99, 210, 0.4)',
+              }}
+            >
+              <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z" />
               </svg>
-            ) : (
-              <svg className="w-16 h-16 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-              </svg>
-            )}
+            </div>
           </div>
         </div>
         
         {/* Заголовок */}
-        <h3 className="text-2xl font-black text-white mb-3 uppercase tracking-tight">
+        <h3 
+          className="text-2xl font-black mb-4 uppercase tracking-tight"
+          style={{ 
+            color: isLight ? '#1a1535' : '#ffffff',
+          }}
+        >
           {showArchive 
             ? 'Архив пуст'
             : isEmpty ? 'Начните свой путь' : 'Ничего не найдено'
@@ -186,7 +231,14 @@ function EmptyState({
         </h3>
         
         {/* Описание */}
-        <p className="text-zinc-400 text-sm leading-relaxed mb-6">
+        <p 
+          className="text-sm leading-relaxed mb-8"
+          style={{ 
+            color: isLight ? '#5c5580' : '#a1a1aa',
+            maxWidth: '320px',
+            margin: '0 auto 2rem',
+          }}
+        >
           {showArchive
             ? 'В архиве пока нет черновиков. Сохраненные черновики будут отображаться здесь.'
             : isEmpty 
@@ -195,8 +247,8 @@ function EmptyState({
           }
         </p>
         
-        {/* Кнопки действий */}
-        {!showArchive && isEmpty && (
+        {/* Кнопки действий - показываем всегда в обычном режиме (не архив) */}
+        {showAddButton && (
           <AddFirstReleaseButton 
             userRole={userRole}
             onAddRelease={onAddRelease}
@@ -207,7 +259,7 @@ function EmptyState({
         {hasFilters && !isEmpty && (
           <button
             onClick={onResetFilters}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 text-white font-bold rounded-xl transition-all duration-300 border border-white/10"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 text-white font-bold rounded-xl transition-all duration-300 border border-white/10 mt-3"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -220,25 +272,44 @@ function EmptyState({
   );
 }
 
-// Кнопка добавления первого релиза
+// Кнопка добавления первого релиза - улучшенный дизайн
 interface AddFirstReleaseButtonProps {
   userRole?: UserRole;
   onAddRelease: () => void;
 }
 
 function AddFirstReleaseButton({ userRole, onAddRelease }: AddFirstReleaseButtonProps) {
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
+  
   if (!userRole) return null;
 
   return (
     <button
       onClick={onAddRelease}
-      className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500/30 to-blue-500/30 backdrop-blur-md hover:from-purple-500/40 hover:to-blue-500/40 border border-white/20 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-purple-500/25"
-      style={{ boxShadow: '0 8px 32px 0 rgba(147, 51, 234, 0.3)' }}
+      className="inline-flex items-center gap-3 px-8 py-4 font-bold rounded-2xl transition-all duration-300 group"
+      style={{ 
+        background: 'linear-gradient(135deg, #8a63d2 0%, #a78bfa 50%, #8a63d2 100%)',
+        backgroundSize: '200% 200%',
+        color: '#ffffff',
+        boxShadow: '0 10px 40px rgba(138, 99, 210, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1)',
+        border: 'none',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.backgroundPosition = '100% 100%';
+        e.currentTarget.style.transform = 'translateY(-3px)';
+        e.currentTarget.style.boxShadow = '0 16px 50px rgba(138, 99, 210, 0.55), 0 0 60px rgba(138, 99, 210, 0.25)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.backgroundPosition = '0% 0%';
+        e.currentTarget.style.transform = 'translateY(0)';
+        e.currentTarget.style.boxShadow = '0 10px 40px rgba(138, 99, 210, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1)';
+      }}
     >
-      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+      <svg className="w-5 h-5 transition-transform duration-300 group-hover:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
       </svg>
-      Добавить первый релиз
+      <span>Добавить первый релиз</span>
     </button>
   );
 }

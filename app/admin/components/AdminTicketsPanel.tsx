@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { fetchWithAuth } from '@/app/cabinet/lib/fetchWithAuth';
 import TicketAvatar, { preloadAvatars } from '@/components/TicketAvatar';
+import { useTheme } from '@/contexts/ThemeContext';
 
 interface Ticket {
   id: string;
@@ -61,6 +62,8 @@ interface MessageReaction {
 }
 
 export default function AdminTicketsPanel({ supabase }: { supabase: any }) {
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedTicket, setSelectedTicket] = useState<Ticket | null>(null);

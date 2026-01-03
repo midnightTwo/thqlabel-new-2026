@@ -1,8 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTheme } from '@/contexts/ThemeContext';
 
 export default function PayoutsTab({ supabase, currentAdmin, currentUserRole }: { supabase: any; currentAdmin: string | null; currentUserRole: 'admin' | 'owner' }) {
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [selectedUser, setSelectedUser] = useState<any | null>(null);

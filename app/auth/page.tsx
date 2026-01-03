@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { useTheme } from '@/contexts/ThemeContext';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
@@ -65,6 +66,8 @@ const FloatingParticles = () => {
 };
 
 export default function AuthPage() {
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
   const [mode, setMode] = useState<'login' | 'signup' | 'waiting-confirmation' | 'forgot-password'>('login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -341,7 +344,7 @@ export default function AuthPage() {
             <img 
               src="/logo.png" 
               alt="thqlabel" 
-              className="h-24 w-auto object-contain drop-shadow-[0_0_50px_rgba(96,80,186,0.7)]"
+              className={`h-24 w-auto object-contain drop-shadow-[0_0_50px_rgba(96,80,186,0.7)] ${isLight ? 'invert brightness-0' : ''}`}
             />
           </div>
 
@@ -351,7 +354,7 @@ export default function AuthPage() {
               <img 
                 src="/logo.png" 
                 alt="thqlabel" 
-                className="h-40 w-auto object-contain drop-shadow-[0_0_80px_rgba(96,80,186,0.8)]"
+                className={`h-40 w-auto object-contain drop-shadow-[0_0_80px_rgba(96,80,186,0.8)] ${isLight ? 'invert brightness-0' : ''}`}
                 style={{ transform: 'scale(4)', transformOrigin: 'left center' }}
               />
             </div>

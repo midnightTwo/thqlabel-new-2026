@@ -1,18 +1,45 @@
 import React, { useState } from 'react';
 import { supabase } from '../../../lib/supabase';
 
+type ReleaseType = 'single' | 'ep' | 'album';
+
 interface PaymentStepProps {
   onNext: () => void;
   onBack: () => void;
-  onPaymentSubmit: (receiptUrl: string) => void;
+  onPaymentSubmit: (receiptUrl: string, comment?: string) => void;
+  onPayLater?: () => void;
+  canPayLater?: boolean;
   userId?: string | null;
+  releaseType?: ReleaseType | null;
 }
 
-export default function PaymentStep({ onNext, onBack, onPaymentSubmit, userId }: PaymentStepProps) {
+// Расчёт стоимости в зависимости от типа релиза
+const getPaymentAmount = (type: ReleaseType | null | undefined): number => {
+  switch (type) {
+    case 'single': return 500;
+    case 'ep': return 1000;
+    case 'album': return 1500;
+    default: return 500;
+  }
+};
+
+const getReleaseTypeName = (type: ReleaseType | null | undefined): string => {
+  switch (type) {
+    case 'single': return 'Сингл';
+    case 'ep': return 'EP';
+    case 'album': return 'Альбом';
+    default: return 'Релиз';
+  }
+};
+
+export default function PaymentStep({ onNext, onBack, onPaymentSubmit, onPayLater, canPayLater = false, userId, releaseType }: PaymentStepProps) {
+  const paymentAmount = getPaymentAmount(releaseType);
+  const releaseTypeName = getReleaseTypeName(releaseType);
   const [paymentReceipt, setPaymentReceipt] = useState<File | null>(null);
   const [paymentLoading, setPaymentLoading] = useState(false);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [paymentComment, setPaymentComment] = useState('');
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -63,7 +90,7 @@ export default function PaymentStep({ onNext, onBack, onPaymentSubmit, userId }:
         .from('payment-receipts')
         .getPublicUrl(fileName);
       
-      onPaymentSubmit(publicUrl);
+      onPaymentSubmit(publicUrl, paymentComment);
       onNext();
     } catch (err: any) {
       console.error('Ошибка при загрузке чека:', err);
@@ -94,8 +121,8 @@ export default function PaymentStep({ onNext, onBack, onPaymentSubmit, userId }:
       <div className="p-6 bg-gradient-to-br from-amber-500/10 to-orange-500/10 border border-amber-500/30 rounded-2xl mb-6">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <div className="text-sm text-zinc-400 mb-1">Стоимость релиза</div>
-            <div className="text-3xl font-black text-amber-400">500 ₽</div>
+            <div className="text-sm text-zinc-400 mb-1">Стоимость {releaseTypeName.toLowerCase()}</div>
+            <div className="text-3xl font-black text-amber-400">{paymentAmount} ₽</div>
           </div>
           <div className="w-16 h-16 rounded-full bg-amber-500/20 flex items-center justify-center">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-amber-400">
@@ -104,6 +131,15 @@ export default function PaymentStep({ onNext, onBack, onPaymentSubmit, userId }:
             </svg>
           </div>
         </div>
+        
+        {releaseType && (
+          <div className="text-xs text-amber-400/70 mb-3 p-2 bg-amber-500/10 rounded-lg">
+            🎵 Тип релиза: <span className="font-bold">{releaseTypeName}</span>
+            {releaseType === 'single' && ' (1 трек)'}
+            {releaseType === 'ep' && ' (2-7 треков)'}
+            {releaseType === 'album' && ' (8+ треков)'}
+          </div>
+        )}
         
         <div className="text-xs text-zinc-400 space-y-1">
           <p>• Единоразовый платёж за дистрибуцию релиза</p>
@@ -223,6 +259,28 @@ export default function PaymentStep({ onNext, onBack, onPaymentSubmit, userId }:
         )}
       </div>
 
+      {/* Комментарий к оплате */}
+      <div className="p-5 bg-white/[0.02] border border-white/5 rounded-xl mb-6">
+        <h3 className="font-bold mb-4 flex items-center gap-2">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-[#9d8df1]">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" strokeWidth="2"/>
+          </svg>
+          Комментарий к оплате
+        </h3>
+        
+        <textarea
+          value={paymentComment}
+          onChange={(e) => setPaymentComment(e.target.value)}
+          placeholder="Укажите дополнительную информацию о переводе (необязательно). Например: имя отправителя, время перевода, последние 4 цифры карты..."
+          className="w-full h-24 px-4 py-3 bg-gradient-to-br from-white/[0.07] to-white/[0.03] placeholder:text-zinc-600 rounded-xl border border-white/10 outline-none resize-none transition-all hover:border-[#6050ba]/50 focus:border-[#6050ba] focus:shadow-lg focus:shadow-[#6050ba]/20"
+          disabled={paymentLoading}
+        />
+        
+        <div className="mt-2 text-xs text-zinc-500">
+          Это поможет нам быстрее идентифицировать ваш платёж
+        </div>
+      </div>
+
       {/* Навигация */}
       <div className="mt-8 pt-6 border-t border-white/10 flex justify-between">
         <button 
@@ -235,14 +293,45 @@ export default function PaymentStep({ onNext, onBack, onPaymentSubmit, userId }:
           </svg>
           Назад
         </button>
-        <button 
-          onClick={handleSubmit}
-          disabled={!paymentReceipt || paymentLoading}
-          className={`px-8 py-3 rounded-xl font-bold transition flex items-center gap-2 ${
-            paymentReceipt && !paymentLoading
-              ? 'bg-amber-500 hover:bg-amber-400 text-black cursor-pointer' 
-              : 'bg-zinc-800 text-zinc-600 cursor-not-allowed'
-          }`}
+        
+        <div className="flex items-center gap-3">
+          {/* Кнопка "Оплатить позже" */}
+          {onPayLater && (
+            <div className="relative group">
+              <button 
+                onClick={onPayLater}
+                disabled={paymentLoading || !canPayLater}
+                className={`px-6 py-3 border rounded-xl font-bold transition flex items-center gap-2 ${
+                  canPayLater && !paymentLoading
+                    ? 'bg-white/5 hover:bg-white/10 border-white/10 text-zinc-300 hover:text-white cursor-pointer'
+                    : 'bg-zinc-900/50 border-zinc-800 text-zinc-600 cursor-not-allowed'
+                }`}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                Оплатить позже
+              </button>
+              {/* Tooltip если не все шаги заполнены */}
+              {!canPayLater && (
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-xs text-zinc-300 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl">
+                  Заполните все обязательные шаги
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-zinc-800"></div>
+                </div>
+              )}
+            </div>
+          )}
+          
+          {/* Кнопка подтверждения оплаты */}
+          <button 
+            onClick={handleSubmit}
+            disabled={!paymentReceipt || paymentLoading}
+            className={`px-8 py-3 rounded-xl font-bold transition flex items-center gap-2 ${
+              paymentReceipt && !paymentLoading
+                ? 'bg-amber-500 hover:bg-amber-400 text-black cursor-pointer' 
+                : 'bg-zinc-800 text-zinc-600 cursor-not-allowed'
+            }`}
         >
           {paymentLoading ? (
             <>
@@ -261,6 +350,7 @@ export default function PaymentStep({ onNext, onBack, onPaymentSubmit, userId }:
             </>
           )}
         </button>
+        </div>
       </div>
     </div>
   );

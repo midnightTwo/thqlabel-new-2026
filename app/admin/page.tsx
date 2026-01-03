@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { createClient } from '@supabase/supabase-js';
 import dynamic from 'next/dynamic';
 import Toast from '@/components/Toast';
+import { useTheme } from '@/contexts/ThemeContext';
 
 // Ленивая загрузка тяжёлых компонентов для ускорения первоначальной загрузки
 const AnimatedBackground = dynamic(() => import('@/components/AnimatedBackground'), { 
@@ -45,6 +46,8 @@ TabLoader.displayName = 'TabLoader';
 type Tab = 'releases' | 'contracts' | 'archive' | 'payouts' | 'users' | 'news' | 'tickets' | 'withdrawals';
 
 export default function AdminPage() {
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
   const [checkingAuth, setCheckingAuth] = useState(true);
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [currentUser, setCurrentUser] = useState<any>(null);
@@ -147,19 +150,26 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="min-h-screen text-white pt-4 sm:pt-6 relative">
+    <div className={`min-h-screen pt-4 sm:pt-6 relative ${isLight ? 'text-gray-800' : 'text-white'}`}>
       <AnimatedBackground />
       <div className="max-w-[1600px] mx-auto p-3 sm:p-4 md:p-5 lg:p-6 flex flex-col lg:flex-row gap-4 sm:gap-5 lg:gap-6 items-stretch relative z-10">
         
         {/* Sidebar - адаптивный */}
-        <aside className="w-full lg:w-64 backdrop-blur-xl bg-[#0d0d0f]/40 border border-white/10 rounded-2xl sm:rounded-3xl p-3 sm:p-4 lg:p-5 flex flex-col lg:sticky lg:top-4 lg:h-[calc(100vh-2rem)] shadow-2xl" style={{ boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)' }}>
+        <aside 
+          className={`w-full lg:w-64 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-3 sm:p-4 lg:p-5 flex flex-col lg:sticky lg:top-4 lg:h-[calc(100vh-2rem)] shadow-2xl ${
+            isLight 
+              ? 'bg-white/50 border border-white/60' 
+              : 'bg-[#0d0d0f]/40 border border-white/10'
+          }`} 
+          style={{ boxShadow: isLight ? '0 8px 32px rgba(96, 80, 186, 0.1)' : '0 8px 32px 0 rgba(0, 0, 0, 0.37)' }}
+        >
           {/* Header */}
           <div className="mb-4 sm:mb-6">
             <div className="flex items-center justify-between gap-2 sm:gap-3 mb-2">
               <img 
                 src="/logo.png" 
                 alt="thqlabel" 
-                className="h-10 sm:h-12 md:h-16 w-auto drop-shadow-[0_0_25px_rgba(160,141,241,0.8)]"
+                className={`h-10 sm:h-12 md:h-16 w-auto drop-shadow-[0_0_25px_rgba(160,141,241,0.8)] ${isLight ? 'invert brightness-0' : ''}`}
               />
               <button 
                 onClick={() => router.push('/cabinet')}
@@ -181,7 +191,7 @@ export default function AdminPage() {
             >
               Админ панель
             </span>
-            <p className="text-[9px] sm:text-[10px] text-zinc-600 truncate mt-1">
+            <p className={`text-[9px] sm:text-[10px] truncate mt-1 ${isLight ? 'text-gray-500' : 'text-zinc-600'}`}>
               {userEmail}
             </p>
             <div className="mt-1.5 sm:mt-2">
@@ -207,11 +217,19 @@ export default function AdminPage() {
                 className={`flex-shrink-0 lg:w-full text-left py-2 sm:py-2.5 px-2.5 sm:px-3 rounded-xl flex items-center gap-2 sm:gap-3 transition-all duration-300 whitespace-nowrap ${
                   activeTab === tab.id 
                     ? isMainTab 
-                      ? 'bg-gradient-to-r from-[#6050ba]/30 to-[#8070da]/30 backdrop-blur-md text-white shadow-lg border border-[#9d8df1]/40' 
-                      : 'bg-[#6050ba]/30 backdrop-blur-md text-white shadow-lg border border-[#6050ba]/40'
+                      ? isLight
+                        ? 'bg-gradient-to-r from-[#6050ba]/20 to-[#8070da]/20 backdrop-blur-md text-[#6050ba] shadow-lg border border-[#6050ba]/30'
+                        : 'bg-gradient-to-r from-[#6050ba]/30 to-[#8070da]/30 backdrop-blur-md text-white shadow-lg border border-[#9d8df1]/40'
+                      : isLight
+                        ? 'bg-[#6050ba]/15 backdrop-blur-md text-[#6050ba] shadow-lg border border-[#6050ba]/25'
+                        : 'bg-[#6050ba]/30 backdrop-blur-md text-white shadow-lg border border-[#6050ba]/40'
                     : isMainTab
-                      ? 'text-white bg-white/5 backdrop-blur-sm hover:bg-white/10 border border-white/10 hover:border-[#6050ba]/30'
-                      : 'text-zinc-400 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:text-white border border-white/10 hover:border-[#6050ba]/30'
+                      ? isLight
+                        ? 'text-gray-700 bg-white/40 backdrop-blur-sm hover:bg-white/60 border border-white/50 hover:border-[#6050ba]/30'
+                        : 'text-white bg-white/5 backdrop-blur-sm hover:bg-white/10 border border-white/10 hover:border-[#6050ba]/30'
+                      : isLight
+                        ? 'text-gray-500 bg-white/30 backdrop-blur-sm hover:bg-white/50 hover:text-gray-700 border border-white/40 hover:border-[#6050ba]/25'
+                        : 'text-zinc-400 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:text-white border border-white/10 hover:border-[#6050ba]/30'
                 }`}
               >
                 <span className="shrink-0">{tab.icon}</span>
@@ -224,7 +242,14 @@ export default function AdminPage() {
         </aside>
 
         {/* Content */}
-        <section className="flex-1 backdrop-blur-xl bg-[#0d0d0f]/40 border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 min-h-[400px] sm:min-h-[600px] shadow-2xl" style={{ boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)' }}>
+        <section 
+          className={`flex-1 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 min-h-[400px] sm:min-h-[600px] shadow-2xl ${
+            isLight 
+              ? 'bg-white/50 border border-white/60' 
+              : 'bg-[#0d0d0f]/40 border border-white/10'
+          }`} 
+          style={{ boxShadow: isLight ? '0 8px 32px rgba(96, 80, 186, 0.1)' : '0 8px 32px 0 rgba(0, 0, 0, 0.37)' }}
+        >
           <Suspense fallback={<TabLoader />}>
             {activeTab === 'releases' && <ReleasesModeration supabase={supabase} />}
             {activeTab === 'news' && <NewsTab supabase={supabase} />}

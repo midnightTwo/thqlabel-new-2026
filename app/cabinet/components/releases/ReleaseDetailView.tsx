@@ -106,22 +106,6 @@ function ReleaseHeader({ release }: { release: Release }) {
                 alt={release.title} 
                 className="relative w-full aspect-square rounded-xl sm:rounded-2xl object-cover shadow-2xl ring-1 ring-white/10" 
               />
-              {/* Кнопка скачивания обложки */}
-              <a
-                href={release.cover_url}
-                download={`${release.title || 'cover'}_cover.jpg`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="absolute bottom-3 right-3 p-2.5 bg-black/60 hover:bg-black/80 backdrop-blur-sm rounded-xl border border-white/20 hover:border-purple-500/50 transition-all duration-300 group/download hover:scale-105 active:scale-95"
-                title="Скачать обложку"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <svg className="w-5 h-5 text-white group-hover/download:text-purple-300 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                  <polyline points="7 10 12 15 17 10"/>
-                  <line x1="12" y1="15" x2="12" y2="3"/>
-                </svg>
-              </a>
             </div>
           ) : (
             <div className="relative w-full aspect-square rounded-xl sm:rounded-2xl bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center shadow-2xl ring-1 ring-white/10">
@@ -165,12 +149,52 @@ function ReleaseHeader({ release }: { release: Release }) {
                   {release.release_type === 'basic' ? 'Basic' : 'Exclusive'}
                 </span>
               )}
+              {release.custom_id && (
+                <span className="px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wide bg-zinc-700/50 text-zinc-300 ring-1 ring-zinc-600/30">
+                  {release.custom_id}
+                </span>
+              )}
             </div>
             
             <h1 className="text-2xl sm:text-3xl lg:text-5xl font-black uppercase tracking-tight mb-2 sm:mb-3 bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent leading-tight break-words">
               {release.title}
             </h1>
             <p className="text-lg sm:text-xl lg:text-2xl font-semibold text-zinc-400 mb-4 sm:mb-6 break-words">{release.artist_name || release.artist}</p>
+
+            {/* Действия и метаданные */}
+            <div className="flex flex-wrap items-center gap-3 mb-4">
+              {release.upc && (
+                <button
+                  onClick={() => handleCopyUPC(release.upc!)}
+                  className="px-3 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-sm font-semibold transition"
+                >
+                  Копировать UPC
+                </button>
+              )}
+
+              {release.spotify_link && (
+                <a
+                  href={release.spotify_link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-2 bg-green-600/10 hover:bg-green-600/20 border border-green-600/20 rounded-lg text-sm font-semibold text-emerald-300 transition"
+                >
+                  Открыть в Spotify
+                </a>
+              )}
+
+              {release.payment_status && (
+                <div className={`px-3 py-2 rounded-lg text-sm font-bold ${release.payment_status === 'verified' ? 'bg-emerald-500/10 text-emerald-300 border border-emerald-500/20' : 'bg-yellow-500/10 text-yellow-300 border border-yellow-500/20'}`}>
+                  {release.payment_status === 'verified' ? 'Оплата: подтверждена' : 'Оплата: ожидает'}
+                </div>
+              )}
+
+              {release.contract_agreed && (
+                <div className="px-3 py-2 rounded-lg text-sm font-bold bg-emerald-400/8 text-emerald-300 border border-emerald-400/20">
+                  Договор согласован
+                </div>
+              )}
+            </div>
 
             {/* Метаданные */}
             <div className="flex flex-wrap items-center gap-x-3 sm:gap-x-6 gap-y-2 sm:gap-y-3 text-xs sm:text-sm">
@@ -395,25 +419,6 @@ function TrackItem({
               </p>
             )}
           </div>
-
-          {/* Кнопка скачивания трека */}
-          {track.link && (
-            <a
-              href={track.link}
-              download={`${track.title || 'track'}.wav`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-shrink-0 p-2.5 bg-gradient-to-br from-emerald-500/20 to-emerald-600/10 hover:from-emerald-500/30 hover:to-emerald-600/20 rounded-xl border border-emerald-500/30 hover:border-emerald-400/50 transition-all duration-300 hover:scale-105 active:scale-95 group/dl"
-              title="Скачать трек"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <svg className="w-5 h-5 text-emerald-400 group-hover/dl:text-emerald-300 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                <polyline points="7 10 12 15 17 10"/>
-                <line x1="12" y1="15" x2="12" y2="3"/>
-              </svg>
-            </a>
-          )}
 
           {/* Стрелка раскрытия */}
           <svg className="w-5 h-5 text-zinc-400 group-open:rotate-180 transition-transform flex-shrink-0 mt-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">

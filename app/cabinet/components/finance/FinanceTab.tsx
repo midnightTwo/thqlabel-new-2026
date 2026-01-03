@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import { useTheme } from '@/contexts/ThemeContext';
 import BalanceCard from './BalanceCard';
 import WithdrawalForm from './WithdrawalForm';
 import OperationsHistory from './OperationsHistory';
@@ -24,13 +25,15 @@ export default function FinanceTab({
   reloadRequests,
 }: FinanceTabProps) {
   const [showWithdrawalForm, setShowWithdrawalForm] = useState(false);
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
 
   return (
     <div className="animate-fade-up space-y-3 sm:space-y-4">
       {/* Заголовок */}
       <div className="mb-4 sm:mb-6">
-        <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tight">Финансы</h2>
-        <p className="text-xs sm:text-sm text-zinc-500 mt-1">Баланс и вывод средств</p>
+        <h2 className={`text-xl sm:text-2xl font-black uppercase tracking-tight ${isLight ? 'text-[#1a1535]' : 'text-white'}`}>Финансы</h2>
+        <p className={`text-xs sm:text-sm mt-1 ${isLight ? 'text-[#5c5580]' : 'text-zinc-500'}`}>Баланс и вывод средств</p>
       </div>
       
       {/* Баланс */}
@@ -54,18 +57,46 @@ export default function FinanceTab({
       
       {/* История операций */}
       <div className="mt-4 sm:mt-6">
-        <div className="p-3 sm:p-5 bg-white/[0.02] border border-white/5 rounded-xl">
+        <div 
+          className="p-3 sm:p-5 rounded-2xl transition-all duration-300"
+          style={{
+            background: isLight 
+              ? 'rgba(255, 255, 255, 0.65)' 
+              : 'rgba(255, 255, 255, 0.02)',
+            backdropFilter: isLight ? 'blur(20px) saturate(180%)' : 'none',
+            border: isLight 
+              ? '1px solid rgba(255, 255, 255, 0.8)' 
+              : '1px solid rgba(255, 255, 255, 0.05)',
+            boxShadow: isLight 
+              ? '0 8px 32px rgba(138, 99, 210, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9)' 
+              : 'none'
+          }}
+        >
           
           {/* Заголовок */}
-          <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-5 pb-3 sm:pb-4 border-b border-white/5">
-            <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-lg bg-[#6050ba]/20 flex items-center justify-center">
-              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#9d8df1]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div 
+            className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-5 pb-3 sm:pb-4"
+            style={{
+              borderBottom: isLight 
+                ? '1px solid rgba(138, 99, 210, 0.15)' 
+                : '1px solid rgba(255, 255, 255, 0.05)'
+            }}
+          >
+            <div 
+              className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center"
+              style={{
+                background: isLight 
+                  ? 'linear-gradient(135deg, rgba(138, 99, 210, 0.15) 0%, rgba(167, 139, 250, 0.1) 100%)' 
+                  : 'rgba(96, 80, 186, 0.2)'
+              }}
+            >
+              <svg className={`w-5 h-5 sm:w-6 sm:h-6 ${isLight ? 'text-[#8a63d2]' : 'text-[#9d8df1]'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
               </svg>
             </div>
             <div className="flex-1">
-              <h3 className="text-base sm:text-xl font-bold">История операций</h3>
-              <p className="text-[10px] sm:text-xs text-zinc-500 mt-0.5">Все начисления и выводы</p>
+              <h3 className={`text-base sm:text-xl font-bold ${isLight ? 'text-[#1a1535]' : 'text-white'}`}>История операций</h3>
+              <p className={`text-[10px] sm:text-xs mt-0.5 ${isLight ? 'text-[#5c5580]' : 'text-zinc-500'}`}>Все начисления и выводы</p>
             </div>
           </div>
           
@@ -75,15 +106,32 @@ export default function FinanceTab({
           />
           
           {/* Информационная плашка */}
-          <div className="mt-4 sm:mt-8 p-3 sm:p-4 bg-gradient-to-r from-zinc-900/50 to-black/30 backdrop-blur-sm border border-white/10 rounded-xl sm:rounded-2xl">
+          <div 
+            className="mt-4 sm:mt-8 p-3 sm:p-4 backdrop-blur-sm rounded-xl sm:rounded-2xl"
+            style={{
+              background: isLight 
+                ? 'linear-gradient(135deg, rgba(138, 99, 210, 0.08) 0%, rgba(167, 139, 250, 0.05) 100%)' 
+                : 'linear-gradient(to right, rgba(24, 24, 27, 0.5), rgba(0, 0, 0, 0.3))',
+              border: isLight 
+                ? '1px solid rgba(138, 99, 210, 0.2)' 
+                : '1px solid rgba(255, 255, 255, 0.1)'
+            }}
+          >
             <div className="flex items-start gap-2 sm:gap-3">
-              <div className="flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-amber-500/20 flex items-center justify-center">
-                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+              <div 
+                className="flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 rounded-lg flex items-center justify-center"
+                style={{
+                  background: isLight 
+                    ? 'rgba(245, 158, 11, 0.15)' 
+                    : 'rgba(245, 158, 11, 0.2)'
+                }}
+              >
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zM8 16v-1h4v1a2 2 0 11-4 0zM12 14c.015-.34.208-.646.477-.859a4 4 0 10-4.954 0c.27.213.462.519.476.859h4.002z" />
                 </svg>
               </div>
-              <p className="text-[10px] sm:text-xs text-zinc-400 leading-relaxed">
-                Здесь отображаются все финансовые операции в хронологическом порядке: <span className="text-emerald-400 font-semibold">начисления на баланс</span> (зелёные карточки) и <span className="text-red-400 font-semibold">выводы средств</span> с различными статусами обработки.
+              <p className={`text-[10px] sm:text-xs leading-relaxed ${isLight ? 'text-[#5c5580]' : 'text-zinc-400'}`}>
+                Здесь отображаются все финансовые операции в хронологическом порядке: <span className="text-emerald-500 font-semibold">начисления на баланс</span> (зелёные карточки) и <span className="text-red-500 font-semibold">выводы средств</span> с различными статусами обработки.
               </p>
             </div>
           </div>

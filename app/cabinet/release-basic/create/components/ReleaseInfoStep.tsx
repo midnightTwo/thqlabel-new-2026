@@ -287,7 +287,13 @@ export default function ReleaseInfoStep({
                 const safeMonth = Math.max(0, Math.min(11, calendarMonth));
                 const safeYear = Math.max(2020, Math.min(2100, calendarYear));
                 return (
-                <div className="absolute z-50 mt-1 p-3 bg-[#0d0d0f] border border-[#6050ba]/30 rounded-xl shadow-2xl w-72">
+                <>
+                  {/* Backdrop для закрытия календаря при клике вне */}
+                  <div 
+                    className="fixed inset-0 z-[9998]" 
+                    onClick={() => setShowCalendar(false)}
+                  />
+                  <div className="absolute z-[9999] bottom-full mb-2 p-3 bg-[#0d0d0f] border border-[#6050ba]/30 rounded-xl shadow-2xl w-72">
                   <div className="flex items-center justify-between mb-3">
                     <button onClick={() => {
                       if (safeMonth === 0) {
@@ -355,6 +361,7 @@ export default function ReleaseInfoStep({
                     })()}
                   </div>
                 </div>
+                </>
                 );
               })()}
             </div>

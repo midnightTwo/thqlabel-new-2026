@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter, useParams, useSearchParams } from 'next/navigation';
 import AnimatedBackground from '@/components/AnimatedBackground';
 import { supabase } from '../../../lib/supabase';
@@ -11,6 +11,8 @@ import {
   PlatformsStep,
   PromoStep,
 } from '../../create/components';
+import PaymentStep from '../../../release-basic/create/components/PaymentStep';
+import SendStep from '../../../release-basic/create/components/SendStep';
 
 // Компонент для редактирования Basic релиза
 export default function EditBasicReleasePage() {
@@ -86,10 +88,130 @@ export default function EditBasicReleasePage() {
   const [saving, setSaving] = useState(false);
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   const [isFadingOut, setIsFadingOut] = useState(false);
+  const [lastAutoSave, setLastAutoSave] = useState<string | null>(null);
+  const [autoSaveMessage, setAutoSaveMessage] = useState('');
+  
+  // Payment state
+  const [userId, setUserId] = useState<string | null>(null);
+  const [paymentReceiptUrl, setPaymentReceiptUrl] = useState('');
+  const [paymentComment, setPaymentComment] = useState('');
 
   useEffect(() => {
     loadRelease();
   }, [releaseId]);
+
+  // Функция для получения текущего состояния завершённости шагов
+  const getStepsCompletionState = useCallback(() => {
+    return {
+      release: !!(releaseTitle.trim() && genre && releaseDate && (coverFile || existingCoverUrl)),
+      tracklist: tracks.length > 0,
+      countries: selectedCountries.length > 0,
+      contract: agreedToContract,
+      platforms: selectedPlatforms > 0,
+      promo: !!((focusTrack && focusTrackPromo) || albumDescription)
+    };
+  }, [releaseTitle, genre, releaseDate, coverFile, existingCoverUrl, tracks.length, selectedCountries.length, agreedToContract, selectedPlatforms, focusTrack, focusTrackPromo, albumDescription]);
+
+  // Ref для хранения предыдущего состояния шагов
+  const prevStepsRef = useRef<Record<string, boolean> | null>(null);
+  const isInitialLoadRef = useRef(true);
+
+  // Автосохранение при завершении шага
+  useEffect(() => {
+    if (!isDraftMode || releaseStatus !== 'draft' || loading || !userId || !releaseId) return;
+    
+    const currentSteps = getStepsCompletionState();
+    
+    // Пропускаем первую загрузку
+    if (isInitialLoadRef.current) {
+      prevStepsRef.current = currentSteps;
+      isInitialLoadRef.current = false;
+      return;
+    }
+    
+    // Проверяем, был ли какой-то шаг только что завершён
+    if (prevStepsRef.current) {
+      const stepNames: Record<string, string> = {
+        release: 'Релиз',
+        tracklist: 'Треклист',
+        countries: 'Страны',
+        contract: 'Договор',
+        platforms: 'Площадки',
+        promo: 'Промо'
+      };
+      
+      for (const [stepId, isComplete] of Object.entries(currentSteps)) {
+        const wasComplete = prevStepsRef.current[stepId];
+        // Если шаг был не завершён, а теперь завершён - сохраняем
+        if (!wasComplete && isComplete) {
+          console.log(`Шаг "${stepNames[stepId]}" завершён - автосохранение...`);
+          handleAutoSave(stepNames[stepId]);
+          break; // Сохраняем только один раз за изменение
+        }
+      }
+    }
+    
+    prevStepsRef.current = currentSteps;
+  }, [getStepsCompletionState, isDraftMode, releaseStatus, loading, userId, releaseId]);
+
+  // Функция автосохранения (без редиректа)
+  const handleAutoSave = async (stepName: string) => {
+    if (!supabase || !releaseId || !userId || saving) return;
+    
+    try {
+      // Загружаем обложку если есть новая
+      let coverUrl = existingCoverUrl;
+      if (coverFile) {
+        const fileExt = coverFile.name.split('.').pop();
+        const fileName = `${userId}/${Date.now()}.${fileExt}`;
+        
+        const { error: uploadError } = await supabase.storage
+          .from('release-covers')
+          .upload(fileName, coverFile, { contentType: coverFile.type, upsert: true });
+        
+        if (!uploadError) {
+          const { data: { publicUrl } } = supabase.storage
+            .from('release-covers')
+            .getPublicUrl(fileName);
+          coverUrl = publicUrl;
+          setExistingCoverUrl(publicUrl);
+          setCoverFile(null);
+        }
+      }
+      
+      const { error: updateError } = await supabase
+        .from('releases_basic')
+        .update({
+          title: releaseTitle,
+          artist_name: artistName,
+          genre: genre,
+          subgenres: subgenres,
+          release_date: releaseDate,
+          collaborators: collaborators,
+          tracks: tracks,
+          countries: selectedCountries,
+          contract_agreed: agreedToContract,
+          platforms: selectedPlatformsList,
+          focus_track: focusTrack,
+          focus_track_promo: focusTrackPromo,
+          album_description: albumDescription,
+          promo_photos: promoPhotos,
+          cover_url: coverUrl,
+          release_type: releaseType,
+          updated_at: new Date().toISOString()
+        })
+        .eq('id', releaseId)
+        .eq('user_id', userId);
+      
+      if (!updateError) {
+        setAutoSaveMessage(`✓ Шаг "${stepName}" сохранён`);
+        setLastAutoSave(new Date().toISOString());
+        setTimeout(() => setAutoSaveMessage(''), 3000);
+      }
+    } catch (error) {
+      console.error('Ошибка автосохранения:', error);
+    }
+  };
 
   const loadRelease = async () => {
     if (!supabase || !releaseId) return;
@@ -100,6 +222,9 @@ export default function EditBasicReleasePage() {
         router.push('/auth');
         return;
       }
+      
+      // Сохраняем userId
+      setUserId(user.id);
 
       // Получаем профиль для nickname и проверяем роль
       const { data: profile } = await supabase
@@ -172,14 +297,19 @@ export default function EditBasicReleasePage() {
       setPromoPhotos(release.promo_photos || []);
       setReleaseStatus(release.status || '');
       
-      // Определяем тип релиза на основе количества треков
-      const tracksCount = (release.tracks || []).length;
-      if (tracksCount === 1) {
-        setReleaseType('single');
-      } else if (tracksCount >= 2 && tracksCount <= 7) {
-        setReleaseType('ep');
-      } else if (tracksCount >= 8) {
-        setReleaseType('album');
+      // Загружаем тип релиза из БД (если есть)
+      if (release.release_type) {
+        setReleaseType(release.release_type as 'single' | 'ep' | 'album');
+      } else {
+        // Фолбэк: определяем тип релиза на основе количества треков
+        const tracksCount = (release.tracks || []).length;
+        if (tracksCount === 1) {
+          setReleaseType('single');
+        } else if (tracksCount >= 2 && tracksCount <= 7) {
+          setReleaseType('ep');
+        } else if (tracksCount >= 8) {
+          setReleaseType('album');
+        }
       }
       
       setLoading(false);
@@ -217,7 +347,7 @@ export default function EditBasicReleasePage() {
         
         const { error: uploadError } = await supabase.storage
           .from('release-covers')
-          .upload(fileName, coverFile);
+          .upload(fileName, coverFile, { contentType: coverFile.type, upsert: true });
         
         if (uploadError) throw uploadError;
         
@@ -370,6 +500,83 @@ export default function EditBasicReleasePage() {
     }
   };
 
+  // Обработчик "Оплатить позже" - сохраняет релиз со статусом awaiting_payment
+  const handlePayLater = async () => {
+    if (!supabase || !releaseId || !userId) return;
+    
+    if (!canProceedToPayment) {
+      alert('Заполните все обязательные поля');
+      return;
+    }
+    
+    setSaving(true);
+    try {
+      // Загружаем обложку если есть новая
+      let coverUrl = existingCoverUrl;
+      if (coverFile) {
+        const fileExt = coverFile.name.split('.').pop();
+        const fileName = `${userId}/${Date.now()}.${fileExt}`;
+        
+        const { error: uploadError } = await supabase.storage
+          .from('release-covers')
+          .upload(fileName, coverFile, { contentType: coverFile.type, upsert: true });
+        
+        if (!uploadError) {
+          const { data: { publicUrl } } = supabase.storage
+            .from('release-covers')
+            .getPublicUrl(fileName);
+          coverUrl = publicUrl;
+        }
+      }
+      
+      // Обновляем релиз со статусом awaiting_payment
+      // Расчёт стоимости в зависимости от типа релиза
+      const paymentAmount = releaseType === 'single' ? 500 : releaseType === 'ep' ? 1000 : releaseType === 'album' ? 1500 : 500;
+      
+      const { error: updateError } = await supabase
+        .from('releases_basic')
+        .update({
+          title: releaseTitle,
+          artist_name: artistName,
+          genre: genre,
+          subgenres: subgenres,
+          release_date: releaseDate,
+          collaborators: collaborators,
+          tracks: tracks,
+          countries: selectedCountries,
+          contract_agreed: agreedToContract,
+          platforms: selectedPlatformsList,
+          focus_track: focusTrack,
+          focus_track_promo: focusTrackPromo,
+          album_description: albumDescription,
+          promo_photos: promoPhotos,
+          cover_url: coverUrl,
+          release_type: releaseType,
+          status: 'awaiting_payment',
+          payment_status: 'pending',
+          payment_amount: paymentAmount,
+          updated_at: new Date().toISOString()
+        })
+        .eq('id', releaseId)
+        .eq('user_id', userId);
+      
+      if (updateError) throw updateError;
+      
+      setIsFadingOut(false);
+      setShowSuccessToast(true);
+      setTimeout(() => setIsFadingOut(true), 1000);
+      setTimeout(() => {
+        setShowSuccessToast(false);
+        router.push('/cabinet');
+      }, 1400);
+    } catch (error: any) {
+      console.error('Ошибка сохранения:', error);
+      alert('Ошибка: ' + (error.message || 'Неизвестная ошибка'));
+    } finally {
+      setSaving(false);
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center relative">
@@ -383,23 +590,32 @@ export default function EditBasicReleasePage() {
   const isStepComplete = (stepId: string): boolean => {
     switch(stepId) {
       case 'release':
-        return !!(releaseTitle.trim() && genre && (coverFile || existingCoverUrl));
+        return !!(releaseTitle.trim() && genre && releaseDate && (coverFile || existingCoverUrl));
       case 'tracklist':
         return tracks.length > 0;
       case 'countries':
-        return true; // Опциональный шаг
+        return selectedCountries.length > 0;
       case 'contract':
         return agreedToContract;
       case 'platforms':
         return selectedPlatforms > 0;
       case 'promo':
-        return true; // Опциональный шаг
+        // Промо считается завершенным, если заполнены фокус-трек с описанием ИЛИ описание альбома
+        return !!(
+          (focusTrack && focusTrackPromo) || 
+          albumDescription
+        );
+      case 'payment':
+        return !!paymentReceiptUrl;
+      case 'send':
+        return false; // Финальный шаг
       default:
         return false;
     }
   };
 
-  const steps = [
+  // Базовые шаги
+  const baseSteps = [
     { id: 'release', label: 'Релиз', icon: '1' },
     { id: 'tracklist', label: 'Треклист', icon: '2' },
     { id: 'countries', label: 'Страны', icon: '3' },
@@ -407,11 +623,29 @@ export default function EditBasicReleasePage() {
     { id: 'platforms', label: 'Площадки', icon: '5' },
     { id: 'promo', label: 'Промо', icon: '6' },
   ];
+  
+  // Для черновиков добавляем шаги оплаты и отправки
+  const steps = isDraftMode && releaseStatus === 'draft' 
+    ? [...baseSteps, { id: 'payment', label: 'Оплата', icon: '₽' }, { id: 'send', label: 'Отправка', icon: '✈' }]
+    : baseSteps;
 
-  // Подсчёт заполненных обязательных шагов
-  const completedSteps = steps.filter(step => isStepComplete(step.id)).length;
-  const totalRequiredSteps = steps.length;
+  // Подсчёт заполненных обязательных шагов (promo не обязателен, payment и send не считаем)
+  const requiredStepIds = baseSteps.filter(s => s.id !== 'promo').map(s => s.id);
+  const completedSteps = baseSteps.filter(step => requiredStepIds.includes(step.id) && isStepComplete(step.id)).length;
+  const totalRequiredSteps = requiredStepIds.length;
   const progress = (completedSteps / totalRequiredSteps) * 100;
+  
+  // Проверка можно ли перейти к оплате (все обязательные шаги заполнены)
+  const canProceedToPayment = !!(
+    releaseTitle.trim() && 
+    genre && 
+    releaseDate &&
+    (coverFile || existingCoverUrl) && 
+    tracks.length > 0 && 
+    selectedCountries.length > 0 &&
+    agreedToContract && 
+    selectedPlatforms > 0
+  );
 
   return (
     <div className="min-h-screen pt-16 sm:pt-20 text-white relative z-10">
@@ -419,19 +653,16 @@ export default function EditBasicReleasePage() {
       <div className="max-w-[1600px] mx-auto p-3 sm:p-4 md:p-6 lg:p-8 flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8 items-stretch relative z-10">
         
         {/* Боковая панель с шагами - Glassmorphism */}
-        <aside className="lg:w-64 w-full bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-xl border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-5 lg:p-6 flex flex-col lg:self-start lg:sticky lg:top-24 shadow-2xl shadow-purple-500/5">
-          <div className="mb-4 sm:mb-6">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center mb-3 ring-1 ring-white/10">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-purple-400">
-                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-              </svg>
-            </div>
-            <h3 className="font-black text-base sm:text-lg bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">Редактирование релиза</h3>
-            <p className="text-xs text-zinc-500 mt-1">Basic Plan</p>
+        <aside className="lg:w-64 w-full backdrop-blur-xl border rounded-3xl p-6 flex flex-col lg:self-start lg:sticky lg:top-24 shadow-2xl relative overflow-hidden bg-gradient-to-br from-white/[0.07] to-white/[0.02] border-white/10 shadow-black/20">
+          {/* Декоративный градиент */}
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5 pointer-events-none" />
+          
+          <div className="mb-6 relative z-10">
+            <h3 className="font-bold text-lg bg-gradient-to-r from-white to-zinc-300 bg-clip-text text-transparent">Редактирование релиза</h3>
+            <p className="text-xs mt-1 text-zinc-400">Basic Plan</p>
           </div>
           
-          <div className="space-y-2">
+          <div className="space-y-2 relative z-10">
             {steps.map((step) => {
               const isComplete = isStepComplete(step.id);
               const isCurrent = currentStep === step.id;
@@ -440,101 +671,96 @@ export default function EditBasicReleasePage() {
                 <button 
                   key={step.id} 
                   onClick={() => setCurrentStep(step.id)}
-                  className={`w-full text-left py-2.5 sm:py-3 px-3 sm:px-4 rounded-xl flex items-center gap-2 sm:gap-3 transition-all ${
+                  className={`w-full text-left py-3 px-4 rounded-xl flex items-center gap-3 transition-all relative overflow-hidden group/step ${
                     isCurrent 
-                      ? 'bg-gradient-to-r from-purple-500/30 to-blue-500/30 text-white shadow-lg shadow-purple-500/10 ring-1 ring-purple-500/30' 
-                      : 'text-zinc-400 hover:bg-white/5 hover:text-white'
+                      ? 'backdrop-blur-md bg-gradient-to-r from-purple-500/40 to-purple-600/40 text-white shadow-lg shadow-purple-500/30 border border-white/20' 
+                      : 'backdrop-blur-sm bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white border border-transparent hover:border-white/10'
                   }`}
                 >
-                  <span className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
-                    isComplete 
-                      ? 'bg-emerald-500/20 text-emerald-400 ring-1 ring-emerald-500/30' 
-                      : isCurrent
-                        ? 'bg-purple-500/20 text-purple-400 ring-1 ring-purple-500/30'
-                        : 'bg-white/10'
+                  {/* Hover эффект */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-purple-500/10 to-purple-500/0 opacity-0 group-hover/step:opacity-100 transition-opacity duration-300" />
+                  <div className="relative z-10 flex items-center gap-3 w-full">
+                  <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
+                    isComplete && step.id !== 'send' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/10'
                   }`}>
-                    {isComplete ? (
+                    {isComplete && step.id !== 'send' ? (
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                         <polyline points="20 6 9 17 4 12" strokeWidth="3"/>
+                      </svg>
+                    ) : step.id === 'send' ? (
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M22 2L11 13" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M22 2L15 22L11 13L2 9L22 2Z" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     ) : (
                       step.icon
                     )}
                   </span>
-                  <span className="text-xs sm:text-sm font-medium">{step.label}</span>
+                  <span className="text-sm font-medium">{step.label}</span>
                   {isCurrent && (
-                    <span className="ml-auto w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-purple-400 animate-pulse" />
+                    <span className="ml-auto w-2 h-2 rounded-full bg-white animate-pulse shadow-lg shadow-white/50" />
                   )}
+                  </div>
                 </button>
               );
             })}
           </div>
 
           {/* Прогресс */}
-          <div className="mt-auto pt-4 sm:pt-6 border-t border-white/5">
-            <div className="text-xs text-zinc-500 mb-2">Прогресс заполнения</div>
-            <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+          <div className="mt-auto pt-6 border-t border-white/10 relative z-10">
+            <div className="text-xs text-zinc-400 mb-2 font-medium">Прогресс заполнения</div>
+            <div className="h-2.5 backdrop-blur-sm bg-white/5 rounded-full overflow-hidden border border-white/10 shadow-inner">
               <div 
-                className={`h-full transition-all duration-500 ${
+                className={`h-full bg-gradient-to-r transition-all duration-500 shadow-lg ${
                   progress >= 100 
-                    ? 'bg-gradient-to-r from-emerald-500 to-emerald-400' 
+                    ? 'from-emerald-500 via-green-400 to-emerald-500 shadow-emerald-500/50' 
                     : progress >= 50 
-                      ? 'bg-gradient-to-r from-yellow-500 to-amber-400' 
-                      : 'bg-gradient-to-r from-red-500 to-rose-400'
+                      ? 'from-amber-500 via-yellow-400 to-amber-500 shadow-amber-500/50' 
+                      : 'from-red-500 via-rose-400 to-red-500 shadow-red-500/50'
                 }`}
                 style={{ width: `${progress}%` }}
               />
             </div>
-            <div className="text-xs text-zinc-400 mt-2 text-center">
+            <div className="text-xs text-zinc-300 mt-2 text-center font-medium">
               {completedSteps} из {totalRequiredSteps} шагов
             </div>
           </div>
 
-          {/* Кнопки сохранения */}
-          {isDraftMode && releaseStatus === 'draft' ? (
+          {/* Кнопки - скрываем на шагах payment и send */}
+          {isDraftMode && releaseStatus === 'draft' && currentStep !== 'payment' && currentStep !== 'send' ? (
             <div className="space-y-2 sm:space-y-3 mt-3 sm:mt-4">
+              {/* Статус автосохранения */}
+              {autoSaveMessage && (
+                <div className="text-xs text-emerald-400 text-center py-2 bg-emerald-500/10 rounded-lg border border-emerald-500/20 animate-pulse">
+                  {autoSaveMessage}
+                </div>
+              )}
               <button
-                onClick={() => handleSave(false)}
-                disabled={saving}
-                className={`w-full py-2.5 sm:py-3 rounded-xl text-sm sm:text-base font-bold transition flex items-center justify-center gap-2 ${
-                  saving
-                    ? 'bg-zinc-800 text-zinc-600 cursor-not-allowed'
-                    : 'bg-white/5 hover:bg-white/10 text-white border border-white/10'
-                }`}
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
-                  <polyline points="17 21 17 13 7 13 7 21"/>
-                  <polyline points="7 3 7 8 15 8"/>
-                </svg>
-                {saving ? 'Сохранение...' : 'Сохранить черновик'}
-              </button>
-              <button
-                onClick={() => handleSave(true)}
-                disabled={saving || progress < 100}
+                onClick={() => setCurrentStep('payment')}
+                disabled={saving || !canProceedToPayment}
                 className={`relative w-full py-3 sm:py-4 rounded-xl text-sm sm:text-base font-bold transition overflow-hidden group flex items-center justify-center gap-2 ${
-                  saving || progress < 100
+                  saving || !canProceedToPayment
                     ? 'bg-zinc-800 text-zinc-600 cursor-not-allowed'
-                    : 'bg-gradient-to-r from-emerald-500 to-emerald-400 text-black shadow-lg shadow-emerald-500/20'
+                    : 'bg-gradient-to-r from-purple-500 to-purple-400 text-white shadow-lg shadow-purple-500/20'
                 }`}
               >
-                {!(saving || progress < 100) && (
+                {!(saving || !canProceedToPayment) && (
                   <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
                 )}
                 <span className="relative flex items-center gap-2">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <polyline points="20 6 9 17 4 12"/>
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
                   </svg>
-                  {saving ? 'Отправка...' : 'Отправить на модерацию'}
+                  Перейти к оплате
                 </span>
               </button>
-              {progress < 100 && (
+              {!canProceedToPayment && (
                 <p className="text-xs text-zinc-500 text-center">
-                  Заполните все обязательные поля для отправки
+                  Заполните все обязательные поля для перехода к оплате
                 </p>
               )}
             </div>
-          ) : (
+          ) : currentStep !== 'payment' && currentStep !== 'send' && (
             <button
               onClick={() => handleSave(false)}
               disabled={saving}
@@ -679,7 +905,49 @@ export default function EditBasicReleasePage() {
               setPromoPhotos={setPromoPhotos}
               tracks={tracks}
               onBack={() => setCurrentStep('platforms')}
-              onNext={() => setCurrentStep('release')}
+              onNext={() => isDraftMode && releaseStatus === 'draft' ? setCurrentStep('payment') : setCurrentStep('release')}
+            />
+          )}
+
+          {currentStep === 'payment' && isDraftMode && releaseStatus === 'draft' && (
+            <PaymentStep
+              onNext={() => setCurrentStep('send')}
+              onBack={() => setCurrentStep('promo')}
+              onPaymentSubmit={(receiptUrl, comment) => {
+                setPaymentReceiptUrl(receiptUrl);
+                setPaymentComment(comment || '');
+              }}
+              onPayLater={handlePayLater}
+              canPayLater={canProceedToPayment}
+              userId={userId}
+              releaseType={releaseType}
+            />
+          )}
+
+          {currentStep === 'send' && isDraftMode && releaseStatus === 'draft' && (
+            <SendStep
+              releaseTitle={releaseTitle}
+              artistName={artistName}
+              genre={genre}
+              tracksCount={tracks.length}
+              coverFile={coverFile}
+              existingCoverUrl={existingCoverUrl}
+              collaborators={collaborators}
+              subgenres={subgenres}
+              releaseDate={releaseDate}
+              selectedPlatforms={selectedPlatforms}
+              agreedToContract={agreedToContract}
+              focusTrack={focusTrack}
+              focusTrackPromo={focusTrackPromo}
+              albumDescription={albumDescription}
+              promoPhotos={promoPhotos}
+              tracks={tracks}
+              platforms={selectedPlatformsList}
+              countries={selectedCountries}
+              onBack={() => setCurrentStep('payment')}
+              paymentReceiptUrl={paymentReceiptUrl}
+              paymentComment={paymentComment}
+              draftId={releaseId}
             />
           )}
         </section>

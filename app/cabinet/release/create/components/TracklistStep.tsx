@@ -186,6 +186,16 @@ export default function TracklistStep({
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
+  // Определяем максимальное количество треков
+  const getMaxTracks = () => {
+    if (releaseType === 'single') return 1;
+    if (releaseType === 'ep') return 7;
+    if (releaseType === 'album') return 50;
+    return 50;
+  };
+
+  const maxTracks = getMaxTracks();
+
   const handleDragStart = (index: number) => {
     setDraggedIndex(index);
   };
@@ -451,11 +461,44 @@ export default function TracklistStep({
           )}
 
           <button
-            onClick={() => setCurrentTrack(tracks.length)}
-            className="w-full px-6 py-6 bg-white/[0.02] hover:bg-[#6050ba]/10 border-2 border-dashed border-white/10 hover:border-[#6050ba]/50 rounded-2xl font-bold transition flex items-center justify-center gap-3"
+            onClick={() => {
+              if (releaseType === 'single' && tracks.length >= 1) {
+                alert('❌ Для сингла можно добавить только 1 трек');
+                return;
+              }
+              if (releaseType === 'ep' && tracks.length >= maxTracks) {
+                alert(`❌ Для EP максимум ${maxTracks} треков`);
+                return;
+              }
+              if (releaseType === 'album' && tracks.length >= maxTracks) {
+                alert(`❌ Для альбома максимум ${maxTracks} треков`);
+                return;
+              }
+              setCurrentTrack(tracks.length);
+            }}
+            disabled={
+              (releaseType === 'single' && tracks.length >= 1) ||
+              (releaseType === 'ep' && tracks.length >= maxTracks) ||
+              (releaseType === 'album' && tracks.length >= maxTracks)
+            }
+            className={`w-full px-6 py-6 border-2 border-dashed rounded-2xl font-bold transition flex items-center justify-center gap-3 ${
+              (releaseType === 'single' && tracks.length >= 1) ||
+              (releaseType === 'ep' && tracks.length >= maxTracks) ||
+              (releaseType === 'album' && tracks.length >= maxTracks)
+                ? 'bg-white/[0.02] border-white/5 text-zinc-600 cursor-not-allowed'
+                : 'bg-white/[0.02] hover:bg-[#6050ba]/10 border-white/10 hover:border-[#6050ba]/50'
+            }`}
           >
             <span className="text-2xl">+</span>
-            <span>Добавить трек</span>
+            <span>
+              {releaseType === 'single' && tracks.length >= 1 
+                ? 'Сингл может содержать только 1 трек'
+                : releaseType === 'ep' && tracks.length >= maxTracks
+                  ? `Вы выбрали максимум ${maxTracks} треков для EP`
+                  : releaseType === 'album' && tracks.length >= maxTracks
+                    ? `Вы выбрали максимум ${maxTracks} треков для альбома`
+                    : 'Добавить трек'}
+            </span>
           </button>
 
           {/* Кнопки навигации */}
@@ -766,6 +809,12 @@ export default function TracklistStep({
                   producers: trackProducers && trackProducers.filter(p => p.trim()).length > 0 ? trackProducers.filter(p => p.trim()) : undefined,
                   featuring: trackFeaturing && trackFeaturing.filter(f => f.trim()).length > 0 ? trackFeaturing.filter(f => f.trim()) : undefined
                 };
+                // Дополнительная проверка для сингла при добавлении нового трека
+                if (releaseType === 'single' && currentTrack >= tracks.length && tracks.length >= 1) {
+                  alert('❌ Для сингла можно добавить только 1 трек');
+                  return;
+                }
+
                 if (currentTrack < tracks.length) {
                   setTracks(tracks.map((t, i) => i === currentTrack ? newTrack : t));
                 } else {

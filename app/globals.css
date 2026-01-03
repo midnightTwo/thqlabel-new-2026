@@ -10,25 +10,112 @@
    Цвета должны совпадать с layout.tsx!
    ======================================== */
 
-/* Тёмная тема - по умолчанию */
+/* Тёмная тема - по умолчанию - МЕТАЛЛИК ВОЛНА */
 html {
-  background-color: #08080a;
+  background: linear-gradient(135deg, 
+    #08080a 0%,
+    #0d0d12 15%,
+    #12121a 30%,
+    #0a0a10 50%,
+    #0f0f18 70%,
+    #0a0a0f 85%,
+    #08080a 100%
+  );
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+/* Добавляем анимированный металлический блик для тёмной темы */
+html::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse 80% 50% at 20% 20%, rgba(96, 80, 186, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse 70% 60% at 50% 50%, rgba(157, 141, 241, 0.03) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: -1;
+  animation: metallic-wave-dark 15s ease-in-out infinite;
+}
+
+@keyframes metallic-wave-dark {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.02); }
 }
 
 body {
-  background-color: #08080a;
+  background: transparent;
 }
 
-/* Светлая тема - ГОЛОГРАФИЧЕСКИЙ ФОН */
+/* Светлая тема - ПРЕМИУМ MESH GRADIENT */
 html.light {
   background: linear-gradient(135deg, 
-    #e8e0f0 0%, 
-    #f0e8f8 25%,
-    #e0e8f8 50%,
-    #f0e0f0 75%,
-    #e8e0f0 100%
+    #f5f3f9 0%,
+    #f0f4f9 25%,
+    #f7f5fc 50%,
+    #f2f6fa 75%,
+    #f8f6fb 100%
   );
   background-attachment: fixed;
+}
+
+/* Mesh gradient эффект - цветовые пятна */
+html.light::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse 80% 50% at 0% 0%, rgba(167, 139, 250, 0.25) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 40% at 100% 0%, rgba(236, 72, 153, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse 70% 50% at 100% 100%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 40% at 0% 100%, rgba(138, 99, 210, 0.2) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 30% at 50% 50%, rgba(167, 139, 250, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: -1;
+  animation: mesh-float 25s ease-in-out infinite;
+}
+
+/* Второй слой mesh gradient */
+html.light::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(138, 99, 210, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(99, 179, 237, 0.1) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: -1;
+  animation: mesh-float 20s ease-in-out infinite reverse;
+  animation-delay: -5s;
+}
+
+@keyframes mesh-float {
+  0%, 100% { 
+    opacity: 1; 
+    transform: scale(1) translateY(0); 
+  }
+  25% { 
+    opacity: 0.9; 
+    transform: scale(1.02) translateY(-10px); 
+  }
+  50% { 
+    opacity: 0.95; 
+    transform: scale(0.98) translateY(5px); 
+  }
+  75% { 
+    opacity: 0.85; 
+    transform: scale(1.01) translateY(-5px); 
+  }
 }
 
 html.light body {
@@ -89,33 +176,34 @@ html.light body {
   --glass-blur: blur(25px);
 }
 
-/* Светлая тема */
+/* Светлая тема - PREMIUM GLASSMORPHISM */
 :root.light {
-  /* Основные фоны - МЯГКИЕ серо-фиолетовые тона */
-  --bg-primary: #c8c4d8;
-  --bg-secondary: #d5d0e5;
-  --bg-tertiary: #e0dcea;
-  --bg-card: #d5d0e5;
-  --bg-hover: rgba(80, 64, 160, 0.08);
-  --bg-active: rgba(80, 64, 160, 0.12);
+  /* Основные фоны - GLASSMORPHISM с левитацией */
+  --bg-primary: transparent;
+  --bg-secondary: rgba(255, 255, 255, 0.6);
+  --bg-tertiary: rgba(255, 255, 255, 0.45);
+  --bg-card: rgba(255, 255, 255, 0.75);
+  --bg-hover: rgba(138, 99, 210, 0.1);
+  --bg-active: rgba(138, 99, 210, 0.15);
   
-  /* Текст */
-  --text-primary: #2a2550;
-  --text-secondary: #4a4570;
-  --text-tertiary: #5a5580;
-  --text-muted: #7a7590;
+  /* Текст - контрастная иерархия */
+  --text-primary: #1a1535;
+  --text-secondary: #3d3660;
+  --text-tertiary: #5c5580;
+  --text-muted: #8a85a0;
   
-  /* Границы */
-  --border-primary: #b5b0c8;
-  --border-secondary: #a5a0b8;
-  --border-hover: #9590a8;
+  /* Границы - элегантные стеклянные */
+  --border-primary: rgba(255, 255, 255, 0.7);
+  --border-secondary: rgba(255, 255, 255, 0.5);
+  --border-hover: rgba(138, 99, 210, 0.4);
   
-  /* Акценты (брендовые цвета - чуть темнее для контраста) */
-  --accent-primary: #5040a0;
-  --accent-light: #6050ba;
-  --accent-hover: #4030a0;
-  --accent-bg: rgba(96, 80, 186, 0.15);
-  --accent-border: rgba(96, 80, 186, 0.4);
+  /* Акценты - глубокий фиолетовый градиент */
+  --accent-primary: #8a63d2;
+  --accent-secondary: #6c4db3;
+  --accent-light: #a78bfa;
+  --accent-hover: #7c5dc4;
+  --accent-bg: rgba(138, 99, 210, 0.12);
+  --accent-border: rgba(138, 99, 210, 0.35);
   
   /* Статусы */
   --success: #059669;
@@ -127,16 +215,504 @@ html.light body {
   --info: #2563eb;
   --info-bg: rgba(37, 99, 235, 0.15);
   
-  /* Тени */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-  --shadow-glow: 0 0 30px rgba(96, 80, 186, 0.2);
+  /* Тени - мягкие рассеянные с левитацией */
+  --shadow-sm: 0 2px 8px rgba(138, 99, 210, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 8px 30px rgba(138, 99, 210, 0.12), 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 20px 60px rgba(138, 99, 210, 0.18), 0 8px 25px rgba(0, 0, 0, 0.06);
+  --shadow-glow: 0 0 40px rgba(138, 99, 210, 0.3), 0 0 80px rgba(138, 99, 210, 0.15);
+  --shadow-levitate: 0 25px 50px -12px rgba(138, 99, 210, 0.25), 0 12px 24px -8px rgba(0, 0, 0, 0.1);
   
-  /* Glass эффекты */
-  --glass-bg: rgba(200, 196, 216, 0.9);
-  --glass-border: rgba(0, 0, 0, 0.1);
-  --glass-blur: blur(20px);
+  /* Glass эффекты - премиум glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-bg-strong: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.8);
+  --glass-blur: blur(24px);
+  --glass-saturate: saturate(180%);
+}
+
+/* ========================================
+   СВЕТЛАЯ ТЕМА - PREMIUM GLASSMORPHISM СТИЛИ
+   ======================================== */
+
+/* Glassmorphism карточки - улучшенный эффект матового стекла */
+html.light .bg-zinc-900\/50,
+html.light .bg-zinc-900\/80,
+html.light .bg-zinc-800\/50,
+html.light .bg-zinc-800\/80,
+html.light .bg-zinc-800\/30,
+html.light .bg-zinc-800,
+html.light .bg-zinc-900 {
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  box-shadow: 0 8px 32px rgba(138, 99, 210, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Дополнительные glassmorphism карточки */
+html.light .bg-zinc-700,
+html.light .bg-zinc-700\/50 {
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  box-shadow: 0 4px 20px rgba(138, 99, 210, 0.08) !important;
+}
+
+/* Glassmorphism границы - элегантные */
+html.light .border-zinc-800,
+html.light .border-zinc-700,
+html.light .border-zinc-700\/50,
+html.light .border-zinc-800\/50,
+html.light .border-white\/10,
+html.light .border-white\/5 {
+  border-color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Glassmorphism hover эффекты - плавная левитация */
+html.light .hover\:bg-zinc-800:hover,
+html.light .hover\:bg-zinc-700:hover {
+  background: rgba(138, 99, 210, 0.12) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(138, 99, 210, 0.15) !important;
+}
+
+/* Кнопки с градиентом - премиум стиль */
+html.light .bg-gradient-to-r.from-purple-600 {
+  background: linear-gradient(135deg, #8a63d2 0%, #a78bfa 50%, #8a63d2 100%) !important;
+  box-shadow: 0 8px 30px rgba(138, 99, 210, 0.4), 0 0 0 1px rgba(138, 99, 210, 0.2) !important;
+  border: none !important;
+}
+
+html.light .bg-gradient-to-r.from-purple-600:hover {
+  box-shadow: 0 12px 40px rgba(138, 99, 210, 0.55), 0 0 50px rgba(138, 99, 210, 0.25) !important;
+  transform: translateY(-2px);
+}
+
+/* Стеклянные инпуты - премиум */
+html.light input:not([type="checkbox"]):not([type="radio"]),
+html.light textarea,
+html.light select {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(138, 99, 210, 0.05) !important;
+  color: #1a1535 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+html.light input:focus,
+html.light textarea:focus,
+html.light select:focus {
+  border-color: rgba(138, 99, 210, 0.5) !important;
+  box-shadow: 0 0 0 4px rgba(138, 99, 210, 0.15), 0 4px 20px rgba(138, 99, 210, 0.1) !important;
+  outline: none !important;
+}
+
+/* Навигационные элементы - премиум glassmorphism */
+html.light .bg-zinc-900,
+html.light .bg-black {
+  background: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  box-shadow: 0 4px 20px rgba(138, 99, 210, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Модальные окна - элегантный glassmorphism */
+html.light [role="dialog"] > div:first-child,
+html.light .modal-content {
+  background: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(32px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
+  box-shadow: 0 25px 80px rgba(138, 99, 210, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.5) !important;
+  border-radius: 24px !important;
+}
+
+/* Светлая тема - цвета текста глобально */
+html.light .text-white {
+  color: #1a1535 !important;
+}
+
+/* Сохраняем белый текст на цветных/градиентных элементах */
+html.light .bg-gradient-to-r .text-white,
+html.light .bg-gradient-to-br .text-white,
+html.light .bg-purple-500 .text-white,
+html.light .bg-purple-600 .text-white,
+html.light .bg-emerald-500 .text-white,
+html.light .bg-red-500 .text-white,
+html.light .bg-blue-500 .text-white,
+html.light [class*="bg-gradient"] .text-white,
+html.light button[class*="bg-purple"] .text-white,
+html.light button[class*="bg-gradient"] .text-white,
+html.light .bg-\[\#6050ba\] .text-white,
+html.light .from-purple-600 .text-white,
+html.light .from-purple-500 .text-white {
+  color: #ffffff !important;
+}
+
+/* Белый текст на кнопках с градиентом */
+html.light .bg-gradient-to-r.from-purple-600,
+html.light .bg-gradient-to-r.from-purple-500,
+html.light .bg-gradient-to-br.from-purple-600,
+html.light .bg-\[\#6050ba\],
+html.light .bg-purple-600,
+html.light .bg-purple-500 {
+  color: #ffffff !important;
+}
+
+/* Сохраняем белый текст внутри кнопок */
+html.light button.bg-gradient-to-r,
+html.light button.bg-\[\#6050ba\],
+html.light button[class*="bg-purple"],
+html.light a.bg-gradient-to-r,
+html.light .btn-primary {
+  color: #ffffff !important;
+}
+
+html.light .text-zinc-500 {
+  color: #3d3660 !important;
+}
+
+html.light .text-zinc-400 {
+  color: #5c5580 !important;
+}
+
+html.light .text-zinc-300 {
+  color: #6a6590 !important;
+}
+
+html.light .text-zinc-600 {
+  color: #2d2850 !important;
+}
+
+/* Сохраняем цветной текст */
+html.light .text-emerald-400 {
+  color: #34d399 !important;
+}
+
+html.light .text-amber-400 {
+  color: #fbbf24 !important;
+}
+
+html.light .text-red-400 {
+  color: #f87171 !important;
+}
+
+html.light .text-purple-400 {
+  color: #6050ba !important;
+}
+
+/* Светлая тема - текст на элементах с изначально тёмным фоном */
+/* Бейджи статусов - сохраняем контрастный текст */
+html.light .bg-yellow-400\/10 .text-yellow-400,
+html.light .bg-emerald-400\/10 .text-emerald-400,
+html.light .bg-red-400\/10 .text-red-400,
+html.light .bg-blue-400\/10 .text-blue-400,
+html.light .bg-zinc-400\/10 .text-zinc-400 {
+  /* Оставляем как есть - бейджи читаемы */
+}
+
+/* Для элементов с emerald/green фоном - белый текст */
+html.light .bg-emerald-500,
+html.light .bg-green-500,
+html.light .bg-emerald-400 {
+  color: #ffffff !important;
+}
+
+html.light .bg-emerald-500 *,
+html.light .bg-green-500 *,
+html.light .bg-emerald-400 * {
+  color: inherit;
+}
+
+/* Модальные окна с тёмным оверлеем - НЕ меняем цвет текста внутри */
+html.light [role="dialog"] .text-white {
+  color: #2a2550 !important;
+}
+
+/* Но если внутри есть градиентный элемент - белый текст */
+html.light [role="dialog"] .bg-gradient-to-r .text-white,
+html.light [role="dialog"] [class*="bg-purple"] {
+  color: #ffffff !important;
+}
+
+/* Темные фоны для светлой темы */
+html.light .bg-black\/30,
+html.light .bg-black\/20,
+html.light .bg-black\/50,
+html.light .bg-black {
+  background: rgba(255, 255, 255, 0.45) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+}
+
+/* ========================================
+   АДМИН-ПАНЕЛЬ - СВЕТЛАЯ ТЕМА
+   ======================================== */
+
+/* Основной фон админ-панели */
+html.light .bg-\[\#0d0d0f\]\/40 {
+  background: rgba(255, 255, 255, 0.5) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+}
+
+/* Таблицы в админке */
+html.light table thead {
+  background: rgba(96, 80, 186, 0.08) !important;
+}
+
+html.light table thead th {
+  color: #4a4570 !important;
+  border-color: rgba(96, 80, 186, 0.15) !important;
+}
+
+html.light table tbody tr {
+  border-color: rgba(96, 80, 186, 0.08) !important;
+}
+
+html.light table tbody tr:hover {
+  background: rgba(96, 80, 186, 0.05) !important;
+}
+
+html.light table tbody td {
+  color: #2a2550 !important;
+}
+
+/* Карточки в админке */
+html.light .bg-\[\#0a0a0c\],
+html.light .bg-\[\#0d0d0f\] {
+  background: rgba(255, 255, 255, 0.5) !important;
+  backdrop-filter: blur(15px) !important;
+}
+
+/* Инпуты в админке */
+html.light .bg-\[\#111113\],
+html.light .bg-\[\#0d0d0f\]\/60 {
+  background: rgba(255, 255, 255, 0.6) !important;
+  color: #2a2550 !important;
+}
+
+/* Селекты и дропдауны */
+html.light select option {
+  background: #ffffff !important;
+  color: #2a2550 !important;
+}
+
+/* Админ-панель - дополнительные стили */
+html.light .text-zinc-600 {
+  color: #5a5580 !important;
+}
+
+/* Заголовки в админке */
+html.light h1,
+html.light h2,
+html.light h3 {
+  color: #2a2550;
+}
+
+/* Статистика в админке */
+html.light .bg-\[\#8b5cf6\]\/5,
+html.light .bg-\[\#ff4757\]\/5,
+html.light .bg-\[\#f59e0b\]\/5 {
+  background: rgba(255, 255, 255, 0.5) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+/* Карточки пользователей */
+html.light .bg-zinc-900\/50 {
+  background: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Кнопки действий */
+html.light .bg-red-500\/10,
+html.light .bg-green-500\/10,
+html.light .bg-blue-500\/10 {
+  backdrop-filter: blur(5px) !important;
+}
+
+/* Модальные окна в админке */
+html.light .fixed.inset-0.bg-black\/50,
+html.light .fixed.inset-0.bg-black\/60,
+html.light .fixed.inset-0.bg-black\/70 {
+  background: rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+html.light .fixed.inset-0 > div[class*="bg-"] {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(96, 80, 186, 0.2) !important;
+}
+
+/* ========================================
+   СВЕТЛАЯ ТЕМА - ПОЛНАЯ ВИДИМОСТЬ ЭЛЕМЕНТОВ
+   ======================================== */
+
+/* Все иконки SVG с белым stroke/fill */
+html.light svg[stroke="currentColor"],
+html.light svg[fill="currentColor"] {
+  color: #4a4570;
+}
+
+/* Иконки внутри кнопок с градиентом - белые */
+html.light .bg-gradient-to-r svg,
+html.light .bg-gradient-to-br svg,
+html.light [class*="bg-purple"] svg,
+html.light button.bg-\[\#6050ba\] svg {
+  color: #ffffff !important;
+}
+
+/* Placeholder текст */
+html.light input::placeholder,
+html.light textarea::placeholder {
+  color: #8a85a0 !important;
+}
+
+/* Все спаны с text-white */
+html.light span.text-white:not([class*="bg-gradient"]):not([class*="bg-purple"]) {
+  color: #2a2550 !important;
+}
+
+/* Divider/разделители */
+html.light .divide-zinc-800 > * + *,
+html.light .divide-zinc-700 > * + *,
+html.light .divide-white\/10 > * + * {
+  border-color: rgba(96, 80, 186, 0.15) !important;
+}
+
+html.light hr,
+html.light .border-b.border-white\/10,
+html.light .border-t.border-white\/10 {
+  border-color: rgba(96, 80, 186, 0.15) !important;
+}
+
+/* Скроллбар для светлой темы */
+html.light ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+html.light ::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+html.light ::-webkit-scrollbar-thumb {
+  background: rgba(96, 80, 186, 0.3);
+  border-radius: 4px;
+}
+
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: rgba(96, 80, 186, 0.5);
+}
+
+/* Sidebar кабинета - светлая тема */
+html.light .bg-zinc-950,
+html.light .bg-\[\#08080a\] {
+  background: rgba(255, 255, 255, 0.45) !important;
+  backdrop-filter: blur(20px) !important;
+}
+
+/* Все карточки релизов */
+html.light .bg-white\/5,
+html.light .bg-white\/\[0\.02\],
+html.light .bg-white\/\[0\.07\] {
+  background: rgba(255, 255, 255, 0.45) !important;
+  backdrop-filter: blur(15px) !important;
+}
+
+/* Бейджи и теги - более видимые */
+html.light .bg-purple-500\/10,
+html.light .bg-purple-500\/20 {
+  background: rgba(96, 80, 186, 0.15) !important;
+}
+
+html.light .bg-blue-500\/10,
+html.light .bg-blue-500\/20 {
+  background: rgba(59, 130, 246, 0.15) !important;
+}
+
+html.light .bg-amber-500\/10,
+html.light .bg-amber-500\/20,
+html.light .bg-yellow-500\/10,
+html.light .bg-yellow-500\/20 {
+  background: rgba(245, 158, 11, 0.15) !important;
+}
+
+html.light .bg-emerald-500\/10,
+html.light .bg-emerald-500\/20,
+html.light .bg-green-500\/10 {
+  background: rgba(16, 185, 129, 0.15) !important;
+}
+
+html.light .bg-red-500\/10,
+html.light .bg-red-500\/20 {
+  background: rgba(239, 68, 68, 0.15) !important;
+}
+
+/* Заголовки с градиентом текста */
+html.light .bg-gradient-to-r.from-white.to-zinc-300.bg-clip-text,
+html.light .bg-clip-text.text-transparent {
+  background: linear-gradient(135deg, #2a2550 0%, #4a4570 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+}
+
+/* Кнопки действий без фона */
+html.light button:not([class*="bg-"]):not([class*="from-"]) {
+  color: #4a4570;
+}
+
+html.light button:not([class*="bg-"]):not([class*="from-"]):hover {
+  color: #2a2550;
+}
+
+/* Чекбоксы и радио */
+html.light input[type="checkbox"],
+html.light input[type="radio"] {
+  border-color: rgba(96, 80, 186, 0.4) !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+}
+
+html.light input[type="checkbox"]:checked,
+html.light input[type="radio"]:checked {
+  background: #6050ba !important;
+  border-color: #6050ba !important;
+}
+
+/* Все ссылки */
+html.light a:not([class*="bg-"]):not([class*="text-"]) {
+  color: #6050ba;
+}
+
+html.light a:not([class*="bg-"]):not([class*="text-"]):hover {
+  color: #4030a0;
+}
+
+/* Дропдауны и меню */
+html.light [role="menu"],
+html.light [role="listbox"],
+html.light .dropdown-menu {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(96, 80, 186, 0.2) !important;
+  backdrop-filter: blur(15px) !important;
+}
+
+html.light [role="menuitem"],
+html.light [role="option"] {
+  color: #2a2550 !important;
+}
+
+html.light [role="menuitem"]:hover,
+html.light [role="option"]:hover {
+  background: rgba(96, 80, 186, 0.1) !important;
+}
+
+/* Тултипы */
+html.light [role="tooltip"] {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: #2a2550 !important;
+  border: 1px solid rgba(96, 80, 186, 0.2) !important;
 }
 
 /* ========================================
@@ -510,6 +1086,59 @@ html.light .intro-loading-dot {
   50% { opacity: 0.7; }
 }
 
+/* Критические анимации для intro-screen (должны быть в CSS, не в JSX) */
+@keyframes intro-scale {
+  0% { opacity: 0; transform: scale(0.5); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+@keyframes planet-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+@keyframes logo-glow-intro {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes ring-spin {
+  from { transform: rotateZ(0deg); }
+  to { transform: rotateZ(360deg); }
+}
+
+@keyframes particle-orbit {
+  0% { transform: rotate(0deg) translateX(150px) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: rotate(360deg) translateX(150px) rotate(-360deg); opacity: 0; }
+}
+
+@keyframes text-glow {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.2); }
+}
+
+@keyframes loading-dot {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.3; }
+  40% { transform: scale(1.2); opacity: 1; }
+}
+
+@keyframes intro-fade-in {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes intro-fade-out {
+  0% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; pointer-events: none; }
+}
+
 /* ========================================
    ГОЛОГРАФИЧЕСКИЙ ЭФФЕКТ ДЛЯ СВЕТЛОЙ ТЕМЫ
    ======================================== */
@@ -533,34 +1162,39 @@ html.light .intro-loading-dot {
   }
 }
 
-/* Glass карточки для светлой темы (как на примере) */
+/* Glass карточки для светлой темы (glassmorphism) */
 .light-glass-card {
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.45);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  border-radius: 24px;
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 16px;
   box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+    0 8px 32px rgba(96, 80, 186, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .light-glass-card:hover {
-  background: rgba(255, 255, 255, 0.7);
-  border-color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.55);
+  border-color: rgba(96, 80, 186, 0.25);
   box-shadow: 
-    0 12px 40px rgba(0, 0, 0, 0.08),
+    0 16px 48px rgba(96, 80, 186, 0.15),
+    0 0 30px rgba(96, 80, 186, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 1);
+  transform: translateY(-4px);
 }
 
 /* Голографическая карточка */
 .holographic-card {
   position: relative;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(25px);
-  border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  -webkit-backdrop-filter: blur(25px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
   overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .holographic-card::before {
@@ -569,12 +1203,18 @@ html.light .intro-loading-dot {
   inset: 0;
   background: linear-gradient(
     135deg,
-    rgba(255, 200, 220, 0.15) 0%,
-    rgba(200, 220, 255, 0.15) 50%,
-    rgba(220, 255, 240, 0.15) 100%
+    rgba(167, 139, 250, 0.1) 0%,
+    rgba(129, 140, 248, 0.1) 50%,
+    rgba(96, 80, 186, 0.1) 100%
   );
   opacity: 0;
   transition: opacity 0.3s ease;
+}
+
+.holographic-card:hover {
+  border-color: rgba(96, 80, 186, 0.3);
+  box-shadow: 0 16px 48px rgba(96, 80, 186, 0.15), 0 0 30px rgba(96, 80, 186, 0.1);
+  transform: translateY(-4px);
 }
 
 .holographic-card:hover::before {
@@ -702,105 +1342,209 @@ html.light .intro-loading-dot {
   contain: layout style paint;
 }
 
-/* Светлая тема кабинета - сайдбар (стиль glass) */
+/* Светлая тема кабинета - сайдбар (PREMIUM glassmorphism) */
 .cabinet-sidebar-light {
-  background: rgba(25, 25, 30, 0.78) !important;
-  backdrop-filter: blur(30px) saturate(180%) !important;
-  border: 1px solid rgba(255,255,255,0.1) !important;
+  background: rgba(255, 255, 255, 0.72) !important;
+  backdrop-filter: blur(28px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.85) !important;
   box-shadow: 
-    0 25px 50px rgba(0,0,0,0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+    0 12px 40px rgba(138, 99, 210, 0.12),
+    0 4px 16px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.5) !important;
   transform: translateZ(0);
   backface-visibility: hidden;
   -webkit-font-smoothing: subpixel-antialiased;
   contain: layout style paint;
 }
 
-/* Светлая тема кабинета - контент (стиль glass) */
-.cabinet-content-light {
-  background: rgba(25, 25, 30, 0.75) !important;
-  backdrop-filter: blur(25px) saturate(150%) !important;
-  border: 1px solid rgba(255,255,255,0.1) !important;
+.cabinet-sidebar-light:hover {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-color: rgba(138, 99, 210, 0.25) !important;
   box-shadow: 
-    0 20px 40px rgba(0,0,0,0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+    0 20px 60px rgba(138, 99, 210, 0.18),
+    0 8px 24px rgba(0, 0, 0, 0.06),
+    0 0 40px rgba(138, 99, 210, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 1) !important;
 }
 
-/* Светлая тема - glass-morphism-card (стиль glass) */
-html.light .glass-morphism-card {
-  background: rgba(25, 25, 30, 0.72);
-  border: 1px solid rgba(255,255,255,0.1);
+/* Светлая тема кабинета - контент (PREMIUM glassmorphism) */
+.cabinet-content-light {
+  background: rgba(255, 255, 255, 0.65) !important;
+  backdrop-filter: blur(28px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
   box-shadow: 
-    0 15px 35px rgba(0,0,0,0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06),
-    0 0 0 1px rgba(255,255,255,0.05);
+    0 12px 40px rgba(138, 99, 210, 0.1),
+    0 4px 16px rgba(0, 0, 0, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+
+.cabinet-content-light:hover {
+  border-color: rgba(138, 99, 210, 0.2) !important;
+}
+
+/* Светлая тема - цвета текста в контенте */
+.cabinet-content-light .text-white {
+  color: #1a1535 !important;
+}
+
+/* Но сохраняем белый текст на кнопках с градиентом/цветом */
+.cabinet-content-light .bg-gradient-to-r .text-white,
+.cabinet-content-light .bg-gradient-to-br .text-white,
+.cabinet-content-light [class*="bg-purple"] .text-white,
+.cabinet-content-light [class*="bg-emerald"] .text-white,
+.cabinet-content-light .bg-\[\#6050ba\] .text-white,
+.cabinet-content-light .bg-\[\#8a63d2\] .text-white,
+.cabinet-content-light button.bg-gradient-to-r,
+.cabinet-content-light button[class*="bg-purple"],
+.cabinet-content-light .from-purple-600,
+.cabinet-content-light .from-purple-500,
+.cabinet-content-light .bg-emerald-500,
+.cabinet-content-light .bg-purple-600,
+.cabinet-content-light .bg-purple-500 {
+  color: #ffffff !important;
+}
+
+.cabinet-content-light .text-zinc-400,
+.cabinet-content-light .text-zinc-500 {
+  color: #3d3660 !important;
+}
+
+.cabinet-content-light .text-zinc-300 {
+  color: #5c5580 !important;
+}
+
+/* Светлая тема - цвета текста в сайдбаре */
+.cabinet-sidebar-light .text-white {
+  color: #1a1535 !important;
+}
+
+.cabinet-sidebar-light .text-zinc-400,
+.cabinet-sidebar-light .text-zinc-500 {
+  color: #3d3660 !important;
+}
+
+.cabinet-sidebar-light .text-zinc-300 {
+  color: #5c5580 !important;
+}
+
+/* Светлая тема - glass-morphism-card (glassmorphism) */
+html.light .glass-morphism-card {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 
+    0 8px 32px rgba(96, 80, 186, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+html.light .glass-morphism-card:hover {
+  background: rgba(255, 255, 255, 0.5);
+  border-color: rgba(96, 80, 186, 0.25);
+  box-shadow: 
+    0 16px 48px rgba(96, 80, 186, 0.12),
+    0 0 20px rgba(96, 80, 186, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
 }
 
 html.light .glass-morphism-card::before {
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(96, 80, 186, 0.15), transparent);
 }
 
 /* Светлая тема - цвета текста в карточках */
 html.light .glass-morphism-card .text-white {
-  color: #ffffff;
+  color: #2a2550;
+}
+
+/* Сохраняем белый текст на кнопках внутри карточек */
+html.light .glass-morphism-card .bg-gradient-to-r,
+html.light .glass-morphism-card [class*="bg-purple"],
+html.light .glass-morphism-card .bg-emerald-500,
+html.light .glass-morphism-card .from-purple-600,
+html.light .glass-morphism-card .from-purple-500,
+html.light .glass-morphism-card button.bg-gradient-to-r {
+  color: #ffffff !important;
 }
 
 html.light .glass-morphism-card .text-zinc-400 {
-  color: rgba(255,255,255,0.6);
+  color: #4a4570;
 }
 
 html.light .glass-morphism-card .text-zinc-300 {
-  color: rgba(255,255,255,0.7);
+  color: #5a5580;
 }
 
 html.light .glass-morphism-card .group-hover\:text-purple-300:hover {
-  color: #c4b5fd;
+  color: #6050ba;
 }
 
-/* Светлая тема - стили для контента кабинета (glass) - тёмный фон, светлый текст */
+/* Светлая тема - стили для контента кабинета (glassmorphism) */
 html.light .cabinet-content-light .text-zinc-500 {
-  color: rgba(255,255,255,0.6);
+  color: #4a4570;
 }
 
 html.light .cabinet-content-light .text-zinc-600 {
-  color: rgba(255,255,255,0.5);
+  color: #5a5580;
 }
 
 html.light .cabinet-content-light .text-zinc-400 {
-  color: rgba(255,255,255,0.65);
+  color: #4a4570;
 }
 
-/* Светлая тема - инпуты в контенте кабинета (glass) - тёмный стиль */
+/* Светлая тема - инпуты в контенте кабинета (glassmorphism) */
 html.light .cabinet-content-light input,
 html.light .cabinet-content-light textarea,
 html.light .cabinet-content-light select {
-  background: rgba(255,255,255,0.1);
-  border-color: rgba(255,255,255,0.15);
-  color: #ffffff;
+  background: rgba(255, 255, 255, 0.5);
+  border-color: rgba(255, 255, 255, 0.6);
+  color: #2a2550;
+}
+
+html.light .cabinet-content-light input:focus,
+html.light .cabinet-content-light textarea:focus,
+html.light .cabinet-content-light select:focus {
+  border-color: rgba(96, 80, 186, 0.5);
+  box-shadow: 0 0 0 3px rgba(96, 80, 186, 0.15);
 }
 
 html.light .cabinet-content-light input:disabled,
 html.light .cabinet-content-light textarea:disabled {
-  background: rgba(255,255,255,0.05);
-  color: rgba(255,255,255,0.4);
+  background: rgba(255, 255, 255, 0.3);
+  color: #7a7590;
 }
 
 html.light .cabinet-content-light input::placeholder,
 html.light .cabinet-content-light textarea::placeholder {
-  color: rgba(255,255,255,0.4);
+  color: #7a7590;
 }
 
-/* Светлая тема - кнопки в контенте (glass) */
+/* Светлая тема - кнопки в контенте (glassmorphism) */
 html.light .cabinet-content-light .bg-white\/5 {
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.5);
 }
 
 html.light .cabinet-content-light .border-white\/10 {
-  border-color: rgba(255,255,255,0.12);
+  border-color: rgba(255, 255, 255, 0.6);
 }
 
 html.light .cabinet-content-light .hover\:bg-purple-600\/20:hover {
-  background: rgba(96,80,186,0.15);
+  background: rgba(96, 80, 186, 0.15);
+}
+
+/* Светлая тема - кнопки в сайдбаре */
+html.light .cabinet-sidebar-light .bg-white\/5 {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+html.light .cabinet-sidebar-light .border-white\/10 {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+html.light .cabinet-sidebar-light .hover\:bg-white\/10:hover {
+  background: rgba(96, 80, 186, 0.1);
 }
 
 .glass-morphism-button {

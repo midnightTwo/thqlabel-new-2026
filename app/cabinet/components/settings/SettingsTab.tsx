@@ -5,6 +5,7 @@ import ThemeSelector from './ThemeSelector';
 import AccountManager from './AccountManager';
 import { UserRole, ROLE_CONFIG } from '../../lib/types';
 import { supabase } from '../../lib/supabase';
+import { useTheme } from '@/contexts/ThemeContext';
 
 interface SettingsTabProps {
   user: any;
@@ -32,6 +33,8 @@ export default function SettingsTab({
   onShowNotification,
 }: SettingsTabProps) {
   const config = ROLE_CONFIG[role];
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
   
   // Fallback для onShowNotification
   const handleShowNotification = onShowNotification || ((message: string, type: 'success' | 'error') => {
@@ -142,10 +145,10 @@ export default function SettingsTab({
     <>
       <div className="animate-fade-up">
         <div className="mb-8">
-          <h2 className="text-3xl font-black uppercase tracking-tight mb-2 bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
+          <h2 className={`text-3xl font-black uppercase tracking-tight mb-2 bg-gradient-to-r bg-clip-text text-transparent ${isLight ? 'from-[#1a1535] to-[#5c5580]' : 'from-white to-zinc-400'}`}>
             Настройки
           </h2>
-          <p className="text-sm text-zinc-500">Управление профилем и настройками</p>
+          <p className={`text-sm ${isLight ? 'text-[#5c5580]' : 'text-zinc-500'}`}>Управление профилем и настройками</p>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -153,7 +156,7 @@ export default function SettingsTab({
           <div className="space-y-6">
         {/* Аватарка */}
         <div className="group">
-          <label className="text-[10px] text-zinc-400 uppercase tracking-[0.2em] mb-3 block font-bold">
+          <label className={`text-[10px] uppercase tracking-[0.2em] mb-3 block font-bold ${isLight ? 'text-[#5c5580]' : 'text-zinc-400'}`}>
             Аватар профиля
           </label>
           <div className="flex items-center gap-4">
@@ -182,21 +185,25 @@ export default function SettingsTab({
                    }}></div>
             </button>
             <div className="flex-1">
-              <p className="text-sm text-zinc-300 mb-2 font-medium">Нажмите на аватар для изменения</p>
-              <p className="text-[10px] text-zinc-600">PNG, JPG до 2MB • Рекомендуем 400x400px</p>
+              <p className={`text-sm mb-2 font-medium ${isLight ? 'text-[#3d3660]' : 'text-zinc-300'}`}>Нажмите на аватар для изменения</p>
+              <p className={`text-[10px] ${isLight ? 'text-[#7a7596]' : 'text-zinc-600'}`}>PNG, JPG до 2MB • Рекомендуем 400x400px</p>
             </div>
           </div>
         </div>
 
         {/* Никнейм */}
         <div>
-          <label className="text-[10px] text-zinc-400 uppercase tracking-[0.2em] mb-2 block font-bold">
+          <label className={`text-[10px] uppercase tracking-[0.2em] mb-2 block font-bold ${isLight ? 'text-[#5c5580]' : 'text-zinc-400'}`}>
             Никнейм артиста
           </label>
           <input 
             value={nickname}
             disabled
-            className="w-full px-4 py-3.5 bg-white/[0.03] border border-white/10 rounded-xl text-sm text-zinc-400 cursor-not-allowed font-medium transition-all hover:bg-white/[0.05]"
+            className={`w-full px-4 py-3.5 rounded-xl text-sm cursor-not-allowed font-medium transition-all ${
+              isLight 
+                ? 'bg-white/60 border border-white/80 text-[#5c5580] hover:bg-white/70' 
+                : 'bg-white/[0.03] border border-white/10 text-zinc-400 hover:bg-white/[0.05]'
+            }`}
           />
           <p className="text-[10px] text-zinc-600 mt-2 flex items-center gap-1">
             <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">

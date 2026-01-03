@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import AnimatedBackground from '@/components/AnimatedBackground';
 import { supabase } from '../../lib/supabase';
 import { useTheme } from '@/contexts/ThemeContext';
+import { getAllCountries } from '@/components/CountryFlagsSVG';
 import {
   ReleaseInfoStep,
   TracklistStep,
@@ -13,6 +14,7 @@ import {
   PromoStep,
   SendStep,
   ReleaseTypeSelector,
+  getAllPlatforms,
 } from './components';
 
 export type ReleaseType = 'single' | 'ep' | 'album';
@@ -26,10 +28,11 @@ function StepsSidebar({
   releaseType,
   genre,
   coverFile,
+  releaseDate,
   tracksCount,
   agreedToContract,
   selectedPlatforms,
-  selectedCountries,
+  excludedCountries,
   promoStatus,
   isLight
 }: { 
@@ -39,22 +42,24 @@ function StepsSidebar({
   releaseType: ReleaseType | null;
   genre: string;
   coverFile: File | null;
+  releaseDate: string | null;
   tracksCount: number;
   agreedToContract: boolean;
   selectedPlatforms: number;
-  selectedCountries: string[];
+  excludedCountries: string[];
   promoStatus: PromoStatus;
   isLight: boolean;
 }) {
+  const allCountries = getAllCountries();
   // Проверка заполненности каждого шага
   const isStepComplete = (stepId: string): boolean => {
     switch(stepId) {
       case 'release':
-        return !!(releaseTitle.trim() && genre && coverFile);
+        return !!(releaseTitle.trim() && genre && coverFile && releaseDate);
       case 'tracklist':
         return tracksCount > 0;
       case 'countries':
-        return selectedCountries.length > 0;
+        return allCountries.length - excludedCountries.length > 0; // хотя бы одна страна выбрана
       case 'contract':
         return agreedToContract;
       case 'platforms':
@@ -86,10 +91,9 @@ function StepsSidebar({
   ];
 
   // Подсчёт заполненных обязательных шагов
-  const completedSteps = steps.filter(step => 
-    step.id !== 'send' && isStepComplete(step.id)
-  ).length;
-  const totalRequiredSteps = steps.length - 1; // Исключаем "Отправка"
+  const requiredStepIds = steps.filter(s => s.id !== 'send' && s.id !== 'promo').map(s => s.id);
+  const completedSteps = steps.filter(step => requiredStepIds.includes(step.id) && isStepComplete(step.id)).length;
+  const totalRequiredSteps = requiredStepIds.length;
   const progress = (completedSteps / totalRequiredSteps) * 100;
 
   // Динамические цвета прогресс-бара: 0-49% красный, 50-99% желтый, 100% зеленый
@@ -104,15 +108,17 @@ function StepsSidebar({
       {/* Десктоп версия - вертикальная боковая панель */}
       <aside className={`hidden lg:flex lg:w-64 w-full backdrop-blur-xl border rounded-3xl p-6 flex-col lg:self-start lg:sticky lg:top-24 shadow-2xl relative overflow-hidden ${
         isLight
-          ? 'bg-[rgba(25,25,30,0.85)] border-purple-500/30 shadow-black/30'
+          ? 'bg-[rgba(255,255,255,0.45)] border-white/60 shadow-purple-500/10'
           : 'bg-gradient-to-br from-white/[0.07] to-white/[0.02] border-white/10 shadow-black/20'
       }`}>
         {/* Декоративный градиент */}
         <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5 pointer-events-none" />
         
         <div className="mb-6 relative z-10">
-          <h3 className="font-bold text-lg bg-gradient-to-r from-white to-zinc-300 bg-clip-text text-transparent">Создание релиза</h3>
-          <p className="text-xs text-zinc-400 mt-1">Exclusive Plan</p>
+          <h3 className={`font-bold text-lg bg-gradient-to-r bg-clip-text text-transparent ${
+            isLight ? 'from-[#2a2550] to-[#4a4570]' : 'from-white to-zinc-300'
+          }`}>Создание релиза</h3>
+          <p className={`text-xs mt-1 ${isLight ? 'text-[#5a5580]' : 'text-zinc-400'}`}>Exclusive Plan</p>
         </div>
         
         {/* Индикатор типа релиза */}
@@ -253,14 +259,16 @@ function StepsSidebar({
         {/* Заголовок */}
         <div className={`backdrop-blur-xl border rounded-2xl p-4 mb-3 shadow-xl relative overflow-hidden ${
           isLight
-            ? 'bg-[rgba(25,25,30,0.85)] border-purple-500/30 shadow-black/20'
+            ? 'bg-[rgba(255,255,255,0.45)] border-white/60 shadow-purple-500/10'
             : 'bg-gradient-to-br from-white/[0.07] to-white/[0.02] border-white/10 shadow-black/10'
         }`}>
           {/* Декоративный градиент */}
           <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5 pointer-events-none" />
           
           <div className="relative z-10">
-          <h3 className="font-bold text-base mb-2 bg-gradient-to-r from-white to-zinc-300 bg-clip-text text-transparent">Создание релиза</h3>
+          <h3 className={`font-bold text-base mb-2 bg-gradient-to-r bg-clip-text text-transparent ${
+            isLight ? 'from-[#2a2550] to-[#4a4570]' : 'from-white to-zinc-300'
+          }`}>Создание релиза</h3>
           <div className="h-2 backdrop-blur-sm bg-white/5 rounded-full overflow-hidden border border-white/10 shadow-inner">
             <div 
               className={`h-full bg-gradient-to-r ${getProgressColorClass()} transition-all duration-500 shadow-lg`}
@@ -384,12 +392,12 @@ export default function CreateReleasePage() {
   const [trackProducers, setTrackProducers] = useState<string[]>([]);
   const [trackFeaturing, setTrackFeaturing] = useState<string[]>([]);
   
-  // Countries state
-  const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
+  // Countries state - excludedCountries: пустой массив = все страны выбраны
+  const [excludedCountries, setExcludedCountries] = useState<string[]>([]);
   
-  // Platforms state
-  const [selectedPlatforms, setSelectedPlatforms] = useState(0);
-  const [selectedPlatformsList, setSelectedPlatformsList] = useState<string[]>([]);
+  // Platforms state - сразу выбраны все площадки
+  const [selectedPlatformsList, setSelectedPlatformsList] = useState<string[]>(() => getAllPlatforms());
+  const [selectedPlatforms, setSelectedPlatforms] = useState(() => getAllPlatforms().length);
   
   // Contract state
   const [agreedToContract, setAgreedToContract] = useState(false);
@@ -425,29 +433,14 @@ export default function CreateReleasePage() {
     getUser();
   }, [router]);
   
-  // Автосохранение черновика при изменении полей первого шага
-  useEffect(() => {
-    if (!user || !supabase || currentStep !== 'release') return;
-    
-    // Сохраняем только если выбран жанр (обязательное поле в БД)
-    if (!genre) return;
-    
-    // Дебаунс - сохраняем через 2 секунды после последнего изменения
-    const timeoutId = setTimeout(() => {
-      console.log('💾 Автосохранение...');
-      saveDraft();
-    }, 2000);
-    
-    return () => clearTimeout(timeoutId);
-  }, [releaseTitle, artistName, genre, subgenres, releaseDate, collaborators, coverFile, currentStep, user]);
-  
-  // Функция автосохранения черновика
+  // Функция сохранения/обновления черновика
   const saveDraft = async () => {
     if (!user || !supabase || isSavingDraft) return null;
     
+    // Сохраняем только если выбран жанр (обязательное поле в БД)
+    if (!genre) return null;
+    
     console.log('🔄 Начинаем сохранение черновика...');
-    console.log('User ID:', user.id);
-    console.log('Release data:', { releaseTitle, artistName, genre });
     
     setIsSavingDraft(true);
     try {
@@ -459,7 +452,7 @@ export default function CreateReleasePage() {
         const fileName = `${user.id}-${Date.now()}.${fileExt}`;
         const { data: uploadData, error: uploadError } = await supabase.storage
           .from('releases')
-          .upload(fileName, coverFile, { upsert: true });
+          .upload(fileName, coverFile, { contentType: coverFile.type, upsert: true });
         
         if (uploadError) {
           console.error('❌ Ошибка загрузки обложки:', uploadError);
@@ -489,7 +482,6 @@ export default function CreateReleasePage() {
       
       if (draftId) {
         console.log('🔄 Обновляем существующий черновик:', draftId);
-        // Обновляем существующий черновик
         const { error } = await supabase
           .from('releases_exclusive')
           .update(draftData)
@@ -503,7 +495,6 @@ export default function CreateReleasePage() {
         return draftId;
       } else {
         console.log('➕ Создаем новый черновик...');
-        // Создаем новый черновик
         const { data, error } = await supabase
           .from('releases_exclusive')
           .insert([draftData])
@@ -512,7 +503,6 @@ export default function CreateReleasePage() {
         
         if (error) {
           console.error('❌ Ошибка создания:', error);
-          console.error('Детали ошибки:', JSON.stringify(error, null, 2));
           throw error;
         }
         if (data) {
@@ -523,30 +513,55 @@ export default function CreateReleasePage() {
       }
     } catch (error) {
       console.error('❌ ОШИБКА сохранения черновика:', error);
-      alert('Ошибка сохранения черновика. Проверьте консоль.');
     } finally {
       setIsSavingDraft(false);
     }
     return null;
   };
   
-  // Обработчик перехода на следующий шаг с автосохранением
+  // Функция удаления черновика (вызывается при успешной отправке на модерацию)
+  const deleteDraft = async () => {
+    if (!draftId || !supabase) return;
+    
+    try {
+      console.log('🗑️ Удаляем черновик:', draftId);
+      const { error } = await supabase
+        .from('releases_exclusive')
+        .delete()
+        .eq('id', draftId);
+      
+      if (error) {
+        console.error('❌ Ошибка удаления черновика:', error);
+      } else {
+        console.log('✅ Черновик удален');
+        setDraftId(null);
+      }
+    } catch (error) {
+      console.error('❌ Ошибка удаления черновика:', error);
+    }
+  };
+  
+  // Показать уведомление о сохранении
+  const showSaveNotification = () => {
+    const notification = document.createElement('div');
+    notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-xl shadow-lg z-50 animate-fade-in';
+    notification.textContent = '✓ Черновик сохранен';
+    document.body.appendChild(notification);
+    setTimeout(() => {
+      notification.style.opacity = '0';
+      notification.style.transform = 'translateY(-10px)';
+      notification.style.transition = 'all 0.3s ease-out';
+      setTimeout(() => notification.remove(), 300);
+    }, 2000);
+  };
+  
+  // Обработчик перехода на следующий шаг с автосохранением черновика
   const handleNextStep = async (nextStep: string) => {
-    if (currentStep === 'release') {
-      // Сохраняем черновик при завершении первого шага
+    // Сохраняем черновик после прохождения любого шага (кроме выбора типа)
+    if (currentStep !== 'type' && genre) {
       const savedId = await saveDraft();
       if (savedId) {
-        // Показываем уведомление об успешном сохранении
-        const notification = document.createElement('div');
-        notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-xl shadow-lg z-50 animate-fade-in';
-        notification.textContent = '✓ Черновик сохранен';
-        document.body.appendChild(notification);
-        setTimeout(() => {
-          notification.style.opacity = '0';
-          notification.style.transform = 'translateY(-10px)';
-          notification.style.transition = 'all 0.3s ease-out';
-          setTimeout(() => document.body.removeChild(notification), 300);
-        }, 2000);
+        showSaveNotification();
       }
     }
     setCurrentStep(nextStep);
@@ -591,10 +606,11 @@ export default function CreateReleasePage() {
           releaseType={releaseType}
           genre={genre}
           coverFile={coverFile}
+          releaseDate={releaseDate}
           tracksCount={tracks.length}
           agreedToContract={agreedToContract}
           selectedPlatforms={selectedPlatforms}
-          selectedCountries={selectedCountries}
+          excludedCountries={excludedCountries}
           promoStatus={promoStatus}
           isLight={isLight}
         />
@@ -602,7 +618,7 @@ export default function CreateReleasePage() {
         {/* Основной контент */}
         <section className={`flex-1 backdrop-blur-xl border rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-10 min-h-[500px] shadow-2xl relative overflow-hidden ${
           isLight
-            ? 'bg-[rgba(25,25,30,0.85)] border-purple-500/30 shadow-black/30'
+            ? 'bg-[rgba(255,255,255,0.45)] border-white/60 shadow-purple-500/10'
             : 'bg-gradient-to-br from-white/[0.07] to-white/[0.02] border-white/10 shadow-black/20'
         }`}>
           {/* Декоративный градиент */}
@@ -692,8 +708,8 @@ export default function CreateReleasePage() {
           {/* Шаг 3: Страны */}
           {currentStep === 'countries' && (
             <CountriesStep
-              selectedCountries={selectedCountries}
-              setSelectedCountries={setSelectedCountries}
+              excludedCountries={excludedCountries}
+              setExcludedCountries={setExcludedCountries}
               onNext={() => setCurrentStep('contract')}
               onBack={() => setCurrentStep('tracklist')}
             />
@@ -759,7 +775,7 @@ export default function CreateReleasePage() {
               promoPhotos={promoPhotos}
               tracks={tracks}
               platforms={selectedPlatformsList}
-              countries={selectedCountries}
+              countries={getAllCountries().filter(c => !excludedCountries.includes(c))}
               onBack={() => setCurrentStep('promo')}
             />
           )}

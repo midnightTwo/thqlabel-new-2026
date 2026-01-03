@@ -35,13 +35,18 @@ export default function HomePage() {
         ))}
       </div>
 
-      <div className="text-center relative z-10">
+      <div 
+        className="text-center relative z-10 transition-opacity duration-500"
+        style={{ opacity: mounted ? 1 : 0 }}
+      >
         {/* Контейнер для Сатурна */}
-        <div className="relative w-48 h-48 mx-auto mb-8">
+        <div className="relative w-48 h-48 mx-auto mb-8 flex items-center justify-center">
           {/* Свечение планеты */}
           <div 
-            className="absolute inset-0 rounded-full blur-3xl opacity-30"
+            className="absolute rounded-full blur-3xl opacity-30"
             style={{
+              width: '100%',
+              height: '100%',
               background: 'radial-gradient(circle, #6050ba 0%, transparent 70%)',
               transform: 'scale(1.5)',
             }}
@@ -49,7 +54,7 @@ export default function HomePage() {
           
           {/* Планета Сатурн */}
           <div 
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full overflow-hidden"
+            className="absolute w-24 h-24 rounded-full overflow-hidden"
             style={{
               background: 'linear-gradient(135deg, #8b7dd8 0%, #6050ba 30%, #4a3d8f 60%, #2d2557 100%)',
               boxShadow: `
@@ -58,7 +63,7 @@ export default function HomePage() {
                 0 0 40px rgba(96,80,186,0.5),
                 0 0 80px rgba(96,80,186,0.3)
               `,
-              animation: 'planetPulse 4s ease-in-out infinite',
+              animation: mounted ? 'planetPulse 4s ease-in-out infinite' : 'none',
             }}
           >
             {/* Атмосферные полосы на планете */}
@@ -77,11 +82,16 @@ export default function HomePage() {
           </div>
 
           {/* Кольцо Сатурна - заднее */}
+          {mounted && (
           <div 
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+            className="absolute"
             style={{
               width: '180px',
               height: '180px',
+              left: '50%',
+              top: '50%',
+              marginLeft: '-90px',
+              marginTop: '-90px',
               animation: 'ringRotate 8s linear infinite',
               transformStyle: 'preserve-3d',
             }}
@@ -98,13 +108,19 @@ export default function HomePage() {
               }}
             />
           </div>
+          )}
 
           {/* Кольцо Сатурна - переднее (проходит перед планетой) */}
+          {mounted && (
           <div 
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
+            className="absolute z-20"
             style={{
               width: '180px',
               height: '180px',
+              left: '50%',
+              top: '50%',
+              marginLeft: '-90px',
+              marginTop: '-90px',
               animation: 'ringRotate 8s linear infinite',
               transformStyle: 'preserve-3d',
             }}
@@ -128,13 +144,19 @@ export default function HomePage() {
               }}
             />
           </div>
+          )}
 
           {/* Второе внешнее кольцо */}
+          {mounted && (
           <div 
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+            className="absolute"
             style={{
               width: '200px',
               height: '200px',
+              left: '50%',
+              top: '50%',
+              marginLeft: '-100px',
+              marginTop: '-100px',
               animation: 'ringRotate 12s linear infinite reverse',
               transformStyle: 'preserve-3d',
             }}
@@ -150,13 +172,18 @@ export default function HomePage() {
               }}
             />
           </div>
+          )}
 
           {/* Частицы вокруг кольца */}
           {mounted && [...Array(20)].map((_, i) => (
             <div
               key={i}
-              className="absolute left-1/2 top-1/2 w-1 h-1 rounded-full bg-purple-300"
+              className="absolute w-1 h-1 rounded-full bg-purple-300"
               style={{
+                left: '50%',
+                top: '50%',
+                marginLeft: '-2px',
+                marginTop: '-2px',
                 animation: `orbitParticle ${6 + i * 0.3}s linear infinite`,
                 animationDelay: `${i * 0.3}s`,
                 opacity: 0.6,
@@ -199,27 +226,27 @@ export default function HomePage() {
       <style jsx>{`
         @keyframes ringRotate {
           from {
-            transform: translate(-50%, -50%) rotateZ(0deg);
+            transform: rotateZ(0deg);
           }
           to {
-            transform: translate(-50%, -50%) rotateZ(360deg);
+            transform: rotateZ(360deg);
           }
         }
 
         @keyframes planetPulse {
           0%, 100% {
-            transform: translate(-50%, -50%) scale(1);
+            transform: scale(1);
             filter: brightness(1);
           }
           50% {
-            transform: translate(-50%, -50%) scale(1.02);
+            transform: scale(1.02);
             filter: brightness(1.1);
           }
         }
 
         @keyframes orbitParticle {
           0% {
-            transform: translate(-50%, -50%) rotateX(75deg) rotateZ(0deg) translateX(95px);
+            transform: rotateX(75deg) rotateZ(0deg) translateX(95px);
             opacity: 0;
           }
           10% {
@@ -229,7 +256,7 @@ export default function HomePage() {
             opacity: 0.8;
           }
           100% {
-            transform: translate(-50%, -50%) rotateX(75deg) rotateZ(360deg) translateX(95px);
+            transform: rotateX(75deg) rotateZ(360deg) translateX(95px);
             opacity: 0;
           }
         }

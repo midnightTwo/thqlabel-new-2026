@@ -92,7 +92,7 @@ export default function AvatarModal({
       
       const { error: uploadError } = await supabase.storage
         .from('avatars')
-        .upload(fileName, avatarFile);
+        .upload(fileName, avatarFile, { contentType: avatarFile.type, upsert: true });
       
       if (uploadError) throw uploadError;
       

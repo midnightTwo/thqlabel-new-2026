@@ -4,6 +4,9 @@ import { createPortal } from 'react-dom';
 import { useRouter } from 'next/navigation';
 import { SupabaseClient } from '@supabase/supabase-js';
 import AudioPlayer from '@/components/AudioPlayer';
+import AdminCreateRelease from './releases/AdminCreateRelease';
+import { useTheme } from '@/contexts/ThemeContext';
+import { showSuccessToast, showErrorToast } from '@/lib/showToast';
 
 interface Release {
   id: string;
@@ -35,13 +38,15 @@ interface ReleasesModerationProps {
 
 export default function ReleasesModeration({ supabase }: ReleasesModerationProps) {
   const router = useRouter();
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
   const [releases, setReleases] = useState<Release[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedRelease, setSelectedRelease] = useState<any | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [rejectionReason, setRejectionReason] = useState('');
   const [statusFilter, setStatusFilter] = useState('pending');
-  const [viewMode, setViewMode] = useState<'moderation' | 'archive'>('moderation'); // Новый стейт для переключения между модерацией и архивом
+  const [viewMode, setViewMode] = useState<'moderation' | 'archive' | 'create'>('moderation'); // Стейт для переключения между модерацией, архивом и созданием
   
   // Новые состояния для поиска и фильтрации
   const [searchQuery, setSearchQuery] = useState('');
@@ -271,7 +276,7 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
       console.log('Release Type:', selectedRelease.release_type);
       console.log('User ID:', user.id);
 
-      // Обновляем статус релиза на 'approved'
+      // Обновляем статус релиза на 'distributed'
       const tableName = selectedRelease.release_type === 'basic' ? 'releases_basic' : 'releases_exclusive';
       console.log('Table Name:', tableName);
       
@@ -359,13 +364,13 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
       
       if (error) throw error;
       
-      alert('Релиз успешно удалён');
+      showSuccessToast('Релиз успешно удалён');
       setShowModal(false);
       setSelectedRelease(null);
       loadReleases();
     } catch (error) {
       console.error('Ошибка удаления релиза:', error);
-      alert('Ошибка при удалении релиза');
+      showErrorToast('Ошибка при удалении релиза');
     }
   };
 
@@ -497,12 +502,12 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
       
       await Promise.all(deletePromises);
       
-      alert(`Успешно удалено: ${selectedReleaseIds.length} релизов!`);
+      showSuccessToast(`Успешно удалено: ${selectedReleaseIds.length} релизов`);
       setSelectedReleaseIds([]);
       loadReleases();
     } catch (error) {
       console.error('Ошибка удаления:', error);
-      alert('Ошибка при удалении релизов');
+      showErrorToast('Ошибка при удалении релизов');
     } finally {
       setIsPublishing(false);
     }
@@ -589,6 +594,122 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
       showToast('Ошибка при сохранении UPC кода', 'error');
     } finally {
       setSavingReleaseUPC(false);
+    }
+  };
+  
+  // Скачивание файла (обложки или трека)
+  const handleDownloadFile = async (url: string, filename: string) => {
+    try {
+      showToast('Начинаю скачивание...', 'info');
+      
+      const response = await fetch(url);
+      if (!response.ok) throw new Error('Ошибка загрузки файла');
+      
+      const blob = await response.blob();
+      const downloadUrl = window.URL.createObjectURL(blob);
+
+      // Попытка определить расширение по Content-Type или по URL — применяем ТОЛЬКО к обложкам/аудио релиза
+      const shouldAdjustName = url.includes('release-covers') || url.includes('release-audio') || url.includes('/api/stream-audio') || url.includes('/storage/v1/object/public/release-covers') || url.includes('/storage/v1/object/public/release-audio');
+
+      let link = document.createElement('a');
+      link.href = downloadUrl;
+
+      if (shouldAdjustName) {
+        const contentType = response.headers.get('content-type') || '';
+        const mimeToExt: Record<string, string> = {
+          'image/png': 'png',
+          'image/jpeg': 'jpg',
+          'image/jpg': 'jpg',
+          'image/gif': 'gif',
+          'image/webp': 'webp',
+        };
+
+        const extFromMime = mimeToExt[contentType.toLowerCase()];
+        const urlExtMatch = url.split('?')[0].split('.').pop() || '';
+        const finalExt = extFromMime || (urlExtMatch.length <= 5 ? urlExtMatch : '') || '';
+
+        const baseName = filename.replace(/\.[^.]+$/, '');
+        const finalFilename = finalExt ? `${baseName}.${finalExt}` : filename;
+
+        link.download = finalFilename;
+      } else {
+        // Оставляем оригинальное имя для всех прочих ресурсов
+        link.download = filename;
+      }
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      window.URL.revokeObjectURL(downloadUrl);
+      showToast('Файл скачан', 'success');
+    } catch (error) {
+      console.error('Ошибка скачивания:', error);
+      showToast('Ошибка при скачивании файла', 'error');
+    }
+  };
+  
+  // Скачивание трека через API (использует тот же механизм что и аудиоплеер)
+  const handleDownloadTrack = async (releaseId: string, releaseType: 'basic' | 'exclusive', trackIndex: number, trackTitle: string) => {
+    try {
+      showToast('Начинаю скачивание трека...', 'info');
+      
+      // Используем API эндпоинт для получения аудио (тот же что и аудиоплеер)
+      const { data: { session } } = await supabase.auth.getSession();
+      const token = session?.access_token;
+      
+      const url = `/api/stream-audio?releaseId=${releaseId}&releaseType=${releaseType}&trackIndex=${trackIndex}`;
+      
+      const headers: HeadersInit = {};
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+      
+      const response = await fetch(url, { headers });
+      
+      if (!response.ok) {
+        const contentType = response.headers.get('content-type') || '';
+        if (contentType.includes('application/json')) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Ошибка загрузки');
+        }
+        throw new Error('Ошибка загрузки файла');
+      }
+      
+      const blob = await response.blob();
+      const downloadUrl = window.URL.createObjectURL(blob);
+
+      // Определяем расширение по заголовку ответа или по mime типа blob
+      const contentType = response.headers.get('content-type') || blob.type || '';
+      const mimeToExt: Record<string, string> = {
+        'audio/mpeg': 'mp3',
+        'audio/mp3': 'mp3',
+        'audio/wav': 'wav',
+        'audio/x-wav': 'wav',
+        'audio/flac': 'flac',
+        'audio/ogg': 'ogg',
+        'audio/mp4': 'm4a',
+        'audio/aac': 'aac',
+        'audio/webm': 'webm'
+      };
+
+      const extFromMime = mimeToExt[contentType.toLowerCase()];
+      const finalExt = extFromMime || 'mp3';
+
+      const safeTitle = (trackTitle || `track_${trackIndex + 1}`).replace(/[\\/:*?"<>|]+/g, '_');
+      const finalFilename = `${safeTitle}.${finalExt}`;
+
+      const link = document.createElement('a');
+      link.href = downloadUrl;
+      link.download = finalFilename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      window.URL.revokeObjectURL(downloadUrl);
+      showToast('Трек скачан', 'success');
+    } catch (error) {
+      console.error('Ошибка скачивания трека:', error);
+      showToast(error instanceof Error ? error.message : 'Ошибка при скачивании трека', 'error');
     }
   };
   
@@ -744,10 +865,26 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
             >
               Архив
             </button>
+            <button
+              onClick={() => {
+                setViewMode('create');
+              }}
+              className={`px-3 sm:px-4 py-2 rounded-xl text-sm font-bold transition flex items-center gap-2 ${
+                viewMode === 'create' 
+                  ? 'bg-emerald-500 text-white' 
+                  : 'bg-white/5 text-zinc-400 hover:bg-white/10'
+              }`}
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+              </svg>
+              Добавить релиз
+            </button>
           </div>
         </div>
         
-        {/* Правая часть - поиск и фильтры */}
+        {/* Правая часть - поиск и фильтры (только для модерации и архива) */}
+        {viewMode !== 'create' && (
         <div className="w-full lg:w-96 relative">
           <div className="space-y-3">
             {/* Кнопка обновления и поиск */}
@@ -1070,9 +1207,20 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
             </div>
           )}
         </div>
+        )}
       </div>
 
-      {sorted.length === 0 ? (
+      {/* Режим создания релиза */}
+      {viewMode === 'create' ? (
+        <AdminCreateRelease 
+          supabase={supabase} 
+          onSuccess={() => {
+            setViewMode('archive');
+            loadReleases();
+          }}
+          onCancel={() => setViewMode('moderation')}
+        />
+      ) : sorted.length === 0 ? (
         <div className="text-center py-20 border border-dashed border-white/10 rounded-2xl">
           <div className="flex justify-center mb-4">
             <svg className="w-16 h-16 text-zinc-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1396,6 +1544,18 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                       <img src={selectedRelease.cover_url} alt={selectedRelease.title} className="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-500" />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#6050ba]/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="absolute inset-0 shadow-2xl shadow-[#6050ba]/30"></div>
+                      {/* Кнопка скачивания обложки */}
+                      <button
+                        onClick={() => handleDownloadFile(selectedRelease.cover_url, `${selectedRelease.title}_cover.jpg`)}
+                        className="absolute bottom-3 right-3 p-2.5 bg-black/60 hover:bg-[#6050ba] backdrop-blur-sm rounded-xl transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110"
+                        title="Скачать обложку"
+                      >
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                          <polyline points="7 10 12 15 17 10"/>
+                          <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                      </button>
                     </div>
                   )}
                 </div>
@@ -1628,14 +1788,30 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
                             {/* Аудиоплеер */}
                             {(track.link || track.audio_url || track.audioFile) && (
                               <div className="mt-3">
-                                <AudioPlayer
-                                  releaseId={selectedRelease.id}
-                                  releaseType={selectedRelease.release_type}
-                                  trackIndex={idx}
-                                  supabase={supabase}
-                                  variant="full"
-                                  className="w-full"
-                                />
+                                <div className="flex items-center gap-3">
+                                  <div className="flex-1">
+                                    <AudioPlayer
+                                      releaseId={selectedRelease.id}
+                                      releaseType={selectedRelease.release_type}
+                                      trackIndex={idx}
+                                      supabase={supabase}
+                                      variant="full"
+                                      className="w-full"
+                                    />
+                                  </div>
+                                  {/* Кнопка скачивания трека */}
+                                  <button
+                                    onClick={() => handleDownloadTrack(selectedRelease.id, selectedRelease.release_type, idx, track.title)}
+                                    className="flex-shrink-0 p-2.5 bg-gradient-to-br from-[#6050ba]/30 to-[#9d8df1]/20 hover:from-[#6050ba] hover:to-[#9d8df1] border border-[#6050ba]/30 hover:border-[#6050ba] rounded-xl transition-all duration-300 hover:scale-110 group/dl"
+                                    title="Скачать трек"
+                                  >
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#9d8df1] group-hover/dl:text-white transition-colors">
+                                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                      <polyline points="7 10 12 15 17 10"/>
+                                      <line x1="12" y1="15" x2="12" y2="3"/>
+                                    </svg>
+                                  </button>
+                                </div>
                               </div>
                             )}
                             

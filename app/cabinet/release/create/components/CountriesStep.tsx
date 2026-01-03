@@ -1,130 +1,111 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { CountryFlag, allCountriesByRegion, regionGroups, getCountriesByRegionGroup, getAllCountries } from '@/components/CountryFlagsSVG';
+import { RegionIcon } from '@/components/RegionIcons';
 
 interface CountriesStepProps {
+  // Поддержка двух режимов: selectedCountries ИЛИ excludedCountries
   selectedCountries?: string[];
   setSelectedCountries?: (countries: string[]) => void;
+  excludedCountries?: string[];
+  setExcludedCountries?: (countries: string[]) => void;
   onNext: () => void;
   onBack: () => void;
 }
 
-// Флаги стран (emoji)
-const countryFlags: { [key: string]: string } = {
-  'Россия': '🇷🇺', 'Беларусь': '🇧🇾', 'Казахстан': '🇰🇿', 'Украина': '🇺🇦',
-  'Узбекистан': '🇺🇿', 'Азербайджан': '🇦🇿', 'Армения': '🇦🇲', 'Грузия': '🇬🇪',
-  'Молдова': '🇲🇩', 'Кыргызстан': '🇰🇬', 'Таджикистан': '🇹🇯', 'Туркменистан': '🇹🇲',
-  'США': '🇺🇸', 'Великобритания': '🇬🇧', 'Германия': '🇩🇪', 'Франция': '🇫🇷',
-  'Италия': '🇮🇹', 'Испания': '🇪🇸', 'Канада': '🇨🇦', 'Австралия': '🇦🇺',
-  'Япония': '🇯🇵', 'Южная Корея': '🇰🇷', 'Бразилия': '🇧🇷', 'Мексика': '🇲🇽',
-  'Аргентина': '🇦🇷', 'Польша': '🇵🇱', 'Турция': '🇹🇷', 'Нидерланды': '🇳🇱',
-  'Швеция': '🇸🇪', 'Норвегия': '🇳🇴', 'Финляндия': '🇫🇮', 'Чехия': '🇨🇿',
-  'Австрия': '🇦🇹', 'Бельгия': '🇧🇪', 'Швейцария': '🇨🇭', 'Дания': '🇩🇰',
-  'Португалия': '🇵🇹', 'Греция': '🇬🇷', 'Ирландия': '🇮🇪', 'Китай': '🇨🇳',
-  'Индия': '🇮🇳', 'Индонезия': '🇮🇩', 'Таиланд': '🇹🇭', 'Вьетнам': '🇻🇳',
-  'Малайзия': '🇲🇾', 'Сингапур': '🇸🇬', 'Филиппины': '🇵🇭', 'ОАЭ': '🇦🇪',
-  'Саудовская Аравия': '🇸🇦', 'Израиль': '🇮🇱', 'Египет': '🇪🇬', 'ЮАР': '🇿🇦',
-  'Нигерия': '🇳🇬', 'Чили': '🇨🇱', 'Колумбия': '🇨🇴', 'Перу': '🇵🇪', 'Венесуэла': '🇻🇪'
+// Иконки для групп регионов
+const regionGroupIcons: Record<string, React.ReactNode> = {
+  'Европа': (
+    <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5"/>
+      <path d="M8 8L10 6L14 8L16 6L18 10L16 14L18 16L14 18L10 16L8 18L6 14L8 10Z" fill="currentColor" opacity="0.3"/>
+      <circle cx="12" cy="12" r="3" fill="currentColor"/>
+    </svg>
+  ),
+  'Америка': (
+    <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
+      <path d="M12 2L8 6L10 10L6 14L8 18L12 22L16 18L14 14L18 10L16 6Z" stroke="currentColor" strokeWidth="1.5" fill="currentColor" fillOpacity="0.2"/>
+      <circle cx="12" cy="10" r="2" fill="currentColor"/>
+    </svg>
+  ),
+  'Азия': (
+    <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
+      <path d="M4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20" stroke="currentColor" strokeWidth="1.5"/>
+      <path d="M12 4V20M4 12H20" stroke="currentColor" strokeWidth="1" opacity="0.5"/>
+      <circle cx="14" cy="10" r="3" fill="currentColor" fillOpacity="0.3"/>
+    </svg>
+  ),
+  'Африка и Океания': (
+    <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
+      <circle cx="10" cy="12" r="6" stroke="currentColor" strokeWidth="1.5" fill="currentColor" fillOpacity="0.2"/>
+      <circle cx="18" cy="16" r="3" stroke="currentColor" strokeWidth="1.5" fill="currentColor" fillOpacity="0.3"/>
+    </svg>
+  ),
 };
 
-export default function CountriesStep({ selectedCountries, setSelectedCountries, onNext, onBack }: CountriesStepProps) {
-  const countryCodes: { [key: string]: string } = {
-    'Россия': 'RU',
-    'Беларусь': 'BY',
-    'Казахстан': 'KZ',
-    'Украина': 'UA',
-    'Узбекистан': 'UZ',
-    'Азербайджан': 'AZ',
-    'Армения': 'AM',
-    'Грузия': 'GE',
-    'Молдова': 'MD',
-    'Кыргызстан': 'KG',
-    'Таджикистан': 'TJ',
-    'Туркменистан': 'TM',
-    'США': 'US',
-    'Великобритания': 'GB',
-    'Германия': 'DE',
-    'Франция': 'FR',
-    'Италия': 'IT',
-    'Испания': 'ES',
-    'Канада': 'CA',
-    'Австралия': 'AU',
-    'Япония': 'JP',
-    'Южная Корея': 'KR',
-    'Бразилия': 'BR',
-    'Мексика': 'MX',
-    'Аргентина': 'AR',
-    'Польша': 'PL',
-    'Турция': 'TR',
-    'Нидерланды': 'NL',
-    'Швеция': 'SE',
-    'Норвегия': 'NO',
-    'Финляндия': 'FI',
-    'Чехия': 'CZ',
-    'Австрия': 'AT',
-    'Бельгия': 'BE',
-    'Швейцария': 'CH',
-    'Дания': 'DK',
-    'Португалия': 'PT',
-    'Греция': 'GR',
-    'Ирландия': 'IE',
-    'Китай': 'CN',
-    'Индия': 'IN',
-    'Индонезия': 'ID',
-    'Таиланд': 'TH',
-    'Вьетнам': 'VN',
-    'Малайзия': 'MY',
-    'Сингапур': 'SG',
-    'Филиппины': 'PH',
-    'ОАЭ': 'AE',
-    'Саудовская Аравия': 'SA',
-    'Израиль': 'IL',
-    'Египет': 'EG',
-    'ЮАР': 'ZA',
-    'Нигерия': 'NG',
-    'Чили': 'CL',
-    'Колумбия': 'CO',
-    'Перу': 'PE',
-    'Венесуэла': 'VE'
-  };
+// Цвета для групп регионов
+const regionGroupColors: Record<string, { bg: string; border: string; text: string }> = {
+  'Европа': { bg: 'from-blue-500/20 to-indigo-600/20', border: 'border-blue-500/30', text: 'text-blue-300' },
+  'Америка': { bg: 'from-red-500/20 to-orange-600/20', border: 'border-red-500/30', text: 'text-red-300' },
+  'Азия': { bg: 'from-amber-500/20 to-yellow-600/20', border: 'border-amber-500/30', text: 'text-amber-300' },
+  'Африка и Океания': { bg: 'from-emerald-500/20 to-green-600/20', border: 'border-emerald-500/30', text: 'text-emerald-300' },
+};
 
-  // Регионы стран
-  const regions: { [key: string]: string[] } = {
-    'СНГ': ['Россия', 'Беларусь', 'Казахстан', 'Украина', 'Узбекистан', 'Азербайджан', 'Армения', 'Грузия', 'Молдова', 'Кыргызстан', 'Таджикистан', 'Туркменистан'],
-    'Европа': ['Великобритания', 'Германия', 'Франция', 'Италия', 'Испания', 'Польша', 'Нидерланды', 'Швеция', 'Норвегия', 'Финляндия', 'Чехия', 'Австрия', 'Бельгия', 'Швейцария', 'Дания', 'Португалия', 'Греция', 'Ирландия'],
-    'Северная Америка': ['США', 'Канада', 'Мексика'],
-    'Южная Америка': ['Бразилия', 'Аргентина', 'Чили', 'Колумбия', 'Перу', 'Венесуэла'],
-    'Азия': ['Япония', 'Южная Корея', 'Китай', 'Индия', 'Индонезия', 'Таиланд', 'Вьетнам', 'Малайзия', 'Сингапур', 'Филиппины'],
-    'Ближний Восток': ['Турция', 'ОАЭ', 'Саудовская Аравия', 'Израиль'],
-    'Океания': ['Австралия'],
-    'Африка': ['Египет', 'ЮАР', 'Нигерия']
-  };
+export default function CountriesStep({ 
+  selectedCountries,
+  setSelectedCountries,
+  excludedCountries: excludedCountriesProp, 
+  setExcludedCountries: setExcludedCountriesProp, 
+  onNext, 
+  onBack 
+}: CountriesStepProps) {
+  const allCountries = getAllCountries();
   
-  const allCountries = Object.keys(countryCodes);
+  // Определяем режим работы
+  // Если передан excludedCountries - используем его
+  // Если передан selectedCountries - конвертируем в excludedCountries
+  const useExcludedMode = excludedCountriesProp !== undefined || setExcludedCountriesProp !== undefined;
   
-  // excludedCountries = страны которые НЕ выбраны (исключены из дистрибуции)
-  const [excludedCountries, setExcludedCountries] = useState<string[]>(() => {
-    // Вычисляем исключённые страны из переданных включённых
-    if (!selectedCountries || selectedCountries.length === 0) return allCountries;
-    return allCountries.filter(c => !selectedCountries.includes(c));
-  });
-  
-  // Состояние аккордеонов (раскрытые регионы)
-  const [expandedRegions, setExpandedRegions] = useState<string[]>(['СНГ']);
-  
-  // Обновляем selectedCountries при изменении excludedCountries
-  useEffect(() => {
-    if (setSelectedCountries) {
-      const included = allCountries.filter(c => !excludedCountries.includes(c));
-      setSelectedCountries(included);
+  // Вычисляем excludedCountries из props
+  const excludedCountries = useMemo(() => {
+    if (useExcludedMode) {
+      return excludedCountriesProp || [];
+    } else if (selectedCountries && selectedCountries.length > 0) {
+      // Конвертируем selectedCountries в excludedCountries
+      return allCountries.filter(c => !selectedCountries.includes(c));
     }
-  }, [excludedCountries]);
-
-  const toggleRegion = (regionName: string) => {
-    setExpandedRegions(prev => 
-      prev.includes(regionName) 
-        ? prev.filter(r => r !== regionName)
-        : [...prev, regionName]
-    );
+    // По умолчанию все исключены если selectedCountries пустой
+    return allCountries;
+  }, [useExcludedMode, excludedCountriesProp, selectedCountries, allCountries]);
+  
+  const setExcludedCountries = (newExcluded: string[]) => {
+    if (useExcludedMode && setExcludedCountriesProp) {
+      setExcludedCountriesProp(newExcluded);
+    } else if (setSelectedCountries) {
+      // Конвертируем excludedCountries обратно в selectedCountries
+      const newSelected = allCountries.filter(c => !newExcluded.includes(c));
+      setSelectedCountries(newSelected);
+    }
   };
+  
+  // Активная группа регионов (вкладка)
+  const [activeGroup, setActiveGroup] = useState<string>('Европа');
+  
+  // Активный подрегион внутри группы
+  const [activeSubRegion, setActiveSubRegion] = useState<string>('СНГ');
+  
+  // Поиск стран
+  const [searchQuery, setSearchQuery] = useState('');
+  
+  // Количество выбранных стран
+  const selectedCount = allCountries.length - excludedCountries.length;
+
+  // При смене группы - выбираем первый подрегион
+  useEffect(() => {
+    const subRegions = regionGroups[activeGroup] || [];
+    if (subRegions.length > 0 && !subRegions.includes(activeSubRegion)) {
+      setActiveSubRegion(subRegions[0]);
+    }
+  }, [activeGroup]);
 
   const toggleCountry = (country: string) => {
     if (excludedCountries.includes(country)) {
@@ -139,12 +120,69 @@ export default function CountriesStep({ selectedCountries, setSelectedCountries,
   };
 
   const deselectAll = () => {
-    setExcludedCountries(allCountries);
+    setExcludedCountries([...allCountries]);
+  };
+
+  // Выбрать всю группу регионов
+  const selectGroup = (groupName: string) => {
+    const groupCountries = getCountriesByRegionGroup(groupName);
+    setExcludedCountries(excludedCountries.filter(c => !groupCountries.includes(c)));
+  };
+
+  // Снять выбор со всей группы
+  const deselectGroup = (groupName: string) => {
+    const groupCountries = getCountriesByRegionGroup(groupName);
+    const newExcluded = [...excludedCountries];
+    groupCountries.forEach(c => {
+      if (!newExcluded.includes(c)) newExcluded.push(c);
+    });
+    setExcludedCountries(newExcluded);
+  };
+
+  // Выбрать подрегион
+  const selectSubRegion = (regionName: string) => {
+    const regionCountries = allCountriesByRegion[regionName] || [];
+    setExcludedCountries(excludedCountries.filter(c => !regionCountries.includes(c)));
+  };
+
+  // Снять подрегион
+  const deselectSubRegion = (regionName: string) => {
+    const regionCountries = allCountriesByRegion[regionName] || [];
+    const newExcluded = [...excludedCountries];
+    regionCountries.forEach(c => {
+      if (!newExcluded.includes(c)) newExcluded.push(c);
+    });
+    setExcludedCountries(newExcluded);
+  };
+
+  // Фильтрация стран по поиску
+  const getFilteredCountries = (countries: string[]) => {
+    if (!searchQuery.trim()) return countries;
+    const query = searchQuery.toLowerCase();
+    return countries.filter(c => c.toLowerCase().includes(query));
+  };
+
+  // Текущие страны подрегиона
+  const currentSubRegionCountries = allCountriesByRegion[activeSubRegion] || [];
+  const filteredCountries = getFilteredCountries(currentSubRegionCountries);
+
+  // Статистика по группе регионов
+  const getGroupStats = (groupName: string) => {
+    const countries = getCountriesByRegionGroup(groupName);
+    const selected = countries.filter(c => !excludedCountries.includes(c)).length;
+    return { selected, total: countries.length };
+  };
+
+  // Статистика по подрегиону
+  const getSubRegionStats = (regionName: string) => {
+    const countries = allCountriesByRegion[regionName] || [];
+    const selected = countries.filter(c => !excludedCountries.includes(c)).length;
+    return { selected, total: countries.length };
   };
 
   return (
     <div className="animate-fade-up">
-      <div className="mb-8">
+      <div className="mb-6">
         <div className="flex items-center gap-3 mb-3">
           <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500/20 to-purple-600/20 flex items-center justify-center ring-1 ring-white/10">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-purple-300">
@@ -155,204 +193,222 @@ export default function CountriesStep({ selectedCountries, setSelectedCountries,
           </div>
           <div>
             <h2 className="text-3xl font-black bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">Страны распространения</h2>
-            <p className="text-sm text-zinc-500 mt-1">Выберите страны для распространения релиза</p>
+            <p className="text-sm text-zinc-500 mt-1">Выберите страны для распространения релиза ({allCountries.length} стран)</p>
           </div>
         </div>
       </div>
       
-      <div className="relative p-6 bg-gradient-to-br from-purple-500/10 via-transparent to-purple-600/10 border border-purple-500/20 rounded-2xl mb-6 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-purple-600/5 opacity-50 pointer-events-none"/>
-        <div className="relative flex items-start gap-4 mb-4">
-          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500/30 to-purple-600/30 flex items-center justify-center flex-shrink-0 ring-1 ring-purple-400/30">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-purple-300" strokeWidth="2">
-              <circle cx="12" cy="12" r="10"/>
-              <line x1="2" y1="12" x2="22" y2="12"/>
-              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-            </svg>
+      <div className="relative p-5 bg-gradient-to-br from-purple-500/10 via-transparent to-purple-600/10 border border-purple-500/20 rounded-2xl mb-6 overflow-hidden">
+        {/* Общая статистика и кнопки */}
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-5">
+          <div className="flex items-center gap-3">
+            <div className="px-4 py-2 bg-white/5 rounded-xl border border-white/10">
+              <span className="text-zinc-400 text-sm">Выбрано:</span>
+              <span className="ml-2 font-bold text-white text-lg">{selectedCount}</span>
+              <span className="text-zinc-500 text-sm">/{allCountries.length}</span>
+            </div>
           </div>
-          <div>
-            <p className="text-white font-semibold mb-1.5">По умолчанию релиз будет доступен во всех странах</p>
-            <p className="text-sm text-zinc-400 leading-relaxed">Вы можете выбрать страны, в которых релиз НЕ будет доступен</p>
-          </div>
-        </div>
-        
-        <div className="mt-4">
-          <div className="flex flex-wrap gap-2 mb-4">
+          
+          <div className="flex gap-2">
             <button
               type="button"
               onClick={selectAll}
-              className="px-4 py-2 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 rounded-lg text-sm font-medium transition"
+              className="px-4 py-2 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 rounded-lg text-sm font-medium transition-all"
             >
-              Выбрать все
+              ✓ Выбрать все
             </button>
             <button
               type="button"
               onClick={deselectAll}
-              className="px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 text-zinc-300 rounded-lg text-sm font-medium transition"
+              className="px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 text-zinc-300 rounded-lg text-sm font-medium transition-all"
             >
-              Снять все
+              ✕ Снять все
             </button>
-            <div className="ml-auto text-sm text-zinc-400 flex items-center">
-              Выбрано стран: <span className="ml-1 font-bold text-white">{selectedCountries?.length || 0}/{allCountries.length}</span>
-            </div>
+          </div>
+        </div>
+        
+        {/* 4 вкладки групп регионов */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+          {Object.keys(regionGroups).map((groupName) => {
+            const stats = getGroupStats(groupName);
+            const colors = regionGroupColors[groupName];
+            const isActive = activeGroup === groupName;
+            const isFullySelected = stats.selected === stats.total;
+            const isPartiallySelected = stats.selected > 0 && stats.selected < stats.total;
+            
+            return (
+              <button
+                key={groupName}
+                onClick={() => setActiveGroup(groupName)}
+                className={`relative p-4 rounded-xl font-medium transition-all ${
+                  isActive 
+                    ? `bg-gradient-to-br ${colors.bg} ${colors.border} border-2 shadow-lg` 
+                    : 'bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20'
+                }`}
+              >
+                <div className="flex items-center gap-3 mb-2">
+                  <div className={isActive ? colors.text : 'text-zinc-400'}>
+                    {regionGroupIcons[groupName]}
+                  </div>
+                  <div className={`font-bold text-lg ${isActive ? 'text-white' : 'text-zinc-300'}`}>{groupName}</div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className={`w-full h-1.5 rounded-full bg-white/10 overflow-hidden`}>
+                    <div 
+                      className={`h-full rounded-full transition-all ${
+                        isFullySelected ? 'bg-emerald-500' :
+                        isPartiallySelected ? 'bg-amber-500' :
+                        'bg-zinc-600'
+                      }`}
+                      style={{ width: `${(stats.selected / stats.total) * 100}%` }}
+                    />
+                  </div>
+                  <span className={`text-xs font-medium min-w-[45px] text-right ${
+                    isFullySelected ? 'text-emerald-400' :
+                    isPartiallySelected ? 'text-amber-400' :
+                    'text-zinc-500'
+                  }`}>
+                    {stats.selected}/{stats.total}
+                  </span>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Кнопки выбора всей группы */}
+        <div className="flex items-center justify-between mb-4 pb-4 border-b border-white/10">
+          <div className="flex flex-wrap gap-2">
+            {(regionGroups[activeGroup] || []).map((subRegion) => {
+              const stats = getSubRegionStats(subRegion);
+              const isActive = activeSubRegion === subRegion;
+              const isFullySelected = stats.selected === stats.total;
+              
+              return (
+                <button
+                  key={subRegion}
+                  onClick={() => setActiveSubRegion(subRegion)}
+                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 ${
+                    isActive 
+                      ? 'bg-white/15 border border-white/20 text-white' 
+                      : 'bg-white/5 border border-white/5 text-zinc-400 hover:bg-white/10 hover:text-zinc-300'
+                  }`}
+                >
+                  <RegionIcon region={subRegion} className="w-4 h-4" />
+                  <span>{subRegion}</span>
+                  <span className={`px-1.5 py-0.5 rounded text-xs ${
+                    isFullySelected ? 'bg-emerald-500/30 text-emerald-300' : 'bg-white/10 text-zinc-500'
+                  }`}>
+                    {stats.selected}/{stats.total}
+                  </span>
+                </button>
+              );
+            })}
           </div>
           
-          {/* Кнопки регионов */}
-          <div className="mb-4">
-            <div className="text-xs text-zinc-500 uppercase tracking-wide mb-2 font-semibold">Быстрый выбор по регионам:</div>
-            <div className="flex flex-wrap gap-2">
-              {Object.entries(regions).map(([regionName, regionCountries]) => {
-                const selectedInRegion = regionCountries.filter(c => selectedCountries?.includes(c)).length;
-                const allInRegion = regionCountries.length;
-                const isFullySelected = selectedInRegion === allInRegion;
-                const isPartiallySelected = selectedInRegion > 0 && selectedInRegion < allInRegion;
-                
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => selectGroup(activeGroup)}
+              className="px-3 py-2 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 rounded-lg text-xs font-medium transition-all whitespace-nowrap"
+            >
+              ✓ Вся {activeGroup}
+            </button>
+            <button
+              type="button"
+              onClick={() => deselectGroup(activeGroup)}
+              className="px-3 py-2 bg-white/5 hover:bg-white/10 border border-white/10 text-zinc-400 rounded-lg text-xs font-medium transition-all whitespace-nowrap"
+            >
+              ✕ Снять
+            </button>
+          </div>
+        </div>
+        
+        {/* Панель управления подрегионом */}
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+          {/* Поиск */}
+          <div className="relative flex-1 min-w-[200px] max-w-[300px]">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" strokeWidth="2">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Поиск страны..."
+              className="w-full pl-10 pr-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/30 transition-all"
+            />
+          </div>
+          
+          {/* Кнопки управления подрегионом */}
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => selectSubRegion(activeSubRegion)}
+              className="px-3 py-2 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 rounded-lg text-xs font-medium transition-all"
+            >
+              ✓ Весь {activeSubRegion}
+            </button>
+            <button
+              type="button"
+              onClick={() => deselectSubRegion(activeSubRegion)}
+              className="px-3 py-2 bg-white/5 hover:bg-white/10 border border-white/10 text-zinc-400 rounded-lg text-xs font-medium transition-all"
+            >
+              ✕ Снять
+            </button>
+          </div>
+        </div>
+        
+        {/* Сетка стран */}
+        <div className="max-h-[400px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+          {filteredCountries.length === 0 ? (
+            <div className="text-center py-10 text-zinc-500">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="mx-auto mb-3 opacity-50" strokeWidth="1.5">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+              <p>Страны не найдены</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
+              {filteredCountries.map(country => {
+                const isExcluded = excludedCountries.includes(country);
                 return (
                   <button
-                    key={regionName}
-                    type="button"
-                    onClick={() => {
-                      if (isFullySelected) {
-                        // Убираем все страны региона
-                        setExcludedCountries([...excludedCountries, ...regionCountries.filter(c => !excludedCountries.includes(c))]);
-                      } else {
-                        // Добавляем все страны региона
-                        setExcludedCountries(excludedCountries.filter(c => !regionCountries.includes(c)));
-                      }
-                    }}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                      isFullySelected 
-                        ? 'bg-gradient-to-r from-emerald-500/30 to-green-500/30 border border-emerald-500/50 text-emerald-300' 
-                        : isPartiallySelected
-                          ? 'bg-gradient-to-r from-amber-500/20 to-yellow-500/20 border border-amber-500/40 text-amber-300'
-                          : 'bg-white/5 border border-white/10 text-zinc-400 hover:bg-white/10 hover:text-white'
+                    key={country}
+                    onClick={() => toggleCountry(country)}
+                    className={`group relative px-3 py-2.5 rounded-xl text-sm font-medium transition-all overflow-hidden ${
+                      isExcluded
+                        ? 'bg-white/[0.02] border border-white/5 text-zinc-500 hover:border-white/20 hover:bg-white/5'
+                        : 'bg-gradient-to-br from-emerald-500/15 to-green-500/10 border border-emerald-500/30 text-white hover:border-emerald-500/50 hover:shadow-lg hover:shadow-emerald-500/10'
                     }`}
-                    title={`${regionName}: ${selectedInRegion}/${allInRegion} стран выбрано`}
                   >
-                    {regionName}
-                    <span className="ml-1.5 opacity-60">({selectedInRegion}/{allInRegion})</span>
+                    <div className="relative flex items-center gap-2">
+                      <CountryFlag country={country} className="w-5 h-4 flex-shrink-0 rounded-sm" />
+                      <span className={`truncate ${isExcluded ? 'line-through opacity-50' : ''}`}>{country}</span>
+                      {!isExcluded && (
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="ml-auto text-emerald-400 flex-shrink-0" strokeWidth="2.5">
+                          <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                      )}
+                    </div>
                   </button>
                 );
               })}
             </div>
-          </div>
-          
-          {/* Аккордеоны регионов с флагами */}
-          <div className="space-y-3">
-            {Object.entries(regions).map(([regionName, regionCountries]) => {
-              const selectedInRegion = regionCountries.filter(c => selectedCountries?.includes(c)).length;
-              const allInRegion = regionCountries.length;
-              const isFullySelected = selectedInRegion === allInRegion;
-              const isPartiallySelected = selectedInRegion > 0 && selectedInRegion < allInRegion;
-              const isExpanded = expandedRegions.includes(regionName);
-              
-              return (
-                <div key={regionName} className="rounded-xl overflow-hidden border border-white/10">
-                  {/* Заголовок аккордеона */}
-                  <button
-                    onClick={() => toggleRegion(regionName)}
-                    className={`w-full px-4 py-3 flex items-center justify-between transition-all ${
-                      isFullySelected 
-                        ? 'bg-gradient-to-r from-emerald-500/20 to-green-500/10' 
-                        : isPartiallySelected
-                          ? 'bg-gradient-to-r from-amber-500/10 to-yellow-500/5'
-                          : 'bg-white/5 hover:bg-white/10'
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      {/* Чекбокс региона */}
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (isFullySelected) {
-                            setExcludedCountries([...excludedCountries, ...regionCountries.filter(c => !excludedCountries.includes(c))]);
-                          } else {
-                            setExcludedCountries(excludedCountries.filter(c => !regionCountries.includes(c)));
-                          }
-                        }}
-                        className={`w-5 h-5 rounded flex items-center justify-center transition-all ${
-                          isFullySelected 
-                            ? 'bg-emerald-500 text-black' 
-                            : isPartiallySelected
-                              ? 'bg-amber-500/50 text-white'
-                              : 'bg-white/10 hover:bg-white/20'
-                        }`}
-                      >
-                        {isFullySelected && (
-                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                            <polyline points="20 6 9 17 4 12"/>
-                          </svg>
-                        )}
-                        {isPartiallySelected && <div className="w-2 h-2 bg-white rounded-sm"/>}
-                      </button>
-                      
-                      <span className="font-bold text-white">{regionName}</span>
-                      <span className={`text-xs px-2 py-0.5 rounded-full ${
-                        isFullySelected 
-                          ? 'bg-emerald-500/30 text-emerald-300' 
-                          : isPartiallySelected
-                            ? 'bg-amber-500/30 text-amber-300'
-                            : 'bg-white/10 text-zinc-400'
-                      }`}>
-                        {selectedInRegion}/{allInRegion}
-                      </span>
-                    </div>
-                    
-                    <svg 
-                      width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" 
-                      className={`text-zinc-400 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
-                      strokeWidth="2"
-                    >
-                      <polyline points="6 9 12 15 18 9"/>
-                    </svg>
-                  </button>
-                  
-                  {/* Содержимое аккордеона */}
-                  {isExpanded && (
-                    <div className="p-3 bg-black/20 border-t border-white/5">
-                      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-                        {regionCountries.map(country => {
-                          const isExcluded = excludedCountries.includes(country);
-                          return (
-                            <button
-                              key={country}
-                              onClick={() => toggleCountry(country)}
-                              className={`relative px-3 py-2.5 rounded-lg text-sm font-medium transition-all overflow-hidden group ${
-                                isExcluded
-                                  ? 'bg-white/5 border border-white/10 text-zinc-500 hover:border-white/20'
-                                  : 'bg-gradient-to-br from-emerald-500/20 to-green-500/10 border border-emerald-500/30 text-white hover:border-emerald-500/50'
-                              }`}
-                            >
-                              <div className="relative flex items-center gap-2">
-                                <span className="text-lg">{countryFlags[country] || '🌍'}</span>
-                                <span className={isExcluded ? 'line-through opacity-50' : ''}>{country}</span>
-                                {!isExcluded && (
-                                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="ml-auto text-emerald-400" strokeWidth="2.5">
-                                    <polyline points="20 6 9 17 4 12"/>
-                                  </svg>
-                                )}
-                              </div>
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
+          )}
         </div>
       </div>
 
-      <div className="mt-8 pt-6 border-t border-white/10 flex justify-between">
-        <button onClick={onBack} className="px-6 py-3 bg-white/5 hover:bg-white/10 rounded-xl font-bold transition flex items-center gap-2">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="15 18 9 12 15 6" strokeWidth="2"/></svg>
+      <div className="mt-6 pt-5 border-t border-white/10 flex justify-between">
+        <button onClick={onBack} className="px-6 py-3 bg-white/5 hover:bg-white/10 rounded-xl font-bold transition flex items-center gap-2 border border-white/10">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="15 18 9 12 15 6"/></svg>
           Назад
         </button>
-        <button onClick={onNext} className="px-8 py-3 bg-[#6050ba] hover:bg-[#7060ca] rounded-xl font-bold transition flex items-center gap-2">
+        <button onClick={onNext} className="px-8 py-3 bg-gradient-to-r from-[#6050ba] to-[#7060ca] hover:from-[#7060ca] hover:to-[#8070da] rounded-xl font-bold transition flex items-center gap-2 shadow-lg shadow-purple-500/20">
           Далее
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="9 18 15 12 9 6" strokeWidth="2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
       </div>
     </div>

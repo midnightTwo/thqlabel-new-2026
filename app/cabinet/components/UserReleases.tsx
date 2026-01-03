@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import { UserRole } from '../lib/types';
+import { showSuccessToast, showErrorToast } from '@/lib/showToast';
 import {
   Release,
   FilterState,
@@ -14,6 +15,7 @@ import {
   CopyToast,
   DraggableReleasesGrid
 } from './releases';
+import { PaymentModal } from './modals';
 
 interface UserReleasesProps {
   userId?: string | null;
@@ -57,6 +59,10 @@ export default function UserReleases({ userId, nickname, onOpenUpload, userRole,
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [draftToDelete, setDraftToDelete] = useState<Release | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
+  
+  // Состояние для модального окна оплаты
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [paymentRelease, setPaymentRelease] = useState<Release | null>(null);
 
   // Фильтрованные релизы
   const displayReleases = useFilteredReleases(releases, filters);
@@ -78,6 +84,13 @@ export default function UserReleases({ userId, nickname, onOpenUpload, userRole,
 
   // Обработчик клика по релизу
   const handleReleaseClick = async (release: Release) => {
+    // Релизы ожидающие оплаты - открываем модальное окно оплаты
+    if (release.status === 'awaiting_payment') {
+      setPaymentRelease(release);
+      setShowPaymentModal(true);
+      return;
+    }
+    
     // Релизы на модерации и черновики можно редактировать
     if (release.status === 'pending' || release.status === 'draft') {
       const editPath = release.release_type === 'basic' 
@@ -117,14 +130,13 @@ export default function UserReleases({ userId, nickname, onOpenUpload, userRole,
       if (error) throw error;
 
       // Показываем уведомление
-      setShowCopyToast(true);
-      setTimeout(() => setShowCopyToast(false), 2000);
+      showSuccessToast('Черновик успешно удалён');
       
       // Обновляем данные без перезагрузки
       await reloadReleases();
     } catch (error) {
       console.error('Ошибка при удалении черновика:', error);
-      alert('Не удалось удалить черновик');
+      showErrorToast('Не удалось удалить черновик');
     }
   };
 
@@ -228,11 +240,14 @@ export default function UserReleases({ userId, nickname, onOpenUpload, userRole,
       setDraftToDelete(null);
       setIsDeleting(false);
       
+      // Показываем уведомление
+      showSuccessToast('Черновик успешно удалён');
+      
       // Обновляем список релизов
       await reloadReleases();
     } catch (error) {
       console.error('Ошибка при удалении черновика:', error);
-      alert('Не удалось удалить черновик');
+      showErrorToast('Не удалось удалить черновик');
       setIsDeleting(false);
     }
   };
@@ -348,7 +363,8 @@ export default function UserReleases({ userId, nickname, onOpenUpload, userRole,
               onAddRelease={handleAddRelease}
               onDragEnter={handleDragEnter}
               dropTargetId={dropTargetId}
-              totalCount={releases.length}
+              totalCount={releases.filter(r => r.status !== 'draft').length}
+              draftsCount={releases.filter(r => r.status === 'draft').length}
               hasFilters={hasFilters}
               onResetFilters={handleResetFilters}
               onDeleteDraft={handleDeleteDraft}
@@ -427,6 +443,18 @@ export default function UserReleases({ userId, nickname, onOpenUpload, userRole,
 
       {/* Toast уведомление */}
       <CopyToast show={showCopyToast} />
+      
+      {/* Модальное окно оплаты */}
+      <PaymentModal
+        show={showPaymentModal}
+        release={paymentRelease}
+        userId={userId}
+        onClose={() => {
+          setShowPaymentModal(false);
+          setPaymentRelease(null);
+        }}
+        onPaymentComplete={reloadReleases}
+      />
     </div>
   );
 }

@@ -29,7 +29,8 @@ interface AvatarCropModalProps {
 const createCroppedImage = async (
   imageSrc: string,
   pixelCrop: Area,
-  outputSize: number = 400
+  outputSize: number = 400,
+  outputMime: string = 'image/jpeg'
 ): Promise<Blob> => {
   const image = await createImage(imageSrc);
   const canvas = document.createElement('canvas');
@@ -57,13 +58,16 @@ const createCroppedImage = async (
   );
 
   return new Promise((resolve, reject) => {
+    const mime = outputMime || 'image/jpeg';
+    // Если оригинальный mime - gif, canvas потеряет анимацию, используем png вместо gif
+    const safeMime = mime === 'image/gif' ? 'image/png' : mime;
     canvas.toBlob((blob) => {
       if (blob) {
         resolve(blob);
       } else {
         reject(new Error('Canvas is empty'));
       }
-    }, 'image/jpeg', 0.92);
+    }, safeMime, safeMime.includes('png') ? 1 : 0.92);
   });
 };
 
@@ -90,6 +94,7 @@ export default function AvatarCropModal({
   showNotification,
 }: AvatarCropModalProps) {
   const [imageSrc, setImageSrc] = useState<string | null>(null);
+  const [originalFile, setOriginalFile] = useState<File | null>(null);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null);
@@ -133,10 +138,25 @@ export default function AvatarCropModal({
       showNotification('Файл слишком большой. Максимум 5MB', 'error');
       return;
     }
+    // Если это GIF — не показываем кадрирование, сразу сохраняем оригинал
+    if (file.type === 'image/gif') {
+      setIsProcessing(true);
+      try {
+        onSaveImage(file);
+      } catch (err) {
+        console.error('Error uploading gif avatar:', err);
+        showNotification('Ошибка при загрузке GIF', 'error');
+        setIsProcessing(false);
+      }
+      // Сбрасываем input для возможности повторного выбора того же файла
+      if (fileInputRef.current) fileInputRef.current.value = '';
+      return;
+    }
 
     const reader = new FileReader();
     reader.addEventListener('load', () => {
       setImageSrc(reader.result as string);
+      setOriginalFile(file);
       setIsCropping(true);
       setZoom(1);
       setCrop({ x: 0, y: 0 });
@@ -154,7 +174,8 @@ export default function AvatarCropModal({
 
     setIsProcessing(true);
     try {
-      const croppedImageBlob = await createCroppedImage(imageSrc, croppedAreaPixels, 400);
+      const outputMime = originalFile?.type || 'image/jpeg';
+      const croppedImageBlob = await createCroppedImage(imageSrc, croppedAreaPixels, 400, outputMime);
       onSaveImage(croppedImageBlob);
     } catch (error) {
       console.error('Error cropping image:', error);
@@ -380,7 +401,7 @@ export default function AvatarCropModal({
                       </div>
                       <div className="text-center">
                         <p className="text-sm text-white font-medium mb-1">Выбрать фото</p>
-                        <p className="text-xs text-zinc-500">PNG, JPG • до 5 MB</p>
+                        <p className="text-xs text-zinc-500">PNG, JPG, GIF • до 5 MB</p>
                       </div>
                     </div>
                   </div>

@@ -173,7 +173,10 @@ const FloatingShapes = memo(({ isLight }: { isLight?: boolean }) => {
               ? 'rgba(255, 255, 255, 0.4)'
               : 'rgba(96, 80, 186, 0.02)',
             backdropFilter: isLight ? 'blur(8px)' : 'none',
-            animation: `float-shape ${shape.duration}s ease-in-out infinite`,
+            animationName: 'float-shape',
+            animationDuration: `${shape.duration}s`,
+            animationTimingFunction: 'ease-in-out',
+            animationIterationCount: 'infinite',
             animationDelay: `${shape.delay}s`,
             willChange: 'transform',
             transform: 'translateZ(0)',
@@ -235,7 +238,10 @@ const FloatingParticles = memo(({ isLight }: { isLight?: boolean }) => {
             background: isLight 
               ? 'linear-gradient(135deg, rgba(180,140,220,0.9) 0%, rgba(140,180,220,0.9) 50%, rgba(200,160,200,0.9) 100%)'
               : undefined,
-            animation: `${isLight ? 'sparkle-float' : 'particle-fly'} ${p.duration}s ease-in-out infinite`,
+            animationName: isLight ? 'sparkle-float' : 'particle-fly',
+            animationDuration: `${p.duration}s`,
+            animationTimingFunction: 'ease-in-out',
+            animationIterationCount: 'infinite',
             animationDelay: `${p.delay}s`,
             willChange: 'transform, opacity',
             transform: 'translateZ(0)',
@@ -327,7 +333,10 @@ const FloatingReleaseCard = memo(({ release, index, isMobile }: { release: any; 
       <div 
         className="relative w-20 h-28 sm:w-24 sm:h-32 lg:w-32 lg:h-40 xl:w-36 xl:h-44 rounded-xl sm:rounded-2xl overflow-hidden backdrop-blur-md group"
         style={{
-          animation: `float-card ${6 + index}s ease-in-out infinite`,
+          animationName: 'float-card',
+          animationDuration: `${6 + index}s`,
+          animationTimingFunction: 'ease-in-out',
+          animationIterationCount: 'infinite',
           animationDelay: `${index * 0.3}s`,
           background: isMobile 
             ? 'rgba(0, 0, 0, 0.15)'
@@ -503,6 +512,7 @@ export default function FeedPage() {
   const [news, setNews] = useState<any[]>([]);
   const rafRef = useRef<number | null>(null);
   const [showIntro, setShowIntro] = useState(true);
+  const [introReady, setIntroReady] = useState(false);
 
   // Оптимизированная проверка размера экрана
   const checkMobile = useCallback(() => {
@@ -517,11 +527,16 @@ export default function FeedPage() {
     // Принудительная прокрутка в самый верх
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' as ScrollBehavior });
     
+    // Запускаем intro анимацию после монтирования (для корректной работы CSS анимаций)
+    requestAnimationFrame(() => {
+      setIntroReady(true);
+    });
+    
     // Таймер для скрытия intro и показа контента
     const introTimer = setTimeout(() => {
       setShowIntro(false);
       setMounted(true);
-    }, 1500);
+    }, 1800);
     
     // Проверяем размер экрана
     checkMobile();
@@ -562,7 +577,14 @@ export default function FeedPage() {
     <main className="min-h-screen overflow-hidden relative">
       {/* Intro анимация - использует CSS классы для темы (НЕ JS) */}
       {showIntro && (
-        <div className="intro-screen fixed inset-0 z-[100] flex items-center justify-center animate-[fade-out_0.5s_ease-out_1.5s_forwards]">
+        <div 
+          className={`intro-screen fixed inset-0 z-[100] flex items-center justify-center transition-opacity duration-500 ${
+            introReady ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{
+            animation: introReady ? 'intro-fade-out 0.5s ease-out 1.5s forwards' : 'none'
+          }}
+        >
           {/* Тёмный фон - показывается по умолчанию (тёмная тема) */}
           <div className="intro-dark-bg absolute inset-0" />
           
@@ -613,18 +635,20 @@ export default function FeedPage() {
               style={{
                 width: '350px',
                 height: '350px',
-                animation: 'intro-scale 0.8s cubic-bezier(0.34,1.56,0.64,1)',
+                opacity: introReady ? 1 : 0,
+                transform: introReady ? 'scale(1)' : 'scale(0.5)',
+                transition: 'opacity 0.8s cubic-bezier(0.34,1.56,0.64,1), transform 0.8s cubic-bezier(0.34,1.56,0.64,1)',
               }}
             >
               {/* БОЛЬШОЕ ЛОГО - ПОВЕРХ ВСЕГО */}
               <img 
                 src="/logo.png" 
                 alt="thq" 
-                className="intro-logo absolute z-30 object-contain"
+                className={`intro-logo absolute z-30 object-contain ${isLight ? 'invert brightness-0' : ''}`}
                 style={{
                   width: '400px',
                   height: '400px',
-                  animation: 'logo-glow-intro 2s ease-in-out infinite',
+                  animation: introReady ? 'logo-glow-intro 2s ease-in-out infinite' : 'none',
                 }}
               />
 
@@ -634,7 +658,7 @@ export default function FeedPage() {
                 style={{
                   width: '200px',
                   height: '200px',
-                  animation: 'glow-pulse 3s ease-in-out infinite',
+                  animation: introReady ? 'glow-pulse 3s ease-in-out infinite' : 'none',
                 }}
               />
               
@@ -644,7 +668,7 @@ export default function FeedPage() {
                 style={{
                   width: '120px',
                   height: '120px',
-                  animation: 'planet-pulse 4s ease-in-out infinite',
+                  animation: introReady ? 'planet-pulse 4s ease-in-out infinite' : 'none',
                 }}
               >
                 {/* Яркий блик */}
@@ -671,7 +695,7 @@ export default function FeedPage() {
                   style={{
                     borderRadius: '50%',
                     border: '16px solid transparent',
-                    animation: 'ring-spin 8s linear infinite',
+                    animation: introReady ? 'ring-spin 8s linear infinite' : 'none',
                   }}
                 />
                 {/* Второе кольцо */}
@@ -684,7 +708,7 @@ export default function FeedPage() {
                     bottom: '-12px',
                     borderRadius: '50%',
                     border: '8px solid transparent',
-                    animation: 'ring-spin 12s linear infinite reverse',
+                    animation: introReady ? 'ring-spin 12s linear infinite reverse' : 'none',
                   }}
                 />
                 {/* Третье пунктирное кольцо */}
@@ -696,18 +720,21 @@ export default function FeedPage() {
                     right: '-25px',
                     bottom: '-25px',
                     borderRadius: '50%',
-                    animation: 'ring-spin 16s linear infinite',
+                    animation: introReady ? 'ring-spin 16s linear infinite' : 'none',
                   }}
                 />
               </div>
 
               {/* Летающие частицы */}
-              {[...Array(10)].map((_, i) => (
+              {introReady && [...Array(10)].map((_, i) => (
                 <div
                   key={i}
                   className="intro-particle absolute w-2 h-2 rounded-full"
                   style={{
-                    animation: `particle-orbit ${5 + i * 0.6}s linear infinite`,
+                    animationName: 'particle-orbit',
+                    animationDuration: `${5 + i * 0.6}s`,
+                    animationTimingFunction: 'linear',
+                    animationIterationCount: 'infinite',
                     animationDelay: `${i * 0.5}s`,
                   }}
                 />
@@ -718,7 +745,10 @@ export default function FeedPage() {
             <div 
               className="text-4xl md:text-5xl font-black italic mt-6"
               style={{
-                animation: 'text-glow 3s ease-in-out infinite, fade-in 0.5s ease-out 0.3s both',
+                opacity: introReady ? 1 : 0,
+                transform: introReady ? 'translateY(0)' : 'translateY(10px)',
+                transition: 'opacity 0.5s ease-out 0.3s, transform 0.5s ease-out 0.3s',
+                animation: introReady ? 'text-glow 3s ease-in-out infinite' : 'none',
               }}
             >
               <span className="intro-text-thq">thq</span>
@@ -728,7 +758,11 @@ export default function FeedPage() {
             {/* Анимированные точки загрузки */}
             <div 
               className="flex items-center justify-center gap-2 mt-4"
-              style={{ animation: 'fade-in 0.5s ease-out 0.5s both' }}
+              style={{ 
+                opacity: introReady ? 1 : 0,
+                transform: introReady ? 'translateY(0)' : 'translateY(10px)',
+                transition: 'opacity 0.5s ease-out 0.5s, transform 0.5s ease-out 0.5s',
+              }}
             >
               <span className="intro-loading-text text-xs uppercase tracking-[0.3em] font-medium">Загрузка</span>
               <span className="flex gap-1 ml-1">
@@ -737,7 +771,10 @@ export default function FeedPage() {
                     key={i}
                     className="intro-loading-dot w-1.5 h-1.5 rounded-full"
                     style={{
-                      animation: 'loading-dot 1.4s ease-in-out infinite',
+                      animationName: introReady ? 'loading-dot' : 'none',
+                      animationDuration: '1.4s',
+                      animationTimingFunction: 'ease-in-out',
+                      animationIterationCount: 'infinite',
                       animationDelay: `${i * 0.2}s`,
                     }}
                   />
@@ -745,80 +782,6 @@ export default function FeedPage() {
               </span>
             </div>
           </div>
-
-          <style jsx>{`
-            @keyframes intro-scale {
-              0% { opacity: 0; transform: scale(0.5); }
-              100% { opacity: 1; transform: scale(1); }
-            }
-            @keyframes glow-pulse {
-              0%, 100% { opacity: 0.6; transform: scale(1); }
-              50% { opacity: 1; transform: scale(1.3); }
-            }
-            @keyframes planet-pulse {
-              0%, 100% { transform: scale(1); }
-              50% { transform: scale(1.03); }
-            }
-            @keyframes logo-glow-intro {
-              0%, 100% { transform: scale(1); }
-              50% { transform: scale(1.05); }
-            }
-            @keyframes ring-spin {
-              from { transform: rotateZ(0deg); }
-              to { transform: rotateZ(360deg); }
-            }
-            @keyframes particle-orbit {
-              0% { transform: rotate(0deg) translateX(150px) rotate(0deg); opacity: 0; }
-              10% { opacity: 1; }
-              90% { opacity: 1; }
-              100% { transform: rotate(360deg) translateX(150px) rotate(-360deg); opacity: 0; }
-            }
-            @keyframes twinkle {
-              0%, 100% { opacity: 0.2; transform: scale(1); }
-              50% { opacity: 1; transform: scale(1.5); }
-            }
-            @keyframes sparkle {
-              0%, 100% { opacity: 0.3; transform: scale(0.8); }
-              50% { opacity: 1; transform: scale(1.2); }
-            }
-            @keyframes text-glow {
-              0%, 100% { filter: brightness(1); }
-              50% { filter: brightness(1.2); }
-            }
-            @keyframes loading-dot {
-              0%, 80%, 100% { transform: scale(0.6); opacity: 0.3; }
-              40% { transform: scale(1.2); opacity: 1; }
-            }
-            @keyframes fade-in {
-              0% { opacity: 0; transform: translateY(10px); }
-              100% { opacity: 1; transform: translateY(0); }
-            }
-            @keyframes fade-out {
-              0% { opacity: 1; }
-              100% { opacity: 0; visibility: hidden; pointer-events: none; }
-            }
-            @keyframes holographic-shift {
-              0%, 100% { 
-                filter: hue-rotate(0deg) brightness(1);
-              }
-              50% { 
-                filter: hue-rotate(15deg) brightness(1.03);
-              }
-            }
-            @keyframes holographic-glow {
-              0%, 100% { opacity: 0.5; }
-              50% { opacity: 0.7; }
-            }
-            @keyframes shimmer {
-              0% { background-position: 250% 250%; }
-              100% { background-position: -250% -250%; }
-            }
-            @keyframes float-blob {
-              0%, 100% { transform: translate(0, 0) scale(1); }
-              33% { transform: translate(15px, -15px) scale(1.03); }
-              66% { transform: translate(-10px, 10px) scale(0.98); }
-            }
-          `}</style>
         </div>
       )}
       
@@ -936,15 +899,15 @@ export default function FeedPage() {
         <div className="fixed inset-0 pointer-events-none" style={{ transform: 'translateZ(0)' }}>
           <div 
             className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#6050ba]/12 rounded-full" 
-            style={{ filter: 'blur(150px)', animation: 'gradient-pulse 8s ease-in-out infinite' }}
+            style={{ filter: 'blur(150px)', animationName: 'gradient-pulse', animationDuration: '8s', animationTimingFunction: 'ease-in-out', animationIterationCount: 'infinite' }}
           />
           <div 
             className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#9d8df1]/12 rounded-full" 
-            style={{ filter: 'blur(120px)', animation: 'gradient-pulse 8s ease-in-out infinite 2s' }}
+            style={{ filter: 'blur(120px)', animationName: 'gradient-pulse', animationDuration: '8s', animationTimingFunction: 'ease-in-out', animationIterationCount: 'infinite', animationDelay: '2s' }}
         />
         <div 
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#c4b5fd]/08 rounded-full" 
-          style={{ filter: 'blur(180px)', animation: 'gradient-pulse 10s ease-in-out infinite 1s' }}
+          style={{ filter: 'blur(180px)', animationName: 'gradient-pulse', animationDuration: '10s', animationTimingFunction: 'ease-in-out', animationIterationCount: 'infinite', animationDelay: '1s' }}
         />
         <style jsx>{`
           @keyframes gradient-pulse {
@@ -1101,12 +1064,12 @@ export default function FeedPage() {
                 <img 
                   src="/logo.png" 
                   alt="thq" 
-                  className="absolute z-30 object-contain"
+                  className={`absolute z-30 object-contain ${isLight ? 'invert brightness-0' : ''}`}
                   style={{
                     width: '500px',
                     height: '500px',
                     filter: isLight 
-                      ? 'drop-shadow(0 0 25px rgba(96,80,186,0.5)) drop-shadow(0 0 50px rgba(96,80,186,0.3)) brightness(0.85) contrast(1.15)'
+                      ? 'drop-shadow(0 0 25px rgba(96,80,186,0.5)) drop-shadow(0 0 50px rgba(96,80,186,0.3))'
                       : 'drop-shadow(0 0 40px rgba(255,255,255,1)) drop-shadow(0 0 60px rgba(147,112,219,0.8))',
                   }}
                 />

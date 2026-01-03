@@ -8,6 +8,10 @@ $backupDir = "C:\Backups"
 $backupName = "${projectName}_${timestamp}"
 $backupPath = Join-Path $backupDir $backupName
 
+# Go up one level from scripts/ to project root
+$projectRoot = (Get-Item $PSScriptRoot).Parent.FullName
+Set-Location $projectRoot
+
 # Create backup directory if not exists
 if (-not (Test-Path $backupDir)) {
     New-Item -ItemType Directory -Path $backupDir -Force | Out-Null
@@ -18,7 +22,7 @@ Write-Host ""
 Write-Host "==================================" -ForegroundColor Cyan
 Write-Host "   BACKUP STARTED" -ForegroundColor Cyan
 Write-Host "==================================" -ForegroundColor Cyan
-Write-Host "Source: $PWD" -ForegroundColor Gray
+Write-Host "Source: $projectRoot" -ForegroundColor Gray
 Write-Host "Destination: $backupPath" -ForegroundColor Gray
 Write-Host ""
 

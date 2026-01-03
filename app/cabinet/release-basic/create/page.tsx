@@ -4,6 +4,8 @@ import { useRouter } from 'next/navigation';
 import AnimatedBackground from '@/components/AnimatedBackground';
 import { supabase } from '../../lib/supabase';
 import { useTheme } from '@/contexts/ThemeContext';
+import { showSuccessToast, showErrorToast } from '@/lib/showToast';
+import { getAllCountries } from '@/components/CountryFlagsSVG';
 import {
   ReleaseInfoStep,
   TracklistStep,
@@ -14,6 +16,7 @@ import {
   PaymentStep,
   SendStep,
   ReleaseTypeSelector,
+  getAllPlatforms,
 } from './components';
 
 export type ReleaseType = 'single' | 'ep' | 'album';
@@ -27,6 +30,7 @@ function StepsSidebar({
   selectedTracksCount,
   genre,
   coverFile,
+  releaseDate,
   tracksCount,
   agreedToContract,
   selectedPlatforms,
@@ -44,6 +48,7 @@ function StepsSidebar({
   selectedTracksCount: number | undefined;
   genre: string;
   coverFile: File | null;
+  releaseDate: string;
   tracksCount: number;
   agreedToContract: boolean;
   selectedPlatforms: number;
@@ -58,7 +63,7 @@ function StepsSidebar({
   const isStepComplete = (stepId: string): boolean => {
     switch(stepId) {
       case 'release':
-        return !!(releaseTitle.trim() && genre && coverFile);
+        return !!(releaseTitle.trim() && genre && coverFile && releaseDate);
       case 'tracklist':
         return tracksCount > 0;
       case 'countries':
@@ -93,11 +98,10 @@ function StepsSidebar({
     { id: 'send', label: 'Отправка', icon: '✈' },
   ];
 
-  // Подсчёт заполненных обязательных шагов
-  const completedSteps = steps.filter(step => 
-    step.id !== 'send' && isStepComplete(step.id)
-  ).length;
-  const totalRequiredSteps = steps.length - 1; // Исключаем "Отправка"
+  // Подсчёт заполненных обязательных шагов (promo не обязателен)
+  const requiredStepIds = steps.filter(s => s.id !== 'send' && s.id !== 'promo').map(s => s.id);
+  const completedSteps = steps.filter(step => requiredStepIds.includes(step.id) && isStepComplete(step.id)).length;
+  const totalRequiredSteps = requiredStepIds.length;
   const progress = (completedSteps / totalRequiredSteps) * 100;
 
   // Динамические цвета прогресс-бара
@@ -110,15 +114,17 @@ function StepsSidebar({
   return (
     <aside className={`lg:w-64 w-full backdrop-blur-xl border rounded-3xl p-6 flex flex-col lg:self-start lg:sticky lg:top-24 shadow-2xl relative overflow-hidden ${
       isLight
-        ? 'bg-[rgba(25,25,30,0.85)] border-purple-500/30 shadow-black/30'
+        ? 'bg-[rgba(255,255,255,0.45)] border-white/60 shadow-purple-500/10'
         : 'bg-gradient-to-br from-white/[0.07] to-white/[0.02] border-white/10 shadow-black/20'
     }`}>
       {/* Декоративный градиент */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5 pointer-events-none" />
       
       <div className="mb-6 relative z-10">
-        <h3 className="font-bold text-lg bg-gradient-to-r from-white to-zinc-300 bg-clip-text text-transparent">Создание релиза</h3>
-        <p className="text-xs text-zinc-400 mt-1">Basic Plan</p>
+        <h3 className={`font-bold text-lg bg-gradient-to-r bg-clip-text text-transparent ${
+          isLight ? 'from-[#2a2550] to-[#4a4570]' : 'from-white to-zinc-300'
+        }`}>Создание релиза</h3>
+        <p className={`text-xs mt-1 ${isLight ? 'text-[#5a5580]' : 'text-zinc-400'}`}>Basic Plan</p>
       </div>
       
       {/* Индикатор типа релиза */}
@@ -316,12 +322,12 @@ export default function CreateReleaseBasicPage() {
   const [trackProducers, setTrackProducers] = useState<string[]>([]);
   const [trackFeaturing, setTrackFeaturing] = useState<string[]>([]);
   
-  // Countries state
-  const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
+  // Countries state - сразу выбраны все страны
+  const [selectedCountries, setSelectedCountries] = useState<string[]>(() => getAllCountries());
   
-  // Platforms state
-  const [selectedPlatforms, setSelectedPlatforms] = useState(0);
-  const [selectedPlatformsList, setSelectedPlatformsList] = useState<string[]>([]);
+  // Platforms state - сразу выбраны все площадки
+  const [selectedPlatformsList, setSelectedPlatformsList] = useState<string[]>(() => getAllPlatforms());
+  const [selectedPlatforms, setSelectedPlatforms] = useState(() => getAllPlatforms().length);
   
   // Contract state
   const [agreedToContract, setAgreedToContract] = useState(false);
@@ -334,10 +340,48 @@ export default function CreateReleaseBasicPage() {
   
   // Payment state
   const [paymentReceiptUrl, setPaymentReceiptUrl] = useState('');
+  const [paymentComment, setPaymentComment] = useState('');
   
   // Draft state
   const [draftId, setDraftId] = useState<string | null>(null);
   const [isSavingDraft, setIsSavingDraft] = useState(false);
+  
+  // Состояние завершённости шагов для отслеживания появления галочек
+  const [completedSteps, setCompletedSteps] = useState<Set<string>>(new Set());
+  
+  // Функция проверки завершённости шага
+  const isStepComplete = (stepId: string): boolean => {
+    switch(stepId) {
+      case 'release':
+        return !!(releaseTitle.trim() && genre && coverFile && releaseDate);
+      case 'tracklist':
+        return tracks.length > 0;
+      case 'countries':
+        return selectedCountries.length > 0;
+      case 'contract':
+        return agreedToContract;
+      case 'platforms':
+        return selectedPlatforms > 0;
+      case 'promo':
+        return !!((focusTrack && focusTrackPromo) || albumDescription);
+      case 'payment':
+        return !!paymentReceiptUrl;
+      default:
+        return false;
+    }
+  };
+  
+  // Проверка обязательных шагов для "Оплатить позже"
+  const canPayLater = !!(
+    releaseTitle.trim() && 
+    genre && 
+    coverFile && 
+    releaseDate &&
+    tracks.length > 0 && 
+    selectedCountries.length > 0 && 
+    agreedToContract && 
+    selectedPlatforms > 0
+  );
 
   useEffect(() => {
     const getUser = async () => {
@@ -359,20 +403,36 @@ export default function CreateReleaseBasicPage() {
     getUser();
   }, [router]);
   
-  // Автосохранение черновика при изменении полей
+  // Отслеживание завершённости шагов - сохраняем черновик когда появляется новая галочка
   useEffect(() => {
-    if (!user || !supabase || currentStep !== 'release') return;
+    if (!user || !supabase || !genre) return;
     
-    // Сохраняем только если выбран жанр (обязательное поле в БД)
-    if (!genre) return;
+    const steps = ['release', 'tracklist', 'countries', 'contract', 'platforms', 'promo'];
+    const newlyCompleted: string[] = [];
     
-    const timeoutId = setTimeout(() => {
-      console.log('💾 [BASIC] Автосохранение...');
-      saveDraft();
-    }, 2000);
+    steps.forEach(stepId => {
+      const isComplete = isStepComplete(stepId);
+      if (isComplete && !completedSteps.has(stepId)) {
+        newlyCompleted.push(stepId);
+      }
+    });
     
-    return () => clearTimeout(timeoutId);
-  }, [releaseTitle, artistName, genre, subgenres, releaseDate, collaborators, coverFile, currentStep, user]);
+    if (newlyCompleted.length > 0) {
+      // Обновляем набор завершённых шагов
+      setCompletedSteps(prev => {
+        const newSet = new Set(prev);
+        newlyCompleted.forEach(s => newSet.add(s));
+        return newSet;
+      });
+      
+      // Сохраняем черновик
+      console.log('✅ Шаг(и) завершён(ы):', newlyCompleted.join(', '), '- сохраняем черновик');
+      saveDraft().then(() => {
+        showSuccessToast('Черновик сохранён');
+      });
+    }
+  }, [releaseTitle, genre, coverFile, releaseDate, tracks.length, selectedCountries.length, 
+      agreedToContract, selectedPlatforms, focusTrack, focusTrackPromo, albumDescription, user]);
   
   // Функция автосохранения черновика
   const saveDraft = async () => {
@@ -390,7 +450,7 @@ export default function CreateReleaseBasicPage() {
         const fileName = `${user.id}-${Date.now()}.${fileExt}`;
         const { data: uploadData, error: uploadError } = await supabase.storage
           .from('releases')
-          .upload(fileName, coverFile, { upsert: true });
+          .upload(fileName, coverFile, { contentType: coverFile.type, upsert: true });
         
         if (!uploadError && uploadData) {
           const { data: { publicUrl } } = supabase.storage
@@ -425,8 +485,16 @@ export default function CreateReleaseBasicPage() {
         release_date: releaseDate,
         collaborators: collaborators.length > 0 ? collaborators : null,
         tracks: tracksForSave.length > 0 ? tracksForSave : null,
+        countries: selectedCountries.length > 0 ? selectedCountries : null,
+        platforms: selectedPlatformsList.length > 0 ? selectedPlatformsList : null,
+        contract_agreed: agreedToContract,
+        contract_agreed_at: agreedToContract ? new Date().toISOString() : null,
+        focus_track: focusTrack || null,
+        focus_track_promo: focusTrackPromo || null,
+        album_description: albumDescription || null,
+        promo_photos: promoPhotos.length > 0 ? promoPhotos : null,
         status: 'draft',
-        created_at: new Date().toISOString()
+        updated_at: new Date().toISOString()
       };
       
       console.log('💾 Данные:', draftData);
@@ -473,22 +541,148 @@ export default function CreateReleaseBasicPage() {
   
   // Обработчик перехода на следующий шаг
   const handleNextStep = async (nextStep: string) => {
-    if (currentStep === 'release') {
-      const savedId = await saveDraft();
-      if (savedId) {
-        const notification = document.createElement('div');
-        notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-xl shadow-lg z-50 animate-fade-in';
-        notification.textContent = '✓ Черновик сохранен';
-        document.body.appendChild(notification);
-        setTimeout(() => {
-          notification.style.opacity = '0';
-          notification.style.transform = 'translateY(-10px)';
-          notification.style.transition = 'all 0.3s ease-out';
-          setTimeout(() => document.body.removeChild(notification), 300);
-        }, 2000);
-      }
-    }
+    // Черновик уже сохраняется автоматически при завершении шага
     setCurrentStep(nextStep);
+  };
+  
+  // Обработчик "Оплатить позже" - сохраняет релиз со статусом awaiting_payment
+  const handlePayLater = async () => {
+    if (!user || !supabase) {
+      showErrorToast('Ошибка: пользователь не авторизован');
+      return;
+    }
+    
+    // Проверяем что все обязательные шаги заполнены
+    if (!canPayLater) {
+      showErrorToast('Заполните все обязательные шаги перед сохранением');
+      return;
+    }
+    
+    setIsSavingDraft(true);
+    
+    try {
+      // Загружаем обложку
+      let coverUrl = null;
+      if (coverFile) {
+        const fileExt = coverFile.name.split('.').pop();
+        const fileName = `${user.id}-${Date.now()}.${fileExt}`;
+        const { data: uploadData, error: uploadError } = await supabase.storage
+          .from('releases')
+          .upload(fileName, coverFile, { contentType: coverFile.type, upsert: true });
+        
+        if (!uploadError && uploadData) {
+          const { data: { publicUrl } } = supabase.storage
+            .from('releases')
+            .getPublicUrl(fileName);
+          coverUrl = publicUrl;
+        }
+      }
+      
+      // Загружаем аудиофайлы треков
+      const tracksWithUrls = await Promise.all(tracks.map(async (track) => {
+        if (track.audioFile) {
+          const audioExt = track.audioFile.name.split('.').pop();
+          const audioFileName = `${user.id}/tracks/${Date.now()}-${Math.random().toString(36).substr(2, 9)}.${audioExt}`;
+          
+          const { error: audioUploadError } = await supabase.storage
+            .from('audio')
+            .upload(audioFileName, track.audioFile, { contentType: track.audioFile.type });
+          
+          if (!audioUploadError) {
+            const { data: { publicUrl: audioPublicUrl } } = supabase.storage
+              .from('audio')
+              .getPublicUrl(audioFileName);
+            
+            return {
+              title: track.title,
+              link: audioPublicUrl,
+              hasDrugs: track.hasDrugs,
+              lyrics: track.lyrics,
+              language: track.language,
+              version: track.version,
+              producers: track.producers,
+              featuring: track.featuring,
+              audioMetadata: track.audioMetadata,
+            };
+          }
+        }
+        
+        return {
+          title: track.title,
+          link: track.link || '',
+          hasDrugs: track.hasDrugs,
+          lyrics: track.lyrics,
+          language: track.language,
+          version: track.version,
+          producers: track.producers,
+          featuring: track.featuring,
+          audioMetadata: track.audioMetadata,
+        };
+      }));
+      
+      // Сохраняем релиз со статусом awaiting_payment
+      // Расчёт стоимости в зависимости от типа релиза
+      const paymentAmount = releaseType === 'single' ? 500 : releaseType === 'ep' ? 1000 : releaseType === 'album' ? 1500 : 500;
+      
+      const releaseData = {
+        user_id: user.id,
+        title: releaseTitle,
+        artist_name: artistName || user.user_metadata?.display_name || user.email?.split('@')[0] || 'Artist',
+        cover_url: coverUrl,
+        genre: genre,
+        subgenres: subgenres,
+        release_date: releaseDate,
+        collaborators: collaborators,
+        tracks: tracksWithUrls,
+        countries: selectedCountries,
+        contract_agreed: agreedToContract,
+        contract_agreed_at: agreedToContract ? new Date().toISOString() : null,
+        platforms: selectedPlatformsList,
+        focus_track: focusTrack,
+        focus_track_promo: focusTrackPromo,
+        album_description: albumDescription,
+        promo_photos: promoPhotos,
+        release_type: releaseType,
+        status: 'awaiting_payment',
+        payment_status: 'pending',
+        payment_amount: paymentAmount,
+      };
+      
+      if (draftId) {
+        const { error: updateError } = await supabase
+          .from('releases_basic')
+          .update({ ...releaseData, updated_at: new Date().toISOString() })
+          .eq('id', draftId)
+          .eq('user_id', user.id);
+        
+        if (updateError) throw updateError;
+      } else {
+        const { error: insertError } = await supabase
+          .from('releases_basic')
+          .insert(releaseData);
+        
+        if (insertError) throw insertError;
+      }
+      
+      // Удаляем черновики
+      if (draftId) {
+        await supabase
+          .from('releases_basic')
+          .delete()
+          .eq('user_id', user.id)
+          .eq('status', 'draft')
+          .eq('title', releaseTitle);
+      }
+      
+      showSuccessToast('Релиз сохранён! Оплатите его в личном кабинете');
+      router.push('/cabinet');
+      
+    } catch (error: any) {
+      console.error('Ошибка сохранения:', error);
+      showErrorToast(error.message || 'Ошибка сохранения релиза');
+    } finally {
+      setIsSavingDraft(false);
+    }
   };
 
   if (loading) {
@@ -532,6 +726,7 @@ export default function CreateReleaseBasicPage() {
           selectedTracksCount={selectedTracksCount}
           genre={genre}
           coverFile={coverFile}
+          releaseDate={releaseDate}
           tracksCount={tracks.length}
           agreedToContract={agreedToContract}
           selectedPlatforms={selectedPlatforms}
@@ -546,7 +741,7 @@ export default function CreateReleaseBasicPage() {
         {/* Основной контент */}
         <section className={`flex-1 backdrop-blur-xl border rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-10 min-h-[500px] shadow-2xl relative overflow-hidden ${
           isLight
-            ? 'bg-[rgba(25,25,30,0.85)] border-purple-500/30 shadow-black/30'
+            ? 'bg-[rgba(255,255,255,0.45)] border-white/60 shadow-purple-500/10'
             : 'bg-gradient-to-br from-white/[0.07] to-white/[0.02] border-white/10 shadow-black/20'
         }`}>
           {/* Декоративный градиент */}
@@ -687,7 +882,13 @@ export default function CreateReleaseBasicPage() {
           {currentStep === 'payment' && (
             <PaymentStep
               userId={user?.id}
-              onPaymentSubmit={(receiptUrl) => setPaymentReceiptUrl(receiptUrl)}
+              releaseType={releaseType}
+              onPaymentSubmit={(receiptUrl, comment) => {
+                setPaymentReceiptUrl(receiptUrl);
+                if (comment) setPaymentComment(comment);
+              }}
+              onPayLater={handlePayLater}
+              canPayLater={canPayLater}
               onNext={() => setCurrentStep('send')}
               onBack={() => setCurrentStep('promo')}
             />
@@ -714,7 +915,9 @@ export default function CreateReleaseBasicPage() {
               platforms={selectedPlatformsList}
               countries={selectedCountries}
               onBack={() => setCurrentStep('payment')}
+              draftId={draftId}
               paymentReceiptUrl={paymentReceiptUrl}
+              paymentComment={paymentComment}
             />
           )}
           </div>

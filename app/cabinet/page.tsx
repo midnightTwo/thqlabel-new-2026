@@ -390,14 +390,16 @@ export default function CabinetPage() {
         await supabase.storage.from('avatars').remove([oldPath]);
       }
       
-      // Генерируем имя файла
-      const fileName = `${user.id}/${Date.now()}.jpg`;
-      
-      // Загружаем новый аватар
+      // Определяем MIME и расширение исходного Blob (если возможно), чтобы не принудительно конвертировать в JPG
+      const mimeType = (croppedImageBlob as any)?.type || 'image/jpeg';
+      const ext = mimeType.split('/')[1] ? mimeType.split('/')[1].replace('jpeg', 'jpg') : 'jpg';
+      const fileName = `${user.id}/${Date.now()}.${ext}`;
+
+      // Загружаем новый аватар с корректным contentType (например image/gif для GIF)
       const { error: uploadError } = await supabase.storage
         .from('avatars')
         .upload(fileName, croppedImageBlob, {
-          contentType: 'image/jpeg',
+          contentType: mimeType,
           upsert: true
         });
       

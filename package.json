@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "SET NODE_OPTIONS=--no-warnings && next dev",
-    "dev:fresh": "rmdir /s /q .next 2>nul & SET NODE_OPTIONS=--no-warnings && next dev",
+    "dev": "if exist .next rmdir /s /q .next && SET NODE_OPTIONS=--no-warnings && next dev",
+    "dev:cache": "SET NODE_OPTIONS=--no-warnings && next dev",
     "build": "next build",
     "build:clean": "rmdir /s /q .next 2>nul & next build",
     "start": "next start",
     "clean": "rmdir /s /q .next 2>nul & echo Cache cleared",
-    "lint": "eslint"
+    "lint": "eslint",
+    "backup": "powershell -ExecutionPolicy Bypass -File ./scripts/smart-backup.ps1"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '../../../lib/supabase';
+import { showSuccessToast, showErrorToast } from '@/lib/showToast';
 
 interface SendStepProps {
   releaseTitle: string;
@@ -8,6 +9,7 @@ interface SendStepProps {
   genre: string;
   tracksCount: number;
   coverFile: File | null;
+  existingCoverUrl?: string;
   collaborators: string[];
   subgenres: string[];
   releaseDate: string | null;
@@ -39,6 +41,8 @@ interface SendStepProps {
   countries: string[];
   onBack: () => void;
   paymentReceiptUrl?: string;
+  paymentComment?: string;
+  draftId?: string | null;
 }
 
 export default function SendStep({ 
@@ -47,6 +51,7 @@ export default function SendStep({
   genre, 
   tracksCount,
   coverFile,
+  existingCoverUrl,
   selectedPlatforms,
   agreedToContract,
   tracks,
@@ -60,31 +65,28 @@ export default function SendStep({
   albumDescription,
   promoPhotos,
   onBack,
-  paymentReceiptUrl
+  paymentReceiptUrl,
+  paymentComment,
+  draftId
 }: SendStepProps) {
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
 
-  // Проверка заполненности каждого шага
-  const stepValidation = [
+  // Явный набор обязательных проверок (promo не включён)
+  const requiredChecks = [
     {
       name: 'Релиз',
-      isValid: !!(releaseTitle.trim() && genre && coverFile),
+      isValid: !!(releaseTitle.trim() && genre && (coverFile || existingCoverUrl)),
       issues: [
         !releaseTitle.trim() && 'Не указано название релиза',
         !genre && 'Не выбран жанр',
-        !coverFile && 'Не загружена обложка'
+        !(coverFile || existingCoverUrl) && 'Не загружена обложка'
       ].filter(Boolean)
     },
     {
       name: 'Треклист',
       isValid: tracksCount > 0,
       issues: tracksCount === 0 ? ['Не добавлено ни одного трека'] : []
-    },
-    {
-      name: 'Страны',
-      isValid: true, // Опциональный шаг
-      issues: []
     },
     {
       name: 'Договор',
@@ -97,21 +99,20 @@ export default function SendStep({
       issues: selectedPlatforms === 0 ? ['Не выбрано ни одной площадки'] : []
     },
     {
-      name: 'Промо',
-      isValid: !!((focusTrack && focusTrackPromo) || albumDescription),
-      issues: !((focusTrack && focusTrackPromo) || albumDescription) 
-        ? ['Не заполнена промо-информация (фокус-трек с описанием или описание альбома)'] 
-        : []
-    },
-    {
       name: 'Оплата',
       isValid: !!paymentReceiptUrl,
       issues: !paymentReceiptUrl ? ['Не загружен чек оплаты'] : []
     }
   ];
 
-  const allValid = stepValidation.every(step => step.isValid);
-  const invalidSteps = stepValidation.filter(step => !step.isValid);
+  const allValid = requiredChecks.every(c => c.isValid);
+  const invalidSteps = requiredChecks.filter(c => !c.isValid);
+
+  // Для отладки: покажем в консоли, какие шаги считаются невалидными
+  if (typeof window !== 'undefined') {
+    // eslint-disable-next-line no-console
+    console.debug('[SendStep basic] invalidSteps:', invalidSteps.map(s => s.name));
+  }
 
   return (
     <div className="animate-fade-up">
@@ -141,7 +142,7 @@ export default function SendStep({
         </h3>
         
         <div className="space-y-3">
-          {stepValidation.map((step, idx) => (
+          {requiredChecks.map((step, idx) => (
             <div 
               key={idx}
               className={`p-3 rounded-lg border transition ${
@@ -239,14 +240,14 @@ export default function SendStep({
               if (!user) throw new Error('Пользователь не авторизован');
               
               // Загрузка обложки
-              let coverUrl = '';
+              let coverUrl = existingCoverUrl || '';
               if (coverFile) {
                 const fileExt = coverFile.name.split('.').pop();
                 const fileName = `${user.id}/${Date.now()}.${fileExt}`;
                 
                 const { data: uploadData, error: uploadError } = await supabase.storage
                   .from('release-covers')
-                  .upload(fileName, coverFile);
+                  .upload(fileName, coverFile, { contentType: coverFile.type, upsert: true });
                 
                 if (uploadError) throw uploadError;
                 
@@ -378,24 +379,51 @@ export default function SendStep({
                 status: 'pending',
                 payment_status: 'pending',
                 payment_receipt_url: paymentReceiptUrl,
+                payment_comment: paymentComment || null,
                 payment_amount: 500,
               };
               
               // Отладка: проверяем данные треков
               console.log('Треки для сохранения:', JSON.stringify(tracksWithUrls, null, 2));
               
-              const { error: insertError } = await supabase
-                .from('releases_basic')
-                .insert(releaseData);
-              
-              if (insertError) {
-                console.error('Ошибка вставки в БД:', insertError);
-                console.error('Данные релиза:', releaseData);
-                throw insertError;
+              // Если есть draftId — обновляем существующий черновик (убираем статус draft)
+              if (draftId) {
+                const { error: updateError } = await supabase
+                  .from('releases_basic')
+                  .update({ ...releaseData, status: 'pending', status_updated_at: new Date().toISOString(), updated_at: new Date().toISOString() })
+                  .eq('id', draftId)
+                  .eq('user_id', user.id);
+
+                if (updateError) {
+                  console.error('Ошибка обновления черновика:', updateError);
+                  throw updateError;
+                }
+              } else {
+                const { error: insertError } = await supabase
+                  .from('releases_basic')
+                  .insert(releaseData);
+
+                if (insertError) {
+                  console.error('Ошибка вставки в БД:', insertError);
+                  console.error('Данные релиза:', releaseData);
+                  throw insertError;
+                }
               }
               
-              alert('Релиз успешно отправлен на модерацию!');
-              router.push('/cabinet');
+              // Удаляем возможные оставшиеся черновики с тем же названием (без риска удалить только что обновлённый релиз)
+              try {
+                await supabase
+                  .from('releases_basic')
+                  .delete()
+                  .eq('user_id', user.id)
+                  .eq('status', 'draft')
+                  .eq('title', releaseTitle);
+              } catch (cleanupErr) {
+                console.warn('Не удалось удалить оставшиеся черновики:', cleanupErr);
+              }
+
+              showSuccessToast('Релиз успешно отправлен на модерацию!', 5000);
+              setTimeout(() => router.push('/cabinet'), 1500);
             } catch (error: any) {
               console.error('Ошибка при отправке релиза:', error);
               
@@ -416,7 +444,8 @@ export default function SendStep({
               
               errorMessage += '\n\nПроверьте консоль браузера (F12) для получения дополнительной информации.';
               
-              alert(errorMessage);
+              showErrorToast('Ошибка при отправке релиза', 6000);
+              console.error(errorMessage);
             } finally {
               setSubmitting(false);
             }

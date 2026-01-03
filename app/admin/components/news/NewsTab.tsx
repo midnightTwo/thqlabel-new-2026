@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useMemo, memo } from 'react';
 import dynamic from 'next/dynamic';
+import { useTheme } from '@/contexts/ThemeContext';
 
 // Ленивая загрузка тяжёлого компонента модального окна
 const ImageCropModal = dynamic(() => import('../ui/ImageCropModal'), {
@@ -10,6 +11,8 @@ const ImageCropModal = dynamic(() => import('../ui/ImageCropModal'), {
 });
 
 export default function NewsTab({ supabase }: { supabase: any }) {
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
   const [news, setNews] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [editingId, setEditingId] = useState<number | null>(null);

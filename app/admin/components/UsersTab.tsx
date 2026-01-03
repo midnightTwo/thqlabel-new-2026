@@ -2,8 +2,11 @@
 
 import { useState, useEffect, useCallback, useMemo, memo } from 'react';
 import { copyToClipboard } from '@/lib/clipboard';
+import { useTheme } from '@/contexts/ThemeContext';
 
 export default function UsersTab({ supabase, currentUserRole }: { supabase: any; currentUserRole: 'admin' | 'owner' }) {
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
   const [users, setUsers] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
@@ -291,34 +294,42 @@ export default function UsersTab({ supabase, currentUserRole }: { supabase: any;
     owner: { bg: 'bg-[#8b5cf6]/20', text: 'text-[#a78bfa]', border: 'border-[#8b5cf6]/30', label: 'OWNER', icon: '♛' },
     admin: { bg: 'bg-[#ff4757]/20', text: 'text-[#ff6b81]', border: 'border-[#ff4757]/30', label: 'ADMIN', icon: '★' },
     exclusive: { bg: 'bg-[#f59e0b]/20', text: 'text-[#fbbf24]', border: 'border-[#f59e0b]/30', label: 'EXCLUSIVE', icon: '◆' },
-    basic: { bg: 'bg-zinc-800/50', text: 'text-zinc-400', border: 'border-zinc-700', label: 'BASIC', icon: '○' },
+    basic: { bg: isLight ? 'bg-gray-200/50' : 'bg-zinc-800/50', text: isLight ? 'text-gray-500' : 'text-zinc-400', border: isLight ? 'border-gray-300' : 'border-zinc-700', label: 'BASIC', icon: '○' },
   };
 
   return (
     <div className="space-y-6">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
         <div>
-          <p className="text-zinc-500 text-sm">Управление пользователями и балансами</p>
-          <p className="text-xs text-zinc-600 mt-1">
+          <p className={`text-sm ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>Управление пользователями и балансами</p>
+          <p className={`text-xs mt-1 ${isLight ? 'text-gray-400' : 'text-zinc-600'}`}>
             Зарегистрировано: {users.length}
           </p>
         </div>
         <div className="flex gap-2 items-center w-full md:w-auto">
           <div className="relative flex-1 md:w-64">
-            <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className={`absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none ${isLight ? 'text-gray-400' : 'text-zinc-500'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
             <input 
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Поиск по email или никнейму..."
-              className="w-full bg-black/30 border border-white/10 rounded-xl pl-10 pr-4 py-2 text-sm outline-none focus:border-[#6050ba]"
+              className={`w-full rounded-xl pl-10 pr-4 py-2 text-sm outline-none transition-colors ${
+                isLight 
+                  ? 'bg-white/60 border border-gray-200 focus:border-[#6050ba] text-gray-800 placeholder-gray-400'
+                  : 'bg-black/30 border border-white/10 focus:border-[#6050ba] text-white placeholder-zinc-500'
+              }`}
             />
           </div>
           <select 
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as any)}
-            className="bg-black/30 border border-white/10 rounded-xl px-3 py-2 text-sm"
+            className={`rounded-xl px-3 py-2 text-sm ${
+              isLight 
+                ? 'bg-white/60 border border-gray-200 text-gray-800'
+                : 'bg-black/30 border border-white/10 text-white'
+            }`}
           >
             <option value="created_at">Дата регистрации</option>
             <option value="email">Email</option>
@@ -327,7 +338,11 @@ export default function UsersTab({ supabase, currentUserRole }: { supabase: any;
           </select>
           <button
             onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
-            className="px-3 py-2 bg-white/5 rounded-xl hover:bg-white/10 transition"
+            className={`px-3 py-2 rounded-xl transition ${
+              isLight 
+                ? 'bg-white/50 hover:bg-white/70 text-gray-700'
+                : 'bg-white/5 hover:bg-white/10 text-white'
+            }`}
             title={sortOrder === 'asc' ? 'По возрастанию' : 'По убыванию'}
           >
             {sortOrder === 'asc' ? '↑' : '↓'}
@@ -343,23 +358,23 @@ export default function UsersTab({ supabase, currentUserRole }: { supabase: any;
         </div>
         <div className="p-3 sm:p-4 bg-[#ff4757]/5 border border-[#ff4757]/20 rounded-xl text-center">
           <div className="text-2xl sm:text-3xl font-black text-[#ff6b81]">{registeredAdmins.length}</div>
-          <div className="text-[9px] sm:text-[10px] text-zinc-500 uppercase tracking-widest">Администраторов</div>
+          <div className={`text-[9px] sm:text-[10px] uppercase tracking-widest ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>Администраторов</div>
         </div>
-        <div className="p-3 sm:p-4 bg-[#f59e0b]/5 border border-[#f59e0b]/20 rounded-xl text-center">
+        <div className={`p-3 sm:p-4 border rounded-xl text-center ${isLight ? 'bg-white/50 border-[#f59e0b]/20' : 'bg-[#f59e0b]/5 border-[#f59e0b]/20'}`}>
           <div className="text-2xl sm:text-3xl font-black text-[#fbbf24]">{registeredExclusive.length}</div>
-          <div className="text-[9px] sm:text-[10px] text-zinc-500 uppercase tracking-widest">Exclusive</div>
+          <div className={`text-[9px] sm:text-[10px] uppercase tracking-widest ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>Exclusive</div>
         </div>
-        <div className="p-3 sm:p-4 bg-zinc-800/30 border border-zinc-700/50 rounded-xl text-center">
-          <div className="text-2xl sm:text-3xl font-black text-zinc-400">{registeredBasic.length}</div>
-          <div className="text-[9px] sm:text-[10px] text-zinc-500 uppercase tracking-widest">Basic</div>
+        <div className={`p-3 sm:p-4 border rounded-xl text-center ${isLight ? 'bg-white/50 border-gray-200' : 'bg-zinc-800/30 border-zinc-700/50'}`}>
+          <div className={`text-2xl sm:text-3xl font-black ${isLight ? 'text-gray-500' : 'text-zinc-400'}`}>{registeredBasic.length}</div>
+          <div className={`text-[9px] sm:text-[10px] uppercase tracking-widest ${isLight ? 'text-gray-400' : 'text-zinc-500'}`}>Basic</div>
         </div>
       </div>
 
       {/* Список пользователей */}
       <div className="space-y-2">
         <div className="flex justify-between items-center mb-3">
-          <h3 className="font-bold text-xs sm:text-sm text-center lg:text-left">Зарегистрированные пользователи ({sortedUsers.length})</h3>
-          <button onClick={loadUsers} className="text-[9px] sm:text-[10px] px-2 sm:px-3 py-1 bg-white/5 rounded-lg hover:bg-white/10 transition">
+          <h3 className={`font-bold text-xs sm:text-sm text-center lg:text-left ${isLight ? 'text-gray-700' : 'text-white'}`}>Зарегистрированные пользователи ({sortedUsers.length})</h3>
+          <button onClick={loadUsers} className={`text-[9px] sm:text-[10px] px-2 sm:px-3 py-1 rounded-lg transition ${isLight ? 'bg-white/50 hover:bg-white/70 text-gray-600' : 'bg-white/5 hover:bg-white/10 text-white'}`}>
             Обновить
           </button>
         </div>
@@ -371,16 +386,16 @@ export default function UsersTab({ supabase, currentUserRole }: { supabase: any;
         )}
         
         {loading ? (
-          <div className="text-zinc-600 py-8 text-center">Загрузка пользователей...</div>
+          <div className={`py-8 text-center ${isLight ? 'text-gray-500' : 'text-zinc-600'}`}>Загрузка пользователей...</div>
         ) : sortedUsers.length === 0 ? (
           <div className="text-center py-12">
             <div className="flex justify-center mb-4">
-              <svg className="w-16 h-16 text-zinc-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className={`w-16 h-16 ${isLight ? 'text-gray-400' : 'text-zinc-600'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
             </div>
-            <p className="text-zinc-500">Пользователей не найдено</p>
-            <p className="text-xs text-zinc-600 mt-2">Всего в базе: {users.length}</p>
+            <p className={isLight ? 'text-gray-500' : 'text-zinc-500'}>Пользователей не найдено</p>
+            <p className={`text-xs mt-2 ${isLight ? 'text-gray-400' : 'text-zinc-600'}`}>Всего в базе: {users.length}</p>
           </div>
         ) : (
           <div className="max-h-[600px] overflow-y-auto space-y-2 pr-2" style={{ scrollbarWidth: 'none' }}>
@@ -399,7 +414,7 @@ export default function UsersTab({ supabase, currentUserRole }: { supabase: any;
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="font-bold text-white truncate">{user.nickname || 'Без никнейма'}</span>
+                    <span className={`font-bold truncate ${isLight ? 'text-gray-800' : 'text-white'}`}>{user.nickname || 'Без никнейма'}</span>
                     <select 
                       value={role}
                       onChange={(e) => updateUserRole(user.id, e.target.value as 'admin' | 'exclusive' | 'basic' | 'owner')}

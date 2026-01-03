@@ -2,7 +2,8 @@
 # Creates ZIP archive without heavy folders
 
 $ProjectName = "thq-label"
-$SourcePath = $PSScriptRoot
+# Go up one level from scripts/ to project root
+$SourcePath = (Get-Item $PSScriptRoot).Parent.FullName
 $BackupFolder = "C:\Backups\thq-label"
 $Date = Get-Date -Format "yyyy-MM-dd_HH-mm-ss"
 $ZipName = "$ProjectName`_$Date.zip"

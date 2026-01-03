@@ -75,16 +75,31 @@ export default function ImageCropModal({ imageSrc, onCropComplete, onCancel }: I
         croppedAreaPixels.height
       );
 
-      // Конвертируем canvas в blob
+      // Определяем желаемый mime по data URI если возможно
+      let outputMime = 'image/jpeg';
+      try {
+        const m = imageSrc.match(/^data:(image\/[^;]+);/);
+        if (m && m[1]) {
+          const original = m[1].toLowerCase();
+          if (original === 'image/png' || original === 'image/webp') {
+            outputMime = original;
+          } else if (original === 'image/gif') {
+            // GIF при рисовании на canvas теряет анимацию — используем PNG
+            outputMime = 'image/png';
+          }
+        }
+      } catch (e) {
+        // fallback
+      }
+
       canvas.toBlob((blob) => {
         if (!blob) {
           setProcessing(false);
           return;
         }
-        
         onCropComplete(blob);
         setProcessing(false);
-      }, 'image/jpeg', 0.95);
+      }, outputMime, outputMime.includes('png') ? 1 : 0.95);
       
     } catch (error) {
       console.error('Ошибка при обрезке изображения:', error);

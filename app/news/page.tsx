@@ -98,20 +98,49 @@ const NewsModal = ({ news, onClose }: any) => {
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight mb-8 sm:mb-10 text-white leading-tight bg-gradient-to-r from-white via-[#c4b5fd] to-white bg-clip-text text-transparent">{news.title}</h1>
           <div className="prose prose-invert prose-sm sm:prose-base lg:prose-lg max-w-none">
             {news.content?.split('\n').map((paragraph: string, i: number) => {
-              if (paragraph.trim() === '---') return <hr key={i} className="border-t-2 border-[#6050ba]/30 my-8 sm:my-10" />;
-              if (paragraph.startsWith('# ')) return <h1 key={i} className="text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tight text-white mt-10 sm:mt-12 mb-5 sm:mb-6">{paragraph.replace('# ', '')}</h1>;
-              if (paragraph.startsWith('## ')) return <h2 key={i} className="text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tight text-[#c4b5fd] mt-8 sm:mt-10 mb-4 sm:mb-5">{paragraph.replace('## ', '')}</h2>;
-              if (paragraph.startsWith('> ')) return <blockquote key={i} className="border-l-4 border-[#6050ba] pl-4 sm:pl-5 py-3 my-5 sm:my-6 text-white/80 italic bg-[#6050ba]/10 rounded-r-xl text-sm sm:text-base">{paragraph.replace('> ', '')}</blockquote>;
-              if (paragraph.startsWith('- ')) return <li key={i} className="text-white/90 ml-4 sm:ml-5 text-sm sm:text-base leading-relaxed">{paragraph.replace('- ', '')}</li>;
-              if (paragraph.trim()) {
-                let processed = paragraph;
+              // Функция для обработки inline-разметки (ссылки, жирный, курсив, код)
+              const processInlineMarkdown = (text: string): string => {
+                let processed = text;
+                // Жирный текст
                 processed = processed.replace(/\*\*(.+?)\*\*/g, '<strong class="font-bold text-white">$1</strong>');
+                // Курсив
                 processed = processed.replace(/\*(.+?)\*/g, '<em class="italic text-zinc-300">$1</em>');
+                // Код
                 processed = processed.replace(/`(.+?)`/g, '<code class="bg-black/50 px-2 py-1 rounded text-[#c4b5fd] text-xs sm:text-sm font-mono">$1</code>');
-                processed = processed.replace(/\[(.+?)\]\((.+?)\)/g, (match, text, url) => {
-                  const href = url.startsWith('http://') || url.startsWith('https://') ? url : `https://${url}`;
-                  return `<a href="${href}" target="_blank" rel="noopener noreferrer" class="text-[#c4b5fd] underline hover:text-[#b8a8ff] transition-colors">${text}</a>`;
+                // Ссылки [текст](url) - с поддержкой любого регистра
+                processed = processed.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, linkText, url) => {
+                  const lowerUrl = url.toLowerCase();
+                  const href = lowerUrl.startsWith('http://') || lowerUrl.startsWith('https://') ? url : `https://${url}`;
+                  return `<a href="${href}" target="_blank" rel="noopener noreferrer" class="text-[#c4b5fd] underline underline-offset-2 hover:text-[#b8a8ff] transition-colors normal-case">${linkText}</a>`;
                 });
+                // Обычные URL (без Markdown разметки) - автоматическое определение ссылок
+                // Ищем URL, которые НЕ находятся внутри href="" или уже обработанных тегов <a>
+                processed = processed.replace(
+                  /(?<!href="|">)(https?:\/\/[^\s<>"']+)/gi,
+                  '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-[#c4b5fd] underline underline-offset-2 hover:text-[#b8a8ff] transition-colors normal-case break-all">$1</a>'
+                );
+                return processed;
+              };
+
+              if (paragraph.trim() === '---') return <hr key={i} className="border-t-2 border-[#6050ba]/30 my-8 sm:my-10" />;
+              if (paragraph.startsWith('# ')) {
+                const content = processInlineMarkdown(paragraph.replace('# ', ''));
+                return <h1 key={i} className="text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tight text-white mt-10 sm:mt-12 mb-5 sm:mb-6" dangerouslySetInnerHTML={{ __html: content }} />;
+              }
+              if (paragraph.startsWith('## ')) {
+                const content = processInlineMarkdown(paragraph.replace('## ', ''));
+                return <h2 key={i} className="text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tight text-[#c4b5fd] mt-8 sm:mt-10 mb-4 sm:mb-5" dangerouslySetInnerHTML={{ __html: content }} />;
+              }
+              if (paragraph.startsWith('> ')) {
+                const content = processInlineMarkdown(paragraph.replace('> ', ''));
+                return <blockquote key={i} className="border-l-4 border-[#6050ba] pl-4 sm:pl-5 py-3 my-5 sm:my-6 text-white/80 italic bg-[#6050ba]/10 rounded-r-xl text-sm sm:text-base" dangerouslySetInnerHTML={{ __html: content }} />;
+              }
+              if (paragraph.startsWith('- ')) {
+                const content = processInlineMarkdown(paragraph.replace('- ', ''));
+                return <li key={i} className="text-white/90 ml-4 sm:ml-5 text-sm sm:text-base leading-relaxed" dangerouslySetInnerHTML={{ __html: content }} />;
+              }
+              if (paragraph.trim()) {
+                const processed = processInlineMarkdown(paragraph);
                 return <p key={i} className="text-white/85 mb-4 sm:mb-5 text-sm sm:text-base leading-relaxed" dangerouslySetInnerHTML={{ __html: processed }} />;
               }
               return null;

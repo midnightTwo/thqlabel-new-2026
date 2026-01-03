@@ -2,6 +2,7 @@
 import React, { useState, useRef } from 'react';
 import { Release } from './types';
 import { STATUS_COLORS, formatDate } from './constants';
+import { useTheme } from '@/contexts/ThemeContext';
 
 interface ReleaseCardProps {
   release: Release;
@@ -15,6 +16,8 @@ interface ReleaseCardProps {
 }
 
 export default function ReleaseCard({ release, onClick, onDelete, onDragStart, onDragEnd, isDragging, onDragEnter, isDropTarget }: ReleaseCardProps) {
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
   const statusColor = STATUS_COLORS[release.status] || 'bg-zinc-500';
   const isDraft = release.status === 'draft';
   const canDrag = isDraft;
@@ -28,7 +31,6 @@ export default function ReleaseCard({ release, onClick, onDelete, onDragStart, o
   
   const statusLabel = {
     pending: 'На модерации',
-    approved: 'Утвержден',
     rejected: 'Отклонен',
     distributed: 'На дистрибьюции',
     published: 'Опубликован',
@@ -139,21 +141,46 @@ export default function ReleaseCard({ release, onClick, onDelete, onDragStart, o
           e.dataTransfer.dropEffect = 'move';
         }
       }}
-      className={`relative group p-3 sm:p-4 glass-morphism-card glass-card-hover interactive-glass rounded-xl sm:rounded-2xl overflow-hidden w-full max-w-[280px] mx-auto ${
+      className={`relative group p-3 sm:p-4 rounded-xl sm:rounded-2xl overflow-hidden w-full max-w-[280px] mx-auto ${
         isDraft ? 'cursor-grab active:cursor-grabbing' : 'cursor-pointer'
       } ${
         isDragging ? 'opacity-0 scale-75 pointer-events-none' : 'opacity-100 scale-100'
       } ${
         isDropTarget && !isDragging
           ? 'ring-2 ring-purple-400 bg-purple-500/10 scale-[0.95] glow-element'
-          : !isDragging ? 'hover:scale-[1.03] hover:shadow-xl hover:shadow-purple-500/20 hover:border-purple-500/30' : ''
+          : !isDragging ? 'hover:scale-[1.03]' : ''
       }`}
       style={{
         transition: isDragging 
           ? 'opacity 0.15s ease-out, transform 0.15s ease-out' 
           : 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
         transformStyle: 'preserve-3d',
-        willChange: isDragging ? 'transform, opacity' : 'auto'
+        willChange: isDragging ? 'transform, opacity' : 'auto',
+        background: isLight 
+          ? 'rgba(255, 255, 255, 0.65)' 
+          : 'linear-gradient(145deg, rgba(255, 255, 255, 0.015) 0%, rgba(255, 255, 255, 0.005) 100%)',
+        backdropFilter: 'blur(24px) saturate(180%)',
+        border: isLight 
+          ? '1px solid rgba(255, 255, 255, 0.8)' 
+          : '1px solid rgba(255, 255, 255, 0.03)',
+        boxShadow: isLight 
+          ? '0 8px 32px rgba(138, 99, 210, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9)' 
+          : '0 25px 50px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
+      }}
+      onMouseEnter={(e) => {
+        if (isDragging) return;
+        const target = e.currentTarget;
+        target.style.boxShadow = isLight 
+          ? '0 16px 48px rgba(138, 99, 210, 0.2), 0 0 30px rgba(138, 99, 210, 0.1)' 
+          : '0 30px 60px rgba(168, 85, 247, 0.3), 0 0 30px rgba(168, 85, 247, 0.2)';
+        target.style.borderColor = isLight ? 'rgba(138, 99, 210, 0.4)' : 'rgba(168, 85, 247, 0.3)';
+      }}
+      onMouseLeave={(e) => {
+        const target = e.currentTarget;
+        target.style.boxShadow = isLight 
+          ? '0 8px 32px rgba(138, 99, 210, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9)' 
+          : '0 25px 50px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05)';
+        target.style.borderColor = isLight ? 'rgba(255, 255, 255, 0.8)' : 'rgba(255, 255, 255, 0.03)';
       }}
       onClick={(e) => {
         // Предотвращаем клик при перетаскивании
@@ -166,11 +193,25 @@ export default function ReleaseCard({ release, onClick, onDelete, onDragStart, o
       }}
     >
       {/* Фоновые эффекты для красоты */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-400/5 via-transparent to-pink-400/5 opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none" />
+      {!isLight && (
+        <>
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-400/5 via-transparent to-pink-400/5 opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none" />
+        </>
+      )}
+      {isLight && (
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-400/5 via-transparent to-pink-400/3 opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none rounded-xl sm:rounded-2xl" />
+      )}
       
       {/* Обложка с улучшенными эффектами */}
-      <div className="w-full aspect-square rounded-lg sm:rounded-xl overflow-hidden bg-black/20 flex items-center justify-center relative group/cover">
+      <div 
+        className="w-full aspect-square rounded-lg sm:rounded-xl overflow-hidden flex items-center justify-center relative group/cover"
+        style={{
+          background: isLight 
+            ? 'linear-gradient(135deg, rgba(138, 99, 210, 0.08) 0%, rgba(167, 139, 250, 0.05) 100%)' 
+            : 'rgba(0, 0, 0, 0.2)'
+        }}
+      >
         {release.cover_url ? (
           <img 
             src={release.cover_url} 
@@ -179,44 +220,40 @@ export default function ReleaseCard({ release, onClick, onDelete, onDragStart, o
             draggable="false" 
           />
         ) : (
-          <div className="text-2xl sm:text-3xl transition-all duration-300 group-hover:scale-125">🎵</div>
+          <div 
+            className="text-2xl sm:text-3xl transition-all duration-300 group-hover:scale-125"
+            style={{ color: isLight ? '#8a63d2' : undefined }}
+          >
+            🎵
+          </div>
         )}
         {/* Overlay при наведении на обложку */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        
-        {/* Бейдж custom_id в верхнем левом углу (если есть) */}
-        {release.custom_id && (
-          <div className="absolute top-1.5 left-1.5 sm:top-2 sm:left-2 z-10">
-            <div className="px-1.5 py-0.5 sm:px-2 sm:py-1 bg-purple-600/90 backdrop-blur-sm rounded text-[8px] sm:text-[10px] font-bold text-white shadow-lg shadow-purple-500/50 border border-purple-400/30">
-              {release.custom_id}
-            </div>
-          </div>
-        )}
       </div>
 
       {/* Информация с анимационными эффектами */}
       <div className="mt-2 sm:mt-3 relative">
-        <div className="font-bold text-white truncate text-sm sm:text-base transition-all duration-300 group-hover:text-purple-300">
+        <div className={`font-bold truncate text-sm sm:text-base transition-all duration-300 ${isLight ? 'text-[#1a1535] group-hover:text-[#8a63d2]' : 'text-white group-hover:text-purple-300'}`}>
           {release.title}
         </div>
-        <div className="text-xs sm:text-sm text-zinc-400 truncate transition-colors duration-300 group-hover:text-zinc-300">
+        <div className={`text-xs sm:text-sm truncate transition-colors duration-300 ${isLight ? 'text-[#5c5580] group-hover:text-[#3d3660]' : 'text-zinc-400 group-hover:text-zinc-300'}`}>
           {release.artist_name || release.artist}
         </div>
       </div>
 
       {/* Статус и дата с улучшенным стилем */}
       <div className="mt-2 sm:mt-3 flex items-center justify-between gap-2">
-        <div className={`text-[8px] sm:text-[9px] px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-white font-bold flex items-center gap-1 sm:gap-1.5 w-fit transition-all duration-300 group-hover:scale-105 ${statusColor}`}>
+        <div className={`text-[8px] sm:text-[9px] px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-white font-bold flex items-center gap-1 sm:gap-1.5 shrink-0 whitespace-nowrap transition-all duration-300 group-hover:scale-105 ${statusColor}`}>
           {shouldAnimate ? (
-            <svg className="animate-spin h-2.5 w-2.5 sm:h-3 sm:w-3" viewBox="0 0 24 24">
+            <svg className="animate-spin h-2.5 w-2.5 sm:h-3 sm:w-3 shrink-0" viewBox="0 0 24 24">
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
           ) : (
-            <span className={`w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full transition-all duration-300 ${getStatusDot()}`}></span>
+            <span className={`w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full shrink-0 transition-all duration-300 ${getStatusDot()}`}></span>
           )}
           <span className="hidden sm:inline">{statusLabel}</span>
-          <span className="inline sm:hidden truncate max-w-[60px]">{statusLabel.slice(0, 6)}</span>
+          <span className="inline sm:hidden">{statusLabel.length > 8 ? statusLabel.slice(0, 6) + '.' : statusLabel}</span>
         </div>
         
         {/* Бейдж 18+ для explicit контента (в footer справа) */}
@@ -271,23 +308,64 @@ interface AddReleaseCardProps {
 }
 
 export function AddReleaseCard({ onClick }: AddReleaseCardProps) {
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
+  
   return (
     <div 
-      className={`relative group p-3 sm:p-4 glass-morphism-card rounded-xl sm:rounded-2xl cursor-pointer hover:scale-[1.03] hover:shadow-xl hover:shadow-purple-500/30 hover:border-purple-500/30 transition-all duration-200 ease-out w-full max-w-[280px] mx-auto`}
+      className={`relative group p-3 sm:p-4 rounded-xl sm:rounded-2xl cursor-pointer hover:scale-[1.03] transition-all duration-200 ease-out w-full max-w-[280px] mx-auto`}
       onClick={onClick}
       style={{
         transformStyle: 'preserve-3d',
-        perspective: '1000px'
+        perspective: '1000px',
+        background: isLight 
+          ? 'rgba(255, 255, 255, 0.6)' 
+          : 'linear-gradient(145deg, rgba(255, 255, 255, 0.015) 0%, rgba(255, 255, 255, 0.005) 100%)',
+        backdropFilter: 'blur(24px) saturate(180%)',
+        border: isLight 
+          ? '1px solid rgba(255, 255, 255, 0.7)' 
+          : '1px solid rgba(255, 255, 255, 0.03)',
+        boxShadow: isLight 
+          ? '0 8px 32px rgba(138, 99, 210, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9)' 
+          : '0 25px 50px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
+      }}
+      onMouseEnter={(e) => {
+        const target = e.currentTarget;
+        target.style.boxShadow = isLight 
+          ? '0 16px 48px rgba(138, 99, 210, 0.2), 0 0 30px rgba(138, 99, 210, 0.1)' 
+          : '0 30px 60px rgba(168, 85, 247, 0.3), 0 0 30px rgba(168, 85, 247, 0.2)';
+        target.style.borderColor = 'rgba(138, 99, 210, 0.4)';
+      }}
+      onMouseLeave={(e) => {
+        const target = e.currentTarget;
+        target.style.boxShadow = isLight 
+          ? '0 8px 32px rgba(138, 99, 210, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9)' 
+          : '0 25px 50px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05)';
+        target.style.borderColor = isLight ? 'rgba(255, 255, 255, 0.7)' : 'rgba(255, 255, 255, 0.03)';
       }}
     >
       {/* Обложка */}
-      <div className="w-full aspect-square rounded-lg sm:rounded-xl overflow-hidden bg-black/20 flex items-center justify-center">
-        <div className="text-2xl sm:text-3xl">＋</div>
+      <div 
+        className={`w-full aspect-square rounded-lg sm:rounded-xl overflow-hidden flex items-center justify-center transition-all duration-300 group-hover:scale-105`}
+        style={{
+          background: isLight 
+            ? 'linear-gradient(135deg, rgba(138, 99, 210, 0.12) 0%, rgba(167, 139, 250, 0.08) 100%)' 
+            : 'linear-gradient(135deg, rgba(138, 99, 210, 0.2) 0%, rgba(139, 92, 246, 0.15) 100%)'
+        }}
+      >
+        <div 
+          className="text-3xl sm:text-4xl font-light transition-all duration-300 group-hover:scale-125 group-hover:rotate-90"
+          style={{ color: isLight ? '#8a63d2' : '#a78bfa' }}
+        >
+          +
+        </div>
       </div>
 
       {/* Информация */}
       <div className="mt-2 sm:mt-3 text-center">
-        <div className="font-bold text-white text-sm sm:text-base">Добавить релиз</div>
+        <div className={`font-bold text-sm sm:text-base transition-colors duration-300 ${isLight ? 'text-[#1a1535] group-hover:text-[#8a63d2]' : 'text-white group-hover:text-purple-300'}`}>
+          Добавить релиз
+        </div>
         <div className="text-xs sm:text-sm text-zinc-400 truncate" style={{ visibility: 'hidden' }}>.</div>
       </div>
 

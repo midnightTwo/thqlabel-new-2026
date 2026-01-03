@@ -396,7 +396,7 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
                           {ticket.release.status && (
                             <span className="text-[10px] px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300">
                               {ticket.release.status === 'pending' && '⏳ На модерации'}
-                              {ticket.release.status === 'approved' && '✅ Одобрен'}
+                              {ticket.release.status === 'distributed' && '📤 На дистрибьюции'}
                               {ticket.release.status === 'rejected' && '❌ Отклонён'}
                               {ticket.release.status === 'published' && '🎵 Опубликован'}
                             </span>

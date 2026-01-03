@@ -188,6 +188,7 @@ const AnimatedBackground = () => {
 const NAV_ITEMS = [
   { href: '/cabinet', label: 'Кабинет' },
   { href: '/news', label: 'Новости' },
+  { href: '/games', label: '🎮 Игры' },
   { href: '/contacts', label: 'Контакты' },
   { href: '/faq', label: 'FAQ' },
 ];
@@ -195,6 +196,7 @@ const NAV_ITEMS = [
 // Левые вкладки для мобильного меню
 const LEFT_NAV_ITEMS = [
   { href: '/feed', label: 'Главная' },
+  { href: '/games', label: '🎮 Игры' },
   { href: '/offer', label: 'Договор ПО' },
 ];
 

@@ -25,6 +25,7 @@ import {
 import UserReleases from './components/reports/UserReleases';
 import { FinanceTab } from './components/finance';
 import { SettingsTab } from './components/settings';
+import { GamesTab, CasesGame } from './components/games';
 import AdminRoleHUD from './components/settings/AdminRoleHUD';
 
 // Компоненты сайдбара
@@ -44,7 +45,7 @@ export default function CabinetPage() {
   const [animationTriggers, setAnimationTriggers] = useState<Set<string>>(new Set());
   
   // Основные состояния (перемещено наверх, чтобы showArchive был доступен в useEffect)
-  const [tab, setTab] = useState<'releases' | 'finance' | 'settings'>('releases');
+  const [tab, setTab] = useState<'releases' | 'cases' | 'games' | 'finance' | 'settings'>('releases');
   const [creatingRelease, setCreatingRelease] = useState(false);
   const [createTab, setCreateTab] = useState<'release'|'tracklist'|'countries'|'contract'|'platforms'|'localization'|'send'|'events'|'promo'>('release');
   const [showArchive, setShowArchive] = useState(false);
@@ -468,11 +469,58 @@ export default function CabinetPage() {
     <div className={`min-h-screen relative z-10 text-white`} style={{ paddingTop: '70px' }}>
       <AnimatedBackground />
       
-      {/* Декоративные элементы */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className={`absolute top-20 left-10 w-32 h-32 rounded-full blur-xl floating-element ${isLight ? 'bg-gradient-to-r from-purple-300/20 to-pink-300/20' : 'bg-gradient-to-r from-purple-400/10 to-pink-400/10'}`}></div>
-        <div className={`absolute top-60 right-20 w-24 h-24 rounded-full blur-lg floating-element ${isLight ? 'bg-gradient-to-r from-blue-300/20 to-cyan-300/20' : 'bg-gradient-to-r from-blue-400/10 to-cyan-400/10'}`} style={{animationDelay: '2s'}}></div>
-        <div className={`absolute bottom-40 left-1/4 w-16 h-16 rounded-full blur-md floating-element ${isLight ? 'bg-gradient-to-r from-indigo-300/20 to-purple-300/20' : 'bg-gradient-to-r from-indigo-400/10 to-purple-400/10'}`} style={{animationDelay: '4s'}}></div>
+      {/* Spotlight эффект следующий за мышью */}
+      <div 
+        className="cabinet-spotlight hidden lg:block"
+        style={{ 
+          left: '50%', 
+          top: '50%',
+        }}
+      />
+      
+      {/* Улучшенные декоративные элементы */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        {/* Большие градиентные орбы */}
+        <div 
+          className={`absolute w-[500px] h-[500px] rounded-full blur-3xl floating-element ${isLight ? 'bg-gradient-to-r from-purple-300/20 via-pink-300/15 to-violet-300/20' : 'bg-gradient-to-r from-purple-500/10 via-pink-500/5 to-violet-500/10'}`}
+          style={{ top: '-10%', left: '-10%', animation: 'float-orb 20s ease-in-out infinite' }}
+        />
+        <div 
+          className={`absolute w-[400px] h-[400px] rounded-full blur-3xl floating-element ${isLight ? 'bg-gradient-to-r from-blue-300/15 via-cyan-300/20 to-teal-300/15' : 'bg-gradient-to-r from-blue-500/8 via-cyan-500/10 to-teal-500/8'}`}
+          style={{ top: '60%', right: '-5%', animation: 'float-orb 25s ease-in-out infinite reverse', animationDelay: '-5s' }}
+        />
+        <div 
+          className={`absolute w-[300px] h-[300px] rounded-full blur-2xl floating-element ${isLight ? 'bg-gradient-to-r from-indigo-300/15 to-purple-300/20' : 'bg-gradient-to-r from-indigo-500/8 to-purple-500/10'}`}
+          style={{ bottom: '10%', left: '20%', animation: 'float-orb 18s ease-in-out infinite', animationDelay: '-10s' }}
+        />
+        
+        {/* Анимированные линии */}
+        <svg className="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="lineGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor={isLight ? '#8a63d2' : '#6050ba'} stopOpacity="0" />
+              <stop offset="50%" stopColor={isLight ? '#8a63d2' : '#6050ba'} stopOpacity="0.5" />
+              <stop offset="100%" stopColor={isLight ? '#8a63d2' : '#6050ba'} stopOpacity="0" />
+            </linearGradient>
+          </defs>
+          <line x1="0" y1="30%" x2="100%" y2="70%" stroke="url(#lineGrad1)" strokeWidth="1" className="animate-pulse" />
+          <line x1="100%" y1="20%" x2="0" y2="80%" stroke="url(#lineGrad1)" strokeWidth="1" className="animate-pulse" style={{ animationDelay: '1s' }} />
+        </svg>
+      </div>
+      
+      {/* Плавающие частицы */}
+      <div className="cabinet-particles">
+        {[...Array(8)].map((_, i) => (
+          <div 
+            key={i}
+            className="cabinet-particle"
+            style={{
+              left: `${10 + i * 12}%`,
+              animationDelay: `${i * 2}s`,
+              animationDuration: `${12 + i * 3}s`,
+            }}
+          />
+        ))}
       </div>
       
       <div 
@@ -538,66 +586,57 @@ export default function CabinetPage() {
           )}
         </aside>
 
-        {/* Красивый визуальный разделитель */}
+        {/* Красивый визуальный разделитель с эффектами */}
         <div 
           className="hidden lg:flex items-center justify-center relative transition-all duration-500" 
           style={{ 
-            width: scrolled ? '40px' : '0px',
+            width: scrolled ? '50px' : '0px',
             opacity: scrolled ? 1 : 0,
             marginTop: scrolled ? '0' : '0',
             overflow: 'hidden',
           }}
         >
+          {/* Основная линия с градиентом */}
           <div 
             className="absolute inset-y-0 flex items-center justify-center transition-all duration-500"
             style={{
-              width: '1px',
+              width: '2px',
               background: isLight 
-                ? 'linear-gradient(to bottom, transparent 0%, rgba(180,140,220,0.4) 10%, rgba(140,180,220,0.6) 50%, rgba(180,140,220,0.4) 90%, transparent 100%)'
-                : 'linear-gradient(to bottom, transparent 0%, rgba(157, 141, 241, 0.3) 10%, rgba(157, 141, 241, 0.5) 50%, rgba(157, 141, 241, 0.3) 90%, transparent 100%)',
+                ? 'linear-gradient(to bottom, transparent 0%, rgba(138,99,210,0.6) 15%, rgba(167,139,250,0.8) 50%, rgba(138,99,210,0.6) 85%, transparent 100%)'
+                : 'linear-gradient(to bottom, transparent 0%, rgba(96,80,186,0.5) 15%, rgba(157,141,241,0.8) 50%, rgba(96,80,186,0.5) 85%, transparent 100%)',
               boxShadow: isLight 
-                ? '0 0 20px rgba(180,140,220,0.3)'
-                : '0 0 20px rgba(157, 141, 241, 0.3)',
+                ? '0 0 30px rgba(138,99,210,0.5), 0 0 60px rgba(138,99,210,0.3)'
+                : '0 0 30px rgba(157,141,241,0.5), 0 0 60px rgba(157,141,241,0.3)',
+              filter: 'blur(0.5px)',
             }}
           />
-          {/* Декоративные точки */}
+          
+          {/* Анимированные точки на линии */}
+          {[20, 35, 50, 65, 80].map((pos, idx) => (
+            <div 
+              key={idx}
+              className="absolute w-3 h-3 rounded-full"
+              style={{
+                top: `${pos}%`,
+                background: isLight 
+                  ? 'radial-gradient(circle, rgba(138,99,210,1) 0%, rgba(167,139,250,0.8) 40%, transparent 70%)'
+                  : 'radial-gradient(circle, rgba(157,141,241,1) 0%, rgba(96,80,186,0.8) 40%, transparent 70%)',
+                boxShadow: isLight 
+                  ? '0 0 15px rgba(138,99,210,0.8), 0 0 30px rgba(138,99,210,0.4)'
+                  : '0 0 15px rgba(157,141,241,0.8), 0 0 30px rgba(157,141,241,0.4)',
+                animation: `pulse 3s ease-in-out infinite ${idx * 0.6}s`,
+              }}
+            />
+          ))}
+          
+          {/* Блик движущийся по линии */}
           <div 
-            className="absolute w-2 h-2 rounded-full animate-pulse"
+            className="absolute w-1 h-20 rounded-full"
             style={{
-              top: '20%',
               background: isLight 
-                ? 'radial-gradient(circle, rgba(180,140,220,0.8) 0%, transparent 70%)'
-                : 'radial-gradient(circle, rgba(157, 141, 241, 0.8) 0%, transparent 70%)',
-              boxShadow: isLight 
-                ? '0 0 10px rgba(180,140,220,0.6)'
-                : '0 0 10px rgba(157, 141, 241, 0.6)',
-              animation: 'pulse 3s ease-in-out infinite',
-            }}
-          />
-          <div 
-            className="absolute w-2 h-2 rounded-full animate-pulse"
-            style={{
-              top: '50%',
-              background: isLight 
-                ? 'radial-gradient(circle, rgba(180,140,220,0.8) 0%, transparent 70%)'
-                : 'radial-gradient(circle, rgba(157, 141, 241, 0.8) 0%, transparent 70%)',
-              boxShadow: isLight 
-                ? '0 0 10px rgba(180,140,220,0.6)'
-                : '0 0 10px rgba(157, 141, 241, 0.6)',
-              animation: 'pulse 3s ease-in-out infinite 1s',
-            }}
-          />
-          <div 
-            className="absolute w-2 h-2 rounded-full animate-pulse"
-            style={{
-              top: '80%',
-              background: isLight 
-                ? 'radial-gradient(circle, rgba(180,140,220,0.8) 0%, transparent 70%)'
-                : 'radial-gradient(circle, rgba(157, 141, 241, 0.8) 0%, transparent 70%)',
-              boxShadow: isLight 
-                ? '0 0 10px rgba(180,140,220,0.6)'
-                : '0 0 10px rgba(157, 141, 241, 0.6)',
-              animation: 'pulse 3s ease-in-out infinite 2s',
+                ? 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.9), transparent)'
+                : 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.6), transparent)',
+              animation: 'divider-glow-move 4s ease-in-out infinite',
             }}
           />
         </div>
@@ -642,6 +681,18 @@ export default function CabinetPage() {
               />
             </div>
           )}
+
+          {tab === 'cases' && (
+            <div className="transition-all duration-300 ease-out" style={{ opacity: 1 }}>
+              <CasesGame
+                userId={user?.id}
+                balance={balance}
+                onBalanceChange={setBalance}
+                showNotification={showNotification}
+                isLight={isLight}
+              />
+            </div>
+          )}
           
           {tab === 'finance' && (
             <div className="transition-all duration-300 ease-out" style={{ opacity: 1 }}>
@@ -675,17 +726,24 @@ export default function CabinetPage() {
         </section>
       </div>
 
-      {/* Плавающие декоративные частицы */}
+      {/* Плавающие декоративные частицы - улучшенные */}
       <div className="fixed inset-0 pointer-events-none z-5 overflow-hidden">
-        {[...Array(5)].map((_, i) => (
+        {[...Array(12)].map((_, i) => (
           <div 
             key={i}
-            className={`absolute w-2 h-2 bg-gradient-to-r from-purple-400/30 to-pink-400/30 rounded-full glow-element`}
+            className={`absolute rounded-full ${i % 3 === 0 ? 'w-3 h-3' : i % 2 === 0 ? 'w-2 h-2' : 'w-1.5 h-1.5'} ${
+              isLight 
+                ? 'bg-gradient-to-r from-purple-400/40 to-pink-400/40' 
+                : 'bg-gradient-to-r from-purple-400/30 to-pink-400/30'
+            } glow-element`}
             style={{
-              left: `${20 + i * 15}%`,
-              top: `${30 + i * 10}%`,
-              animationDelay: `${i * 2}s`,
-              animationDuration: `${3 + i}s`
+              left: `${5 + i * 8}%`,
+              top: `${20 + (i % 5) * 15}%`,
+              animationDelay: `${i * 0.8}s`,
+              animationDuration: `${4 + i * 0.5}s`,
+              boxShadow: isLight 
+                ? '0 0 15px rgba(138, 99, 210, 0.4)' 
+                : '0 0 15px rgba(157, 141, 241, 0.4)',
             }}
           />
         ))}

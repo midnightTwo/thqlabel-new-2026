@@ -188,7 +188,6 @@ const AnimatedBackground = () => {
 const NAV_ITEMS = [
   { href: '/cabinet', label: 'Кабинет' },
   { href: '/news', label: 'Новости' },
-  { href: '/games', label: '🎮 Игры' },
   { href: '/contacts', label: 'Контакты' },
   { href: '/faq', label: 'FAQ' },
 ];
@@ -196,7 +195,6 @@ const NAV_ITEMS = [
 // Левые вкладки для мобильного меню
 const LEFT_NAV_ITEMS = [
   { href: '/feed', label: 'Главная' },
-  { href: '/games', label: '🎮 Игры' },
   { href: '/offer', label: 'Договор ПО' },
 ];
 
@@ -318,6 +316,9 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
           suppressHydrationWarning
         >
           <div className="px-4 sm:px-6 md:px-10 h-full flex items-center relative">
+            {/* Контейнер для кнопки профиля на мобильных - СЛЕВА (используется через Portal в /cabinet) */}
+            <div id="mobile-profile-button-portal" className="md:hidden flex items-center" />
+
             {/* Левые вкладки - Главная и Договор ПО */}
             <div className="hidden md:flex items-center gap-1 flex-shrink-0">
               <Link 
@@ -345,7 +346,7 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
             </div>
 
             {/* Лого - по центру */}
-            <Link href="/feed" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 group flex-shrink-0" style={{ width: '128px', height: '77px' }}>
+            <Link href="/feed" className="header-logo absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 group flex-shrink-0 transition-opacity duration-200" style={{ width: '128px', height: '77px' }}>
               <img 
                 src="/logo.png" 
                 alt="thqlabel" 
@@ -427,8 +428,8 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
               })}
             </nav>
 
-            {/* Мобильное меню - гамбургер */}
-            <div className="md:hidden">
+            {/* Мобильное меню - гамбургер (всегда справа) */}
+            <div className="md:hidden ml-auto">
               <button 
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="relative w-10 h-10 flex flex-col items-center justify-center gap-1.5 group"

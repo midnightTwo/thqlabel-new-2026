@@ -25,7 +25,7 @@ export default function UserProfileModal({
 
   return (
     <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-start justify-center overflow-y-auto p-4 pt-16 pb-8" onClick={onClose}>
-      <div className="bg-zinc-900 border border-blue-500/30 rounded-xl sm:rounded-2xl shadow-2xl max-w-4xl w-full overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+      <div className="admin-dark-modal bg-zinc-900 border border-blue-500/30 rounded-xl sm:rounded-2xl shadow-2xl max-w-4xl w-full overflow-y-auto" onClick={(e) => e.stopPropagation()}>
         {/* Хедер профиля */}
         <div className="sticky top-0 bg-gradient-to-r from-blue-900/50 to-purple-900/50 backdrop-blur-sm border-b border-blue-500/30 p-6 flex items-center justify-between z-10">
           <div className="flex items-center gap-4">

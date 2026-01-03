@@ -30,7 +30,7 @@ export default function ReleaseModal({ release, onClose }: ReleaseModalProps) {
       onClick={onClose}
     >
       <div 
-        className="bg-zinc-900 border border-purple-500/30 rounded-2xl shadow-2xl max-w-2xl w-full overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-zinc-900" 
+        className="admin-dark-modal bg-zinc-900 border border-purple-500/30 rounded-2xl shadow-2xl max-w-2xl w-full overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-zinc-900" 
         onClick={(e) => e.stopPropagation()}
       >
         {/* Хедер */}

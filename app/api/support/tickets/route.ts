@@ -127,6 +127,21 @@ export async function GET(request: Request) {
       }
       messagesByTicket.get(msg.ticket_id).push(msg);
     });
+    
+    // Получаем информацию о сообщениях на которые ответили
+    const replyToIds = [...new Set((allMessages || []).map(m => m.reply_to).filter(Boolean))];
+    const replyToMessagesMap = new Map();
+    
+    if (replyToIds.length > 0) {
+      const { data: replyToMessages } = await supabase
+        .from('ticket_messages')
+        .select('id, message, sender_id, is_admin')
+        .in('id', replyToIds);
+      
+      replyToMessages?.forEach(msg => {
+        replyToMessagesMap.set(msg.id, msg);
+      });
+    }
 
     // Загружаем реакции для всех сообщений
     const allMessageIds = allMessages?.map(m => m.id) || [];
@@ -194,12 +209,27 @@ export async function GET(request: Request) {
       // Форматируем сообщения со свежими данными отправителей и реакциями
       const messages = (messagesByTicket.get(ticket.id) || []).map((msg: any) => {
         const senderProfile = profilesMap.get(msg.sender_id);
+        const replyToMessage = msg.reply_to ? replyToMessagesMap.get(msg.reply_to) : null;
+        
+        // Добавляем данные отправителя для reply_to_message
+        let formattedReplyTo = null;
+        if (replyToMessage) {
+          const replyToSenderProfile = profilesMap.get(replyToMessage.sender_id);
+          formattedReplyTo = {
+            ...replyToMessage,
+            sender_nickname: replyToSenderProfile?.nickname,
+            sender_username: replyToSenderProfile?.email?.split('@')[0],
+            sender_email: replyToSenderProfile?.email
+          };
+        }
+        
         return {
           ...msg,
           sender_email: senderProfile?.email || msg.sender_email,
           sender_nickname: senderProfile?.nickname || msg.sender_nickname,
           sender_avatar: senderProfile?.avatar || msg.sender_avatar,
-          reactions: reactionsMap.get(msg.id) || []
+          reactions: reactionsMap.get(msg.id) || [],
+          reply_to_message: formattedReplyTo
         };
       });
       

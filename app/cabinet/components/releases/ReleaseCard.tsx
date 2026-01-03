@@ -141,7 +141,7 @@ export default function ReleaseCard({ release, onClick, onDelete, onDragStart, o
           e.dataTransfer.dropEffect = 'move';
         }
       }}
-      className={`relative group p-3 sm:p-4 rounded-xl sm:rounded-2xl overflow-hidden w-full max-w-[280px] mx-auto ${
+      className={`relative group p-3 sm:p-4 rounded-xl sm:rounded-2xl overflow-hidden w-full ${
         isDraft ? 'cursor-grab active:cursor-grabbing' : 'cursor-pointer'
       } ${
         isDragging ? 'opacity-0 scale-75 pointer-events-none' : 'opacity-100 scale-100'
@@ -313,7 +313,7 @@ export function AddReleaseCard({ onClick }: AddReleaseCardProps) {
   
   return (
     <div 
-      className={`relative group p-3 sm:p-4 rounded-xl sm:rounded-2xl cursor-pointer hover:scale-[1.03] transition-all duration-200 ease-out w-full max-w-[280px] mx-auto`}
+      className={`relative group p-3 sm:p-4 rounded-xl sm:rounded-2xl cursor-pointer hover:scale-[1.03] transition-all duration-200 ease-out w-full`}
       onClick={onClick}
       style={{
         transformStyle: 'preserve-3d',

@@ -21,9 +21,10 @@ import { Release } from './types';
 
 interface ReleasesModerationProps {
   supabase: SupabaseClient;
+  onSidebarCollapse?: (collapsed: boolean) => void;
 }
 
-export default function ReleasesModeration({ supabase }: ReleasesModerationProps) {
+export default function ReleasesModeration({ supabase, onSidebarCollapse }: ReleasesModerationProps) {
   const { themeName } = useTheme();
   const isLight = themeName === 'light';
   
@@ -70,6 +71,13 @@ export default function ReleasesModeration({ supabase }: ReleasesModerationProps
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Сворачивание сайдбара при режиме создания релиза
+  useEffect(() => {
+    if (onSidebarCollapse) {
+      onSidebarCollapse(viewMode === 'create');
+    }
+  }, [viewMode, onSidebarCollapse]);
 
   useEffect(() => {
     if (showModal || showDeleteConfirm) {

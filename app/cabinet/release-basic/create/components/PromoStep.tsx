@@ -19,6 +19,8 @@ interface PromoStepProps {
   onBack: () => void;
   onSkip?: () => void;  // Пропустить промо
   onFilled?: () => void; // Промо заполнено
+  onResetSkip?: () => void; // Сбросить статус "пропущено"
+  promoStatus?: 'not-started' | 'skipped' | 'filled'; // Текущий статус промо
 }
 
 export default function PromoStep({ 
@@ -34,11 +36,15 @@ export default function PromoStep({
   onNext, 
   onBack,
   onSkip,
-  onFilled
+  onFilled,
+  onResetSkip,
+  promoStatus
 }: PromoStepProps) {
   const [localPromoPhotos, setLocalPromoPhotos] = useState<string[]>(externalPromoPhotos || []);
   const [photoInput, setPhotoInput] = useState('');
   const [showSkipModal, setShowSkipModal] = useState(false);
+  const [showFocusTrackDropdown, setShowFocusTrackDropdown] = useState(false);
+  const [validationError, setValidationError] = useState('');
 
   // Используем внешние props если есть, иначе локальное состояние
   const promoPhotos = externalPromoPhotos ?? localPromoPhotos;
@@ -47,8 +53,47 @@ export default function PromoStep({
   const isSingleTrack = tracks.length === 1;
   const isAlbum = tracks.length > 1;
   
-  // Промо теперь необязательно - просто переходим дальше
+  // Проверка валидности для перехода далее
+  const isFormValid = focusTrack !== '' && promoPhotos.length > 0;
+  
+  // Сбрасываем статус "пропущено" при любом изменении данных
+  const handleDataChange = () => {
+    if (promoStatus === 'skipped') {
+      onResetSkip?.();
+    }
+  };
+  
+  // Обработчики с автосбросом статуса
+  const handleFocusTrackChange = (value: string) => {
+    handleDataChange();
+    setValidationError('');
+    setFocusTrack(value);
+    setShowFocusTrackDropdown(false);
+  };
+  
+  const handleFocusTrackPromoChange = (value: string) => {
+    handleDataChange();
+    setFocusTrackPromo(value);
+  };
+  
+  const handleAlbumDescriptionChange = (value: string) => {
+    handleDataChange();
+    setAlbumDescription(value);
+  };
+  
+  // Промо - проверяем обязательные поля
   const handleNext = () => {
+    // Проверяем наличие фокус-трека
+    if (!focusTrack) {
+      setValidationError('Выберите фокус-трек для продвижения');
+      return;
+    }
+    // Проверяем наличие хотя бы одной ссылки на промо-фото
+    if (promoPhotos.length === 0) {
+      setValidationError('Добавьте хотя бы одну ссылку на промо-материалы');
+      return;
+    }
+    setValidationError('');
     onFilled?.(); // Устанавливаем статус "заполнено"
     onNext();
   };
@@ -63,14 +108,22 @@ export default function PromoStep({
     onNext();
   };
 
+  const handleCancelSkip = () => {
+    setShowSkipModal(false);
+    onResetSkip?.(); // Сбрасываем статус "пропущено"
+  };
+
   const addPromoPhoto = () => {
     if (photoInput.trim() && promoPhotos.length < 5) {
+      handleDataChange();
+      setValidationError('');
       setPromoPhotos([...promoPhotos, photoInput.trim()]);
       setPhotoInput('');
     }
   };
 
   const removePromoPhoto = (index: number) => {
+    handleDataChange();
     setPromoPhotos(promoPhotos.filter((_, i) => i !== index));
   };
 
@@ -93,7 +146,7 @@ export default function PromoStep({
       </div>
 
       <div className="space-y-6">
-        {/* Выбор фокус-трека */}
+        {/* Выбор фокус-трека - красивая версия */}
         <div className="relative p-6 bg-gradient-to-br from-orange-500/10 via-transparent to-yellow-500/10 border border-orange-500/20 rounded-2xl overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-yellow-500/5 opacity-50"/>
           <div className="relative flex items-start gap-4 mb-4">
@@ -111,21 +164,115 @@ export default function PromoStep({
           
           {tracks.length > 0 ? (
             <div className="relative">
-              <select
-                value={focusTrack}
-                onChange={(e) => setFocusTrack(e.target.value)}
-                className="w-full px-4 py-3.5 bg-gradient-to-br from-white/[0.07] to-white/[0.03] rounded-xl border-2 border-white/10 hover:border-orange-500/40 focus:border-orange-500 outline-none appearance-none cursor-pointer transition-all font-medium"
+              {/* Кнопка открытия выпадающего списка */}
+              <button
+                type="button"
+                onClick={() => setShowFocusTrackDropdown(!showFocusTrackDropdown)}
+                className={`w-full px-4 py-3.5 rounded-xl border-2 text-left transition-all duration-200 flex items-center justify-between group ${
+                  focusTrack 
+                    ? 'bg-gradient-to-br from-orange-500/15 to-yellow-500/15 border-orange-500/40 hover:border-orange-500/60' 
+                    : 'bg-gradient-to-br from-white/[0.05] to-white/[0.02] border-white/10 hover:border-orange-500/30'
+                }`}
               >
-                <option value="" className="bg-[#1a1a1c]">Выберите фокус-трек</option>
-                {tracks.map((track, idx) => (
-                  <option key={idx} value={track.title} className="bg-[#1a1a1c]">
-                    {track.title || `Трек ${idx + 1}`}
-                  </option>
-                ))}
-              </select>
+                <div className="flex items-center gap-3">
+                  {focusTrack ? (
+                    <>
+                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-orange-500/40 to-yellow-500/40 flex items-center justify-center shadow-lg shadow-orange-500/20">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-orange-200" strokeWidth="2">
+                          <polygon points="5 3 19 12 5 21 5 3" fill="currentColor"/>
+                        </svg>
+                      </div>
+                      <span className="text-white font-medium">{focusTrack}</span>
+                    </>
+                  ) : (
+                    <>
+                      <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-zinc-500" strokeWidth="2">
+                          <circle cx="12" cy="12" r="10"/>
+                          <line x1="12" y1="8" x2="12" y2="16"/>
+                          <line x1="8" y1="12" x2="16" y2="12"/>
+                        </svg>
+                      </div>
+                      <span className="text-zinc-400">Выберите фокус-трек</span>
+                    </>
+                  )}
+                </div>
+                <svg 
+                  width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" 
+                  className={`text-zinc-400 transition-transform duration-200 ${showFocusTrackDropdown ? 'rotate-180' : ''}`}
+                  strokeWidth="2"
+                >
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </button>
+              
+              {/* Выпадающий список треков */}
+              {showFocusTrackDropdown && (
+                <div className="absolute top-full left-0 right-0 mt-2 z-20 bg-[#1a1a1c]/95 backdrop-blur-xl border border-orange-500/20 rounded-xl shadow-2xl shadow-orange-500/10 overflow-hidden animate-fade-in">
+                  <div className="p-2 max-h-[300px] overflow-y-auto [&::-webkit-scrollbar]:hidden">
+                    {tracks.map((track, idx) => {
+                      const isSelected = focusTrack === track.title;
+                      return (
+                        <button
+                          key={idx}
+                          type="button"
+                          onClick={() => handleFocusTrackChange(track.title)}
+                          className={`w-full px-3 py-3 rounded-lg text-left transition-all duration-150 flex items-center gap-3 group ${
+                            isSelected 
+                              ? 'bg-gradient-to-r from-orange-500/20 to-yellow-500/20 border border-orange-500/30' 
+                              : 'hover:bg-white/5 border border-transparent'
+                          }`}
+                        >
+                          {/* Номер трека */}
+                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold transition-all ${
+                            isSelected 
+                              ? 'bg-gradient-to-br from-orange-500 to-yellow-500 text-white shadow-lg shadow-orange-500/30' 
+                              : 'bg-white/5 text-zinc-400 group-hover:bg-white/10'
+                          }`}>
+                            {idx + 1}
+                          </div>
+                          
+                          {/* Название трека */}
+                          <div className="flex-1 min-w-0">
+                            <span className={`block truncate font-medium ${isSelected ? 'text-white' : 'text-zinc-300'}`}>
+                              {track.title || `Трек ${idx + 1}`}
+                            </span>
+                          </div>
+                          
+                          {/* Индикатор выбора */}
+                          {isSelected && (
+                            <div className="w-6 h-6 rounded-full bg-gradient-to-br from-orange-500 to-yellow-500 flex items-center justify-center shadow-lg shadow-orange-500/30">
+                              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3">
+                                <polyline points="20 6 9 17 4 12"/>
+                              </svg>
+                            </div>
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+              
+              {/* Оверлей для закрытия */}
+              {showFocusTrackDropdown && (
+                <div 
+                  className="fixed inset-0 z-10" 
+                  onClick={() => setShowFocusTrackDropdown(false)}
+                />
+              )}
             </div>
           ) : (
-            <div className="text-sm text-zinc-500 italic">Сначала добавьте треки во вкладке "Треклист"</div>
+            <div className="text-sm text-zinc-500 italic p-4 bg-white/[0.02] rounded-xl border border-dashed border-white/10">
+              <div className="flex items-center gap-2">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-zinc-600" strokeWidth="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="12" y1="16" x2="12" y2="12"/>
+                  <line x1="12" y1="8" x2="12.01" y2="8"/>
+                </svg>
+                Сначала добавьте треки во вкладке "Треклист"
+              </div>
+            </div>
           )}
         </div>
 
@@ -159,7 +306,7 @@ export default function PromoStep({
             <div className="relative">
               <textarea
                 value={focusTrackPromo}
-                onChange={(e) => setFocusTrackPromo(e.target.value)}
+                onChange={(e) => handleFocusTrackPromoChange(e.target.value)}
                 placeholder="Расскажите об этом треке: история создания, настроение, особенности..."
                 rows={6}
                 maxLength={2000}
@@ -197,7 +344,7 @@ export default function PromoStep({
             </div>
           <textarea
             value={albumDescription}
-            onChange={(e) => setAlbumDescription(e.target.value)}
+            onChange={(e) => handleAlbumDescriptionChange(e.target.value)}
             placeholder="Расскажите о релизе: концепция, вдохновение, процесс создания..."
             rows={6}
             maxLength={2500}
@@ -265,6 +412,18 @@ export default function PromoStep({
         </div>
       </div>
 
+      {/* Ошибка валидации */}
+      {validationError && (
+        <div className="mt-4 p-4 bg-red-500/10 border border-red-500/30 rounded-xl flex items-center gap-3">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="text-red-400 flex-shrink-0">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
+            <path d="M12 8v4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+            <circle cx="12" cy="16" r="1" fill="currentColor"/>
+          </svg>
+          <span className="text-red-400 text-sm">{validationError}</span>
+        </div>
+      )}
+
       <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row gap-3 sm:justify-between">
         <button onClick={onBack} className="px-6 py-3 bg-white/5 hover:bg-white/10 rounded-xl font-bold transition flex items-center justify-center gap-2 order-2 sm:order-1">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="15 18 9 12 15 6" strokeWidth="2"/></svg>
@@ -278,66 +437,72 @@ export default function PromoStep({
             </svg>
             Пропустить
           </button>
-          <button onClick={handleNext} className="px-8 py-3 bg-[#6050ba] hover:bg-[#7060ca] rounded-xl font-bold transition flex items-center justify-center gap-2">
+          <button 
+            onClick={handleNext} 
+            className={`px-8 py-3 rounded-xl font-bold transition flex items-center justify-center gap-2 ${
+              isFormValid 
+                ? 'bg-[#6050ba] hover:bg-[#7060ca]' 
+                : 'bg-[#6050ba]/50 cursor-not-allowed'
+            }`}
+          >
             Далее
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="9 18 15 12 9 6" strokeWidth="2"/></svg>
           </button>
         </div>
       </div>
 
-      {/* Модальное окно подтверждения пропуска */}
+      {/* Уведомление о пропуске промо */}
       {showSkipModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          {/* Overlay */}
-          <div 
-            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
-            onClick={() => setShowSkipModal(false)}
-          />
-          
-          {/* Modal */}
-          <div className="relative w-full max-w-md backdrop-blur-xl bg-gradient-to-br from-white/[0.12] to-white/[0.04] border border-white/20 rounded-2xl p-6 shadow-2xl shadow-black/50 animate-fade-up">
-            {/* Close button */}
-            <button 
-              onClick={() => setShowSkipModal(false)}
-              className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition"
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-zinc-400">
-                <path d="M18 6L6 18M6 6l12 12"/>
-              </svg>
-            </button>
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-lg px-4 animate-slide-up">
+          <div className="relative overflow-hidden rounded-2xl bg-[#1a1625]/95 backdrop-blur-xl border border-white/10 shadow-xl shadow-black/30">
+            {/* Gradient accent line */}
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 via-orange-400 to-amber-400" />
             
-            {/* Icon */}
-            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-yellow-500/20 to-orange-500/20 flex items-center justify-center ring-1 ring-yellow-500/30">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-yellow-400">
-                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-                <line x1="12" y1="9" x2="12" y2="13"/>
-                <line x1="12" y1="17" x2="12.01" y2="17"/>
-              </svg>
-            </div>
-            
-            {/* Title & Description */}
-            <h3 className="text-xl font-bold text-center text-white mb-2">
-              Пропустить промо-материалы?
-            </h3>
-            <p className="text-sm text-center text-zinc-400 mb-6 leading-relaxed">
-              Без промо-материалов вашему релизу будет сложнее продвигаться на платформах. 
-              Рекомендуем заполнить хотя бы основные поля для лучшего результата.
-            </p>
-            
-            {/* Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3">
-              <button 
-                onClick={() => setShowSkipModal(false)}
-                className="flex-1 px-4 py-3 bg-white/5 hover:bg-white/10 rounded-xl font-bold transition text-white"
-              >
-                Заполнить
-              </button>
-              <button 
-                onClick={confirmSkip}
-                className="flex-1 px-4 py-3 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 hover:from-yellow-500/30 hover:to-orange-500/30 border border-yellow-500/30 rounded-xl font-bold transition text-yellow-400"
-              >
-                Да, пропустить
-              </button>
+            <div className="p-5">
+              <div className="flex items-start gap-4">
+                {/* Icon */}
+                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500/20 to-orange-500/20 flex items-center justify-center">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-amber-400">
+                    <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                
+                {/* Content */}
+                <div className="flex-1 min-w-0">
+                  <h4 className="text-base font-semibold text-white mb-1">
+                    Пропустить промо?
+                  </h4>
+                  <p className="text-sm text-zinc-400 leading-relaxed">
+                    Промо-материалы помогут вашему релизу получить больше внимания на платформах
+                  </p>
+                </div>
+                
+                {/* Close */}
+                <button 
+                  onClick={() => setShowSkipModal(false)}
+                  className="flex-shrink-0 w-7 h-7 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition text-zinc-400 hover:text-white"
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                  </svg>
+                </button>
+              </div>
+              
+              {/* Actions */}
+              <div className="flex items-center gap-3 mt-4 pt-4 border-t border-white/5">
+                <button 
+                  onClick={handleCancelSkip}
+                  className="flex-1 px-4 py-2.5 bg-white/5 hover:bg-white/10 rounded-xl text-sm font-medium text-white transition-colors"
+                >
+                  Заполнить
+                </button>
+                <button 
+                  onClick={confirmSkip}
+                  className="flex-1 px-4 py-2.5 bg-gradient-to-r from-amber-500/10 to-orange-500/10 hover:from-amber-500/20 hover:to-orange-500/20 border border-amber-500/20 hover:border-amber-500/30 rounded-xl text-sm font-medium text-amber-400 transition-all"
+                >
+                  Да, пропустить
+                </button>
+              </div>
             </div>
           </div>
         </div>

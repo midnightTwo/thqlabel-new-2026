@@ -57,10 +57,10 @@ export function UserFilters({
           onChange={(e) => setSortBy(e.target.value as any)}
           className="bg-black/30 border border-white/10 rounded-xl px-3 py-2 text-sm"
         >
+          <option value="role">Роль</option>
           <option value="created_at">Дата регистрации</option>
           <option value="email">Email</option>
           <option value="nickname">Никнейм</option>
-          <option value="role">Роль</option>
         </select>
         <button
           onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}

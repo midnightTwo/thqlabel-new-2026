@@ -28,9 +28,13 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
   const [adminTyping, setAdminTyping] = useState(false);
   const [adminTypingName, setAdminTypingName] = useState<string>('');
   const [currentUserId, setCurrentUserId] = useState<string | null>(null);
+  const [replyToMessage, setReplyToMessage] = useState<any>(null);
+  const [showActions, setShowActions] = useState<string | null>(null);
+  const [highlightedMessageId, setHighlightedMessageId] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const prevMessagesLengthRef = useRef(messages.length);
   const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const messageRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   // Получаем текущего пользователя
   useEffect(() => {
@@ -256,25 +260,40 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
     setSending(true);
     setError('');
 
+    const replyId = replyToMessage?.id || null;
+    console.log('📤 Отправка сообщения:', {
+      message: newMessage.substring(0, 50),
+      reply_to_message_id: replyId,
+      replyToMessage: replyToMessage
+    });
+
     try {
       const response = await fetchWithAuth(`/api/support/tickets/${ticket.id}/messages`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: newMessage, images }),
+        body: JSON.stringify({ 
+          message: newMessage, 
+          images,
+          reply_to_message_id: replyId
+        }),
       });
 
       const data = await response.json();
+      console.log('📥 Ответ от сервера:', data);
 
       if (response.ok) {
+        console.log('✅ Сообщение отправлено, reply_to_message:', data.message?.reply_to_message);
         setMessages([...messages, data.message]);
         setNewMessage('');
         setImages([]);
+        setReplyToMessage(null);
         onUpdate();
       } else {
+        console.error('❌ Ошибка:', data.error);
         setError(data.error || 'Ошибка отправки сообщения');
       }
     } catch (err) {
-      console.error('Error sending message:', err);
+      console.error('❌ Ошибка соединения:', err);
       setError('Ошибка соединения с сервером');
     } finally {
       setSending(false);
@@ -317,7 +336,7 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-3">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden p-4 space-y-3">
         {messages.map((msg: any, idx: number) => {
           const isFromAdmin = msg.is_admin === true;
           // Системное сообщение (автоответ) - специальный ID
@@ -335,8 +354,49 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
           const reactionsCount = msg.reactions?.length || 0;
           
           return (
-            <div key={msg.id} className={`flex ${isFromAdmin ? 'justify-start' : 'justify-end'} group`}>
+            <div 
+              key={msg.id} 
+              className={`flex ${isFromAdmin ? 'justify-start' : 'justify-end'} group`}
+              onMouseEnter={() => setShowActions(msg.id)}
+              onMouseLeave={() => setShowActions(null)}
+            >
               <div className={`max-w-[85%] ${isFromAdmin ? '' : 'flex flex-col items-end'} relative`}>
+                {/* Невидимая область для плавного перехода к кнопке */}
+                <div className={`absolute ${isFromAdmin ? 'left-full' : 'right-full'} top-0 w-12 h-full`} />
+                
+                {/* Кнопка ответить при наведении */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setReplyToMessage(msg);
+                    setHighlightedMessageId(msg.id);
+                    
+                    // Прокрутка к сообщению
+                    setTimeout(() => {
+                      messageRefs.current[msg.id]?.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center' 
+                      });
+                    }, 100);
+                    
+                    // Убираем подсветку через 2 секунды
+                    setTimeout(() => {
+                      setHighlightedMessageId(null);
+                    }, 2000);
+                    
+                    console.log('Reply to message:', msg);
+                  }}
+                  className={`absolute ${isFromAdmin ? 'left-full ml-2' : 'right-full mr-2'} top-8 p-1.5 bg-zinc-800/90 hover:bg-zinc-700 border border-zinc-600 rounded-lg transition-opacity duration-200 ${
+                    showActions === msg.id ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                  }`}
+                  style={{ zIndex: 10 }}
+                  title="Ответить"
+                >
+                  <svg className={`w-3.5 h-3.5 text-zinc-400 ${!isFromAdmin ? 'transform scale-x-[-1]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
+                  </svg>
+                </button>
+                
                 <div className={`flex items-center gap-2 mb-1 ${isFromAdmin ? '' : 'flex-row-reverse'}`}>
                   <TicketAvatar
                     src={displayAvatar}
@@ -352,14 +412,86 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
                   </div>
                 </div>
 
-                <div className={`px-3 py-2 rounded-lg backdrop-blur-md border ${
+                <div 
+                  ref={(el) => { 
+                    messageRefs.current[msg.id] = el;
+                    console.log(`📌 Зарегистрирован ref для сообщения: ${msg.id}`);
+                  }}
+                  className={`px-3 py-2 rounded-lg backdrop-blur-md border transition-all duration-300 cursor-pointer ${
                   isFromAdmin
-                    ? 'bg-green-500/20 border-green-500/40'
-                    : 'bg-blue-500/20 border-blue-500/40'
-                }`}
-                style={{ boxShadow: isFromAdmin ? '0 4px 16px 0 rgba(34, 197, 94, 0.2)' : '0 4px 16px 0 rgba(59, 130, 246, 0.2)' }}
-                onDoubleClick={() => toggleReaction(msg.id, hasUserReaction)}
+                    ? 'bg-green-500/20 border-green-500/40 hover:bg-green-500/25'
+                    : 'bg-blue-500/20 border-blue-500/40 hover:bg-blue-500/25'
+                  } ${highlightedMessageId === msg.id ? 'ring-4 ring-amber-400 !bg-amber-400/30 !border-amber-400 shadow-[0_0_30px_rgba(251,191,36,0.5)] animate-pulse' : ''}`}
+                  style={{ 
+                    boxShadow: highlightedMessageId === msg.id 
+                      ? '0 0 30px rgba(251,191,36,0.6), 0 0 60px rgba(251,191,36,0.3)' 
+                      : isFromAdmin ? '0 4px 16px 0 rgba(34, 197, 94, 0.2)' : '0 4px 16px 0 rgba(59, 130, 246, 0.2)' 
+                  }}
+                  onDoubleClick={() => toggleReaction(msg.id, hasUserReaction)}
+                  onClick={(e) => {
+                    // Проверяем что клик не на превью ответа или другой интерактивный элемент
+                    if ((e.target as HTMLElement).closest('[title="Перейти к сообщению"]')) return;
+                    if ((e.target as HTMLElement).tagName === 'A') return;
+                    
+                    console.log('🔥 Клик на сообщение:', msg.id);
+                    setHighlightedMessageId(msg.id);
+                    console.log('✨ Установлена подсветка для:', msg.id, 'Текущая:', highlightedMessageId);
+                    
+                    setTimeout(() => {
+                      console.log('⏰ Убираем подсветку с:', msg.id);
+                      setHighlightedMessageId(null);
+                    }, 2000);
+                  }}
                 >
+                  {/* Превью ответа на сообщение */}
+                  {msg.reply_to_message && (
+                    <div 
+                      className="mb-2 p-2 bg-black/30 border-l-2 border-blue-400/50 rounded cursor-pointer hover:bg-black/40 transition-colors"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const replyMsgId = msg.reply_to_message.id;
+                        console.log('🎯 Клик на превью ответа, ищем сообщение:', replyMsgId);
+                        console.log('📦 Доступные messageRefs:', Object.keys(messageRefs.current));
+                        console.log('🔍 Найден ref для сообщения:', !!messageRefs.current[replyMsgId]);
+                        
+                        setHighlightedMessageId(replyMsgId);
+                        console.log('✨ Установлена подсветка для:', replyMsgId);
+                        
+                        // Прокрутка к исходному сообщению
+                        setTimeout(() => {
+                          const element = messageRefs.current[replyMsgId];
+                          console.log('📍 Элемент для прокрутки:', element);
+                          if (element) {
+                            element.scrollIntoView({ 
+                              behavior: 'smooth', 
+                              block: 'center' 
+                            });
+                            console.log('✅ Прокрутка выполнена');
+                          } else {
+                            console.error('❌ Элемент не найден для ID:', replyMsgId);
+                          }
+                        }, 100);
+                        
+                        // Убираем подсветку через 2 секунды
+                        setTimeout(() => {
+                          console.log('⏰ Убираем подсветку с:', replyMsgId);
+                          setHighlightedMessageId(null);
+                        }, 2000);
+                      }}
+                      title="Перейти к сообщению"
+                    >
+                      <div className="flex items-center gap-1.5 mb-1">
+                        <svg className="w-3 h-3 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
+                        </svg>
+                        <span className="text-xs text-blue-400 font-medium">
+                          {msg.reply_to_message.sender_nickname || msg.reply_to_message.sender_username || 'Пользователь'}
+                        </span>
+                      </div>
+                      <p className="text-xs text-zinc-400 truncate">{msg.reply_to_message.message}</p>
+                    </div>
+                  )}
+                  
                   {msg.message && <p className="text-sm text-white whitespace-pre-wrap break-words">{msg.message}</p>}
 
                   {msg.images && msg.images.length > 0 && (
@@ -413,23 +545,54 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
                 
                 {/* Кнопка реакции - под сообщением */}
                 <div className={`flex items-center gap-1 mt-1 ${isFromAdmin ? 'justify-start' : 'justify-end'}`}>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toggleReaction(msg.id, hasUserReaction);
-                    }}
-                    className={`h-5 px-1.5 rounded-full flex items-center gap-1 transition-all text-[10px] ${
-                      hasUserReaction || reactionsCount > 0
-                        ? 'bg-pink-500/30 border border-pink-400/40' 
-                        : 'bg-zinc-800/60 border border-zinc-600/40 opacity-0 group-hover:opacity-100 hover:bg-pink-500/20 hover:border-pink-400/40'
-                    }`}
-                    title={msg.reactions?.map((r: any) => r.user?.nickname || 'Пользователь').join(', ') || 'Поставить лайк'}
-                  >
-                    <span>{hasUserReaction || reactionsCount > 0 ? '❤️' : '🤍'}</span>
+                  <div className="relative group/reaction">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleReaction(msg.id, hasUserReaction);
+                      }}
+                      className={`h-5 px-1.5 rounded-full flex items-center gap-1 transition-all text-[10px] ${
+                        reactionsCount > 0
+                          ? hasUserReaction
+                            ? 'bg-pink-500/30 border border-pink-400/40'
+                            : 'bg-zinc-700/50 border border-zinc-500/40'
+                          : 'bg-zinc-800/60 border border-zinc-600/40 opacity-0 group-hover:opacity-100 hover:bg-pink-500/20 hover:border-pink-400/40'
+                      }`}
+                    >
+                      <span>{hasUserReaction ? '❤️' : '🤍'}</span>
+                      {reactionsCount > 0 && (
+                        <span className={`font-medium ${hasUserReaction ? 'text-pink-300' : 'text-zinc-400'}`}>{reactionsCount}</span>
+                      )}
+                    </button>
+                    
+                    {/* Тултип с именами кто поставил лайк */}
                     {reactionsCount > 0 && (
-                      <span className="text-pink-300 font-medium">{reactionsCount}</span>
+                      <div className={`absolute ${isFromAdmin ? 'left-0' : 'right-0'} bottom-full mb-1 opacity-0 group-hover/reaction:opacity-100 transition-opacity pointer-events-none z-50`}>
+                        <div className="bg-zinc-900/95 backdrop-blur-xl border border-white/20 rounded-lg px-2 py-1.5 shadow-2xl max-w-[180px]">
+                          <div className="text-[9px] text-zinc-400 font-semibold mb-1">Понравилось:</div>
+                          <div className="flex flex-col gap-1 max-h-32 overflow-y-auto">
+                            {msg.reactions?.map((reaction: any, idx: number) => {
+                              const isCurrentUser = reaction.user_id === currentUserId;
+                              return (
+                                <div key={idx} className={`flex items-center gap-1.5 ${isCurrentUser ? 'text-pink-300' : 'text-zinc-300'}`}>
+                                  {reaction.user?.avatar ? (
+                                    <div className="w-3 h-3 rounded-full bg-cover bg-center flex-shrink-0" style={{ backgroundImage: `url(${reaction.user.avatar})` }} />
+                                  ) : (
+                                    <div className={`w-3 h-3 rounded-full ${isCurrentUser ? 'bg-pink-500/30' : 'bg-zinc-700'} flex items-center justify-center flex-shrink-0`}>
+                                      <span className="text-[6px]">{reaction.user?.nickname?.charAt(0) || '?'}</span>
+                                    </div>
+                                  )}
+                                  <span className="text-[10px] truncate">
+                                    {reaction.user?.nickname || 'Пользователь'} {isCurrentUser && '(вы)'}
+                                  </span>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
                     )}
-                  </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -458,6 +621,34 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
       {ticket.status !== 'closed' && (
         <div className="p-4 border-t border-white/10 bg-white/5 backdrop-blur-md">
           <form onSubmit={handleSendMessage} className="space-y-3">
+            {/* Превью ответа */}
+            {replyToMessage && (
+              <div className="p-2 bg-white/5 border border-white/10 rounded-lg">
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-1">
+                      <svg className="w-3 h-3 text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
+                      </svg>
+                      <span className="text-xs font-medium text-blue-400">
+                        Ответ на {replyToMessage.sender_nickname || replyToMessage.sender_username || 'сообщение'}
+                      </span>
+                    </div>
+                    <p className="text-xs text-zinc-400 truncate">{replyToMessage.message}</p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setReplyToMessage(null)}
+                    className="p-1 hover:bg-white/10 rounded transition-colors flex-shrink-0"
+                  >
+                    <svg className="w-4 h-4 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            )}
+            
             <textarea
               value={newMessage}
               onChange={(e) => {
@@ -496,7 +687,7 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
 
               <button
                 type="submit"
-                disabled={sending || uploading || (!newMessage.trim() && images.length === 0)}
+                disabled={sending || uploading || (newMessage.trim() === '' && images.length === 0)}
                 className="px-4 py-2 bg-gradient-to-r from-blue-500/40 to-purple-500/40 backdrop-blur-md hover:from-blue-500/50 hover:to-purple-500/50 border border-white/20 text-white rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                 style={{ boxShadow: '0 4px 16px 0 rgba(59, 130, 246, 0.3)' }}
               >

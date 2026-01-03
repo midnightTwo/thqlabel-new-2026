@@ -274,7 +274,7 @@ export default function WithdrawalsTab({ supabase, currentUserRole }: { supabase
 
       {/* Детали заявки - боковая панель */}
       {selectedRequest && (
-        <div className="fixed top-0 right-0 h-full w-full lg:w-[500px] bg-[#0a0a0a] border-l border-white/10 z-50 overflow-y-auto shadow-2xl">
+        <div className="admin-dark-modal fixed top-0 right-0 h-full w-full lg:w-[500px] bg-[#0a0a0a] border-l border-white/10 z-50 overflow-y-auto shadow-2xl">
           <div className="sticky top-0 bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-white/10 p-6 z-10">
             <div className="flex justify-between items-center">
               <h3 className="text-xl font-bold">Детали заявки</h3>

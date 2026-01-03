@@ -184,7 +184,7 @@ export function DraggableReleasesGrid({
       <div className="relative">
         {/* Сетка с релизами */}
         <SortableContext items={draftIds} strategy={rectSortingStrategy}>
-          <div className="grid grid-cols-5 gap-3 sm:gap-4 pb-32 auto-rows-fr">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 pb-32 auto-rows-fr">
             {/* Карточка добавления релиза - скрыта в режиме черновиков */}
             {/* Кнопка создания показывается только в ReleasesGrid */}
 

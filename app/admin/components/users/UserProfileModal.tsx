@@ -45,7 +45,7 @@ export function UserProfileModal({
 
   return (
     <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-start justify-center overflow-y-auto p-2 sm:p-4 pt-16 pb-8">
-      <div className="bg-gradient-to-br from-[#1a1a1f] to-[#0d0d0f] border border-white/10 rounded-2xl sm:rounded-3xl max-w-4xl w-full overflow-y-auto">
+      <div className="admin-dark-modal bg-gradient-to-br from-[#1a1a1f] to-[#0d0d0f] border border-white/10 rounded-2xl sm:rounded-3xl max-w-4xl w-full overflow-y-auto">
         {/* Шапка профиля */}
         <div className="sticky top-0 bg-[#1a1a1f]/95 backdrop-blur border-b border-white/10 p-6 flex items-center justify-between z-10">
           <div className="flex items-center gap-4">

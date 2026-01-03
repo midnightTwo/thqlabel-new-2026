@@ -43,6 +43,16 @@ export interface TicketMessage {
   sender_avatar?: string;
   sender_nickname?: string;
   reactions?: MessageReaction[];
+  reply_to?: string | null;
+  reply_to_message?: {
+    id: string;
+    message: string;
+    sender_id: string;
+    is_admin: boolean;
+    sender_nickname?: string;
+    sender_username?: string;
+    sender_email?: string;
+  } | null;
 }
 
 export interface MessageReaction {

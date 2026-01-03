@@ -7,12 +7,39 @@ const nextConfig: NextConfig = {
   // Автоматическая очистка кэша при сборке
   cleanDistDir: true,
   
-  // Полное отключение кэширования данных
+  // Оптимизация для максимальной производительности
   experimental: {
-    // Отключаем статическую генерацию для всех страниц
+    // Оптимизация CSS
+    optimizeCss: true,
+    // ПОЛНОЕ ОТКЛЮЧЕНИЕ КЭШИРОВАНИЯ - всегда свежие данные
     staleTimes: {
       dynamic: 0,
       static: 0,
+    },
+  },
+  
+  // Отключаем кэширование страниц - обновление каждые 5 секунд
+  generateBuildId: async () => {
+    return Math.floor(Date.now() / 5000).toString();
+  },
+  
+  // Отключаем все виды кэширования
+  onDemandEntries: {
+    maxInactiveAge: 5000, // 5 секунд
+    pagesBufferLength: 1,
+  },
+  
+  // Принудительное отключение оптимизации
+  reactStrictMode: true,
+  poweredByHeader: false,
+  
+  // Турбо режим для ускорения dev сервера
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
+      },
     },
   },
   
@@ -35,7 +62,7 @@ const nextConfig: NextConfig = {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
     imageSizes: [16, 32, 48, 64, 96, 128, 256],
-    minimumCacheTTL: 31536000, // 1 год кэширования
+    minimumCacheTTL: 0, // Без кэширования
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },

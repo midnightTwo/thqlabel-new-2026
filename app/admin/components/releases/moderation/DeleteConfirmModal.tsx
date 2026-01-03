@@ -21,7 +21,7 @@ export default function DeleteConfirmModal({
 
   return (
     <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-      <div className="bg-gradient-to-br from-[#0d0d0f] to-[#1a1a1f] border border-white/20 rounded-2xl p-6 max-w-md w-full shadow-2xl">
+      <div className="admin-dark-modal bg-gradient-to-br from-[#0d0d0f] to-[#1a1a1f] border border-white/20 rounded-2xl p-6 max-w-md w-full shadow-2xl">
         <div className="flex items-center gap-4 mb-4">
           <div className="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center">
             <svg className="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">

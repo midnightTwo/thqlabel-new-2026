@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
+import { TicketMessage } from './types';
 
 // Хуки
 import { useTickets } from './hooks/useTickets';
@@ -18,6 +19,9 @@ export default function AdminTicketsPanel({ supabase }: { supabase: any }) {
   
   // Состояние для модального окна релиза
   const [viewingRelease, setViewingRelease] = useState<any>(null);
+  
+  // Состояние для reply
+  const [replyToMessage, setReplyToMessage] = useState<TicketMessage | null>(null);
 
   // Хуки для управления тикетами
   const {
@@ -53,7 +57,8 @@ export default function AdminTicketsPanel({ supabase }: { supabase: any }) {
     handleImageUpload,
     handleSendReply,
     toggleReaction,
-  } = useTicketMessages(supabase, selectedTicket, setSelectedTicket, loadTickets);
+    deleteMessage,
+  } = useTicketMessages(supabase, selectedTicket, setSelectedTicket, loadTickets, replyToMessage, setReplyToMessage);
 
   // Хуки для профиля пользователя
   const {
@@ -139,6 +144,8 @@ export default function AdminTicketsPanel({ supabase }: { supabase: any }) {
                 messagesEndRef={messagesEndRef}
                 messagesContainerRef={messagesContainerRef}
                 onToggleReaction={toggleReaction}
+                onReply={setReplyToMessage}
+                onDeleteMessage={deleteMessage}
               />
 
               {/* Форма ответа */}
@@ -154,6 +161,8 @@ export default function AdminTicketsPanel({ supabase }: { supabase: any }) {
                   error={messageError}
                   onImageUpload={handleImageUpload}
                   onSendReply={handleSendReply}
+                  replyToMessage={replyToMessage}
+                  setReplyToMessage={setReplyToMessage}
                 />
               )}
             </div>

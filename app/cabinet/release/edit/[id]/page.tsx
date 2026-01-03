@@ -179,14 +179,21 @@ export default function EditExclusiveReleasePage() {
       setPromoPhotos(release.promo_photos || []);
       setReleaseStatus(release.status || '');
       
-      // Определяем тип релиза на основе количества треков
-      const tracksCount = (release.tracks || []).length;
-      if (tracksCount === 1) {
-        setReleaseType('single');
-      } else if (tracksCount >= 2 && tracksCount <= 7) {
-        setReleaseType('ep');
-      } else if (tracksCount >= 8) {
-        setReleaseType('album');
+      // Загружаем тип релиза из базы данных (если есть), иначе определяем по количеству треков
+      if (release.release_type) {
+        setReleaseType(release.release_type as 'single' | 'ep' | 'album');
+        console.log('Release type from DB:', release.release_type);
+      } else {
+        // Fallback: определяем тип релиза на основе количества треков
+        const tracksCount = (release.tracks || []).length;
+        if (tracksCount === 1) {
+          setReleaseType('single');
+        } else if (tracksCount >= 2 && tracksCount <= 7) {
+          setReleaseType('ep');
+        } else if (tracksCount >= 8) {
+          setReleaseType('album');
+        }
+        console.log('Release type inferred from tracks count:', tracksCount);
       }
       
       setLoading(false);
@@ -293,6 +300,7 @@ export default function EditExclusiveReleasePage() {
         subgenres: subgenres,
         release_date: releaseDate,
         collaborators: collaborators,
+        release_type: releaseType,
         tracks: tracksWithUrls,
         countries: selectedCountries,
         contract_agreed: agreedToContract,
@@ -402,13 +410,20 @@ export default function EditExclusiveReleasePage() {
     );
   }
 
+  // Минимальное количество треков в зависимости от типа релиза
+  const getMinTracks = (type: typeof releaseType): number => {
+    if (type === 'ep') return 2;
+    if (type === 'album') return 7;
+    return 1; // single
+  };
+
   // Проверка заполненности каждого шага
   const isStepComplete = (stepId: string): boolean => {
     switch(stepId) {
       case 'release':
         return !!(releaseTitle.trim() && genre && (coverFile || existingCoverUrl));
       case 'tracklist':
-        return tracks.length > 0;
+        return tracks.length >= getMinTracks(releaseType);
       case 'countries':
         return true; // Опциональный шаг
       case 'contract':
@@ -436,25 +451,108 @@ export default function EditExclusiveReleasePage() {
   const totalRequiredSteps = steps.length;
   const progress = (completedSteps / totalRequiredSteps) * 100;
 
+  // Плавный градиент от красного через оранжевый/желтый к зелёному
+  const getProgressColor = () => {
+    if (completedSteps === 0) return { from: '#ef4444', to: '#dc2626' }; // red
+    if (completedSteps === 1) return { from: '#f97316', to: '#ea580c' }; // orange
+    if (completedSteps === 2) return { from: '#fb923c', to: '#f97316' }; // orange-light
+    if (completedSteps === 3) return { from: '#fbbf24', to: '#f59e0b' }; // amber
+    if (completedSteps === 4) return { from: '#a3e635', to: '#84cc16' }; // lime
+    if (completedSteps === 5) return { from: '#4ade80', to: '#22c55e' }; // green-light
+    return { from: '#10b981', to: '#059669' }; // emerald (6/6)
+  };
+
+  const progressColor = getProgressColor();
+
   return (
     <div className="min-h-screen pt-16 sm:pt-20 text-white relative z-10">
       <AnimatedBackground />
       <div className="max-w-[1600px] mx-auto p-3 sm:p-4 md:p-6 lg:p-8 flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8 items-stretch relative z-10">
         
-        {/* Боковая панель с шагами - Glassmorphism */}
-        <aside className="lg:w-64 w-full bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-xl border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-5 lg:p-6 flex flex-col lg:self-start lg:sticky lg:top-24 shadow-2xl shadow-purple-500/5">
-          <div className="mb-4 sm:mb-6">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center mb-3 ring-1 ring-white/10">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-purple-400">
-                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-              </svg>
+        {/* Боковая панель с шагами - Glassmorphism (как в создании релиза) */}
+        <aside className="lg:w-64 w-full backdrop-blur-xl border rounded-3xl p-6 pb-8 flex-col lg:self-start lg:sticky lg:top-24 shadow-2xl relative overflow-hidden hidden lg:flex bg-gradient-to-br from-white/[0.07] to-white/[0.02] border-white/10 shadow-black/20">
+          {/* Декоративный градиент */}
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5 pointer-events-none" />
+          
+          {/* Заголовок с кнопкой назад */}
+          <div className="mb-4 relative z-10">
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="font-bold text-lg bg-gradient-to-r from-white to-zinc-300 bg-clip-text text-transparent">
+                {isDraftMode ? 'Черновик' : 'Редактирование'}
+              </h3>
+              <button
+                onClick={() => router.push(fromPage === 'admin' ? '/admin' : '/cabinet')}
+                className="w-7 h-7 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 flex items-center justify-center transition-all group/back"
+                title="В кабинет"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-zinc-400 group-hover/back:text-white transition-colors">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                  <polyline points="16 17 21 12 16 7"/>
+                  <line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+              </button>
             </div>
-            <h3 className="font-black text-base sm:text-lg bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">Редактирование релиза</h3>
-            <p className="text-xs text-zinc-500 mt-1">Exclusive Plan</p>
+            <p className="text-xs text-zinc-400">Exclusive Plan</p>
           </div>
           
-          <div className="space-y-2">
+          {/* Индикатор типа релиза */}
+          {releaseType && (
+            <div className="mb-3 p-3 backdrop-blur-lg bg-gradient-to-br from-purple-500/20 via-purple-500/10 to-blue-500/20 border border-white/20 rounded-xl relative overflow-hidden group hover:border-white/30 transition-all">
+              <div className="relative z-10">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wide">Формат</span>
+                </div>
+                
+                <div className="flex items-center gap-2">
+                  {/* Иконка типа */}
+                  <div className={`w-6 h-6 rounded-lg flex items-center justify-center shrink-0 ${
+                    releaseType === 'single' ? 'bg-purple-500/20' :
+                    releaseType === 'ep' ? 'bg-blue-500/20' :
+                    'bg-emerald-500/20'
+                  }`}>
+                    {releaseType === 'single' && (
+                      <svg className="w-3 h-3 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <path d="M9 18V5l12-2v13" />
+                        <circle cx="6" cy="18" r="3" />
+                        <circle cx="18" cy="16" r="3" />
+                      </svg>
+                    )}
+                    {releaseType === 'ep' && (
+                      <svg className="w-3 h-3 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <circle cx="12" cy="12" r="10" />
+                        <circle cx="12" cy="12" r="3" />
+                      </svg>
+                    )}
+                    {releaseType === 'album' && (
+                      <svg className="w-3 h-3 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                      </svg>
+                    )}
+                  </div>
+                  
+                  {/* Текст */}
+                  <div className="flex-1">
+                    <div className="font-bold text-sm text-white">
+                      {releaseType === 'single' && 'Сингл'}
+                      {releaseType === 'ep' && 'EP'}
+                      {releaseType === 'album' && 'Альбом'}
+                    </div>
+                    <div className={`text-[10px] font-medium ${
+                      releaseType === 'single' ? 'text-purple-400' :
+                      releaseType === 'ep' ? 'text-blue-400' :
+                      'text-emerald-400'
+                    }`}>
+                      {releaseType === 'single' && '1 трек'}
+                      {releaseType === 'ep' && '2-7 треков'}
+                      {releaseType === 'album' && '8-50 треков'}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+          
+          <div className="space-y-2 relative z-10">
             {steps.map((step) => {
               const isComplete = isStepComplete(step.id);
               const isCurrent = currentStep === step.id;
@@ -463,18 +561,17 @@ export default function EditExclusiveReleasePage() {
                 <button 
                   key={step.id} 
                   onClick={() => setCurrentStep(step.id)}
-                  className={`w-full text-left py-2.5 sm:py-3 px-3 sm:px-4 rounded-xl flex items-center gap-2 sm:gap-3 transition-all ${
+                  className={`w-full text-left py-3 px-4 rounded-xl flex items-center gap-3 transition-all relative overflow-hidden group/step ${
                     isCurrent 
-                      ? 'bg-gradient-to-r from-purple-500/30 to-blue-500/30 text-white shadow-lg shadow-purple-500/10 ring-1 ring-purple-500/30' 
-                      : 'text-zinc-400 hover:bg-white/5 hover:text-white'
+                      ? 'backdrop-blur-md bg-gradient-to-r from-purple-500/40 to-purple-600/40 text-white shadow-lg shadow-purple-500/30 border border-white/20' 
+                      : 'backdrop-blur-sm bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white border border-transparent hover:border-white/10'
                   }`}
                 >
-                  <span className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
-                    isComplete 
-                      ? 'bg-emerald-500/20 text-emerald-400 ring-1 ring-emerald-500/30' 
-                      : isCurrent
-                        ? 'bg-purple-500/20 text-purple-400 ring-1 ring-purple-500/30'
-                        : 'bg-white/10'
+                  {/* Hover эффект */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-purple-500/10 to-purple-500/0 opacity-0 group-hover/step:opacity-100 transition-opacity duration-300" />
+                  <div className="relative z-10 flex items-center gap-3 w-full">
+                  <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
+                    isComplete ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/10'
                   }`}>
                     {isComplete ? (
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -484,42 +581,99 @@ export default function EditExclusiveReleasePage() {
                       step.icon
                     )}
                   </span>
-                  <span className="text-xs sm:text-sm font-medium">{step.label}</span>
+                  <span className="text-sm font-medium">{step.label}</span>
                   {isCurrent && (
-                    <span className="ml-auto w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-purple-400 animate-pulse" />
+                    <span className="ml-auto w-2 h-2 rounded-full bg-white animate-pulse shadow-lg shadow-white/50" />
                   )}
+                  </div>
                 </button>
               );
             })}
           </div>
 
           {/* Прогресс */}
-          <div className="mt-auto pt-4 sm:pt-6 border-t border-white/10">
-            <div className="text-xs text-zinc-500 mb-2">Прогресс заполнения</div>
-            <div className="h-2 bg-white/5 rounded-full overflow-hidden">
-              <div 
-                className={`h-full transition-all duration-500 ${
-                  progress >= 100 
-                    ? 'bg-gradient-to-r from-emerald-500 to-emerald-400' 
-                    : progress >= 50 
-                      ? 'bg-gradient-to-r from-yellow-500 to-amber-400' 
-                      : 'bg-gradient-to-r from-red-500 to-rose-400'
-                }`}
-                style={{ width: `${progress}%` }}
-              />
+          <div className="mt-auto pt-4 border-t border-white/10 relative z-10 px-1">
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-xs text-zinc-400 font-medium">Прогресс</span>
+              <div className="flex items-center font-mono text-sm leading-none">
+                <span 
+                  className="font-bold transition-colors duration-500 drop-shadow-sm" 
+                  style={{ color: progressColor.from, textShadow: `0 0 8px ${progressColor.from}60` }}
+                >
+                  {completedSteps}
+                </span>
+                <span className="text-zinc-500 mx-0.5">/</span>
+                <span className="text-zinc-400 font-bold">6</span>
+              </div>
             </div>
-            <div className="text-xs text-zinc-400 mt-2 text-center">
-              {completedSteps} из {totalRequiredSteps} шагов
+            
+            {/* Сегментированный прогресс-бар с красивым свечением */}
+            <div className="relative">
+              {/* Свечение под прогресс-баром */}
+              {completedSteps > 0 && (
+                <div 
+                  className="absolute -inset-1 rounded-xl blur-md opacity-40 transition-all duration-700"
+                  style={{ 
+                    background: `linear-gradient(90deg, ${progressColor.from}, ${progressColor.to})`,
+                    width: `${(completedSteps / 6) * 100}%`
+                  }}
+                />
+              )}
+              
+              {/* Фоновые сегменты */}
+              <div className="flex gap-1.5 relative">
+                {[0, 1, 2, 3, 4, 5].map((i) => (
+                  <div 
+                    key={i} 
+                    className="flex-1 h-3 rounded-full bg-white/5 border border-white/10 overflow-hidden relative"
+                  >
+                    {/* Заполненный сегмент */}
+                    <div 
+                      className={`absolute inset-0 transition-all duration-500 ease-out ${
+                        i < completedSteps ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                      }`}
+                      style={{ 
+                        background: `linear-gradient(135deg, ${progressColor.from}, ${progressColor.to})`,
+                        boxShadow: i < completedSteps ? `0 0 12px ${progressColor.from}80, 0 0 4px ${progressColor.from}, inset 0 1px 0 rgba(255,255,255,0.4)` : 'none',
+                        transitionDelay: `${i * 60}ms`
+                      }}
+                    >
+                      {/* Верхний блик */}
+                      <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/40 to-transparent rounded-t-full" />
+                      {/* Анимированный блик на последнем заполненном */}
+                      {i === completedSteps - 1 && completedSteps > 0 && (
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent animate-shimmer" />
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            {/* Статус */}
+            <div className="flex items-center justify-center mt-3 gap-2">
+              {completedSteps === 6 ? (
+                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 shadow-lg shadow-emerald-500/20">
+                  <svg className="w-3.5 h-3.5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  <span className="text-[11px] font-semibold text-emerald-400">Готово к отправке</span>
+                </div>
+              ) : (
+                <span className="text-[11px] text-zinc-500">
+                  Осталось <span className="font-semibold" style={{ color: progressColor.from }}>{6 - completedSteps}</span> {6 - completedSteps === 1 ? 'шаг' : 'шагов'}
+                </span>
+              )}
             </div>
           </div>
 
           {/* Кнопки сохранения */}
           {isDraftMode && releaseStatus === 'draft' ? (
-            <div className="space-y-2 sm:space-y-3 mt-3 sm:mt-4">
+            <div className="space-y-2 mt-3 relative z-10">
               <button
                 onClick={() => handleSave(false)}
                 disabled={saving}
-                className={`w-full py-2.5 sm:py-3 rounded-xl text-sm sm:text-base font-bold transition flex items-center justify-center gap-2 ${
+                className={`w-full py-2.5 rounded-xl text-sm font-bold transition flex items-center justify-center gap-2 ${
                   saving
                     ? 'bg-zinc-800 text-zinc-600 cursor-not-allowed'
                     : 'bg-white/5 hover:bg-white/10 text-white border border-white/10'
@@ -535,7 +689,7 @@ export default function EditExclusiveReleasePage() {
               <button
                 onClick={() => handleSave(true)}
                 disabled={saving || progress < 100}
-                className={`relative w-full py-3 sm:py-4 rounded-xl text-sm sm:text-base font-bold transition overflow-hidden group flex items-center justify-center gap-2 ${
+                className={`relative w-full py-3 rounded-xl text-sm font-bold transition overflow-hidden group flex items-center justify-center gap-2 ${
                   saving || progress < 100
                     ? 'bg-zinc-800 text-zinc-600 cursor-not-allowed'
                     : 'bg-gradient-to-r from-emerald-500 to-emerald-400 text-black shadow-lg shadow-emerald-500/20'
@@ -561,7 +715,7 @@ export default function EditExclusiveReleasePage() {
             <button
               onClick={() => handleSave(false)}
               disabled={saving}
-              className={`relative w-full mt-3 sm:mt-4 py-3 sm:py-4 rounded-xl text-sm sm:text-base font-bold transition overflow-hidden group flex items-center justify-center gap-2 ${
+              className={`relative w-full mt-3 py-3 rounded-xl text-sm font-bold transition overflow-hidden group flex items-center justify-center gap-2 relative z-10 ${
                 saving
                   ? 'bg-zinc-800 text-zinc-600 cursor-not-allowed'
                   : 'bg-gradient-to-r from-emerald-500 to-emerald-400 text-black shadow-lg shadow-emerald-500/20'
@@ -579,24 +733,95 @@ export default function EditExclusiveReleasePage() {
             </button>
           )}
         </aside>
+        
+        {/* Мобильная версия - горизонтальная прокручиваемая полоса */}
+        <div className="lg:hidden w-full mb-4 order-first">
+          {/* Заголовок */}
+          <div className="backdrop-blur-xl border rounded-2xl p-4 mb-3 shadow-xl relative overflow-hidden bg-gradient-to-br from-white/[0.07] to-white/[0.02] border-white/10 shadow-black/10">
+            {/* Декоративный градиент */}
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5 pointer-events-none" />
+            
+            <div className="relative z-10">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="font-bold text-base bg-gradient-to-r from-white to-zinc-300 bg-clip-text text-transparent">
+                  {isDraftMode ? 'Черновик' : 'Редактирование'}
+                </h3>
+                <div className="flex items-center font-mono text-sm leading-none">
+                  <span className="font-bold" style={{ color: progressColor.from }}>{completedSteps}</span>
+                  <span className="text-zinc-500 mx-0.5">/</span>
+                  <span className="text-zinc-400 font-bold">6</span>
+                </div>
+              </div>
+              {/* Сегментированный прогресс-бар */}
+              <div className="flex gap-1">
+                {[0, 1, 2, 3, 4, 5].map((i) => (
+                  <div 
+                    key={i} 
+                    className="flex-1 h-2 rounded-full bg-white/5 border border-white/10 overflow-hidden relative"
+                  >
+                    <div 
+                      className={`absolute inset-0 transition-all duration-500 ${
+                        i < completedSteps ? 'opacity-100' : 'opacity-0'
+                      }`}
+                      style={{ 
+                        background: `linear-gradient(135deg, ${progressColor.from}, ${progressColor.to})`,
+                        boxShadow: i < completedSteps ? `inset 0 1px 0 rgba(255,255,255,0.3)` : 'none',
+                        transitionDelay: `${i * 50}ms`
+                      }}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-transparent" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="text-[10px] text-zinc-400 mt-1.5 text-center">
+                {completedSteps === 6 ? '✓ Готово к отправке' : `Осталось ${6 - completedSteps}`}
+              </div>
+            </div>
+          </div>
+          
+          {/* Горизонтальный скролл шагов */}
+          <div className="overflow-x-auto -mx-4 px-4 pb-2" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            <div className="flex gap-2 min-w-min">
+              {steps.map((step) => {
+                const isComplete = isStepComplete(step.id);
+                const isCurrent = currentStep === step.id;
+                
+                return (
+                  <button 
+                    key={step.id} 
+                    onClick={() => setCurrentStep(step.id)}
+                    className={`flex-shrink-0 py-2.5 px-4 rounded-xl flex items-center gap-2 transition-all text-sm font-medium relative overflow-hidden group/step ${
+                      isCurrent 
+                        ? 'backdrop-blur-md bg-gradient-to-r from-purple-500/40 to-purple-600/40 text-white shadow-lg shadow-purple-500/30 border border-white/20' 
+                        : 'backdrop-blur-sm bg-white/5 text-zinc-400 border border-white/10 hover:border-white/20 hover:bg-white/10'
+                    }`}
+                  >
+                    {/* Hover эффект */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-purple-500/10 to-purple-500/0 opacity-0 group-hover/step:opacity-100 transition-opacity duration-300" />
+                    <div className="relative z-10 flex items-center gap-2">
+                    <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
+                      isComplete ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/10'
+                    }`}>
+                      {isComplete ? (
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                          <polyline points="20 6 9 17 4 12" strokeWidth="3"/>
+                        </svg>
+                      ) : (
+                        step.icon
+                      )}
+                    </span>
+                    <span className="whitespace-nowrap">{step.label}</span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
 
         {/* Основной контент - Glassmorphism */}
         <section className="flex-1 bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-xl border border-white/10 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-10 min-h-[600px] shadow-2xl shadow-purple-500/5">
-          
-          {/* Кнопка возврата */}
-          <div className="mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-white/10">
-            <button 
-              onClick={() => router.push(fromPage === 'admin' ? '/admin' : '/cabinet')}
-              className="px-4 sm:px-6 py-2 sm:py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-sm sm:text-base font-medium transition flex items-center gap-2 group"
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="flex-shrink-0 group-hover:-translate-x-1 transition-transform" strokeWidth="2">
-                <polyline points="15 18 9 12 15 6"/>
-              </svg>
-              <span className="hidden sm:inline">{fromPage === 'admin' ? 'Вернуться в админ панель' : 'Вернуться в кабинет'}</span>
-              <span className="sm:hidden">Назад</span>
-            </button>
-          </div>
-
           {currentStep === 'release' && (
               <ReleaseInfoStep
                 releaseTitle={releaseTitle}

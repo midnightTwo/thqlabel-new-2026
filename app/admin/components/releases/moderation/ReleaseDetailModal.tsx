@@ -182,7 +182,7 @@ export default function ReleaseDetailModal({
     >
       {/* Левое окно: информация о релизе */}
       <div 
-        className="bg-gradient-to-br from-[#0d0d0f] to-[#1a1a1f] border border-white/20 shadow-2xl shadow-[#6050ba]/10 rounded-2xl sm:rounded-3xl w-full lg:w-[800px] flex-shrink-0 max-h-[90vh] overflow-y-auto scrollbar-hide animate-in slide-in-from-left duration-300 relative" 
+        className="admin-dark-modal bg-gradient-to-br from-[#0d0d0f] to-[#1a1a1f] border border-white/20 shadow-2xl shadow-[#6050ba]/10 rounded-2xl sm:rounded-3xl w-full lg:w-[800px] flex-shrink-0 max-h-[90vh] overflow-y-auto scrollbar-hide animate-in slide-in-from-left duration-300 relative" 
         onClick={(e) => e.stopPropagation()}
       >
         <div className="p-4 sm:p-6 lg:p-8">
@@ -311,7 +311,7 @@ export default function ReleaseDetailModal({
 
       {/* Правое окно: действия */}
       <div 
-        className="hidden lg:block bg-gradient-to-br from-[#0d0d0f] to-[#1a1a1f] border border-white/20 shadow-2xl rounded-3xl w-[400px] flex-shrink-0 max-h-[90vh] overflow-y-auto scrollbar-hide animate-in slide-in-from-right duration-300" 
+        className="admin-dark-modal hidden lg:block bg-gradient-to-br from-[#0d0d0f] to-[#1a1a1f] border border-white/20 shadow-2xl rounded-3xl w-[400px] flex-shrink-0 max-h-[90vh] overflow-y-auto scrollbar-hide animate-in slide-in-from-right duration-300" 
         onClick={(e) => e.stopPropagation()}
       >
         <div className="p-6">

@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import AnimatedBackground from '@/components/ui/AnimatedBackground';
 import { supabase } from '../../lib/supabase';
 import { useTheme } from '@/contexts/ThemeContext';
-import { getAllCountries } from '@/components/CountryFlagsSVG';
+import { getAllCountries } from '@/components/icons/CountryFlagsSVG';
 import {
   ReleaseInfoStep,
   TracklistStep,
@@ -24,6 +24,7 @@ export type PromoStatus = 'not-started' | 'skipped' | 'filled';
 function StepsSidebar({ 
   currentStep, 
   setCurrentStep,
+  onBackToCabinet,
   releaseTitle,
   releaseType,
   genre,
@@ -38,6 +39,7 @@ function StepsSidebar({
 }: { 
   currentStep: string; 
   setCurrentStep: (step: string) => void;
+  onBackToCabinet: () => void;
   releaseTitle: string;
   releaseType: ReleaseType | null;
   genre: string;
@@ -51,13 +53,20 @@ function StepsSidebar({
   isLight: boolean;
 }) {
   const allCountries = getAllCountries();
+  // Минимальное количество треков в зависимости от типа релиза
+  const getMinTracks = (type: ReleaseType | null): number => {
+    if (type === 'ep') return 2;
+    if (type === 'album') return 7;
+    return 1; // single
+  };
+
   // Проверка заполненности каждого шага
   const isStepComplete = (stepId: string): boolean => {
     switch(stepId) {
       case 'release':
         return !!(releaseTitle.trim() && genre && coverFile && releaseDate);
       case 'tracklist':
-        return tracksCount > 0;
+        return tracksCount >= getMinTracks(releaseType);
       case 'countries':
         return allCountries.length - excludedCountries.length > 0; // хотя бы одна страна выбрана
       case 'contract':
@@ -90,23 +99,29 @@ function StepsSidebar({
     { id: 'send', label: 'Отправка', shortLabel: 'Отправка', icon: 'send' },
   ];
 
-  // Подсчёт заполненных обязательных шагов
-  const requiredStepIds = steps.filter(s => s.id !== 'send' && s.id !== 'promo').map(s => s.id);
-  const completedSteps = steps.filter(step => requiredStepIds.includes(step.id) && isStepComplete(step.id)).length;
-  const totalRequiredSteps = requiredStepIds.length;
+  // 6 основных шагов для прогресса (промо считается если заполнен ИЛИ пропущен)
+  const mainStepIds = ['release', 'tracklist', 'countries', 'contract', 'platforms', 'promo'];
+  const completedSteps = mainStepIds.filter(id => isStepComplete(id)).length;
+  const totalRequiredSteps = 6;
   const progress = (completedSteps / totalRequiredSteps) * 100;
 
-  // Динамические цвета прогресс-бара: 0-49% красный, 50-99% желтый, 100% зеленый
-  const getProgressColorClass = () => {
-    if (progress >= 100) return 'from-emerald-500 via-green-400 to-emerald-500 shadow-emerald-500/50';
-    if (progress >= 50) return 'from-amber-500 via-yellow-400 to-amber-500 shadow-amber-500/50';
-    return 'from-red-500 via-rose-400 to-red-500 shadow-red-500/50';
+  // Плавный градиент от красного через оранжевый/желтый к зелёному
+  const getProgressColor = () => {
+    if (completedSteps === 0) return { from: '#ef4444', to: '#dc2626' }; // red
+    if (completedSteps === 1) return { from: '#f97316', to: '#ea580c' }; // orange
+    if (completedSteps === 2) return { from: '#fb923c', to: '#f97316' }; // orange-light
+    if (completedSteps === 3) return { from: '#fbbf24', to: '#f59e0b' }; // amber
+    if (completedSteps === 4) return { from: '#a3e635', to: '#84cc16' }; // lime
+    if (completedSteps === 5) return { from: '#4ade80', to: '#22c55e' }; // green-light
+    return { from: '#10b981', to: '#059669' }; // emerald (6/6)
   };
+
+  const progressColor = getProgressColor();
 
   return (
     <>
       {/* Десктоп версия - вертикальная боковая панель */}
-      <aside className={`hidden lg:flex lg:w-64 w-full backdrop-blur-xl border rounded-3xl p-6 flex-col lg:self-start lg:sticky lg:top-24 shadow-2xl relative overflow-hidden ${
+      <aside className={`hidden lg:flex lg:w-64 w-full backdrop-blur-xl border rounded-3xl p-6 pb-8 flex-col lg:self-start lg:sticky lg:top-24 shadow-2xl relative overflow-hidden ${
         isLight
           ? 'bg-[rgba(255,255,255,0.45)] border-white/60 shadow-purple-500/10'
           : 'bg-gradient-to-br from-white/[0.07] to-white/[0.02] border-white/10 shadow-black/20'
@@ -114,56 +129,66 @@ function StepsSidebar({
         {/* Декоративный градиент */}
         <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5 pointer-events-none" />
         
-        <div className="mb-6 relative z-10">
-          <h3 className={`font-bold text-lg bg-gradient-to-r bg-clip-text text-transparent ${
-            isLight ? 'from-[#2a2550] to-[#4a4570]' : 'from-white to-zinc-300'
-          }`}>Создание релиза</h3>
-          <p className={`text-xs mt-1 ${isLight ? 'text-[#5a5580]' : 'text-zinc-400'}`}>Exclusive Plan</p>
+        {/* Заголовок с кнопкой назад */}
+        <div className="mb-4 relative z-10">
+          <div className="flex items-center justify-between mb-2">
+            <h3 className={`font-bold text-lg bg-gradient-to-r bg-clip-text text-transparent ${
+              isLight ? 'from-[#2a2550] to-[#4a4570]' : 'from-white to-zinc-300'
+            }`}>Создание релиза</h3>
+            <button
+              onClick={onBackToCabinet}
+              className="w-7 h-7 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 flex items-center justify-center transition-all group/back"
+              title="В кабинет"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-zinc-400 group-hover/back:text-white transition-colors">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                <polyline points="16 17 21 12 16 7"/>
+                <line x1="21" y1="12" x2="9" y2="12"/>
+              </svg>
+            </button>
+          </div>
+          <p className={`text-xs ${isLight ? 'text-[#5a5580]' : 'text-zinc-400'}`}>Exclusive Plan</p>
         </div>
         
         {/* Индикатор типа релиза */}
         {releaseType && (
-          <div className="mb-4 p-4 backdrop-blur-lg bg-gradient-to-br from-purple-500/20 via-purple-500/10 to-blue-500/20 border border-white/20 rounded-xl relative overflow-hidden group hover:border-white/30 hover:shadow-lg hover:shadow-purple-500/20 transition-all">
-            {/* Фоновый блик */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-            
+          <div className="mb-3 p-3 backdrop-blur-lg bg-gradient-to-br from-purple-500/20 via-purple-500/10 to-blue-500/20 border border-white/20 rounded-xl relative overflow-hidden group hover:border-white/30 transition-all">
             <div className="relative z-10">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-semibold text-zinc-400 uppercase tracking-wide">Формат</span>
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wide">Формат</span>
                 <button
                   onClick={() => setCurrentStep('type')}
-                  className="flex items-center gap-1.5 px-2.5 py-1 backdrop-blur-md bg-purple-500/20 hover:bg-purple-500/30 border border-purple-400/40 hover:border-purple-400/60 rounded-lg text-xs font-semibold text-purple-300 hover:text-purple-200 transition-all group/btn shadow-lg shadow-purple-500/10"
+                  className="flex items-center gap-1 px-2 py-0.5 backdrop-blur-md bg-purple-500/20 hover:bg-purple-500/30 border border-purple-400/40 hover:border-purple-400/60 rounded-lg text-[10px] font-semibold text-purple-300 hover:text-purple-200 transition-all"
                   title="Изменить тип релиза"
                 >
-                  <svg className="w-3.5 h-3.5 group-hover/btn:rotate-90 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                   </svg>
-                  <span>Изменить</span>
                 </button>
               </div>
               
-              <div className="flex items-center gap-2.5">
+              <div className="flex items-center gap-2">
                 {/* Иконка типа */}
-                <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
+                <div className={`w-6 h-6 rounded-lg flex items-center justify-center shrink-0 ${
                   releaseType === 'single' ? 'bg-purple-500/20' :
                   releaseType === 'ep' ? 'bg-blue-500/20' :
                   'bg-emerald-500/20'
                 }`}>
                   {releaseType === 'single' && (
-                    <svg className="w-4 h-4 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <svg className="w-3 h-3 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                       <path d="M9 18V5l12-2v13" />
                       <circle cx="6" cy="18" r="3" />
                       <circle cx="18" cy="16" r="3" />
                     </svg>
                   )}
                   {releaseType === 'ep' && (
-                    <svg className="w-4 h-4 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <svg className="w-3 h-3 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                       <circle cx="12" cy="12" r="10" />
                       <circle cx="12" cy="12" r="3" />
                     </svg>
                   )}
                   {releaseType === 'album' && (
-                    <svg className="w-4 h-4 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <svg className="w-3 h-3 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                       <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
                     </svg>
                   )}
@@ -171,12 +196,12 @@ function StepsSidebar({
                 
                 {/* Текст */}
                 <div className="flex-1">
-                  <div className="font-black text-base text-white mb-0.5">
+                  <div className="font-bold text-sm text-white">
                     {releaseType === 'single' && 'Сингл'}
                     {releaseType === 'ep' && 'EP'}
                     {releaseType === 'album' && 'Альбом'}
                   </div>
-                  <div className={`text-xs font-medium ${
+                  <div className={`text-[10px] font-medium ${
                     releaseType === 'single' ? 'text-purple-400' :
                     releaseType === 'ep' ? 'text-blue-400' :
                     'text-emerald-400'
@@ -212,8 +237,8 @@ function StepsSidebar({
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-purple-500/10 to-purple-500/0 opacity-0 group-hover/step:opacity-100 transition-opacity duration-300" />
                 <div className="relative z-10 flex items-center gap-3 w-full">
                 <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
-                  isPromoSkipped ? 'bg-yellow-500/20 text-yellow-400' :
                   isPromoFilled ? 'bg-emerald-500/20 text-emerald-400' :
+                  isPromoSkipped ? 'bg-yellow-500/20 text-yellow-400' :
                   isComplete ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/10'
                 }`}>
                   {(isComplete || isPromoSkipped || isPromoFilled) && step.id !== 'send' ? (
@@ -240,16 +265,78 @@ function StepsSidebar({
         </div>
 
         {/* Прогресс */}
-        <div className="mt-auto pt-6 border-t border-white/10 relative z-10">
-          <div className="text-xs text-zinc-400 mb-2 font-medium">Прогресс заполнения</div>
-          <div className="h-2.5 backdrop-blur-sm bg-white/5 rounded-full overflow-hidden border border-white/10 shadow-inner">
-            <div 
-              className={`h-full bg-gradient-to-r ${getProgressColorClass()} transition-all duration-500 shadow-lg`}
-              style={{ width: `${progress}%` }}
-            />
+        <div className="mt-auto pt-4 border-t border-white/10 relative z-10 px-1">
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-xs text-zinc-400 font-medium">Прогресс</span>
+            <div className="flex items-center font-mono text-sm leading-none">
+              <span 
+                className="font-bold transition-colors duration-500 drop-shadow-sm" 
+                style={{ color: progressColor.from, textShadow: `0 0 8px ${progressColor.from}60` }}
+              >
+                {completedSteps}
+              </span>
+              <span className="text-zinc-500 mx-0.5">/</span>
+              <span className="text-zinc-400 font-bold">6</span>
+            </div>
           </div>
-          <div className="text-xs text-zinc-300 mt-2 text-center font-medium">
-            {completedSteps} из {totalRequiredSteps} шагов
+          
+          {/* Сегментированный прогресс-бар с красивым свечением */}
+          <div className="relative">
+            {/* Свечение под прогресс-баром */}
+            {completedSteps > 0 && (
+              <div 
+                className="absolute -inset-1 rounded-xl blur-md opacity-40 transition-all duration-700"
+                style={{ 
+                  background: `linear-gradient(90deg, ${progressColor.from}, ${progressColor.to})`,
+                  width: `${(completedSteps / 6) * 100}%`
+                }}
+              />
+            )}
+            
+            {/* Фоновые сегменты */}
+            <div className="flex gap-1.5 relative">
+              {[0, 1, 2, 3, 4, 5].map((i) => (
+                <div 
+                  key={i} 
+                  className="flex-1 h-3 rounded-full bg-white/5 border border-white/10 overflow-hidden relative"
+                >
+                  {/* Заполненный сегмент */}
+                  <div 
+                    className={`absolute inset-0 transition-all duration-500 ease-out ${
+                      i < completedSteps ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                    }`}
+                    style={{ 
+                      background: `linear-gradient(135deg, ${progressColor.from}, ${progressColor.to})`,
+                      boxShadow: i < completedSteps ? `0 0 12px ${progressColor.from}80, 0 0 4px ${progressColor.from}, inset 0 1px 0 rgba(255,255,255,0.4)` : 'none',
+                      transitionDelay: `${i * 60}ms`
+                    }}
+                  >
+                    {/* Верхний блик */}
+                    <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/40 to-transparent rounded-t-full" />
+                    {/* Анимированный блик на последнем заполненном */}
+                    {i === completedSteps - 1 && completedSteps > 0 && (
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent animate-shimmer" />
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Статус */}
+          <div className="flex items-center justify-center mt-3 gap-2">
+            {completedSteps === 6 ? (
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 shadow-lg shadow-emerald-500/20">
+                <svg className="w-3.5 h-3.5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+                <span className="text-[11px] font-semibold text-emerald-400">Готово к отправке</span>
+              </div>
+            ) : (
+              <span className="text-[11px] text-zinc-500">
+                Осталось <span className="font-semibold" style={{ color: progressColor.from }}>{6 - completedSteps}</span> {6 - completedSteps === 1 ? 'шаг' : 'шагов'}
+              </span>
+            )}
           </div>
         </div>
       </aside>
@@ -266,17 +353,40 @@ function StepsSidebar({
           <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5 pointer-events-none" />
           
           <div className="relative z-10">
-          <h3 className={`font-bold text-base mb-2 bg-gradient-to-r bg-clip-text text-transparent ${
-            isLight ? 'from-[#2a2550] to-[#4a4570]' : 'from-white to-zinc-300'
-          }`}>Создание релиза</h3>
-          <div className="h-2 backdrop-blur-sm bg-white/5 rounded-full overflow-hidden border border-white/10 shadow-inner">
-            <div 
-              className={`h-full bg-gradient-to-r ${getProgressColorClass()} transition-all duration-500 shadow-lg`}
-              style={{ width: `${progress}%` }}
-            />
+          <div className="flex items-center justify-between mb-2">
+            <h3 className={`font-bold text-base bg-gradient-to-r bg-clip-text text-transparent ${
+              isLight ? 'from-[#2a2550] to-[#4a4570]' : 'from-white to-zinc-300'
+            }`}>Создание релиза</h3>
+            <div className="flex items-center font-mono text-sm leading-none">
+              <span className="font-bold" style={{ color: progressColor.from }}>{completedSteps}</span>
+              <span className="text-zinc-500 mx-0.5">/</span>
+              <span className="text-zinc-400 font-bold">6</span>
+            </div>
           </div>
-          <div className="text-xs text-zinc-300 mt-1.5 font-medium">
-            {completedSteps} из {totalRequiredSteps} шагов
+          {/* Сегментированный прогресс-бар */}
+          <div className="flex gap-1">
+            {[0, 1, 2, 3, 4, 5].map((i) => (
+              <div 
+                key={i} 
+                className="flex-1 h-2 rounded-full bg-white/5 border border-white/10 overflow-hidden relative"
+              >
+                <div 
+                  className={`absolute inset-0 transition-all duration-500 ${
+                    i < completedSteps ? 'opacity-100' : 'opacity-0'
+                  }`}
+                  style={{ 
+                    background: `linear-gradient(135deg, ${progressColor.from}, ${progressColor.to})`,
+                    boxShadow: i < completedSteps ? `inset 0 1px 0 rgba(255,255,255,0.3)` : 'none',
+                    transitionDelay: `${i * 50}ms`
+                  }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-transparent" />
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="text-[10px] text-zinc-400 mt-1.5 text-center">
+            {completedSteps === 6 ? '✓ Готово к отправке' : `Осталось ${6 - completedSteps}`}
           </div>
           </div>
         </div>
@@ -304,8 +414,8 @@ function StepsSidebar({
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-purple-500/10 to-purple-500/0 opacity-0 group-hover/step:opacity-100 transition-opacity duration-300" />
                   <div className="relative z-10 flex items-center gap-2">
                   <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
-                    isPromoSkipped ? 'bg-yellow-500/20 text-yellow-400' :
                     isPromoFilled ? 'bg-emerald-500/20 text-emerald-400' :
+                    isPromoSkipped ? 'bg-yellow-500/20 text-yellow-400' :
                     isComplete ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/10'
                   }`}>
                     {(isComplete || isPromoSkipped || isPromoFilled) && step.id !== 'send' ? (
@@ -412,6 +522,33 @@ export default function CreateReleasePage() {
   // Draft state
   const [draftId, setDraftId] = useState<string | null>(null);
   const [isSavingDraft, setIsSavingDraft] = useState(false);
+  const [prevStepsCompleted, setPrevStepsCompleted] = useState<string[]>([]);
+
+  // Функция проверки заполненности шага (дублируется из StepsSidebar для использования в эффекте)
+  const isStepComplete = (stepId: string): boolean => {
+    const allCountries = getAllCountries();
+    const getMinTracks = (type: ReleaseType | null): number => {
+      if (type === 'ep') return 2;
+      if (type === 'album') return 7;
+      return 1;
+    };
+    switch(stepId) {
+      case 'release':
+        return !!(releaseTitle.trim() && genre && coverFile && releaseDate);
+      case 'tracklist':
+        return tracks.length >= getMinTracks(releaseType);
+      case 'countries':
+        return allCountries.length - excludedCountries.length > 0;
+      case 'contract':
+        return agreedToContract;
+      case 'platforms':
+        return selectedPlatforms > 0;
+      case 'promo':
+        return promoStatus !== 'not-started';
+      default:
+        return false;
+    }
+  };
 
   useEffect(() => {
     const getUser = async () => {
@@ -434,48 +571,73 @@ export default function CreateReleasePage() {
   }, [router]);
   
   // Функция сохранения/обновления черновика
-  const saveDraft = async () => {
+  const saveDraft = async (showNotification = false) => {
     if (!user || !supabase || isSavingDraft) return null;
     
-    // Сохраняем только если выбран жанр (обязательное поле в БД)
-    if (!genre) return null;
+    // Сохраняем только если заполнен хотя бы первый шаг (релиз)
+    if (!releaseTitle.trim() || !genre || !coverFile || !releaseDate) return null;
     
     console.log('🔄 Начинаем сохранение черновика...');
     
     setIsSavingDraft(true);
     try {
-      // Загружаем обложку если есть
+      // Загружаем обложку если есть и нет существующего draftId с coverUrl
       let coverUrl = null;
       if (coverFile) {
         console.log('📤 Загружаем обложку...');
         const fileExt = coverFile.name.split('.').pop();
-        const fileName = `${user.id}-${Date.now()}.${fileExt}`;
+        // Путь: user_id/draft-timestamp.ext — соответствует политике RLS
+        const fileName = `${user.id}/draft-${Date.now()}.${fileExt}`;
         const { data: uploadData, error: uploadError } = await supabase.storage
-          .from('releases')
+          .from('release-covers')
           .upload(fileName, coverFile, { contentType: coverFile.type, upsert: true });
         
         if (uploadError) {
           console.error('❌ Ошибка загрузки обложки:', uploadError);
         } else if (uploadData) {
           const { data: { publicUrl } } = supabase.storage
-            .from('releases')
+            .from('release-covers')
             .getPublicUrl(fileName);
           coverUrl = publicUrl;
           console.log('✅ Обложка загружена:', coverUrl);
         }
       }
       
-      const draftData = {
+      // Подготавливаем треки без аудио файлов (только метаданные)
+      const tracksData = tracks.map(track => ({
+        title: track.title,
+        link: track.link || '',
+        hasDrugs: track.hasDrugs,
+        lyrics: track.lyrics,
+        language: track.language,
+        version: track.version,
+        producers: track.producers,
+        featuring: track.featuring,
+        audioMetadata: track.audioMetadata,
+      }));
+      
+      const draftData: any = {
         user_id: user.id,
         title: releaseTitle || 'Без названия',
         artist_name: artistName || nickname,
         cover_url: coverUrl,
-        genre: genre,
-        subgenres: subgenres.length > 0 ? subgenres : null,
+        genre: genre || null,
+        subgenres: subgenres.length > 0 ? subgenres : [],
         release_date: releaseDate,
-        collaborators: collaborators.length > 0 ? collaborators : null,
+        collaborators: collaborators.length > 0 ? collaborators : [],
+        release_type: releaseType,
+        tracks: tracksData,
+        countries: getAllCountries().filter(c => !excludedCountries.includes(c)),
+        contract_agreed: agreedToContract,
+        contract_agreed_at: agreedToContract ? new Date().toISOString() : null,
+        platforms: selectedPlatformsList,
+        focus_track: focusTrack || null,
+        focus_track_promo: focusTrackPromo || null,
+        album_description: albumDescription || null,
+        promo_photos: promoPhotos || [],
+        wizard_step: currentStep,
         status: 'draft',
-        created_at: new Date().toISOString()
+        updated_at: new Date().toISOString()
       };
       
       console.log('💾 Данные для сохранения:', draftData);
@@ -492,9 +654,11 @@ export default function CreateReleasePage() {
           throw error;
         }
         console.log('✅ Черновик обновлен!');
+        if (showNotification) showSaveNotification();
         return draftId;
       } else {
         console.log('➕ Создаем новый черновик...');
+        draftData.created_at = new Date().toISOString();
         const { data, error } = await supabase
           .from('releases_exclusive')
           .insert([draftData])
@@ -508,6 +672,7 @@ export default function CreateReleasePage() {
         if (data) {
           console.log('✅ Черновик создан! ID:', data.id);
           setDraftId(data.id);
+          if (showNotification) showSaveNotification();
           return data.id;
         }
       }
@@ -541,28 +706,54 @@ export default function CreateReleasePage() {
     }
   };
   
-  // Показать уведомление о сохранении
+  // Показать уведомление о сохранении (используем toast)
   const showSaveNotification = () => {
-    const notification = document.createElement('div');
-    notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-xl shadow-lg z-50 animate-fade-in';
-    notification.textContent = '✓ Черновик сохранен';
-    document.body.appendChild(notification);
+    // Создаём toast-уведомление
+    const existingToasts = document.querySelectorAll('.draft-save-toast');
+    existingToasts.forEach(t => t.remove());
+    
+    const toast = document.createElement('div');
+    toast.className = 'draft-save-toast fixed bottom-6 right-6 z-[99999] flex items-center gap-3 px-5 py-3 rounded-xl border backdrop-blur-2xl bg-gradient-to-r from-emerald-500/20 to-emerald-600/10 border-emerald-500/40 shadow-2xl shadow-emerald-500/20';
+    toast.style.animation = 'toastSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+    toast.innerHTML = `
+      <div class="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center text-white shrink-0">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+      </div>
+      <span class="text-sm font-semibold text-emerald-100">Черновик сохранён</span>
+    `;
+    document.body.appendChild(toast);
     setTimeout(() => {
-      notification.style.opacity = '0';
-      notification.style.transform = 'translateY(-10px)';
-      notification.style.transition = 'all 0.3s ease-out';
-      setTimeout(() => notification.remove(), 300);
-    }, 2000);
+      toast.style.animation = 'toastSlideOut 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards';
+      setTimeout(() => toast.remove(), 300);
+    }, 2500);
   };
+  
+  // Эффект для автосохранения при изменении состояния шагов
+  useEffect(() => {
+    const stepIds = ['release', 'tracklist', 'countries', 'contract', 'platforms', 'promo'];
+    const currentCompleted = stepIds.filter(id => isStepComplete(id));
+    
+    // Проверяем, появился ли новый завершённый шаг
+    const newlyCompleted = currentCompleted.filter(step => !prevStepsCompleted.includes(step));
+    
+    if (newlyCompleted.length > 0 && currentStep !== 'type') {
+      console.log('📌 Новые завершённые шаги:', newlyCompleted);
+      
+      // Сохраняем черновик если первый шаг завершён
+      if (isStepComplete('release')) {
+        saveDraft(true);
+      }
+    }
+    
+    setPrevStepsCompleted(currentCompleted);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [releaseTitle, genre, coverFile, releaseDate, tracks.length, excludedCountries.length, agreedToContract, selectedPlatforms, promoStatus]);
   
   // Обработчик перехода на следующий шаг с автосохранением черновика
   const handleNextStep = async (nextStep: string) => {
     // Сохраняем черновик после прохождения любого шага (кроме выбора типа)
-    if (currentStep !== 'type' && genre) {
-      const savedId = await saveDraft();
-      if (savedId) {
-        showSaveNotification();
-      }
+    if (currentStep !== 'type' && isStepComplete('release')) {
+      await saveDraft(true);
     }
     setCurrentStep(nextStep);
   };
@@ -602,6 +793,7 @@ export default function CreateReleasePage() {
         <StepsSidebar 
           currentStep={currentStep} 
           setCurrentStep={setCurrentStep}
+          onBackToCabinet={() => router.push('/cabinet')}
           releaseTitle={releaseTitle}
           releaseType={releaseType}
           genre={genre}
@@ -616,7 +808,7 @@ export default function CreateReleasePage() {
         />
 
         {/* Основной контент */}
-        <section className={`flex-1 backdrop-blur-xl border rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-10 min-h-[500px] shadow-2xl relative overflow-hidden ${
+        <section className={`flex-1 backdrop-blur-xl border rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-10 min-h-[500px] shadow-2xl relative ${
           isLight
             ? 'bg-[rgba(255,255,255,0.45)] border-white/60 shadow-purple-500/10'
             : 'bg-gradient-to-br from-white/[0.07] to-white/[0.02] border-white/10 shadow-black/20'
@@ -625,20 +817,6 @@ export default function CreateReleasePage() {
           <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5 pointer-events-none" />
           
           <div className="relative z-10">
-          {/* Кнопка возврата */}
-          <div className="mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-white/10">
-            <button 
-              onClick={() => router.push('/cabinet')}
-              className="px-4 sm:px-6 py-2.5 sm:py-3 backdrop-blur-sm bg-white/5 hover:bg-white/10 rounded-xl font-medium transition flex items-center gap-2 text-sm sm:text-base border border-transparent hover:border-white/10"
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <polyline points="15 18 9 12 15 6" strokeWidth="2"/>
-              </svg>
-              <span className="hidden sm:inline">Вернуться в кабинет</span>
-              <span className="sm:hidden">Назад</span>
-            </button>
-          </div>
-
           {/* Шаг 1: Информация о релизе */}
           {currentStep === 'release' && (
             <ReleaseInfoStep
@@ -700,7 +878,7 @@ export default function CreateReleasePage() {
               setTrackProducers={setTrackProducers}
               trackFeaturing={trackFeaturing}
               setTrackFeaturing={setTrackFeaturing}
-              onNext={() => setCurrentStep('countries')}
+              onNext={() => handleNextStep('countries')}
               onBack={() => setCurrentStep('release')}
             />
           )}
@@ -710,7 +888,7 @@ export default function CreateReleasePage() {
             <CountriesStep
               excludedCountries={excludedCountries}
               setExcludedCountries={setExcludedCountries}
-              onNext={() => setCurrentStep('contract')}
+              onNext={() => handleNextStep('contract')}
               onBack={() => setCurrentStep('tracklist')}
             />
           )}
@@ -720,7 +898,7 @@ export default function CreateReleasePage() {
             <ContractStep
               agreedToContract={agreedToContract}
               setAgreedToContract={setAgreedToContract}
-              onNext={() => setCurrentStep('platforms')}
+              onNext={() => handleNextStep('platforms')}
               onBack={() => setCurrentStep('countries')}
             />
           )}
@@ -732,7 +910,7 @@ export default function CreateReleasePage() {
               setSelectedPlatforms={setSelectedPlatforms}
               selectedPlatformsList={selectedPlatformsList}
               setSelectedPlatformsList={setSelectedPlatformsList}
-              onNext={() => setCurrentStep('promo')}
+              onNext={() => handleNextStep('promo')}
               onBack={() => setCurrentStep('contract')}
             />
           )}
@@ -749,10 +927,12 @@ export default function CreateReleasePage() {
               setAlbumDescription={setAlbumDescription}
               promoPhotos={promoPhotos}
               setPromoPhotos={setPromoPhotos}
-              onNext={() => setCurrentStep('send')}
+              onNext={() => handleNextStep('send')}
               onBack={() => setCurrentStep('platforms')}
-              onSkip={() => setPromoStatus('skipped')}
+              onSkip={() => { setPromoStatus('skipped'); handleNextStep('send'); }}
               onFilled={() => setPromoStatus('filled')}
+              onResetSkip={() => setPromoStatus('not-started')}
+              promoStatus={promoStatus}
             />
           )}
 
@@ -762,6 +942,7 @@ export default function CreateReleasePage() {
               releaseTitle={releaseTitle}
               artistName={artistName}
               genre={genre}
+              releaseType={releaseType}
               tracksCount={tracks.length}
               coverFile={coverFile}
               collaborators={collaborators}
@@ -773,9 +954,12 @@ export default function CreateReleasePage() {
               focusTrackPromo={focusTrackPromo}
               albumDescription={albumDescription}
               promoPhotos={promoPhotos}
+              promoStatus={promoStatus}
               tracks={tracks}
               platforms={selectedPlatformsList}
               countries={getAllCountries().filter(c => !excludedCountries.includes(c))}
+              draftId={draftId}
+              onDeleteDraft={deleteDraft}
               onBack={() => setCurrentStep('promo')}
             />
           )}

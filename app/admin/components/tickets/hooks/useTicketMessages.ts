@@ -21,6 +21,7 @@ interface UseTicketMessagesReturn {
   handleImageUpload: (e: React.ChangeEvent<HTMLInputElement>) => Promise<void>;
   handleSendReply: (e: React.FormEvent) => Promise<void>;
   toggleReaction: (messageId: string, hasReaction: boolean) => Promise<void>;
+  deleteMessage: (messageId: string) => Promise<void>;
   scrollToBottom: () => void;
 }
 
@@ -28,7 +29,9 @@ export function useTicketMessages(
   supabase: any,
   selectedTicket: Ticket | null,
   setSelectedTicket: (ticket: Ticket | null) => void,
-  loadTickets: () => Promise<void>
+  loadTickets: () => Promise<void>,
+  replyToMessage?: TicketMessage | null,
+  setReplyToMessage?: (message: TicketMessage | null) => void
 ): UseTicketMessagesReturn {
   const [replyMessage, setReplyMessage] = useState('');
   const [replyImages, setReplyImages] = useState<string[]>([]);
@@ -112,61 +115,47 @@ export function useTicketMessages(
     };
   }, [selectedTicket?.id]);
 
-  // Функция переключения реакции
+  // Функция переключения реакции (через API)
   const toggleReaction = async (messageId: string, hasReaction: boolean) => {
     if (!currentUserId || !selectedTicket) return;
     
     try {
-      if (hasReaction) {
-        await supabase
-          .from('ticket_message_reactions')
-          .delete()
-          .eq('message_id', messageId)
-          .eq('user_id', currentUserId);
-        
-        setSelectedTicket({
-          ...selectedTicket,
-          ticket_messages: selectedTicket.ticket_messages.map(msg => {
-            if (msg.id === messageId) {
-              return {
-                ...msg,
-                reactions: (msg.reactions || []).filter(r => r.user_id !== currentUserId)
-              };
-            }
-            return msg;
-          })
-        });
-      } else {
-        const { data, error } = await supabase
-          .from('ticket_message_reactions')
-          .insert({
-            message_id: messageId,
-            user_id: currentUserId,
-            reaction: '❤️'
-          })
-          .select(`
-            id,
-            message_id,
-            user_id,
-            reaction,
-            user:profiles(nickname, avatar)
-          `)
-          .single();
-        
-        if (error) throw error;
-        
-        setSelectedTicket({
-          ...selectedTicket,
-          ticket_messages: selectedTicket.ticket_messages.map(msg => {
-            if (msg.id === messageId) {
-              return {
-                ...msg,
-                reactions: [...(msg.reactions || []), data]
-              };
-            }
-            return msg;
-          })
-        });
+      const response = await fetchWithAuth(`/api/admin/tickets/${selectedTicket.id}/messages/${messageId}/reactions`, {
+        method: 'POST'
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok) {
+        if (data.removed) {
+          // Удаляем реакцию
+          setSelectedTicket({
+            ...selectedTicket,
+            ticket_messages: selectedTicket.ticket_messages.map(msg => {
+              if (msg.id === messageId) {
+                return {
+                  ...msg,
+                  reactions: (msg.reactions || []).filter(r => r.user_id !== currentUserId)
+                };
+              }
+              return msg;
+            })
+          });
+        } else {
+          // Добавляем реакцию
+          setSelectedTicket({
+            ...selectedTicket,
+            ticket_messages: selectedTicket.ticket_messages.map(msg => {
+              if (msg.id === messageId) {
+                return {
+                  ...msg,
+                  reactions: [...(msg.reactions || []), data.reaction]
+                };
+              }
+              return msg;
+            })
+          });
+        }
       }
     } catch (e) {
       console.error('Ошибка реакции:', e);
@@ -244,7 +233,11 @@ export function useTicketMessages(
     try {
       const response = await fetchWithAuth(`/api/support/tickets/${selectedTicket.id}/messages`, {
         method: 'POST',
-        body: JSON.stringify({ message: replyMessage, images: replyImages }),
+        body: JSON.stringify({ 
+          message: replyMessage, 
+          images: replyImages,
+          reply_to_message_id: replyToMessage?.id || null
+        }),
       });
 
       const data = await response.json();
@@ -256,6 +249,9 @@ export function useTicketMessages(
         });
         setReplyMessage('');
         setReplyImages([]);
+        if (setReplyToMessage) {
+          setReplyToMessage(null);
+        }
         loadTickets();
       } else {
         setError(data.error || 'Ошибка отправки сообщения');
@@ -265,6 +261,31 @@ export function useTicketMessages(
       setError('Ошибка соединения с сервером');
     } finally {
       setSending(false);
+    }
+  };
+
+  const deleteMessage = async (messageId: string) => {
+    if (!selectedTicket) return;
+
+    try {
+      const response = await fetchWithAuth(`/api/admin/tickets/${selectedTicket.id}/messages/${messageId}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        // Удаляем сообщение из локального состояния
+        setSelectedTicket({
+          ...selectedTicket,
+          ticket_messages: selectedTicket.ticket_messages.filter(msg => msg.id !== messageId)
+        });
+        loadTickets();
+      } else {
+        const data = await response.json();
+        setError(data.error || 'Ошибка удаления сообщения');
+      }
+    } catch (err) {
+      console.error('Error deleting message:', err);
+      setError('Ошибка соединения с сервером');
     }
   };
 
@@ -285,6 +306,7 @@ export function useTicketMessages(
     handleImageUpload,
     handleSendReply,
     toggleReaction,
+    deleteMessage,
     scrollToBottom,
   };
 }

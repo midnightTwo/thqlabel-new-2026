@@ -130,7 +130,7 @@ export function AudioUploadSection({
             </div>
             <div className="flex-1 min-w-0">
               <div className="font-bold text-white truncate">{trackAudioFile.name}</div>
-              <div className="flex flex-wrap gap-3 mt-2 text-xs text-zinc-400">
+              <div className="flex flex-wrap items-center gap-3 mt-2 text-xs text-zinc-400">
                 <span className="inline-flex items-center gap-1.5 px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded-lg">
                   {trackAudioMetadata.format}
                 </span>
@@ -143,13 +143,17 @@ export function AudioUploadSection({
                     {formatDuration(trackAudioMetadata.duration)}
                   </span>
                 )}
+                {trackAudioMetadata.sampleRate && (
+                  <span className="inline-flex items-center gap-1.5">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                    </svg>
+                    {trackAudioMetadata.sampleRate}
+                  </span>
+                )}
                 <span className="inline-flex items-center gap-1.5">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-                  </svg>
-                  {trackAudioMetadata.sampleRate}
+                  {formatFileSize(trackAudioMetadata.size)}
                 </span>
-                <span>{formatFileSize(trackAudioMetadata.size)}</span>
               </div>
             </div>
             <button

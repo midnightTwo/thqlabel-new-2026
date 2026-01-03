@@ -3,10 +3,13 @@ import { useRouter } from 'next/navigation';
 import { supabase } from '../../../lib/supabase';
 import { showSuccessToast, showErrorToast } from '@/lib/utils/showToast';
 
+type ReleaseType = 'single' | 'ep' | 'album';
+
 interface SendStepProps {
   releaseTitle: string;
   artistName: string;
   genre: string;
+  releaseType: ReleaseType | null;
   tracksCount: number;
   coverFile: File | null;
   existingCoverUrl?: string;
@@ -19,6 +22,7 @@ interface SendStepProps {
   focusTrackPromo: string;
   albumDescription: string;
   promoPhotos: string[];
+  promoStatus?: 'not-started' | 'skipped' | 'filled';
   tracks: Array<{
     title: string;
     link: string;
@@ -49,6 +53,7 @@ export default function SendStep({
   releaseTitle,
   artistName, 
   genre, 
+  releaseType,
   tracksCount,
   coverFile,
   existingCoverUrl,
@@ -64,6 +69,7 @@ export default function SendStep({
   focusTrackPromo,
   albumDescription,
   promoPhotos,
+  promoStatus = 'not-started',
   onBack,
   paymentReceiptUrl,
   paymentComment,
@@ -72,7 +78,7 @@ export default function SendStep({
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
 
-  // Явный набор обязательных проверок (promo не включён)
+  // Проверка всех 6 основных шагов + оплата
   const requiredChecks = [
     {
       name: 'Релиз',
@@ -85,8 +91,23 @@ export default function SendStep({
     },
     {
       name: 'Треклист',
-      isValid: tracksCount > 0,
-      issues: tracksCount === 0 ? ['Не добавлено ни одного трека'] : []
+      isValid: (() => {
+        const minTracks = releaseType === 'album' ? 7 : releaseType === 'ep' ? 2 : 1;
+        return tracksCount >= minTracks;
+      })(),
+      issues: (() => {
+        const minTracks = releaseType === 'album' ? 7 : releaseType === 'ep' ? 2 : 1;
+        if (tracksCount < minTracks) {
+          const typeLabel = releaseType === 'album' ? 'альбома' : releaseType === 'ep' ? 'EP' : 'сингла';
+          return [`Для ${typeLabel} требуется минимум ${minTracks} ${minTracks === 1 ? 'трек' : minTracks < 5 ? 'трека' : 'треков'} (добавлено: ${tracksCount})`];
+        }
+        return [];
+      })()
+    },
+    {
+      name: 'Страны',
+      isValid: countries.length > 0,
+      issues: countries.length === 0 ? ['Не выбрано ни одной страны'] : []
     },
     {
       name: 'Договор',
@@ -97,6 +118,11 @@ export default function SendStep({
       name: 'Площадки',
       isValid: selectedPlatforms > 0,
       issues: selectedPlatforms === 0 ? ['Не выбрано ни одной площадки'] : []
+    },
+    {
+      name: 'Промо',
+      isValid: promoStatus !== 'not-started',
+      issues: promoStatus === 'not-started' ? ['Заполните или пропустите шаг промо'] : []
     },
     {
       name: 'Оплата',

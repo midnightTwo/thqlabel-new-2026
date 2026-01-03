@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { showErrorToast } from '@/lib/utils/showToast';
 
 interface CoverUploaderProps {
   coverFile: File | null;
@@ -36,7 +37,7 @@ export default function CoverUploader({ coverFile, setCoverFile, previewUrl }: C
         if (width !== height) {
           resolve({ 
             valid: false, 
-            error: `❌ Обложка должна быть строго квадратной!\nВаш размер: ${width}x${height}px\nТребуется: квадрат (например, 3000x3000px)`,
+            error: `Не квадратная`,
             width,
             height
           });
@@ -47,7 +48,7 @@ export default function CoverUploader({ coverFile, setCoverFile, previewUrl }: C
         if (width < 3000) {
           resolve({ 
             valid: false, 
-            error: `❌ Слишком маленькое разрешение!\nВаш размер: ${width}x${height}px\nМинимум: 3000x3000px (квадрат)`,
+            error: `Слишком маленькая`,
             width,
             height
           });
@@ -73,9 +74,17 @@ export default function CoverUploader({ coverFile, setCoverFile, previewUrl }: C
     const validation = await validateImage(file);
 
     if (!validation.valid) {
-      setError(validation.error || 'Ошибка валидации');
+      const errorMessage = validation.error || 'Ошибка валидации';
+      setError(errorMessage);
       setCoverFile(null);
       setImageInfo(validation.width && validation.height ? { width: validation.width, height: validation.height } : null);
+      
+      // Показываем toast-уведомление с размерами
+      let toastMessage = 'Обложка не принята';
+      if (validation.width && validation.height) {
+        toastMessage = `Обложка не принята, ваш файл ${validation.width}×${validation.height}px, нужно 3000×3000px`;
+      }
+      showErrorToast(toastMessage);
       return;
     }
 
@@ -121,13 +130,17 @@ export default function CoverUploader({ coverFile, setCoverFile, previewUrl }: C
   return (
     <div className="space-y-4">
       <div
-        className={`relative border-2 border-dashed rounded-2xl overflow-hidden transition-all ${
+        className={`relative rounded-2xl overflow-hidden transition-all ${
+          coverFile && !error
+            ? 'border-0'
+            : 'border-2 border-dashed'
+        } ${
           dragActive
             ? 'border-purple-500 bg-purple-500/10'
             : error
             ? 'border-red-500/50 bg-red-500/5'
             : coverFile
-            ? 'border-green-500/50 bg-green-500/5'
+            ? 'bg-transparent'
             : 'border-white/10 bg-white/[0.02] hover:border-white/20'
         }`}
         onDragEnter={handleDrag}
@@ -180,69 +193,96 @@ export default function CoverUploader({ coverFile, setCoverFile, previewUrl }: C
                 </div>
 
                 <div className="text-center max-w-md">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-red-500/20 border-2 border-red-500 flex items-center justify-center">
-                    <svg className="w-8 h-8 text-red-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <div className="w-14 h-14 mx-auto mb-3 rounded-full bg-red-500/20 border-2 border-red-500 flex items-center justify-center animate-pulse">
+                    <svg className="w-7 h-7 text-red-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                       <circle cx="12" cy="12" r="10" />
                       <line x1="12" y1="8" x2="12" y2="12" />
                       <line x1="12" y1="16" x2="12.01" y2="16" />
                     </svg>
                   </div>
                   
-                  <p className="text-xl font-black text-red-400 mb-4">Обложка не принята</p>
+                  <p className="text-lg font-bold text-red-400 mb-3">Обложка не подходит</p>
                   
-                  {/* ТЕКСТ ОШИБКИ - МАКСИМАЛЬНО ВИДИМЫЙ */}
-                  <div className="mb-6 p-6 bg-gradient-to-br from-red-600 to-red-700 border-4 border-red-400 rounded-2xl shadow-2xl">
-                    <p className="text-3xl font-black text-white leading-tight mb-1">{error}</p>
-                  </div>
+                  {/* Информация о загруженном файле */}
+                  {coverFile && (
+                    <div className="mb-4 p-3 bg-zinc-800/80 border border-zinc-600 rounded-xl text-left">
+                      <div className="text-xs text-zinc-400 mb-1">Загруженный файл:</div>
+                      <div className="text-sm text-white font-medium truncate">{coverFile.name}</div>
+                      <div className="flex items-center gap-3 mt-2 text-xs">
+                        <span className="text-zinc-400">Формат: <span className="text-white font-medium">{coverFile.type.split('/')[1]?.toUpperCase() || 'Неизвестно'}</span></span>
+                        <span className="text-zinc-400">Размер: <span className="text-white font-medium">{(coverFile.size / 1024 / 1024).toFixed(2)} МБ</span></span>
+                      </div>
+                    </div>
+                  )}
                   
+                  {/* Проблема */}
                   {imageInfo && (
-                    <div className="mb-4 p-4 bg-black/60 border-2 border-yellow-400 rounded-xl">
-                      <div className="text-sm text-yellow-300 mb-3 uppercase tracking-wider font-bold">⚠️ ВАШ РАЗМЕР</div>
-                      <div className="text-4xl font-black text-white mb-3">
+                    <div className="mb-4 p-4 bg-red-500/10 border-2 border-red-500/50 rounded-xl">
+                      <div className="text-2xl font-black text-white mb-2">
                         {imageInfo.width} × {imageInfo.height} px
                       </div>
-                      <div className="text-sm text-gray-300 mb-3 pb-3 border-b border-gray-600">
-                        {imageInfo.width === imageInfo.height ? (
-                          <span className="text-green-400 font-bold">✓ Квадратная</span>
-                        ) : (
-                          <span className="text-red-400 font-bold">✗ НЕ КВАДРАТНАЯ! (ширина ≠ высота)</span>
+                      <div className="space-y-2 text-sm">
+                        {imageInfo.width !== imageInfo.height && (
+                          <div className="flex items-center gap-2 text-red-400">
+                            <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                            <span>Не квадратная (ширина ≠ высота)</span>
+                          </div>
                         )}
-                      </div>
-                      <div className="text-base font-bold">
-                        {imageInfo.width >= 3000 ? (
-                          <span className="text-green-400">✓ Размер достаточный</span>
-                        ) : (
-                          <span className="text-red-400">✗ МАЛЕНЬКИЙ РАЗМЕР! Нужно минимум 3000×3000px</span>
+                        {imageInfo.width < 3000 && (
+                          <div className="flex items-center gap-2 text-red-400">
+                            <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                            <span>Минимум 3000×3000px</span>
+                          </div>
+                        )}
+                        {imageInfo.width === imageInfo.height && imageInfo.width >= 3000 && (
+                          <div className="flex items-center gap-2 text-green-400">
+                            <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <polyline points="20 6 9 17 4 12"/>
+                            </svg>
+                            <span>Размер подходит</span>
+                          </div>
                         )}
                       </div>
                     </div>
                   )}
+                  
+                  {/* Требования */}
+                  <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl">
+                    <div className="text-xs text-emerald-400 font-bold mb-2">✓ Требования к обложке:</div>
+                    <div className="text-xs text-emerald-300/80 space-y-1">
+                      <div>• Формат: JPG или PNG</div>
+                      <div>• Размер: 3000×3000 пикселей (квадрат)</div>
+                      <div>• Максимум: 50 МБ</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
             
-            {/* Кнопки управления - показываются только если нет ошибки */}
+            {/* Кнопки управления - показываются только при наведении если нет ошибки */}
             {!error && (
-              <div className="absolute top-4 right-4 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="absolute inset-0 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/40">
                 <label
                   htmlFor="cover-upload"
-                  className="group flex items-center gap-2 px-4 py-2.5 bg-black/80 hover:bg-black/90 backdrop-blur-md border border-white/40 hover:border-white/60 rounded-xl font-semibold text-sm cursor-pointer transition-all hover:scale-105 active:scale-95 shadow-xl"
+                  className="group/btn flex items-center justify-center w-12 h-12 bg-black/80 hover:bg-black/90 backdrop-blur-md border border-white/40 hover:border-white/60 rounded-xl cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95 shadow-xl hover:shadow-2xl hover:rotate-3"
                   title="Заменить обложку"
                 >
-                  <svg className="w-4 h-4 group-hover:rotate-180 transition-transform duration-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <svg className="w-5 h-5 transition-transform duration-500 group-hover/btn:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
                   </svg>
-                  <span className="hidden sm:inline">Заменить</span>
                 </label>
                 <button
                   onClick={handleRemove}
-                  className="group flex items-center gap-2 px-4 py-2.5 bg-gradient-to-br from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 backdrop-blur-md border border-red-400/50 hover:border-red-300 rounded-xl font-semibold text-sm text-white transition-all hover:scale-105 active:scale-95 shadow-xl"
+                  className="group/btn flex items-center justify-center w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 backdrop-blur-md border border-red-400/50 hover:border-red-300 rounded-xl text-white transition-all duration-300 hover:scale-110 active:scale-95 shadow-xl hover:shadow-2xl hover:shadow-red-500/30 hover:-rotate-3"
                   title="Удалить обложку"
                 >
-                  <svg className="w-4 h-4 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                  <svg className="w-5 h-5 transition-transform duration-300 group-hover/btn:rotate-90" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                   </svg>
-                  <span className="hidden sm:inline">Удалить</span>
                 </button>
               </div>
             )}

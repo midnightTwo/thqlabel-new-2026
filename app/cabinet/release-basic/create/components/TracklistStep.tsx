@@ -183,7 +183,7 @@ export default function TracklistStep({
           {releaseType === 'ep' && selectedTracksCount && `Добавьте треки в ваш EP (макс. ${selectedTracksCount})`}
           {releaseType === 'ep' && !selectedTracksCount && 'Добавьте треки в ваш EP (от 2 до 7)'}
           {releaseType === 'album' && selectedTracksCount && `Добавьте треки в ваш альбом (макс. ${selectedTracksCount})`}
-          {releaseType === 'album' && !selectedTracksCount && 'Добавьте треки в ваш альбом (от 8 до 50)'}
+          {releaseType === 'album' && !selectedTracksCount && 'Добавьте треки в ваш альбом (от 7 до 50)'}
           {!releaseType && 'Добавьте треки в ваш релиз'}
         </p>
         
@@ -195,7 +195,7 @@ export default function TracklistStep({
             <span className="text-sm font-semibold">
               {releaseType === 'single' && `Треков: ${tracks.length} / 1`}
               {releaseType === 'ep' && `Треков: ${tracks.length} / ${maxTracks} (минимум 2)`}
-              {releaseType === 'album' && `Треков: ${tracks.length} / ${maxTracks} (минимум 8)`}
+              {releaseType === 'album' && `Треков: ${tracks.length} / ${maxTracks} (минимум 7)`}
             </span>
           </div>
         )}

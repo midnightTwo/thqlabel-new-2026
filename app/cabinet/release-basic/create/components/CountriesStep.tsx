@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { CountryFlag, allCountriesByRegion, regionGroups, getCountriesByRegionGroup, getAllCountries } from '@/components/CountryFlagsSVG';
-import { RegionIcon } from '@/components/RegionIcons';
+import { CountryFlag, allCountriesByRegion, regionGroups, getCountriesByRegionGroup, getAllCountries } from '@/components/icons/CountryFlagsSVG';
+import { RegionIcon } from '@/components/icons/RegionIcons';
 
 interface CountriesStepProps {
   // Поддержка двух режимов: selectedCountries ИЛИ excludedCountries
@@ -87,8 +87,8 @@ export default function CountriesStep({
     }
   };
   
-  // Активная группа регионов (вкладка)
-  const [activeGroup, setActiveGroup] = useState<string>('Европа');
+  // Активная группа регионов (вкладка) - "Все" показывает все страны
+  const [activeGroup, setActiveGroup] = useState<string>('Все');
   
   // Активный подрегион внутри группы
   const [activeSubRegion, setActiveSubRegion] = useState<string>('СНГ');
@@ -162,8 +162,10 @@ export default function CountriesStep({
     return countries.filter(c => c.toLowerCase().includes(query));
   };
 
-  // Текущие страны подрегиона
-  const currentSubRegionCountries = allCountriesByRegion[activeSubRegion] || [];
+  // Текущие страны подрегиона (или все страны если выбрана вкладка "Все")
+  const currentSubRegionCountries = activeGroup === 'Все' 
+    ? allCountries 
+    : (allCountriesByRegion[activeSubRegion] || []);
   const filteredCountries = getFilteredCountries(currentSubRegionCountries);
 
   // Статистика по группе регионов
@@ -227,8 +229,47 @@ export default function CountriesStep({
           </div>
         </div>
         
-        {/* 4 вкладки групп регионов */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+        {/* 5 вкладок: Все + 4 группы регионов */}
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-5">
+          {/* Вкладка "Все" */}
+          <button
+            onClick={() => setActiveGroup('Все')}
+            className={`relative p-4 rounded-xl font-medium transition-all ${
+              activeGroup === 'Все' 
+                ? 'bg-gradient-to-br from-violet-500/20 to-purple-600/20 border-violet-500/30 border-2 shadow-lg' 
+                : 'bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20'
+            }`}
+          >
+            <div className="flex items-center gap-3 mb-2">
+              <div className={activeGroup === 'Все' ? 'text-violet-300' : 'text-zinc-400'}>
+                <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6">
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5"/>
+                  <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="currentColor" strokeWidth="1.5"/>
+                </svg>
+              </div>
+              <div className={`font-bold text-lg ${activeGroup === 'Все' ? 'text-white' : 'text-zinc-300'}`}>Все</div>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
+                <div 
+                  className={`h-full rounded-full transition-all ${
+                    selectedCount === allCountries.length ? 'bg-emerald-500' :
+                    selectedCount > 0 ? 'bg-amber-500' :
+                    'bg-zinc-600'
+                  }`}
+                  style={{ width: `${(selectedCount / allCountries.length) * 100}%` }}
+                />
+              </div>
+              <span className={`text-xs font-medium min-w-[45px] text-right ${
+                selectedCount === allCountries.length ? 'text-emerald-400' :
+                selectedCount > 0 ? 'text-amber-400' :
+                'text-zinc-500'
+              }`}>
+                {selectedCount}/{allCountries.length}
+              </span>
+            </div>
+          </button>
+          
           {Object.keys(regionGroups).map((groupName) => {
             const stats = getGroupStats(groupName);
             const colors = regionGroupColors[groupName];
@@ -276,7 +317,8 @@ export default function CountriesStep({
           })}
         </div>
 
-        {/* Кнопки выбора всей группы */}
+        {/* Кнопки выбора всей группы (скрываем для "Все") */}
+        {activeGroup !== 'Все' && (
         <div className="flex items-center justify-between mb-4 pb-4 border-b border-white/10">
           <div className="flex flex-wrap gap-2">
             {(regionGroups[activeGroup] || []).map((subRegion) => {
@@ -323,6 +365,7 @@ export default function CountriesStep({
             </button>
           </div>
         </div>
+        )}
         
         {/* Панель управления подрегионом */}
         <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
@@ -341,7 +384,8 @@ export default function CountriesStep({
             />
           </div>
           
-          {/* Кнопки управления подрегионом */}
+          {/* Кнопки управления подрегионом (скрываем для "Все") */}
+          {activeGroup !== 'Все' && (
           <div className="flex gap-2">
             <button
               type="button"
@@ -358,6 +402,7 @@ export default function CountriesStep({
               ✕ Снять
             </button>
           </div>
+          )}
         </div>
         
         {/* Сетка стран */}

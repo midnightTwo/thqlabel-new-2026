@@ -174,7 +174,7 @@ function FiltersPanel({
   const hasFilters = searchQuery || filterDate || filterUserRole !== 'all' || (viewMode === 'archive' && statusFilter !== 'all');
 
   return (
-    <div className="absolute top-full left-0 right-0 mt-3 space-y-4 p-5 bg-gradient-to-br from-[#0d0d0f] to-[#1a1a1f] border border-white/10 rounded-2xl shadow-2xl backdrop-blur-xl z-50">
+    <div className="admin-dark-modal absolute top-full left-0 right-0 mt-3 space-y-4 p-5 bg-gradient-to-br from-[#0d0d0f] to-[#1a1a1f] border border-white/10 rounded-2xl shadow-2xl backdrop-blur-xl z-50">
       {/* Фильтр по статусу (только в архиве) */}
       {viewMode === 'archive' && (
         <div className="space-y-2">

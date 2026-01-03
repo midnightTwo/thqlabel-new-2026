@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { fetchWithAuth } from '@/app/cabinet/lib/fetchWithAuth';
+import { TicketMessage } from '../types';
 
 interface ReplyFormProps {
   ticketId: string;
@@ -14,6 +15,8 @@ interface ReplyFormProps {
   error: string;
   onImageUpload: (e: React.ChangeEvent<HTMLInputElement>) => Promise<void>;
   onSendReply: (e: React.FormEvent) => Promise<void>;
+  replyToMessage?: TicketMessage | null;
+  setReplyToMessage?: (message: TicketMessage | null) => void;
 }
 
 export default function ReplyForm({
@@ -27,10 +30,40 @@ export default function ReplyForm({
   error,
   onImageUpload,
   onSendReply,
+  replyToMessage,
+  setReplyToMessage,
 }: ReplyFormProps) {
   return (
     <div className="p-4 border-t border-zinc-800">
       <form onSubmit={onSendReply} className="space-y-3">
+        {/* Превью ответа на сообщение */}
+        {replyToMessage && setReplyToMessage && (
+          <div className="p-2 bg-zinc-800/50 border border-zinc-700 rounded-lg">
+            <div className="flex items-start justify-between gap-2">
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-1">
+                  <svg className="w-3 h-3 text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
+                  </svg>
+                  <span className="text-xs font-medium text-blue-400">
+                    Ответ на {replyToMessage.sender_nickname || replyToMessage.sender_username || 'сообщение'}
+                  </span>
+                </div>
+                <p className="text-xs text-zinc-400 truncate">{replyToMessage.message}</p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setReplyToMessage(null)}
+                className="p-1 hover:bg-zinc-700 rounded transition-colors flex-shrink-0"
+              >
+                <svg className="w-4 h-4 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        )}
+        
         {/* Превью изображений */}
         {replyImages.length > 0 && (
           <div className="grid grid-cols-4 gap-2">
@@ -111,7 +144,7 @@ export default function ReplyForm({
 
           <button
             type="submit"
-            disabled={sending || (!replyMessage.trim() && replyImages.length === 0)}
+            disabled={sending || (replyMessage.trim() === '' && replyImages.length === 0)}
             className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex-shrink-0"
           >
             {sending ? (

@@ -109,7 +109,7 @@ export default function ImageCropModal({ imageSrc, onCropComplete, onCancel }: I
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/80 backdrop-blur-sm p-4 pt-16 pb-8">
-      <div className="bg-[#0a0a0f] border border-white/10 rounded-2xl w-full max-w-4xl flex flex-col shadow-2xl">
+      <div className="admin-dark-modal bg-[#0a0a0f] border border-white/10 rounded-2xl w-full max-w-4xl flex flex-col shadow-2xl">
         {/* Заголовок */}
         <div className="px-6 py-3.5 border-b border-white/10 flex items-center justify-between flex-shrink-0">
           <h3 className="text-lg font-bold">Редактирование изображения</h3>

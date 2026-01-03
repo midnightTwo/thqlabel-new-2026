@@ -21,7 +21,7 @@ export function UserListItem({
   const rc = roleColors[role] || roleColors.basic;
 
   return (
-    <div className={`p-4 ${rc.bg} border ${rc.border} rounded-xl flex items-center gap-4 hover:scale-[1.005] transition-all`}>
+    <div className={`p-4 ${rc.bg} border ${rc.border} rounded-xl flex items-center gap-4 hover:bg-white/[0.02] transition-all`}>
       {/* Аватар */}
       <div 
         className={`w-12 h-12 rounded-xl ${!user.avatar && rc.bg} flex items-center justify-center text-xl ${rc.text} font-black border ${rc.border} ${user.avatar ? 'bg-cover bg-center' : ''}`}
@@ -62,9 +62,7 @@ export function UserListItem({
         <div className="flex items-center gap-2">
           <span className="text-[10px] text-zinc-600">ID: {user.member_id || user.id?.slice(0, 8)}</span>
           <button
-            onClick={() => {
-              navigator?.clipboard?.writeText(user.member_id || user.id);
-            }}
+            onClick={() => onCopyEmail(user.member_id || user.id)}
             className="hover:opacity-70 transition flex-shrink-0"
             title="Копировать ID"
           >

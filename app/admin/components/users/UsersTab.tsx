@@ -183,12 +183,13 @@ export default function UsersTab({ supabase, currentUserRole }: { supabase: any;
   // Фильтры и сортировка
   const [searchTerm, setSearchTerm] = useState('');
   const [filterRole, setFilterRole] = useState('all');
-  const [sortBy, setSortBy] = useState<'created_at' | 'email' | 'nickname' | 'role'>('created_at');
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
+  const [sortBy, setSortBy] = useState<'created_at' | 'email' | 'nickname' | 'role'>('role');
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
-  // Фильтрованные и отсортированные пользователи
-  const filteredUsers = useMemo(() => {
-    return users.filter(user => {
+  // Фильтрованные и отсортированные пользователи (объединено для гарантии корректного пересчёта)
+  const sortedUsers = useMemo(() => {
+    // Сначала фильтруем
+    const filtered = users.filter(user => {
       const matchesSearch = !searchTerm || 
         user.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         user.nickname?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -197,20 +198,23 @@ export default function UsersTab({ supabase, currentUserRole }: { supabase: any;
       const matchesRole = filterRole === 'all' || getUserRole(user) === filterRole;
       return matchesSearch && matchesRole;
     });
-  }, [users, searchTerm, filterRole]);
-
-  const sortedUsers = useMemo(() => {
-    return [...filteredUsers].sort((a, b) => {
+    
+    // Потом сортируем
+    return [...filtered].sort((a, b) => {
       const order = sortOrder === 'asc' ? 1 : -1;
       if (sortBy === 'role') {
-        const roleOrder = { owner: 0, admin: 1, exclusive: 2, basic: 3 };
-        return (roleOrder[getUserRole(a) as keyof typeof roleOrder] - roleOrder[getUserRole(b) as keyof typeof roleOrder]) * order;
+        const roleOrder: Record<string, number> = { owner: 0, admin: 1, exclusive: 2, basic: 3 };
+        const aRole = getUserRole(a);
+        const bRole = getUserRole(b);
+        const aOrder = roleOrder[aRole] ?? 99;
+        const bOrder = roleOrder[bRole] ?? 99;
+        return (aOrder - bOrder) * order;
       }
       const aVal = String(a[sortBy] || '').toLowerCase();
       const bVal = String(b[sortBy] || '').toLowerCase();
       return aVal.localeCompare(bVal) * order;
     });
-  }, [filteredUsers, sortBy, sortOrder]);
+  }, [users, searchTerm, filterRole, sortBy, sortOrder]);
 
   // Подсчёт ролей
   const roleStats = useMemo(() => ({
@@ -266,6 +270,7 @@ export default function UsersTab({ supabase, currentUserRole }: { supabase: any;
 
       {/* Фильтры */}
       <UserFilters
+        key="user-filters"
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
         filterRole={filterRole}

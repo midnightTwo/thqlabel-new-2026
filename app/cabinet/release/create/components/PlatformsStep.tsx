@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { PlatformIcon, getPlatformColor } from '@/components/PlatformIconsSVG';
-import { PlatformGroupIcon } from '@/components/RegionIcons';
+import { PlatformIcon, getPlatformColor } from '@/components/icons/PlatformIconsSVG';
+import { PlatformGroupIcon } from '@/components/icons/RegionIcons';
 
 interface PlatformsStepProps {
   selectedPlatforms: number;
@@ -18,7 +18,7 @@ const platformGroups = {
     gradient: 'border-green-500/30',
     platforms: [
       'Spotify', 'Apple Music', 'YouTube Music', 'Amazon Music', 'Deezer', 
-      'Tidal', 'SoundCloud', 'Pandora', 'iHeartRadio', 'Napster', 'Audiomack', 
+      'Tidal', 'Pandora', 'iHeartRadio', 'Napster', 'Audiomack', 
       'Boomplay', 'Anghami', 'JioSaavn', 'Gaana',
       // Российские
       'Яндекс Музыка', 'VK Музыка', 'Звук (Sber)', 'МТС Music',
@@ -65,8 +65,8 @@ export default function PlatformsStep({
       : allPlatformNames
   );
   
-  // Активная группа
-  const [activeGroup, setActiveGroup] = useState<string>('Стриминг');
+  // Активная группа (вкладка) - "Все" показывает все площадки
+  const [activeGroup, setActiveGroup] = useState<string>('Все');
   
   // Поиск
   const [searchQuery, setSearchQuery] = useState('');
@@ -122,8 +122,10 @@ export default function PlatformsStep({
     return { selected, total: platforms.length };
   };
 
-  // Текущие платформы группы
-  const currentGroupPlatforms = platformGroups[activeGroup as keyof typeof platformGroups]?.platforms || [];
+  // Текущие платформы группы (или все площадки если выбрана вкладка "Все")
+  const currentGroupPlatforms = activeGroup === 'Все' 
+    ? allPlatformNames 
+    : (platformGroups[activeGroup as keyof typeof platformGroups]?.platforms || []);
   const filteredPlatforms = getFilteredPlatforms(currentGroupPlatforms);
 
   return (
@@ -171,8 +173,37 @@ export default function PlatformsStep({
           </div>
         </div>
         
-        {/* Вкладки групп */}
+        {/* Вкладки групп - с вкладкой "Все" */}
         <div className="flex flex-wrap gap-2 mb-5 pb-5 border-b border-white/10">
+          {/* Вкладка "Все" */}
+          <button
+            onClick={() => setActiveGroup('Все')}
+            className={`group relative px-4 py-3 rounded-xl font-medium transition-all flex items-center gap-3 ${
+              activeGroup === 'Все' 
+                ? 'bg-gradient-to-r from-violet-500/20 to-purple-500/20 border-violet-500/30 border shadow-lg' 
+                : 'bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20'
+            }`}
+          >
+            <div className="w-6 h-6">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={activeGroup === 'Все' ? 'text-violet-300' : 'text-zinc-400'}>
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M8 12h8M12 8v8"/>
+              </svg>
+            </div>
+            <div className="text-left">
+              <div className={`font-bold ${activeGroup === 'Все' ? 'text-white' : 'text-zinc-300'}`}>Все</div>
+              <div className="flex items-center gap-2 text-xs">
+                <span className={`px-2 py-0.5 rounded-full ${
+                  localSelectedPlatforms.length === allPlatformNames.length ? 'bg-emerald-500/30 text-emerald-300' :
+                  localSelectedPlatforms.length > 0 ? 'bg-amber-500/30 text-amber-300' :
+                  'bg-white/10 text-zinc-500'
+                }`}>
+                  {localSelectedPlatforms.length}/{allPlatformNames.length}
+                </span>
+              </div>
+            </div>
+          </button>
+          
           {Object.keys(platformGroups).map((groupName) => {
             const stats = getGroupStats(groupName);
             const groupInfo = platformGroups[groupName as keyof typeof platformGroups];
@@ -227,7 +258,8 @@ export default function PlatformsStep({
             />
           </div>
           
-          {/* Кнопки управления группой */}
+          {/* Кнопки управления группой (скрываем для "Все") */}
+          {activeGroup !== 'Все' && (
           <div className="flex gap-2">
             <button
               onClick={() => selectGroup(activeGroup)}
@@ -242,6 +274,7 @@ export default function PlatformsStep({
               ✕ Снять группу
             </button>
           </div>
+          )}
         </div>
         
         {/* Сетка платформ */}

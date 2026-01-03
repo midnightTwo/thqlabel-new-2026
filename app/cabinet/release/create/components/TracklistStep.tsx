@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TrackListView, TrackEditor, Track } from './tracklist';
+import { showErrorToast } from '@/lib/utils/showToast';
 
 interface AudioMetadata {
   format: string;
@@ -128,9 +129,9 @@ export default function TracklistStep({
   };
 
   const handleAddTrack = () => {
-    if (releaseType === 'single' && tracks.length >= 1) { alert('❌ Для сингла можно добавить только 1 трек'); return; }
-    if (releaseType === 'ep' && tracks.length >= maxTracks) { alert(`❌ Для EP максимум ${maxTracks} треков`); return; }
-    if (releaseType === 'album' && tracks.length >= maxTracks) { alert(`❌ Для альбома максимум ${maxTracks} треков`); return; }
+    if (releaseType === 'single' && tracks.length >= 1) { showErrorToast('Для сингла можно добавить только 1 трек'); return; }
+    if (releaseType === 'ep' && tracks.length >= maxTracks) { showErrorToast(`Для EP максимум ${maxTracks} треков`); return; }
+    if (releaseType === 'album' && tracks.length >= maxTracks) { showErrorToast(`Для альбома максимум ${maxTracks} треков`); return; }
     setCurrentTrack(tracks.length);
   };
 
@@ -149,10 +150,16 @@ export default function TracklistStep({
     const finalTitle = isSingleRelease ? releaseTitle : trackTitle;
     
     if (isSingleRelease && (!releaseTitle || !releaseTitle.trim())) {
-      alert('Сначала заполните название релиза на предыдущем шаге'); return;
+      showErrorToast('Сначала заполните название релиза на предыдущем шаге'); return;
     }
-    if (!finalTitle || !finalTitle.trim()) { alert('Заполните название трека'); return; }
-    if (!trackAudioFile) { alert('Загрузите аудиофайл (WAV или FLAC)'); return; }
+    if (!finalTitle || !finalTitle.trim()) { 
+      showErrorToast('Укажите название трека'); 
+      return; 
+    }
+    if (!trackAudioFile) { 
+      showErrorToast('Загрузите аудиофайл (WAV или FLAC)'); 
+      return; 
+    }
     
     const newTrack: Track = { 
       title: finalTitle, link: '',
@@ -180,7 +187,7 @@ export default function TracklistStep({
         <p className="text-sm text-zinc-500 mt-1">
           {releaseType === 'single' && 'Добавьте трек в ваш сингл (макс. 1)'}
           {releaseType === 'ep' && 'Добавьте треки в ваш EP (от 2 до 7)'}
-          {releaseType === 'album' && 'Добавьте треки в ваш альбом (от 8 до 50)'}
+          {releaseType === 'album' && 'Добавьте треки в ваш альбом (от 7 до 50)'}
           {!releaseType && 'Добавьте треки в ваш релиз'}
         </p>
         
@@ -192,7 +199,7 @@ export default function TracklistStep({
             <span className="text-sm font-semibold">
               {releaseType === 'single' && `Треков: ${tracks.length} / 1`}
               {releaseType === 'ep' && `Треков: ${tracks.length} / ${maxTracks} (минимум 2)`}
-              {releaseType === 'album' && `Треков: ${tracks.length} / ${maxTracks} (минимум 8)`}
+              {releaseType === 'album' && `Треков: ${tracks.length} / ${maxTracks} (минимум 7)`}
             </span>
           </div>
         )}

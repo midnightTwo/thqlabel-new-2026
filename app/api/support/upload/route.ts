@@ -99,8 +99,18 @@ export async function POST(request: Request) {
 
     if (uploadError) {
       console.error('Error uploading file:', uploadError);
+      
+      // Делаем сообщения об ошибках более понятными
+      let errorMessage = uploadError.message;
+      
+      if (errorMessage.includes('exceeded the maximum allowed size')) {
+        errorMessage = `Файл слишком большой. Максимальный размер: 10 МБ. Попробуйте сжать изображение.`;
+      } else if (errorMessage.includes('maximum allowed size')) {
+        errorMessage = `Превышен максимальный размер файла (10 МБ)`;
+      }
+      
       return NextResponse.json(
-        { error: uploadError.message },
+        { error: errorMessage },
         { status: 500 }
       );
     }

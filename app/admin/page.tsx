@@ -43,15 +43,177 @@ const TabLoader = memo(() => (
 ));
 TabLoader.displayName = 'TabLoader';
 
+// Компонент красивой ошибки доступа
+const AccessDeniedScreen = memo(({ 
+  userEmail, 
+  userRole, 
+  type,
+  onRedirect 
+}: { 
+  userEmail?: string; 
+  userRole?: string;
+  type: 'not_authorized' | 'not_admin';
+  onRedirect: () => void;
+}) => {
+  const [countdown, setCountdown] = useState(5);
+  
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCountdown(prev => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          onRedirect();
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [onRedirect]);
+
+  return (
+    <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      <AnimatedBackground />
+      
+      {/* Декоративные элементы */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-red-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+      </div>
+      
+      <div className="relative z-10 max-w-md w-full mx-4">
+        <div className="bg-zinc-900/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl animate-fade-up">
+          {/* Иконка */}
+          <div className="flex justify-center mb-6">
+            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-red-500/20 to-orange-500/20 flex items-center justify-center border border-red-500/30 animate-pulse">
+              <svg className="w-10 h-10 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+          </div>
+          
+          {/* Заголовок */}
+          <h1 className="text-2xl font-black text-center mb-2 text-white">
+            Доступ запрещён
+          </h1>
+          
+          <p className="text-zinc-400 text-center mb-6">
+            {type === 'not_authorized' 
+              ? 'Для доступа к админ-панели необходима авторизация'
+              : 'У вас недостаточно прав для доступа к админ-панели'
+            }
+          </p>
+          
+          {/* Информация о пользователе */}
+          {type === 'not_admin' && (
+            <div className="bg-white/5 rounded-xl p-4 mb-6 border border-white/10">
+              <div className="space-y-2 text-sm">
+                {userEmail && (
+                  <div className="flex justify-between">
+                    <span className="text-zinc-500">Email:</span>
+                    <span className="text-zinc-300 font-medium">{userEmail}</span>
+                  </div>
+                )}
+                <div className="flex justify-between">
+                  <span className="text-zinc-500">Ваша роль:</span>
+                  <span className={`font-medium ${userRole === 'exclusive' ? 'text-yellow-400' : 'text-zinc-400'}`}>
+                    {userRole === 'exclusive' ? '◆ Exclusive' : userRole === 'basic' ? '○ Basic' : userRole || 'Не определена'}
+                  </span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-zinc-500">Требуется:</span>
+                  <div className="flex items-center gap-1.5">
+                    <span className="inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-red-500/10 border border-red-500/20 text-red-300 text-xs font-semibold">
+                      <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6z"/>
+                      </svg>
+                      Admin
+                    </span>
+                    <span className="text-zinc-600">или</span>
+                    <span className="inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-semibold">
+                      <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2L9 9H2l6 5-2 7 6-4 6 4-2-7 6-5h-7z"/>
+                      </svg>
+                      Owner
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+          
+          {/* Таймер */}
+          <div className="text-center mb-6">
+            <div className="inline-flex items-center gap-2 bg-white/5 rounded-full px-4 py-2 border border-white/10">
+              <div className="w-2 h-2 rounded-full bg-orange-400 animate-pulse" />
+              <span className="text-zinc-400 text-sm">
+                Перенаправление через <span className="text-white font-bold">{countdown}</span> сек.
+              </span>
+            </div>
+          </div>
+          
+          {/* Кнопки */}
+          <div className="flex gap-3">
+            {type === 'not_authorized' ? (
+              <button
+                onClick={onRedirect}
+                className="flex-1 px-6 py-3 bg-gradient-to-r from-[#6050ba] to-[#8070da] hover:from-[#7060ca] hover:to-[#9080ea] rounded-xl font-bold transition-all flex items-center justify-center gap-2 text-white shadow-lg shadow-purple-500/20"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                </svg>
+                Войти в аккаунт
+              </button>
+            ) : (
+              <>
+                <button
+                  onClick={onRedirect}
+                  className="flex-1 px-6 py-3 bg-gradient-to-r from-[#6050ba] to-[#8070da] hover:from-[#7060ca] hover:to-[#9080ea] rounded-xl font-bold transition-all flex items-center justify-center gap-2 text-white shadow-lg shadow-purple-500/20"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                  </svg>
+                  В кабинет
+                </button>
+              </>
+            )}
+          </div>
+          
+          {/* Подсказка */}
+          {type === 'not_admin' && (
+            <div className="mt-6 flex items-start gap-3 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-xl p-4">
+              <div className="flex-shrink-0 mt-0.5">
+                <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div className="flex-1">
+                <p className="text-sm text-blue-200 leading-relaxed">
+                  <span className="font-semibold text-blue-100">Нужны права администратора?</span>
+                  <br />
+                  <span className="text-blue-300/80">Свяжитесь с владельцем системы для получения доступа к админ-панели</span>
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+});
+AccessDeniedScreen.displayName = 'AccessDeniedScreen';
+
 type Tab = 'releases' | 'contracts' | 'archive' | 'payouts' | 'users' | 'news' | 'tickets' | 'withdrawals';
 
 export default function AdminPage() {
   const { themeName } = useTheme();
   const isLight = themeName === 'light';
   const [checkingAuth, setCheckingAuth] = useState(true);
+  const [accessDenied, setAccessDenied] = useState<{ type: 'not_authorized' | 'not_admin'; email?: string; role?: string } | null>(null);
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [currentUser, setCurrentUser] = useState<any>(null);
   const [currentUserRole, setCurrentUserRole] = useState<'admin' | 'owner'>('admin');
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [activeTab, setActiveTab] = useState<Tab>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('adminActiveTab') as Tab;
@@ -83,12 +245,9 @@ export default function AdminPage() {
       try {
         const { data: { user }, error: userError } = await supabase.auth.getUser();
 
-        console.log('🔍 Проверка прав доступа:', { user: user?.email, userError });
-
         if (userError || !user || !user.email) {
-          console.warn('⛔ Пользователь не авторизован:', userError);
-          alert("⛔ Доступ запрещен. Необходима авторизация.");
-          router.push('/auth');
+          setAccessDenied({ type: 'not_authorized' });
+          setCheckingAuth(false);
           return;
         }
 
@@ -98,25 +257,20 @@ export default function AdminPage() {
           .eq('email', user.email)
           .single();
 
-        console.log('[Профиль] Из БД по email:', { email: user.email, profile, profileError });
-
         if (profileError || !profile || typeof profile !== 'object' || !('role' in profile) || ((profile as any).role !== 'admin' && (profile as any).role !== 'owner')) {
-          const roleInfo = (profile && typeof profile === 'object' && 'role' in profile) ? (profile as any).role : 'не найдена';
-          console.error('⛔ Доступ запрещен. Роль:', roleInfo);
-          alert(`⛔ Доступ запрещен. Вы не являетесь администратором.\n\nВаш email: ${user.email}\nВаша роль: ${roleInfo}\n\n💡 Для получения прав администратора обратитесь к владельцу системы.`);
-          router.push('/');
+          const roleInfo = (profile && typeof profile === 'object' && 'role' in profile) ? (profile as any).role : undefined;
+          setAccessDenied({ type: 'not_admin', email: user.email, role: roleInfo });
+          setCheckingAuth(false);
           return;
         }
 
-        console.log('✅ Доступ разрешен. Роль:', (profile as any).role);
         setUserEmail(user.email || null);
         setCurrentUser({ id: user.id, ...(profile as any), email: user.email });
         setCurrentUserRole((profile as any).role as 'admin' | 'owner');
         setCheckingAuth(false);
       } catch (e) {
-        console.error('❌ Ошибка проверки прав доступа:', e);
-        alert("⛔ Ошибка проверки прав доступа: " + (e as Error).message);
-        router.push('/');
+        setAccessDenied({ type: 'not_authorized' });
+        setCheckingAuth(false);
       }
     };
     checkAdmin();
@@ -131,6 +285,18 @@ export default function AdminPage() {
     { id: 'news', label: 'Новости', icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" /></svg> },
     { id: 'contracts', label: 'Договоры', icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg> },
   ];
+
+  // Показываем красивый экран отказа в доступе
+  if (accessDenied) {
+    return (
+      <AccessDeniedScreen
+        type={accessDenied.type}
+        userEmail={accessDenied.email}
+        userRole={accessDenied.role}
+        onRedirect={() => router.push(accessDenied.type === 'not_authorized' ? '/auth' : '/cabinet')}
+      />
+    );
+  }
 
   if (checkingAuth) {
     return (
@@ -154,14 +320,17 @@ export default function AdminPage() {
       <AnimatedBackground />
       <div className="max-w-[1600px] mx-auto p-3 sm:p-4 md:p-5 lg:p-6 flex flex-col lg:flex-row gap-4 sm:gap-5 lg:gap-6 items-stretch relative z-10">
         
-        {/* Sidebar - адаптивный */}
+        {/* Sidebar - адаптивный с анимацией сворачивания */}
+        {!sidebarCollapsed && (
         <aside 
-          className={`w-full lg:w-64 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-3 sm:p-4 lg:p-5 flex flex-col lg:sticky lg:top-4 lg:h-[calc(100vh-2rem)] shadow-2xl ${
+          className={`backdrop-blur-xl rounded-2xl sm:rounded-3xl flex flex-col lg:sticky lg:top-4 shadow-2xl transition-all duration-500 ease-in-out w-full lg:w-64 p-3 sm:p-4 lg:p-5 lg:h-[calc(100vh-2rem)] overflow-hidden ${
             isLight 
               ? 'bg-white/50 border border-white/60' 
               : 'bg-[#0d0d0f]/40 border border-white/10'
           }`} 
-          style={{ boxShadow: isLight ? '0 8px 32px rgba(96, 80, 186, 0.1)' : '0 8px 32px 0 rgba(0, 0, 0, 0.37)' }}
+          style={{ 
+            boxShadow: isLight ? '0 8px 32px rgba(96, 80, 186, 0.1)' : '0 8px 32px 0 rgba(0, 0, 0, 0.37)'
+          }}
         >
           {/* Header */}
           <div className="mb-4 sm:mb-6">
@@ -173,11 +342,11 @@ export default function AdminPage() {
               />
               <button 
                 onClick={() => router.push('/cabinet')}
-                className="w-14 h-14 sm:w-10 sm:h-10 md:w-11 md:h-11 bg-gradient-to-br from-[#6050ba] to-[#8070da] border-2 border-[#9d8df1]/50 rounded-2xl hover:from-[#7060ca] hover:to-[#9080ea] hover:border-[#9d8df1] transition-all flex items-center justify-center shrink-0 group shadow-2xl shadow-[#6050ba]/40 hover:shadow-[#6050ba]/60 hover:scale-105"
+                className="w-14 h-14 sm:w-10 sm:h-10 md:w-11 md:h-11 bg-gradient-to-br from-emerald-500 to-teal-600 border-2 border-emerald-400/50 rounded-2xl hover:from-emerald-400 hover:to-teal-500 hover:border-emerald-300 transition-all flex items-center justify-center shrink-0 group shadow-2xl shadow-emerald-500/40 hover:shadow-emerald-400/60 hover:scale-105"
                 title="Назад в кабинет"
               >
                 <svg className="w-7 h-7 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M11 17l-5-5m0 0l5-5m-5 5h12" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                 </svg>
               </button>
             </div>
@@ -240,10 +409,28 @@ export default function AdminPage() {
             </div>
           </nav>
         </aside>
+        )}
+
+        {/* Кнопка раскрытия сайдбара (когда свёрнут) */}
+        {sidebarCollapsed && (
+          <button
+            onClick={() => setSidebarCollapsed(false)}
+            className={`hidden lg:flex fixed left-4 top-1/2 -translate-y-1/2 z-50 w-10 h-20 items-center justify-center rounded-r-xl transition-all duration-300 hover:w-12 ${
+              isLight 
+                ? 'bg-white/80 border border-white/60 hover:bg-white shadow-lg' 
+                : 'bg-[#0d0d0f]/80 border border-white/10 hover:bg-[#1a1a1f]'
+            }`}
+            title="Показать панель навигации"
+          >
+            <svg className={`w-5 h-5 ${isLight ? 'text-[#6050ba]' : 'text-white'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        )}
 
         {/* Content */}
         <section 
-          className={`flex-1 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 min-h-[400px] sm:min-h-[600px] shadow-2xl ${
+          className={`flex-1 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 min-h-[400px] sm:min-h-[600px] shadow-2xl transition-all duration-500 ${
             isLight 
               ? 'bg-white/50 border border-white/60' 
               : 'bg-[#0d0d0f]/40 border border-white/10'
@@ -251,7 +438,7 @@ export default function AdminPage() {
           style={{ boxShadow: isLight ? '0 8px 32px rgba(96, 80, 186, 0.1)' : '0 8px 32px 0 rgba(0, 0, 0, 0.37)' }}
         >
           <Suspense fallback={<TabLoader />}>
-            {activeTab === 'releases' && <ReleasesModeration supabase={supabase} />}
+            {activeTab === 'releases' && <ReleasesModeration supabase={supabase} onSidebarCollapse={setSidebarCollapsed} />}
             {activeTab === 'news' && <NewsTab supabase={supabase} />}
             {activeTab === 'withdrawals' && <WithdrawalsTab supabase={supabase} currentUserRole={currentUserRole} />}
             {activeTab === 'payouts' && <PayoutsTab supabase={supabase} currentAdmin={userEmail} currentUserRole={currentUserRole} />}

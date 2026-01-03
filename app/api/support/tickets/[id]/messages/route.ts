@@ -98,6 +98,27 @@ export async function GET(
       senders?.forEach(s => sendersMap.set(s.id, s));
     }
 
+    // Получаем информацию о сообщениях на которые ответили
+    const replyToIds = [...new Set(messages.map(m => m.reply_to).filter(Boolean))];
+    const replyToMessagesMap = new Map();
+    
+    if (replyToIds.length > 0) {
+      const { data: replyToMessages } = await supabase
+        .from('ticket_messages')
+        .select('id, message, sender_id, is_admin')
+        .in('id', replyToIds);
+      
+      replyToMessages?.forEach(msg => {
+        const sender = sendersMap.get(msg.sender_id);
+        replyToMessagesMap.set(msg.id, {
+          ...msg,
+          sender_nickname: sender?.nickname,
+          sender_username: sender?.email?.split('@')[0],
+          sender_email: sender?.email
+        });
+      });
+    }
+
     // Получаем реакции для всех сообщений с информацией о пользователях
     const messageIds = messages.map(m => m.id);
     const reactionsMap = new Map();
@@ -142,12 +163,15 @@ export async function GET(
     // Форматируем сообщения со свежими данными из профилей и реакциями
     const formattedMessages = messages.map(msg => {
       const sender = sendersMap.get(msg.sender_id);
+      const replyToMessage = msg.reply_to ? replyToMessagesMap.get(msg.reply_to) : null;
+      
       return {
         ...msg,
         sender_email: sender?.email || msg.sender_email || null,
         sender_nickname: sender?.nickname || msg.sender_nickname || null,
         sender_avatar: sender?.avatar || msg.sender_avatar || null,
-        reactions: reactionsMap.get(msg.id) || []
+        reactions: reactionsMap.get(msg.id) || [],
+        reply_to_message: replyToMessage || null
       };
     });
 
@@ -194,7 +218,7 @@ export async function POST(
     }
 
     const { id: ticketId } = await context.params;
-    const { message, images } = await request.json();
+    const { message, images, reply_to_message_id } = await request.json();
 
     if (!message?.trim() && (!images || images.length === 0)) {
       return NextResponse.json({ error: 'Message or image is required' }, { status: 400 });
@@ -243,7 +267,8 @@ export async function POST(
         sender_id: user.id,
         message: message.trim(),
         is_admin: isAdmin,
-        images: images || []
+        images: images || [],
+        reply_to: reply_to_message_id || null
       })
       .select()
       .single();
@@ -274,12 +299,39 @@ export async function POST(
       .update(updateData)
       .eq('id', ticketId);
 
+    // Получаем информацию о сообщении на которое ответили
+    let replyToMessage = null;
+    if (reply_to_message_id) {
+      const { data: replyMsg } = await supabase
+        .from('ticket_messages')
+        .select('id, message, sender_id, is_admin')
+        .eq('id', reply_to_message_id)
+        .single();
+      
+      if (replyMsg) {
+        const { data: replySender } = await supabase
+          .from('profiles')
+          .select('email, nickname')
+          .eq('id', replyMsg.sender_id)
+          .single();
+        
+        replyToMessage = {
+          ...replyMsg,
+          sender_nickname: replySender?.nickname,
+          sender_username: replySender?.email?.split('@')[0],
+          sender_email: replySender?.email
+        };
+      }
+    }
+
     // Форматируем ответ с полными данными профиля
     const formattedMessage = {
       ...newMessage,
       sender_email: finalProfile?.email || null,
       sender_nickname: finalProfile?.nickname || null,
-      sender_avatar: finalProfile?.avatar || null
+      sender_avatar: finalProfile?.avatar || null,
+      reactions: [],
+      reply_to_message: replyToMessage
     };
 
     return NextResponse.json({ message: formattedMessage });

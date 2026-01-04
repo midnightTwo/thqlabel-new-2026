@@ -9,12 +9,25 @@ import { useRouter } from 'next/navigation';
 const CRITICAL_ROUTES = [
   '/feed',
   '/cabinet',
+  '/cabinet/releases',
+  '/cabinet/releases/drafts',
+  '/cabinet/release-basic/create',
+  '/cabinet/profile',
+  '/cabinet/settings',
+  '/cabinet/analytics',
   '/news',
   '/contacts',
   '/faq',
   '/offer',
   '/admin',
+  '/admin/users',
+  '/admin/releases',
+  '/admin/news',
+  '/admin/tickets',
   '/auth',
+  '/auth/register',
+  '/about',
+  '/dashboard',
 ];
 
 /**

@@ -12,6 +12,7 @@ import SupportWidgetProvider from '../components/support/SupportWidgetProvider';
 import { SilverStar } from '../components/ui/SilverStars';
 import CacheBuster from '../components/CacheBuster';
 import PrefetchRoutes from '../components/PrefetchRoutes';
+import GlobalPrefetch from '../components/GlobalPrefetch';
 
 // Отключаем автоматическое восстановление позиции скролла
 if (typeof window !== 'undefined') {
@@ -821,6 +822,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <SupportWidgetProvider>
               <CacheBuster />
               <PrefetchRoutes />
+              <GlobalPrefetch />
               <BodyContent pathname={pathname}>
                 {children}
               </BodyContent>

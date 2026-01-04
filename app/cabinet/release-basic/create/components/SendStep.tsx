@@ -239,22 +239,23 @@ export default function SendStep({
       {mounted && submitting && createPortal(<LoadingOverlay />, document.body)}
 
       <div className="animate-fade-up">
-      <div className="mb-8">
-        <div className="flex items-center gap-3 mb-3">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500/20 to-emerald-500/20 flex items-center justify-center ring-1 ring-white/10">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-green-300">
-              <path d="M22 2L11 13"/>
-              <path d="M22 2L15 22L11 13L2 9L22 2z"/>
-            </svg>
-          </div>
-          <div>
-            <h2 className="text-3xl font-black bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">Отправка на модерацию</h2>
-            <p className="text-sm text-zinc-500 mt-1">Проверьте заполнение всех шагов</p>
+        <div className="mb-8">
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500/20 to-emerald-500/20 flex items-center justify-center ring-1 ring-white/10">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-green-300">
+                <path d="M22 2L11 13"/>
+                <path d="M22 2L15 22L11 13L2 9L22 2z"/>
+              </svg>
+            </div>
+            <div>
+              <h2 className="text-3xl font-black bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">Отправка на модерацию</h2>
+              <p className="text-sm text-zinc-500 mt-1">Проверьте заполнение всех шагов</p>
+            </div>
           </div>
         </div>
       
-      {/* Статус проверки шагов */}
-      <div className="mb-6 p-5 bg-white/[0.02] border border-white/5 rounded-xl">
+        {/* Статус проверки шагов */}
+        <div className="mb-6 p-5 bg-white/[0.02] border border-white/5 rounded-xl">
         <h3 className="font-bold mb-4 flex items-center gap-2">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-[#9d8df1]">
             <path d="M9 11l3 3L22 4" strokeWidth="2"/>

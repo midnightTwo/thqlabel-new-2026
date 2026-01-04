@@ -766,6 +766,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         
         <title>thqlabel</title>
         <meta name="description" content="thq label - Современный музыкальный лейбл" />
+        
+        {/* Preconnect для ускорения загрузки внешних ресурсов */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://supabase.co" />
+        
+        {/* Preload критических ресурсов */}
+        <link rel="preload" href="/logo.png" as="image" />
+        
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=2" />
         <link rel="icon" type="image/png" sizes="512x512" href="/icon.png?v=2" />
         <link rel="apple-touch-icon" sizes="512x512" href="/icon.png?v=2" />

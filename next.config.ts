@@ -18,6 +18,9 @@ const nextConfig: NextConfig = {
     },
   },
   
+  // Сжатие для ускорения загрузки
+  compress: true,
+  
   // ПОЛНОЕ ОТКЛЮЧЕНИЕ КЭШИРОВАНИЯ - моментальное обновление каждую миллисекунду
   generateBuildId: async () => {
     return Date.now().toString();

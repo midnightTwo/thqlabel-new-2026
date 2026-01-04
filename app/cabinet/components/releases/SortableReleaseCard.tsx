@@ -23,9 +23,9 @@ export function SortableReleaseCard({
   
   const statusLabel = {
     pending: 'На модерации',
-    rejected: 'Отклонен',
-    distributed: 'На дистрибьюции',
-    published: 'Опубликован',
+    rejected: 'Отклонён',
+    approved: 'Одобрен',
+    published: 'Выложен',
     draft: 'Черновик',
     awaiting_payment: 'Ожидает оплаты'
   }[release.status] || release.status;

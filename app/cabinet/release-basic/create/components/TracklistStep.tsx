@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TrackListView, TrackEditor, Track } from './tracklist';
+import { showErrorToast } from '@/lib/utils/showToast';
 
 interface AudioMetadata {
   format: string;
@@ -14,6 +15,7 @@ interface TracklistStepProps {
   releaseType?: 'single' | 'ep' | 'album' | null;
   selectedTracksCount?: number;
   coverFile?: File | null;
+  existingCoverUrl?: string;
   tracks: Track[];
   setTracks: (tracks: Track[]) => void;
   currentTrack: number | null;
@@ -38,16 +40,19 @@ interface TracklistStepProps {
   setTrackProducers?: (value: string[]) => void;
   trackFeaturing?: string[];
   setTrackFeaturing?: (value: string[]) => void;
+  trackIsInstrumental?: boolean;
+  setTrackIsInstrumental?: (value: boolean) => void;
   onNext: () => void;
   onBack: () => void;
 }
 
 export default function TracklistStep({
-  releaseTitle, releaseType, selectedTracksCount, coverFile, tracks, setTracks,
+  releaseTitle, releaseType, selectedTracksCount, coverFile, existingCoverUrl, tracks, setTracks,
   currentTrack, setCurrentTrack, trackTitle, setTrackTitle, setTrackLink,
   trackAudioFile, setTrackAudioFile, trackAudioMetadata, setTrackAudioMetadata,
   trackHasDrugs, setTrackHasDrugs, trackLyrics, setTrackLyrics, trackLanguage, setTrackLanguage,
   trackVersion, setTrackVersion, trackProducers, setTrackProducers, trackFeaturing, setTrackFeaturing,
+  trackIsInstrumental, setTrackIsInstrumental,
   onNext, onBack,
 }: TracklistStepProps) {
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
@@ -60,9 +65,12 @@ export default function TracklistStep({
       const url = URL.createObjectURL(coverFile);
       setCoverPreviewUrl(url);
       return () => URL.revokeObjectURL(url);
+    } else if (existingCoverUrl) {
+      setCoverPreviewUrl(existingCoverUrl);
+    } else {
+      setCoverPreviewUrl(null);
     }
-    setCoverPreviewUrl(null);
-  }, [coverFile]);
+  }, [coverFile, existingCoverUrl]);
 
   // Auto-sync single track title with release title
   useEffect(() => {
@@ -118,6 +126,7 @@ export default function TracklistStep({
     if (setTrackVersion) setTrackVersion(track.version || '');
     if (setTrackProducers) setTrackProducers(Array.isArray(track.producers) ? track.producers : track.producers ? [track.producers] : []);
     if (setTrackFeaturing) setTrackFeaturing(Array.isArray(track.featuring) ? track.featuring : track.featuring ? [track.featuring] : []);
+    if (setTrackIsInstrumental) setTrackIsInstrumental(track.isInstrumental || false);
   };
 
   const handleDeleteTrack = (index: number) => {
@@ -143,6 +152,7 @@ export default function TracklistStep({
     if (setTrackVersion) setTrackVersion('');
     if (setTrackProducers) setTrackProducers([]);
     if (setTrackFeaturing) setTrackFeaturing([]);
+    if (setTrackIsInstrumental) setTrackIsInstrumental(false);
   };
 
   const handleSaveTrack = () => {
@@ -150,19 +160,32 @@ export default function TracklistStep({
     const finalTitle = isSingleRelease ? releaseTitle : trackTitle;
     
     if (isSingleRelease && (!releaseTitle || !releaseTitle.trim())) {
-      alert('Сначала заполните название релиза на предыдущем шаге'); return;
+      showErrorToast('Сначала заполните название релиза на предыдущем шаге'); return;
     }
-    if (!finalTitle || !finalTitle.trim()) { alert('Заполните название трека'); return; }
-    if (!trackAudioFile) { alert('Загрузите аудиофайл (WAV или FLAC)'); return; }
+    if (!finalTitle || !finalTitle.trim()) { showErrorToast('Заполните название трека'); return; }
+    if (!trackAudioFile) { showErrorToast('Загрузите аудиофайл (WAV или FLAC)'); return; }
+    
+    // Проверка на дублирование названий
+    const normalizedTitle = finalTitle.trim().toLowerCase();
+    const duplicateIndex = tracks.findIndex((t, i) => 
+      t.title.trim().toLowerCase() === normalizedTitle && i !== currentTrack
+    );
+    if (duplicateIndex !== -1) {
+      showErrorToast(`Трек с названием "${finalTitle}" уже существует в треклисте`);
+      return;
+    }
     
     const newTrack: Track = { 
       title: finalTitle, link: '',
       audioFile: trackAudioFile || undefined,
       audioMetadata: trackAudioMetadata || undefined,
-      hasDrugs: trackHasDrugs, lyrics: trackLyrics, language: trackLanguage,
+      hasDrugs: trackHasDrugs, 
+      lyrics: trackIsInstrumental ? '' : trackLyrics, 
+      language: trackIsInstrumental ? '' : trackLanguage,
       version: trackVersion || undefined,
       producers: trackProducers?.filter(p => p.trim()).length ? trackProducers.filter(p => p.trim()) : undefined,
-      featuring: trackFeaturing?.filter(f => f.trim()).length ? trackFeaturing.filter(f => f.trim()) : undefined
+      featuring: trackFeaturing?.filter(f => f.trim()).length ? trackFeaturing.filter(f => f.trim()) : undefined,
+      isInstrumental: trackIsInstrumental || false
     };
     
     if (currentTrack !== null && currentTrack < tracks.length) {
@@ -245,6 +268,8 @@ export default function TracklistStep({
           setTrackProducers={setTrackProducers}
           trackFeaturing={trackFeaturing}
           setTrackFeaturing={setTrackFeaturing}
+          trackIsInstrumental={trackIsInstrumental}
+          setTrackIsInstrumental={setTrackIsInstrumental}
           onSave={handleSaveTrack}
           onCancel={resetTrackForm}
         />

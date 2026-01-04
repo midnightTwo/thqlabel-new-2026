@@ -21,9 +21,14 @@ export interface Release {
   tracks?: Track[];
   rejection_reason?: string;
   platforms?: string[];
+  countries?: string[];
   release_date?: string;
   upc?: string;
   label?: string;
+  custom_id?: string;
+  focus_track?: string;
+  focus_track_promo?: string;
+  album_description?: string;
 }
 
 export interface Track {

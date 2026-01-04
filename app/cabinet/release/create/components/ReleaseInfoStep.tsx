@@ -28,6 +28,8 @@ interface ReleaseInfoStepProps {
   coverFile: File | null;
   setCoverFile: (value: File | null) => void;
   existingCoverUrl?: string;
+  upc?: string;
+  setUpc?: (value: string) => void;
   onNext: () => void;
 }
 
@@ -57,6 +59,8 @@ export default function ReleaseInfoStep({
   coverFile,
   setCoverFile,
   existingCoverUrl,
+  upc,
+  setUpc,
   onNext,
 }: ReleaseInfoStepProps) {
   const [showGenreDropdown, setShowGenreDropdown] = useState(false);
@@ -263,6 +267,23 @@ export default function ReleaseInfoStep({
               )}
             </div>
           </div>
+
+          {setUpc && (
+            <div>
+              <label className="text-sm text-zinc-400 mb-2 block flex items-center gap-2">
+                UPC (Universal Product Code)
+                <span className="text-xs text-zinc-600">опционально</span>
+              </label>
+              <input 
+                value={upc || ''} 
+                onChange={(e) => setUpc(e.target.value)}
+                placeholder="Введите UPC код (12-13 цифр)"
+                maxLength={13}
+                className="w-full px-4 py-3 bg-gradient-to-br from-white/[0.07] to-white/[0.03] placeholder:text-zinc-600 rounded-xl border border-white/10 outline-none transition-all hover:border-[#6050ba]/50 focus:border-[#6050ba] focus:shadow-lg focus:shadow-[#6050ba]/20"
+              />
+              <p className="text-xs text-zinc-600 mt-1.5">UPC — универсальный код товара для распространения релиза</p>
+            </div>
+          )}
 
           <div>
             <label className="text-sm text-zinc-400 mb-2 block">Дата релиза *</label>

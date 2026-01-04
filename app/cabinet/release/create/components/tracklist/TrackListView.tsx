@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface Track {
+export interface Track {
   title: string;
   link: string;
   audioFile?: File | null;
@@ -11,6 +11,8 @@ interface Track {
   version?: string;
   producers?: string[];
   featuring?: string[];
+  isrc?: string;
+  isInstrumental?: boolean;
 }
 
 interface TrackListViewProps {

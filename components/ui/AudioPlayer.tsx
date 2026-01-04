@@ -65,6 +65,23 @@ const ErrorIcon = () => (
   </svg>
 );
 
+// Global audio manager to ensure only one track plays at a time
+const globalAudioManager = {
+  currentPlayer: null as { pause: () => void; id: string } | null,
+  register(id: string, pauseFn: () => void) {
+    // Pause any currently playing audio before registering new one
+    if (this.currentPlayer && this.currentPlayer.id !== id) {
+      this.currentPlayer.pause();
+    }
+    this.currentPlayer = { pause: pauseFn, id };
+  },
+  unregister(id: string) {
+    if (this.currentPlayer?.id === id) {
+      this.currentPlayer = null;
+    }
+  }
+};
+
 export default function AudioPlayer({ 
   releaseId, 
   releaseType, 
@@ -81,10 +98,17 @@ export default function AudioPlayer({
   const [error, setError] = useState<string | null>(null);
   const [isHovering, setIsHovering] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
+  const [volume, setVolume] = useState(1);
+  const [isMuted, setIsMuted] = useState(false);
+  const [showVolumeSlider, setShowVolumeSlider] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const blobUrlRef = useRef<string | null>(null);
   const progressRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number | null>(null);
+  const volumeRef = useRef<HTMLDivElement>(null);
+  
+  // Unique ID for this player instance
+  const playerIdRef = useRef(`${releaseId}-${releaseType}-${trackIndex}`);
 
   useEffect(() => {
     // Очистка при размонтировании
@@ -98,6 +122,8 @@ export default function AudioPlayer({
         URL.revokeObjectURL(blobUrlRef.current);
         blobUrlRef.current = null;
       }
+      // Unregister from global manager
+      globalAudioManager.unregister(playerIdRef.current);
       setIsAudioReady(false);
       setError(null);
     };
@@ -173,15 +199,27 @@ export default function AudioPlayer({
   };
 
   const togglePlay = async () => {
+    // Create pause function for global manager
+    const pauseCurrentTrack = () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      }
+    };
+
     if (!audioRef.current) {
       // Инициализация аудио элемента
       setLoading(true);
       setError(null);
       
+      // Pause any other playing track before starting new one
+      globalAudioManager.register(playerIdRef.current, pauseCurrentTrack);
+      
       const blobUrl = await getAudioUrl();
       if (!blobUrl) {
         setLoading(false);
         setError('Не удалось загрузить аудио');
+        globalAudioManager.unregister(playerIdRef.current);
         return;
       }
 
@@ -190,6 +228,7 @@ export default function AudioPlayer({
       
       const audio = new Audio(blobUrl);
       audioRef.current = audio;
+      audio.volume = isMuted ? 0 : volume;
       setIsAudioReady(true);
 
       // Обработчики событий
@@ -205,6 +244,7 @@ export default function AudioPlayer({
       audio.addEventListener('ended', () => {
         setIsPlaying(false);
         setCurrentTime(0);
+        globalAudioManager.unregister(playerIdRef.current);
       });
 
       audio.addEventListener('error', (e) => {
@@ -232,6 +272,7 @@ export default function AudioPlayer({
         setError(errorMsg);
         setLoading(false);
         setIsPlaying(false);
+        globalAudioManager.unregister(playerIdRef.current);
       });
 
       audio.play();
@@ -241,7 +282,10 @@ export default function AudioPlayer({
       if (isPlaying) {
         audioRef.current.pause();
         setIsPlaying(false);
+        globalAudioManager.unregister(playerIdRef.current);
       } else {
+        // Pause any other playing track
+        globalAudioManager.register(playerIdRef.current, pauseCurrentTrack);
         audioRef.current.play();
         setIsPlaying(true);
       }
@@ -255,6 +299,32 @@ export default function AudioPlayer({
       audioRef.current.currentTime = time;
     }
   };
+
+  // Volume control handlers
+  const handleVolumeChange = useCallback((newVolume: number) => {
+    const clampedVolume = Math.max(0, Math.min(1, newVolume));
+    setVolume(clampedVolume);
+    if (audioRef.current) {
+      audioRef.current.volume = clampedVolume;
+    }
+    if (clampedVolume > 0 && isMuted) {
+      setIsMuted(false);
+    }
+  }, [isMuted]);
+
+  const toggleMute = useCallback(() => {
+    if (isMuted) {
+      setIsMuted(false);
+      if (audioRef.current) {
+        audioRef.current.volume = volume;
+      }
+    } else {
+      setIsMuted(true);
+      if (audioRef.current) {
+        audioRef.current.volume = 0;
+      }
+    }
+  }, [isMuted, volume]);
 
   // Обработка перетаскивания и клика по прогресс-бару
   const handleMouseDown = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
@@ -505,6 +575,75 @@ export default function AudioPlayer({
           <span className="text-xs text-zinc-500 font-medium font-mono w-10 tabular-nums">
             {formatTime(duration)}
           </span>
+
+          {/* Volume Control */}
+          <div 
+            ref={volumeRef}
+            className="relative flex items-center"
+            onMouseEnter={() => setShowVolumeSlider(true)}
+            onMouseLeave={() => setShowVolumeSlider(false)}
+          >
+            {/* Mute/Unmute Button */}
+            <button
+              onClick={toggleMute}
+              className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/10 transition-colors group"
+              title={isMuted ? 'Включить звук' : 'Выключить звук'}
+            >
+              {isMuted || volume === 0 ? (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-zinc-400 group-hover:text-white transition-colors">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                  <line x1="23" y1="9" x2="17" y2="15"/>
+                  <line x1="17" y1="9" x2="23" y2="15"/>
+                </svg>
+              ) : volume < 0.5 ? (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-zinc-400 group-hover:text-white transition-colors">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                  <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                </svg>
+              ) : (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-zinc-400 group-hover:text-white transition-colors">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                </svg>
+              )}
+            </button>
+            
+            {/* Volume Slider (shows on hover) */}
+            <div className={`
+              absolute bottom-full left-1/2 -translate-x-1/2 mb-2 p-3 
+              bg-zinc-900/95 backdrop-blur-lg border border-white/10 rounded-xl shadow-xl
+              transition-all duration-200 origin-bottom
+              ${showVolumeSlider ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}
+            `}>
+              {/* Vertical slider */}
+              <div className="flex flex-col items-center gap-2">
+                <span className="text-[10px] text-zinc-400 font-medium">
+                  {Math.round((isMuted ? 0 : volume) * 100)}%
+                </span>
+                <div className="relative h-24 w-2 bg-white/10 rounded-full">
+                  <div 
+                    className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#6050ba] to-[#9d8df1] rounded-full transition-all"
+                    style={{ height: `${(isMuted ? 0 : volume) * 100}%` }}
+                  />
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    value={isMuted ? 0 : volume}
+                    onChange={(e) => handleVolumeChange(parseFloat(e.target.value))}
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    style={{ writingMode: 'vertical-lr', direction: 'rtl' }}
+                  />
+                  {/* Thumb indicator */}
+                  <div 
+                    className="absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-white rounded-full shadow-lg transition-all"
+                    style={{ bottom: `calc(${(isMuted ? 0 : volume) * 100}% - 8px)` }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       )}
       

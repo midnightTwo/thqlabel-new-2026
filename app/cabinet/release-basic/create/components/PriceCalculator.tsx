@@ -1,7 +1,12 @@
 import React from 'react';
+import { 
+  calculatePaymentAmount, 
+  formatPrice,
+  type ReleaseType 
+} from '@/lib/utils/calculatePayment';
 
 interface PriceCalculatorProps {
-  releaseType: 'single' | 'ep' | 'album' | null;
+  releaseType: ReleaseType | null;
   tracksCount: number;
   userRole: 'basic' | 'exclusive';
 }
@@ -12,58 +17,13 @@ export default function PriceCalculator({ releaseType, tracksCount, userRole }: 
     return null;
   }
 
-  const calculatePrice = (): { details: Array<{ range: string; count: number; price: number; total: number }>; total: number } => {
-    // Сингл - фиксированная цена
-    if (releaseType === 'single') {
-      return {
-        details: [{ range: 'Сингл', count: 1, price: 500, total: 500 }],
-        total: 500
-      };
-    }
-
-    // Альбом/EP - динамический расчет
-    const details: Array<{ range: string; count: number; price: number; total: number }> = [];
-    let total = 0;
-    let remaining = tracksCount;
-
-    // Треки 1-20: 300 ₽ за трек
-    if (remaining > 0) {
-      const count = Math.min(remaining, 20);
-      const price = 300;
-      const subtotal = count * price;
-      details.push({ range: '1-20', count, price, total: subtotal });
-      total += subtotal;
-      remaining -= count;
-    }
-
-    // Треки 21-30: 250 ₽ за трек
-    if (remaining > 0) {
-      const count = Math.min(remaining, 10);
-      const price = 250;
-      const subtotal = count * price;
-      details.push({ range: '21-30', count, price, total: subtotal });
-      total += subtotal;
-      remaining -= count;
-    }
-
-    // Треки 31-50: 200 ₽ за трек
-    if (remaining > 0) {
-      const count = Math.min(remaining, 20);
-      const price = 200;
-      const subtotal = count * price;
-      details.push({ range: '31-50', count, price, total: subtotal });
-      total += subtotal;
-    }
-
-    return { details, total };
-  };
-
   // Не показываем калькулятор, если нет треков
   if (tracksCount === 0) {
     return null;
   }
 
-  const { details, total } = calculatePrice();
+  // Используем единую утилиту расчёта
+  const { total, breakdown } = calculatePaymentAmount(releaseType, tracksCount);
 
   return (
     <div className="p-4 bg-gradient-to-br from-green-500/10 via-transparent to-emerald-500/10 border border-green-500/20 rounded-xl">

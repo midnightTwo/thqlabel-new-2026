@@ -40,6 +40,7 @@ export default function EditExclusiveReleasePage() {
   const [showCalendar, setShowCalendar] = useState(false);
   const [calendarMonth, setCalendarMonth] = useState(new Date().getMonth());
   const [calendarYear, setCalendarYear] = useState(new Date().getFullYear());
+  const [upc, setUpc] = useState('');
   
   // Tracklist state
   const [tracks, setTracks] = useState<Array<{
@@ -53,6 +54,7 @@ export default function EditExclusiveReleasePage() {
     version?: string;
     producers?: string[];
     featuring?: string[];
+    isrc?: string;
   }>>([]);
   const [currentTrack, setCurrentTrack] = useState<number | null>(null);
   const [trackTitle, setTrackTitle] = useState('');
@@ -65,6 +67,7 @@ export default function EditExclusiveReleasePage() {
   const [trackVersion, setTrackVersion] = useState('');
   const [trackProducers, setTrackProducers] = useState<string[]>([]);
   const [trackFeaturing, setTrackFeaturing] = useState<string[]>([]);
+  const [trackIsrc, setTrackIsrc] = useState('');
   const [releaseType, setReleaseType] = useState<'single' | 'ep' | 'album' | null>(null);
   
   // Countries state
@@ -158,6 +161,7 @@ export default function EditExclusiveReleasePage() {
       console.log('Focus Track from DB:', release.focus_track);
       console.log('Album Description from DB:', release.album_description);
       console.log('Cover URL from DB:', release.cover_url);
+      console.log('UPC from DB:', release.upc);
       console.log('Full release object:', release);
       
       setReleaseTitle(release.title || '');
@@ -178,6 +182,7 @@ export default function EditExclusiveReleasePage() {
       setAlbumDescription(release.album_description || '');
       setPromoPhotos(release.promo_photos || []);
       setReleaseStatus(release.status || '');
+      setUpc(release.upc || '');
       
       // Загружаем тип релиза из базы данных (если есть), иначе определяем по количеству треков
       if (release.release_type) {
@@ -310,6 +315,7 @@ export default function EditExclusiveReleasePage() {
         focus_track_promo: focusTrackPromo,
         album_description: albumDescription,
         promo_photos: promoPhotos,
+        upc: upc || null,
         updated_at: new Date().toISOString()
       };
       
@@ -400,6 +406,9 @@ export default function EditExclusiveReleasePage() {
       setSaving(false);
     }
   };
+
+  // Состояние для мобильного раскрывающегося списка шагов
+  const [mobileStepsOpen, setMobileStepsOpen] = useState(false);
 
   if (loading) {
     return (
@@ -734,89 +743,125 @@ export default function EditExclusiveReleasePage() {
           )}
         </aside>
         
-        {/* Мобильная версия - горизонтальная прокручиваемая полоса */}
-        <div className="lg:hidden w-full mb-4 order-first">
-          {/* Заголовок */}
-          <div className="backdrop-blur-xl border rounded-2xl p-4 mb-3 shadow-xl relative overflow-hidden bg-gradient-to-br from-white/[0.07] to-white/[0.02] border-white/10 shadow-black/10">
+        {/* Мобильная версия - компактная полоса прогресса с раскрывающимся списком */}
+        <div className="lg:hidden w-full mb-3 order-first">
+          <div className="backdrop-blur-xl border rounded-2xl shadow-lg relative overflow-hidden bg-gradient-to-br from-white/[0.07] to-white/[0.02] border-white/10 shadow-black/10">
             {/* Декоративный градиент */}
             <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5 pointer-events-none" />
             
-            <div className="relative z-10">
-              <div className="flex items-center justify-between mb-2">
-                <h3 className="font-bold text-base bg-gradient-to-r from-white to-zinc-300 bg-clip-text text-transparent">
-                  {isDraftMode ? 'Черновик' : 'Редактирование'}
-                </h3>
-                <div className="flex items-center font-mono text-sm leading-none">
-                  <span className="font-bold" style={{ color: progressColor.from }}>{completedSteps}</span>
-                  <span className="text-zinc-500 mx-0.5">/</span>
-                  <span className="text-zinc-400 font-bold">6</span>
-                </div>
-              </div>
-              {/* Сегментированный прогресс-бар */}
-              <div className="flex gap-1">
-                {[0, 1, 2, 3, 4, 5].map((i) => (
-                  <div 
-                    key={i} 
-                    className="flex-1 h-2 rounded-full bg-white/5 border border-white/10 overflow-hidden relative"
+            {/* Основная строка - кликабельная */}
+            <div 
+              className="relative z-10 p-3 cursor-pointer"
+              onClick={() => setMobileStepsOpen(!mobileStepsOpen)}
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  {/* Кнопка назад */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      router.push(fromPage === 'admin' ? '/admin' : '/cabinet');
+                    }}
+                    className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center transition-all"
+                    title="Назад"
                   >
-                    <div 
-                      className={`absolute inset-0 transition-all duration-500 ${
-                        i < completedSteps ? 'opacity-100' : 'opacity-0'
-                      }`}
-                      style={{ 
-                        background: `linear-gradient(135deg, ${progressColor.from}, ${progressColor.to})`,
-                        boxShadow: i < completedSteps ? `inset 0 1px 0 rgba(255,255,255,0.3)` : 'none',
-                        transitionDelay: `${i * 50}ms`
-                      }}
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-transparent" />
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-zinc-400">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  
+                  {/* Текущий шаг */}
+                  <div className="flex items-center gap-2">
+                    <div>
+                      <div className="text-xs font-medium text-purple-400">
+                        {steps.find(s => s.id === currentStep)?.label || 'Редактирование'}
+                      </div>
+                      <div className="text-[10px] text-zinc-500">
+                        {isDraftMode ? 'Черновик' : releaseType ? (releaseType === 'single' ? 'Сингл' : releaseType === 'ep' ? 'EP' : 'Альбом') : ''}
+                      </div>
                     </div>
                   </div>
-                ))}
-              </div>
-              <div className="text-[10px] text-zinc-400 mt-1.5 text-center">
-                {completedSteps === 6 ? '✓ Готово к отправке' : `Осталось ${6 - completedSteps}`}
-              </div>
-            </div>
-          </div>
-          
-          {/* Горизонтальный скролл шагов */}
-          <div className="overflow-x-auto -mx-4 px-4 pb-2" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-            <div className="flex gap-2 min-w-min">
-              {steps.map((step) => {
-                const isComplete = isStepComplete(step.id);
-                const isCurrent = currentStep === step.id;
+                </div>
                 
-                return (
-                  <button 
-                    key={step.id} 
-                    onClick={() => setCurrentStep(step.id)}
-                    className={`flex-shrink-0 py-2.5 px-4 rounded-xl flex items-center gap-2 transition-all text-sm font-medium relative overflow-hidden group/step ${
-                      isCurrent 
-                        ? 'backdrop-blur-md bg-gradient-to-r from-purple-500/40 to-purple-600/40 text-white shadow-lg shadow-purple-500/30 border border-white/20' 
-                        : 'backdrop-blur-sm bg-white/5 text-zinc-400 border border-white/10 hover:border-white/20 hover:bg-white/10'
-                    }`}
+                {/* Стрелка раскрытия по центру */}
+                <div className={`w-20 h-8 rounded-lg flex items-center justify-center transition-all bg-white/5 hover:bg-white/10 ${!mobileStepsOpen ? 'animate-bounce-subtle' : ''}`}>
+                  <svg 
+                    width="24" height="24" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="2.5" 
+                    className={`transition-transform duration-200 text-zinc-300 ${mobileStepsOpen ? 'rotate-180' : ''}`}
                   >
-                    {/* Hover эффект */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-purple-500/10 to-purple-500/0 opacity-0 group-hover/step:opacity-100 transition-opacity duration-300" />
-                    <div className="relative z-10 flex items-center gap-2">
-                    <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
-                      isComplete ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/10'
-                    }`}>
-                      {isComplete ? (
-                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                          <polyline points="20 6 9 17 4 12" strokeWidth="3"/>
-                        </svg>
-                      ) : (
-                        step.icon
-                      )}
-                    </span>
-                    <span className="whitespace-nowrap">{step.label}</span>
-                    </div>
-                  </button>
-                );
-              })}
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+                
+                {/* Прогресс справа */}
+                <div className="flex items-center gap-2">
+                  <div className="flex gap-0.5">
+                    {[0, 1, 2, 3, 4, 5].map((i) => (
+                      <div 
+                        key={i} 
+                        className={`w-4 h-1.5 rounded-full transition-all duration-300 ${
+                          i < completedSteps ? '' : 'bg-white/10'
+                        }`}
+                        style={i < completedSteps ? { 
+                          background: `linear-gradient(135deg, ${progressColor.from}, ${progressColor.to})`,
+                          boxShadow: `0 0 4px ${progressColor.from}60`
+                        } : undefined}
+                      />
+                    ))}
+                  </div>
+                  <span className="text-xs font-bold" style={{ color: progressColor.from }}>
+                    {completedSteps}/6
+                  </span>
+                </div>
+              </div>
             </div>
+            
+            {/* Раскрывающийся список шагов */}
+            {mobileStepsOpen && (
+              <div className="relative z-10 px-3 pb-3 pt-1 border-t border-white/10">
+                <div className="space-y-1.5">
+                  {steps.map((step) => {
+                    const isComplete = isStepComplete(step.id);
+                    const isCurrent = currentStep === step.id;
+                    
+                    return (
+                      <button 
+                        key={step.id} 
+                        onClick={() => {
+                          setCurrentStep(step.id);
+                          setMobileStepsOpen(false);
+                        }}
+                        className={`w-full text-left py-2.5 px-3 rounded-xl flex items-center gap-2.5 transition-all ${
+                          isCurrent 
+                            ? 'bg-gradient-to-r from-purple-500/30 to-purple-600/30 text-white border border-white/20'
+                            : 'bg-white/5 text-zinc-400 hover:bg-white/10 border border-transparent hover:border-white/10'
+                        }`}
+                      >
+                        <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
+                          isComplete ? 'bg-emerald-500/20 text-emerald-500' : 'bg-white/10 text-zinc-400'
+                        }`}>
+                          {isComplete ? (
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                              <polyline points="20 6 9 17 4 12" strokeWidth="3"/>
+                            </svg>
+                          ) : (
+                            step.icon
+                          )}
+                        </span>
+                        <span className="text-sm font-medium flex-1">{step.label}</span>
+                        {isCurrent && (
+                          <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
@@ -848,8 +893,10 @@ export default function EditExclusiveReleasePage() {
                 setCalendarYear={setCalendarYear}
                 coverFile={coverFile}
                 setCoverFile={setCoverFile}
-              existingCoverUrl={existingCoverUrl}
-              onNext={() => setCurrentStep('tracklist')}
+                existingCoverUrl={existingCoverUrl}
+                upc={upc}
+                setUpc={setUpc}
+                onNext={() => setCurrentStep('tracklist')}
             />
           )}
 
@@ -857,6 +904,8 @@ export default function EditExclusiveReleasePage() {
             <TracklistStep
               releaseTitle={releaseTitle}
               releaseType={releaseType}
+              coverFile={coverFile}
+              existingCoverUrl={existingCoverUrl}
               tracks={tracks}
               setTracks={setTracks}
               currentTrack={currentTrack}
@@ -881,6 +930,8 @@ export default function EditExclusiveReleasePage() {
               setTrackProducers={setTrackProducers}
               trackFeaturing={trackFeaturing}
               setTrackFeaturing={setTrackFeaturing}
+              trackIsrc={trackIsrc}
+              setTrackIsrc={setTrackIsrc}
               onNext={() => setCurrentStep('countries')}
               onBack={() => setCurrentStep('release')}
             />

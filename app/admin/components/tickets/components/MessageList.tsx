@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import TicketAvatar from '@/components/icons/TicketAvatar';
 import { TicketMessage as TicketMessageType, MessageReaction } from '../types';
 
@@ -119,7 +119,33 @@ function MessageBubble({ message, currentUserId, isFirstUserMessage, releaseInfo
   const [showActions, setShowActions] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const lastTapRef = useRef<{ time: number; messageId: string | null }>({ time: 0, messageId: null });
   const isSystemMessage = message.sender_id === '00000000-0000-0000-0000-000000000000';
+
+  // Определение мобильного устройства
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768 || 'ontouchstart' in window);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Обработчик двойного тапа для мобильных устройств
+  const handleDoubleTap = () => {
+    const now = Date.now();
+    const DOUBLE_TAP_DELAY = 300;
+    
+    if (lastTapRef.current.messageId === message.id && now - lastTapRef.current.time < DOUBLE_TAP_DELAY) {
+      // Двойной тап - ставим/убираем лайк
+      onToggleReaction(message.id, !!hasUserReaction);
+      lastTapRef.current = { time: 0, messageId: null };
+    } else {
+      lastTapRef.current = { time: now, messageId: message.id };
+    }
+  };
   const displayName = isSystemMessage 
     ? 'THQ Support' 
     : (message.sender_nickname || message.sender_username || message.sender_email?.split('@')[0] || (message.is_admin ? 'Администратор' : 'Пользователь'));
@@ -237,6 +263,16 @@ function MessageBubble({ message, currentUserId, isFirstUserMessage, releaseInfo
               : 'bg-gradient-to-br from-blue-500/20 to-indigo-500/20 border border-blue-500/30 hover:from-blue-500/25 hover:to-indigo-500/25'
           } ${highlightedMessageId === message.id ? 'ring-4 ring-amber-400 !bg-amber-400/30 !border-amber-400 shadow-[0_0_30px_rgba(251,191,36,0.5)] animate-pulse' : ''}`}
           onDoubleClick={() => onToggleReaction(message.id, !!hasUserReaction)}
+          onTouchEnd={(e) => {
+            // Двойной тап только на мобильных
+            if (!isMobile) return;
+            // Не обрабатываем тап на интерактивных элементах
+            if ((e.target as HTMLElement).closest('[title="Перейти к сообщению"]')) return;
+            if ((e.target as HTMLElement).tagName === 'A') return;
+            if ((e.target as HTMLElement).tagName === 'BUTTON') return;
+            
+            handleDoubleTap();
+          }}
         >
           {/* Превью ответа на сообщение */}
           {message.reply_to_message && (

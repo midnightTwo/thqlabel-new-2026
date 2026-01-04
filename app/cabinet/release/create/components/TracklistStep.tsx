@@ -14,6 +14,7 @@ interface TracklistStepProps {
   releaseTitle: string;
   releaseType?: 'single' | 'ep' | 'album' | null;
   coverFile?: File | null;
+  existingCoverUrl?: string;
   tracks: Track[];
   setTracks: (tracks: Track[]) => void;
   currentTrack: number | null;
@@ -38,16 +39,22 @@ interface TracklistStepProps {
   setTrackProducers?: (value: string[]) => void;
   trackFeaturing?: string[];
   setTrackFeaturing?: (value: string[]) => void;
+  trackIsrc?: string;
+  setTrackIsrc?: (value: string) => void;
+  trackIsInstrumental?: boolean;
+  setTrackIsInstrumental?: (value: boolean) => void;
   onNext: () => void;
   onBack: () => void;
 }
 
 export default function TracklistStep({
-  releaseTitle, releaseType, coverFile, tracks, setTracks,
+  releaseTitle, releaseType, coverFile, existingCoverUrl, tracks, setTracks,
   currentTrack, setCurrentTrack, trackTitle, setTrackTitle, setTrackLink,
   trackAudioFile, setTrackAudioFile, trackAudioMetadata, setTrackAudioMetadata,
   trackHasDrugs, setTrackHasDrugs, trackLyrics, setTrackLyrics, trackLanguage, setTrackLanguage,
   trackVersion, setTrackVersion, trackProducers, setTrackProducers, trackFeaturing, setTrackFeaturing,
+  trackIsrc, setTrackIsrc,
+  trackIsInstrumental, setTrackIsInstrumental,
   onNext, onBack,
 }: TracklistStepProps) {
   const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
@@ -60,9 +67,12 @@ export default function TracklistStep({
       const url = URL.createObjectURL(coverFile);
       setCoverPreviewUrl(url);
       return () => URL.revokeObjectURL(url);
+    } else if (existingCoverUrl) {
+      setCoverPreviewUrl(existingCoverUrl);
+    } else {
+      setCoverPreviewUrl(null);
     }
-    setCoverPreviewUrl(null);
-  }, [coverFile]);
+  }, [coverFile, existingCoverUrl]);
 
   // Auto-sync single track title with release title
   useEffect(() => {
@@ -118,6 +128,8 @@ export default function TracklistStep({
     if (setTrackVersion) setTrackVersion(track.version || '');
     if (setTrackProducers) setTrackProducers(Array.isArray(track.producers) ? track.producers : track.producers ? [track.producers] : []);
     if (setTrackFeaturing) setTrackFeaturing(Array.isArray(track.featuring) ? track.featuring : track.featuring ? [track.featuring] : []);
+    if (setTrackIsrc) setTrackIsrc(track.isrc || '');
+    if (setTrackIsInstrumental) setTrackIsInstrumental(track.isInstrumental || false);
   };
 
   const handleDeleteTrack = (index: number) => {
@@ -143,6 +155,8 @@ export default function TracklistStep({
     if (setTrackVersion) setTrackVersion('');
     if (setTrackProducers) setTrackProducers([]);
     if (setTrackFeaturing) setTrackFeaturing([]);
+    if (setTrackIsrc) setTrackIsrc('');
+    if (setTrackIsInstrumental) setTrackIsInstrumental(false);
   };
 
   const handleSaveTrack = () => {
@@ -161,14 +175,28 @@ export default function TracklistStep({
       return; 
     }
     
+    // Проверка на дублирование названий
+    const normalizedTitle = finalTitle.trim().toLowerCase();
+    const duplicateIndex = tracks.findIndex((t, i) => 
+      t.title.trim().toLowerCase() === normalizedTitle && i !== currentTrack
+    );
+    if (duplicateIndex !== -1) {
+      showErrorToast(`Трек с названием "${finalTitle}" уже существует в треклисте`);
+      return;
+    }
+    
     const newTrack: Track = { 
       title: finalTitle, link: '',
       audioFile: trackAudioFile || undefined,
       audioMetadata: trackAudioMetadata || undefined,
-      hasDrugs: trackHasDrugs, lyrics: trackLyrics, language: trackLanguage,
+      hasDrugs: trackHasDrugs, 
+      lyrics: trackIsInstrumental ? '' : trackLyrics, 
+      language: trackIsInstrumental ? '' : trackLanguage,
       version: trackVersion || undefined,
       producers: trackProducers?.filter(p => p.trim()).length ? trackProducers.filter(p => p.trim()) : undefined,
-      featuring: trackFeaturing?.filter(f => f.trim()).length ? trackFeaturing.filter(f => f.trim()) : undefined
+      featuring: trackFeaturing?.filter(f => f.trim()).length ? trackFeaturing.filter(f => f.trim()) : undefined,
+      isrc: trackIsrc || undefined,
+      isInstrumental: trackIsInstrumental || false
     };
     
     if (currentTrack !== null && currentTrack < tracks.length) {
@@ -249,6 +277,10 @@ export default function TracklistStep({
           setTrackProducers={setTrackProducers}
           trackFeaturing={trackFeaturing}
           setTrackFeaturing={setTrackFeaturing}
+          trackIsrc={trackIsrc}
+          setTrackIsrc={setTrackIsrc}
+          trackIsInstrumental={trackIsInstrumental}
+          setTrackIsInstrumental={setTrackIsInstrumental}
           onSave={handleSaveTrack}
           onCancel={resetTrackForm}
         />

@@ -96,24 +96,33 @@ export default function ReleasesFiltersPanel({
           {/* Фильтр по статусу (только в архиве) */}
           {viewMode === 'archive' && (
             <div className="space-y-2">
-              <label className="text-xs text-zinc-400 uppercase tracking-wider font-bold">Статус релиза</label>
+              <label className="flex items-center gap-2 text-xs text-zinc-400 uppercase tracking-wider font-bold">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-violet-400">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                Статус релиза
+              </label>
               <div className="grid grid-cols-2 gap-2">
                 {[
-                  { value: 'all', label: 'Все', color: 'from-[#6050ba] to-[#8070da]' },
-                  { value: 'distributed', label: 'На дистрибьюции', color: 'from-blue-500 to-blue-600' },
-                  { value: 'published', label: 'Опубликован', color: 'from-green-500 to-green-600' },
-                  { value: 'rejected', label: 'Отклонённые', color: 'from-red-500 to-red-600' }
+                  { value: 'all', label: 'Все', icon: 'M4 6h16M4 12h16M4 18h16', color: 'from-violet-500 to-purple-600' },
+                  { value: 'approved', label: 'Одобрен', icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', color: 'from-violet-500 to-purple-500' },
+                  { value: 'published', label: 'Выложен', icon: 'M5 13l4 4L19 7', color: 'from-emerald-500 to-green-500' },
+                  { value: 'rejected', label: 'Отклонён', icon: 'M6 18L18 6M6 6l12 12', color: 'from-red-500 to-rose-500' }
                 ].map((status) => (
                   <button
                     key={status.value}
                     onClick={() => setStatusFilter(status.value)}
-                    className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+                    className={`flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all ${
                       statusFilter === status.value
-                        ? `bg-gradient-to-r ${status.color} text-white shadow-lg`
-                        : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white'
+                        ? `bg-gradient-to-r ${status.color} text-white shadow-lg shadow-violet-500/20`
+                        : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white border border-white/5'
                     }`}
                   >
-                    {status.label}
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d={status.icon}/>
+                    </svg>
+                    <span className="truncate">{status.label}</span>
                   </button>
                 ))}
               </div>
@@ -122,22 +131,32 @@ export default function ReleasesFiltersPanel({
 
           {/* Фильтр по типу пользователя */}
           <div className="space-y-2">
-            <label className="text-xs text-zinc-400 uppercase tracking-wider font-bold">Тип подписки</label>
+            <label className="flex items-center gap-2 text-xs text-zinc-400 uppercase tracking-wider font-bold">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-violet-400">
+                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+              </svg>
+              Тип подписки
+            </label>
             <div className="grid grid-cols-3 gap-2">
               {[
-                { value: 'all', label: 'Все' },
-                { value: 'basic', label: 'Basic' },
-                { value: 'exclusive', label: 'Exclusive' }
+                { value: 'all', label: 'Все', icon: 'M4 6h16M4 12h16M4 18h16' },
+                { value: 'basic', label: 'Basic', icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5' },
+                { value: 'exclusive', label: 'Exclusive', icon: 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z' }
               ].map((type) => (
                 <button
                   key={type.value}
                   onClick={() => setFilterUserRole(type.value)}
-                  className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+                  className={`flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all ${
                     filterUserRole === type.value
-                      ? 'bg-gradient-to-r from-[#6050ba] to-[#8070da] text-white shadow-lg'
-                      : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white'
+                      ? 'bg-gradient-to-r from-violet-500 to-purple-600 text-white shadow-lg shadow-violet-500/20'
+                      : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white border border-white/5'
                   }`}
                 >
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d={type.icon}/>
+                  </svg>
                   {type.label}
                 </button>
               ))}
@@ -146,7 +165,15 @@ export default function ReleasesFiltersPanel({
 
           {/* Фильтр по дате */}
           <div className="space-y-2">
-            <label className="text-xs text-zinc-400 uppercase tracking-wider font-bold">Дата релиза</label>
+            <label className="flex items-center gap-2 text-xs text-zinc-400 uppercase tracking-wider font-bold">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-violet-400">
+                <rect x="3" y="4" width="18" height="18" rx="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              Дата релиза
+            </label>
             <div className="relative inline-block w-full">
               <div 
                 onClick={() => setShowCalendar(!showCalendar)}

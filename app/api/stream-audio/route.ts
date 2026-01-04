@@ -98,6 +98,13 @@ export async function GET(request: NextRequest) {
     const tracks = Array.isArray(release.tracks) ? release.tracks : [];
     const trackIdx = parseInt(trackIndex, 10);
 
+    console.log('📊 Release tracks info:', {
+      releaseId,
+      releaseType,
+      totalTracks: tracks.length,
+      requestedIndex: trackIdx
+    });
+
     if (trackIdx < 0 || trackIdx >= tracks.length) {
       return NextResponse.json(
         { error: 'Трек не найден' },
@@ -106,6 +113,18 @@ export async function GET(request: NextRequest) {
     }
 
     const track = tracks[trackIdx];
+    
+    // Логируем все поля трека для диагностики
+    console.log('🎵 Track data for index', trackIdx, ':', {
+      title: track.title,
+      link: track.link,
+      audio_url: track.audio_url,
+      audioFile: typeof track.audioFile,
+      audioUrl: track.audioUrl,
+      url: track.url,
+      allKeys: Object.keys(track)
+    });
+    
     // Поддержка разных полей URL аудио - проверяем что это строка
     const getStringUrl = (value: unknown): string | null => {
       if (typeof value === 'string' && value.trim().length > 0) {
@@ -120,8 +139,7 @@ export async function GET(request: NextRequest) {
                      getStringUrl(track.audioUrl) ||
                      getStringUrl(track.url);
 
-    console.log('Track data:', JSON.stringify(track, null, 2));
-    console.log('Audio URL:', audioUrl);
+    console.log('🔗 Resolved Audio URL:', audioUrl ? audioUrl.substring(0, 100) + '...' : 'NULL');
 
     if (!audioUrl) {
       // Проверяем, есть ли audioFile как объект (файл не был загружен)
@@ -131,8 +149,9 @@ export async function GET(request: NextRequest) {
           { status: 400 }
         );
       }
+      console.error('❌ No audio URL found in track:', track);
       return NextResponse.json(
-        { error: 'URL аудио не найден', trackData: track },
+        { error: 'URL аудио не найден', debug: { trackKeys: Object.keys(track), title: track.title } },
         { status: 404 }
       );
     }
@@ -192,7 +211,9 @@ export async function GET(request: NextRequest) {
               'Content-Type': contentType,
               'Content-Length': arrayBuffer.byteLength.toString(),
               'Accept-Ranges': 'bytes',
-              'Cache-Control': 'public, max-age=3600',
+              'Cache-Control': 'no-cache, no-store, must-revalidate, max-age=0',
+              'Pragma': 'no-cache',
+              'Expires': '0',
             },
           });
         } else {
@@ -224,7 +245,9 @@ export async function GET(request: NextRequest) {
           'Content-Type': contentType,
           'Content-Length': audioBuffer.byteLength.toString(),
           'Accept-Ranges': 'bytes',
-          'Cache-Control': 'public, max-age=3600',
+          'Cache-Control': 'no-cache, no-store, must-revalidate, max-age=0',
+          'Pragma': 'no-cache',
+          'Expires': '0',
         },
       });
     } catch (error) {

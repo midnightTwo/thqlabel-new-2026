@@ -40,11 +40,15 @@ html::before {
   pointer-events: none;
   z-index: -1;
   animation: metallic-wave-dark 15s ease-in-out infinite;
+  will-change: transform, opacity;
+  contain: strict;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 @keyframes metallic-wave-dark {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.7; transform: scale(1.02); }
+  0%, 100% { opacity: 1; transform: translateZ(0) scale(1); }
+  50% { opacity: 0.7; transform: translateZ(0) scale(1.02); }
 }
 
 body {
@@ -2005,6 +2009,17 @@ html.light .cabinet-sidebar-light .hover\:bg-white\/10:hover {
   }
 }
 
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 @keyframes checkmark {
   from {
     opacity: 0;
@@ -2165,6 +2180,10 @@ html.light .cabinet-sidebar-light .hover\:bg-white\/10:hover {
 
 .animate-slide-in {
   animation: slideInFromBottom 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .animate-zoom-in {
@@ -2534,6 +2553,15 @@ html {
   display: none;
 }
 
+/* Невидимый scrollbar (скролл работает, но не видно) */
+.custom-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+.custom-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 /* Кастомный скроллбар под дизайн сайта */
 .scrollbar-thin::-webkit-scrollbar {
   width: 6px;
@@ -2714,4 +2742,33 @@ a:active {
   50% { 
     transform: translate(10px, -10px); 
   }
+}
+
+/* Анимация для кнопки раскрытия шагов на мобильных */
+@keyframes bounce-subtle {
+  0%, 100% { 
+    transform: translateY(0); 
+  }
+  50% { 
+    transform: translateY(3px); 
+  }
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 1.5s ease-in-out infinite;
+}
+
+/* Анимация градиента для кнопки отправки релиза */
+@keyframes gradient-x {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 2s ease infinite;
 }

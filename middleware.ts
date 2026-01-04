@@ -12,16 +12,22 @@ export async function middleware(request: NextRequest) {
   // Добавляем header с темой для использования в layout
   response.headers.set('x-theme', theme);
   
-  // ПОЛНОЕ ОТКЛЮЧЕНИЕ КЭШИРОВАНИЯ - всегда свежие данные
-  response.headers.set('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0, proxy-revalidate, private');
+  // СВЕРХ-АГРЕССИВНОЕ ОТКЛЮЧЕНИЕ КЭШИРОВАНИЯ - моментальное обновление
+  const timestamp = Date.now();
+  const randomId = Math.random().toString(36).substring(7);
+  
+  response.headers.set('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0, s-maxage=0, proxy-revalidate, private, stale-while-revalidate=0');
   response.headers.set('Pragma', 'no-cache');
   response.headers.set('Expires', '0');
   response.headers.set('Surrogate-Control', 'no-store');
   response.headers.set('CDN-Cache-Control', 'no-store');
-  response.headers.set('Vercel-CDN-Cache-Control', 'no-store');
+  response.headers.set('Vercel-CDN-Cache-Control', 'no-store, must-revalidate');
   response.headers.set('X-Accel-Expires', '0');
   response.headers.set('Vary', '*');
-  response.headers.set('ETag', Date.now().toString());
+  // Уникальный ETag для каждого запроса - принудительное обновление
+  response.headers.set('ETag', `"${timestamp}-${randomId}"`);
+  response.headers.set('Last-Modified', new Date().toUTCString());
+  response.headers.set('X-Cache-Timestamp', timestamp.toString());
   
   return response;
 }

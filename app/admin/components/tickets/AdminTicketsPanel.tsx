@@ -11,9 +11,18 @@ import { useUserProfile } from './hooks/useUserProfile';
 
 // Компоненты
 import { TicketList, MessageList, ReplyForm, TicketsHeader, TicketDetail } from './components';
-import { ProfileModal, ReleaseModal } from './modals';
+import { ReleaseModal } from './modals';
+import { UserProfileModal } from '../users/UserProfileModal';
 
-export default function AdminTicketsPanel({ supabase }: { supabase: any }) {
+export default function AdminTicketsPanel({ 
+  supabase, 
+  initialTicketId,
+  onTicketOpened 
+}: { 
+  supabase: any;
+  initialTicketId?: string | null;
+  onTicketOpened?: () => void;
+}) {
   const { themeName } = useTheme();
   const isLight = themeName === 'light';
   
@@ -22,6 +31,11 @@ export default function AdminTicketsPanel({ supabase }: { supabase: any }) {
   
   // Состояние для reply
   const [replyToMessage, setReplyToMessage] = useState<TicketMessage | null>(null);
+  
+  // Состояния для редактирования профиля
+  const [editingProfile, setEditingProfile] = useState(false);
+  const [editNickname, setEditNickname] = useState('');
+  const [editAvatar, setEditAvatar] = useState('');
 
   // Хуки для управления тикетами
   const {
@@ -37,7 +51,7 @@ export default function AdminTicketsPanel({ supabase }: { supabase: any }) {
     loadTickets,
     handleStatusChange,
     filteredTickets,
-  } = useTickets(supabase);
+  } = useTickets(supabase, initialTicketId, onTicketOpened);
 
   // Хуки для сообщений
   const {
@@ -172,14 +186,36 @@ export default function AdminTicketsPanel({ supabase }: { supabase: any }) {
 
       {/* Модальное окно профиля */}
       {viewingUser && (
-        <ProfileModal
-          user={viewingUser}
-          loading={profileLoading}
-          releases={userReleases}
-          payouts={userPayouts}
-          tickets={userTickets}
-          transactions={userTransactions}
-          onClose={() => setViewingUser(null)}
+        <UserProfileModal
+          user={{
+            id: viewingUser.id,
+            email: viewingUser.email,
+            nickname: viewingUser.nickname,
+            avatar: viewingUser.avatar || viewingUser.avatar_url,
+            role: viewingUser.role,
+            balance: viewingUser.balance,
+            member_id: viewingUser.member_id,
+            telegram: viewingUser.telegram,
+            created_at: viewingUser.created_at,
+          }}
+          profileLoading={profileLoading}
+          userReleases={userReleases}
+          userPayouts={userPayouts}
+          userTickets={userTickets}
+          userTransactions={userTransactions}
+          currentUserRole="admin"
+          editingProfile={editingProfile}
+          setEditingProfile={setEditingProfile}
+          editNickname={editNickname}
+          setEditNickname={setEditNickname}
+          editAvatar={editAvatar}
+          setEditAvatar={setEditAvatar}
+          onSaveProfile={() => {}}
+          onClose={() => {
+            setViewingUser(null);
+            setEditingProfile(false);
+          }}
+          supabase={supabase}
         />
       )}
 

@@ -162,7 +162,7 @@ export default function PromoStep({
           </div>
           
           {tracks.length > 0 ? (
-            <div className="relative">
+            <div className={`relative ${showFocusTrackDropdown ? 'z-[9998]' : ''}`}>
               {/* Кнопка открытия выпадающего списка */}
               <button
                 type="button"
@@ -207,7 +207,7 @@ export default function PromoStep({
               
               {/* Выпадающий список треков */}
               {showFocusTrackDropdown && (
-                <div className="absolute top-full left-0 right-0 mt-2 z-20 bg-[#1a1a1c]/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl shadow-black/50 overflow-hidden animate-fade-in">
+                <div className="absolute top-full left-0 right-0 mt-2 z-[9999] bg-[#1a1a1c]/98 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl shadow-black/50 overflow-hidden animate-fade-in">
                   <div className="p-2 max-h-[300px] overflow-y-auto [&::-webkit-scrollbar]:hidden">
                     {tracks.map((track, idx) => {
                       const isSelected = focusTrack === track.title;

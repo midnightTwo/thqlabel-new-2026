@@ -48,7 +48,7 @@ export default function ReleasesModeration({ supabase, onSidebarCollapse }: Rele
   
   // Удаление
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-  const [deleteType, setDeleteType] = useState<'single' | 'bulk'>('single');
+  const [deleteType, setDeleteType] = useState<'single' | 'bulk' | 'publish'>('single');
   const [deleteCount, setDeleteCount] = useState(0);
   
   // Portal состояние
@@ -116,7 +116,7 @@ export default function ReleasesModeration({ supabase, onSidebarCollapse }: Rele
       const { error } = await supabase
         .from(tableName)
         .update({ 
-          status: 'distributed',
+          status: 'approved',
           approved_at: new Date().toISOString(),
           approved_by: user.id
         })
@@ -124,12 +124,12 @@ export default function ReleasesModeration({ supabase, onSidebarCollapse }: Rele
       
       if (error) throw error;
       
-      showSuccessToast('Релиз успешно утверждён!');
+      showSuccessToast('Релиз успешно одобрен!');
       setShowModal(false);
       setSelectedRelease(null);
       loadReleases();
     } catch (error: any) {
-      console.error('Ошибка утверждения:', error);
+      console.error('Ошибка одобрения:', error);
       showErrorToast(`Ошибка: ${error.message || 'Неизвестная ошибка'}`);
     }
   }, [supabase, selectedRelease, loadReleases]);
@@ -220,11 +220,35 @@ export default function ReleasesModeration({ supabase, onSidebarCollapse }: Rele
 
   const handleBulkPublish = useCallback(async () => {
     if (!supabase || selectedReleaseIds.length === 0) return;
-    if (!confirm(`Опубликовать ${selectedReleaseIds.length} релизов?`)) return;
     
+    // Показываем модальное окно подтверждения
+    setDeleteType('publish');
+    setDeleteCount(selectedReleaseIds.length);
+    setShowDeleteConfirm(true);
+  }, [selectedReleaseIds.length]);
+
+  const confirmBulkPublish = useCallback(async () => {
+    if (!supabase || selectedReleaseIds.length === 0) return;
+    
+    setShowDeleteConfirm(false);
     setIsPublishing(true);
     try {
-      const updatePromises = selectedReleaseIds.map(async releaseId => {
+      // Фильтруем уже опубликованные релизы
+      const releasesToPublish = selectedReleaseIds.filter(releaseId => {
+        const release = releases.find(r => r.id === releaseId);
+        return release && release.status !== 'published';
+      });
+      
+      const alreadyPublished = selectedReleaseIds.length - releasesToPublish.length;
+      
+      if (releasesToPublish.length === 0) {
+        showErrorToast('Все выбранные релизы уже выложены');
+        setSelectedReleaseIds([]);
+        setIsPublishing(false);
+        return;
+      }
+      
+      const updatePromises = releasesToPublish.map(async releaseId => {
         const release = releases.find(r => r.id === releaseId);
         if (!release) return;
         
@@ -240,12 +264,16 @@ export default function ReleasesModeration({ supabase, onSidebarCollapse }: Rele
       
       await Promise.all(updatePromises);
       
-      showSuccessToast(`Опубликовано: ${selectedReleaseIds.length} релизов`);
+      if (alreadyPublished > 0) {
+        showSuccessToast(`Выложено: ${releasesToPublish.length} релизов (${alreadyPublished} уже были выложены)`);
+      } else {
+        showSuccessToast(`Выложено: ${releasesToPublish.length} релизов`);
+      }
       setSelectedReleaseIds([]);
       loadReleases();
     } catch (error) {
       console.error('Ошибка публикации:', error);
-      showErrorToast('Ошибка при публикации');
+      showErrorToast('Ошибка при выкладывании');
     } finally {
       setIsPublishing(false);
     }
@@ -331,9 +359,9 @@ export default function ReleasesModeration({ supabase, onSidebarCollapse }: Rele
       {viewMode === 'create' ? (
         <AdminCreateRelease 
           supabase={supabase} 
-          onSuccess={() => {
+          onSuccess={async () => {
+            await loadReleases();
             setViewMode('archive');
-            loadReleases();
           }}
           onCancel={() => setViewMode('moderation')}
         />
@@ -362,11 +390,11 @@ export default function ReleasesModeration({ supabase, onSidebarCollapse }: Rele
         </>
       )}
 
-      {/* Модальное окно подтверждения удаления */}
+      {/* Модальное окно подтверждения удаления/публикации */}
       <DeleteConfirmModal
         isOpen={showDeleteConfirm}
         onClose={() => setShowDeleteConfirm(false)}
-        onConfirm={deleteType === 'single' ? confirmDeleteRelease : confirmBulkDelete}
+        onConfirm={deleteType === 'single' ? confirmDeleteRelease : deleteType === 'publish' ? confirmBulkPublish : confirmBulkDelete}
         count={deleteCount}
         type={deleteType}
       />

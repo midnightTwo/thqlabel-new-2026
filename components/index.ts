@@ -9,3 +9,6 @@ export * from './support';
 
 // Providers
 export * from './providers';
+
+// Cache Management
+export { default as CacheBuster } from './CacheBuster';

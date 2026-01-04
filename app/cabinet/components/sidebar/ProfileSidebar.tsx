@@ -2,6 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { UserRole, ROLE_CONFIG } from '../../lib/types';
+import { SilverStarsGroup } from '@/components/ui/SilverStars';
 
 interface ProfileSidebarProps {
   user: any;
@@ -55,6 +56,9 @@ export default function ProfileSidebar({
 
   return (
     <>
+      {/* Декоративные серебряные звёзды */}
+      <SilverStarsGroup variant="sidebar" />
+      
       {/* Профиль */}
       <div className="mb-6">
         {/* Аватар + Ник + Роль в одну строку */}

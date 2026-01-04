@@ -34,7 +34,7 @@ export function TransactionList({ transactions }: TransactionListProps) {
       {transactions.length === 0 ? (
         <p className="text-zinc-500 text-sm">Нет транзакций</p>
       ) : (
-        <div className="space-y-2 max-h-96 overflow-y-auto">
+        <div className="space-y-2 max-h-96 overflow-y-auto custom-scrollbar">
           {transactions.map((tx: any) => {
             const isWithdrawalRequest = tx.source === 'withdrawal_request';
             const type = typeConfig[tx.type] || { bg: 'bg-zinc-500/20', text: 'text-zinc-300', label: tx.type, icon: '?' };

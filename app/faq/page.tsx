@@ -4,12 +4,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import AnimatedBackground from '@/components/ui/AnimatedBackground';
 import { useSupportWidget } from '@/lib/hooks/useSupportWidget';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '@/lib/supabase/client';
 import { useTheme } from '@/contexts/ThemeContext';
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
-const supabase = (supabaseUrl && supabaseAnonKey) ? createClient(supabaseUrl, supabaseAnonKey) : null;
 
 // SVG Icons as components - используем функции для динамических классов
 const getIcons = (isLight: boolean) => ({

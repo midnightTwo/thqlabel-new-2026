@@ -225,7 +225,7 @@ export function useTicketMessages(
   const handleSendReply = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!selectedTicket || !replyMessage.trim()) return;
+    if (!selectedTicket || (!replyMessage.trim() && replyImages.length === 0)) return;
 
     setSending(true);
     setError('');

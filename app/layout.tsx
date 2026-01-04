@@ -1,18 +1,16 @@
 "use client";
 import "./globals.css";
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState, useRef, useCallback } from 'react';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '@/lib/supabase/client';
 import { ModalProvider } from '../components/providers/ModalProvider';
 import { ThemeProvider, useTheme } from '../contexts/ThemeContext';
 import { NotificationProvider } from '../contexts/NotificationContext';
 import GlobalSupportWidget from '../components/support/GlobalSupportWidget';
 import SupportWidgetProvider from '../components/support/SupportWidgetProvider';
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
-const supabase = (supabaseUrl && supabaseAnonKey) ? createClient(supabaseUrl, supabaseAnonKey) : null;
+import { SilverStar } from '../components/ui/SilverStars';
+import CacheBuster from '../components/CacheBuster';
 
 // Отключаем автоматическое восстановление позиции скролла
 if (typeof window !== 'undefined') {
@@ -200,6 +198,7 @@ const LEFT_NAV_ITEMS = [
 
 function BodyContent({ children, pathname }: { children: React.ReactNode; pathname: string }) {
   const { themeName } = useTheme();
+  const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -345,8 +344,12 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
               </Link>
             </div>
 
-            {/* Лого - по центру */}
-            <Link href="/feed" className="header-logo absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 group flex-shrink-0 transition-opacity duration-200" style={{ width: '128px', height: '77px' }}>
+            {/* Лого - по центру (возврат на предыдущую страницу) */}
+            <button 
+              onClick={() => router.back()} 
+              className="header-logo absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 group flex-shrink-0 transition-opacity duration-200 cursor-pointer" 
+              style={{ width: '128px', height: '77px', background: 'transparent', border: 'none' }}
+            >
               <img 
                 src="/logo.png" 
                 alt="thqlabel" 
@@ -365,7 +368,7 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
                   }}
                 />
               )}
-            </Link>
+            </button>
 
             {/* Навигация с плавным ползунком - скрывается на мобилке, справа */}
             <nav className="hidden md:flex relative items-center rounded-2xl p-1 ml-auto" suppressHydrationWarning>
@@ -395,6 +398,58 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
                   transform: 'translateZ(0) perspective(1000px)',
                 }}
               />
+              
+              {/* Серебряные звёзды летят за слайдером с разными задержками */}
+              <div 
+                className="absolute -top-3 pointer-events-none"
+                style={{
+                  left: `${sliderStyle.left + (sliderStyle.width * 0.2)}px`,
+                  transition: 'left 0.7s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                  opacity: sliderStyle.width > 0 ? 1 : 0,
+                }}
+              >
+                <SilverStar size={16} delay={0} />
+              </div>
+              <div 
+                className="absolute -top-2 pointer-events-none"
+                style={{
+                  left: `${sliderStyle.left + (sliderStyle.width * 0.85)}px`,
+                  transition: 'left 0.9s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                  opacity: sliderStyle.width > 0 ? 1 : 0,
+                }}
+              >
+                <SilverStar size={11} delay={0.2} />
+              </div>
+              <div 
+                className="absolute -bottom-3 pointer-events-none"
+                style={{
+                  left: `${sliderStyle.left + (sliderStyle.width * 0.5)}px`,
+                  transition: 'left 1.1s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                  opacity: sliderStyle.width > 0 ? 1 : 0,
+                }}
+              >
+                <SilverStar size={13} delay={0.4} />
+              </div>
+              <div 
+                className="absolute top-1/2 -translate-y-1/2 pointer-events-none"
+                style={{
+                  left: `${sliderStyle.left + sliderStyle.width + 5}px`,
+                  transition: 'left 1.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                  opacity: sliderStyle.width > 0 ? 1 : 0,
+                }}
+              >
+                <SilverStar size={9} delay={0.6} />
+              </div>
+              <div 
+                className="absolute top-1/2 -translate-y-1/2 pointer-events-none"
+                style={{
+                  left: `${sliderStyle.left - 12}px`,
+                  transition: 'left 1.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                  opacity: sliderStyle.width > 0 ? 1 : 0,
+                }}
+              >
+                <SilverStar size={10} delay={0.8} />
+              </div>
               
               
               {NAV_ITEMS.map((item, index) => {
@@ -701,6 +756,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         {/* ПЕРВЫМ - блокирующий скрипт для темы */}
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        
+        {/* АГРЕССИВНОЕ ОТКЛЮЧЕНИЕ КЭШИРОВАНИЯ */}
+        <meta httpEquiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0, s-maxage=0, proxy-revalidate, private" />
+        <meta httpEquiv="Pragma" content="no-cache" />
+        <meta httpEquiv="Expires" content="0" />
+        <meta httpEquiv="X-Cache" content="MISS" />
+        <meta name="cache-control" content="no-cache, no-store, must-revalidate" />
+        
         <title>thqlabel</title>
         <meta name="description" content="thq label - Современный музыкальный лейбл" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=2" />
@@ -741,6 +804,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider>
           <NotificationProvider>
             <SupportWidgetProvider>
+              <CacheBuster />
               <BodyContent pathname={pathname}>
                 {children}
               </BodyContent>

@@ -20,6 +20,7 @@ interface User {
   id: string;
   email: string;
   nickname?: string;
+  display_name?: string;
   avatar_url?: string;
   role?: string;
   member_id?: string;
@@ -44,6 +45,7 @@ interface Track {
   version?: string;
   producers?: string[];
   featuring?: string[];
+  isrc?: string;
 }
 
 interface AdminCreateReleaseProps {
@@ -85,11 +87,14 @@ const UserSelectStep = memo(function UserSelectStep({ supabase, selectedUser, on
     setIsSearching(true); setSearchError('');
     try {
       const { data, error } = await supabase.from('profiles')
-        .select('id, email, nickname, avatar_url, role, member_id')
-        .or(`email.ilike.%${query}%,nickname.ilike.%${query}%`).limit(15);
+        .select('id, email, nickname, display_name, avatar, role, member_id')
+        .or(`email.ilike.%${query}%,nickname.ilike.%${query}%,display_name.ilike.%${query}%,member_id.ilike.%${query}%`)
+        .limit(20);
       if (error) { setSearchError('Ошибка поиска'); setSearchResults([]); return; }
       if (!data || data.length === 0) { setSearchError(`Пользователь "${query}" не найден`); setSearchResults([]); return; }
-      setSearchResults(data);
+      // Преобразуем avatar в avatar_url для совместимости
+      const usersWithAvatarUrl = data.map(user => ({ ...user, avatar_url: user.avatar }));
+      setSearchResults(usersWithAvatarUrl);
     } catch { setSearchError('Ошибка соединения'); setSearchResults([]); }
     finally { setIsSearching(false); }
   }, [supabase]);
@@ -128,7 +133,11 @@ const UserSelectStep = memo(function UserSelectStep({ supabase, selectedUser, on
         <input type="text" value={userSearch}
           onChange={(e) => { setUserSearch(e.target.value); setShowResults(true); }}
           onFocus={() => setShowResults(true)}
-          placeholder="Поиск по email или нику..."
+          placeholder="Поиск по email, нику, имени или ID участника..."
+          autoComplete="off"
+          autoCorrect="off"
+          autoCapitalize="off"
+          spellCheck="false"
           className="w-full px-4 py-4 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-zinc-500 focus:border-purple-500/50 focus:outline-none transition text-lg"
         />
         {isSearching && (
@@ -138,28 +147,72 @@ const UserSelectStep = memo(function UserSelectStep({ supabase, selectedUser, on
         )}
         
         {showResults && searchResults.length > 0 && (
-          <div className="absolute z-50 w-full mt-2 bg-zinc-900 border border-white/10 rounded-2xl overflow-hidden shadow-2xl max-h-80 overflow-y-auto">
+          <div className="absolute z-50 w-full mt-2 bg-zinc-900 border border-white/10 rounded-2xl overflow-hidden shadow-2xl max-h-96 overflow-y-auto">
             {searchResults.map((user) => (
               <button key={user.id} type="button"
                 onClick={() => { onSelectUser(user); setUserSearch(''); setShowResults(false); setSearchError(''); }}
-                className="w-full px-4 py-4 flex items-center gap-4 hover:bg-white/5 transition text-left border-b border-white/5 last:border-b-0">
-                {getAvatarUrl(user.avatar_url, supabase) ? (
-                  <img src={getAvatarUrl(user.avatar_url, supabase)} alt="" className="w-12 h-12 rounded-full object-cover" />
-                ) : (
-                  <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 font-bold text-lg">
-                    {(user.nickname || user.email)?.[0]?.toUpperCase()}
+                className="w-full px-4 py-4 flex items-center gap-4 hover:bg-white/5 transition text-left border-b border-white/5 last:border-b-0 group">
+                
+                {/* Аватар с бейджем роли */}
+                <div className="relative flex-shrink-0">
+                  {getAvatarUrl(user.avatar_url, supabase) ? (
+                    <img src={getAvatarUrl(user.avatar_url, supabase)} alt="" className="w-14 h-14 rounded-xl object-cover ring-2 ring-white/10 group-hover:ring-purple-500/50 transition" />
+                  ) : (
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center text-purple-400 font-bold text-xl ring-2 ring-white/10 group-hover:ring-purple-500/50 transition">
+                      {(user.nickname || user.display_name || user.email)?.[0]?.toUpperCase()}
+                    </div>
+                  )}
+                  {/* Бейдж роли на углу */}
+                  <div className={`absolute -bottom-1 -right-1 w-6 h-6 rounded-lg flex items-center justify-center border-2 ${
+                    user.role === 'owner' ? 'bg-[#8b5cf6] border-[#a78bfa]' :
+                    user.role === 'admin' ? 'bg-[#ff4757] border-[#ff6b81]' :
+                    user.role === 'exclusive' ? 'bg-[#f59e0b] border-[#fbbf24]' : 
+                    'bg-zinc-700 border-zinc-500'
+                  }`}>
+                    <span className="text-white font-bold text-xs">
+                      {user.role === 'owner' ? '♛' :
+                       user.role === 'admin' ? '★' :
+                       user.role === 'exclusive' ? '◆' : '○'}
+                    </span>
                   </div>
-                )}
-                <div className="flex-1 min-w-0">
-                  <p className="text-white font-medium truncate text-lg">{user.nickname || 'Без имени'}</p>
-                  <p className="text-zinc-400 text-sm truncate">{user.email}</p>
                 </div>
-                <span className={`px-3 py-1.5 rounded-lg text-sm font-medium ${
-                  user.role === 'exclusive' ? 'bg-purple-500/20 text-purple-400' : 
-                  user.role === 'admin' ? 'bg-blue-500/20 text-blue-400' :
-                  'bg-zinc-500/20 text-zinc-400'
+
+                {/* Информация о пользователе */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1">
+                    <p className="text-white font-bold truncate text-base">
+                      {user.nickname || user.display_name || 'Без имени'}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm mb-1">
+                    <svg className="w-3.5 h-3.5 text-blue-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <p className="text-zinc-400 truncate">{user.email}</p>
+                  </div>
+                  {user.member_id && (
+                    <div className="flex items-center gap-2 text-sm">
+                      <svg className="w-3.5 h-3.5 text-purple-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                      </svg>
+                      <p className="text-zinc-500 truncate">ID: {user.member_id}</p>
+                    </div>
+                  )}
+                </div>
+
+                {/* Бейдж роли справа */}
+                <span className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 flex-shrink-0 ${
+                  user.role === 'owner' ? 'bg-[#8b5cf6]/20 text-[#a78bfa] border border-[#8b5cf6]/30' :
+                  user.role === 'admin' ? 'bg-[#ff4757]/20 text-[#ff6b81] border border-[#ff4757]/30' :
+                  user.role === 'exclusive' ? 'bg-[#f59e0b]/20 text-[#fbbf24] border border-[#f59e0b]/30' : 
+                  'bg-zinc-800/30 text-zinc-400 border border-zinc-700/50'
                 }`}>
-                  {user.role || 'basic'}
+                  <span className="text-sm">
+                    {user.role === 'owner' ? '♛' :
+                     user.role === 'admin' ? '★' :
+                     user.role === 'exclusive' ? '◆' : '○'}
+                  </span>
+                  {user.role?.toUpperCase() || 'BASIC'}
                 </span>
               </button>
             ))}
@@ -174,25 +227,78 @@ const UserSelectStep = memo(function UserSelectStep({ supabase, selectedUser, on
       </div>
       
       {selectedUser && (
-        <div className="p-6 bg-gradient-to-br from-purple-500/10 to-blue-500/10 border border-purple-500/20 rounded-2xl flex items-center gap-4 mb-8">
-          {getAvatarUrl(selectedUser.avatar_url, supabase) ? (
-            <img src={getAvatarUrl(selectedUser.avatar_url, supabase)} alt="" className="w-16 h-16 rounded-full object-cover ring-2 ring-purple-500/30" />
-          ) : (
-            <div className="w-16 h-16 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 font-bold text-2xl ring-2 ring-purple-500/30">
-              {(selectedUser.nickname || selectedUser.email)?.[0]?.toUpperCase()}
+        <div className="p-6 bg-gradient-to-br from-purple-500/10 to-blue-500/10 border border-purple-500/20 rounded-2xl mb-8 animate-fade-in">
+          <div className="flex items-center gap-4">
+            {/* Аватар с бейджем */}
+            <div className="relative flex-shrink-0">
+              {getAvatarUrl(selectedUser.avatar_url, supabase) ? (
+                <img src={getAvatarUrl(selectedUser.avatar_url, supabase)} alt="" className="w-20 h-20 rounded-2xl object-cover ring-2 ring-purple-500/50" />
+              ) : (
+                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-purple-500/30 to-blue-500/30 flex items-center justify-center text-purple-300 font-bold text-3xl ring-2 ring-purple-500/50">
+                  {(selectedUser.nickname || selectedUser.display_name || selectedUser.email)?.[0]?.toUpperCase()}
+                </div>
+              )}
+              {/* Бейдж роли */}
+              <div className={`absolute -bottom-2 -right-2 w-8 h-8 rounded-xl flex items-center justify-center border-2 ${
+                selectedUser.role === 'owner' ? 'bg-[#8b5cf6] border-[#a78bfa]' :
+                selectedUser.role === 'admin' ? 'bg-[#ff4757] border-[#ff6b81]' :
+                selectedUser.role === 'exclusive' ? 'bg-[#f59e0b] border-[#fbbf24]' :
+                'bg-zinc-700 border-zinc-500'
+              }`}>
+                <span className="text-white font-bold text-base">
+                  {selectedUser.role === 'owner' ? '♛' :
+                   selectedUser.role === 'admin' ? '★' :
+                   selectedUser.role === 'exclusive' ? '◆' : '○'}
+                </span>
+              </div>
             </div>
-          )}
-          <div className="flex-1">
-            <p className="text-white font-bold text-xl">{selectedUser.nickname || 'Без имени'}</p>
-            <p className="text-zinc-400">{selectedUser.email}</p>
-            {selectedUser.member_id && <p className="text-zinc-500 text-sm mt-1">ID: {selectedUser.member_id}</p>}
+
+            {/* Информация */}
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-3 mb-2">
+                <p className="text-white font-black text-2xl truncate">
+                  {selectedUser.nickname || selectedUser.display_name || 'Без имени'}
+                </p>
+                <span className={`px-3 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 ${
+                  selectedUser.role === 'owner' ? 'bg-[#8b5cf6]/20 text-[#a78bfa] border border-[#8b5cf6]/30' :
+                  selectedUser.role === 'admin' ? 'bg-[#ff4757]/20 text-[#ff6b81] border border-[#ff4757]/30' :
+                  selectedUser.role === 'exclusive' ? 'bg-[#f59e0b]/20 text-[#fbbf24] border border-[#f59e0b]/30' :
+                  'bg-zinc-800/30 text-zinc-400 border border-zinc-700/50'
+                }`}>
+                  <span className="text-sm">
+                    {selectedUser.role === 'owner' ? '♛' :
+                     selectedUser.role === 'admin' ? '★' :
+                     selectedUser.role === 'exclusive' ? '◆' : '○'}
+                  </span>
+                  {selectedUser.role?.toUpperCase() || 'BASIC'}
+                </span>
+              </div>
+              
+              <div className="flex items-center gap-2 text-sm mb-1">
+                <svg className="w-4 h-4 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <p className="text-zinc-300 truncate">{selectedUser.email}</p>
+              </div>
+              
+              {selectedUser.member_id && (
+                <div className="flex items-center gap-2 text-sm">
+                  <svg className="w-4 h-4 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                  </svg>
+                  <p className="text-zinc-400 truncate">ID: {selectedUser.member_id}</p>
+                </div>
+              )}
+            </div>
+
+            {/* Кнопка удаления */}
+            <button type="button" onClick={() => onSelectUser(null)}
+              className="p-3 hover:bg-red-500/20 rounded-xl transition text-zinc-400 hover:text-red-400 border border-transparent hover:border-red-500/30">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
           </div>
-          <button type="button" onClick={() => onSelectUser(null)}
-            className="p-3 hover:bg-white/10 rounded-xl transition text-zinc-400 hover:text-white">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
         </div>
       )}
 
@@ -225,43 +331,103 @@ interface ReleaseTypeSelectorProps {
 
 function ReleaseTypeStep({ releaseType, onSelectType, onNext, onBack }: ReleaseTypeSelectorProps) {
   const types = [
-    { id: 'single' as ReleaseType, name: 'Сингл', desc: '1 трек', icon: '🎵', color: 'from-purple-500/20 to-purple-600/20 border-purple-500/30' },
-    { id: 'ep' as ReleaseType, name: 'EP', desc: '2-7 треков', icon: '💿', color: 'from-blue-500/20 to-blue-600/20 border-blue-500/30' },
-    { id: 'album' as ReleaseType, name: 'Альбом', desc: '8-50 треков', icon: '📀', color: 'from-emerald-500/20 to-emerald-600/20 border-emerald-500/30' },
+    { 
+      id: 'single' as ReleaseType, 
+      name: 'Сингл', 
+      desc: '1 трек', 
+      icon: <svg className="w-10 h-10 text-purple-400" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+      </svg>, 
+      color: 'from-purple-500/20 to-purple-600/20 border-purple-500/30' 
+    },
+    { 
+      id: 'ep' as ReleaseType, 
+      name: 'EP', 
+      desc: '2-7 треков', 
+      icon: <svg className="w-10 h-10 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <circle cx="12" cy="12" r="10" />
+        <circle cx="12" cy="12" r="3" fill="currentColor" />
+        <circle cx="12" cy="12" r="6" opacity="0.3" />
+        <path d="M12 2 L12 22 M2 12 L22 12" opacity="0.2" strokeWidth="1" />
+      </svg>, 
+      color: 'from-blue-500/20 to-blue-600/20 border-blue-500/30' 
+    },
+    { 
+      id: 'album' as ReleaseType, 
+      name: 'Альбом', 
+      desc: '8-50 треков', 
+      icon: <svg className="w-10 h-10 text-emerald-400" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="11" r="9" stroke="currentColor" strokeWidth="2" opacity="0.4"/>
+        <circle cx="12" cy="11" r="3" fill="currentColor" opacity="0.4"/>
+        <circle cx="12" cy="13" r="9" stroke="currentColor" strokeWidth="2"/>
+        <circle cx="12" cy="13" r="5" stroke="currentColor" strokeWidth="1" opacity="0.3"/>
+        <circle cx="12" cy="13" r="3" fill="currentColor"/>
+      </svg>, 
+      color: 'from-emerald-500/20 to-emerald-600/20 border-emerald-500/30' 
+    },
   ];
 
   return (
     <div className="animate-fade-up">
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-3">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center ring-1 ring-white/10">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-purple-300">
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center ring-1 ring-white/10 relative overflow-hidden group">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-purple-300 relative z-10">
               <circle cx="12" cy="12" r="10"/>
               <circle cx="12" cy="12" r="3"/>
             </svg>
           </div>
           <div>
-            <h2 className="text-3xl font-black bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">Тип релиза</h2>
+            <h2 className="text-3xl font-black bg-gradient-to-r from-white via-purple-200 to-white bg-clip-text text-transparent animate-pulse" style={{animationDuration: '3s'}}>Тип релиза</h2>
             <p className="text-sm text-zinc-500 mt-1">Выберите формат релиза</p>
           </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         {types.map((type) => (
           <button
             key={type.id}
             type="button"
             onClick={() => onSelectType(type.id)}
-            className={`p-6 rounded-2xl border-2 transition-all text-left ${
+            className={`group relative p-6 rounded-2xl border-2 transition-all duration-300 text-left overflow-hidden ${
               releaseType === type.id 
-                ? `bg-gradient-to-br ${type.color} ring-2 ring-white/20 scale-[1.02]` 
-                : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20'
+                ? `bg-gradient-to-br ${type.color} ring-2 ring-white/30 scale-[1.03] shadow-2xl` 
+                : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20 hover:scale-[1.02] hover:shadow-xl'
             }`}
+            style={releaseType === type.id ? {
+              boxShadow: type.id === 'single' ? '0 0 40px rgba(168, 85, 247, 0.3)' : 
+                         type.id === 'ep' ? '0 0 40px rgba(59, 130, 246, 0.3)' : 
+                         '0 0 40px rgba(16, 185, 129, 0.3)'
+            } : {}}
           >
-            <div className="text-4xl mb-4">{type.icon}</div>
-            <h3 className="text-xl font-bold text-white mb-1">{type.name}</h3>
-            <p className="text-zinc-400">{type.desc}</p>
+            {/* Эффект свечения при наведении */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            
+            {/* Блик */}
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+            </div>
+
+            <div className="relative z-10">
+              <div className={`mb-4 transform transition-transform duration-300 ${
+                releaseType === type.id ? 'scale-110' : 'group-hover:scale-105'
+              }`}>{type.icon}</div>
+              <h3 className="text-xl font-bold text-white mb-1 transition-colors">{type.name}</h3>
+              <p className={`text-sm transition-colors ${
+                releaseType === type.id ? 'text-zinc-300' : 'text-zinc-400 group-hover:text-zinc-300'
+              }`}>{type.desc}</p>
+            </div>
+            
+            {/* Галочка для выбранного */}
+            {releaseType === type.id && (
+              <div className="absolute top-3 right-3 w-6 h-6 rounded-full bg-white flex items-center justify-center animate-scale-in">
+                <svg className="w-4 h-4 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+            )}
           </button>
         ))}
       </div>
@@ -301,15 +467,42 @@ interface AdminSendStepProps {
   tracks: Track[];
   selectedPlatformsList: string[];
   excludedCountries: string[];
+  upc: string;
   onBack: () => void;
   onSuccess: () => void;
+  setCurrentStep: (step: string) => void;
 }
 
-function AdminSendStep({ supabase, selectedUser, releaseType, releaseTitle, artistName, genre, coverFile, releaseDate, tracks, selectedPlatformsList, excludedCountries, onBack, onSuccess }: AdminSendStepProps) {
+function AdminSendStep({ supabase, selectedUser, releaseType, releaseTitle, artistName, genre, coverFile, releaseDate, tracks, selectedPlatformsList, excludedCountries, upc, onBack, onSuccess, setCurrentStep }: AdminSendStepProps) {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
+  const [nextCustomId, setNextCustomId] = useState<string>('');
   const allCountries = getAllCountries();
   const selectedCountries = allCountries.filter(c => !excludedCountries.includes(c));
+
+  // Загрузка следующего custom_id для preview
+  useEffect(() => {
+    const loadNextCustomId = async () => {
+      console.log('🔍 Загрузка следующего custom_id...');
+      const { data, error } = await supabase.rpc('generate_release_custom_id');
+      
+      if (error) {
+        console.error('❌ Ошибка загрузки custom_id:', error);
+        setNextCustomId('Ошибка загрузки');
+        return;
+      }
+      
+      console.log('✅ Получен custom_id из БД:', data);
+      
+      if (data) {
+        setNextCustomId(data);
+      } else {
+        console.warn('⚠️ Функция вернула пустой результат');
+        setNextCustomId('thqrel-0001');
+      }
+    };
+    loadNextCustomId();
+  }, [supabase]);
 
   const getMinTracks = (): number => {
     if (releaseType === 'ep') return 2;
@@ -318,15 +511,15 @@ function AdminSendStep({ supabase, selectedUser, releaseType, releaseTitle, arti
   };
 
   const checks = [
-    { name: 'Пользователь', valid: !!selectedUser, issue: 'Не выбран пользователь' },
-    { name: 'Название', valid: !!releaseTitle.trim(), issue: 'Не указано название' },
-    { name: 'Артист', valid: !!artistName.trim(), issue: 'Не указан артист' },
-    { name: 'Жанр', valid: !!genre, issue: 'Не выбран жанр' },
-    { name: 'Обложка', valid: !!coverFile, issue: 'Не загружена обложка' },
-    { name: 'Дата релиза', valid: !!releaseDate, issue: 'Не указана дата' },
-    { name: 'Треки', valid: tracks.length >= getMinTracks(), issue: `Минимум ${getMinTracks()} ${getMinTracks() === 1 ? 'трек' : 'трека'}` },
-    { name: 'Площадки', valid: selectedPlatformsList.length > 0, issue: 'Не выбраны площадки' },
-    { name: 'Страны', valid: selectedCountries.length > 0, issue: 'Не выбраны страны' },
+    { name: 'Пользователь', valid: !!selectedUser, issue: 'Не выбран пользователь', step: 'user', color: 'from-purple-500 to-blue-500' },
+    { name: 'Название', valid: !!releaseTitle.trim(), issue: 'Не указано название', step: 'release', color: 'from-blue-500 to-cyan-500' },
+    { name: 'Артист', valid: !!artistName.trim(), issue: 'Не указан артист', step: 'release', color: 'from-blue-500 to-cyan-500' },
+    { name: 'Жанр', valid: !!genre, issue: 'Не выбран жанр', step: 'release', color: 'from-blue-500 to-cyan-500' },
+    { name: 'Обложка', valid: !!coverFile, issue: 'Не загружена обложка', step: 'release', color: 'from-blue-500 to-cyan-500' },
+    { name: 'Дата релиза', valid: !!releaseDate, issue: 'Не указана дата', step: 'release', color: 'from-blue-500 to-cyan-500' },
+    { name: 'Треки', valid: tracks.length >= getMinTracks(), issue: `Минимум ${getMinTracks()} ${getMinTracks() === 1 ? 'трек' : 'трека'}`, step: 'tracklist', color: 'from-cyan-500 to-teal-500' },
+    { name: 'Площадки', valid: selectedPlatformsList.length > 0, issue: 'Не выбраны площадки', step: 'platforms', color: 'from-emerald-500 to-green-500' },
+    { name: 'Страны', valid: selectedCountries.length > 0, issue: 'Не выбраны страны', step: 'countries', color: 'from-teal-500 to-emerald-500' },
   ];
 
   const allValid = checks.every(c => c.valid);
@@ -346,24 +539,78 @@ function AdminSendStep({ supabase, selectedUser, releaseType, releaseTitle, arti
         coverUrl = urlData.publicUrl;
       }
 
-      const tracksData = tracks.map((track, index) => ({
-        title: track.title, artists: artistName, hasDrugs: track.hasDrugs, lyrics: track.lyrics,
-        language: track.language, version: track.version || '', producers: track.producers || [],
-        featuring: track.featuring || [], order: index + 1,
+      // Загружаем аудио файлы треков и получаем URL
+      const tracksData = await Promise.all(tracks.map(async (track, index) => {
+        let audioUrl = track.link || '';
+        
+        // Если есть audioFile, загружаем его в storage
+        if (track.audioFile) {
+          try {
+            const audioFileExt = track.audioFile.name.split('.').pop();
+            const audioFileName = `${selectedUser.id}/${Date.now()}-track-${index}.${audioFileExt}`;
+            
+            const { error: audioUploadError } = await supabase.storage
+              .from('release-audio')
+              .upload(audioFileName, track.audioFile, {
+                contentType: track.audioFile.type,
+                upsert: true
+              });
+            
+            if (audioUploadError) {
+              console.error(`Ошибка загрузки аудио для трека ${index}:`, audioUploadError);
+            } else {
+              const { data: audioUrlData } = supabase.storage
+                .from('release-audio')
+                .getPublicUrl(audioFileName);
+              audioUrl = audioUrlData.publicUrl;
+              console.log(`✅ Аудио для трека ${index} загружено: ${audioUrl}`);
+            }
+          } catch (err) {
+            console.error(`Ошибка при загрузке аудио для трека ${index}:`, err);
+          }
+        }
+        
+        return {
+          title: track.title,
+          artists: artistName,
+          hasDrugs: track.hasDrugs,
+          lyrics: track.lyrics,
+          language: track.language,
+          version: track.version || '',
+          producers: track.producers || [],
+          featuring: track.featuring || [],
+          order: index + 1,
+          isrc: track.isrc || '',
+          link: audioUrl,
+          audio_url: audioUrl,
+        };
       }));
 
-      const { data: maxIdData } = await supabase.rpc('generate_release_custom_id');
-      const customId = maxIdData || `thqrel-${String(Date.now()).slice(-6)}`;
+      // Генерируем custom_id вручную, так как статус published
+      const { data: generatedCustomId, error: customIdError } = await supabase.rpc('generate_release_custom_id');
+      if (customIdError) {
+        console.error('Ошибка генерации custom_id:', customIdError);
+        throw new Error('Не удалось сгенерировать код релиза');
+      }
 
-      const { error: releaseError } = await supabase.from('releases_exclusive').insert({
-        user_id: selectedUser.id, custom_id: customId, title: releaseTitle, artist_name: artistName,
+      const { data: newRelease, error: releaseError } = await supabase.from('releases_exclusive').insert({
+        user_id: selectedUser.id, title: releaseTitle, artist_name: artistName,
         genre, cover_url: coverUrl, release_date: releaseDate, status: 'published', release_type: releaseType,
-        platforms: selectedPlatformsList, countries: selectedCountries, tracks: tracksData,
+        platforms: selectedPlatformsList, countries: selectedCountries, tracks: tracksData, upc: upc || null,
         contract_agreed: true, contract_agreed_at: new Date().toISOString(),
         created_at: new Date().toISOString(), updated_at: new Date().toISOString(),
+        custom_id: generatedCustomId,
       }).select().single();
 
       if (releaseError) throw releaseError;
+      
+      // Отладка: выводим сгенерированный код релиза
+      if (newRelease?.custom_id) {
+        console.log('✅ Админ создал релиз с кодом:', newRelease.custom_id);
+      } else {
+        console.warn('⚠️ Релиз создан админом, но custom_id не сгенерирован');
+      }
+      
       onSuccess();
     } catch (err: any) {
       console.error('Error creating release:', err);
@@ -391,15 +638,69 @@ function AdminSendStep({ supabase, selectedUser, releaseType, releaseTitle, arti
 
       {error && <div className="mb-6 p-4 bg-red-500/20 border border-red-500/30 rounded-xl text-red-400">{error}</div>}
 
+      {!allValid && (
+        <div className="mb-8 p-8 bg-gradient-to-br from-red-500/10 via-orange-500/10 to-yellow-500/10 border border-red-500/20 rounded-2xl">
+          <div className="flex items-start gap-4 mb-6">
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-red-500/20 to-orange-500/20 flex items-center justify-center ring-1 ring-red-500/30 flex-shrink-0">
+              <svg className="w-7 h-7 text-red-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-white mb-2">Не все данные заполнены</h3>
+              <p className="text-zinc-400 mb-4">Чтобы опубликовать релиз, необходимо заполнить все обязательные поля. Нажмите на кнопку, чтобы перейти к нужному шагу:</p>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {checks.filter(c => !c.valid).map((check, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentStep(check.step)}
+                className="group p-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-xl transition-all text-left"
+              >
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-red-500/20 to-orange-500/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                    <svg className="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="font-semibold text-white group-hover:text-red-300 transition-colors">{check.name}</span>
+                      <svg className="w-4 h-4 text-zinc-500 group-hover:text-red-400 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                    <p className="text-sm text-red-400">{check.issue}</p>
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div className="mb-6 p-5 bg-gradient-to-br from-purple-500/10 to-blue-500/10 border border-purple-500/20 rounded-xl">
+        <p className="text-xs text-zinc-400 mb-1">Код релиза</p>
+        <div className="flex items-center gap-2">
+          <span className="text-lg font-bold font-mono text-purple-300">{nextCustomId || 'Загрузка...'}</span>
+          <svg className="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <p className="text-xs text-zinc-500 mt-1">Код будет сгенерирован автоматически при публикации</p>
+      </div>
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-        <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">Пользователь</p><p className="text-white font-medium">{selectedUser?.nickname || selectedUser?.email}</p></div>
-        <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">Тип релиза</p><p className="text-white font-medium">{releaseType === 'single' ? 'Сингл' : releaseType === 'ep' ? 'EP' : 'Альбом'}</p></div>
+        <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">Пользователь</p><p className="text-white font-medium">{selectedUser?.nickname || selectedUser?.email || '—'}</p></div>
+        <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">Тип релиза</p><p className="text-white font-medium">{releaseType === 'single' ? 'Сингл' : releaseType === 'ep' ? 'EP' : releaseType === 'album' ? 'Альбом' : '—'}</p></div>
         <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">Название</p><p className="text-white font-medium">{releaseTitle || '—'}</p></div>
         <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">Артист</p><p className="text-white font-medium">{artistName || '—'}</p></div>
         <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">Жанр</p><p className="text-white font-medium">{genre || '—'}</p></div>
         <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">Дата релиза</p><p className="text-white font-medium">{releaseDate || '—'}</p></div>
-        <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">Треки</p><p className="text-white font-medium">{tracks.length}</p></div>
-        <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">Площадки</p><p className="text-white font-medium">{selectedPlatformsList.length}</p></div>
+        <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">UPC</p><p className="text-white font-medium font-mono text-sm">{upc || '—'}</p></div>
+        <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">Треки</p><p className="text-white font-medium">{tracks.length || '—'}</p></div>
+        <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">Площадки</p><p className="text-white font-medium">{selectedPlatformsList.length || '—'}</p></div>
       </div>
 
       <div className="p-6 bg-white/5 border border-white/10 rounded-2xl mb-8">
@@ -510,8 +811,28 @@ function StepsSidebar({ currentStep, setCurrentStep, selectedUser, releaseType, 
       {releaseType && (
         <div className="mb-3 p-3 backdrop-blur-lg bg-gradient-to-br from-purple-500/20 via-purple-500/10 to-blue-500/20 border border-white/20 rounded-xl">
           <div className="flex items-center gap-2">
-            <div className={`w-6 h-6 rounded-lg flex items-center justify-center shrink-0 ${releaseType === 'single' ? 'bg-purple-500/20' : releaseType === 'ep' ? 'bg-blue-500/20' : 'bg-emerald-500/20'}`}>
-              <span className="text-sm">{releaseType === 'single' ? '🎵' : releaseType === 'ep' ? '💿' : '📀'}</span>
+            <div className={`w-6 h-6 rounded-lg flex items-center justify-center shrink-0 ${
+              releaseType === 'single' ? 'bg-purple-500/20' : 
+              releaseType === 'ep' ? 'bg-blue-500/20' : 
+              'bg-emerald-500/20'
+            }`}>
+              {releaseType === 'single' ? (
+                <svg className="w-4 h-4 text-purple-400" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+                </svg>
+              ) : releaseType === 'ep' ? (
+                <svg className="w-4 h-4 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="12" r="8" />
+                  <circle cx="12" cy="12" r="2" fill="currentColor" />
+                </svg>
+              ) : (
+                <svg className="w-4 h-4 text-emerald-400" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="11" r="7" stroke="currentColor" strokeWidth="2" opacity="0.4"/>
+                  <circle cx="12" cy="11" r="2" fill="currentColor" opacity="0.4"/>
+                  <circle cx="12" cy="13" r="7" stroke="currentColor" strokeWidth="2"/>
+                  <circle cx="12" cy="13" r="2" fill="currentColor"/>
+                </svg>
+              )}
             </div>
             <div className="flex-1"><div className="font-bold text-sm text-white">{releaseType === 'single' ? 'Сингл' : releaseType === 'ep' ? 'EP' : 'Альбом'}</div></div>
           </div>
@@ -580,6 +901,7 @@ export default function AdminCreateRelease({ supabase, onSuccess, onCancel }: Ad
   const [showCalendar, setShowCalendar] = useState(false);
   const [calendarMonth, setCalendarMonth] = useState(new Date().getMonth());
   const [calendarYear, setCalendarYear] = useState(new Date().getFullYear());
+  const [upc, setUpc] = useState('');
 
   // Tracklist state
   const [tracks, setTracks] = useState<Track[]>([]);
@@ -594,6 +916,7 @@ export default function AdminCreateRelease({ supabase, onSuccess, onCancel }: Ad
   const [trackVersion, setTrackVersion] = useState('');
   const [trackProducers, setTrackProducers] = useState<string[]>([]);
   const [trackFeaturing, setTrackFeaturing] = useState<string[]>([]);
+  const [trackIsrc, setTrackIsrc] = useState('');
 
   // Countries & Platforms
   const [excludedCountries, setExcludedCountries] = useState<string[]>([]);
@@ -624,11 +947,29 @@ export default function AdminCreateRelease({ supabase, onSuccess, onCancel }: Ad
       <section className="flex-1 backdrop-blur-xl bg-gradient-to-br from-white/[0.07] to-white/[0.02] border border-white/10 rounded-3xl p-6 lg:p-10 min-h-[500px] shadow-2xl shadow-black/20">
         {currentStep === 'user' && <UserSelectStep supabase={supabase} selectedUser={selectedUser} onSelectUser={setSelectedUser} onNext={() => setCurrentStep('type')} />}
         {currentStep === 'type' && <ReleaseTypeStep releaseType={releaseType} onSelectType={setReleaseType} onNext={() => setCurrentStep('release')} onBack={() => setCurrentStep('user')} />}
-        {currentStep === 'release' && <ReleaseInfoStep releaseTitle={releaseTitle} setReleaseTitle={setReleaseTitle} artistName={artistName} setArtistName={setArtistName} collaborators={collaborators} setCollaborators={setCollaborators} collaboratorInput={collaboratorInput} setCollaboratorInput={setCollaboratorInput} genre={genre} setGenre={setGenre} subgenres={subgenres} setSubgenres={setSubgenres} subgenreInput={subgenreInput} setSubgenreInput={setSubgenreInput} releaseDate={releaseDate} setReleaseDate={setReleaseDate} showCalendar={showCalendar} setShowCalendar={setShowCalendar} calendarMonth={calendarMonth} setCalendarMonth={setCalendarMonth} calendarYear={calendarYear} setCalendarYear={setCalendarYear} coverFile={coverFile} setCoverFile={setCoverFile} onNext={() => setCurrentStep('tracklist')} />}
-        {currentStep === 'tracklist' && <TracklistStep releaseTitle={releaseTitle} releaseType={releaseType} coverFile={coverFile} tracks={tracks} setTracks={setTracks} currentTrack={currentTrack} setCurrentTrack={setCurrentTrack} trackTitle={trackTitle} setTrackTitle={setTrackTitle} trackLink={trackLink} setTrackLink={setTrackLink} trackAudioFile={trackAudioFile} setTrackAudioFile={setTrackAudioFile} trackAudioMetadata={trackAudioMetadata} setTrackAudioMetadata={setTrackAudioMetadata} trackHasDrugs={trackHasDrugs} setTrackHasDrugs={setTrackHasDrugs} trackLyrics={trackLyrics} setTrackLyrics={setTrackLyrics} trackLanguage={trackLanguage} setTrackLanguage={setTrackLanguage} trackVersion={trackVersion} setTrackVersion={setTrackVersion} trackProducers={trackProducers} setTrackProducers={setTrackProducers} trackFeaturing={trackFeaturing} setTrackFeaturing={setTrackFeaturing} onNext={() => setCurrentStep('countries')} onBack={() => setCurrentStep('release')} />}
+        {currentStep === 'release' && <ReleaseInfoStep releaseTitle={releaseTitle} setReleaseTitle={setReleaseTitle} artistName={artistName} setArtistName={setArtistName} collaborators={collaborators} setCollaborators={setCollaborators} collaboratorInput={collaboratorInput} setCollaboratorInput={setCollaboratorInput} genre={genre} setGenre={setGenre} subgenres={subgenres} setSubgenres={setSubgenres} subgenreInput={subgenreInput} setSubgenreInput={setSubgenreInput} releaseDate={releaseDate} setReleaseDate={setReleaseDate} showCalendar={showCalendar} setShowCalendar={setShowCalendar} calendarMonth={calendarMonth} setCalendarMonth={setCalendarMonth} calendarYear={calendarYear} setCalendarYear={setCalendarYear} coverFile={coverFile} setCoverFile={setCoverFile} upc={upc} setUpc={setUpc} onNext={() => setCurrentStep('tracklist')} />}
+        {currentStep === 'tracklist' && <TracklistStep releaseTitle={releaseTitle} releaseType={releaseType} coverFile={coverFile} tracks={tracks} setTracks={setTracks} currentTrack={currentTrack} setCurrentTrack={setCurrentTrack} trackTitle={trackTitle} setTrackTitle={setTrackTitle} trackLink={trackLink} setTrackLink={setTrackLink} trackAudioFile={trackAudioFile} setTrackAudioFile={setTrackAudioFile} trackAudioMetadata={trackAudioMetadata} setTrackAudioMetadata={setTrackAudioMetadata} trackHasDrugs={trackHasDrugs} setTrackHasDrugs={setTrackHasDrugs} trackLyrics={trackLyrics} setTrackLyrics={setTrackLyrics} trackLanguage={trackLanguage} setTrackLanguage={setTrackLanguage} trackVersion={trackVersion} setTrackVersion={setTrackVersion} trackProducers={trackProducers} setTrackProducers={setTrackProducers} trackFeaturing={trackFeaturing} setTrackFeaturing={setTrackFeaturing} trackIsrc={trackIsrc} setTrackIsrc={setTrackIsrc} onNext={() => setCurrentStep('countries')} onBack={() => setCurrentStep('release')} />}
         {currentStep === 'countries' && <CountriesStep excludedCountries={excludedCountries} setExcludedCountries={setExcludedCountries} onNext={() => setCurrentStep('platforms')} onBack={() => setCurrentStep('tracklist')} />}
         {currentStep === 'platforms' && <PlatformsStep selectedPlatforms={selectedPlatforms} setSelectedPlatforms={setSelectedPlatforms} selectedPlatformsList={selectedPlatformsList} setSelectedPlatformsList={setSelectedPlatformsList} onNext={() => setCurrentStep('send')} onBack={() => setCurrentStep('countries')} />}
-        {currentStep === 'send' && selectedUser && releaseType && <AdminSendStep supabase={supabase} selectedUser={selectedUser} releaseType={releaseType} releaseTitle={releaseTitle} artistName={artistName} genre={genre} coverFile={coverFile} releaseDate={releaseDate} tracks={tracks} selectedPlatformsList={selectedPlatformsList} excludedCountries={excludedCountries} onBack={() => setCurrentStep('platforms')} onSuccess={() => setSuccess(true)} />}
+        {currentStep === 'send' && (
+          selectedUser && releaseType ? (
+            <AdminSendStep supabase={supabase} selectedUser={selectedUser} releaseType={releaseType} releaseTitle={releaseTitle} artistName={artistName} genre={genre} coverFile={coverFile} releaseDate={releaseDate} tracks={tracks} selectedPlatformsList={selectedPlatformsList} excludedCountries={excludedCountries} upc={upc} onBack={() => setCurrentStep('platforms')} onSuccess={() => setSuccess(true)} setCurrentStep={setCurrentStep} />
+          ) : (
+            <div className="flex flex-col items-center justify-center py-20 text-center">
+              <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-red-500/20 to-orange-500/20 flex items-center justify-center mb-6 ring-1 ring-white/10">
+                <svg className="w-10 h-10 text-red-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-2">Недостаточно данных</h3>
+              <p className="text-zinc-400 mb-6 max-w-md">Вы не можете перейти к публикации, не заполнив предыдущие шаги. Пожалуйста, вернитесь назад и заполните необходимую информацию.</p>
+              <button onClick={() => setCurrentStep('user')} className="px-6 py-3 bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 rounded-xl text-white font-medium transition flex items-center gap-2">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+                Вернуться к началу
+              </button>
+            </div>
+          )
+        )}
       </section>
     </div>
   );

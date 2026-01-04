@@ -619,7 +619,7 @@ export default function CabinetPage() {
         <section 
           className={`flex-1 glass-card-hover interactive-glass p-4 sm:p-6 lg:p-10 ${isLight ? 'cabinet-content-light' : 'glass-morphism-card'}`}
           style={{
-            borderRadius: scrolled ? '24px' : '16px 16px 0 0',
+            borderRadius: scrolled ? '24px' : '0 24px 24px 0',
             minHeight: 'calc(100vh - 70px)',
             marginTop: '0px',
             borderTop: scrolled 

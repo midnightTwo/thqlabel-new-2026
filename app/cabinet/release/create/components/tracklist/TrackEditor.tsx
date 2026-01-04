@@ -32,6 +32,8 @@ interface TrackEditorProps {
   setTrackProducers?: (value: string[]) => void;
   trackFeaturing?: string[];
   setTrackFeaturing?: (value: string[]) => void;
+  trackIsInstrumental?: boolean;
+  setTrackIsInstrumental?: (value: boolean) => void;
   onSave: () => void;
   onCancel: () => void;
 }
@@ -59,6 +61,8 @@ export function TrackEditor({
   setTrackProducers,
   trackFeaturing,
   setTrackFeaturing,
+  trackIsInstrumental,
+  setTrackIsInstrumental,
   onSave,
   onCancel
 }: TrackEditorProps) {
@@ -101,16 +105,41 @@ export function TrackEditor({
         setTrackAudioMetadata={setTrackAudioMetadata}
       />
 
-      {/* Language */}
-      <div>
-        <label className="text-sm text-zinc-400 mb-2 block">Язык трека</label>
-        <select value={trackLanguage} onChange={(e) => setTrackLanguage(e.target.value)} className="w-full px-4 py-3 bg-gradient-to-br from-white/[0.07] to-white/[0.03] rounded-xl border border-white/10 outline-none appearance-none cursor-pointer">
-          <option value="" className="bg-[#1a1a1c]">Выберите язык</option>
-          <option className="bg-[#1a1a1c]">Русский</option>
-          <option className="bg-[#1a1a1c]">Английский</option>
-          <option className="bg-[#1a1a1c]">Инструментальная</option>
-        </select>
-      </div>
+      {/* Instrumental Toggle */}
+      <label className="flex items-center gap-3 p-4 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-xl border border-blue-500/20 cursor-pointer hover:bg-blue-500/15 transition group">
+        <div className="relative">
+          <input 
+            type="checkbox" 
+            checked={trackIsInstrumental || false} 
+            onChange={(e) => {
+              setTrackIsInstrumental?.(e.target.checked);
+              if (e.target.checked) {
+                setTrackLanguage('');
+                setTrackLyrics('');
+              }
+            }} 
+            className="sr-only peer" 
+          />
+          <div className="w-11 h-6 bg-zinc-700 rounded-full peer peer-checked:bg-blue-500 transition-colors"></div>
+          <div className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5"></div>
+        </div>
+        <div>
+          <div className="text-sm font-bold text-white">Инструментал</div>
+          <div className="text-xs text-zinc-500">Трек без слов — текст и язык не требуются</div>
+        </div>
+      </label>
+
+      {/* Language - only show if not instrumental */}
+      {!trackIsInstrumental && (
+        <div>
+          <label className="text-sm text-zinc-400 mb-2 block">Язык трека</label>
+          <select value={trackLanguage} onChange={(e) => setTrackLanguage(e.target.value)} className="w-full px-4 py-3 bg-gradient-to-br from-white/[0.07] to-white/[0.03] rounded-xl border border-white/10 outline-none appearance-none cursor-pointer">
+            <option value="" className="bg-[#1a1a1c]">Выберите язык</option>
+            <option className="bg-[#1a1a1c]">Русский</option>
+            <option className="bg-[#1a1a1c]">Английский</option>
+          </select>
+        </div>
+      )}
 
       {/* Additional Fields */}
       <div className="space-y-4">
@@ -196,13 +225,15 @@ export function TrackEditor({
         </div>
       </label>
 
-      {/* Lyrics */}
-      <div>
-        <label className="text-sm text-zinc-400 mb-2 block">Текст песни</label>
-        <textarea value={trackLyrics} onChange={(e) => setTrackLyrics(e.target.value)} placeholder="Введите текст..." rows={8} 
-          className="w-full px-4 py-3 bg-gradient-to-br from-white/[0.07] to-white/[0.03] placeholder:text-zinc-600 rounded-xl border border-white/10 outline-none resize-none overflow-y-auto" 
-          style={{scrollbarWidth: 'none', msOverflowStyle: 'none'}} />
-      </div>
+      {/* Lyrics - only show if not instrumental */}
+      {!trackIsInstrumental && (
+        <div>
+          <label className="text-sm text-zinc-400 mb-2 block">Текст песни</label>
+          <textarea value={trackLyrics} onChange={(e) => setTrackLyrics(e.target.value)} placeholder="Введите текст..." rows={8} 
+            className="w-full px-4 py-3 bg-gradient-to-br from-white/[0.07] to-white/[0.03] placeholder:text-zinc-600 rounded-xl border border-white/10 outline-none resize-none overflow-y-auto" 
+            style={{scrollbarWidth: 'none', msOverflowStyle: 'none'}} />
+        </div>
+      )}
 
       {/* Actions */}
       <div className="flex gap-3 pt-4 border-t border-white/10">

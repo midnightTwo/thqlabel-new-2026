@@ -53,6 +53,7 @@ function StepsSidebar({
   isLight: boolean;
 }) {
   const allCountries = getAllCountries();
+  const [mobileStepsOpen, setMobileStepsOpen] = useState(false);
   // Минимальное количество треков в зависимости от типа релиза
   const getMinTracks = (type: ReleaseType | null): number => {
     if (type === 'ep') return 2;
@@ -341,10 +342,9 @@ function StepsSidebar({
         </div>
       </aside>
 
-      {/* Мобильная версия - горизонтальная прокручиваемая полоса */}
-      <div className="lg:hidden w-full mb-4">
-        {/* Заголовок */}
-        <div className={`backdrop-blur-xl border rounded-2xl p-4 mb-3 shadow-xl relative overflow-hidden ${
+      {/* Мобильная версия - компактная полоса прогресса с раскрывающимся списком */}
+      <div className="lg:hidden w-full mb-3">
+        <div className={`backdrop-blur-xl border rounded-2xl shadow-lg relative overflow-hidden ${
           isLight
             ? 'bg-[rgba(255,255,255,0.45)] border-white/60 shadow-purple-500/10'
             : 'bg-gradient-to-br from-white/[0.07] to-white/[0.02] border-white/10 shadow-black/10'
@@ -352,91 +352,139 @@ function StepsSidebar({
           {/* Декоративный градиент */}
           <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5 pointer-events-none" />
           
-          <div className="relative z-10">
-          <div className="flex items-center justify-between mb-2">
-            <h3 className={`font-bold text-base bg-gradient-to-r bg-clip-text text-transparent ${
-              isLight ? 'from-[#2a2550] to-[#4a4570]' : 'from-white to-zinc-300'
-            }`}>Создание релиза</h3>
-            <div className="flex items-center font-mono text-sm leading-none">
-              <span className="font-bold" style={{ color: progressColor.from }}>{completedSteps}</span>
-              <span className="text-zinc-500 mx-0.5">/</span>
-              <span className="text-zinc-400 font-bold">6</span>
-            </div>
-          </div>
-          {/* Сегментированный прогресс-бар */}
-          <div className="flex gap-1">
-            {[0, 1, 2, 3, 4, 5].map((i) => (
-              <div 
-                key={i} 
-                className="flex-1 h-2 rounded-full bg-white/5 border border-white/10 overflow-hidden relative"
-              >
-                <div 
-                  className={`absolute inset-0 transition-all duration-500 ${
-                    i < completedSteps ? 'opacity-100' : 'opacity-0'
-                  }`}
-                  style={{ 
-                    background: `linear-gradient(135deg, ${progressColor.from}, ${progressColor.to})`,
-                    boxShadow: i < completedSteps ? `inset 0 1px 0 rgba(255,255,255,0.3)` : 'none',
-                    transitionDelay: `${i * 50}ms`
+          {/* Основная строка - кликабельная */}
+          <div 
+            className="relative z-10 p-3 cursor-pointer"
+            onClick={() => setMobileStepsOpen(!mobileStepsOpen)}
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                {/* Кнопка назад */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onBackToCabinet();
                   }}
+                  className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all ${
+                    isLight 
+                      ? 'bg-purple-500/10 hover:bg-purple-500/20 border border-purple-300/30' 
+                      : 'bg-white/5 hover:bg-white/10 border border-white/10'
+                  }`}
+                  title="В кабинет"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-transparent" />
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={isLight ? 'text-purple-600' : 'text-zinc-400'}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                
+                {/* Текущий шаг */}
+                <div className="flex items-center gap-2">
+                  <div>
+                    <div className={`text-xs font-medium ${isLight ? 'text-purple-600' : 'text-purple-400'}`}>
+                      {steps.find(s => s.id === currentStep)?.label || 'Выбор типа'}
+                    </div>
+                    <div className={`text-[10px] ${isLight ? 'text-[#5a5580]' : 'text-zinc-500'}`}>
+                      {releaseType ? (releaseType === 'single' ? 'Сингл' : releaseType === 'ep' ? 'EP' : 'Альбом') : 'Шаг 0 из 6'}
+                    </div>
+                  </div>
                 </div>
               </div>
-            ))}
-          </div>
-          <div className="text-[10px] text-zinc-400 mt-1.5 text-center">
-            {completedSteps === 6 ? '✓ Готово к отправке' : `Осталось ${6 - completedSteps}`}
-          </div>
-          </div>
-        </div>
-        
-        {/* Горизонтальный скролл шагов */}
-        <div className="overflow-x-auto -mx-4 px-4 pb-2" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-          <div className="flex gap-2 min-w-min">
-            {steps.map((step) => {
-              const isComplete = isStepComplete(step.id);
-              const isCurrent = currentStep === step.id;
-              const isPromoSkipped = step.id === 'promo' && promoStatus === 'skipped';
-              const isPromoFilled = step.id === 'promo' && promoStatus === 'filled';
               
-              return (
-                <button 
-                  key={step.id} 
-                  onClick={() => setCurrentStep(step.id)}
-                  className={`flex-shrink-0 py-2.5 px-4 rounded-xl flex items-center gap-2 transition-all text-sm font-medium relative overflow-hidden group/step ${
-                    isCurrent 
-                      ? 'backdrop-blur-md bg-gradient-to-r from-purple-500/40 to-purple-600/40 text-white shadow-lg shadow-purple-500/30 border border-white/20' 
-                      : 'backdrop-blur-sm bg-white/5 text-zinc-400 border border-white/10 hover:border-white/20 hover:bg-white/10'
-                  }`}
+              {/* Стрелка раскрытия по центру */}
+              <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all ${isLight ? 'bg-purple-500/10 hover:bg-purple-500/20' : 'bg-white/5 hover:bg-white/10'} ${!mobileStepsOpen ? 'animate-bounce-subtle' : ''}`}>
+                <svg 
+                  width="20" height="20" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2.5" 
+                  className={`transition-transform duration-200 ${isLight ? 'text-purple-500' : 'text-zinc-300'} ${mobileStepsOpen ? 'rotate-180' : ''}`}
                 >
-                  {/* Hover эффект */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-purple-500/10 to-purple-500/0 opacity-0 group-hover/step:opacity-100 transition-opacity duration-300" />
-                  <div className="relative z-10 flex items-center gap-2">
-                  <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
-                    isPromoFilled ? 'bg-emerald-500/20 text-emerald-400' :
-                    isPromoSkipped ? 'bg-yellow-500/20 text-yellow-400' :
-                    isComplete ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/10'
-                  }`}>
-                    {(isComplete || isPromoSkipped || isPromoFilled) && step.id !== 'send' ? (
-                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <polyline points="20 6 9 17 4 12" strokeWidth="3"/>
-                      </svg>
-                    ) : step.id === 'send' ? (
-                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <line x1="22" y1="2" x2="11" y2="13"/>
-                        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-                      </svg>
-                    ) : (
-                      step.icon
-                    )}
-                  </span>
-                  <span className="whitespace-nowrap">{step.shortLabel}</span>
-                  </div>
-                </button>
-              );
-            })}
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+              
+              {/* Прогресс справа */}
+              <div className="flex items-center gap-2">
+                <div className="flex gap-0.5">
+                  {[0, 1, 2, 3, 4, 5].map((i) => (
+                    <div 
+                      key={i} 
+                      className={`w-4 h-1.5 rounded-full transition-all duration-300 ${
+                        i < completedSteps 
+                          ? '' 
+                          : isLight ? 'bg-purple-200/50' : 'bg-white/10'
+                      }`}
+                      style={i < completedSteps ? { 
+                        background: `linear-gradient(135deg, ${progressColor.from}, ${progressColor.to})`,
+                        boxShadow: `0 0 4px ${progressColor.from}60`
+                      } : undefined}
+                    />
+                  ))}
+                </div>
+                <span className="text-xs font-bold" style={{ color: progressColor.from }}>
+                  {completedSteps}/6
+                </span>
+              </div>
+            </div>
           </div>
+          
+          {/* Раскрывающийся список шагов */}
+          {mobileStepsOpen && (
+            <div className={`relative z-10 px-3 pb-3 pt-1 border-t ${isLight ? 'border-purple-200/50' : 'border-white/10'}`}>
+              <div className="space-y-1.5">
+                {steps.map((step) => {
+                  const isComplete = isStepComplete(step.id);
+                  const isCurrent = currentStep === step.id;
+                  const isPromoSkipped = step.id === 'promo' && promoStatus === 'skipped';
+                  const isPromoFilled = step.id === 'promo' && promoStatus === 'filled';
+                  
+                  return (
+                    <button 
+                      key={step.id} 
+                      onClick={() => {
+                        setCurrentStep(step.id);
+                        setMobileStepsOpen(false);
+                      }}
+                      className={`w-full text-left py-2.5 px-3 rounded-xl flex items-center gap-2.5 transition-all ${
+                        isCurrent 
+                          ? isLight
+                            ? 'bg-purple-500/20 text-purple-700 border border-purple-300/50'
+                            : 'bg-gradient-to-r from-purple-500/30 to-purple-600/30 text-white border border-white/20'
+                          : isLight
+                            ? 'bg-purple-50/50 text-[#5a5580] hover:bg-purple-100/50 border border-transparent'
+                            : 'bg-white/5 text-zinc-400 hover:bg-white/10 border border-transparent hover:border-white/10'
+                      }`}
+                    >
+                      <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
+                        isPromoFilled ? 'bg-emerald-500/20 text-emerald-500' :
+                        isPromoSkipped ? 'bg-yellow-500/20 text-yellow-500' :
+                        isComplete ? 'bg-emerald-500/20 text-emerald-500' : 
+                        isLight ? 'bg-purple-200/50 text-purple-600' : 'bg-white/10 text-zinc-400'
+                      }`}>
+                        {(isComplete || isPromoSkipped || isPromoFilled) && step.id !== 'send' ? (
+                          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <polyline points="20 6 9 17 4 12" strokeWidth="3"/>
+                          </svg>
+                        ) : step.id === 'send' ? (
+                          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <line x1="22" y1="2" x2="11" y2="13"/>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                          </svg>
+                        ) : (
+                          step.icon
+                        )}
+                      </span>
+                      <span className="text-sm font-medium flex-1">{step.label}</span>
+                      {isCurrent && (
+                        <span className={`w-2 h-2 rounded-full animate-pulse ${isLight ? 'bg-purple-500' : 'bg-white'}`} />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </>
@@ -501,6 +549,8 @@ export default function CreateReleasePage() {
   const [trackVersion, setTrackVersion] = useState('');
   const [trackProducers, setTrackProducers] = useState<string[]>([]);
   const [trackFeaturing, setTrackFeaturing] = useState<string[]>([]);
+  const [trackIsrc, setTrackIsrc] = useState('');
+  const [trackIsInstrumental, setTrackIsInstrumental] = useState(false);
   
   // Countries state - excludedCountries: пустой массив = все страны выбраны
   const [excludedCountries, setExcludedCountries] = useState<string[]>([]);
@@ -564,6 +614,8 @@ export default function CreateReleasePage() {
       setUser(user);
       const displayName = user.user_metadata?.display_name || user.email?.split('@')[0] || 'Artist';
       setNickname(displayName);
+      // Автозаполнение имени артиста из никнейма
+      setArtistName(displayName);
       setLoading(false);
     };
     
@@ -713,11 +765,11 @@ export default function CreateReleasePage() {
     existingToasts.forEach(t => t.remove());
     
     const toast = document.createElement('div');
-    toast.className = 'draft-save-toast fixed bottom-6 right-6 z-[99999] flex items-center gap-3 px-5 py-3 rounded-xl border backdrop-blur-2xl bg-gradient-to-r from-emerald-500/20 to-emerald-600/10 border-emerald-500/40 shadow-2xl shadow-emerald-500/20';
+    toast.className = 'draft-save-toast fixed top-6 left-1/2 -translate-x-1/2 z-[99999] flex items-center gap-3 px-5 py-3 rounded-xl border backdrop-blur-2xl bg-gradient-to-r from-emerald-500/20 to-emerald-600/10 border-emerald-500/40 shadow-2xl shadow-emerald-500/20';
     toast.style.animation = 'toastSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
     toast.innerHTML = `
-      <div class="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center text-white shrink-0">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+      <div class="w-10 h-10 rounded-lg bg-emerald-500 flex items-center justify-center text-white shrink-0">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
       </div>
       <span class="text-sm font-semibold text-emerald-100">Черновик сохранён</span>
     `;
@@ -878,6 +930,10 @@ export default function CreateReleasePage() {
               setTrackProducers={setTrackProducers}
               trackFeaturing={trackFeaturing}
               setTrackFeaturing={setTrackFeaturing}
+              trackIsrc={trackIsrc}
+              setTrackIsrc={setTrackIsrc}
+              trackIsInstrumental={trackIsInstrumental}
+              setTrackIsInstrumental={setTrackIsInstrumental}
               onNext={() => handleNextStep('countries')}
               onBack={() => setCurrentStep('release')}
             />

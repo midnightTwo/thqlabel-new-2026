@@ -1,12 +1,9 @@
 "use client";
 import React, { useState, useEffect, useRef, useMemo, useCallback, memo } from 'react';
 import Link from 'next/link';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '@/lib/supabase/client';
 import { useTheme } from '@/contexts/ThemeContext';
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
-const supabase = (supabaseUrl && supabaseAnonKey) ? createClient(supabaseUrl, supabaseAnonKey) : null;
+import { SilverStarsGroup } from '@/components/ui/SilverStars';
 
 // Релизы thq label
 const RELEASES = [
@@ -919,13 +916,15 @@ export default function FeedPage() {
       )}
 
       {/* Основной контент */}
-      <div className="relative z-20 w-full h-screen px-4 md:px-6 lg:px-8">
+      <div className="relative z-20 w-full min-h-screen lg:h-screen px-4 md:px-6 lg:px-8 overflow-x-hidden overflow-y-auto lg:overflow-hidden">
+        {/* Декоративные серебряные звёзды */}
+        <SilverStarsGroup variant="hero" />
         
         {/* Grid layout - фиксированная высота экрана */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4 h-full py-2">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4 lg:h-full py-2 pb-8 lg:pb-2">
           
           {/* Левая колонка - Текст, кнопки и релизы (компактно) */}
-          <div className="lg:col-span-3 flex flex-col h-full">
+          <div className="lg:col-span-3 flex flex-col order-1 lg:order-none">
             <div className={`transition-all duration-1000 ${mounted ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
               {/* Текст и кнопки с стеклянным эффектом */}
               <div className={`backdrop-blur-md rounded-2xl p-3 lg:p-4 shadow-2xl transition-all duration-300 ${
@@ -991,8 +990,8 @@ export default function FeedPage() {
               </div>
             </div>
 
-            {/* Релизы - чуть больше */}
-            <div className={`mt-3 transition-all duration-1000 delay-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            {/* Релизы - чуть больше (скрыты на мобильных) */}
+            <div className={`hidden lg:block mt-3 transition-all duration-1000 delay-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <div className={`backdrop-blur-md rounded-2xl p-3 lg:p-4 shadow-xl transition-all duration-300 ${
                 isLight 
                   ? 'bg-[#d5d0e5] border border-[#b5acd0]' 
@@ -1050,7 +1049,7 @@ export default function FeedPage() {
           </div>
 
           {/* Центральная колонка - Планета Сатурн с логотипом */}
-          <div className="lg:col-span-6 flex flex-col justify-center items-center">
+          <div className="lg:col-span-6 flex flex-col justify-center items-center order-2 lg:order-none">
             {/* Контейнер для Сатурна - БЕСКОНЕЧНАЯ АНИМАЦИЯ */}
             <div className={`relative mb-4 transition-all duration-1000 delay-200 ${mounted ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
               <div 
@@ -1346,8 +1345,8 @@ export default function FeedPage() {
             </div>
           </div>
 
-          {/* Правая колонка - Новости */}
-          <div className="lg:col-span-3">
+          {/* Правая колонка - Новости (скрыты на мобильных) */}
+          <div className="hidden lg:block lg:col-span-3">
             <div className={`transition-all duration-1000 delay-400 ${mounted ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
               <h2 className={`text-xs font-black mb-1.5 uppercase ${
                 isLight ? 'text-gray-800' : 'text-white'

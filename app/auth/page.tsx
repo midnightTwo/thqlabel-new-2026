@@ -1,23 +1,10 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import { createClient } from '@supabase/supabase-js';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useTheme } from '@/contexts/ThemeContext';
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
-
-// Создаем один экземпляр клиента
-let supabaseInstance: ReturnType<typeof createClient> | null = null;
-const getSupabase = () => {
-  if (!supabaseInstance && supabaseUrl && supabaseAnonKey) {
-    supabaseInstance = createClient(supabaseUrl, supabaseAnonKey);
-  }
-  return supabaseInstance;
-};
-
-const supabase = getSupabase();
+import { SilverStarsGroup } from '@/components/ui/SilverStars';
+import { supabase } from '@/lib/supabase/client';
 
 // Летающие светящиеся частицы
 const FloatingParticles = () => {
@@ -277,6 +264,9 @@ export default function AuthPage() {
 
       {/* Летающие частицы */}
       <FloatingParticles />
+      
+      {/* Серебряные 3D звёзды */}
+      <SilverStarsGroup variant="auth" />
 
       {/* Уведомление */}
       {notification.show && (

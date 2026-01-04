@@ -62,14 +62,14 @@ export default function BulkActionsBar({
             {isPublishing ? (
               <>
                 <div className="w-4 h-4 border-2 border-black/20 border-t-black rounded-full animate-spin"></div>
-                Публикуем...
+                Выкладываем...
               </>
             ) : (
               <>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                   <polyline points="20 6 9 17 4 12" strokeWidth="3"/>
                 </svg>
-                Опубликовать
+                Выложить
               </>
             )}
           </button>

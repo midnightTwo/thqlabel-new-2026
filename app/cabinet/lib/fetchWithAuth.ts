@@ -1,9 +1,4 @@
-import { createClient } from '@supabase/supabase-js';
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-
-export const supabase = createClient(supabaseUrl, supabaseKey);
+import { supabase } from '@/lib/supabase/client';
 
 // Вспомогательная функция для fetch с токеном
 export async function fetchWithAuth(url: string, options: RequestInit = {}) {

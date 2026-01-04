@@ -266,7 +266,7 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
             className={`inline-flex items-center gap-2 px-6 py-3 border rounded-xl font-semibold transition-all group ${
               isLight 
                 ? 'bg-[rgba(25,25,30,0.75)] hover:bg-[rgba(25,25,30,0.85)] border-purple-500/30 hover:border-purple-500/50 text-white' 
-                : 'bg-white/5 hover:bg-white/10 border-white/10 hover:border-white/20'
+                : 'bg-white/5 hover:bg-white/10 border-white/10 hover:border-white/20 text-white'
             }`}
           >
             <svg className="w-4 h-4 group-hover:-translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

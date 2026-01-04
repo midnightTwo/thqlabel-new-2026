@@ -68,6 +68,17 @@ interface AdminRoleHUDProps {
 export default function AdminRoleHUD({ currentRole, originalRole, userId, onRoleChange }: AdminRoleHUDProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isChangingRole, setIsChangingRole] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Определение мобильного устройства
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   if (!originalRole || (originalRole !== 'admin' && originalRole !== 'owner')) {
     return null;
@@ -110,8 +121,30 @@ export default function AdminRoleHUD({ currentRole, originalRole, userId, onRole
   const currentConfig = ROLE_CONFIG[currentRole];
 
   return (
-    <div className="fixed bottom-6 right-[88px] z-[9998]">
-      {/* Плавающая панель - прикреплена рядом с виджетом поддержки */}
+    <>
+    {/* Мобильная кнопка - фиксированная внизу справа */}
+    <div className="fixed bottom-6 right-4 z-[9998] md:hidden">
+      <button
+        onClick={() => setIsExpanded(true)}
+        className={`admin-hud-button group relative p-3 bg-gradient-to-br ${currentConfig.color} border-2 ${currentConfig.borderColor} rounded-xl shadow-2xl active:scale-95 transition-all duration-300 backdrop-blur-xl`}
+        style={{ 
+          boxShadow: `0 0 20px ${currentConfig.glowColor}, 0 8px 30px rgba(0,0,0,0.5)`,
+        }}
+      >
+        <div className="flex items-center gap-2">
+          <span className="text-lg">{currentConfig.icon}</span>
+          <span className="text-xs font-bold text-white">Тест</span>
+        </div>
+        
+        {/* Индикатор что это тестовая роль */}
+        {currentRole !== originalRole && (
+          <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full animate-pulse border-2 border-[#0d0d0f]"></div>
+        )}
+      </button>
+    </div>
+
+    <div className="fixed bottom-6 right-[88px] z-[9998] hidden md:block">
+      {/* Плавающая панель - прикреплена рядом с виджетом поддержки (только десктоп) */}
       <div 
         className={`transition-all duration-500 ease-out ${
           isExpanded ? 'w-80' : 'w-auto'
@@ -248,5 +281,102 @@ export default function AdminRoleHUD({ currentRole, originalRole, userId, onRole
         </div>
       )}
     </div>
+
+    {/* Мобильная версия - модальное окно по центру */}
+    {isExpanded && isMobile && (
+      <div 
+        className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:hidden"
+        onClick={() => setIsExpanded(false)}
+      >
+        {/* Backdrop */}
+        <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
+        
+        {/* Модальное окно */}
+        <div 
+          className="relative w-full max-w-sm bg-[#0d0d0f]/95 backdrop-blur-2xl border-2 border-white/10 rounded-2xl shadow-2xl overflow-hidden max-h-[80vh] flex flex-col"
+          onClick={(e) => e.stopPropagation()}
+          style={{ 
+            boxShadow: '0 0 40px rgba(0,0,0,0.8), 0 20px 60px rgba(0,0,0,0.6)',
+            animation: 'expandPanel 0.3s ease-out forwards'
+          }}
+        >
+          {/* Заголовок */}
+          <div className={`px-4 py-3 bg-gradient-to-r ${currentConfig.color} border-b border-white/10 flex items-center justify-between flex-shrink-0`}>
+            <div className="flex items-center gap-2">
+              <span className="text-lg">{currentConfig.icon}</span>
+              <div>
+                <h3 className="text-sm font-bold text-white">Режим тестирования</h3>
+                <p className="text-[9px] text-white/70">
+                  Истинная роль: {originalRole === 'owner' ? '♛ Owner' : '★ Admin'}
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={() => setIsExpanded(false)}
+              className="p-2 hover:bg-white/10 rounded-lg transition"
+            >
+              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Список ролей со скроллом */}
+          <div className="p-4 space-y-2 overflow-y-auto flex-1">
+            <p className="text-[10px] text-zinc-400 mb-3 uppercase tracking-wider font-medium">
+              Переключиться на роль:
+            </p>
+            
+            {availableRoles.map((role) => {
+              const roleConfig = ROLE_CONFIG[role];
+              const isActive = role === currentRole;
+              
+              return (
+                <button
+                  key={role}
+                  onClick={() => !isActive && handleRoleSwitch(role)}
+                  disabled={isActive || isChangingRole}
+                  className={`w-full px-4 py-3.5 rounded-xl font-bold text-sm uppercase tracking-wider transition-all duration-300 ${
+                    isActive
+                      ? `bg-gradient-to-r ${roleConfig.color} ${roleConfig.textColor} border-2 ${roleConfig.borderColor} cursor-default`
+                      : 'bg-white/5 text-zinc-400 border border-white/10 hover:bg-white/10 hover:border-white/20 active:scale-95'
+                  }`}
+                  style={isActive ? { boxShadow: `0 0 20px ${roleConfig.glowColor}` } : undefined}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="text-lg">{roleConfig.icon}</span>
+                      <span>{roleConfig.shortLabel}</span>
+                    </div>
+                    {isActive && (
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    )}
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Кнопка возврата к оригинальной роли */}
+          {currentRole !== originalRole && (
+            <div className="px-4 pb-4 pt-2 flex-shrink-0 border-t border-white/5">
+              <button
+                onClick={() => handleRoleSwitch(originalRole as UserRole)}
+                disabled={isChangingRole}
+                className="w-full px-4 py-3 bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl text-white text-sm font-bold uppercase tracking-wider hover:shadow-lg hover:shadow-purple-500/50 transition-all flex items-center justify-center gap-2 active:scale-95"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 17l-5-5m0 0l5-5m-5 5h12" />
+                </svg>
+                Вернуться к {originalRole === 'owner' ? 'Owner' : 'Admin'}
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    )}
+    </>
   );
 }

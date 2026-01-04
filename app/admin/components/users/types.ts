@@ -46,8 +46,20 @@ export interface Release {
   id: string;
   title: string;
   artist: string;
+  artist_name?: string; // DB field
   status: string;
   created_at: string;
+  release_type?: 'basic' | 'exclusive';
+  cover_url?: string;
+  custom_id?: string;
+  upc?: string;
+  release_date?: string;
+  genre?: string;
+  subgenres?: string[];
+  label?: string;
+  language?: string;
+  copyright?: string;
+  tracks?: any[];
 }
 
 export interface Payout {
@@ -58,9 +70,17 @@ export interface Payout {
 
 export interface Ticket {
   id: string;
-  title: string;
-  status: string;
+  subject: string;
+  title?: string; // legacy
+  status: 'open' | 'in_progress' | 'closed' | 'pending' | string;
+  priority?: 'low' | 'medium' | 'high' | 'urgent';
+  message?: string;
+  last_message_at?: string;
+  last_admin_message_at?: string;
+  has_unread_admin_reply?: boolean;
+  release_id?: string;
   created_at: string;
+  updated_at?: string;
 }
 
 export interface RoleColors {

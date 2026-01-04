@@ -6,6 +6,7 @@ import { supabase } from '../../lib/supabase';
 import { useTheme } from '@/contexts/ThemeContext';
 import { showSuccessToast, showErrorToast } from '@/lib/utils/showToast';
 import { getAllCountries } from '@/components/icons/CountryFlagsSVG';
+import { getPaymentTotal } from '@/lib/utils/calculatePayment';
 import {
   ReleaseInfoStep,
   TracklistStep,
@@ -418,6 +419,7 @@ export default function CreateReleaseBasicPage() {
   const [trackVersion, setTrackVersion] = useState('');
   const [trackProducers, setTrackProducers] = useState<string[]>([]);
   const [trackFeaturing, setTrackFeaturing] = useState<string[]>([]);
+  const [trackIsInstrumental, setTrackIsInstrumental] = useState(false);
   
   // Countries state - сразу выбраны все страны
   const [selectedCountries, setSelectedCountries] = useState<string[]>(() => getAllCountries());
@@ -502,6 +504,8 @@ export default function CreateReleaseBasicPage() {
       setUser(user);
       const displayName = user.user_metadata?.display_name || user.email?.split('@')[0] || 'Artist';
       setNickname(displayName);
+      // Автозаполнение имени артиста из никнейма
+      setArtistName(displayName);
       setLoading(false);
     };
     
@@ -726,8 +730,8 @@ export default function CreateReleaseBasicPage() {
       }));
       
       // Сохраняем релиз со статусом awaiting_payment
-      // Расчёт стоимости в зависимости от типа релиза
-      const paymentAmount = releaseType === 'single' ? 500 : releaseType === 'ep' ? 1000 : releaseType === 'album' ? 1500 : 500;
+      // Расчёт стоимости на основе типа релиза и количества треков
+      const paymentAmount = getPaymentTotal(releaseType, tracks.length);
       
       const releaseData = {
         user_id: user.id,
@@ -916,6 +920,8 @@ export default function CreateReleaseBasicPage() {
               setTrackProducers={setTrackProducers}
               trackFeaturing={trackFeaturing}
               setTrackFeaturing={setTrackFeaturing}
+              trackIsInstrumental={trackIsInstrumental}
+              setTrackIsInstrumental={setTrackIsInstrumental}
               onNext={() => setCurrentStep('countries')}
               onBack={() => setCurrentStep('release')}
             />
@@ -979,6 +985,7 @@ export default function CreateReleaseBasicPage() {
             <PaymentStep
               userId={user?.id}
               releaseType={releaseType}
+              tracksCount={tracks.length}
               onPaymentSubmit={(receiptUrl, comment) => {
                 setPaymentReceiptUrl(receiptUrl);
                 if (comment) setPaymentComment(comment);

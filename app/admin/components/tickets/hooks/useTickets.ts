@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { fetchWithAuth } from '@/app/cabinet/lib/fetchWithAuth';
 import { preloadAvatars } from '@/components/icons/TicketAvatar';
 import { Ticket, TicketFilter } from '../types';
@@ -20,13 +20,18 @@ interface UseTicketsReturn {
   filteredTickets: Ticket[];
 }
 
-export function useTickets(supabase: any): UseTicketsReturn {
+export function useTickets(
+  supabase: any, 
+  initialTicketId?: string | null,
+  onTicketOpened?: () => void
+): UseTicketsReturn {
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [selectedTicket, setSelectedTicket] = useState<Ticket | null>(null);
   const [filter, setFilter] = useState<TicketFilter>('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const initialTicketHandled = useRef(false);
 
   // Предзагружаем аватарки при загрузке тикетов
   useEffect(() => {
@@ -37,6 +42,19 @@ export function useTickets(supabase: any): UseTicketsReturn {
       preloadAvatars(avatarUrls);
     }
   }, [tickets]);
+
+  // Обработка initialTicketId - выбираем тикет когда он загружен
+  useEffect(() => {
+    if (initialTicketId && tickets.length > 0 && !initialTicketHandled.current) {
+      const ticketToSelect = tickets.find(t => t.id === initialTicketId);
+      if (ticketToSelect) {
+        setSelectedTicket(ticketToSelect);
+        setFilter('all'); // Сбрасываем фильтр чтобы тикет был виден
+        initialTicketHandled.current = true;
+        onTicketOpened?.();
+      }
+    }
+  }, [initialTicketId, tickets, onTicketOpened]);
 
   const loadTickets = useCallback(async (forceRefresh = false) => {
     try {

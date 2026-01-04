@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { useRouter } from 'next/navigation';
 import { supabase } from '../../../lib/supabase';
 import { showSuccessToast, showErrorToast } from '@/lib/utils/showToast';
@@ -73,6 +74,11 @@ export default function SendStep({
 }: SendStepProps) {
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Проверка всех 6 основных шагов
   const requiredChecks = [
@@ -131,8 +137,99 @@ export default function SendStep({
     console.debug('[SendStep exclusive] invalidSteps:', invalidSteps.map(s => s.name));
   }
 
+  // Loading overlay component для portal - мягкая анимация
+  const LoadingOverlay = () => (
+    <div className="fixed inset-0 z-[99999] bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 flex items-center justify-center" style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, width: '100vw', height: '100vh' }}>
+      {/* Мягкие фоновые круги */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '4s' }}></div>
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-indigo-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/3 rounded-full blur-3xl"></div>
+      </div>
+      
+      <div className="relative text-center max-w-md px-8">
+        {/* Центральная анимация - виниловая пластинка */}
+        <div className="relative mb-10">
+          <div className="w-36 h-36 mx-auto relative">
+            {/* Внешнее свечение */}
+            <div className="absolute -inset-4 bg-gradient-to-r from-violet-500/20 via-purple-500/20 to-indigo-500/20 rounded-full blur-xl animate-pulse" style={{ animationDuration: '3s' }}></div>
+            
+            {/* Пластинка */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-zinc-800 to-zinc-900 shadow-2xl animate-spin" style={{ animationDuration: '3s' }}>
+              {/* Текстура винила */}
+              <div className="absolute inset-2 rounded-full border border-zinc-700/50"></div>
+              <div className="absolute inset-4 rounded-full border border-zinc-700/30"></div>
+              <div className="absolute inset-6 rounded-full border border-zinc-700/20"></div>
+              <div className="absolute inset-8 rounded-full border border-zinc-700/20"></div>
+              <div className="absolute inset-10 rounded-full border border-zinc-700/30"></div>
+              
+              {/* Блик на пластинке */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/5 to-transparent"></div>
+              
+              {/* Центральный лейбл */}
+              <div className="absolute inset-[40%] rounded-full bg-gradient-to-br from-violet-400/90 to-purple-600/90 flex items-center justify-center shadow-inner">
+                <div className="w-2 h-2 bg-zinc-900 rounded-full"></div>
+              </div>
+            </div>
+            
+            {/* Плавающие ноты */}
+            <div className="absolute -top-2 -right-2 text-violet-400/60 animate-bounce" style={{ animationDuration: '2s' }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+              </svg>
+            </div>
+            <div className="absolute -bottom-1 -left-3 text-indigo-400/50 animate-bounce" style={{ animationDuration: '2.5s', animationDelay: '0.5s' }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        
+        {/* Текст */}
+        <h3 className="text-2xl font-bold text-white mb-3">
+          Отправляем релиз
+        </h3>
+        <p className="text-zinc-500 mb-8 text-sm leading-relaxed">
+          Загружаем файлы и отправляем на модерацию<br/>
+          <span className="text-zinc-600">Пожалуйста, не закрывайте страницу</span>
+        </p>
+        
+        {/* Прогресс бар - минималистичный */}
+        <div className="relative h-1 bg-zinc-800 rounded-full overflow-hidden mb-6 mx-8">
+          <div 
+            className="absolute inset-y-0 left-0 bg-gradient-to-r from-violet-500 to-purple-500 rounded-full"
+            style={{ 
+              animation: 'loading-progress 2s ease-in-out infinite',
+              width: '40%'
+            }}
+          ></div>
+        </div>
+        
+        {/* Мягкие точки загрузки */}
+        <div className="flex justify-center gap-2">
+          <span className="w-1.5 h-1.5 bg-violet-400/70 rounded-full animate-pulse" style={{ animationDelay: '0ms' }}></span>
+          <span className="w-1.5 h-1.5 bg-purple-400/70 rounded-full animate-pulse" style={{ animationDelay: '300ms' }}></span>
+          <span className="w-1.5 h-1.5 bg-indigo-400/70 rounded-full animate-pulse" style={{ animationDelay: '600ms' }}></span>
+        </div>
+      </div>
+      
+      <style jsx>{`
+        @keyframes loading-progress {
+          0% { transform: translateX(-100%); }
+          50% { transform: translateX(150%); }
+          100% { transform: translateX(-100%); }
+        }
+      `}</style>
+    </div>
+  );
+
   return (
-    <div className="animate-fade-up">
+    <>
+      {/* Full-screen loading overlay через portal */}
+      {mounted && submitting && createPortal(<LoadingOverlay />, document.body)}
+
+      <div className="animate-fade-up">
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-3">
           <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500/20 to-emerald-500/20 flex items-center justify-center ring-1 ring-white/10">
@@ -377,11 +474,20 @@ export default function SendStep({
                 console.log('✅ Черновик преобразован в релиз на модерации');
               } else {
                 // Создаём новый релиз
-                const { error } = await supabase
+                const { data: newRelease, error } = await supabase
                   .from('releases_exclusive')
-                  .insert([releaseData]);
+                  .insert([releaseData])
+                  .select()
+                  .single();
                 
                 if (error) throw error;
+                
+                // Отладка: выводим сгенерированный код релиза
+                if (newRelease?.custom_id) {
+                  console.log('✅ Релиз создан с кодом:', newRelease.custom_id);
+                } else {
+                  console.warn('⚠️ Релиз создан, но custom_id не сгенерирован');
+                }
               }
               
               // Отладка: проверяем данные треков
@@ -428,19 +534,53 @@ export default function SendStep({
             }
           }}
           disabled={!allValid || submitting}
-          className={`w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold sm:font-black transition flex items-center justify-center gap-2 ${
+          className={`w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold sm:font-black transition flex items-center justify-center gap-2 relative overflow-hidden ${
             allValid && !submitting
               ? 'bg-emerald-500 hover:bg-emerald-400 text-black cursor-pointer' 
-              : 'bg-zinc-800 text-zinc-600 cursor-not-allowed'
+              : submitting
+                ? 'bg-gradient-to-r from-purple-600 via-blue-500 to-purple-600 text-white cursor-wait animate-gradient-x'
+                : 'bg-zinc-800 text-zinc-600 cursor-not-allowed'
           }`}
         >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <line x1="22" y1="2" x2="11" y2="13" strokeWidth="2"/>
-            <polygon points="22 2 15 22 11 13 2 9 22 2" strokeWidth="2"/>
-          </svg>
-          {submitting ? 'Отправка...' : 'Отправить на модерацию'}
+          {submitting ? (
+            <>
+              {/* Animated shimmer background */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer" />
+              {/* Spinning rocket icon */}
+              <svg 
+                width="20" 
+                height="20" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor"
+                className="animate-bounce"
+                strokeWidth="2"
+              >
+                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+                <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+              </svg>
+              <span className="relative z-10">Отправляем релиз...</span>
+              {/* Pulsing dots */}
+              <span className="flex gap-1">
+                <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" style={{ animationDelay: '0ms' }}></span>
+                <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" style={{ animationDelay: '150ms' }}></span>
+                <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" style={{ animationDelay: '300ms' }}></span>
+              </span>
+            </>
+          ) : (
+            <>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <line x1="22" y1="2" x2="11" y2="13" strokeWidth="2"/>
+                <polygon points="22 2 15 22 11 13 2 9 22 2" strokeWidth="2"/>
+              </svg>
+              Отправить на модерацию
+            </>
+          )}
         </button>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

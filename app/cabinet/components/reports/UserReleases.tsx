@@ -44,6 +44,7 @@ export default function UserReleases({ userId, nickname, onOpenUpload, userRole,
     searchQuery: '',
     filterStatus: 'all',
     filterGenre: 'all',
+    filterReleaseType: 'all',
     sortBy: 'date',
     order: 'desc',
     showArchive: initialShowArchive
@@ -279,21 +280,68 @@ export default function UserReleases({ userId, nickname, onOpenUpload, userRole,
       ...prev,
       searchQuery: '',
       filterStatus: 'all',
-      filterGenre: 'all'
+      filterGenre: 'all',
+      filterReleaseType: 'all'
     }));
   };
 
   // Проверка наличия активных фильтров
   const hasFilters = filters.searchQuery !== '' || 
                      filters.filterStatus !== 'all' || 
-                     filters.filterGenre !== 'all';
+                     filters.filterGenre !== 'all' ||
+                     filters.filterReleaseType !== 'all';
 
   if (loading) {
     return <div className="text-zinc-600">Загрузка релизов...</div>;
   }
 
+  // Check for releases with pending payment verification
+  // Показываем уведомление только для релизов где чек загружен но ещё не проверен
+  const pendingPaymentReleases = releases.filter(r => 
+    r.release_type === 'basic' && 
+    r.status === 'pending' && 
+    (r as any).payment_status === 'uploaded' // Только uploaded - чек загружен, ожидает проверки
+  );
+
   return (
     <div className="w-full">
+      {/* Fixed notification for pending payment verification */}
+      {pendingPaymentReleases.length > 0 && (
+        <div className="fixed bottom-6 right-6 z-50 max-w-md animate-slide-up">
+          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-amber-500/10 to-orange-500/10 backdrop-blur-xl border border-amber-500/30 shadow-2xl shadow-amber-500/20">
+            {/* Gradient accent line */}
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 via-orange-400 to-amber-400" />
+            
+            <div className="p-4">
+              <div className="flex items-start gap-3">
+                {/* Icon */}
+                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500/30 to-orange-500/30 flex items-center justify-center animate-pulse">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" className="text-amber-400">
+                    <path d="M12 8v4m0 4h.01M2.458 12C2.458 6.5 6.959 2 12.458 2S22.458 6.5 22.458 12s-4.501 10-10 10S2.458 17.5 2.458 12z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+                
+                {/* Content */}
+                <div className="flex-1 min-w-0">
+                  <h4 className="text-base font-bold text-amber-400 mb-0.5">
+                    Ожидает проверки оплаты
+                  </h4>
+                  <p className="text-sm text-zinc-400 leading-snug">
+                    {pendingPaymentReleases.length === 1 
+                      ? `Релиз "${pendingPaymentReleases[0].title}" ожидает подтверждения оплаты` 
+                      : `${pendingPaymentReleases.length} релиза(ов) ожидают подтверждения оплаты`
+                    }
+                  </p>
+                  <p className="text-xs text-zinc-500 mt-1">
+                    Обычно проверка занимает до 24 часов
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Детальный просмотр релиза */}
       {selectedRelease && selectedRelease.status !== 'pending' ? (
         <ReleaseDetailView
@@ -442,7 +490,7 @@ export default function UserReleases({ userId, nickname, onOpenUpload, userRole,
       )}
 
       {/* Toast уведомление */}
-      <CopyToast show={showCopyToast} />
+      <CopyToast show={showCopyToast} message="UPC код скопирован!" />
       
       {/* Модальное окно оплаты */}
       <PaymentModal

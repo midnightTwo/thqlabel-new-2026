@@ -8,7 +8,7 @@ export interface Release {
   artist_name?: string;
   artist?: string;
   cover_url?: string;
-  status: 'draft' | 'pending' | 'rejected' | 'distributed' | 'published' | 'awaiting_payment';
+  status: 'draft' | 'pending' | 'rejected' | 'approved' | 'published' | 'awaiting_payment';
   release_type?: 'basic' | 'exclusive';
   date?: string;
   created_at?: string;
@@ -70,6 +70,7 @@ export interface FilterState {
   searchQuery: string;
   filterStatus: 'all' | string;
   filterGenre: string;
+  filterReleaseType: 'all' | 'basic' | 'exclusive';
   sortBy: 'date' | 'title' | 'status';
   order: 'asc' | 'desc';
   showArchive: boolean;

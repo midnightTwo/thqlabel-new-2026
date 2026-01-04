@@ -147,8 +147,8 @@ export default function PromoStep({
 
       <div className="space-y-6">
         {/* Выбор фокус-трека - красивая версия */}
-        <div className="relative p-6 bg-gradient-to-br from-orange-500/10 via-transparent to-yellow-500/10 border border-orange-500/20 rounded-2xl overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-yellow-500/5 opacity-50"/>
+        <div className="relative p-6 bg-gradient-to-br from-orange-500/10 via-transparent to-yellow-500/10 border border-orange-500/20 rounded-2xl">
+          <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-yellow-500/5 opacity-50 rounded-2xl"/>
           <div className="relative flex items-start gap-4 mb-4">
             <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500/30 to-yellow-500/30 flex items-center justify-center flex-shrink-0 ring-1 ring-orange-400/30">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-orange-300" strokeWidth="2">
@@ -163,7 +163,7 @@ export default function PromoStep({
           </div>
           
           {tracks.length > 0 ? (
-            <div className="relative">
+            <div className={`relative ${showFocusTrackDropdown ? 'z-[9998]' : ''}`}>
               {/* Кнопка открытия выпадающего списка */}
               <button
                 type="button"
@@ -208,7 +208,7 @@ export default function PromoStep({
               
               {/* Выпадающий список треков */}
               {showFocusTrackDropdown && (
-                <div className="absolute top-full left-0 right-0 mt-2 z-20 bg-[#1a1a1c]/95 backdrop-blur-xl border border-orange-500/20 rounded-xl shadow-2xl shadow-orange-500/10 overflow-hidden animate-fade-in">
+                <div className="absolute top-full left-0 right-0 mt-2 z-[9999] bg-[#1a1a1c]/98 backdrop-blur-xl border border-orange-500/20 rounded-xl shadow-2xl shadow-orange-500/10 overflow-hidden animate-fade-in">
                   <div className="p-2 max-h-[300px] overflow-y-auto [&::-webkit-scrollbar]:hidden">
                     {tracks.map((track, idx) => {
                       const isSelected = focusTrack === track.title;

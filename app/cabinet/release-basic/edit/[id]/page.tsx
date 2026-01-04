@@ -42,6 +42,7 @@ export default function EditBasicReleasePage() {
   const [showCalendar, setShowCalendar] = useState(false);
   const [calendarMonth, setCalendarMonth] = useState(new Date().getMonth());
   const [calendarYear, setCalendarYear] = useState(new Date().getFullYear());
+  const [upc, setUpc] = useState('');
   
   // Tracklist state
   const [tracks, setTracks] = useState<Array<{
@@ -55,6 +56,7 @@ export default function EditBasicReleasePage() {
     version?: string;
     producers?: string[];
     featuring?: string[];
+    isrc?: string;
   }>>([]);
   const [currentTrack, setCurrentTrack] = useState<number | null>(null);
   const [trackTitle, setTrackTitle] = useState('');
@@ -67,6 +69,7 @@ export default function EditBasicReleasePage() {
   const [trackVersion, setTrackVersion] = useState('');
   const [trackProducers, setTrackProducers] = useState<string[]>([]);
   const [trackFeaturing, setTrackFeaturing] = useState<string[]>([]);
+  const [trackIsrc, setTrackIsrc] = useState('');
   const [releaseType, setReleaseType] = useState<'single' | 'ep' | 'album' | null>(null);
   
   // Countries state
@@ -296,6 +299,7 @@ export default function EditBasicReleasePage() {
       setAlbumDescription(release.album_description || '');
       setPromoPhotos(release.promo_photos || []);
       setReleaseStatus(release.status || '');
+      setUpc(release.upc || '');
       
       // Загружаем тип релиза из БД (если есть)
       if (release.release_type) {
@@ -428,6 +432,7 @@ export default function EditBasicReleasePage() {
         focus_track_promo: focusTrackPromo,
         album_description: albumDescription,
         promo_photos: promoPhotos,
+        upc: upc || null,
         updated_at: new Date().toISOString()
       };
       
@@ -1052,6 +1057,8 @@ export default function EditBasicReleasePage() {
               coverFile={coverFile}
               setCoverFile={setCoverFile}
               existingCoverUrl={existingCoverUrl}
+              upc={upc}
+              setUpc={setUpc}
               onNext={() => setCurrentStep('tracklist')}
             />
           )}
@@ -1060,6 +1067,8 @@ export default function EditBasicReleasePage() {
             <TracklistStep
               releaseTitle={releaseTitle}
               releaseType={releaseType}
+              coverFile={coverFile}
+              existingCoverUrl={existingCoverUrl}
               tracks={tracks}
               setTracks={setTracks}
               currentTrack={currentTrack}
@@ -1084,6 +1093,8 @@ export default function EditBasicReleasePage() {
               setTrackProducers={setTrackProducers}
               trackFeaturing={trackFeaturing}
               setTrackFeaturing={setTrackFeaturing}
+              trackIsrc={trackIsrc}
+              setTrackIsrc={setTrackIsrc}
               onBack={() => setCurrentStep('release')}
               onNext={() => setCurrentStep('countries')}
             />

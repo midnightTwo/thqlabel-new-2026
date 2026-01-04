@@ -62,8 +62,9 @@ export default function ReleasesHeader({
               : 'bg-white/5 text-zinc-400 hover:bg-white/10'
           }`}
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 8v8m-4-4h8" strokeLinecap="round" />
           </svg>
           Добавить релиз
         </button>

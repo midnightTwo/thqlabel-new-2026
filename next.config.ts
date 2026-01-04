@@ -18,15 +18,15 @@ const nextConfig: NextConfig = {
     },
   },
   
-  // Отключаем кэширование страниц - обновление каждые 5 секунд
+  // ПОЛНОЕ ОТКЛЮЧЕНИЕ КЭШИРОВАНИЯ - моментальное обновление каждую миллисекунду
   generateBuildId: async () => {
-    return Math.floor(Date.now() / 5000).toString();
+    return Date.now().toString();
   },
   
-  // Отключаем все виды кэширования
+  // АГРЕССИВНОЕ ОТКЛЮЧЕНИЕ КЭШИРОВАНИЯ - 0 секунд
   onDemandEntries: {
-    maxInactiveAge: 5000, // 5 секунд
-    pagesBufferLength: 1,
+    maxInactiveAge: 0, // 0 секунд - моментальное очищение
+    pagesBufferLength: 0,
   },
   
   // Принудительное отключение оптимизации
@@ -42,15 +42,7 @@ const nextConfig: NextConfig = {
       },
     },
   },
-  
-  // Отключаем кэширование в dev режиме для свежих данных
-  onDemandEntries: {
-    // Период в мс, в течение которого страница хранится в буфере
-    maxInactiveAge: 5 * 1000, // 5 секунд - моментальное обновление
-    // Количество страниц, которые должны храниться одновременно
-    pagesBufferLength: 1,
-  },
-  
+
   // Оптимизация производительности
   compiler: {
     // Удаляем console.log в продакшене
@@ -69,10 +61,11 @@ const nextConfig: NextConfig = {
   
   // Оптимизация сборки
   productionBrowserSourceMaps: false, // Отключаем source maps в продакшене
-  poweredByHeader: false, // Убираем заголовок X-Powered-By
   
   // Заголовки для кэширования
   async headers() {
+    const isDev = process.env.NODE_ENV === 'development';
+    
     return [
       {
         // Отключаем кэширование HTML страниц - всегда свежий контент
@@ -97,22 +90,24 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            // В dev режиме короткий кэш, в prod - длинный
+            value: isDev ? 'no-cache, must-revalidate' : 'public, max-age=31536000, immutable',
           },
         ],
       },
       {
-        // Кэширование статических JS/CSS файлов
+        // JS/CSS файлы - в dev режиме без кэша!
         source: '/_next/static/:path*',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            // В dev режиме без кэша, в prod - с кэшем
+            value: isDev ? 'no-cache, no-store, must-revalidate' : 'public, max-age=31536000, immutable',
           },
         ],
       },
       {
-        // API - короткое кэширование с revalidate
+        // API - без кэширования
         source: '/api/:path*',
         headers: [
           {

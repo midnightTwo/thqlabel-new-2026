@@ -39,13 +39,13 @@ export default function ReleaseDetailView({ release, onBack, showCopyToast, setS
       {/* Copyright */}
       {release.copyright && <CopyrightSection copyright={release.copyright} />}
 
-      {/* Страны распространения */}
-      {release.countries && release.countries.length > 0 && <CountriesSection countries={release.countries} />}
-
       {/* Треклист */}
       {release.tracks && release.tracks.length > 0 && (
-        <TracklistSection tracks={release.tracks} releaseId={release.id} releaseType={release.release_type || 'basic'} status={release.status} supabase={supabase} />
+        <TracklistSection tracks={release.tracks} releaseId={release.id} releaseType={release.release_type || 'basic'} status={release.status} supabase={supabase} coverUrl={release.cover_url} />
       )}
+
+      {/* Страны распространения (снизу) */}
+      {release.countries && release.countries.length > 0 && <CountriesSection countries={release.countries} />}
 
       {/* Платформы */}
       {release.platforms && release.platforms.length > 0 && <PlatformsSection platforms={release.platforms} />}
@@ -95,7 +95,7 @@ function ReleaseHeader({ release, handleCopyUPC }: { release: Release; handleCop
                 <span className="inline xs:hidden">{getStatusText(release.status, true)}</span>
               </span>
               {release.release_type && <span className="px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wide bg-purple-500/20 text-purple-400 ring-1 ring-purple-500/30">{release.release_type === 'basic' ? 'Basic' : 'Exclusive'}</span>}
-              {release.custom_id && <span className="px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wide bg-zinc-700/50 text-zinc-300 ring-1 ring-zinc-600/30">{release.custom_id}</span>}
+              {release.custom_id && <span className="px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold tracking-wide bg-zinc-700/50 text-zinc-300 ring-1 ring-zinc-600/30">{release.custom_id}</span>}
             </div>
             
             <h1 className="text-2xl sm:text-3xl lg:text-5xl font-black uppercase tracking-tight mb-2 sm:mb-3 bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent leading-tight break-words">{release.title}</h1>
@@ -103,7 +103,20 @@ function ReleaseHeader({ release, handleCopyUPC }: { release: Release; handleCop
 
             {/* Действия */}
             <div className="flex flex-wrap items-center gap-3 mb-4">
-              {release.upc && <button onClick={() => handleCopyUPC(release.upc!)} className="px-3 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-sm font-semibold transition">Копировать UPC</button>}
+              {release.upc && (
+                <button 
+                  onClick={() => handleCopyUPC(release.upc!)} 
+                  className="group relative px-4 py-2.5 bg-gradient-to-br from-purple-600/20 via-purple-500/10 to-blue-600/20 hover:from-purple-600/30 hover:via-purple-500/20 hover:to-blue-600/30 border border-purple-500/30 hover:border-purple-400/50 rounded-xl text-sm font-bold text-purple-200 hover:text-purple-100 transition-all duration-300 shadow-lg shadow-purple-500/10 hover:shadow-purple-500/20 hover:scale-105 active:scale-95"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-400/0 via-purple-400/20 to-purple-400/0 opacity-0 group-hover:opacity-100 blur-sm transition-opacity rounded-xl" />
+                  <div className="relative flex items-center gap-2">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                    <span>Копировать UPC</span>
+                  </div>
+                </button>
+              )}
               {release.spotify_link && <a href={release.spotify_link} target="_blank" rel="noopener noreferrer" className="px-3 py-2 bg-green-600/10 hover:bg-green-600/20 border border-green-600/20 rounded-lg text-sm font-semibold text-emerald-300 transition">Открыть в Spotify</a>}
               {release.payment_status && <div className={`px-3 py-2 rounded-lg text-sm font-bold ${release.payment_status === 'verified' ? 'bg-emerald-500/10 text-emerald-300 border border-emerald-500/20' : 'bg-yellow-500/10 text-yellow-300 border border-yellow-500/20'}`}>{release.payment_status === 'verified' ? 'Оплата: подтверждена' : 'Оплата: ожидает'}</div>}
               {release.contract_agreed && <div className="px-3 py-2 rounded-lg text-sm font-bold bg-emerald-400/8 text-emerald-300 border border-emerald-400/20">Договор согласован</div>}
@@ -139,9 +152,9 @@ function ReleaseHeader({ release, handleCopyUPC }: { release: Release; handleCop
 
 function getStatusText(status: string, short: boolean): string {
   const texts: Record<string, { full: string; short: string }> = {
-    distributed: { full: 'На дистрибьюции', short: 'Дистр.' },
-    rejected: { full: 'Отклонен', short: 'Откл.' },
-    published: { full: 'Опубликован', short: 'Опубл.' },
+    approved: { full: 'Одобрен', short: 'Одобр.' },
+    rejected: { full: 'Отклонён', short: 'Откл.' },
+    published: { full: 'Выложен', short: 'Вылож.' },
     pending: { full: 'На модерации', short: 'Модер.' }
   };
   return texts[status]?.[short ? 'short' : 'full'] || status;

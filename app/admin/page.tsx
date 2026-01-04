@@ -1,10 +1,10 @@
 "use client";
 import React, { useState, useEffect, useCallback, useMemo, memo, lazy, Suspense } from 'react';
-import { useRouter } from 'next/navigation';
-import { createClient } from '@supabase/supabase-js';
+import { useRouter, useSearchParams } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import Toast from '@/components/ui/Toast';
 import { useTheme } from '@/contexts/ThemeContext';
+import { supabase } from '@/lib/supabase/client';
 
 // Ленивая загрузка тяжёлых компонентов для ускорения первоначальной загрузки
 const AnimatedBackground = dynamic(() => import('@/components/ui/AnimatedBackground'), { 
@@ -21,19 +21,6 @@ const PayoutsTab = lazy(() => import('./components/payouts/PayoutsTab'));
 const UsersTab = lazy(() => import('./components/users/UsersTab'));
 const AdminTicketsPanel = lazy(() => import('./components/tickets/AdminTicketsPanel'));
 const WithdrawalsTab = lazy(() => import('./components/withdrawals/WithdrawalsTab'));
-
-// Оптимизация: singleton паттерн для supabase клиента
-let supabaseInstance: ReturnType<typeof createClient> | null = null;
-const getSupabase = () => {
-  if (!supabaseInstance) {
-    supabaseInstance = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-    );
-  }
-  return supabaseInstance;
-};
-const supabase = getSupabase();
 
 // Компонент загрузки для Suspense
 const TabLoader = memo(() => (
@@ -208,16 +195,25 @@ type Tab = 'releases' | 'contracts' | 'archive' | 'payouts' | 'users' | 'news' |
 export default function AdminPage() {
   const { themeName } = useTheme();
   const isLight = themeName === 'light';
+  const searchParams = useSearchParams();
   const [checkingAuth, setCheckingAuth] = useState(true);
   const [accessDenied, setAccessDenied] = useState<{ type: 'not_authorized' | 'not_admin'; email?: string; role?: string } | null>(null);
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [currentUser, setCurrentUser] = useState<any>(null);
   const [currentUserRole, setCurrentUserRole] = useState<'admin' | 'owner'>('admin');
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [initialTicketId, setInitialTicketId] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<Tab>(() => {
     if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('adminActiveTab') as Tab;
+      // Сначала проверяем URL параметр tab
+      const urlParams = new URLSearchParams(window.location.search);
+      const tabFromUrl = urlParams.get('tab') as Tab;
       const validTabs: Tab[] = ['releases', 'contracts', 'archive', 'payouts', 'users', 'news', 'tickets', 'withdrawals'];
+      if (tabFromUrl && validTabs.includes(tabFromUrl)) {
+        return tabFromUrl;
+      }
+      // Затем localStorage
+      const saved = localStorage.getItem('adminActiveTab') as Tab;
       // Проверяем, что сохраненная вкладка валидна, иначе открываем 'users'
       if (saved && validTabs.includes(saved)) {
         return saved;
@@ -234,6 +230,17 @@ export default function AdminPage() {
     type: 'success'
   });
 
+  // Читаем ticket ID из URL при монтировании
+  useEffect(() => {
+    const ticketParam = searchParams.get('ticket');
+    if (ticketParam) {
+      setInitialTicketId(ticketParam);
+      // Сбрасываем URL параметр после чтения
+      const newUrl = window.location.pathname;
+      window.history.replaceState({}, '', newUrl);
+    }
+  }, [searchParams]);
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       localStorage.setItem('adminActiveTab', activeTab);
@@ -241,6 +248,9 @@ export default function AdminPage() {
   }, [activeTab]);
 
   useEffect(() => {
+    // Принудительное обновление данных при загрузке
+    router.refresh();
+    
     const checkAdmin = async () => {
       try {
         const { data: { user }, error: userError } = await supabase.auth.getUser();
@@ -340,15 +350,26 @@ export default function AdminPage() {
                 alt="thqlabel" 
                 className={`h-10 sm:h-12 md:h-16 w-auto drop-shadow-[0_0_25px_rgba(160,141,241,0.8)] ${isLight ? 'invert brightness-0' : ''}`}
               />
-              <button 
-                onClick={() => router.push('/cabinet')}
-                className="w-14 h-14 sm:w-10 sm:h-10 md:w-11 md:h-11 bg-gradient-to-br from-emerald-500 to-teal-600 border-2 border-emerald-400/50 rounded-2xl hover:from-emerald-400 hover:to-teal-500 hover:border-emerald-300 transition-all flex items-center justify-center shrink-0 group shadow-2xl shadow-emerald-500/40 hover:shadow-emerald-400/60 hover:scale-105"
-                title="Назад в кабинет"
-              >
-                <svg className="w-7 h-7 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                </svg>
-              </button>
+              <div className="flex items-center gap-2">
+                <button 
+                  onClick={() => setSidebarCollapsed(true)}
+                  className="hidden lg:flex w-10 h-10 md:w-11 md:h-11 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-purple-500/50 rounded-2xl transition-all items-center justify-center shrink-0 group"
+                  title="Скрыть панель"
+                >
+                  <svg className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button 
+                  onClick={() => router.push('/cabinet')}
+                  className="w-14 h-14 sm:w-10 sm:h-10 md:w-11 md:h-11 bg-gradient-to-br from-violet-500/90 to-indigo-600/90 border-2 border-violet-400/40 rounded-2xl hover:from-violet-400 hover:to-indigo-500 hover:border-violet-300/60 transition-all flex items-center justify-center shrink-0 group shadow-2xl shadow-violet-500/30 hover:shadow-violet-400/50 hover:scale-105"
+                  title="Назад в кабинет"
+                >
+                  <svg className="w-7 h-7 sm:w-5 sm:h-5 md:w-6 md:h-6 text-white group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                  </svg>
+                </button>
+              </div>
             </div>
             <span 
               className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 animate-pulse"
@@ -442,10 +463,10 @@ export default function AdminPage() {
             {activeTab === 'news' && <NewsTab supabase={supabase} />}
             {activeTab === 'withdrawals' && <WithdrawalsTab supabase={supabase} currentUserRole={currentUserRole} />}
             {activeTab === 'payouts' && <PayoutsTab supabase={supabase} currentAdmin={userEmail} currentUserRole={currentUserRole} />}
-            {activeTab === 'tickets' && <AdminTicketsPanel supabase={supabase} />}
+            {activeTab === 'tickets' && <AdminTicketsPanel supabase={supabase} initialTicketId={initialTicketId} onTicketOpened={() => setInitialTicketId(null)} />}
             {activeTab === 'users' && <UsersTab supabase={supabase} currentUserRole={currentUserRole} />}
             {activeTab === 'contracts' && <ContractsTab />}
-            {activeTab === 'archive' && <ArchiveTab />}
+            {activeTab === 'archive' && <ArchiveTab supabase={supabase} />}
           </Suspense>
         </section>
 

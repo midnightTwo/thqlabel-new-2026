@@ -142,6 +142,11 @@ export function useFilteredReleases(releases: Release[], filters: FilterState) {
     // Фильтр по статусу
     if (filters.filterStatus !== 'all' && r.status !== filters.filterStatus) return false;
     
+    // Фильтр по типу релиза (basic/exclusive)
+    if (filters.filterReleaseType && filters.filterReleaseType !== 'all') {
+      if (r.release_type !== filters.filterReleaseType) return false;
+    }
+    
     // Фильтр по жанру
     if (filters.filterGenre !== 'all' && r.genre !== filters.filterGenre) return false;
     
@@ -169,8 +174,8 @@ export function useFilteredReleases(releases: Release[], filters: FilterState) {
     }
     
     if (filters.sortBy === 'date') {
-      const da = new Date(a.date || a.created_at || 0).getTime();
-      const db = new Date(b.date || b.created_at || 0).getTime();
+      const da = new Date(a.release_date || a.date || a.created_at || 0).getTime();
+      const db = new Date(b.release_date || b.date || b.created_at || 0).getTime();
       return filters.order === 'asc' ? da - db : db - da;
     }
     if (filters.sortBy === 'title') {

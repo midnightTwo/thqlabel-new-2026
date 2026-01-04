@@ -85,15 +85,23 @@ function useProfileView(supabase: any) {
     setProfileLoading(true);
 
     try {
-      const [releases, payouts, withdrawals, tickets, transactions] = await Promise.all([
-        supabase.from('releases').select('*').eq('user_id', user.id).order('created_at', { ascending: false }),
+      const [releasesBasic, releasesExclusive, payouts, withdrawals, tickets, transactions] = await Promise.all([
+        supabase.from('releases_basic').select('*').eq('user_id', user.id).order('created_at', { ascending: false }),
+        supabase.from('releases_exclusive').select('*').eq('user_id', user.id).order('created_at', { ascending: false }),
         supabase.from('payouts').select('*').eq('user_id', user.id).order('created_at', { ascending: false }),
         supabase.from('withdrawal_requests').select('*').eq('user_id', user.id).order('created_at', { ascending: false }),
-        supabase.from('tickets').select('*').eq('user_id', user.id).order('created_at', { ascending: false }),
+        supabase.from('support_tickets').select('*').eq('user_id', user.id).order('created_at', { ascending: false }),
         supabase.from('transactions').select('*').eq('user_id', user.id).order('created_at', { ascending: false })
       ]);
 
-      setUserReleases(releases.data || []);
+      // Объединяем релизы из обеих таблиц
+      const basicReleases = (releasesBasic.data || []).map((r: any) => ({ ...r, release_type: 'basic' }));
+      const exclusiveReleases = (releasesExclusive.data || []).map((r: any) => ({ ...r, release_type: 'exclusive' }));
+      const allReleases = [...basicReleases, ...exclusiveReleases].sort((a, b) => 
+        new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+      );
+      
+      setUserReleases(allReleases);
       setUserPayouts(payouts.data || []);
       setUserWithdrawals(withdrawals.data || []);
       setUserTickets(tickets.data || []);
@@ -239,6 +247,11 @@ export default function UsersTab({ supabase, currentUserRole }: { supabase: any;
     showToast('Email скопирован', 'success');
   }, [showToast]);
 
+  const handleCopyId = useCallback((id: string) => {
+    copyToClipboard(id);
+    showToast('ID скопирован', 'success');
+  }, [showToast]);
+
   const handleViewProfile = useCallback((user: Profile) => {
     profileView.viewProfile(user);
   }, [profileView]);
@@ -291,6 +304,7 @@ export default function UsersTab({ supabase, currentUserRole }: { supabase: any;
         onRoleChange={handleRoleChange}
         onViewProfile={handleViewProfile}
         onCopyEmail={handleCopyEmail}
+        onCopyId={handleCopyId}
         onRefresh={loadUsers}
       />
 
@@ -312,6 +326,7 @@ export default function UsersTab({ supabase, currentUserRole }: { supabase: any;
           setEditAvatar={profileView.setEditAvatar}
           onSaveProfile={handleSaveProfile}
           onClose={profileView.closeProfile}
+          supabase={supabase}
         />
       )}
 

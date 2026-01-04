@@ -12,6 +12,7 @@ interface UserListProps {
   onRoleChange: (userId: string, newRole: 'admin' | 'exclusive' | 'basic' | 'owner') => void;
   onViewProfile: (user: Profile) => void;
   onCopyEmail: (email: string) => void;
+  onCopyId: (id: string) => void;
   onRefresh: () => void;
 }
 
@@ -24,6 +25,7 @@ export function UserList({
   onRoleChange,
   onViewProfile,
   onCopyEmail,
+  onCopyId,
   onRefresh,
 }: UserListProps) {
   return (
@@ -58,6 +60,7 @@ export function UserList({
               onRoleChange={onRoleChange}
               onViewProfile={onViewProfile}
               onCopyEmail={onCopyEmail}
+              onCopyId={onCopyId}
             />
           ))}
         </div>

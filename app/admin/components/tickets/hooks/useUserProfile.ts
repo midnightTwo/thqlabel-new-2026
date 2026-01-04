@@ -48,57 +48,40 @@ export function useUserProfile(supabase: any): UseUserProfileReturn {
       
       setViewingUser(profile);
       
-      // Загружаем релизы
-      const { data: releases } = await supabase
-        .from('releases')
-        .select('*')
-        .eq('user_id', ticket.user_id)
-        .neq('status', 'draft')
-        .order('created_at', { ascending: false });
-      setUserReleases(releases || []);
+      // Загружаем все данные параллельно
+      const [releasesBasic, releasesExclusive, payouts, withdrawals, ticketsData, transactions] = await Promise.all([
+        supabase.from('releases_basic').select('*').eq('user_id', ticket.user_id).order('created_at', { ascending: false }),
+        supabase.from('releases_exclusive').select('*').eq('user_id', ticket.user_id).order('created_at', { ascending: false }),
+        supabase.from('payouts').select('*, transactions(*)').eq('user_id', ticket.user_id).order('created_at', { ascending: false }),
+        supabase.from('withdrawal_requests').select('*').eq('user_id', ticket.user_id).order('created_at', { ascending: false }),
+        supabase.from('support_tickets').select('*').eq('user_id', ticket.user_id).order('created_at', { ascending: false }),
+        supabase.from('transactions').select('*').eq('user_id', ticket.user_id).order('created_at', { ascending: false })
+      ]);
+
+      // Объединяем релизы из обеих таблиц
+      const basicReleases = (releasesBasic.data || []).map((r: any) => ({ ...r, release_type: 'basic' }));
+      const exclusiveReleases = (releasesExclusive.data || []).map((r: any) => ({ ...r, release_type: 'exclusive' }));
+      const allReleases = [...basicReleases, ...exclusiveReleases].sort((a, b) => 
+        new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+      );
       
-      // Загружаем выплаты
-      const { data: payouts } = await supabase
-        .from('payouts')
-        .select(`*, transactions(*)`)
-        .eq('user_id', ticket.user_id)
-        .order('created_at', { ascending: false });
-      setUserPayouts(payouts || []);
+      setUserReleases(allReleases);
+      setUserPayouts(payouts.data || []);
+      setUserWithdrawals(withdrawals.data || []);
+      setUserTickets(ticketsData.data || []);
       
-      // Загружаем заявки на вывод
-      const { data: withdrawals } = await supabase
-        .from('withdrawal_requests')
-        .select('*')
-        .eq('user_id', ticket.user_id)
-        .order('created_at', { ascending: false });
-      setUserWithdrawals(withdrawals || []);
-      
-      // Загружаем тикеты
-      const { data: ticketsData } = await supabase
-        .from('support_tickets')
-        .select('*')
-        .eq('user_id', ticket.user_id)
-        .order('created_at', { ascending: false });
-      setUserTickets(ticketsData || []);
-      
-      // Загружаем транзакции
-      const { data: transactions } = await supabase
-        .from('transactions')
-        .select('*')
-        .eq('user_id', ticket.user_id)
-        .order('created_at', { ascending: false });
-      
-      // Объединяем транзакции и заявки
-      const allTransactions: UserTransaction[] = [
-        ...(transactions || []).map((tx: any) => ({ ...tx, source: 'transaction' })),
-        ...(withdrawals || []).map((wr: any) => ({ 
-          ...wr, 
-          source: 'withdrawal_request',
-          type: 'withdrawal',
-          status: wr.status,
-          description: `${wr.bank_name} - ${wr.card_number}`
-        }))
-      ].sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+      // Объединяем транзакции и заявки на вывод
+      const txList = (transactions.data || []).map((t: any) => ({ ...t, source: 'transaction' }));
+      const wdList = (withdrawals.data || []).map((w: any) => ({ 
+        ...w, 
+        source: 'withdrawal_request', 
+        type: 'withdrawal',
+        amount: w.amount,
+        description: `${w.bank_name} - ${w.card_number}`
+      }));
+      const allTransactions = [...txList, ...wdList].sort((a, b) => 
+        new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+      );
       
       setUserTransactions(allTransactions);
     } catch (e) {

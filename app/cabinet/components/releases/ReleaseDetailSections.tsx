@@ -1,11 +1,14 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState } from 'react';
 import { Release } from './types';
 import { formatDate } from './constants';
-import { PlatformBadge, MAIN_PLATFORMS } from './PlatformIcons';
+import { PlatformIcon, getPlatformColor } from '@/components/icons/PlatformIconsSVG';
 
 // Секция платформ
 export function PlatformsSection({ platforms }: { platforms: string[] }) {
-  const filteredPlatforms = platforms.filter(p => MAIN_PLATFORMS.includes(p));
+  const [isExpanded, setIsExpanded] = useState(false);
+  const displayPlatforms = isExpanded ? platforms : platforms.slice(0, 8);
+  const hasMore = platforms.length > 8;
+
   return (
     <div className="mb-6">
       <div className="flex items-center gap-3 mb-5">
@@ -13,10 +16,32 @@ export function PlatformsSection({ platforms }: { platforms: string[] }) {
           <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
         </svg>
         <h3 className="font-bold text-2xl">Платформы распространения</h3>
+        <span className="ml-auto text-xs text-zinc-500 bg-white/5 px-3 py-1 rounded-full">{platforms.length} платформ</span>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-        {filteredPlatforms.map((platform, idx) => <PlatformBadge key={idx} platform={platform} index={idx} />)}
+        {displayPlatforms.map((platform, idx) => (
+          <div key={idx} className="group relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
+            <div className="relative flex flex-col items-center justify-center gap-3 p-6 bg-white/5 hover:bg-white/10 rounded-2xl transition-all duration-300 border border-white/10 group-hover:border-white/20 group-hover:shadow-xl group-hover:-translate-y-1" title={platform}>
+              <div className="flex items-center justify-center w-12 h-12">
+                <PlatformIcon platform={platform} />
+              </div>
+              <span className="text-xs font-semibold text-center leading-tight">{platform}</span>
+            </div>
+          </div>
+        ))}
       </div>
+      {hasMore && (
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="mt-4 w-full px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-sm text-zinc-400 hover:text-white transition-all flex items-center justify-center gap-2"
+        >
+          <span>{isExpanded ? 'Скрыть' : `Показать все (${platforms.length})`}</span>
+          <svg className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+      )}
     </div>
   );
 }

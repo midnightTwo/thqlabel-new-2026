@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { supabase } from '../../../lib/supabase';
-
-type ReleaseType = 'single' | 'ep' | 'album';
+import { 
+  calculatePaymentAmount, 
+  formatPrice, 
+  getReleaseTypeName,
+  getTracksDescription,
+  type ReleaseType 
+} from '@/lib/utils/calculatePayment';
 
 interface PaymentStepProps {
   onNext: () => void;
@@ -11,29 +16,12 @@ interface PaymentStepProps {
   canPayLater?: boolean;
   userId?: string | null;
   releaseType?: ReleaseType | null;
+  tracksCount: number; // Добавляем количество треков для расчёта
 }
 
-// Расчёт стоимости в зависимости от типа релиза
-const getPaymentAmount = (type: ReleaseType | null | undefined): number => {
-  switch (type) {
-    case 'single': return 500;
-    case 'ep': return 1000;
-    case 'album': return 1500;
-    default: return 500;
-  }
-};
-
-const getReleaseTypeName = (type: ReleaseType | null | undefined): string => {
-  switch (type) {
-    case 'single': return 'Сингл';
-    case 'ep': return 'EP';
-    case 'album': return 'Альбом';
-    default: return 'Релиз';
-  }
-};
-
-export default function PaymentStep({ onNext, onBack, onPaymentSubmit, onPayLater, canPayLater = false, userId, releaseType }: PaymentStepProps) {
-  const paymentAmount = getPaymentAmount(releaseType);
+export default function PaymentStep({ onNext, onBack, onPaymentSubmit, onPayLater, canPayLater = false, userId, releaseType, tracksCount }: PaymentStepProps) {
+  // Используем единую утилиту для расчёта стоимости по количеству треков
+  const { total: paymentAmount, breakdown } = calculatePaymentAmount(releaseType, tracksCount);
   const releaseTypeName = getReleaseTypeName(releaseType);
   const [paymentReceipt, setPaymentReceipt] = useState<File | null>(null);
   const [paymentLoading, setPaymentLoading] = useState(false);
@@ -46,6 +34,12 @@ export default function PaymentStep({ onNext, onBack, onPaymentSubmit, onPayLate
     if (file) {
       if (!file.type.startsWith('image/')) {
         setError('Пожалуйста, загрузите изображение (JPG, PNG или GIF)');
+        return;
+      }
+      // Проверка размера файла (макс 5MB)
+      const maxSize = 5 * 1024 * 1024; // 5MB в байтах
+      if (file.size > maxSize) {
+        setError(`Файл слишком большой (${(file.size / 1024 / 1024).toFixed(1)}MB). Максимальный размер: 5MB`);
         return;
       }
       setPaymentReceipt(file);
@@ -122,7 +116,7 @@ export default function PaymentStep({ onNext, onBack, onPaymentSubmit, onPayLate
         <div className="flex items-center justify-between mb-4">
           <div>
             <div className="text-sm text-zinc-400 mb-1">Стоимость {releaseTypeName.toLowerCase()}</div>
-            <div className="text-3xl font-black text-amber-400">{paymentAmount} ₽</div>
+            <div className="text-3xl font-black text-amber-400">{formatPrice(paymentAmount)}</div>
           </div>
           <div className="w-16 h-16 rounded-full bg-amber-500/20 flex items-center justify-center">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-amber-400">
@@ -132,14 +126,44 @@ export default function PaymentStep({ onNext, onBack, onPaymentSubmit, onPayLate
           </div>
         </div>
         
-        {releaseType && (
-          <div className="text-xs text-amber-400/70 mb-3 p-2 bg-amber-500/10 rounded-lg">
-            🎵 Тип релиза: <span className="font-bold">{releaseTypeName}</span>
-            {releaseType === 'single' && ' (1 трек)'}
-            {releaseType === 'ep' && ' (2-7 треков)'}
-            {releaseType === 'album' && ' (8+ треков)'}
+        {/* Детализация расчёта по трекам */}
+        <div className="mb-4 p-3 bg-amber-500/10 rounded-lg space-y-2">
+          <div className="flex items-center justify-between text-sm">
+            <span className="text-zinc-400 flex items-center gap-2">
+              <svg className="w-4 h-4 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M9 18V5l12-2v13" strokeLinecap="round" strokeLinejoin="round"/>
+                <circle cx="6" cy="18" r="3"/>
+                <circle cx="18" cy="16" r="3"/>
+              </svg>
+              Тип релиза:
+            </span>
+            <span className="font-bold text-amber-300">{releaseTypeName}</span>
           </div>
-        )}
+          <div className="flex items-center justify-between text-sm">
+            <span className="text-zinc-400 flex items-center gap-2">
+              <svg className="w-4 h-4 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="12" cy="12" r="10"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              Количество треков:
+            </span>
+            <span className="font-bold text-white">{tracksCount}</span>
+          </div>
+          
+          {/* Детализация по диапазонам (только для EP/Альбома) */}
+          {breakdown.length > 1 && (
+            <div className="pt-2 mt-2 border-t border-amber-500/20 space-y-1">
+              {breakdown.map((item, idx) => (
+                <div key={idx} className="flex items-center justify-between text-xs">
+                  <span className="text-zinc-500">
+                    Треки {item.range}: {item.count} × {formatPrice(item.pricePerTrack)}
+                  </span>
+                  <span className="text-amber-400/80">{formatPrice(item.subtotal)}</span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
         
         <div className="text-xs text-zinc-400 space-y-1">
           <p>• Единоразовый платёж за дистрибуцию релиза</p>

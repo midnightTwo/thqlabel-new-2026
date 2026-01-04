@@ -3,11 +3,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { TicketMessage } from './types';
 import { fetchWithAuth } from '@/app/cabinet/lib/fetchWithAuth';
-import { createClient } from '@supabase/supabase-js';
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
-const supabase = (supabaseUrl && supabaseAnonKey) ? createClient(supabaseUrl, supabaseAnonKey) : null;
+import { supabase } from '@/lib/supabase/client';
 
 interface TicketMessagesProps {
   messages: TicketMessage[];

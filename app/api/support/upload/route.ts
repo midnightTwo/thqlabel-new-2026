@@ -93,7 +93,7 @@ export async function POST(request: Request) {
     const { data, error: uploadError } = await supabase.storage
       .from('support-images')
       .upload(fileName, file, {
-        cacheControl: '3600',
+        cacheControl: '0',
         upsert: false
       });
 

@@ -527,7 +527,7 @@ export default function NewsTab({ supabase }: { supabase: any }) {
     setShowCropModal(false); setUploading(true);
     try {
       const fileName = `news_${Date.now()}_${Math.random().toString(36).substring(7)}.jpg`;
-      const { error } = await supabase.storage.from('avatars').upload(fileName, blob, { cacheControl: '3600', upsert: false, contentType: 'image/jpeg' });
+      const { error } = await supabase.storage.from('avatars').upload(fileName, blob, { cacheControl: '0', upsert: false, contentType: 'image/jpeg' });
       if (error) throw new Error(error.message);
       const { data: { publicUrl } } = supabase.storage.from('avatars').getPublicUrl(fileName);
       setImage(publicUrl); showNotification('Картинка загружена', 'success');

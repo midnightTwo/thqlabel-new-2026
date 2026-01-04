@@ -3,11 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { fetchWithAuth } from '../../lib/fetchWithAuth';
 import { statusColors, statusLabels, categoryLabels } from './TicketCard';
 import TicketAvatar from '@/components/icons/TicketAvatar';
-import { createClient } from '@supabase/supabase-js';
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
-const supabase = (supabaseUrl && supabaseAnonKey) ? createClient(supabaseUrl, supabaseAnonKey) : null;
+import { supabase } from '@/lib/supabase/client';
 
 interface TicketViewProps {
   ticket: any;
@@ -31,10 +27,36 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
   const [replyToMessage, setReplyToMessage] = useState<any>(null);
   const [showActions, setShowActions] = useState<string | null>(null);
   const [highlightedMessageId, setHighlightedMessageId] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const prevMessagesLengthRef = useRef(messages.length);
   const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const messageRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+  const lastTapRef = useRef<{ time: number; messageId: string | null }>({ time: 0, messageId: null });
+
+  // Определение мобильного устройства
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768 || 'ontouchstart' in window);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Обработчик двойного тапа для мобильных устройств
+  const handleDoubleTap = (messageId: string, hasReaction: boolean) => {
+    const now = Date.now();
+    const DOUBLE_TAP_DELAY = 300;
+    
+    if (lastTapRef.current.messageId === messageId && now - lastTapRef.current.time < DOUBLE_TAP_DELAY) {
+      // Двойной тап - ставим/убираем лайк
+      toggleReaction(messageId, hasReaction);
+      lastTapRef.current = { time: 0, messageId: null };
+    } else {
+      lastTapRef.current = { time: now, messageId };
+    }
+  };
 
   // Получаем текущего пользователя
   useEffect(() => {
@@ -428,6 +450,16 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
                       : isFromAdmin ? '0 4px 16px 0 rgba(34, 197, 94, 0.2)' : '0 4px 16px 0 rgba(59, 130, 246, 0.2)' 
                   }}
                   onDoubleClick={() => toggleReaction(msg.id, hasUserReaction)}
+                  onTouchEnd={(e) => {
+                    // Двойной тап только на мобильных
+                    if (!isMobile) return;
+                    // Не обрабатываем тап на интерактивных элементах
+                    if ((e.target as HTMLElement).closest('[title="Перейти к сообщению"]')) return;
+                    if ((e.target as HTMLElement).tagName === 'A') return;
+                    if ((e.target as HTMLElement).tagName === 'BUTTON') return;
+                    
+                    handleDoubleTap(msg.id, hasUserReaction);
+                  }}
                   onClick={(e) => {
                     // Проверяем что клик не на превью ответа или другой интерактивный элемент
                     if ((e.target as HTMLElement).closest('[title="Перейти к сообщению"]')) return;

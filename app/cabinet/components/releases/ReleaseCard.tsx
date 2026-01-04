@@ -4,6 +4,47 @@ import { Release } from './types';
 import { STATUS_COLORS, formatDate } from './constants';
 import { useTheme } from '@/contexts/ThemeContext';
 
+// Компонент красивого бейджа статуса
+function StatusBadge({ status }: { status: string }) {
+  const config: Record<string, { text: string; className: string; icon?: React.ReactNode }> = {
+    published: { 
+      text: 'Выложен', 
+      className: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
+      icon: <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
+    },
+    approved: { 
+      text: 'Одобрен', 
+      className: 'bg-violet-500/20 text-violet-400 border-violet-500/30',
+      icon: <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 animate-pulse" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/></svg>
+    },
+    pending: { 
+      text: 'На модерации', 
+      className: 'bg-amber-500/20 text-amber-400 border-amber-500/30',
+      icon: <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 animate-spin" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"/><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/></svg>
+    },
+    rejected: { 
+      text: 'Отклонён', 
+      className: 'bg-red-500/20 text-red-400 border-red-500/30',
+      icon: <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"/></svg>
+    },
+    draft: { 
+      text: 'Черновик', 
+      className: 'bg-zinc-500/20 text-zinc-400 border-zinc-500/30',
+      icon: <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg>
+    }
+  };
+  
+  const cfg = config[status] || { text: status, className: 'bg-zinc-500/20 text-zinc-400 border-zinc-500/30' };
+  
+  return (
+    <div className={`text-[9px] sm:text-[10px] px-2 sm:px-2.5 py-1 sm:py-1.5 rounded-lg font-bold flex items-center gap-1.5 shrink-0 whitespace-nowrap border backdrop-blur-sm transition-all duration-300 group-hover:scale-105 ${cfg.className}`}>
+      {cfg.icon}
+      <span className="hidden sm:inline">{cfg.text}</span>
+      <span className="inline sm:hidden">{cfg.text.length > 8 ? cfg.text.slice(0, 7) + '.' : cfg.text}</span>
+    </div>
+  );
+}
+
 interface ReleaseCardProps {
   release: Release;
   onClick: () => void;
@@ -31,9 +72,9 @@ export default function ReleaseCard({ release, onClick, onDelete, onDragStart, o
   
   const statusLabel = {
     pending: 'На модерации',
-    rejected: 'Отклонен',
-    distributed: 'На дистрибьюции',
-    published: 'Опубликован',
+    rejected: 'Отклонён',
+    approved: 'Одобрен',
+    published: 'Выложен',
     draft: 'Черновик'
   }[release.status] || release.status;
 
@@ -41,7 +82,7 @@ export default function ReleaseCard({ release, onClick, onDelete, onDragStart, o
   const getStatusDot = () => {
     const colors = {
       pending: 'bg-yellow-400',
-      distributed: 'bg-blue-400',
+      approved: 'bg-violet-400',
       published: 'bg-green-400',
       rejected: 'bg-red-400',
       draft: 'bg-zinc-400'
@@ -49,7 +90,7 @@ export default function ReleaseCard({ release, onClick, onDelete, onDragStart, o
     return colors[release.status as keyof typeof colors] || 'bg-zinc-400';
   };
 
-  const shouldAnimate = release.status === 'pending' || release.status === 'distributed';
+  const shouldAnimate = release.status === 'pending' || release.status === 'approved';
 
   const dragImageRef = React.useRef<HTMLElement | null>(null);
   const cardRef = React.useRef<HTMLDivElement>(null);
@@ -243,28 +284,12 @@ export default function ReleaseCard({ release, onClick, onDelete, onDragStart, o
 
       {/* Статус и дата с улучшенным стилем */}
       <div className="mt-2 sm:mt-3 flex items-center justify-between gap-2">
-        <div className={`text-[8px] sm:text-[9px] px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-white font-bold flex items-center gap-1 sm:gap-1.5 shrink-0 whitespace-nowrap transition-all duration-300 group-hover:scale-105 ${statusColor}`}>
-          {shouldAnimate ? (
-            <svg className="animate-spin h-2.5 w-2.5 sm:h-3 sm:w-3 shrink-0" viewBox="0 0 24 24">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-            </svg>
-          ) : (
-            <span className={`w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full shrink-0 transition-all duration-300 ${getStatusDot()}`}></span>
-          )}
-          <span className="hidden sm:inline">{statusLabel}</span>
-          <span className="inline sm:hidden">{statusLabel.length > 8 ? statusLabel.slice(0, 6) + '.' : statusLabel}</span>
-        </div>
+        <StatusBadge status={release.status} />
         
-        {/* Бейдж 18+ для explicit контента (в footer справа) */}
+        {/* Бейдж E для explicit контента (в footer справа) */}
         {hasExplicitContent && (
-          <div className="px-1.5 py-0.5 sm:px-2 sm:py-1 bg-red-600/90 backdrop-blur-sm rounded text-[8px] sm:text-[10px] font-black text-white shadow-lg shadow-red-500/30 border border-red-400/30 flex items-center gap-0.5 sm:gap-1 shrink-0">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="sm:w-3 sm:h-3">
-              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-              <line x1="12" y1="9" x2="12" y2="13"/>
-              <line x1="12" y1="17" x2="12.01" y2="17"/>
-            </svg>
-            18+
+          <div className="w-6 h-6 sm:w-7 sm:h-7 bg-rose-500/20 backdrop-blur-sm rounded-md text-[11px] sm:text-xs font-bold text-rose-400 border border-rose-500/30 flex items-center justify-center">
+            E
           </div>
         )}
       </div>
@@ -354,7 +379,7 @@ export function AddReleaseCard({ onClick }: AddReleaseCardProps) {
         }}
       >
         <div 
-          className="text-3xl sm:text-4xl font-light transition-all duration-300 group-hover:scale-125 group-hover:rotate-90"
+          className="text-3xl sm:text-4xl font-light transition-all duration-300 group-hover:scale-125"
           style={{ color: isLight ? '#8a63d2' : '#a78bfa' }}
         >
           +

@@ -97,7 +97,7 @@ interface FilterPanelProps {
 }
 
 function FilterPanel({ filters, setFilters, genres, isLight }: FilterPanelProps) {
-  const hasActiveFilters = filters.searchQuery || filters.filterStatus !== 'all' || filters.filterGenre !== 'all';
+  const hasActiveFilters = filters.searchQuery || filters.filterStatus !== 'all' || filters.filterGenre !== 'all' || filters.filterReleaseType !== 'all';
 
   return (
     <div className={`p-3 sm:p-4 border rounded-2xl space-y-3 sm:space-y-4 ${
@@ -105,7 +105,7 @@ function FilterPanel({ filters, setFilters, genres, isLight }: FilterPanelProps)
         ? 'bg-white/50 border-white/70' 
         : 'bg-zinc-900/50 border-zinc-800'
     }`}>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {/* Фильтр по статусу */}
         <div>
           <label className={`block text-xs mb-1.5 sm:mb-1 ${isLight ? 'text-[#5c5580]' : 'text-zinc-500'}`}>Статус</label>
@@ -123,6 +123,24 @@ function FilterPanel({ filters, setFilters, genres, isLight }: FilterPanelProps)
                 {status.label}
               </option>
             ))}
+          </select>
+        </div>
+
+        {/* Фильтр по типу релиза */}
+        <div>
+          <label className={`block text-xs mb-1.5 sm:mb-1 ${isLight ? 'text-[#5c5580]' : 'text-zinc-500'}`}>Тип</label>
+          <select
+            value={filters.filterReleaseType || 'all'}
+            onChange={(e) => setFilters(prev => ({ ...prev, filterReleaseType: e.target.value as any }))}
+            className={`w-full px-3 py-2 border rounded-xl text-xs sm:text-sm focus:outline-none focus:border-[#8a63d2] ${
+              isLight 
+                ? 'bg-white/60 border-white/70 text-[#1a1535]' 
+                : 'bg-zinc-800 border-zinc-700 text-white'
+            }`}
+          >
+            <option value="all">Все типы</option>
+            <option value="basic">Basic</option>
+            <option value="exclusive">Exclusive</option>
           </select>
         </div>
 
@@ -187,6 +205,7 @@ function FilterPanel({ filters, setFilters, genres, isLight }: FilterPanelProps)
             searchQuery: '',
             filterStatus: 'all',
             filterGenre: 'all',
+            filterReleaseType: 'all',
             sortBy: 'date',
             order: 'desc'
           }))}

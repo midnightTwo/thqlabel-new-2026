@@ -187,16 +187,16 @@ function FiltersPanel({
           <div className="grid grid-cols-2 gap-2">
             {[
               { value: 'all', label: 'Все', icon: 'M4 6h16M4 10h16M4 14h16M4 18h16' },
-              { value: 'distributed', label: 'На дистрибьюции', icon: 'M13 10V3L4 14h7v7l9-11h-7z', color: 'blue' },
-              { value: 'published', label: 'Опубликован', icon: 'M5 13l4 4L19 7', color: 'green' },
-              { value: 'rejected', label: 'Отклонённые', icon: 'M6 18L18 6M6 6l12 12', color: 'red' }
+              { value: 'published', label: 'Выложен', icon: 'M5 13l4 4L19 7', color: 'green' },
+              { value: 'approved', label: 'Одобрен', icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', color: 'violet' },
+              { value: 'rejected', label: 'Отклонён', icon: 'M6 18L18 6M6 6l12 12', color: 'red' }
             ].map((status) => (
               <button
                 key={status.value}
                 onClick={() => setStatusFilter(status.value)}
                 className={`group relative px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
                   statusFilter === status.value
-                    ? status.color === 'blue' ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg shadow-blue-500/30'
+                    ? status.color === 'violet' ? 'bg-gradient-to-r from-violet-500 to-violet-600 text-white shadow-lg shadow-violet-500/30'
                     : status.color === 'green' ? 'bg-gradient-to-r from-green-500 to-green-600 text-white shadow-lg shadow-green-500/30'
                     : status.color === 'red' ? 'bg-gradient-to-r from-red-500 to-red-600 text-white shadow-lg shadow-red-500/30'
                     : 'bg-gradient-to-r from-[#6050ba] to-[#8070da] text-white shadow-lg shadow-[#6050ba]/30'

@@ -183,11 +183,13 @@ export function useFilteredReleases(releases: Release[], options: FilterOptions)
         
         const matchUPC = r.upc && r.upc.toLowerCase().includes(query);
         
+        const matchCustomId = r.custom_id && r.custom_id.toLowerCase().includes(query);
+        
         const matchIRSC = r.tracks && Array.isArray(r.tracks) && r.tracks.some((track: any) => 
           track.isrc && track.isrc.toLowerCase().includes(query)
         );
         
-        return matchBasic || matchUPC || matchIRSC;
+        return matchBasic || matchUPC || matchCustomId || matchIRSC;
       });
     }
 

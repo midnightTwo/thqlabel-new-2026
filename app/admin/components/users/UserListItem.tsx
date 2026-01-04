@@ -8,6 +8,7 @@ interface UserListItemProps {
   onRoleChange: (userId: string, newRole: 'admin' | 'exclusive' | 'basic' | 'owner') => void;
   onViewProfile: (user: Profile) => void;
   onCopyEmail: (email: string) => void;
+  onCopyId: (id: string) => void;
 }
 
 export function UserListItem({
@@ -16,6 +17,7 @@ export function UserListItem({
   onRoleChange,
   onViewProfile,
   onCopyEmail,
+  onCopyId,
 }: UserListItemProps) {
   const role = getUserRole(user) || 'basic';
   const rc = roleColors[role] || roleColors.basic;
@@ -62,7 +64,7 @@ export function UserListItem({
         <div className="flex items-center gap-2">
           <span className="text-[10px] text-zinc-600">ID: {user.member_id || user.id?.slice(0, 8)}</span>
           <button
-            onClick={() => onCopyEmail(user.member_id || user.id)}
+            onClick={() => onCopyId(user.member_id || user.id)}
             className="hover:opacity-70 transition flex-shrink-0"
             title="Копировать ID"
           >

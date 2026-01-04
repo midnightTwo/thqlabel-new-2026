@@ -113,8 +113,18 @@ export function AudioUploadSection({
       </label>
       
       {uploadError && (
-        <div className="mb-3 p-3 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-sm">
-          {uploadError}
+        <div className="mb-3 p-4 bg-gradient-to-r from-red-500/10 to-orange-500/10 border border-red-500/30 rounded-xl flex items-start gap-3 animate-fade-in">
+          <div className="w-8 h-8 rounded-lg bg-red-500/20 flex items-center justify-center flex-shrink-0">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-red-400">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="15" y1="9" x2="9" y2="15"/>
+              <line x1="9" y1="9" x2="15" y2="15"/>
+            </svg>
+          </div>
+          <div>
+            <div className="font-bold text-red-300 text-sm">Ошибка загрузки</div>
+            <div className="text-red-400/80 text-xs mt-0.5">{uploadError.replace(/^[❌⚠️]\s*/, '')}</div>
+          </div>
         </div>
       )}
 

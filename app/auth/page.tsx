@@ -6,21 +6,12 @@ import { useTheme } from '@/contexts/ThemeContext';
 import { SilverStarsGroup } from '@/components/ui/SilverStars';
 import { supabase } from '@/lib/supabase/client';
 
-// Проверка Safari/iOS
-const isSafari = typeof window !== 'undefined' && /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
-// Летающие светящиеся частицы (отключены на Safari из-за багов рендеринга)
+// Летающие светящиеся частицы
 const FloatingParticles = () => {
   const [particles, setParticles] = useState<any[]>([]);
-  const [isClient, setIsClient] = useState(false);
   
   useEffect(() => {
-    setIsClient(true);
-    // Проверяем Safari на клиенте
-    const safari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-    if (safari) return; // Не создаём частицы на Safari
-    
-    setParticles(Array.from({ length: 25 }, (_, i) => ({
+    setParticles(Array.from({ length: 40 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
@@ -31,11 +22,8 @@ const FloatingParticles = () => {
     })));
   }, []);
 
-  // Не рендерим на Safari или пока не на клиенте
-  if (!isClient || particles.length === 0) return null;
-
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
       {particles.map(p => (
         <div
           key={p.id}
@@ -118,6 +106,8 @@ export default function AuthPage() {
         userEmail = (profile && typeof profile === 'object' && 'email' in profile) ? (profile as any).email : null;
       }
 
+      console.log('Отправка письма для восстановления пароля на:', userEmail);
+
       // Отправляем через наш серверный API
       const response = await fetch('/api/send-password-reset', {
         method: 'POST',
@@ -133,6 +123,7 @@ export default function AuthPage() {
         throw new Error(data.error || 'Не удалось отправить письмо');
       }
 
+      console.log('Письмо отправлено успешно');
       showNotification('Письмо со ссылкой для сброса пароля отправлено на почту', 'success');
       setMode('login');
       setEmail('');
@@ -257,9 +248,9 @@ export default function AuthPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Статичный фон с градиентами (без анимаций для Safari) */}
+      {/* Анимированный фон с градиентами */}
       <div 
-        className="absolute inset-0"
+        className="fixed inset-0"
         style={{
           background: `
             radial-gradient(ellipse 100% 80% at 50% -20%, rgba(96, 80, 186, 0.5) 0%, transparent 50%),

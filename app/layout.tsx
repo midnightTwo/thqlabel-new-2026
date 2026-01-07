@@ -1,36 +1,16 @@
 "use client";
-import "./globals-new.css";
+import "./globals.css";
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { useEffect, useState, useRef, useCallback, memo, useMemo } from 'react';
-import dynamic from 'next/dynamic';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { supabase } from '@/lib/supabase/client';
 import { ModalProvider } from '../components/providers/ModalProvider';
 import { ThemeProvider, useTheme } from '../contexts/ThemeContext';
 import { NotificationProvider } from '../contexts/NotificationContext';
+import GlobalSupportWidget from '../components/support/GlobalSupportWidget';
+import SupportWidgetProvider from '../components/support/SupportWidgetProvider';
 import { SilverStar } from '../components/ui/SilverStars';
-import { UserRole, ROLE_CONFIG } from './cabinet/lib/types';
-
-// ============================================
-// LAZY LOADING ТЯЖЁЛЫХ КОМПОНЕНТОВ
-// ============================================
-const GlobalSupportWidget = dynamic(
-  () => import('../components/support/GlobalSupportWidget'),
-  { ssr: false }
-);
-const SupportWidgetProvider = dynamic(
-  () => import('../components/support/SupportWidgetProvider'),
-  { ssr: false }
-);
-const CacheBuster = dynamic(
-  () => import('../components/CacheBuster'),
-  { ssr: false }
-);
-// TURBO NAVIGATION - УЛЬТРА-быстрые переходы
-const TurboNavigation = dynamic(
-  () => import('../components/TurboNavigation'),
-  { ssr: false }
-);
+import CacheBuster from '../components/CacheBuster';
 
 // Отключаем автоматическое восстановление позиции скролла
 if (typeof window !== 'undefined') {
@@ -39,39 +19,19 @@ if (typeof window !== 'undefined') {
   }
 }
 
-// Детекция Safari/macOS
-const isSafari = typeof window !== 'undefined' && 
-  /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
-// Детекция слабого устройства для упрощения анимаций
-const isLowEndDevice = typeof window !== 'undefined' && (
-  navigator.hardwareConcurrency <= 4 ||
-  (navigator as any).deviceMemory <= 4 ||
-  /Android.*Chrome\/[.0-9]* Mobile/.test(navigator.userAgent)
-);
-
-// Красивый анимированный фон с поддержкой тем - МЕМОИЗИРОВАННЫЙ
-const AnimatedBackground = memo(() => {
+// Красивый анимированный фон с поддержкой тем
+const AnimatedBackground = () => {
   const { themeName } = useTheme();
   
-  // На слабых устройствах или Safari упрощаем фон
-  const simplified = isLowEndDevice || isSafari;
-  
-  const backgrounds: Record<string, string> = useMemo(() => ({
-    dark: simplified ? `
-      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(96, 80, 186, 0.3), transparent),
-      #08080a
-    ` : `
+  const backgrounds: Record<string, string> = {
+    dark: `
       radial-gradient(ellipse 80% 50% at 50% -20%, rgba(96, 80, 186, 0.4), transparent),
       radial-gradient(ellipse 60% 40% at 100% 100%, rgba(157, 141, 241, 0.3), transparent),
       radial-gradient(ellipse 60% 40% at 0% 100%, rgba(96, 80, 186, 0.25), transparent),
       radial-gradient(ellipse 50% 30% at 70% 60%, rgba(124, 109, 216, 0.2), transparent),
       #08080a
     `,
-    light: simplified ? `
-      linear-gradient(135deg, rgba(255, 200, 220, 0.3) 0%, rgba(200, 220, 255, 0.3) 100%),
-      #f8f6ff
-    ` : `
+    light: `
       linear-gradient(135deg, 
         rgba(255, 200, 220, 0.4) 0%, 
         rgba(200, 220, 255, 0.4) 25%,
@@ -105,23 +65,21 @@ const AnimatedBackground = memo(() => {
       radial-gradient(ellipse 60% 40% at 100% 100%, rgba(22, 163, 74, 0.25), transparent),
       #0a1a0a
     `,
-  }), [simplified]);
+  };
   
   return (
     <>
-      {/* Основной фиксированный фон - GPU ускоренный */}
+      {/* Основной фиксированный фон */}
       <div 
-        className="fixed inset-0"
+        className="fixed inset-0 transition-all duration-500"
         style={{ 
           zIndex: -10,
           background: backgrounds[themeName] || backgrounds.dark,
-          willChange: 'auto',
-          contain: 'strict',
         }}
       />
       
-      {/* Голографический эффект - только на мощных устройствах и в светлой теме */}
-      {!simplified && themeName === 'light' && (
+      {/* Голографический эффект для светлой темы */}
+      {themeName === 'light' && (
         <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: -8 }}>
           <div 
             className="absolute w-full h-full"
@@ -148,61 +106,56 @@ const AnimatedBackground = memo(() => {
         </div>
       )}
       
-      {/* Анимированные орбы - упрощённые на слабых устройствах */}
-      {!simplified && (
-        <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: -5, contain: 'strict' }}>
-          <div 
-            className="absolute rounded-full"
-            style={{
-              width: '600px',
-              height: '600px',
-              top: '-10%',
-              left: '-5%',
-              background: themeName === 'light' 
-                ? 'radial-gradient(circle, rgba(255, 180, 220, 0.4) 0%, transparent 70%)'
-                : 'radial-gradient(circle, rgba(96, 80, 186, 0.4) 0%, transparent 70%)',
-              filter: 'blur(40px)',
-              animation: 'orb-float-1 25s ease-in-out infinite',
-              willChange: 'transform',
-            }}
-          />
-          <div 
-            className="absolute rounded-full"
-            style={{
-              width: '500px',
-              height: '500px',
-              bottom: '-5%',
-              right: '-10%',
-              background: themeName === 'light'
-                ? 'radial-gradient(circle, rgba(180, 200, 255, 0.5) 0%, transparent 70%)'
-                : 'radial-gradient(circle, rgba(157, 141, 241, 0.5) 0%, transparent 70%)',
-              filter: 'blur(50px)',
-              animation: 'orb-float-2 30s ease-in-out infinite',
-              willChange: 'transform',
-            }}
-          />
-          <div 
-            className="absolute rounded-full"
-            style={{
-              width: '400px',
-              height: '400px',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              background: themeName === 'light'
-                ? 'radial-gradient(circle, rgba(200, 255, 220, 0.35) 0%, transparent 70%)'
-                : 'radial-gradient(circle, rgba(96, 80, 186, 0.25) 0%, transparent 70%)',
-              filter: 'blur(60px)',
-              animation: 'orb-float-3 20s ease-in-out infinite',
-              willChange: 'transform',
-            }}
-          />
-        </div>
-      )}
+      {/* Анимированные орбы - разные для темной и светлой тем */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: -5 }}>
+        <div 
+          className="absolute rounded-full transition-all duration-500"
+          style={{
+            width: '600px',
+            height: '600px',
+            top: '-10%',
+            left: '-5%',
+            background: themeName === 'light' 
+              ? 'radial-gradient(circle, rgba(255, 180, 220, 0.4) 0%, transparent 70%)'
+              : 'radial-gradient(circle, rgba(96, 80, 186, 0.4) 0%, transparent 70%)',
+            filter: 'blur(40px)',
+            animation: 'orb-float-1 25s ease-in-out infinite',
+          }}
+        />
+        <div 
+          className="absolute rounded-full transition-all duration-500"
+          style={{
+            width: '500px',
+            height: '500px',
+            bottom: '-5%',
+            right: '-10%',
+            background: themeName === 'light'
+              ? 'radial-gradient(circle, rgba(180, 200, 255, 0.5) 0%, transparent 70%)'
+              : 'radial-gradient(circle, rgba(157, 141, 241, 0.5) 0%, transparent 70%)',
+            filter: 'blur(50px)',
+            animation: 'orb-float-2 30s ease-in-out infinite',
+          }}
+        />
+        <div 
+          className="absolute rounded-full transition-all duration-500"
+          style={{
+            width: '400px',
+            height: '400px',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            background: themeName === 'light'
+              ? 'radial-gradient(circle, rgba(200, 255, 220, 0.35) 0%, transparent 70%)'
+              : 'radial-gradient(circle, rgba(96, 80, 186, 0.25) 0%, transparent 70%)',
+            filter: 'blur(60px)',
+            animation: 'orb-float-3 20s ease-in-out infinite',
+          }}
+        />
+      </div>
 
-      {/* Светящиеся точки - только на мощных устройствах */}
-      {!simplified && themeName !== 'light' && (
-        <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: -3, contain: 'strict' }}>
+      {/* Светящиеся точки - скрыты в светлой теме */}
+      {themeName !== 'light' && (
+        <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: -3 }}>
           <div className="absolute w-2 h-2 rounded-full bg-[#9d8df1]" style={{ left: '10%', top: '20%', boxShadow: '0 0 20px 5px rgba(157, 141, 241, 0.6)', animation: 'star-twinkle 3s ease-in-out infinite' }} />
           <div className="absolute w-3 h-3 rounded-full bg-[#9d8df1]" style={{ left: '80%', top: '15%', boxShadow: '0 0 25px 8px rgba(157, 141, 241, 0.5)', animation: 'star-twinkle 4s ease-in-out infinite 1s' }} />
           <div className="absolute w-2 h-2 rounded-full bg-[#9d8df1]" style={{ left: '25%', top: '70%', boxShadow: '0 0 20px 5px rgba(157, 141, 241, 0.6)', animation: 'star-twinkle 3.5s ease-in-out infinite 0.5s' }} />
@@ -214,26 +167,21 @@ const AnimatedBackground = memo(() => {
         </div>
       )}
       
-      {/* Сетка - адаптивная под тему, скрыта на слабых устройствах */}
-      {!simplified && (
-        <div 
-          className="fixed inset-0 pointer-events-none"
-          style={{ 
-            zIndex: -2,
-            backgroundImage: themeName === 'light'
-              ? 'linear-gradient(rgba(96, 80, 186, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(96, 80, 186, 0.04) 1px, transparent 1px)'
-              : 'linear-gradient(rgba(157, 141, 241, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(157, 141, 241, 0.03) 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
-            opacity: themeName === 'light' ? 0.5 : 1,
-            contain: 'strict',
-          }}
-        />
-      )}
+      {/* Сетка - адаптивная под тему */}
+      <div 
+        className="fixed inset-0 pointer-events-none transition-opacity duration-500"
+        style={{ 
+          zIndex: -2,
+          backgroundImage: themeName === 'light'
+            ? 'linear-gradient(rgba(96, 80, 186, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(96, 80, 186, 0.04) 1px, transparent 1px)'
+            : 'linear-gradient(rgba(157, 141, 241, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(157, 141, 241, 0.03) 1px, transparent 1px)',
+          backgroundSize: '60px 60px',
+          opacity: themeName === 'light' ? 0.5 : 1,
+        }}
+      />
     </>
   );
-});
-
-AnimatedBackground.displayName = 'AnimatedBackground';
+};
 
 const NAV_ITEMS = [
   { href: '/cabinet', label: 'Кабинет' },
@@ -248,33 +196,6 @@ const LEFT_NAV_ITEMS = [
   { href: '/offer', label: 'Договор ПО' },
 ];
 
-// Мемоизированный компонент навигации для предотвращения ререндеров
-const NavLink = memo(({ href, label, isActive, themeName, navRef }: {
-  href: string;
-  label: string;
-  isActive: boolean;
-  themeName: string;
-  navRef: (el: HTMLAnchorElement | null) => void;
-}) => (
-  <Link
-    ref={navRef}
-    href={href}
-    prefetch={true}
-    className={`nav-link relative px-6 py-2 text-[10px] uppercase tracking-[0.15em] font-bold transition-all duration-300 ${
-      themeName === 'light' ? 'hover:text-[#8a63d2]' : 'hover:text-white'
-    }`}
-    style={{
-      color: isActive 
-        ? (themeName === 'light' ? '#8a63d2' : '#fff') 
-        : (themeName === 'light' ? '#3d3660' : '#999'),
-    }}
-  >
-    {label}
-  </Link>
-));
-
-NavLink.displayName = 'NavLink';
-
 function BodyContent({ children, pathname }: { children: React.ReactNode; pathname: string }) {
   const { themeName } = useTheme();
   const router = useRouter();
@@ -285,56 +206,6 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
   const [sliderStyle, setSliderStyle] = useState({ left: 0, width: 0, opacity: 0 });
   const updateTimeoutRef = useRef<NodeJS.Timeout>(undefined);
   const pathnameRef = useRef(pathname);
-  
-  // Состояние для данных пользователя (мобильное меню)
-  const [mobileUserData, setMobileUserData] = useState<{
-    nickname: string;
-    email: string;
-    role: UserRole;
-    avatar: string;
-    memberId: string;
-  } | null>(null);
-
-  // Загрузка данных пользователя для мобильного меню
-  useEffect(() => {
-    const loadUserData = async () => {
-      if (!supabase) return;
-      try {
-        const { data: { user } } = await supabase.auth.getUser();
-        if (user) {
-          const { data: profile } = await supabase
-            .from('profiles')
-            .select('nickname, role, avatar, member_id, email')
-            .eq('id', user.id)
-            .single();
-          
-          if (profile) {
-            setMobileUserData({
-              nickname: profile.nickname || user.email?.split('@')[0] || 'User',
-              email: profile.email || user.email || '',
-              role: (profile.role as UserRole) || 'basic',
-              avatar: profile.avatar || '',
-              memberId: profile.member_id || '',
-            });
-          }
-        }
-      } catch (error) {
-        console.error('Error loading user data for mobile menu:', error);
-      }
-    };
-    
-    loadUserData();
-    
-    // Подписка на изменения авторизации
-    if (!supabase) return;
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(() => {
-      loadUserData();
-    });
-    
-    return () => {
-      subscription?.unsubscribe();
-    };
-  }, []);
 
   // Синхронизируем ref с prop
   useEffect(() => {
@@ -450,8 +321,7 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
             {/* Левые вкладки - Главная и Договор ПО */}
             <div className="hidden md:flex items-center gap-1 flex-shrink-0">
               <Link 
-                href="/feed"
-                prefetch={true}
+                href="/feed" 
                 className={`px-4 py-2 text-[10px] uppercase tracking-[0.12em] font-bold transition-all duration-300 rounded-xl ${themeName === 'light' ? 'hover:bg-[#8a63d2]/10' : 'hover:bg-white/10'}`}
                 style={{
                   color: pathname === '/feed' 
@@ -462,8 +332,7 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
                 Главная
               </Link>
               <Link 
-                href="/offer"
-                prefetch={true}
+                href="/offer" 
                 className={`px-4 py-2 text-[10px] uppercase tracking-[0.12em] font-bold transition-all duration-300 rounded-xl ${themeName === 'light' ? 'hover:bg-[#8a63d2]/10' : 'hover:bg-white/10'}`}
                 style={{
                   color: pathname === '/offer' 
@@ -590,7 +459,6 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
                     key={item.href}
                     ref={(el) => { navRefs.current[index] = el; }}
                     href={item.href}
-                    prefetch={true}
                     className="relative px-4 md:px-5 lg:px-7 py-2.5 md:py-3 lg:py-3.5 text-[9px] md:text-[10px] lg:text-[11px] uppercase tracking-[0.15em] font-black transition-all duration-500 z-10 group"
                     style={{
                       color: isActive 
@@ -631,239 +499,201 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
         </header>
       )}
 
-      {/* Мобильное меню - боковая панель СПРАВА (Редизайн как MobileSidebar) */}
+      {/* Мобильное меню - боковая панель */}
       {pathname !== '/' && pathname !== '/auth' && pathname !== '/admin' && (
         <>
-          {/* Backdrop - Liquid Glass blur */}
+          {/* Затемнение */}
           <div 
-            className={`liquid-glass-backdrop md:hidden fixed inset-0 z-[200] transition-all duration-500 ${
-              mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-            }`}
+            className={`md:hidden fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-all duration-300 ${mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
             onClick={() => setMobileMenuOpen(false)}
           />
           
-          {/* Slide-in Panel - Liquid Glass Style (СПРАВА) */}
+          {/* Боковая панель */}
           <div 
-            className={`liquid-glass-modal md:hidden fixed top-0 right-0 bottom-0 z-[201] w-[85%] max-w-[320px] !rounded-r-none transform transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] ${
-              mobileMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
+            className={`md:hidden fixed top-0 right-0 bottom-0 z-50 w-72 transform transition-all duration-500 ease-out glass-morphism-sidebar ${
+              mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
             }`}
           >
-            <div className="flex flex-col h-full p-5 overflow-y-auto relative z-10">
-              {/* Header */}
-              <div className="flex items-center justify-between mb-6">
-                <span className="mobile-sidebar-title text-sm font-bold uppercase tracking-wider">
-                  Профиль
-                </span>
+            <div className="flex flex-col h-full p-6 relative overflow-hidden">
+              {/* Декоративный фон с эффектом глубины */}
+              <div className="absolute inset-0 opacity-30 pointer-events-none">
+                <div className="absolute top-0 right-0 w-64 h-64 rounded-full" style={{ background: 'radial-gradient(circle, rgba(157,141,241,0.4) 0%, transparent 70%)', filter: 'blur(60px)' }} />
+                <div className="absolute bottom-0 left-0 w-56 h-56 rounded-full" style={{ background: 'radial-gradient(circle, rgba(96,80,186,0.3) 0%, transparent 70%)', filter: 'blur(50px)' }} />
+              </div>
+
+              {/* Заголовок с кнопкой закрытия */}
+              <div className="flex items-center justify-between mb-8 pb-5 border-b relative z-10" style={{ borderColor: themeName === 'light' ? 'rgba(0,0,0,0.1)' : 'rgba(157,141,241,0.2)' }}>
+                <div className="flex items-center gap-3 flex-1 pr-2">
+                  <div className="relative group flex-shrink-0">
+                    <img 
+                      src="/logo.png" 
+                      alt="thqlabel" 
+                      className="h-10 w-auto relative z-10 transition-transform duration-300 group-hover:scale-110"
+                      style={{ filter: themeName === 'light' ? 'invert(1) brightness(0)' : undefined }}
+                    />
+                    {themeName !== 'light' && (
+                      <div className="absolute inset-0 blur-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-300" style={{ background: 'linear-gradient(135deg, #6050ba, #9d8df1)' }}></div>
+                    )}
+                  </div>
+                  <div className="flex-1">
+                    <span className="text-lg font-black bg-gradient-to-r from-[#6050ba] via-[#8070da] to-[#9d8df1] bg-clip-text text-transparent block animate-gradient leading-tight">Навигация</span>
+                    <span className="text-[8px] font-semibold whitespace-nowrap" style={{ color: themeName === 'light' ? '#999' : '#666' }}>ГЛАВНОЕ МЕНЮ</span>
+                  </div>
+                </div>
                 <button 
                   onClick={() => setMobileMenuOpen(false)}
-                  className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:rotate-90 active:scale-95"
+                  className="w-11 h-11 rounded-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:rotate-90 active:scale-95 group relative overflow-hidden"
                   style={{
-                    background: 'linear-gradient(135deg, rgba(96,80,186,0.3), rgba(157,141,241,0.2))',
-                    color: '#9d8df1',
-                    boxShadow: '0 4px 16px rgba(96,80,186,0.3), inset 0 1px 0 rgba(255,255,255,0.1)',
+                    background: themeName === 'light' 
+                      ? 'linear-gradient(135deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.05) 100%)' 
+                      : 'linear-gradient(135deg, rgba(96,80,186,0.3), rgba(157,141,241,0.2))',
+                    color: themeName === 'light' ? '#000' : '#9d8df1',
+                    boxShadow: themeName === 'light' ? '0 2px 8px rgba(0,0,0,0.1)' : '0 4px 16px rgba(96,80,186,0.3), inset 0 1px 0 rgba(255,255,255,0.1)',
                   }}
                 >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <svg className="w-6 h-6 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
               </div>
 
-              {/* Профиль пользователя */}
-              {mobileUserData ? (
-                <div className="mb-6">
-                  {/* Аватар + Ник + Роль */}
-                  <div className="flex items-center gap-4 mb-4">
-                    <Link 
-                      href="/cabinet"
+              {/* Навигация с иконками и 3D эффектами */}
+              <nav className="flex-1 space-y-3 overflow-y-auto pr-2 relative z-10" style={{ scrollbarWidth: 'thin', scrollbarColor: 'rgba(157,141,241,0.3) transparent' }}>
+                {/* Левые вкладки - Главная и Договор ПО */}
+                {LEFT_NAV_ITEMS.map((item, index) => {
+                  const isActive = pathname === item.href;
+                  const leftIcons: Record<string, string> = {
+                    '/feed': '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>',
+                    '/offer': '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>',
+                  };
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`relative w-16 h-16 flex-shrink-0 rounded-xl ${mobileUserData.avatar ? '' : `bg-gradient-to-br ${ROLE_CONFIG[mobileUserData.role].color}`} flex items-center justify-center text-2xl font-black border-2 ${ROLE_CONFIG[mobileUserData.role].borderColor} ${mobileUserData.role === 'exclusive' ? 'ring-2 ring-[#fbbf24] ring-offset-2 ring-offset-[#0d0d0f]' : mobileUserData.role === 'admin' ? 'ring-2 ring-[#ff6b81] ring-offset-2 ring-offset-[#0d0d0f]' : ''} overflow-hidden cursor-pointer hover:opacity-80 transition-opacity group`}
-                      style={{ 
-                        boxShadow: `0 0 20px ${ROLE_CONFIG[mobileUserData.role].glowColor}`,
+                      className="flex items-center gap-3 py-4 px-5 rounded-2xl font-bold text-sm uppercase tracking-wide transition-all duration-500 relative overflow-hidden group"
+                      style={{
+                        background: isActive 
+                          ? themeName === 'light'
+                            ? 'linear-gradient(135deg, rgba(96,80,186,0.15) 0%, rgba(157,141,241,0.1) 100%)'
+                            : 'linear-gradient(135deg, #6050ba 0%, #7c6dd6 50%, #8070da 100%)'
+                          : themeName === 'light' 
+                            ? 'rgba(0,0,0,0.04)' 
+                            : 'rgba(255,255,255,0.04)',
+                        color: isActive 
+                          ? themeName === 'light' ? '#6050ba' : '#fff'
+                          : themeName === 'light' ? '#666' : '#a1a1aa',
+                        border: themeName === 'light' 
+                          ? isActive 
+                            ? '2px solid rgba(96,80,186,0.3)' 
+                            : '2px solid rgba(0,0,0,0.04)'
+                          : isActive 
+                            ? '2px solid rgba(157,141,241,0.5)'
+                            : '2px solid rgba(255,255,255,0.04)',
+                        boxShadow: isActive 
+                          ? themeName === 'light'
+                            ? '0 4px 20px rgba(96,80,186,0.2), inset 0 1px 0 rgba(255,255,255,0.5)'
+                            : '0 10px 30px rgba(96,80,186,0.5), 0 0 20px rgba(157,141,241,0.3), inset 0 1px 0 rgba(255,255,255,0.2)'
+                          : 'none',
+                        boxSizing: 'border-box',
+                        animation: mobileMenuOpen ? `slide-in-right 0.4s ease-out ${index * 0.08}s backwards` : 'none',
                       }}
                     >
-                      {mobileUserData.avatar ? (
-                        <img 
-                          src={mobileUserData.avatar} 
-                          alt="Avatar" 
-                          className="w-full h-full object-cover rounded-lg"
-                        />
-                      ) : (
-                        <span className="text-white">
-                          {mobileUserData.nickname.charAt(0).toUpperCase()}
-                        </span>
+                      {isActive && (
+                        <>
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" style={{ animationDuration: '2.5s' }}></div>
+                          <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent" />
+                        </>
                       )}
-                      <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <span className="text-[10px] font-bold text-white">Открыть</span>
-                      </div>
+                      <div className="relative z-10 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" dangerouslySetInnerHTML={{ __html: leftIcons[item.href] || '' }} />
+                      <span className="relative z-10 flex-1">{item.label}</span>
+                      <div className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${isActive ? 'bg-gradient-to-r from-[#6050ba] to-[#9d8df1] scale-100' : 'scale-0'}`} />
                     </Link>
-
-                    <div className="flex-1 min-w-0">
-                      <h3 className="text-lg font-black mb-1.5 text-left truncate text-white">
-                        {mobileUserData.nickname}
-                      </h3>
-                      
-                      <div 
-                        className={`inline-flex items-center px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-wider ${ROLE_CONFIG[mobileUserData.role].bgColor} ${ROLE_CONFIG[mobileUserData.role].textColor} border ${ROLE_CONFIG[mobileUserData.role].borderColor} ${mobileUserData.role === 'exclusive' ? 'animate-pulse' : ''}`}
-                        style={{ boxShadow: `0 0 12px ${ROLE_CONFIG[mobileUserData.role].glowColor}` }}
-                      >
-                        <span>{ROLE_CONFIG[mobileUserData.role].shortLabel}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* ID участника */}
-                  {mobileUserData.memberId && (
-                    <div className="flex items-center gap-2">
-                      <span className="sidebar-member-id px-2.5 py-1 rounded-lg text-[9px] font-mono">
-                        {mobileUserData.memberId}
-                      </span>
-                      <button 
-                        onClick={() => {
-                          if (navigator?.clipboard?.writeText) {
-                            navigator.clipboard.writeText(mobileUserData.memberId);
-                          }
-                        }}
-                        className="sidebar-copy-btn px-2 py-1 rounded-lg transition"
-                        title="Копировать тэг"
-                      >
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                        </svg>
-                      </button>
-                    </div>
-                  )}
-
-                  <p className="text-[10px] text-zinc-400 mt-2 text-left truncate">
-                    {mobileUserData.email}
-                  </p>
-                </div>
-              ) : (
-                <div className="mb-6">
-                  <Link 
-                    href="/auth"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#6050ba] to-[#9d8df1] text-white font-bold text-sm text-center block"
-                  >
-                    Войти в аккаунт
-                  </Link>
-                </div>
-              )}
-
-              {/* Разделитель */}
-              <div className="sidebar-divider h-[1px] mb-4" />
-
-              {/* Навигация */}
-              <nav className="space-y-2 flex-1">
-                {/* Главная */}
-                <Link 
-                  href="/feed"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`sidebar-nav-btn w-full text-left py-3 px-4 rounded-xl block ${pathname === '/feed' ? 'active' : ''}`}
-                >
-                  <div className="flex items-center gap-3">
-                    <svg className="w-5 h-5 sidebar-nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                    </svg>
-                    <span className="text-sm font-bold">Главная</span>
-                  </div>
-                </Link>
-
-                {/* Кабинет */}
-                <Link 
-                  href="/cabinet"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`sidebar-nav-btn w-full text-left py-3 px-4 rounded-xl block ${pathname === '/cabinet' ? 'active' : ''}`}
-                >
-                  <div className="flex items-center gap-3">
-                    <svg className="w-5 h-5 sidebar-nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                    <span className="text-sm font-bold">Кабинет</span>
-                  </div>
-                </Link>
-                
-                {/* Новости */}
-                <Link 
-                  href="/news"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`sidebar-nav-btn w-full text-left py-3 px-4 rounded-xl block ${pathname === '/news' ? 'active' : ''}`}
-                >
-                  <div className="flex items-center gap-3">
-                    <svg className="w-5 h-5 sidebar-nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                    </svg>
-                    <span className="text-sm font-bold">Новости</span>
-                  </div>
-                </Link>
-                
-                {/* Контакты */}
-                <Link 
-                  href="/contacts"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`sidebar-nav-btn w-full text-left py-3 px-4 rounded-xl block ${pathname === '/contacts' ? 'active' : ''}`}
-                >
-                  <div className="flex items-center gap-3">
-                    <svg className="w-5 h-5 sidebar-nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                    <span className="text-sm font-bold">Контакты</span>
-                  </div>
-                </Link>
-
-                {/* FAQ */}
-                <Link 
-                  href="/faq"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`sidebar-nav-btn w-full text-left py-3 px-4 rounded-xl block ${pathname === '/faq' ? 'active' : ''}`}
-                >
-                  <div className="flex items-center gap-3">
-                    <svg className="w-5 h-5 sidebar-nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span className="text-sm font-bold">FAQ</span>
-                  </div>
-                </Link>
+                  );
+                })}
 
                 {/* Разделитель */}
-                <div className="sidebar-divider h-[1px] my-2" />
+                <div className="h-px mx-4 my-2" style={{ background: themeName === 'light' ? 'rgba(0,0,0,0.1)' : 'rgba(157,141,241,0.2)' }} />
 
-                {/* Договор ПО */}
-                <Link 
-                  href="/offer"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`sidebar-nav-btn w-full text-left py-3 px-4 rounded-xl block ${pathname === '/offer' ? 'active' : ''}`}
-                >
-                  <div className="flex items-center gap-3">
-                    <svg className="w-5 h-5 sidebar-nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    <span className="text-sm font-bold">Договор ПО</span>
-                  </div>
-                </Link>
-                
-                {/* Админ панель (только для админов/владельцев) */}
-                {mobileUserData && (mobileUserData.role === 'admin' || mobileUserData.role === 'owner') && (
-                  <Link 
-                    href="/admin"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="sidebar-admin-btn w-full block text-left py-3 px-4 rounded-xl"
-                  >
-                    <div className="flex items-center gap-3">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                      </svg>
-                      <span className="text-sm font-bold">Админ панель</span>
-                    </div>
-                  </Link>
-                )}
+                {/* Основные вкладки */}
+                {NAV_ITEMS.map((item, index) => {
+                  const isActive = pathname === item.href;
+                  const icons: Record<string, string> = {
+                    '/cabinet': '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>',
+                    '/news': '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" /></svg>',
+                    '/contacts': '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>',
+                    '/faq': '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>'
+                  };
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center gap-3 py-4 px-5 rounded-2xl font-bold text-sm uppercase tracking-wide transition-all duration-500 relative overflow-hidden group"
+                      style={{
+                        background: isActive 
+                          ? themeName === 'light'
+                            ? 'linear-gradient(135deg, rgba(96,80,186,0.15) 0%, rgba(157,141,241,0.1) 100%)'
+                            : 'linear-gradient(135deg, #6050ba 0%, #7c6dd6 50%, #8070da 100%)'
+                          : themeName === 'light' 
+                            ? 'rgba(0,0,0,0.04)' 
+                            : 'rgba(255,255,255,0.04)',
+                        color: isActive 
+                          ? themeName === 'light' ? '#6050ba' : '#fff'
+                          : themeName === 'light' ? '#666' : '#a1a1aa',
+                        border: themeName === 'light' 
+                          ? isActive 
+                            ? '2px solid rgba(96,80,186,0.3)' 
+                            : '2px solid rgba(0,0,0,0.04)'
+                          : isActive 
+                            ? '2px solid rgba(157,141,241,0.5)'
+                            : '2px solid rgba(255,255,255,0.04)',
+                        boxShadow: isActive 
+                          ? themeName === 'light'
+                            ? '0 4px 20px rgba(96,80,186,0.2), inset 0 1px 0 rgba(255,255,255,0.5)'
+                            : '0 10px 30px rgba(96,80,186,0.5), 0 0 20px rgba(157,141,241,0.3), inset 0 1px 0 rgba(255,255,255,0.2)'
+                          : 'none',
+                        boxSizing: 'border-box',
+                        animation: mobileMenuOpen ? `slide-in-right 0.4s ease-out ${index * 0.08}s backwards` : 'none',
+                      }}
+                    >
+                      {isActive && (
+                        <>
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" style={{ animationDuration: '2.5s' }}></div>
+                          <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent" />
+                        </>
+                      )}
+                      <div className="relative z-10 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12" dangerouslySetInnerHTML={{ __html: icons[item.href as keyof typeof icons] || '' }} />
+                      <span className="relative z-10 flex-1">{item.label}</span>
+                      <div className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${isActive ? 'bg-gradient-to-r from-[#6050ba] to-[#9d8df1] scale-100' : 'scale-0'}`} />
+                    </Link>
+                  );
+                })}
               </nav>
 
-              {/* Footer */}
-              <div className="sidebar-footer mt-4 pt-4">
-                <p className="text-[9px] text-center text-zinc-500">
-                  thqlabel © 2026
-                </p>
+              {/* Нижняя часть с градиентом */}
+              <div className="pt-5 mt-5 border-t relative z-10" style={{ borderColor: themeName === 'light' ? 'rgba(0,0,0,0.1)' : 'rgba(157,141,241,0.2)' }}>
+                <div className="text-center space-y-3 p-4 rounded-2xl" style={{
+                  background: themeName === 'light'
+                    ? 'linear-gradient(135deg, rgba(96,80,186,0.08) 0%, rgba(157,141,241,0.05) 100%)'
+                    : 'linear-gradient(135deg, rgba(96,80,186,0.15) 0%, rgba(157,141,241,0.1) 100%)',
+                  border: themeName === 'light' ? '1px solid rgba(96,80,186,0.1)' : '1px solid rgba(157,141,241,0.2)',
+                }}>
+                  <div className="flex items-center justify-center gap-2.5">
+                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-[#6050ba] to-[#9d8df1] animate-pulse" style={{ boxShadow: '0 0 10px rgba(157,141,241,0.8)' }} />
+                    <span className="font-black text-sm bg-gradient-to-r from-[#6050ba] via-[#8070da] to-[#9d8df1] bg-clip-text text-transparent animate-gradient">thqlabel</span>
+                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-[#9d8df1] to-[#6050ba] animate-pulse" style={{ boxShadow: '0 0 10px rgba(96,80,186,0.8)', animationDelay: '0.5s' }} />
+                  </div>
+                  <p className="text-[10px] font-semibold" style={{ color: themeName === 'light' ? '#999' : '#666' }}>
+                    © 2025 Все права защищены
+                  </p>
+                  <div className="flex items-center justify-center gap-2 pt-2">
+                    <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#6050ba] to-transparent opacity-30" />
+                    <span className="text-[8px] font-bold" style={{ color: themeName === 'light' ? '#bbb' : '#555' }}>MUSIC LABEL</span>
+                    <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#9d8df1] to-transparent opacity-30" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -927,12 +757,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* ПЕРВЫМ - блокирующий скрипт для темы */}
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         
-        {/* Viewport для всех устройств включая старые мониторы */}
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-        
-        {/* Совместимость с IE и старыми браузерами */}
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        
         {/* АГРЕССИВНОЕ ОТКЛЮЧЕНИЕ КЭШИРОВАНИЯ */}
         <meta httpEquiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0, s-maxage=0, proxy-revalidate, private" />
         <meta httpEquiv="Pragma" content="no-cache" />
@@ -942,40 +766,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         
         <title>thqlabel</title>
         <meta name="description" content="thq label - Современный музыкальный лейбл" />
-        
-        {/* Подсказка о цветовой схеме для браузера */}
-        <meta name="color-scheme" content="light dark" />
-        <meta name="theme-color" content="#08080a" media="(prefers-color-scheme: dark)" />
-        <meta name="theme-color" content="#f5f3f9" media="(prefers-color-scheme: light)" />
-        
-        {/* Preconnect для ускорения загрузки внешних ресурсов */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://supabase.co" />
-        
-        {/* Preload критических ресурсов */}
-        <link rel="preload" href="/logo.png" as="image" />
-        
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=2" />
         <link rel="icon" type="image/png" sizes="512x512" href="/icon.png?v=2" />
         <link rel="apple-touch-icon" sizes="512x512" href="/icon.png?v=2" />
-        {/* CSS fallback для тем и старых браузеров */}
+        {/* CSS fallback для тем - если JS отключён */}
         <style dangerouslySetInnerHTML={{ __html: `
-          /* Base fallback */
-          html { background: #08080a; color: #fff; }
-          body { background: transparent; margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; }
-          html.light { background: #f5f3f9; color: #1a1a2e; }
-          
-          /* Flexbox fallbacks для IE10+ */
-          .flex { display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; }
-          .flex-col { -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column; }
-          .items-center { -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; }
-          .justify-center { -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center; }
-          
-          /* Hide complex elements on very old browsers */
-          @media all and (-ms-high-contrast: none) {
-            .fixed.pointer-events-none { display: none !important; }
-          }
+          html { background: #08080a; }
+          body { background: transparent; margin: 0; }
+          html.light { background: linear-gradient(135deg, #e8e0f0 0%, #f0e8f8 25%, #e0e8f8 50%, #f0e0f0 75%, #e8e0f0 100%); background-attachment: fixed; }
         `}} />
         <style>{`
           @keyframes orb-float-1 {
@@ -1007,8 +805,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <NotificationProvider>
             <SupportWidgetProvider>
               <CacheBuster />
-              {/* TURBO NAVIGATION - УЛЬТРА-быстрые переходы */}
-              <TurboNavigation />
               <BodyContent pathname={pathname}>
                 {children}
               </BodyContent>

@@ -8,17 +8,19 @@
 
 ### Site URL
 ```
-https://thq-git-main-nazarbekansar2108-svgs-projects.vercel.app
+https://thqlabel.ru
 ```
 
 ### Redirect URLs
 Добавьте все эти URL:
 ```
-https://thq-git-main-nazarbekansar2108-svgs-projects.vercel.app/**
-https://thq-git-main-nazarbekansar2108-svgs-projects.vercel.app/auth
-https://thq-git-main-nazarbekansar2108-svgs-projects.vercel.app/auth/callback
-https://thq-git-main-nazarbekansar2108-svgs-projects.vercel.app/reset-password
-https://thq-git-main-nazarbekansar2108-svgs-projects.vercel.app/cabinet
+https://thqlabel.ru/**
+https://thqlabel.ru/auth
+https://thqlabel.ru/auth/callback
+https://thqlabel.ru/reset-password
+https://thqlabel.ru/cabinet
+https://thqlabel.ru/change-email
+https://www.thqlabel.ru/**
 ```
 
 ---
@@ -206,18 +208,18 @@ Sender name: THQ Label
 После настройки проверь:
 
 1. **Регистрация нового пользователя:**
-   - https://thq-git-main-nazarbekansar2108-svgs-projects.vercel.app/auth
+   - https://thqlabel.ru/auth
    - Зарегистрируйся с новым email
    - Проверь почту - должно прийти письмо
 
 2. **Сброс пароля:**
-   - https://thq-git-main-nazarbekansar2108-svgs-projects.vercel.app/auth
+   - https://thqlabel.ru/auth
    - Нажми "Забыли пароль?"
    - Введи email
    - Проверь почту
 
 3. **Смена email (в кабинете):**
-   - https://thq-git-main-nazarbekansar2108-svgs-projects.vercel.app/change-email
+   - https://thqlabel.ru/change-email
    - Смени email
    - Проверь обе почты (старую и новую)
 
@@ -236,8 +238,8 @@ Sender name: THQ Label
 
 ## 📋 Checklist
 
-- [ ] Site URL настроен (`https://thq-git-main-nazarbekansar2108-svgs-projects.vercel.app`)
-- [ ] Redirect URLs добавлены (все 5 штук)
+- [ ] Site URL настроен (`https://thqlabel.ru`)
+- [ ] Redirect URLs добавлены (все 7 штук)
 - [ ] Email templates обновлены (русский текст + THQ Label)
 - [ ] Email confirmations включены
 - [ ] Проверена регистрация - письмо приходит

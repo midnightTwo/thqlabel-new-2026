@@ -39,6 +39,9 @@ if (typeof window !== 'undefined') {
   }
 }
 
+// Детекция Safari/macOS
+const isSafari = typeof window !== 'undefined' && 
+  /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
 // Детекция слабого устройства для упрощения анимаций
 const isLowEndDevice = typeof window !== 'undefined' && (
@@ -51,8 +54,8 @@ const isLowEndDevice = typeof window !== 'undefined' && (
 const AnimatedBackground = memo(() => {
   const { themeName } = useTheme();
   
-  // На слабых устройствах упрощаем фон
-  const simplified = isLowEndDevice;
+  // На слабых устройствах или Safari упрощаем фон
+  const simplified = isLowEndDevice || isSafari;
   
   const backgrounds: Record<string, string> = useMemo(() => ({
     dark: simplified ? `
@@ -924,6 +927,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* ПЕРВЫМ - блокирующий скрипт для темы */}
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         
+        {/* Viewport для всех устройств включая старые мониторы */}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+        
+        {/* Совместимость с IE и старыми браузерами */}
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        
         {/* АГРЕССИВНОЕ ОТКЛЮЧЕНИЕ КЭШИРОВАНИЯ */}
         <meta httpEquiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0, s-maxage=0, proxy-revalidate, private" />
         <meta httpEquiv="Pragma" content="no-cache" />
@@ -933,6 +942,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         
         <title>thqlabel</title>
         <meta name="description" content="thq label - Современный музыкальный лейбл" />
+        
+        {/* Подсказка о цветовой схеме для браузера */}
+        <meta name="color-scheme" content="light dark" />
+        <meta name="theme-color" content="#08080a" media="(prefers-color-scheme: dark)" />
+        <meta name="theme-color" content="#f5f3f9" media="(prefers-color-scheme: light)" />
         
         {/* Preconnect для ускорения загрузки внешних ресурсов */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -945,11 +959,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=2" />
         <link rel="icon" type="image/png" sizes="512x512" href="/icon.png?v=2" />
         <link rel="apple-touch-icon" sizes="512x512" href="/icon.png?v=2" />
-        {/* CSS fallback для тем - если JS отключён */}
+        {/* CSS fallback для тем и старых браузеров */}
         <style dangerouslySetInnerHTML={{ __html: `
-          html { background: #08080a; }
-          body { background: transparent; margin: 0; }
-          html.light { background: linear-gradient(135deg, #e8e0f0 0%, #f0e8f8 25%, #e0e8f8 50%, #f0e0f0 75%, #e8e0f0 100%); background-attachment: fixed; }
+          /* Base fallback */
+          html { background: #08080a; color: #fff; }
+          body { background: transparent; margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; }
+          html.light { background: #f5f3f9; color: #1a1a2e; }
+          
+          /* Flexbox fallbacks для IE10+ */
+          .flex { display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; }
+          .flex-col { -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column; }
+          .items-center { -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; }
+          .justify-center { -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center; }
+          
+          /* Hide complex elements on very old browsers */
+          @media all and (-ms-high-contrast: none) {
+            .fixed.pointer-events-none { display: none !important; }
+          }
         `}} />
         <style>{`
           @keyframes orb-float-1 {

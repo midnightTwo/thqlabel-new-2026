@@ -6,12 +6,21 @@ import { useTheme } from '@/contexts/ThemeContext';
 import { SilverStarsGroup } from '@/components/ui/SilverStars';
 import { supabase } from '@/lib/supabase/client';
 
-// Летающие светящиеся частицы
+// Проверка Safari/iOS
+const isSafari = typeof window !== 'undefined' && /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+// Летающие светящиеся частицы (отключены на Safari из-за багов рендеринга)
 const FloatingParticles = () => {
   const [particles, setParticles] = useState<any[]>([]);
+  const [isClient, setIsClient] = useState(false);
   
   useEffect(() => {
-    setParticles(Array.from({ length: 40 }, (_, i) => ({
+    setIsClient(true);
+    // Проверяем Safari на клиенте
+    const safari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    if (safari) return; // Не создаём частицы на Safari
+    
+    setParticles(Array.from({ length: 25 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
@@ -22,8 +31,11 @@ const FloatingParticles = () => {
     })));
   }, []);
 
+  // Не рендерим на Safari или пока не на клиенте
+  if (!isClient || particles.length === 0) return null;
+
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
       {particles.map(p => (
         <div
           key={p.id}
@@ -245,9 +257,9 @@ export default function AuthPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Анимированный фон с градиентами */}
+      {/* Статичный фон с градиентами (без анимаций для Safari) */}
       <div 
-        className="fixed inset-0"
+        className="absolute inset-0"
         style={{
           background: `
             radial-gradient(ellipse 100% 80% at 50% -20%, rgba(96, 80, 186, 0.5) 0%, transparent 50%),

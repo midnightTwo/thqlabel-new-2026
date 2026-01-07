@@ -6,6 +6,173 @@
 }
 
 /* ========================================
+   LEGACY BROWSER & OLD MONITOR SUPPORT
+   Поддержка старых браузеров и мониторов
+   ======================================== */
+
+/* Fallback для старых браузеров без поддержки CSS Grid */
+@supports not (display: grid) {
+  .grid {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -ms-flex-wrap: wrap !important;
+    flex-wrap: wrap !important;
+  }
+}
+
+/* Fallback для старых браузеров без Flexbox */
+@supports not (display: flex) {
+  .flex {
+    display: block !important;
+  }
+  .flex > * {
+    display: inline-block !important;
+    vertical-align: top !important;
+  }
+}
+
+/* Fallback для backdrop-filter (IE, старые Edge, старые Firefox) */
+@supports not (backdrop-filter: blur(1px)) {
+  .backdrop-blur-sm,
+  .backdrop-blur-md,
+  .backdrop-blur-lg,
+  .backdrop-blur-xl,
+  [style*="backdrop-filter"] {
+    background-color: rgba(0, 0, 0, 0.85) !important;
+  }
+  
+  html.light .backdrop-blur-sm,
+  html.light .backdrop-blur-md,
+  html.light .backdrop-blur-lg,
+  html.light .backdrop-blur-xl,
+  html.light [style*="backdrop-filter"] {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+  }
+}
+
+/* Fallback для CSS переменных (IE11) */
+@supports not (--test: 0) {
+  :root {
+    color: #ffffff;
+    background-color: #08080a;
+  }
+  html.light {
+    color: #1a1a2e;
+    background-color: #f5f3f9;
+  }
+}
+
+/* Маленькие экраны / низкое разрешение (старые мониторы 1024x768, 800x600) */
+@media screen and (max-width: 1024px) and (max-height: 768px) {
+  html {
+    font-size: 14px;
+  }
+  
+  /* Уменьшаем отступы */
+  .container {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+/* Очень старые мониторы с низким DPI */
+@media screen and (max-resolution: 96dpi) {
+  /* Отключаем тяжёлые эффекты */
+  .backdrop-blur-lg,
+  .backdrop-blur-xl {
+    -webkit-backdrop-filter: blur(4px) !important;
+    backdrop-filter: blur(4px) !important;
+  }
+  
+  /* Упрощаем тени */
+  [class*="shadow-lg"],
+  [class*="shadow-xl"],
+  [class*="shadow-2xl"] {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  }
+}
+
+/* Отключаем анимации для пользователей с reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* IE11 и старые Edge (EdgeHTML) - базовые fallbacks */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  /* IE11 */
+  html {
+    background: #08080a !important;
+  }
+  html.light {
+    background: #f5f3f9 !important;
+  }
+  
+  /* Отключаем все сложные эффекты */
+  *::before,
+  *::after {
+    display: none !important;
+  }
+  
+  .fixed {
+    position: absolute !important;
+  }
+}
+
+/* ========================================
+   SAFARI/MACOS CRITICAL FIX
+   Предотвращаем "летающие" элементы при скролле
+   ======================================== */
+
+/* Safari detection - отключаем проблемные эффекты */
+@supports (-webkit-touch-callout: none) {
+  /* Отключаем will-change на fixed элементах - главная причина багов */
+  .fixed,
+  [style*="position: fixed"],
+  [style*="position:fixed"] {
+    will-change: auto !important;
+    transform: none !important;
+    backface-visibility: visible !important;
+  }
+  
+  /* Отключаем анимации на fixed фоновых элементах */
+  html::before,
+  html::after,
+  html.light::before,
+  html.light::after {
+    animation: none !important;
+    will-change: auto !important;
+    transform: none !important;
+  }
+  
+  /* Убираем backdrop-filter с fixed декоративных элементов */
+  .fixed.pointer-events-none {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  
+  /* Отключаем все анимации внутри fixed pointer-events-none контейнеров */
+  .fixed.pointer-events-none *,
+  .fixed.pointer-events-none [style*="animation"] {
+    animation: none !important;
+    will-change: auto !important;
+  }
+}
+
+/* ========================================
    КРИТИЧЕСКИЙ CSS ДЛЯ ПРЕДОТВРАЩЕНИЯ МИГАНИЯ
    Цвета должны совпадать с layout.tsx!
    ======================================== */
@@ -39,11 +206,17 @@ html::before {
     radial-gradient(ellipse 70% 60% at 50% 50%, rgba(157, 141, 241, 0.03) 0%, transparent 60%);
   pointer-events: none;
   z-index: -1;
-  animation: metallic-wave-dark 15s ease-in-out infinite;
-  will-change: transform, opacity;
   contain: strict;
-  backface-visibility: hidden;
-  transform: translateZ(0);
+}
+
+/* Анимация только для не-Safari браузеров */
+@supports not (-webkit-touch-callout: none) {
+  html::before {
+    animation: metallic-wave-dark 15s ease-in-out infinite;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
 }
 
 @keyframes metallic-wave-dark {
@@ -119,7 +292,13 @@ html.light::before {
     radial-gradient(ellipse 50% 30% at 50% 50%, rgba(167, 139, 250, 0.08) 0%, transparent 60%);
   pointer-events: none;
   z-index: -1;
-  animation: mesh-float 25s ease-in-out infinite;
+}
+
+/* Анимация только для не-Safari браузеров */
+@supports not (-webkit-touch-callout: none) {
+  html.light::before {
+    animation: mesh-float 25s ease-in-out infinite;
+  }
 }
 
 /* Второй слой mesh gradient */
@@ -135,8 +314,14 @@ html.light::after {
     radial-gradient(circle at 80% 70%, rgba(99, 179, 237, 0.1) 0%, transparent 40%);
   pointer-events: none;
   z-index: -1;
-  animation: mesh-float 20s ease-in-out infinite reverse;
-  animation-delay: -5s;
+}
+
+/* Анимация только для не-Safari браузеров */
+@supports not (-webkit-touch-callout: none) {
+  html.light::after {
+    animation: mesh-float 20s ease-in-out infinite reverse;
+    animation-delay: -5s;
+  }
 }
 
 @keyframes mesh-float {
@@ -3523,10 +3708,53 @@ textarea::-webkit-scrollbar {
 
 /* === МОБИЛЬНАЯ АДАПТАЦИЯ === */
 
+/* ========================================
+   MOBILE TOUCH FIX - XIAOMI, REDMI, ETC
+   Критические исправления для Android устройств
+   ======================================== */
+
 /* Отключаем зум на мобильных при двойном клике */
 @media (max-width: 768px) {
   * {
     touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Принудительно включаем pointer-events для интерактивных элементов */
+  a, button, input, select, textarea, label,
+  [role="button"], [onclick], [tabindex],
+  .cursor-pointer {
+    pointer-events: auto !important;
+    touch-action: manipulation !important;
+  }
+  
+  /* Минимальный размер тач-зоны по Apple HIG */
+  button:not([class*="w-"]):not([class*="h-"]),
+  a:not([class*="w-"]):not([class*="h-"]) {
+    min-height: 44px;
+  }
+  
+  /* Убираем возможные блокирующие оверлеи */
+  .fixed.pointer-events-none,
+  .absolute.pointer-events-none {
+    pointer-events: none !important;
+  }
+  
+  /* Главный контент всегда кликабелен */
+  main, [role="main"], .page-content, article, section {
+    pointer-events: auto !important;
+  }
+}
+
+/* Специфичные исправления для MIUI WebView */
+@media (pointer: coarse) and (hover: none) {
+  /* Тач устройства без hover */
+  button, a, [role="button"] {
+    transition: transform 0.1s ease !important;
+  }
+  
+  button:active, a:active, [role="button"]:active {
+    transform: scale(0.97) !important;
   }
 }
 

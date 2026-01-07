@@ -9,7 +9,7 @@ import { SilverStarsGroup } from '@/components/ui/SilverStars';
 const RELEASES = [
   { id: 1, title: 'НЕ В СЕТИ', artist: 'angelgrind', cover: 'https://t2.genius.com/unsafe/430x430/https%3A%2F%2Fimages.genius.com%2Fd4892b6202a4051f807a8a847f44adc0.1000x1000x1.png' },
   { id: 2, title: 'ЗАКОЛКИ & КОСТИ', artist: 'kweetee', cover: 'https://t2.genius.com/unsafe/600x600/https%3A%2F%2Fimages.genius.com%2F9fa9951f735a169c17e47baf71ab45c7.1000x1000x1.png' },
-  { id: 3, title: 'МЕХАНИЗМ', artist: 'athygue', cover: 'https://t2.genius.com/unsafe/430x430/https%3A%2F%2Fimages.genius.com%2Fa4b2333f9c0768cf4f07d1252caff125.1000x1000x1.png' },
+  { id: 3, title: 'МЕХАНИЗМ', artist: 'athyuse', cover: 'https://t2.genius.com/unsafe/430x430/https%3A%2F%2Fimages.genius.com%2Fa4b2333f9c0768cf4f07d1252caff125.1000x1000x1.png' },
   { id: 4, title: 'ДЕВЧАЧИЙ РОК-АЛЬБОМ', artist: 'тенденция', cover: 'https://images.genius.com/2fa8d85da644fad7afc1ba3d40d0d513.1000x1000x1.png' },
   { id: 5, title: 'TIRED OF YOU / WHAT PAIN IS', artist: 'breakfall', cover: 'https://cdn-images.dzcdn.net/images/cover/7101d738b828553e74b9f0035a6dfa1a/500x500-000000-80-0-0.jpg' },
   { id: 6, title: 'hate&love', artist: 'frommee', cover: 'https://t2.genius.com/unsafe/430x430/https%3A%2F%2Fimages.genius.com%2F43f01d20830d2acedb8267d3ea7a21e8.1000x1000x1.png' },
@@ -129,17 +129,25 @@ const seededRandom = (seed: number) => {
   return x - Math.floor(x);
 };
 
-// Оптимизированные летающие 3D фигуры (уменьшено количество)
+// Проверяем Safari на клиенте
+const checkIsSafari = () => {
+  if (typeof window === 'undefined') return false;
+  return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+};
+
+// Оптимизированные летающие 3D фигуры (отключены на Safari)
 const FloatingShapes = memo(({ isLight }: { isLight?: boolean }) => {
   const [mounted, setMounted] = useState(false);
+  const [isSafari, setIsSafari] = useState(false);
   
   useEffect(() => {
     setMounted(true);
+    setIsSafari(checkIsSafari());
   }, []);
 
   // Детерминированные значения для SSR
   const shapes = useMemo(() => 
-    Array.from({ length: 10 }, (_, i) => ({
+    Array.from({ length: 8 }, (_, i) => ({
       id: i,
       x: seededRandom(i + 1) * 100,
       y: seededRandom(i + 100) * 100,
@@ -150,10 +158,11 @@ const FloatingShapes = memo(({ isLight }: { isLight?: boolean }) => {
     })),
   []);
 
-  if (!mounted) return null;
+  // Не рендерим на Safari или до монтирования
+  if (!mounted || isSafari) return null;
 
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0" style={{ contain: 'strict' }}>
+    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0" style={{ contain: 'strict' }}>
       {shapes.map(shape => (
         <div
           key={shape.id}
@@ -169,23 +178,20 @@ const FloatingShapes = memo(({ isLight }: { isLight?: boolean }) => {
             background: isLight 
               ? 'rgba(255, 255, 255, 0.4)'
               : 'rgba(96, 80, 186, 0.02)',
-            backdropFilter: isLight ? 'blur(8px)' : 'none',
             animationName: 'float-shape',
             animationDuration: `${shape.duration}s`,
             animationTimingFunction: 'ease-in-out',
             animationIterationCount: 'infinite',
             animationDelay: `${shape.delay}s`,
-            willChange: 'transform',
-            transform: 'translateZ(0)',
           }}
         />
       ))}
       <style jsx>{`
         @keyframes float-shape {
-          0%, 100% { transform: translate3d(0, 0, 0); }
-          25% { transform: translate3d(25px, -30px, 0); }
-          50% { transform: translate3d(-15px, 25px, 0); }
-          75% { transform: translate3d(30px, 15px, 0); }
+          0%, 100% { transform: translate(0, 0); }
+          25% { transform: translate(25px, -30px); }
+          50% { transform: translate(-15px, 25px); }
+          75% { transform: translate(30px, 15px); }
         }
       `}</style>
     </div>
@@ -194,16 +200,18 @@ const FloatingShapes = memo(({ isLight }: { isLight?: boolean }) => {
 
 FloatingShapes.displayName = 'FloatingShapes';
 
-// Оптимизированные летающие частицы (уменьшено количество с 40 до 20)
+// Оптимизированные летающие частицы (отключены на Safari)
 const FloatingParticles = memo(({ isLight }: { isLight?: boolean }) => {
   const [mounted, setMounted] = useState(false);
+  const [isSafari, setIsSafari] = useState(false);
   
   useEffect(() => {
     setMounted(true);
+    setIsSafari(checkIsSafari());
   }, []);
 
   const particles = useMemo(() => 
-    Array.from({ length: 30 }, (_, i) => ({
+    Array.from({ length: 20 }, (_, i) => ({
       id: i,
       x: seededRandom(i + 600) * 100,
       y: seededRandom(i + 700) * 100,
@@ -214,10 +222,11 @@ const FloatingParticles = memo(({ isLight }: { isLight?: boolean }) => {
     })),
   []);
 
-  if (!mounted) return null;
+  // Не рендерим на Safari или до монтирования
+  if (!mounted || isSafari) return null;
 
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0" style={{ contain: 'strict' }}>
+    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0" style={{ contain: 'strict' }}>
       {particles.map(p => (
         <div
           key={p.id}
@@ -240,35 +249,33 @@ const FloatingParticles = memo(({ isLight }: { isLight?: boolean }) => {
             animationTimingFunction: 'ease-in-out',
             animationIterationCount: 'infinite',
             animationDelay: `${p.delay}s`,
-            willChange: 'transform, opacity',
-            transform: 'translateZ(0)',
           }}
         />
       ))}
       <style jsx>{`
         @keyframes particle-fly {
-          0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.3; }
-          25% { transform: translate3d(45px, -60px, 0); opacity: 0.7; }
-          50% { transform: translate3d(-30px, 45px, 0); opacity: 0.4; }
-          75% { transform: translate3d(60px, 30px, 0); opacity: 0.6; }
+          0%, 100% { transform: translate(0, 0); opacity: 0.3; }
+          25% { transform: translate(45px, -60px); opacity: 0.7; }
+          50% { transform: translate(-30px, 45px); opacity: 0.4; }
+          75% { transform: translate(60px, 30px); opacity: 0.6; }
         }
         @keyframes sparkle-float {
           0%, 100% { 
-            transform: translate3d(0, 0, 0) scale(1); 
+            transform: translate(0, 0) scale(1); 
             opacity: 0.5;
             box-shadow: 0 0 2px rgba(100,80,140,0.4), 0 0 5px rgba(180,140,220,0.3);
           }
           25% { 
-            transform: translate3d(20px, -30px, 0) scale(1.2); 
+            transform: translate(20px, -30px) scale(1.2); 
             opacity: 0.8;
             box-shadow: 0 0 3px rgba(100,80,140,0.5), 0 0 8px rgba(180,140,220,0.4);
           }
           50% { 
-            transform: translate3d(-12px, 20px, 0) scale(1.1); 
+            transform: translate(-12px, 20px) scale(1.1); 
             opacity: 0.6;
           }
           75% { 
-            transform: translate3d(25px, 12px, 0) scale(1.3); 
+            transform: translate(25px, 12px) scale(1.3); 
             opacity: 0.9;
             box-shadow: 0 0 4px rgba(100,80,140,0.5), 0 0 10px rgba(140,180,220,0.4);
           }
@@ -575,11 +582,10 @@ export default function FeedPage() {
       {/* Intro анимация - использует CSS классы для темы (НЕ JS) */}
       {showIntro && (
         <div 
-          className={`intro-screen fixed inset-0 z-[100] flex items-center justify-center transition-opacity duration-500 ${
-            introReady ? 'opacity-100' : 'opacity-0'
-          }`}
+          className="intro-screen fixed inset-0 z-[100] flex items-center justify-center"
           style={{
-            animation: introReady ? 'intro-fade-out 0.5s ease-out 1.5s forwards' : 'none'
+            animation: introReady ? 'intro-fade-out 0.5s ease-out 1.5s forwards' : 'none',
+            pointerEvents: introReady ? 'none' : 'auto', // Отключаем клики сразу после начала fade-out
           }}
         >
           {/* Тёмный фон - показывается по умолчанию (тёмная тема) */}
@@ -626,18 +632,15 @@ export default function FeedPage() {
 
           {/* Центральный контейнер */}
           <div className="flex flex-col items-center justify-center relative z-10">
-            {/* Контейнер для Сатурна */}
+            {/* Контейнер для Сатурна - показываем СРАЗУ */}
             <div 
               className="relative flex items-center justify-center"
               style={{
                 width: '350px',
                 height: '350px',
-                opacity: introReady ? 1 : 0,
-                transform: introReady ? 'scale(1)' : 'scale(0.5)',
-                transition: 'opacity 0.8s cubic-bezier(0.34,1.56,0.64,1), transform 0.8s cubic-bezier(0.34,1.56,0.64,1)',
               }}
             >
-              {/* БОЛЬШОЕ ЛОГО - ПОВЕРХ ВСЕГО */}
+              {/* БОЛЬШОЕ ЛОГО - ПОВЕРХ ВСЕГО - видно сразу */}
               <img 
                 src="/logo.png" 
                 alt="thq" 
@@ -645,27 +648,27 @@ export default function FeedPage() {
                 style={{
                   width: '400px',
                   height: '400px',
-                  animation: introReady ? 'logo-glow-intro 2s ease-in-out infinite' : 'none',
+                  animation: 'logo-glow-intro 2s ease-in-out infinite',
                 }}
               />
 
-              {/* Мощное внешнее свечение */}
+              {/* Мощное внешнее свечение - сразу */}
               <div 
                 className="intro-outer-glow absolute rounded-full blur-3xl pointer-events-none"
                 style={{
                   width: '200px',
                   height: '200px',
-                  animation: introReady ? 'glow-pulse 3s ease-in-out infinite' : 'none',
+                  animation: 'glow-pulse 3s ease-in-out infinite',
                 }}
               />
               
-              {/* Планета Сатурн - маленькая, за лого */}
+              {/* Планета Сатурн - маленькая, за лого - видна сразу */}
               <div 
                 className="intro-planet absolute rounded-full overflow-hidden z-10"
                 style={{
                   width: '120px',
                   height: '120px',
-                  animation: introReady ? 'planet-pulse 4s ease-in-out infinite' : 'none',
+                  animation: 'planet-pulse 4s ease-in-out infinite',
                 }}
               >
                 {/* Яркий блик */}
@@ -686,16 +689,16 @@ export default function FeedPage() {
                   perspective: '1000px',
                 }}
               >
-                {/* Основное кольцо */}
+                {/* Основное кольцо - вращается сразу */}
                 <div
                   className="intro-ring-1 absolute inset-0"
                   style={{
                     borderRadius: '50%',
                     border: '16px solid transparent',
-                    animation: introReady ? 'ring-spin 8s linear infinite' : 'none',
+                    animation: 'ring-spin 8s linear infinite',
                   }}
                 />
-                {/* Второе кольцо */}
+                {/* Второе кольцо - вращается сразу */}
                 <div
                   className="intro-ring-2 absolute"
                   style={{
@@ -705,10 +708,10 @@ export default function FeedPage() {
                     bottom: '-12px',
                     borderRadius: '50%',
                     border: '8px solid transparent',
-                    animation: introReady ? 'ring-spin 12s linear infinite reverse' : 'none',
+                    animation: 'ring-spin 12s linear infinite reverse',
                   }}
                 />
-                {/* Третье пунктирное кольцо */}
+                {/* Третье пунктирное кольцо - вращается сразу */}
                 <div
                   className="intro-ring-3 absolute"
                   style={{
@@ -717,7 +720,7 @@ export default function FeedPage() {
                     right: '-25px',
                     bottom: '-25px',
                     borderRadius: '50%',
-                    animation: introReady ? 'ring-spin 16s linear infinite' : 'none',
+                    animation: 'ring-spin 16s linear infinite',
                   }}
                 />
               </div>
@@ -740,14 +743,9 @@ export default function FeedPage() {
 
            
             
-            {/* Анимированные точки загрузки */}
+            {/* Анимированные точки загрузки - показываем СРАЗУ */}
             <div 
               className="flex items-center justify-center gap-2 mt-4"
-              style={{ 
-                opacity: introReady ? 1 : 0,
-                transform: introReady ? 'translateY(0)' : 'translateY(10px)',
-                transition: 'opacity 0.5s ease-out 0.5s, transform 0.5s ease-out 0.5s',
-              }}
             >
               <span className="intro-loading-text text-xs uppercase tracking-[0.3em] font-bold">Загрузка</span>
               <span className="flex gap-1 ml-1">
@@ -756,7 +754,7 @@ export default function FeedPage() {
                     key={i}
                     className="intro-loading-dot w-1.5 h-1.5 rounded-full"
                     style={{
-                      animationName: introReady ? 'loading-dot' : 'none',
+                      animationName: 'loading-dot',
                       animationDuration: '1.4s',
                       animationTimingFunction: 'ease-in-out',
                       animationIterationCount: 'infinite',
@@ -779,7 +777,7 @@ export default function FeedPage() {
       
       {/* МЯГКИЙ ГОЛОГРАФИЧЕСКИЙ ФОН для светлой темы */}
       {isLight && (
-        <div className="fixed inset-0 pointer-events-none" style={{ transform: 'translateZ(0)' }}>
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
           {/* Основной мягкий градиент */}
           <div 
             className="absolute inset-0"
@@ -794,7 +792,6 @@ export default function FeedPage() {
                   rgba(255,200,210,0.2) 100%
                 )
               `,
-              animation: 'holographic-bg-shift 20s ease-in-out infinite',
             }}
           />
           {/* Мягкие радужные переливы */}
@@ -806,7 +803,6 @@ export default function FeedPage() {
                 radial-gradient(ellipse at 85% 75%, rgba(180,210,255,0.25) 0%, transparent 50%),
                 radial-gradient(ellipse at 50% 50%, rgba(210,180,240,0.2) 0%, transparent 60%)
               `,
-              animation: 'holographic-bg-glow 15s ease-in-out infinite',
             }}
           />
           {/* Лёгкие блики */}
@@ -881,25 +877,19 @@ export default function FeedPage() {
       
       {/* Усиленный градиентный фон - для тёмной темы */}
       {!isLight && (
-        <div className="fixed inset-0 pointer-events-none" style={{ transform: 'translateZ(0)' }}>
+        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
           <div 
             className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#6050ba]/12 rounded-full" 
-            style={{ filter: 'blur(150px)', animationName: 'gradient-pulse', animationDuration: '8s', animationTimingFunction: 'ease-in-out', animationIterationCount: 'infinite' }}
+            style={{ filter: 'blur(150px)' }}
           />
           <div 
             className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#9d8df1]/12 rounded-full" 
-            style={{ filter: 'blur(120px)', animationName: 'gradient-pulse', animationDuration: '8s', animationTimingFunction: 'ease-in-out', animationIterationCount: 'infinite', animationDelay: '2s' }}
+            style={{ filter: 'blur(120px)' }}
         />
         <div 
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#c4b5fd]/08 rounded-full" 
-          style={{ filter: 'blur(180px)', animationName: 'gradient-pulse', animationDuration: '10s', animationTimingFunction: 'ease-in-out', animationIterationCount: 'infinite', animationDelay: '1s' }}
+          style={{ filter: 'blur(180px)' }}
         />
-        <style jsx>{`
-          @keyframes gradient-pulse {
-            0%, 100% { opacity: 0.8; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.1); }
-          }
-        `}</style>
       </div>
       )}
 

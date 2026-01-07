@@ -1,6 +1,12 @@
 "use client";
-import React, { memo, useId } from 'react';
+import React, { memo, useId, useState, useEffect } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
+
+// Проверка Safari
+const checkIsSafari = () => {
+  if (typeof window === 'undefined') return false;
+  return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+};
 
 // Компонент четырёхконечной серебряной звезды с 3D эффектом
 export const SilverStar = memo(({ 
@@ -110,7 +116,7 @@ export const SilverStar = memo(({
 
 SilverStar.displayName = 'SilverStar';
 
-// Группа декоративных звёзд для разных мест
+// Группа декоративных звёзд для разных мест (отключена на Safari)
 export const SilverStarsGroup = memo(({ 
   variant = 'default',
   className = "" 
@@ -118,6 +124,14 @@ export const SilverStarsGroup = memo(({
   variant?: 'default' | 'header' | 'sidebar' | 'card' | 'auth' | 'modal' | 'hero';
   className?: string;
 }) => {
+  const [isSafari, setIsSafari] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+    setIsSafari(checkIsSafari());
+  }, []);
+
   interface StarConfig {
     size: number;
     delay: number;
@@ -172,6 +186,11 @@ export const SilverStarsGroup = memo(({
   };
 
   const stars = configs[variant] || configs.default;
+
+  // На Safari отключаем анимированные звёзды для предотвращения глитчей
+  if (!mounted || isSafari) {
+    return null;
+  }
 
   return (
     <div className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}>

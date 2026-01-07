@@ -7,6 +7,12 @@ import { useTheme } from '@/contexts/ThemeContext';
 // HELPER FUNCTIONS
 // ========================================
 
+// Детекция Safari для отключения проблемных анимаций
+const checkIsSafari = () => {
+  if (typeof window === 'undefined') return false;
+  return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+};
+
 // Seeded random for consistent SSR/client rendering
 const seededRandom = (seed: number) => {
   const x = Math.sin(seed * 9999) * 10000;
@@ -32,13 +38,16 @@ const useIsMobile = () => {
 // ========================================
 // FLOATING SHAPES COMPONENT
 // Geometric shapes floating in the background
+// ОТКЛЮЧЕНО НА SAFARI для предотвращения багов рендеринга
 // ========================================
 const FloatingShapes = memo(({ isLight, count = 10 }: { isLight: boolean; count?: number }) => {
   const [mounted, setMounted] = useState(false);
+  const [isSafari, setIsSafari] = useState(false);
   const isMobile = useIsMobile();
   
   useEffect(() => {
     setMounted(true);
+    setIsSafari(checkIsSafari());
   }, []);
 
   const shapeCount = isMobile ? Math.min(count, 6) : count;
@@ -55,7 +64,8 @@ const FloatingShapes = memo(({ isLight, count = 10 }: { isLight: boolean; count?
     })),
   [shapeCount, isMobile]);
 
-  if (!mounted) return null;
+  // На Safari отключаем полностью
+  if (!mounted || isSafari) return null;
 
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-0" style={{ contain: 'strict' }}>
@@ -77,8 +87,6 @@ const FloatingShapes = memo(({ isLight, count = 10 }: { isLight: boolean; count?
             backdropFilter: isLight ? 'blur(8px)' : 'none',
             animation: `float-shape ${shape.duration}s ease-in-out infinite`,
             animationDelay: `${shape.delay}s`,
-            willChange: 'transform',
-            transform: 'translateZ(0)',
           }}
         />
       ))}
@@ -91,13 +99,16 @@ FloatingShapes.displayName = 'FloatingShapes';
 // ========================================
 // FLOATING PARTICLES COMPONENT
 // Small glowing particles
+// ОТКЛЮЧЕНО НА SAFARI для предотвращения багов рендеринга
 // ========================================
 const FloatingParticles = memo(({ isLight, count = 30 }: { isLight: boolean; count?: number }) => {
   const [mounted, setMounted] = useState(false);
+  const [isSafari, setIsSafari] = useState(false);
   const isMobile = useIsMobile();
   
   useEffect(() => {
     setMounted(true);
+    setIsSafari(checkIsSafari());
   }, []);
   
   const particleCount = isMobile ? Math.min(count, 12) : count;
@@ -114,7 +125,8 @@ const FloatingParticles = memo(({ isLight, count = 30 }: { isLight: boolean; cou
     })),
   [particleCount, isMobile]);
 
-  if (!mounted) return null;
+  // На Safari отключаем полностью
+  if (!mounted || isSafari) return null;
 
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-0" style={{ contain: 'strict' }}>
@@ -137,8 +149,6 @@ const FloatingParticles = memo(({ isLight, count = 30 }: { isLight: boolean; cou
               : '#9d8df1',
             animation: isLight ? `sparkle-float ${p.duration}s ease-in-out infinite` : `particle-fly ${p.duration}s ease-in-out infinite`,
             animationDelay: `${p.delay}s`,
-            willChange: 'transform, opacity',
-            transform: 'translateZ(0)',
           }}
         />
       ))}
@@ -151,12 +161,23 @@ FloatingParticles.displayName = 'FloatingParticles';
 // ========================================
 // HOLOGRAPHIC BACKGROUND (Light Theme)
 // Pastel rainbow gradients with shimmer
+// ОТКЛЮЧЕНО НА SAFARI для предотвращения багов рендеринга
 // ========================================
 const HolographicBackground = memo(() => {
+  const [mounted, setMounted] = useState(false);
+  const [isSafari, setIsSafari] = useState(false);
   const isMobile = useIsMobile();
   
+  useEffect(() => {
+    setMounted(true);
+    setIsSafari(checkIsSafari());
+  }, []);
+  
+  // На Safari отключаем полностью
+  if (!mounted || isSafari) return null;
+  
   return (
-    <div className="fixed inset-0 pointer-events-none z-0" style={{ transform: 'translateZ(0)' }}>
+    <div className="fixed inset-0 pointer-events-none z-0">
       {/* Main soft gradient */}
       <div 
         className="absolute inset-0"

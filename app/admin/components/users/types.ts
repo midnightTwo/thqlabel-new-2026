@@ -96,6 +96,14 @@ export const roleColors: Record<string, RoleColors> = {
   basic: { bg: 'bg-zinc-800/30', border: 'border-zinc-700/50', text: 'text-zinc-400' },
 };
 
+// Светлая тема цветов для ролей
+export const roleColorsLight: Record<string, RoleColors> = {
+  owner: { bg: 'bg-purple-100/60', border: 'border-purple-300/50', text: 'text-purple-600' },
+  admin: { bg: 'bg-red-100/60', border: 'border-red-300/50', text: 'text-red-500' },
+  exclusive: { bg: 'bg-amber-100/60', border: 'border-amber-300/50', text: 'text-amber-600' },
+  basic: { bg: 'bg-gray-100/60', border: 'border-gray-300/50', text: 'text-gray-500' },
+};
+
 export const roleConfig: Record<string, { label: string; color: string; priority: number }> = {
   owner: { label: 'Owner', color: 'bg-purple-500/20 text-purple-400 border-purple-500/30', priority: 0 },
   admin: { label: 'Admin', color: 'bg-red-500/20 text-red-400 border-red-500/30', priority: 1 },

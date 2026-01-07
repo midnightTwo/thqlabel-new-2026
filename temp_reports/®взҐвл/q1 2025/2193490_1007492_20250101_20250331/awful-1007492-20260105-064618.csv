@@ -1,0 +1,5 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/01/2025;01/12/2024;Yandex;"Russian Federation";thqlabel;awful;"Project 100";"Project 100";5063316776750;RU-A1D-24-04700;;"Music Release";Stream;3;RUB;0.052744147321
+01/03/2025;01/02/2025;Yandex;"Russian Federation";thqlabel;awful;"Project 100";"Project 100";5063316776750;RU-A1D-24-04700;;"Music Release";Stream;1;RUB;0.021587041761
+01/03/2025;01/02/2025;"Amazon Music Streaming";"United Kingdom";thqlabel;awful;"Project 100";"Project 100";5063316776750;RU-A1D-24-04700;;"Music Release";Stream;1;RUB;0.106520272758
+01/02/2025;01/01/2025;"Amazon Music Streaming";Canada;thqlabel;awful;"Project 100";"Project 100";5063316776750;RU-A1D-24-04700;;"Music Release";Stream;1;RUB;0.485213844566

@@ -242,18 +242,18 @@ export default function TicketMessages({
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="flex gap-2">
+        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2">
           <div className="flex-1 flex gap-2">
             <input
               type="text"
               value={replyMessage}
               onChange={(e) => setReplyMessage(e.target.value)}
               placeholder="Введите ответ..."
-              className="flex-1 px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-blue-500"
+              className="flex-1 px-4 py-3 sm:py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-blue-500 min-h-[44px]"
             />
             
             {/* Кнопка загрузки изображений */}
-            <label className="px-3 py-2 bg-zinc-800 border border-zinc-700 rounded-lg cursor-pointer hover:bg-zinc-700 transition-colors flex items-center">
+            <label className="px-3 py-3 sm:py-2 bg-zinc-800 border border-zinc-700 rounded-lg cursor-pointer hover:bg-zinc-700 transition-colors flex items-center min-w-[44px] min-h-[44px] justify-center">
               <input
                 type="file"
                 accept="image/*"
@@ -275,7 +275,7 @@ export default function TicketMessages({
           <button
             type="submit"
             disabled={sending || !replyMessage.trim()}
-            className="px-4 py-2 bg-blue-600 hover:bg-blue-500 disabled:bg-zinc-700 disabled:cursor-not-allowed rounded-lg text-sm font-medium text-white transition-colors"
+            className="px-4 py-3 sm:py-2 bg-blue-600 hover:bg-blue-500 disabled:bg-zinc-700 disabled:cursor-not-allowed rounded-lg text-sm font-medium text-white transition-colors min-h-[44px] w-full sm:w-auto"
           >
             {sending ? 'Отправка...' : 'Отправить'}
           </button>
@@ -289,15 +289,15 @@ export default function TicketMessages({
 function MessageBubble({ 
   message, 
   currentUserId,
-  onToggl,
+  onToggleReaction,
+  onReply,
   onDeleteMessage
 }: { 
   message: TicketMessage;
   currentUserId: string | null;
   onToggleReaction: (messageId: string) => void;
   onReply: (message: TicketMessage) => void;
-  onDeleteMessage?: (messageId: stringring) => void;
-  onReply: (message: TicketMessage) => void;
+  onDeleteMessage?: (messageId: string) => void;
 }) {
   const isAdmin = message.is_admin;
   const [showActions, setShowActions] = useState(false);
@@ -330,17 +330,17 @@ function MessageBubble({
       )}
 
       {/* Сообщение */}
-      <div className={`max-w-[70%] ${isAdmin ? 'items-end' : 'items-start'} relative`}>
+      <div className={`max-w-[85%] sm:max-w-[70%] ${isAdmin ? 'items-end' : 'items-start'} relative`}>
         {/* Кнопки действий при наведении */}
         <div 
-          className={`absolute ${isAdmin ? 'right-full mr-2' : 'left-full ml-2'} top-0 flex gap-1 transition-opacity ${
+          className={`absolute ${isAdmin ? 'right-full mr-1 sm:mr-2' : 'left-full ml-1 sm:ml-2'} top-0 flex gap-1 transition-opacity ${
             showActions ? 'opacity-100' : 'opacity-0'
           }`}
         >
           {/* Кнопка ответить */}
           <button
             onClick={() => onReply(message)}
-            className="p-1.5 bg-zinc-800 hover:bg-zinc-700 border border-zinc-600 rounded-lg transition-colors"
+            className="p-2 sm:p-1.5 bg-zinc-800 hover:bg-zinc-700 border border-zinc-600 rounded-lg transition-colors min-w-[32px] min-h-[32px] flex items-center justify-center"
             title="Ответить"
           >
             <svg className="w-3.5 h-3.5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -351,7 +351,7 @@ function MessageBubble({
           {/* Кнопка лайк */}
           <button
             onClick={() => onToggleReaction(message.id)}
-            className={`p-1.5 rounded-lg transition-colors border ${
+            className={`p-2 sm:p-1.5 rounded-lg transition-colors border min-w-[32px] min-h-[32px] flex items-center justify-center ${
               hasUserReaction
                 ? 'bg-pink-500/20 border-pink-400/40 hover:bg-pink-500/30'
                 : 'bg-zinc-800 hover:bg-zinc-700 border-zinc-600'
@@ -381,7 +381,7 @@ function MessageBubble({
                   onDeleteMessage(message.id);
                 }
               }}
-              className="p-1.5 bg-red-900/30 hover:bg-red-800/50 border border-red-600/50 rounded-lg transition-colors"
+              className="p-2 sm:p-1.5 bg-red-900/30 hover:bg-red-800/50 border border-red-600/50 rounded-lg transition-colors min-w-[32px] min-h-[32px] flex items-center justify-center"
               title="Удалить"
             >
               <svg className="w-3.5 h-3.5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">

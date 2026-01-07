@@ -1,2 +1,2 @@
 // Экспорт финансовых компонентов админ-панели
-// Добавьте компоненты по мере необходимости
+export { default as TransactionsTab } from './TransactionsTab';

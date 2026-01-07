@@ -26,11 +26,7 @@ export default function ChangeEmailPage() {
         const accessToken = hashParams.get('access_token');
         const type = hashParams.get('type');
         
-        console.log('Hash params - token:', !!accessToken, 'type:', type);
-        
         if (accessToken && type === 'email_change') {
-          console.log('Email change token found, setting session...');
-          
           // Устанавливаем сессию с токеном
           const { data, error } = await supabase.auth.setSession({
             access_token: accessToken,
@@ -38,7 +34,6 @@ export default function ChangeEmailPage() {
           });
           
           if (error) {
-            console.error('Session error:', error);
             throw error;
           }
           

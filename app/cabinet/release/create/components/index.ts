@@ -1,4 +1,5 @@
-export { default as ReleaseInfoStep } from './ReleaseInfoStep';
+export { default as ReleaseInfoStep, CONTRIBUTOR_ROLES } from './ReleaseInfoStep';
+export type { Contributor } from './ReleaseInfoStep';
 export { default as TracklistStep } from './TracklistStep';
 export { default as CountriesStep } from './CountriesStep';
 export { default as ContractStep } from './ContractStep';

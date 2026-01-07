@@ -1,5 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { showErrorToast } from '@/lib/utils/showToast';
+import { useTheme } from '@/contexts/ThemeContext';
 
 interface CoverUploaderProps {
   coverFile: File | null;
@@ -7,11 +8,84 @@ interface CoverUploaderProps {
   previewUrl?: string;
 }
 
+// Функция для извлечения доминантного цвета из изображения
+function getDominantColor(imageUrl: string): Promise<{ r: number; g: number; b: number }> {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      if (!ctx) {
+        resolve({ r: 16, g: 185, b: 129 }); // emerald по умолчанию
+        return;
+      }
+      
+      // Уменьшаем для производительности
+      const size = 50;
+      canvas.width = size;
+      canvas.height = size;
+      ctx.drawImage(img, 0, 0, size, size);
+      
+      const imageData = ctx.getImageData(0, 0, size, size).data;
+      let r = 0, g = 0, b = 0, count = 0;
+      
+      // Выбираем пиксели из центральной части
+      for (let i = 0; i < imageData.length; i += 16) {
+        const red = imageData[i];
+        const green = imageData[i + 1];
+        const blue = imageData[i + 2];
+        const alpha = imageData[i + 3];
+        
+        // Пропускаем слишком тёмные или слишком светлые
+        if (alpha > 200 && (red + green + blue) > 60 && (red + green + blue) < 700) {
+          r += red;
+          g += green;
+          b += blue;
+          count++;
+        }
+      }
+      
+      if (count > 0) {
+        resolve({ r: Math.round(r / count), g: Math.round(g / count), b: Math.round(b / count) });
+      } else {
+        resolve({ r: 16, g: 185, b: 129 }); // emerald по умолчанию
+      }
+    };
+    img.onerror = () => {
+      resolve({ r: 16, g: 185, b: 129 });
+    };
+    img.src = imageUrl;
+  });
+}
+
 export default function CoverUploader({ coverFile, setCoverFile, previewUrl }: CoverUploaderProps) {
   const [dragActive, setDragActive] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [imageInfo, setImageInfo] = useState<{ width: number; height: number } | null>(null);
+  const [dominantColor, setDominantColor] = useState<{ r: number; g: number; b: number } | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
+
+  // Извлекаем доминантный цвет при загрузке обложки
+  useEffect(() => {
+    const extractColor = async () => {
+      if (coverFile && !error) {
+        const url = URL.createObjectURL(coverFile);
+        const color = await getDominantColor(url);
+        setDominantColor(color);
+        URL.revokeObjectURL(url);
+      } else if (previewUrl && !coverFile && !error) {
+        const color = await getDominantColor(previewUrl);
+        setDominantColor(color);
+      } else {
+        setDominantColor(null);
+      }
+    };
+    extractColor();
+  }, [coverFile, previewUrl, error]);
 
   const validateImage = (file: File): Promise<{ valid: boolean; error?: string; width?: number; height?: number }> => {
     return new Promise((resolve) => {
@@ -127,18 +201,25 @@ export default function CoverUploader({ coverFile, setCoverFile, previewUrl }: C
     }
   };
 
+  // Генерируем стиль свечения на основе доминантного цвета
+  const glowStyle = dominantColor && coverFile && !error ? {
+    boxShadow: `0 0 30px rgba(${dominantColor.r}, ${dominantColor.g}, ${dominantColor.b}, 0.4), 0 0 60px rgba(${dominantColor.r}, ${dominantColor.g}, ${dominantColor.b}, 0.2)`,
+    border: `2px solid rgba(${dominantColor.r}, ${dominantColor.g}, ${dominantColor.b}, 0.6)`
+  } : {};
+
   return (
     <div className="space-y-4">
       <div
-        className={`relative border-2 border-dashed rounded-2xl overflow-hidden transition-all ${
+        className={`relative rounded-2xl overflow-hidden transition-all duration-500 ${
           dragActive
-            ? 'border-purple-500 bg-purple-500/10'
+            ? 'border-2 border-dashed border-purple-500 bg-purple-500/10'
             : error
-            ? 'border-red-500/50 bg-red-500/5'
+            ? 'border-2 border-dashed border-red-500/50 bg-red-500/5'
             : coverFile
-            ? 'border-green-500/50 bg-green-500/5'
-            : 'border-white/10 bg-white/[0.02] hover:border-white/20'
+            ? ''
+            : `border-2 border-dashed ${isLight ? 'border-gray-300 bg-gray-50 hover:border-gray-400' : 'border-white/10 bg-white/[0.02] hover:border-white/20'}`
         }`}
+        style={glowStyle}
         onDragEnter={handleDrag}
         onDragLeave={handleDrag}
         onDragOver={handleDrag}
@@ -163,12 +244,12 @@ export default function CoverUploader({ coverFile, setCoverFile, previewUrl }: C
             
             {/* Сообщение об ошибке - показывается поверх изображения */}
             {error && (
-              <div className="absolute inset-0 bg-black/90 backdrop-blur-sm flex items-center justify-center p-6">
+              <div className={`absolute inset-0 ${isLight ? 'bg-white/95' : 'bg-black/90'} backdrop-blur-sm flex items-center justify-center p-6`}>
                 {/* Кнопки управления в правом верхнем углу */}
                 <div className="absolute top-4 right-4 flex items-center gap-2">
                   <label
                     htmlFor="cover-upload"
-                    className="group flex items-center gap-2 px-4 py-2.5 bg-black/80 hover:bg-black/90 backdrop-blur-md border border-white/40 hover:border-white/60 rounded-xl font-semibold text-sm cursor-pointer transition-all hover:scale-105 active:scale-95 shadow-xl"
+                    className={`group flex items-center gap-2 px-4 py-2.5 ${isLight ? 'bg-white/90 hover:bg-white border-gray-300 hover:border-gray-400 text-gray-700' : 'bg-black/80 hover:bg-black/90 border-white/40 hover:border-white/60 text-white'} backdrop-blur-md border rounded-xl font-semibold text-sm cursor-pointer transition-all hover:scale-105 active:scale-95 shadow-xl`}
                     title="Заменить обложку"
                   >
                     <svg className="w-4 h-4 group-hover:rotate-180 transition-transform duration-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -197,16 +278,16 @@ export default function CoverUploader({ coverFile, setCoverFile, previewUrl }: C
                     </svg>
                   </div>
                   
-                  <p className="text-lg font-bold text-red-400 mb-3">Обложка не подходит</p>
+                  <p className={`text-lg font-bold ${isLight ? 'text-red-500' : 'text-red-400'} mb-3`}>Обложка не подходит</p>
                   
                   {/* Информация о загруженном файле */}
                   {coverFile && (
-                    <div className="mb-4 p-3 bg-zinc-800/80 border border-zinc-600 rounded-xl text-left">
-                      <div className="text-xs text-zinc-400 mb-1">Загруженный файл:</div>
-                      <div className="text-sm text-white font-medium truncate">{coverFile.name}</div>
+                    <div className={`mb-4 p-3 ${isLight ? 'bg-gray-100 border-gray-300' : 'bg-zinc-800/80 border-zinc-600'} border rounded-xl text-left`}>
+                      <div className={`text-xs ${isLight ? 'text-gray-500' : 'text-zinc-400'} mb-1`}>Загруженный файл:</div>
+                      <div className={`text-sm ${isLight ? 'text-gray-800' : 'text-white'} font-medium truncate`}>{coverFile.name}</div>
                       <div className="flex items-center gap-3 mt-2 text-xs">
-                        <span className="text-zinc-400">Формат: <span className="text-white font-medium">{coverFile.type.split('/')[1]?.toUpperCase() || 'Неизвестно'}</span></span>
-                        <span className="text-zinc-400">Размер: <span className="text-white font-medium">{(coverFile.size / 1024 / 1024).toFixed(2)} МБ</span></span>
+                        <span className={isLight ? 'text-gray-500' : 'text-zinc-400'}>Формат: <span className={`${isLight ? 'text-gray-800' : 'text-white'} font-medium`}>{coverFile.type.split('/')[1]?.toUpperCase() || 'Неизвестно'}</span></span>
+                        <span className={isLight ? 'text-gray-500' : 'text-zinc-400'}>Размер: <span className={`${isLight ? 'text-gray-800' : 'text-white'} font-medium`}>{(coverFile.size / 1024 / 1024).toFixed(2)} МБ</span></span>
                       </div>
                     </div>
                   )}
@@ -214,12 +295,12 @@ export default function CoverUploader({ coverFile, setCoverFile, previewUrl }: C
                   {/* Проблема */}
                   {imageInfo && (
                     <div className="mb-4 p-4 bg-red-500/10 border-2 border-red-500/50 rounded-xl">
-                      <div className="text-2xl font-black text-white mb-2">
+                      <div className={`text-2xl font-black ${isLight ? 'text-gray-800' : 'text-white'} mb-2`}>
                         {imageInfo.width} × {imageInfo.height} px
                       </div>
                       <div className="space-y-2 text-sm">
                         {imageInfo.width !== imageInfo.height && (
-                          <div className="flex items-center gap-2 text-red-400">
+                          <div className={`flex items-center gap-2 ${isLight ? 'text-red-500' : 'text-red-400'}`}>
                             <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/>
                             </svg>
@@ -227,7 +308,7 @@ export default function CoverUploader({ coverFile, setCoverFile, previewUrl }: C
                           </div>
                         )}
                         {imageInfo.width < 3000 && (
-                          <div className="flex items-center gap-2 text-red-400">
+                          <div className={`flex items-center gap-2 ${isLight ? 'text-red-500' : 'text-red-400'}`}>
                             <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/>
                             </svg>
@@ -235,7 +316,7 @@ export default function CoverUploader({ coverFile, setCoverFile, previewUrl }: C
                           </div>
                         )}
                         {imageInfo.width === imageInfo.height && imageInfo.width >= 3000 && (
-                          <div className="flex items-center gap-2 text-green-400">
+                          <div className={`flex items-center gap-2 ${isLight ? 'text-green-600' : 'text-green-400'}`}>
                             <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                               <polyline points="20 6 9 17 4 12"/>
                             </svg>
@@ -247,9 +328,9 @@ export default function CoverUploader({ coverFile, setCoverFile, previewUrl }: C
                   )}
                   
                   {/* Требования */}
-                  <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl">
-                    <div className="text-xs text-emerald-400 font-bold mb-2">✓ Требования к обложке:</div>
-                    <div className="text-xs text-emerald-300/80 space-y-1">
+                  <div className={`p-3 ${isLight ? 'bg-emerald-50 border-emerald-300' : 'bg-emerald-500/10 border-emerald-500/30'} border rounded-xl`}>
+                    <div className={`text-xs ${isLight ? 'text-emerald-600' : 'text-emerald-400'} font-bold mb-2`}>✓ Требования к обложке:</div>
+                    <div className={`text-xs ${isLight ? 'text-emerald-600/80' : 'text-emerald-300/80'} space-y-1`}>
                       <div>• Формат: JPG или PNG</div>
                       <div>• Размер: 3000×3000 пикселей (квадрат)</div>
                       <div>• Максимум: 50 МБ</div>
@@ -261,13 +342,13 @@ export default function CoverUploader({ coverFile, setCoverFile, previewUrl }: C
             
             {/* Кнопки управления - показываются только при наведении если нет ошибки */}
             {!error && (
-              <div className="absolute inset-0 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/40">
+              <div className={`absolute inset-0 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 ${isLight ? 'bg-black/30' : 'bg-black/40'}`}>
                 <label
                   htmlFor="cover-upload"
-                  className="group/btn flex items-center justify-center w-12 h-12 bg-black/80 hover:bg-black/90 backdrop-blur-md border border-white/40 hover:border-white/60 rounded-xl cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95 shadow-xl hover:shadow-2xl hover:rotate-3"
+                  className={`group/btn flex items-center justify-center w-12 h-12 ${isLight ? 'bg-white/90 hover:bg-white border-gray-300 hover:border-gray-400' : 'bg-black/80 hover:bg-black/90 border-white/40 hover:border-white/60'} backdrop-blur-md border rounded-xl cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95 shadow-xl hover:shadow-2xl hover:rotate-3`}
                   title="Заменить обложку"
                 >
-                  <svg className="w-5 h-5 transition-transform duration-500 group-hover/btn:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <svg className={`w-5 h-5 transition-transform duration-500 group-hover/btn:rotate-180 ${isLight ? 'text-gray-700' : 'text-white'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
                   </svg>
                 </label>
@@ -289,11 +370,11 @@ export default function CoverUploader({ coverFile, setCoverFile, previewUrl }: C
             className="flex flex-col items-center justify-center p-12 cursor-pointer"
           >
             <div className={`w-20 h-20 rounded-2xl flex items-center justify-center mb-4 transition-all ${
-              dragActive ? 'bg-purple-500/20 scale-110' : 'bg-white/5'
+              dragActive ? 'bg-purple-500/20 scale-110' : isLight ? 'bg-gray-100' : 'bg-white/5'
             }`}>
               <svg
                 className={`w-10 h-10 transition-colors ${
-                  dragActive ? 'text-purple-400' : error ? 'text-red-400' : 'text-zinc-500'
+                  dragActive ? 'text-purple-400' : error ? 'text-red-400' : isLight ? 'text-gray-400' : 'text-zinc-500'
                 }`}
                 viewBox="0 0 24 24"
                 fill="none"
@@ -306,17 +387,17 @@ export default function CoverUploader({ coverFile, setCoverFile, previewUrl }: C
               </svg>
             </div>
 
-            <p className="text-lg font-bold mb-1">
+            <p className={`text-lg font-bold mb-1 ${isLight ? 'text-gray-800' : 'text-white'}`}>
               {dragActive ? 'Отпустите файл' : 'Загрузите обложку'}
             </p>
-            <p className="text-sm text-zinc-500 mb-4">
+            <p className={`text-sm ${isLight ? 'text-gray-500' : 'text-zinc-500'} mb-4`}>
               Перетащите файл или нажмите для выбора
             </p>
 
-            <div className="flex flex-wrap items-center justify-center gap-2 text-xs text-zinc-600">
-              <div className="px-3 py-1.5 bg-white/5 rounded-lg">JPG, PNG</div>
-              <div className="px-3 py-1.5 bg-white/5 rounded-lg">Квадрат 1:1</div>
-              <div className="px-3 py-1.5 bg-white/5 rounded-lg">Мин. 3000x3000px</div>
+            <div className={`flex flex-wrap items-center justify-center gap-2 text-xs ${isLight ? 'text-gray-500' : 'text-zinc-600'}`}>
+              <div className={`px-3 py-1.5 ${isLight ? 'bg-gray-100' : 'bg-white/5'} rounded-lg`}>JPG, PNG</div>
+              <div className={`px-3 py-1.5 ${isLight ? 'bg-gray-100' : 'bg-white/5'} rounded-lg`}>Квадрат 1:1</div>
+              <div className={`px-3 py-1.5 ${isLight ? 'bg-gray-100' : 'bg-white/5'} rounded-lg`}>Мин. 3000x3000px</div>
             </div>
           </label>
         )}

@@ -1,0 +1,5 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/05/2025;01/04/2025;Yandex;"Russian Federation";thqlabel;qiw1;один;один;5063466006868;RU-A1D-24-42252;;"Music Release";Stream;3;RUB;0.065550775094
+01/04/2025;01/03/2025;Yandex;"Russian Federation";thqlabel;qiw1;один;один;5063466006868;RU-A1D-24-42252;;"Music Release";Stream;1;RUB;0.021290350854
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;qiw1;один;один;5063466006868;RU-A1D-24-42252;;"Music Release";Stream;1;RUB;-0.000061651710
+01/06/2025;01/05/2025;Yandex;"Russian Federation";thqlabel;qiw1;один;один;5063466006868;RU-A1D-24-42252;;"Music Release";Stream;3;RUB;0.062574605898

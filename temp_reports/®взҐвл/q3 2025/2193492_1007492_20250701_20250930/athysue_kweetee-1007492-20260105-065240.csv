@@ -1,0 +1,479 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/08/2025;01/07/2025;Spotify;Switzerland;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.015939802315
+01/09/2025;01/08/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.004200000039
+01/09/2025;01/08/2025;Yandex;Belarus;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;2;RUB;0.043278597666
+01/09/2025;01/08/2025;Spotify;Norway;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;2;RUB;0.036865940680
+01/08/2025;01/08/2025;"Apple Music";Ukraine;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;3;RUB;0.296918390466
+01/08/2025;01/07/2025;Spotify;Turkey;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;15;RUB;0.032576970958
+01/07/2025;01/06/2025;Spotify;Indonesia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;2;RUB;0.013019369949
+01/08/2025;01/07/2025;"UMA (Vkontakte)";Belarus;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.004200000038
+01/09/2025;01/08/2025;Spotify;Latvia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.006438558685
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;236;RUB;7.824977395869
+01/08/2025;01/07/2025;Spotify;"United States";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;53;RUB;7.039714072224
+01/07/2025;01/07/2025;"YouTube Official Content";Estonia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;15;RUB;0.552817703199
+01/07/2025;01/06/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;257;RUB;4.342401093701
+01/07/2025;01/06/2025;Spotify;Japan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.079295332519
+01/07/2025;01/06/2025;Yandex;Kazakhstan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;5;RUB;0.109972850708
+01/07/2025;01/06/2025;Spotify;Finland;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;11;RUB;0.279056664917
+01/07/2025;01/06/2025;Spotify;Belarus;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;16;RUB;0.793248113401
+01/08/2025;01/07/2025;Spotify;Portugal;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;3;RUB;0.549225807985
+01/08/2025;01/02/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;16;RUB;4.888980202654
+01/09/2025;01/09/2025;"YouTube Official Content";"Korea, Republic Of";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;2;RUB;0.506759417531
+01/09/2025;01/08/2025;Spotify;Estonia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;5;RUB;0.747859355787
+01/07/2025;01/06/2025;Yandex;Turkmenistan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;2;RUB;0.006364956326
+01/09/2025;01/08/2025;Spotify;Peru;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;2;RUB;0.003426974770
+01/08/2025;01/03/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;4;RUB;1.367616616796
+01/09/2025;01/08/2025;Spotify;Canada;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.151617671274
+01/07/2025;01/06/2025;Spotify;India;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;11;RUB;0.416030267750
+01/09/2025;01/08/2025;Spotify;Turkey;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;7;RUB;0.073212642733
+01/09/2025;01/09/2025;"YouTube Official Content";Ukraine;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;6;RUB;0.571141833101
+01/07/2025;01/06/2025;Spotify;Canada;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";1;RUB;-0.053482799803
+01/07/2025;01/07/2025;"YouTube Official Content";"South Africa";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.010368742606
+01/07/2025;01/06/2025;Spotify;Italy;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";2;RUB;-0.096997605001
+01/07/2025;01/06/2025;Spotify;Turkey;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;4;RUB;0.026677421059
+01/08/2025;01/07/2025;Spotify;Georgia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;2;RUB;0.252944737764
+01/07/2025;01/06/2025;Spotify;Netherlands;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;30;RUB;1.585857486758
+01/07/2025;01/07/2025;"YouTube UGC";Ukraine;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;2;RUB;0.002117804934
+01/07/2025;01/06/2025;Spotify;Canada;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;7;RUB;0.800224520755
+01/09/2025;01/08/2025;Spotify;Ukraine;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;28;RUB;1.268707590457
+01/09/2025;01/06/2025;"UMA (Vkontakte)";Worldwide;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;6.013973842992
+01/08/2025;01/07/2025;Spotify;Germany;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;2;RUB;0.114916012198
+01/08/2025;01/07/2025;Spotify;Poland;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;3;RUB;0.157106676467
+01/07/2025;01/06/2025;Spotify;Poland;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;12;RUB;0.691942676254
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Moldova, Republic Of";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.004200000039
+01/08/2025;01/07/2025;Spotify;Finland;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;32;RUB;0.484520257739
+01/07/2025;01/06/2025;Spotify;Germany;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;24;RUB;3.171272899604
+01/07/2025;01/06/2025;Spotify;India;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;12;RUB;0.476312426780
+01/07/2025;01/06/2025;Spotify;Kazakhstan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;15;RUB;0.406646524915
+01/07/2025;01/06/2025;Spotify;Netherlands;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;16;RUB;0.799880612844
+01/07/2025;01/06/2025;Spotify;Nigeria;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;144;RUB;2.199880732155
+01/07/2025;01/06/2025;Spotify;"United States";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;30;RUB;5.394440779394
+01/09/2025;01/08/2025;Spotify;Switzerland;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;4;RUB;0.826939394691
+01/09/2025;01/09/2025;"Apple Music";"United States";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;27;RUB;5.405091500810
+01/07/2025;01/06/2025;Spotify;Poland;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;2;RUB;0.028151316940
+01/08/2025;01/07/2025;Spotify;Egypt;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;1;RUB;0.025404059980
+01/07/2025;01/06/2025;Spotify;Norway;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";1;RUB;-0.009498525262
+01/09/2025;01/07/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;3;RUB;0.255108876430
+01/08/2025;01/07/2025;Spotify;Ireland;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;2;RUB;0.049363575248
+01/09/2025;01/08/2025;"UMA (Vkontakte)";Belarus;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;1;RUB;0.004200000039
+01/07/2025;01/06/2025;Spotify;Israel;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";2;RUB;-0.141732300504
+01/08/2025;01/08/2025;"YouTube Official Content";Ukraine;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;11;RUB;0.789937673082
+01/07/2025;01/06/2025;Spotify;Nigeria;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;75;RUB;1.158969698202
+01/07/2025;01/07/2025;"YouTube UGC";Lithuania;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.001563198343
+01/09/2025;01/07/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;8;RUB;0.680290337197
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;323;RUB;9.132002222482
+01/07/2025;01/06/2025;Spotify;Kazakhstan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";4;RUB;-0.087196728552
+01/09/2025;01/09/2025;"YouTube Official Content";Taiwan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;1;RUB;0.308759174606
+01/07/2025;01/06/2025;Spotify;Switzerland;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.378789971498
+01/07/2025;01/06/2025;Spotify;Belarus;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;3;RUB;0.233366060492
+01/09/2025;01/08/2025;Spotify;Belarus;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;15;RUB;0.452879907160
+01/07/2025;01/06/2025;Spotify;Spain;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;2;RUB;0.057481746634
+01/07/2025;01/06/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;439;RUB;17.477060096503
+01/09/2025;01/09/2025;"Apple Music";Turkey;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;7;RUB;0.279469465285
+01/08/2025;01/07/2025;Spotify;Georgia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;2;RUB;0.252944737764
+01/07/2025;01/06/2025;Spotify;"United Kingdom";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;11;RUB;1.185646996413
+01/09/2025;01/08/2025;Spotify;Kazakhstan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;13;RUB;1.236255204007
+01/08/2025;01/08/2025;"Apple Music";"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;5;RUB;0.464103920014
+01/08/2025;01/05/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;9;RUB;3.184688688002
+01/08/2025;01/07/2025;Spotify;Austria;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;2;RUB;0.054095704042
+01/08/2025;01/08/2025;"YouTube UGC";Poland;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.003126464810
+01/08/2025;01/08/2025;"Apple Music";"United States";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;6;RUB;1.129600384647
+01/07/2025;01/06/2025;Yandex;Belarus;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;6;RUB;0.131967420820
+01/07/2025;01/06/2025;Spotify;"Serbia And Montenegro";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";2;RUB;-0.081232797242
+01/09/2025;01/08/2025;Spotify;Turkey;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;8;RUB;0.030998534073
+01/08/2025;01/04/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;7;RUB;2.466258267014
+01/08/2025;01/07/2025;Spotify;France;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;17;RUB;1.739879262871
+01/07/2025;01/06/2025;Spotify;Turkey;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";1;RUB;-0.011915425632
+01/08/2025;01/07/2025;Spotify;Hungary;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;3;RUB;0.274114787647
+01/09/2025;01/09/2025;"YouTube Official Content";Poland;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;2;RUB;0.693340579879
+01/09/2025;01/09/2025;"YouTube Official Content";Iraq;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;3;RUB;0.518983306934
+01/09/2025;01/09/2025;"YouTube Official Content";Kazakhstan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;1;RUB;0.009328417078
+01/09/2025;01/08/2025;Spotify;Indonesia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.006802025654
+01/08/2025;01/07/2025;Spotify;Austria;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;2;RUB;0.054095704042
+01/08/2025;01/07/2025;Yandex;Kazakhstan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;6;RUB;0.128563946147
+01/08/2025;01/07/2025;Spotify;France;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;4;RUB;0.174889518378
+01/09/2025;01/08/2025;Spotify;Italy;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.284802372246
+01/08/2025;01/07/2025;Yandex;"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;652;RUB;13.485144376615
+01/08/2025;01/01/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;4;RUB;1.244809652571
+01/09/2025;01/09/2025;"Apple Music";Ukraine;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.094447253387
+01/09/2025;01/08/2025;Spotify;"Czech Republic";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;4;RUB;0.201204952446
+01/07/2025;01/07/2025;"YouTube UGC";Ukraine;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;2;RUB;0.002117804934
+01/08/2025;01/07/2025;Spotify;"Moldova, Republic Of";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;2;RUB;0.138128349381
+01/08/2025;01/08/2025;"YouTube Official Content";Canada;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.242578292492
+01/07/2025;01/06/2025;Spotify;Latvia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;4;RUB;0.008892475308
+01/07/2025;01/06/2025;Yandex;"Moldova, Republic Of";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;6;RUB;0.113155328871
+01/08/2025;01/07/2025;Spotify;Nigeria;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;152;RUB;2.400185742532
+01/08/2025;01/07/2025;Spotify;Lithuania;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;4;RUB;0.012154099234
+01/09/2025;01/08/2025;Yandex;"Moldova, Republic Of";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;4;RUB;0.086557195410
+01/07/2025;01/06/2025;Spotify;Netherlands;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";5;RUB;-0.173695871447
+01/07/2025;01/06/2025;Spotify;Thailand;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;2;RUB;0.031443006738
+01/07/2025;01/06/2025;Spotify;Nigeria;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";12;RUB;-0.071065630890
+01/09/2025;01/08/2025;Yandex;Kazakhstan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.021639298911
+01/08/2025;01/07/2025;Yandex;Belarus;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;2;RUB;0.042854648691
+01/08/2025;01/08/2025;"YouTube Official Content";France;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.099571427680
+01/08/2025;01/07/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;3;RUB;0.012600000038
+01/08/2025;01/07/2025;Spotify;Uzbekistan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;9;RUB;0.017683198222
+01/07/2025;01/06/2025;Spotify;Hungary;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;3;RUB;0.221624067607
+01/07/2025;01/06/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;80;RUB;0.665989677015
+01/07/2025;01/07/2025;"YouTube Official Content";Argentina;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.088419517042
+01/09/2025;01/08/2025;Spotify;Netherlands;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;8;RUB;1.668261693374
+01/09/2025;01/08/2025;Spotify;Australia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;4;RUB;0.353601486762
+01/07/2025;01/06/2025;Spotify;"Hong Kong";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";1;RUB;-0.004835906342
+01/07/2025;01/05/2025;"Facebook / Instagram";Ukraine;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Creation;6;RUB;0.035371893342
+01/07/2025;01/06/2025;Spotify;Denmark;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;2;RUB;0.037780737793
+01/07/2025;01/06/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;2;RUB;0.299411326852
+01/08/2025;01/07/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;24;RUB;3.448810177838
+01/08/2025;01/07/2025;Spotify;Indonesia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.006525356558
+01/09/2025;01/08/2025;Yandex;Belarus;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;30;RUB;0.649178965696
+01/09/2025;01/07/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;6;RUB;0.510217752937
+01/09/2025;01/08/2025;Spotify;Netherlands;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;18;RUB;1.871491655570
+01/08/2025;01/07/2025;Spotify;Mexico;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.131802240302
+01/07/2025;01/06/2025;Spotify;Ukraine;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";34;RUB;-0.182503408630
+01/08/2025;01/07/2025;Spotify;"United Kingdom";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;7;RUB;1.025626654314
+01/07/2025;01/06/2025;Spotify;Japan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;3;RUB;0.044658895503
+01/08/2025;01/08/2025;"YouTube Official Content";"United States";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;5;RUB;0.812564879896
+01/08/2025;01/07/2025;Spotify;Germany;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;23;RUB;1.912078919655
+01/07/2025;01/06/2025;Spotify;Uzbekistan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";1;RUB;-0.000415567089
+01/08/2025;01/07/2025;Spotify;Australia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;2;RUB;0.178077478797
+01/09/2025;01/08/2025;Spotify;"United States";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;28;RUB;3.308796056019
+01/09/2025;01/08/2025;Spotify;Uzbekistan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;6;RUB;0.011007847967
+01/09/2025;01/09/2025;"YouTube Official Content";Chile;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;1;RUB;0.112664065618
+01/09/2025;01/08/2025;Spotify;Estonia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;2;RUB;0.489745847685
+01/09/2025;01/08/2025;Spotify;Canada;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;1;RUB;0.082403165902
+01/09/2025;01/08/2025;Spotify;Germany;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;3;RUB;0.146892600051
+01/08/2025;01/07/2025;Spotify;Israel;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;1;RUB;0.206121568514
+01/07/2025;01/06/2025;Spotify;Ukraine;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;17;RUB;0.621638068614
+01/09/2025;01/08/2025;Spotify;Sweden;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;3;RUB;0.319539434530
+01/07/2025;01/06/2025;Spotify;Uzbekistan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;10;RUB;0.009727680225
+01/08/2025;01/07/2025;Spotify;Turkey;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;14;RUB;0.046773367280
+01/09/2025;01/08/2025;Spotify;Egypt;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;6;RUB;0.199906861134
+01/08/2025;01/07/2025;Spotify;Nigeria;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;187;RUB;2.913247630969
+01/09/2025;01/08/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.004200000039
+01/08/2025;01/06/2025;TikTok;Latvia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Creation;1;RUB;0.066265152634
+01/08/2025;01/07/2025;Spotify;India;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;4;RUB;0.155612324929
+01/09/2025;01/08/2025;Spotify;Nigeria;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;23;RUB;0.394050173793
+01/08/2025;01/07/2025;Spotify;Kazakhstan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;5;RUB;0.110931061638
+01/08/2025;01/01/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;4;RUB;1.244809652571
+01/07/2025;01/06/2025;Spotify;Lithuania;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";1;RUB;-0.058185424250
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;113;RUB;3.437831465353
+01/07/2025;01/06/2025;Spotify;Lithuania;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.082537892594
+01/09/2025;01/08/2025;Yandex;"Moldova, Republic Of";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;4;RUB;0.086557195410
+01/07/2025;01/07/2025;"YouTube Official Content";Japan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;1;RUB;0.264500511035
+01/08/2025;01/07/2025;Spotify;Finland;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;33;RUB;0.499662995270
+01/09/2025;01/08/2025;Spotify;Poland;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;49;RUB;3.178311390505
+01/09/2025;01/09/2025;"YouTube Official Content";Germany;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.094169174557
+01/07/2025;01/06/2025;Spotify;"South Africa";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.043037615392
+01/08/2025;01/07/2025;Spotify;India;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;21;RUB;0.715946192706
+01/08/2025;01/07/2025;Spotify;"Serbia And Montenegro";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;1;RUB;0.003735891174
+01/08/2025;01/08/2025;"YouTube Official Content";Ukraine;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;20;RUB;0.948187547565
+01/09/2025;01/08/2025;Spotify;Pakistan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;3;RUB;0.091541770402
+01/07/2025;01/06/2025;Yandex;Kazakhstan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;8;RUB;0.175956561118
+01/08/2025;01/07/2025;Spotify;Italy;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;3;RUB;0.575078179837
+01/09/2025;01/08/2025;Spotify;Indonesia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.006802025654
+01/08/2025;01/05/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;6;RUB;1.415452997390
+01/07/2025;01/06/2025;Spotify;"Moldova, Republic Of";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;3;RUB;0.112801781639
+01/07/2025;01/06/2025;Spotify;France;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;14;RUB;1.220872975214
+01/07/2025;01/06/2025;Spotify;"United Kingdom";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";3;RUB;-0.179262196061
+01/07/2025;01/06/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;18;RUB;2.430791534339
+01/09/2025;01/09/2025;"Apple Music";Japan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.200292781253
+01/07/2025;01/06/2025;Spotify;Romania;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.012970240299
+01/09/2025;01/06/2025;"UMA (Vkontakte)";Worldwide;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;1;RUB;1.533936365830
+01/08/2025;01/07/2025;Spotify;Poland;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;8;RUB;0.348234873461
+01/08/2025;01/08/2025;"Apple Music";"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;13;RUB;1.310613360033
+01/09/2025;01/08/2025;Spotify;France;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;5;RUB;0.153331158658
+01/09/2025;01/08/2025;Spotify;"Moldova, Republic Of";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.040500610838
+01/07/2025;01/06/2025;Spotify;Denmark;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";2;RUB;-0.016162968785
+01/07/2025;01/06/2025;Spotify;Turkey;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;3;RUB;0.010415495974
+01/08/2025;01/08/2025;"YouTube Official Content";Hungary;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;2;RUB;0.350999944970
+01/07/2025;01/06/2025;Spotify;"Viet Nam";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;2;RUB;0.003832116452
+01/08/2025;01/07/2025;Spotify;Poland;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;10;RUB;0.274762342217
+01/07/2025;01/06/2025;Spotify;Denmark;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;7;RUB;0.132257137151
+01/09/2025;01/09/2025;"YouTube Official Content";Canada;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.625400791047
+01/08/2025;01/08/2025;"YouTube Official Content";Poland;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.163588372038
+01/08/2025;01/07/2025;Spotify;Canada;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.060073129920
+01/08/2025;01/07/2025;Spotify;Uzbekistan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;14;RUB;0.027545970870
+01/09/2025;01/09/2025;"Apple Music";"United Kingdom";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;1;RUB;0.319149934780
+01/08/2025;01/07/2025;Yandex;Uzbekistan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.021427324346
+01/09/2025;01/08/2025;Spotify;Denmark;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.014694452370
+01/09/2025;01/08/2025;Yandex;"Moldova, Republic Of";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;2;RUB;0.043278597666
+01/09/2025;01/08/2025;Spotify;"United States";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;45;RUB;5.744596336370
+01/07/2025;01/06/2025;Spotify;Indonesia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.006485120150
+01/07/2025;01/06/2025;Spotify;Israel;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;2;RUB;0.453712760838
+01/07/2025;01/06/2025;Spotify;India;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;6;RUB;0.267904233273
+01/08/2025;01/02/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;9;RUB;2.750051364021
+01/09/2025;01/09/2025;"Apple Music";Turkey;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;7;RUB;0.279469465285
+01/07/2025;01/07/2025;"YouTube UGC";Spain;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.001710799236
+01/08/2025;01/07/2025;Spotify;"United Kingdom";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;2;RUB;0.160792755734
+01/07/2025;01/05/2025;TikTok;Latvia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Creation;1;RUB;0.069745987130
+01/09/2025;01/08/2025;Spotify;Nigeria;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;60;RUB;0.953477872666
+01/09/2025;01/08/2025;Spotify;"United Kingdom";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;22;RUB;3.071971330396
+01/07/2025;01/06/2025;Spotify;"Serbia And Montenegro";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;7;RUB;0.212485943834
+01/07/2025;01/06/2025;Spotify;Canada;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;9;RUB;1.201810681803
+01/09/2025;01/08/2025;Spotify;"United Kingdom";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;18;RUB;2.540842197430
+01/09/2025;01/09/2025;"Apple Music";Turkey;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;6;RUB;0.239545255947
+01/07/2025;01/06/2025;Spotify;Ukraine;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;91;RUB;1.928144121994
+01/08/2025;01/08/2025;"YouTube UGC";Ukraine;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.000757775314
+01/07/2025;01/06/2025;Spotify;Poland;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";4;RUB;-0.158416830139
+01/07/2025;01/07/2025;"Apple Music";"United States";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;70;RUB;13.611539191460
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;109;RUB;2.018709586278
+01/09/2025;01/09/2025;"Apple Music";Japan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;3;RUB;0.524789861685
+01/09/2025;01/09/2025;"Apple Music";"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;2;RUB;0.209562079979
+01/07/2025;01/07/2025;"Apple Music";"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;2;RUB;0.174698160031
+01/08/2025;01/07/2025;Spotify;"Czech Republic";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;19;RUB;1.671387895078
+01/09/2025;01/08/2025;Yandex;"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;366;RUB;7.495259602958
+01/08/2025;01/07/2025;Spotify;Georgia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;4;RUB;0.505939287360
+01/08/2025;01/07/2025;Spotify;Belarus;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;2;RUB;0.132101111521
+01/08/2025;01/07/2025;Spotify;Egypt;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;2;RUB;0.050758307978
+01/08/2025;01/07/2025;Spotify;Japan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;25;RUB;0.400089077693
+01/08/2025;01/07/2025;Yandex;Kazakhstan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;2;RUB;0.042854648691
+01/08/2025;01/01/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;4;RUB;1.244809652571
+01/08/2025;01/07/2025;"UMA (Vkontakte)";Belarus;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.004200000038
+01/09/2025;01/08/2025;Spotify;India;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;7;RUB;0.201516500747
+01/08/2025;01/07/2025;Spotify;Estonia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;2;RUB;0.237552866204
+01/08/2025;01/07/2025;Yandex;Belarus;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;4;RUB;0.085709297382
+01/09/2025;01/08/2025;Spotify;Brazil;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.088114790414
+01/09/2025;01/08/2025;Spotify;Nigeria;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;57;RUB;0.976428130634
+01/08/2025;01/06/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;9;RUB;2.901650122734
+01/07/2025;01/06/2025;Spotify;Nigeria;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;18;RUB;0.279744470864
+01/09/2025;01/08/2025;Spotify;Lithuania;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;5;RUB;0.011994411617
+01/07/2025;01/06/2025;Spotify;Slovakia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.063475569778
+01/07/2025;01/06/2025;Spotify;"Hong Kong";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.011299830539
+01/09/2025;01/08/2025;Spotify;Japan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;40;RUB;0.967704901334
+01/07/2025;01/07/2025;"YouTube Official Content";"United States";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;2;RUB;0.417650606488
+01/07/2025;01/06/2025;Spotify;"Czech Republic";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;12;RUB;0.939556324558
+01/09/2025;01/08/2025;Spotify;Belarus;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;1;RUB;0.079599277376
+01/09/2025;01/09/2025;"Apple Music";Ukraine;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;1;RUB;0.094447253387
+01/07/2025;01/06/2025;Spotify;Romania;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;4;RUB;0.349164763542
+01/07/2025;01/06/2025;Spotify;"South Africa";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";1;RUB;-0.031174477810
+01/07/2025;01/06/2025;Spotify;"Serbia And Montenegro";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;5;RUB;0.006239471684
+01/09/2025;01/09/2025;"Apple Music";"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;61;RUB;6.512109520038
+01/09/2025;01/08/2025;Yandex;Belarus;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;15;RUB;0.324589482887
+01/09/2025;01/09/2025;"Apple Music";Ukraine;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.094447253387
+01/08/2025;01/07/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;15;RUB;2.210407919865
+01/08/2025;01/07/2025;Spotify;Lithuania;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.064207516202
+01/07/2025;01/07/2025;"YouTube UGC";"Korea, Republic Of";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.000594206061
+01/07/2025;01/06/2025;Yandex;Turkmenistan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;8;RUB;0.025459825234
+01/07/2025;01/06/2025;Spotify;Spain;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;5;RUB;0.211306831006
+01/07/2025;01/06/2025;Spotify;Germany;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";8;RUB;-0.411761690848
+01/08/2025;01/07/2025;Spotify;Peru;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.001942663410
+01/09/2025;01/08/2025;Spotify;Finland;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;19;RUB;0.285477361580
+01/07/2025;01/06/2025;Yandex;Belarus;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;6;RUB;0.131967420820
+01/08/2025;01/07/2025;Spotify;"Moldova, Republic Of";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.039152139423
+01/08/2025;01/07/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;12;RUB;1.818522046634
+01/07/2025;01/06/2025;Yandex;"Moldova, Republic Of";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;6;RUB;0.094343236849
+01/09/2025;01/08/2025;Spotify;Malaysia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;1;RUB;0.033594737491
+01/09/2025;01/08/2025;Spotify;Romania;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;5;RUB;0.463991613102
+01/08/2025;01/07/2025;"UMA (Vkontakte)";Ukraine;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;1;RUB;0.004200000038
+01/07/2025;01/07/2025;"YouTube Official Content";Kazakhstan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;3;RUB;1.356363459517
+01/09/2025;01/08/2025;Spotify;Uzbekistan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;3;RUB;0.005503923983
+01/07/2025;01/06/2025;Spotify;Austria;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.125231600148
+01/09/2025;01/08/2025;Spotify;Denmark;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.014694452370
+01/07/2025;01/06/2025;Yandex;"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;431;RUB;9.197478348874
+01/07/2025;01/06/2025;Yandex;Belarus;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;32;RUB;0.703826244323
+01/09/2025;01/08/2025;Spotify;Sweden;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.241913263814
+01/07/2025;01/06/2025;"UMA (Vkontakte)";Kyrgyzstan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.004200000000
+01/07/2025;01/06/2025;Spotify;Thailand;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";1;RUB;-0.005932761979
+01/08/2025;01/07/2025;Spotify;Egypt;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;3;RUB;0.079649199670
+01/09/2025;01/08/2025;Spotify;"Czech Republic";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;9;RUB;0.915936895998
+01/07/2025;01/06/2025;Spotify;Norway;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;2;RUB;0.044413246963
+01/08/2025;01/07/2025;"UMA (Vkontakte)";Ukraine;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.004200000038
+01/08/2025;01/07/2025;Spotify;Italy;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;3;RUB;0.358645551758
+01/09/2025;01/08/2025;Spotify;Egypt;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;5;RUB;0.185991266589
+01/09/2025;01/08/2025;Spotify;Israel;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;3;RUB;0.028194655983
+01/07/2025;01/06/2025;Spotify;"United States";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;43;RUB;6.958632123453
+01/07/2025;01/06/2025;Spotify;Uzbekistan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;11;RUB;0.010710284038
+01/07/2025;01/06/2025;Spotify;Lithuania;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.005502526138
+01/07/2025;01/06/2025;Yandex;"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;849;RUB;17.890634687802
+01/07/2025;01/06/2025;Spotify;Kazakhstan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;29;RUB;1.007551875766
+01/08/2025;01/07/2025;Spotify;Malaysia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.032128664018
+01/07/2025;01/06/2025;Yandex;Kyrgyzstan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.021994570186
+01/09/2025;01/08/2025;Spotify;France;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;1;RUB;0.030687001270
+01/09/2025;01/09/2025;"YouTube Official Content";"United States";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;3;RUB;0.445467794479
+01/09/2025;01/08/2025;Spotify;Poland;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;27;RUB;1.851500990338
+01/08/2025;01/07/2025;Yandex;"Moldova, Republic Of";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;2;RUB;0.042854648691
+01/09/2025;01/09/2025;"Apple Music";"United States";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;21;RUB;4.461105808742
+01/09/2025;01/08/2025;Spotify;"United Kingdom";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;4;RUB;0.318916348286
+01/07/2025;01/07/2025;"YouTube Official Content";Latvia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.035472014017
+01/07/2025;01/07/2025;"YouTube Official Content";France;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;2;RUB;0.481398514834
+01/07/2025;01/06/2025;Spotify;France;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;28;RUB;2.661699603339
+01/07/2025;01/06/2025;Yandex;"Moldova, Republic Of";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;7;RUB;0.116337807034
+01/09/2025;01/08/2025;Spotify;Japan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;10;RUB;0.796719713380
+01/08/2025;01/07/2025;Spotify;Algeria;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.000448306941
+01/09/2025;01/08/2025;Yandex;"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;980;RUB;20.655969216265
+01/08/2025;01/07/2025;Spotify;India;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;1;RUB;0.043635208757
+01/07/2025;01/06/2025;Spotify;Denmark;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;21;RUB;0.396820521499
+01/08/2025;01/08/2025;"YouTube UGC";Ukraine;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;1;RUB;0.000757775314
+01/09/2025;01/08/2025;Spotify;Netherlands;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;29;RUB;3.678649705660
+01/08/2025;01/08/2025;"Apple Music";Japan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;2;RUB;0.396481092076
+01/08/2025;01/07/2025;Spotify;Norway;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;2;RUB;0.029090139246
+01/08/2025;01/07/2025;"UMA (Vkontakte)";Kyrgyzstan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;2;RUB;0.008400000000
+01/08/2025;01/07/2025;Spotify;"United Kingdom";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;11;RUB;1.236181480254
+01/07/2025;01/06/2025;Spotify;"Serbia And Montenegro";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;5;RUB;0.006239471684
+01/09/2025;01/08/2025;Spotify;Mexico;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.086712846268
+01/09/2025;01/08/2025;Spotify;Poland;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;38;RUB;2.587885173058
+01/09/2025;01/08/2025;Spotify;Kazakhstan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;3;RUB;0.299600667092
+01/07/2025;01/06/2025;Spotify;Japan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;2;RUB;0.094181631045
+01/07/2025;01/07/2025;"YouTube Official Content";"United States";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;1;RUB;0.777075201379
+01/07/2025;01/06/2025;Spotify;Latvia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;2;RUB;0.004421672830
+01/07/2025;01/06/2025;Spotify;"Moldova, Republic Of";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";1;RUB;-0.030002734510
+01/08/2025;01/07/2025;Yandex;"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;469;RUB;9.828004829237
+01/08/2025;01/07/2025;Spotify;Netherlands;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;8;RUB;0.603221888362
+01/08/2025;01/08/2025;"YouTube Official Content";"United Kingdom";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.182917943578
+01/07/2025;01/06/2025;Spotify;"Czech Republic";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";5;RUB;-0.084327982298
+01/08/2025;01/07/2025;Yandex;"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;932;RUB;19.410474896847
+01/09/2025;01/08/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.172406485472
+01/09/2025;01/06/2025;"UMA (Vkontakte)";Worldwide;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;3.562654112516
+01/08/2025;01/07/2025;Spotify;Japan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;6;RUB;0.779506139395
+01/07/2025;01/07/2025;"YouTube Official Content";Ukraine;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;7;RUB;0.473099800178
+01/08/2025;01/05/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;24;RUB;3.892630002905
+01/07/2025;01/06/2025;Spotify;Spain;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";4;RUB;-0.102809921939
+01/09/2025;01/08/2025;Spotify;Uzbekistan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;2;RUB;0.003686594045
+01/07/2025;01/06/2025;Spotify;Canada;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;3;RUB;0.439317764255
+01/08/2025;01/07/2025;Spotify;Uzbekistan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;7;RUB;0.013748089456
+01/09/2025;01/08/2025;Spotify;Germany;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;52;RUB;9.508712627331
+01/09/2025;01/08/2025;Spotify;Finland;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;5;RUB;0.075133825506
+01/08/2025;01/07/2025;Spotify;Turkey;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;5;RUB;0.010858990319
+01/09/2025;01/08/2025;Spotify;Romania;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;6;RUB;0.556779561366
+01/08/2025;01/07/2025;Spotify;"United States";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;47;RUB;6.429867218433
+01/09/2025;01/08/2025;Spotify;Switzerland;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;2;RUB;0.413469697385
+01/09/2025;01/08/2025;Spotify;Egypt;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;9;RUB;0.288229357374
+01/09/2025;01/08/2025;Spotify;Ukraine;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;15;RUB;0.621892066339
+01/07/2025;01/07/2025;"Apple Music";"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;21;RUB;2.183060320018
+01/08/2025;01/07/2025;Spotify;Belarus;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;16;RUB;0.273915505274
+01/09/2025;01/08/2025;"UMA (Vkontakte)";Belarus;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.004200000039
+01/09/2025;01/08/2025;Spotify;Kazakhstan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;13;RUB;0.744276625170
+01/08/2025;01/07/2025;Spotify;Ukraine;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;17;RUB;0.558540615058
+01/07/2025;01/04/2025;"Facebook / Instagram";Worldwide;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Creation;6;RUB;0.130818480898
+01/07/2025;01/06/2025;Yandex;Kyrgyzstan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.021994570186
+01/07/2025;01/06/2025;Spotify;Poland;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;18;RUB;0.373778771696
+01/08/2025;01/07/2025;Spotify;Romania;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.013349584485
+01/09/2025;01/08/2025;Spotify;"Serbia And Montenegro";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.058881657254
+01/09/2025;01/08/2025;Spotify;Greece;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.003634670237
+01/07/2025;01/06/2025;Spotify;Latvia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";1;RUB;-0.000949536701
+01/07/2025;01/06/2025;Spotify;Thailand;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;3;RUB;0.047115380384
+01/08/2025;01/08/2025;"YouTube Official Content";Ukraine;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;3;RUB;0.271920176483
+01/07/2025;01/06/2025;Spotify;"United Kingdom";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;8;RUB;1.225392927092
+01/08/2025;01/04/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;6;RUB;2.113935657418
+01/07/2025;01/06/2025;Spotify;Egypt;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.000540426654
+01/07/2025;01/06/2025;Spotify;Netherlands;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;24;RUB;1.434980199012
+01/08/2025;01/07/2025;Spotify;Ukraine;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;35;RUB;1.177054746235
+01/07/2025;01/05/2025;"Facebook / Instagram";Italy;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Creation;6;RUB;0.251698567046
+01/08/2025;01/08/2025;"Apple Music";"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;4;RUB;0.423254719972
+01/08/2025;01/08/2025;"YouTube Official Content";Germany;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.006202962076
+01/09/2025;01/08/2025;Spotify;Germany;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;20;RUB;1.059973642125
+01/07/2025;01/06/2025;Spotify;Uzbekistan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;10;RUB;0.009727680225
+01/07/2025;01/06/2025;Spotify;Egypt;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;2;RUB;0.134124075530
+01/08/2025;01/08/2025;"YouTube Official Content";Argentina;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;1;RUB;0.040747654337
+01/08/2025;01/06/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;12;RUB;3.546538088625
+01/09/2025;01/09/2025;"YouTube Official Content";"New Zealand";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;1;RUB;0.240420052086
+01/09/2025;01/08/2025;Spotify;India;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;11;RUB;0.322031774677
+01/08/2025;01/07/2025;Spotify;Nigeria;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;27;RUB;0.423301404789
+01/09/2025;01/08/2025;Spotify;"United States";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;96;RUB;13.530682796840
+01/08/2025;01/07/2025;Yandex;Uzbekistan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;1;RUB;0.021427324346
+01/07/2025;01/07/2025;"Apple Music";"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;19;RUB;1.858661840042
+01/09/2025;01/08/2025;Spotify;Ukraine;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;37;RUB;2.400803479392
+01/07/2025;01/06/2025;Spotify;"Hong Kong";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.011299830539
+01/07/2025;01/06/2025;Spotify;"Viet Nam";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";2;RUB;-0.001644792135
+01/08/2025;01/07/2025;Spotify;"Serbia And Montenegro";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.056038367453
+01/08/2025;01/07/2025;Spotify;Australia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.082289229332
+01/07/2025;01/06/2025;Spotify;Norway;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.022206623445
+01/08/2025;01/07/2025;Yandex;Belarus;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;7;RUB;0.149991270493
+01/08/2025;01/07/2025;Yandex;Kazakhstan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;2;RUB;0.042854648691
+01/09/2025;01/08/2025;Spotify;Switzerland;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;3;RUB;0.620178578877
+01/08/2025;01/07/2025;Spotify;Germany;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;25;RUB;4.196401995115
+01/09/2025;01/09/2025;"YouTube Official Content";Ukraine;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;10;RUB;0.465203280706
+01/07/2025;01/07/2025;"YouTube Official Content";Ukraine;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;6;RUB;0.431201634545
+01/07/2025;01/06/2025;Spotify;"United Kingdom";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;2;RUB;0.400701816755
+01/08/2025;01/04/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;9;RUB;3.170903486203
+01/07/2025;01/06/2025;Spotify;"Moldova, Republic Of";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;3;RUB;0.021322293890
+01/08/2025;01/07/2025;Spotify;Estonia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;11;RUB;2.303799551282
+01/08/2025;01/07/2025;Spotify;Canada;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;2;RUB;0.139871765162
+01/09/2025;01/08/2025;Spotify;Pakistan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;2;RUB;0.061010535494
+01/09/2025;01/08/2025;Spotify;Malaysia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.033594737491
+01/09/2025;01/08/2025;Spotify;Romania;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;4;RUB;0.371203675274
+01/09/2025;01/08/2025;Spotify;Pakistan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;2;RUB;0.061010535494
+01/08/2025;01/08/2025;"YouTube Official Content";Estonia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;2;RUB;0.063210034678
+01/08/2025;01/08/2025;"YouTube UGC";Ukraine;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.000757775314
+01/08/2025;01/07/2025;Spotify;"Czech Republic";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;2;RUB;0.165873567730
+01/08/2025;01/07/2025;Spotify;Israel;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.206121568514
+01/08/2025;01/07/2025;Spotify;Netherlands;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;4;RUB;0.177380112469
+01/07/2025;01/06/2025;Spotify;Portugal;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;3;RUB;0.451649308653
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;297;RUB;14.493017057818
+01/07/2025;01/06/2025;Spotify;France;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;1;RUB;0.259110027138
+01/08/2025;01/06/2025;"Facebook / Instagram";Worldwide;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Creation;6;RUB;0.128492557675
+01/08/2025;01/07/2025;Spotify;Ukraine;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;89;RUB;4.917877326708
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;284;RUB;12.922978329954
+01/07/2025;01/07/2025;"YouTube Official Content";"United Kingdom";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.153962183643
+01/08/2025;01/07/2025;Spotify;Sweden;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.013897515166
+01/07/2025;01/06/2025;Spotify;Mexico;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";1;RUB;-0.026006735461
+01/08/2025;01/07/2025;Spotify;Singapore;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.008218960582
+01/07/2025;01/06/2025;Spotify;Brazil;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;3;RUB;0.027266982374
+01/07/2025;01/06/2025;Spotify;Germany;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;8;RUB;1.662892877754
+01/07/2025;01/07/2025;"Apple Music";"United States";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;7;RUB;2.290797874502
+01/09/2025;01/08/2025;Spotify;Denmark;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;1;RUB;0.014694452370
+01/07/2025;01/06/2025;Spotify;Sweden;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;4;RUB;0.388173743812
+01/09/2025;01/08/2025;Spotify;France;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;6;RUB;0.427229520272
+01/08/2025;01/07/2025;Spotify;Mexico;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;6;RUB;0.790962877309
+01/08/2025;01/07/2025;Spotify;"United States";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;37;RUB;4.867069151906
+01/08/2025;01/07/2025;Spotify;Estonia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;1;RUB;0.002988712938
+01/09/2025;01/08/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;4;RUB;0.616880911108
+01/08/2025;01/08/2025;"Apple Music";"United States";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;21;RUB;3.953601346266
+01/08/2025;01/07/2025;Spotify;Denmark;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;9;RUB;0.079798635242
+01/08/2025;01/03/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;21;RUB;7.179987238196
+01/08/2025;01/07/2025;Yandex;"Moldova, Republic Of";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;3;RUB;0.064281973111
+01/08/2025;01/07/2025;Spotify;Israel;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;2;RUB;0.018430396406
+01/07/2025;01/06/2025;Spotify;Estonia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;2;RUB;0.462850884685
+01/07/2025;01/06/2025;Spotify;"Viet Nam";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.001916058226
+01/07/2025;01/06/2025;Spotify;Germany;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;38;RUB;4.721511291368
+01/07/2025;01/06/2025;Spotify;Belarus;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;9;RUB;0.312514008854
+01/07/2025;01/06/2025;Spotify;"Czech Republic";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;11;RUB;0.783373024479
+01/07/2025;01/06/2025;Spotify;Switzerland;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";1;RUB;-0.118983636126
+01/09/2025;01/08/2025;"UMA (Vkontakte)";Belarus;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;6;RUB;0.025200000000
+01/08/2025;01/07/2025;Spotify;Mexico;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;4;RUB;0.527308584873
+01/08/2025;01/02/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;16;RUB;4.888980202654
+01/07/2025;01/06/2025;Spotify;Kazakhstan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;22;RUB;0.655439286047
+01/07/2025;01/06/2025;Spotify;Portugal;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;2;RUB;0.011791127545
+01/07/2025;01/06/2025;Spotify;Mexico;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.039598536574
+01/07/2025;01/06/2025;Spotify;Belarus;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";5;RUB;-0.061953243978
+01/09/2025;01/08/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;3;RUB;0.250683616899
+01/09/2025;01/08/2025;Spotify;Finland;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;22;RUB;0.670752475649
+01/08/2025;01/07/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;3;RUB;0.012600000038
+01/09/2025;01/08/2025;Spotify;Turkey;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;7;RUB;0.012202096725
+01/08/2025;01/08/2025;"YouTube Official Content";"United States";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;12;RUB;2.363992459851
+01/07/2025;01/06/2025;Spotify;Estonia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;2;RUB;0.342925291932
+01/09/2025;01/08/2025;Yandex;Kazakhstan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;1;RUB;0.021639298911
+01/07/2025;01/06/2025;Spotify;Finland;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.164093191250
+01/09/2025;01/08/2025;Yandex;Kazakhstan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.021639298911
+01/07/2025;01/06/2025;Spotify;"United States";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";13;RUB;-0.902508270554
+01/09/2025;01/09/2025;"Apple Music";"United States";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;46;RUB;9.057907624493
+01/07/2025;01/06/2025;Spotify;Estonia;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";1;RUB;-0.066671246119
+01/08/2025;01/07/2025;Spotify;France;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;1;RUB;0.043734832571
+01/08/2025;01/07/2025;Spotify;Morocco;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.036761169073
+01/07/2025;01/06/2025;Spotify;"United States";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;9;RUB;1.491479371312
+01/07/2025;01/06/2025;Yandex;Turkmenistan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;3;RUB;0.009547434490
+01/09/2025;01/08/2025;Yandex;"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;691;RUB;14.589276976162
+01/08/2025;01/08/2025;"Apple Music";"United States";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;80;RUB;16.010552251986
+01/08/2025;01/07/2025;Spotify;Belarus;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;30;RUB;1.369228992682
+01/08/2025;01/07/2025;Spotify;Finland;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;3;RUB;0.045428436520
+01/07/2025;01/06/2025;Spotify;Italy;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;5;RUB;0.883204585570
+01/07/2025;01/06/2025;"UMA (Vkontakte)";Belarus;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.004200000000
+01/07/2025;01/07/2025;"YouTube UGC";Ukraine;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;2;RUB;0.002117804934
+01/09/2025;01/08/2025;Spotify;India;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;26;RUB;0.784361829420
+01/08/2025;01/07/2025;Spotify;Romania;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.013349584485
+01/07/2025;01/06/2025;Spotify;Finland;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";1;RUB;-0.109324737454
+01/08/2025;01/07/2025;Spotify;Netherlands;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;14;RUB;1.614602349315
+01/08/2025;01/07/2025;Spotify;Japan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;5;RUB;0.467534326246
+01/07/2025;01/06/2025;Spotify;France;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";"Platform Promotion";7;RUB;-0.217518565388
+01/08/2025;01/08/2025;"YouTube Official Content";Kazakhstan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;2;RUB;0.027681875342
+01/07/2025;01/06/2025;Spotify;Ukraine;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;52;RUB;1.487303415853
+01/07/2025;01/06/2025;"UMA (Vkontakte)";Belarus;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.004200000000
+01/07/2025;01/07/2025;"YouTube UGC";France;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.002750272172
+01/09/2025;01/09/2025;"YouTube Official Content";"United States";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;5;RUB;1.183010720006
+01/08/2025;01/07/2025;Spotify;Brazil;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;4;RUB;0.032327911571
+01/08/2025;01/07/2025;Yandex;Uzbekistan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";LOBOTOMY;3617667208471;DG-A0S-24-57096;;"Music Release";Stream;1;RUB;0.021427324346
+01/09/2025;01/09/2025;"Apple Music";"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;19;RUB;1.976824079950
+01/08/2025;01/07/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";"BUBBLEGUM Bonus Track";3617667208471;DG-A0S-24-57110;;"Music Release";Stream;2;RUB;0.008400000000
+01/08/2025;01/03/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;11;RUB;3.760945696244
+01/09/2025;01/08/2025;Spotify;"United Arab Emirates";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.005555853010
+01/07/2025;01/06/2025;Yandex;"Russian Federation";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1452;RUB;30.859242759861
+01/09/2025;01/08/2025;Spotify;"Moldova, Republic Of";thqlabel;"athysue, kweetee";"made it lovely & fairly sadistic";MERTVA;3617667208471;DG-A0S-24-57103;;"Music Release";Stream;1;RUB;0.040500610838

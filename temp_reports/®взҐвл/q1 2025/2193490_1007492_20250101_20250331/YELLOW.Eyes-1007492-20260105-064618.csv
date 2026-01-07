@@ -1,0 +1,73 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/03/2025;01/02/2025;Yandex;Kazakhstan;"Stars Clique";YELLOW.Eyes;"давит на мозги";"давит на мозги";3617390151242;FR-2X4-25-26424;;"Music Release";Stream;3;RUB;0.028104468584
+01/03/2025;01/02/2025;"Amazon Music Streaming";"United States";"Stars Clique";YELLOW.Eyes;"Баба капа";"Баба капа";3617669282622;FR-10S-25-71795;;"Music Release";Stream;16;RUB;2.873614756536
+01/02/2025;01/01/2025;Yandex;"Russian Federation";"Stars Clique";YELLOW.Eyes;"дед мороз";"дед мороз";3617667954187;DG-A0T-24-26105;;"Music Release";Stream;1736;RUB;37.959926957540
+01/03/2025;01/02/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";YELLOW.Eyes;"запах лета";"запах лета";3617390891797;FR-2X4-25-83824;;"Music Release";Stream;1;RUB;0.120822049358
+01/02/2025;01/02/2025;"YouTube Official Content";"United States";"Stars Clique";YELLOW.Eyes;"Баба капа";"Баба капа";3617669282622;FR-10S-25-71795;;"Music Release";Stream;1;RUB;0.013403080926
+01/03/2025;01/02/2025;Yandex;Belarus;"Stars Clique";YELLOW.Eyes;"запах лета";адреналин;3617390891797;FR-2X4-25-83825;;"Music Release";Stream;4;RUB;0.013034853646
+01/01/2025;01/12/2024;Yandex;"Russian Federation";"Stars Clique";YELLOW.Eyes;"дед мороз";"дед мороз";3617667954187;DG-A0T-24-26105;;"Music Release";Stream;170;RUB;3.896213446926
+01/03/2025;01/02/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";YELLOW.Eyes;"In love";"In love";3617667065494;DG-A0S-24-44474;;"Music Release";Stream;6;RUB;0.229902424873
+01/02/2025;01/01/2025;Yandex;Belarus;"Stars Clique";YELLOW.Eyes;"Баба капа";"Баба капа";3617669282622;FR-10S-25-71795;;"Music Release";Stream;4;RUB;0.089722750851
+01/03/2025;01/02/2025;Yandex;"Russian Federation";"Stars Clique";YELLOW.Eyes;"запах лета";"не так";3617390891797;FR-2X4-25-83826;;"Music Release";Stream;22;RUB;0.474914919254
+01/02/2025;01/01/2025;Yandex;"Moldova, Republic Of";"Stars Clique";YELLOW.Eyes;"In love";"In love";3617667065494;DG-A0S-24-44474;;"Music Release";Stream;1;RUB;0.003219963738
+01/01/2025;01/01/2025;"Apple Music";"Russian Federation";"Stars Clique";YELLOW.Eyes;"Баба капа";"Баба капа";3617669282622;FR-10S-25-71795;;"Music Release";Stream;1;RUB;0.100701440030
+01/01/2025;01/12/2024;Yandex;Belarus;"Stars Clique";YELLOW.Eyes;"In love";"In love";3617667065494;DG-A0S-24-44474;;"Music Release";Stream;3;RUB;0.052744147321
+01/03/2025;01/01/2025;TikTok;France;"Stars Clique";YELLOW.Eyes;"Баба капа";"Баба капа";3617669282622;FR-10S-25-71795;;"Music Release";Creation;1;RUB;0.089275003734
+01/01/2025;01/12/2024;Yandex;"Moldova, Republic Of";"Stars Clique";YELLOW.Eyes;"In love";"In love";3617667065494;DG-A0S-24-44474;;"Music Release";Stream;2;RUB;0.262007372599
+01/03/2025;01/02/2025;"UMA VK MUSIC";"Russian Federation";"Stars Clique";YELLOW.Eyes;"In love";"In love";3617667065494;DG-A0S-24-44474;;"Music Release";Stream;1;RUB;0.120822049358
+01/03/2025;01/02/2025;Yandex;"Russian Federation";"Stars Clique";YELLOW.Eyes;"дед мороз";"дед мороз";3617667954187;DG-A0T-24-26105;;"Music Release";Stream;247;RUB;5.167044365381
+01/02/2025;01/01/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";YELLOW.Eyes;"In love";"In love";3617667065494;DG-A0S-24-44474;;"Music Release";Stream;15;RUB;0.275130649362
+01/03/2025;01/02/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";YELLOW.Eyes;"дед мороз";"дед мороз";3617667954187;DG-A0T-24-26105;;"Music Release";Stream;1;RUB;0.004200000000
+01/02/2025;01/01/2025;"Amazon Music Streaming";"United States";"Stars Clique";YELLOW.Eyes;"дед мороз";"дед мороз";3617667954187;DG-A0T-24-26105;;"Music Release";Stream;1;RUB;0.190828338146
+01/01/2025;01/12/2024;Yandex;Kazakhstan;"Stars Clique";YELLOW.Eyes;"дед мороз";"дед мороз";3617667954187;DG-A0T-24-26105;;"Music Release";Stream;2;RUB;0.148585068811
+01/01/2025;01/12/2024;Yandex;"Russian Federation";"Stars Clique";YELLOW.Eyes;"In love";"In love";3617667065494;DG-A0S-24-44474;;"Music Release";Stream;220;RUB;7.497417861626
+01/02/2025;01/01/2025;Yandex;Kazakhstan;"Stars Clique";YELLOW.Eyes;"дед мороз";"дед мороз";3617667954187;DG-A0T-24-26105;;"Music Release";Stream;21;RUB;0.451833718150
+01/03/2025;01/01/2025;TikTok;"United States";"Stars Clique";YELLOW.Eyes;"Баба капа";"Баба капа";3617669282622;FR-10S-25-71795;;"Music Release";Creation;2;RUB;0.178550007542
+01/02/2025;01/01/2025;Yandex;"Russian Federation";"Stars Clique";YELLOW.Eyes;"Баба капа";"Баба капа";3617669282622;FR-10S-25-71795;;"Music Release";Stream;377;RUB;8.395089353885
+01/01/2025;01/12/2024;Yandex;Uzbekistan;"Stars Clique";YELLOW.Eyes;"In love";"In love";3617667065494;DG-A0S-24-44474;;"Music Release";Stream;2;RUB;0.262007372599
+01/02/2025;01/12/2024;TikTok;Denmark;"Stars Clique";YELLOW.Eyes;"In love";"In love";3617667065494;DG-A0S-24-44474;;"Music Release";Creation;5;RUB;0.485727967325
+01/01/2025;01/12/2024;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";YELLOW.Eyes;"дед мороз";"дед мороз";3617667954187;DG-A0T-24-26105;;"Music Release";Stream;21;RUB;0.661201172821
+01/02/2025;01/12/2024;TikTok;"United States";"Stars Clique";YELLOW.Eyes;"In love";"In love";3617667065494;DG-A0S-24-44474;;"Music Release";Creation;1;RUB;0.097145593481
+01/02/2025;01/01/2025;Yandex;Uzbekistan;"Stars Clique";YELLOW.Eyes;"In love";"In love";3617667065494;DG-A0S-24-44474;;"Music Release";Stream;3;RUB;0.067292063138
+01/03/2025;01/02/2025;Yandex;Uzbekistan;"Stars Clique";YELLOW.Eyes;"Баба капа";"Баба капа";3617669282622;FR-10S-25-71795;;"Music Release";Stream;2;RUB;0.043174083595
+01/03/2025;01/01/2025;TikTok;Poland;"Stars Clique";YELLOW.Eyes;"дед мороз";"дед мороз";3617667954187;DG-A0T-24-26105;;"Music Release";Creation;1;RUB;0.089275003734
+01/03/2025;01/02/2025;Yandex;"Russian Federation";"Stars Clique";YELLOW.Eyes;"In love";"In love";3617667065494;DG-A0S-24-44474;;"Music Release";Stream;40;RUB;0.845153343042
+01/01/2025;01/12/2024;"UMA VK MUSIC";"Russian Federation";"Stars Clique";YELLOW.Eyes;"дед мороз";"дед мороз";3617667954187;DG-A0T-24-26105;;"Music Release";Stream;1;RUB;0.127582205246
+01/03/2025;01/03/2025;"YouTube Official Content";Kazakhstan;"Stars Clique";YELLOW.Eyes;"Баба капа";"Баба капа";3617669282622;FR-10S-25-71795;;"Music Release";Stream;1;RUB;0.016646132322
+01/03/2025;01/02/2025;Yandex;"Russian Federation";"Stars Clique";YELLOW.Eyes;"Баба капа";"Баба капа";3617669282622;FR-10S-25-71795;;"Music Release";Stream;663;RUB;14.051153874514
+01/01/2025;01/12/2024;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";YELLOW.Eyes;"In love";"In love";3617667065494;DG-A0S-24-44474;;"Music Release";Stream;12;RUB;0.173782205288
+01/03/2025;01/02/2025;Yandex;Kazakhstan;"Stars Clique";YELLOW.Eyes;"Баба капа";"Баба капа";3617669282622;FR-10S-25-71795;;"Music Release";Stream;4;RUB;0.086348167117
+01/03/2025;01/02/2025;Yandex;Uzbekistan;"Stars Clique";YELLOW.Eyes;"запах лета";адреналин;3617390891797;FR-2X4-25-83825;;"Music Release";Stream;1;RUB;0.003258713412
+01/03/2025;01/02/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";YELLOW.Eyes;"Баба капа";"Баба капа";3617669282622;FR-10S-25-71795;;"Music Release";Stream;10;RUB;0.741732296222
+01/03/2025;01/03/2025;"Apple Music";"Russian Federation";"Stars Clique";YELLOW.Eyes;"запах лета";больше;3617390891797;FR-2X4-25-83827;;"Music Release";Stream;1;RUB;0.100923760054
+01/01/2025;01/01/2025;"YouTube Official Content";France;"Stars Clique";YELLOW.Eyes;"дед мороз";"дед мороз";3617667954187;DG-A0T-24-26105;;"Music Release";Stream;1;RUB;0.141156169712
+01/01/2025;01/12/2024;Yandex;Kazakhstan;"Stars Clique";YELLOW.Eyes;"In love";"In love";3617667065494;DG-A0S-24-44474;;"Music Release";Stream;2;RUB;0.262007372599
+01/02/2025;01/01/2025;Yandex;"Moldova, Republic Of";"Stars Clique";YELLOW.Eyes;"дед мороз";"дед мороз";3617667954187;DG-A0T-24-26105;;"Music Release";Stream;1;RUB;0.022430687713
+01/01/2025;01/12/2024;"Amazon Music Streaming";"United States";"Stars Clique";YELLOW.Eyes;"In love";"In love";3617667065494;DG-A0S-24-44474;;"Music Release";Stream;1;RUB;0.191661167188
+01/02/2025;01/12/2024;TikTok;Ukraine;"Stars Clique";YELLOW.Eyes;"In love";"In love";3617667065494;DG-A0S-24-44474;;"Music Release";Creation;1;RUB;0.097145593481
+01/03/2025;01/02/2025;Yandex;"Russian Federation";"Stars Clique";YELLOW.Eyes;"запах лета";"запах лета";3617390891797;FR-2X4-25-83824;;"Music Release";Stream;26;RUB;0.561263086370
+01/03/2025;01/02/2025;Yandex;"Russian Federation";"Stars Clique";YELLOW.Eyes;"давит на мозги";"давит на мозги";3617390151242;FR-2X4-25-26424;;"Music Release";Stream;173;RUB;2.443649487363
+01/03/2025;01/02/2025;Yandex;Kazakhstan;"Stars Clique";YELLOW.Eyes;"дед мороз";"дед мороз";3617667954187;DG-A0T-24-26105;;"Music Release";Stream;2;RUB;0.043174083595
+01/02/2025;01/01/2025;Yandex;Kyrgyzstan;"Stars Clique";YELLOW.Eyes;"Баба капа";"Баба капа";3617669282622;FR-10S-25-71795;;"Music Release";Stream;1;RUB;0.022430687713
+01/02/2025;01/12/2024;TikTok;Germany;"Stars Clique";YELLOW.Eyes;"In love";"In love";3617667065494;DG-A0S-24-44474;;"Music Release";Creation;1;RUB;0.097145593481
+01/02/2025;01/01/2025;Yandex;Uzbekistan;"Stars Clique";YELLOW.Eyes;"дед мороз";"дед мороз";3617667954187;DG-A0T-24-26105;;"Music Release";Stream;1;RUB;0.022430687713
+01/02/2025;01/12/2024;TikTok;Sweden;"Stars Clique";YELLOW.Eyes;"In love";"In love";3617667065494;DG-A0S-24-44474;;"Music Release";Creation;4;RUB;0.388582373845
+01/01/2025;01/12/2024;Yandex;Belarus;"Stars Clique";YELLOW.Eyes;"дед мороз";"дед мороз";3617667954187;DG-A0T-24-26105;;"Music Release";Stream;1;RUB;0.017581382469
+01/03/2025;01/02/2025;Yandex;Belarus;"Stars Clique";YELLOW.Eyes;"Баба капа";"Баба капа";3617669282622;FR-10S-25-71795;;"Music Release";Stream;10;RUB;0.215870417829
+01/02/2025;01/01/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";YELLOW.Eyes;"дед мороз";"дед мороз";3617667954187;DG-A0T-24-26105;;"Music Release";Stream;2;RUB;0.008400000000
+01/03/2025;01/02/2025;Yandex;Belarus;"Stars Clique";YELLOW.Eyes;"давит на мозги";"давит на мозги";3617390151242;FR-2X4-25-26424;;"Music Release";Stream;8;RUB;0.062726364139
+01/03/2025;01/01/2025;TikTok;Poland;"Stars Clique";YELLOW.Eyes;"Баба капа";"Баба капа";3617669282622;FR-10S-25-71795;;"Music Release";Creation;1;RUB;0.089275003734
+01/03/2025;01/03/2025;"Apple Music";"Russian Federation";"Stars Clique";YELLOW.Eyes;"давит на мозги";"давит на мозги";3617390151242;FR-2X4-25-26424;;"Music Release";Stream;1;RUB;0.108907680002
+01/01/2025;01/12/2024;"UMA (Vkontakte)";Armenia;"Stars Clique";YELLOW.Eyes;"дед мороз";"дед мороз";3617667954187;DG-A0T-24-26105;;"Music Release";Stream;1;RUB;0.004200000042
+01/03/2025;01/02/2025;Yandex;"Russian Federation";"Stars Clique";YELLOW.Eyes;"запах лета";больше;3617390891797;FR-2X4-25-83827;;"Music Release";Stream;22;RUB;0.474914919254
+01/02/2025;01/01/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";YELLOW.Eyes;"Баба капа";"Баба капа";3617669282622;FR-10S-25-71795;;"Music Release";Stream;42;RUB;0.838031930382
+01/02/2025;01/01/2025;Yandex;"Russian Federation";"Stars Clique";YELLOW.Eyes;"In love";"In love";3617667065494;DG-A0S-24-44474;;"Music Release";Stream;83;RUB;1.765693460755
+01/03/2025;01/02/2025;Yandex;"Russian Federation";"Stars Clique";YELLOW.Eyes;"запах лета";адреналин;3617390891797;FR-2X4-25-83825;;"Music Release";Stream;95;RUB;0.749457655372
+01/02/2025;01/01/2025;Yandex;Kyrgyzstan;"Stars Clique";YELLOW.Eyes;"дед мороз";"дед мороз";3617667954187;DG-A0T-24-26105;;"Music Release";Stream;1;RUB;0.022430687713
+01/03/2025;01/02/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";YELLOW.Eyes;"запах лета";"не так";3617390891797;FR-2X4-25-83826;;"Music Release";Stream;1;RUB;0.120822049358
+01/02/2025;01/01/2025;Yandex;Kazakhstan;"Stars Clique";YELLOW.Eyes;"Баба капа";"Баба капа";3617669282622;FR-10S-25-71795;;"Music Release";Stream;3;RUB;0.067292063138
+01/03/2025;01/02/2025;Yandex;Kazakhstan;"Stars Clique";YELLOW.Eyes;"запах лета";адреналин;3617390891797;FR-2X4-25-83825;;"Music Release";Stream;1;RUB;0.003258713412
+01/03/2025;01/02/2025;Yandex;Belarus;"Stars Clique";YELLOW.Eyes;"дед мороз";"дед мороз";3617667954187;DG-A0T-24-26105;;"Music Release";Stream;7;RUB;0.151109292473
+01/02/2025;01/02/2025;"YouTube Official Content";Ukraine;"Stars Clique";YELLOW.Eyes;"давит на мозги";"давит на мозги";3617390151242;FR-2X4-25-26424;;"Music Release";Stream;1;RUB;0.010112504166
+01/02/2025;01/01/2025;Yandex;Belarus;"Stars Clique";YELLOW.Eyes;"дед мороз";"дед мороз";3617667954187;DG-A0T-24-26105;;"Music Release";Stream;41;RUB;0.900447472562
+01/02/2025;01/02/2025;"YouTube Official Content";Ukraine;"Stars Clique";YELLOW.Eyes;"Баба капа";"Баба капа";3617669282622;FR-10S-25-71795;;"Music Release";Stream;4;RUB;0.179104016407

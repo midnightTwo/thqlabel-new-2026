@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { UserRole, ROLE_CONFIG } from '../../lib/types';
 import { supabase } from '../../lib/supabase';
+import { useTheme } from '@/contexts/ThemeContext';
 
 // Добавляем стили для плавных анимаций
 if (typeof document !== 'undefined') {
@@ -69,6 +70,8 @@ export default function AdminRoleHUD({ currentRole, originalRole, userId, onRole
   const [isExpanded, setIsExpanded] = useState(false);
   const [isChangingRole, setIsChangingRole] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
 
   // Определение мобильного устройства
   useEffect(() => {
@@ -184,9 +187,9 @@ export default function AdminRoleHUD({ currentRole, originalRole, userId, onRole
         {/* Развернутое состояние - панель управления */}
         {isExpanded && (
           <div 
-            className="admin-hud-panel bg-[#0d0d0f]/95 backdrop-blur-2xl border-2 border-white/10 rounded-2xl shadow-2xl overflow-hidden"
+            className={`admin-hud-panel backdrop-blur-2xl border-2 rounded-2xl shadow-2xl overflow-hidden ${isLight ? 'bg-white/95 border-[#6050ba]/20' : 'bg-[#0d0d0f]/95 border-white/10'}`}
             style={{ 
-              boxShadow: '0 0 40px rgba(0,0,0,0.8), 0 20px 60px rgba(0,0,0,0.6)',
+              boxShadow: isLight ? '0 0 40px rgba(96, 80, 186, 0.2), 0 20px 60px rgba(0,0,0,0.15)' : '0 0 40px rgba(0,0,0,0.8), 0 20px 60px rgba(0,0,0,0.6)',
               animation: 'expandPanel 0.3s ease-out forwards'
             }}
           >
@@ -203,7 +206,7 @@ export default function AdminRoleHUD({ currentRole, originalRole, userId, onRole
               </div>
               <button
                 onClick={() => setIsExpanded(false)}
-                className="p-1.5 hover:bg-white/10 rounded-lg transition"
+                className={`p-1.5 rounded-lg transition ${isLight ? 'hover:bg-black/10' : 'hover:bg-white/10'}`}
               >
                 <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -213,7 +216,7 @@ export default function AdminRoleHUD({ currentRole, originalRole, userId, onRole
 
             {/* Список ролей */}
             <div className="p-4 space-y-2">
-              <p className="text-[10px] text-zinc-400 mb-3 uppercase tracking-wider font-medium">
+              <p className={`text-[10px] mb-3 uppercase tracking-wider font-medium ${isLight ? 'text-[#5c5580]' : 'text-zinc-400'}`}>
                 Переключиться на роль:
               </p>
               
@@ -229,7 +232,9 @@ export default function AdminRoleHUD({ currentRole, originalRole, userId, onRole
                     className={`w-full px-4 py-3 rounded-xl font-bold text-sm uppercase tracking-wider transition-all duration-300 ${
                       isActive
                         ? `bg-gradient-to-r ${roleConfig.color} ${roleConfig.textColor} border-2 ${roleConfig.borderColor} cursor-default`
-                        : 'bg-white/5 text-zinc-400 border border-white/10 hover:bg-white/10 hover:border-white/20'
+                        : isLight
+                          ? 'bg-gray-100 text-gray-600 border border-gray-200 hover:bg-gray-200 hover:border-gray-300'
+                          : 'bg-white/5 text-zinc-400 border border-white/10 hover:bg-white/10 hover:border-white/20'
                     }`}
                     style={isActive ? { boxShadow: `0 0 20px ${roleConfig.glowColor}` } : undefined}
                   >

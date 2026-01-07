@@ -1,0 +1,876 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/07/2025;01/06/2025;Spotify;Ghana;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1;RUB;0.000098259372
+01/07/2025;01/06/2025;Spotify;"United States";"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;24;RUB;4.609888691314
+01/07/2025;01/06/2025;Spotify;Brazil;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.009088994125
+01/07/2025;01/06/2025;Spotify;Uzbekistan;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;1;RUB;0.000982593938
+01/08/2025;01/08/2025;"Apple Music";"Russian Federation";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1;RUB;0.071179360023
+01/09/2025;01/08/2025;Yandex;Uzbekistan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;13;RUB;0.281310885142
+01/08/2025;01/07/2025;Yandex;Turkmenistan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.003823270455
+01/07/2025;01/06/2025;Spotify;India;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";9;RUB;-0.112948052714
+01/07/2025;01/06/2025;Spotify;Ukraine;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;297;RUB;4.853178660859
+01/09/2025;01/08/2025;Spotify;Portugal;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;11;RUB;0.067293332957
+01/09/2025;01/08/2025;Spotify;Colombia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.028402351450
+01/07/2025;01/06/2025;Spotify;Kyrgyzstan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.044364117314
+01/09/2025;01/08/2025;Spotify;Kazakhstan;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;20;RUB;0.151825366662
+01/08/2025;01/07/2025;Spotify;Turkey;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";5;RUB;-0.049053745315
+01/07/2025;01/06/2025;Spotify;Canada;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1;RUB;0.079639240430
+01/09/2025;01/08/2025;Spotify;Poland;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;22;RUB;0.976220471462
+01/09/2025;01/08/2025;Spotify;Turkey;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;2;RUB;0.020561848542
+01/07/2025;01/06/2025;Spotify;Austria;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;1;RUB;0.044904543969
+01/09/2025;01/09/2025;"YouTube UGC";Ukraine;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;3;RUB;0.013663185548
+01/07/2025;01/06/2025;Spotify;Kazakhstan;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;2;RUB;0.101796734153
+01/07/2025;01/06/2025;"UMA (Vkontakte)";"Russian Federation";"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;80;RUB;1.358480325582
+01/07/2025;01/05/2025;"Facebook / Instagram";Mexico;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Creation;7;RUB;0.075310614410
+01/09/2025;01/09/2025;"Apple Music";"Russian Federation";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;12;RUB;1.179205440011
+01/09/2025;01/08/2025;"UMA (Vkontakte)";Belarus;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;3;RUB;0.012600000039
+01/08/2025;01/07/2025;Spotify;Sweden;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.013897515166
+01/09/2025;01/07/2025;"Facebook / Instagram";"Czech Republic";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Creation;6;RUB;0.164379115470
+01/08/2025;01/08/2025;"YouTube UGC";Brazil;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;1;RUB;0.007406521858
+01/08/2025;01/07/2025;Spotify;Poland;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;28;RUB;1.867248205773
+01/07/2025;01/06/2025;"UMA (Vkontakte)";Belarus;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;18;RUB;0.075600000000
+01/08/2025;01/07/2025;Spotify;Latvia;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";5;RUB;-0.005385803053
+01/07/2025;01/06/2025;Soundcloud;Germany;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;1;RUB;0.321409392959
+01/08/2025;01/07/2025;Spotify;Kazakhstan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;46;RUB;0.438095573660
+01/09/2025;01/08/2025;Spotify;Bulgaria;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.003549960171
+01/08/2025;01/07/2025;Spotify;Turkey;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;1;RUB;0.018530020146
+01/07/2025;01/06/2025;Spotify;Portugal;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;33;RUB;0.194799227976
+01/09/2025;01/08/2025;Yandex;Belarus;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;252;RUB;5.311528719002
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Russian Federation";"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;75;RUB;4.757956204197
+01/08/2025;01/07/2025;Yandex;Belarus;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;27;RUB;0.525725595730
+01/08/2025;01/07/2025;"UMA VK MUSIC";"Russian Federation";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;18;RUB;2.027957835761
+01/09/2025;01/08/2025;Spotify;Kazakhstan;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;2;RUB;0.075860759522
+01/07/2025;01/06/2025;Soundcloud;Germany;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;2;RUB;0.642818785846
+01/09/2025;01/08/2025;Spotify;Austria;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;6;RUB;0.400281036854
+01/07/2025;01/06/2025;Spotify;Austria;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;22;RUB;2.535534573318
+01/09/2025;01/08/2025;Spotify;Philippines;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.002025030546
+01/09/2025;01/08/2025;Spotify;Ireland;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;1;RUB;0.034113976040
+01/07/2025;01/06/2025;Spotify;Kyrgyzstan;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1;RUB;0.105776239773
+01/08/2025;01/07/2025;"UMA (Vkontakte)";Belarus;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;6;RUB;0.030439351486
+01/09/2025;01/08/2025;Spotify;Switzerland;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";3;RUB;-0.018623538293
+01/07/2025;01/06/2025;Spotify;Nigeria;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;31;RUB;0.455432280570
+01/07/2025;01/05/2025;"Facebook / Instagram";Worldwide;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Creation;6;RUB;0.136247731222
+01/08/2025;01/07/2025;Spotify;Slovakia;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;3;RUB;0.094941447490
+01/07/2025;01/06/2025;Spotify;Estonia;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;2;RUB;0.012135035456
+01/09/2025;01/08/2025;Spotify;Georgia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.106184293746
+01/07/2025;01/06/2025;Spotify;Italy;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;3;RUB;0.146308245498
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;2372;RUB;49.517065083446
+01/07/2025;01/06/2025;Spotify;Germany;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";21;RUB;-1.172693156393
+01/08/2025;01/07/2025;Spotify;Australia;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";4;RUB;-0.243767624282
+01/08/2025;01/07/2025;Spotify;Netherlands;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;99;RUB;4.638781270931
+01/08/2025;01/07/2025;Spotify;Netherlands;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;5;RUB;0.221712687628
+01/07/2025;01/06/2025;Spotify;"United Kingdom";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;37;RUB;4.827041995722
+01/07/2025;01/06/2025;Spotify;Lithuania;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;6;RUB;0.401684410618
+01/08/2025;01/07/2025;Spotify;Ukraine;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;9;RUB;0.350326982381
+01/07/2025;01/06/2025;Spotify;Uzbekistan;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;1;RUB;0.000982593938
+01/09/2025;01/08/2025;Spotify;Latvia;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;2;RUB;0.012825193483
+01/08/2025;01/07/2025;Spotify;France;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";13;RUB;-0.373897302518
+01/09/2025;01/08/2025;Spotify;Germany;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;79;RUB;7.322821900783
+01/09/2025;01/08/2025;Spotify;Netherlands;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;35;RUB;1.823773597067
+01/07/2025;01/06/2025;Spotify;Singapore;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.005303831638
+01/08/2025;01/08/2025;"YouTube Official Content";Ukraine;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;52;RUB;3.903698707699
+01/08/2025;01/07/2025;Spotify;Italy;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";4;RUB;-0.081228236314
+01/08/2025;01/07/2025;Spotify;Ukraine;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";102;RUB;-1.819811933370
+01/08/2025;01/07/2025;Spotify;Germany;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;13;RUB;1.580780061325
+01/08/2025;01/07/2025;"UMA (Vkontakte)";Kazakhstan;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;2;RUB;0.008400000000
+01/09/2025;01/08/2025;Spotify;"Korea, Republic Of";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";2;RUB;-0.113223908134
+01/07/2025;01/05/2025;"Facebook / Instagram";Italy;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Creation;14;RUB;0.587296656294
+01/07/2025;01/06/2025;Spotify;Estonia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;4;RUB;0.249677130114
+01/09/2025;01/08/2025;Yandex;Ukraine;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;5;RUB;0.019712373774
+01/09/2025;01/08/2025;Spotify;Morocco;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.002336573706
+01/07/2025;01/06/2025;Spotify;Latvia;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;5;RUB;0.011103311796
+01/07/2025;01/06/2025;Spotify;Uzbekistan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";9;RUB;-0.035158503264
+01/09/2025;01/08/2025;Spotify;"Czech Republic";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";8;RUB;-0.297096095215
+01/09/2025;01/08/2025;Spotify;Finland;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;5;RUB;0.075133825506
+01/08/2025;01/07/2025;Spotify;Canada;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";7;RUB;-0.291700801591
+01/08/2025;01/07/2025;Spotify;Cyprus;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";2;RUB;-0.070433716791
+01/09/2025;01/08/2025;Spotify;"Saudi Arabia";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;2;RUB;0.004984690574
+01/08/2025;01/07/2025;Spotify;"Czech Republic";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";5;RUB;-0.070808800266
+01/07/2025;01/06/2025;Spotify;Sweden;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;4;RUB;0.133829297341
+01/08/2025;01/07/2025;Yandex;Kazakhstan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;77;RUB;1.385843166018
+01/08/2025;01/07/2025;Spotify;Latvia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";6;RUB;-0.006462963589
+01/09/2025;01/08/2025;Spotify;Azerbaijan;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.000001854461
+01/08/2025;01/07/2025;Spotify;Nigeria;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";16;RUB;-0.096878702674
+01/07/2025;01/06/2025;Spotify;Denmark;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;7;RUB;0.132257137151
+01/07/2025;01/06/2025;Spotify;Switzerland;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;9;RUB;0.378249544770
+01/07/2025;01/06/2025;Spotify;Chile;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.026752243502
+01/09/2025;01/08/2025;Spotify;"United Kingdom";"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;1;RUB;0.324783744379
+01/07/2025;01/06/2025;Spotify;Belgium;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;8;RUB;0.166254898016
+01/07/2025;01/06/2025;Spotify;Spain;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.065930791387
+01/08/2025;01/07/2025;Spotify;Estonia;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;2;RUB;0.005977425878
+01/07/2025;01/06/2025;"UMA (Vkontakte)";"Russian Federation";"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;141;RUB;5.844772421437
+01/09/2025;01/08/2025;"UMA VK MUSIC";"Russian Federation";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;18;RUB;1.793906185631
+01/07/2025;01/06/2025;Spotify;Germany;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;50;RUB;5.241843937500
+01/08/2025;01/07/2025;Spotify;Canada;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;1;RUB;0.079798635242
+01/07/2025;01/06/2025;Spotify;Uzbekistan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;9;RUB;0.048491011955
+01/09/2025;01/08/2025;Spotify;Belarus;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;56;RUB;0.745938204168
+01/08/2025;01/07/2025;Spotify;Venezuela;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.000000213469
+01/09/2025;01/09/2025;"YouTube Official Content";Germany;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.320993223898
+01/09/2025;01/08/2025;Spotify;Nigeria;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;53;RUB;0.900255864245
+01/09/2025;01/08/2025;Spotify;Latvia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;15;RUB;0.927048596800
+01/07/2025;01/04/2025;"Facebook / Instagram";Brazil;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Creation;7;RUB;0.066603268427
+01/07/2025;01/06/2025;Spotify;Switzerland;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1;RUB;0.023434865922
+01/07/2025;01/06/2025;Yandex;Belarus;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;34;RUB;0.747815384621
+01/07/2025;01/06/2025;Spotify;Canada;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.053482799803
+01/07/2025;01/07/2025;"YouTube UGC";France;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;1;RUB;0.006171870570
+01/07/2025;01/06/2025;Spotify;Kyrgyzstan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.000002175758
+01/07/2025;01/06/2025;Spotify;"Viet Nam";"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;5;RUB;0.298020747963
+01/08/2025;01/07/2025;Spotify;"Hong Kong";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";2;RUB;-0.002903605751
+01/07/2025;01/06/2025;"UMA (Vkontakte)";Belarus;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;4;RUB;0.016800000000
+01/09/2025;01/08/2025;Spotify;Thailand;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.007082859538
+01/09/2025;01/09/2025;"YouTube Official Content";Ukraine;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;1;RUB;0.078945293527
+01/07/2025;01/06/2025;"UMA VK MUSIC";"Russian Federation";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;14;RUB;1.678548892168
+01/08/2025;01/07/2025;Spotify;Kyrgyzstan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";2;RUB;-0.031885866731
+01/07/2025;01/06/2025;Spotify;Finland;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";20;RUB;-0.217011490822
+01/08/2025;01/07/2025;Spotify;Latvia;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;2;RUB;0.005031000089
+01/07/2025;01/06/2025;Spotify;Poland;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;19;RUB;1.401965037096
+01/07/2025;01/06/2025;Spotify;Finland;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;15;RUB;0.658337972553
+01/07/2025;01/06/2025;Spotify;Australia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;29;RUB;2.740159775232
+01/09/2025;01/08/2025;Spotify;France;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;18;RUB;0.552002545463
+01/07/2025;01/06/2025;Spotify;France;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;108;RUB;7.099290325933
+01/07/2025;01/06/2025;Spotify;India;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;20;RUB;0.558555521656
+01/09/2025;01/08/2025;SberZvuk;Yemen;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;3;RUB;0.000000292150
+01/07/2025;01/06/2025;Spotify;Uzbekistan;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";2;RUB;-0.000831134104
+01/09/2025;01/08/2025;Spotify;"Costa Rica";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.039638674734
+01/09/2025;01/08/2025;Spotify;Australia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";6;RUB;-0.342747397183
+01/08/2025;01/07/2025;Spotify;Greece;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";2;RUB;-0.004429414913
+01/07/2025;01/06/2025;Spotify;Nigeria;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";52;RUB;-0.307951067115
+01/09/2025;01/08/2025;Spotify;Israel;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;2;RUB;0.018796437348
+01/07/2025;01/06/2025;Spotify;Croatia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.002458520250
+01/08/2025;01/07/2025;Spotify;Italy;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1;RUB;0.047371099930
+01/09/2025;01/08/2025;Spotify;Colombia;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1;RUB;0.028402351450
+01/08/2025;01/07/2025;Spotify;Ukraine;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;164;RUB;4.514899334134
+01/09/2025;01/08/2025;Spotify;Jamaica;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.000881963812
+01/07/2025;01/06/2025;Spotify;Turkey;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";11;RUB;-0.055788744263
+01/09/2025;01/08/2025;Yandex;Uzbekistan;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;5;RUB;0.108196494322
+01/07/2025;01/06/2025;Spotify;"United Kingdom";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;47;RUB;4.524746870653
+01/09/2025;01/08/2025;Spotify;"Czech Republic";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";11;RUB;-0.515803681077
+01/08/2025;01/07/2025;Spotify;Finland;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;1;RUB;0.169410211349
+01/07/2025;01/06/2025;Spotify;France;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;19;RUB;1.069356976755
+01/09/2025;01/06/2025;"UMA (Vkontakte)";Worldwide;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;1;RUB;2.528400244795
+01/08/2025;01/07/2025;Spotify;India;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";6;RUB;-0.071957462246
+01/09/2025;01/08/2025;Spotify;Chile;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.026029653534
+01/07/2025;01/06/2025;Spotify;Italy;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;6;RUB;0.292567351474
+01/07/2025;01/06/2025;Spotify;Hungary;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";4;RUB;-0.128279325916
+01/08/2025;01/07/2025;Spotify;Sweden;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;3;RUB;0.177878231242
+01/08/2025;01/06/2025;SberZvuk;"Russian Federation";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.322405569168
+01/08/2025;01/07/2025;Spotify;Australia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.035263966227
+01/09/2025;01/08/2025;Spotify;"Korea, Republic Of";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;3;RUB;0.233034283806
+01/07/2025;01/06/2025;Spotify;Singapore;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.058640996940
+01/08/2025;01/07/2025;Spotify;"Czech Republic";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;12;RUB;0.189584008667
+01/07/2025;01/06/2025;"UMA (Vkontakte)";"Russian Federation";"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;82;RUB;5.459200566342
+01/09/2025;01/08/2025;Spotify;Norway;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;2;RUB;0.036865940680
+01/08/2025;01/07/2025;Spotify;Malaysia;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;3;RUB;0.096336185150
+01/07/2025;01/06/2025;Spotify;Netherlands;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;3;RUB;0.149992972857
+01/07/2025;01/06/2025;Spotify;Ukraine;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;98;RUB;0.642321818855
+01/07/2025;01/06/2025;Spotify;Kazakhstan;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;9;RUB;0.212780726886
+01/09/2025;01/08/2025;Spotify;Norway;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.007906297786
+01/07/2025;01/06/2025;Yandex;"Russian Federation";"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;1593;RUB;34.374343172661
+01/09/2025;01/08/2025;Spotify;India;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";4;RUB;-0.050234702676
+01/09/2025;01/08/2025;Yandex;Kazakhstan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;204;RUB;4.325932846093
+01/07/2025;01/06/2025;Spotify;Netherlands;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;1;RUB;0.050014032547
+01/07/2025;01/06/2025;Spotify;Sweden;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";4;RUB;-0.211003490247
+01/07/2025;01/06/2025;Spotify;Norway;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;30;RUB;0.666297013123
+01/09/2025;01/08/2025;Spotify;Hungary;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;3;RUB;0.040967925580
+01/08/2025;01/07/2025;Spotify;Philippines;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.015648545142
+01/07/2025;01/06/2025;Yandex;"Moldova, Republic Of";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;3;RUB;0.065983710410
+01/07/2025;01/06/2025;Yandex;Belarus;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;24;RUB;0.509057591330
+01/07/2025;01/06/2025;Spotify;Greece;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.053474658250
+01/07/2025;01/06/2025;Spotify;"Czech Republic";"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;3;RUB;0.058906512793
+01/07/2025;01/06/2025;Spotify;Egypt;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;3;RUB;0.201186113221
+01/07/2025;01/06/2025;Spotify;Chile;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1;RUB;0.040581130585
+01/09/2025;01/08/2025;"UMA (Vkontakte)";Kazakhstan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;5;RUB;0.021000000039
+01/08/2025;01/07/2025;Spotify;"United Kingdom";"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;4;RUB;0.553011516071
+01/08/2025;01/07/2025;Spotify;Sweden;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1;RUB;0.013897515166
+01/08/2025;01/07/2025;Spotify;Nigeria;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;121;RUB;1.696293776286
+01/08/2025;01/07/2025;Spotify;"United States";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;113;RUB;17.624440415020
+01/07/2025;01/06/2025;Spotify;Australia;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;1;RUB;0.089465180026
+01/08/2025;01/08/2025;"YouTube UGC";Ukraine;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;10;RUB;1.803009632958
+01/08/2025;01/07/2025;Spotify;Turkey;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;8;RUB;0.136384933525
+01/07/2025;01/06/2025;Spotify;Spain;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1;RUB;0.096343337737
+01/07/2025;01/06/2025;Spotify;Nigeria;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;39;RUB;0.607095722142
+01/08/2025;01/07/2025;Spotify;Germany;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;31;RUB;2.258968877150
+01/09/2025;01/08/2025;Spotify;"Saudi Arabia";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";2;RUB;-0.002135999260
+01/07/2025;01/06/2025;Spotify;Kazakhstan;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";12;RUB;-0.121548444916
+01/08/2025;01/07/2025;Yandex;Belarus;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;43;RUB;0.903770893261
+01/08/2025;01/07/2025;Spotify;Austria;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;2;RUB;0.054095704042
+01/09/2025;01/08/2025;Spotify;Brazil;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;11;RUB;0.178929632019
+01/09/2025;01/08/2025;Spotify;Canada;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";9;RUB;-0.452115610084
+01/09/2025;01/08/2025;Spotify;Germany;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;5;RUB;0.933019840665
+01/07/2025;01/06/2025;Spotify;India;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";5;RUB;-0.061778770370
+01/08/2025;01/07/2025;Spotify;Finland;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";4;RUB;-0.025953840748
+01/09/2025;01/08/2025;Spotify;"Czech Republic";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;15;RUB;2.026640180306
+01/07/2025;01/06/2025;Spotify;Slovenia;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;2;RUB;0.162177133024
+01/07/2025;01/06/2025;Spotify;Norway;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";5;RUB;-0.220642322852
+01/08/2025;01/07/2025;Spotify;France;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";6;RUB;-0.112398576626
+01/07/2025;01/06/2025;Spotify;Egypt;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";3;RUB;-0.058469400955
+01/08/2025;01/07/2025;Spotify;Austria;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.127269358986
+01/09/2025;01/09/2025;"YouTube Official Content";"United States";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.214218726742
+01/07/2025;01/05/2025;"Facebook / Instagram";"United States";"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Creation;6;RUB;0.977676382924
+01/09/2025;01/08/2025;Spotify;Belarus;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";16;RUB;-0.195992558636
+01/07/2025;01/06/2025;Spotify;Belarus;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;10;RUB;0.247417159112
+01/09/2025;01/08/2025;"UMA (Vkontakte)";Belarus;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;9;RUB;0.037800000039
+01/08/2025;01/07/2025;Spotify;Latvia;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;9;RUB;0.022614574570
+01/09/2025;01/08/2025;Spotify;Colombia;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.011556545181
+01/09/2025;01/08/2025;NetEase;"China Mainland";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;21;RUB;0.726569211630
+01/09/2025;01/08/2025;"UMA (Vkontakte)";Belarus;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;3;RUB;0.012600000039
+01/09/2025;01/09/2025;"Apple Music";Poland;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;21;RUB;2.650080897946
+01/07/2025;01/05/2025;"Facebook / Instagram";Israel;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Creation;7;RUB;0.374196756555
+01/07/2025;01/04/2025;"Facebook / Instagram";"Russian Federation";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Creation;6;RUB;0.182843738893
+01/09/2025;01/08/2025;Spotify;Israel;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";3;RUB;-0.139303111907
+01/08/2025;01/07/2025;Soundcloud;Finland;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;1;RUB;0.257368809455
+01/08/2025;01/07/2025;Yandex;Kazakhstan;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;6;RUB;0.128563946147
+01/07/2025;01/07/2025;"Apple Music";"United States";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1;RUB;0.164130301171
+01/07/2025;01/06/2025;Spotify;Netherlands;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;18;RUB;1.605263732223
+01/07/2025;01/06/2025;Spotify;Malaysia;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;8;RUB;0.031344747292
+01/08/2025;01/08/2025;"YouTube UGC";Kazakhstan;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;1;RUB;0.004386600703
+01/07/2025;01/06/2025;Spotify;Germany;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;9;RUB;0.742153198067
+01/08/2025;01/07/2025;"UMA VK MUSIC";"Russian Federation";"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;3;RUB;0.391885873157
+01/09/2025;01/08/2025;Spotify;Nigeria;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;128;RUB;2.134538138082
+01/07/2025;01/06/2025;Spotify;Pakistan;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";5;RUB;-0.112249007242
+01/09/2025;01/08/2025;Spotify;Finland;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.006447682382
+01/09/2025;01/08/2025;Yandex;Kyrgyzstan;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;1;RUB;0.021639298911
+01/09/2025;01/08/2025;Spotify;Kazakhstan;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";15;RUB;-0.286245632934
+01/09/2025;01/08/2025;Spotify;Nigeria;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;23;RUB;0.377538401764
+01/08/2025;01/07/2025;Spotify;Ukraine;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;41;RUB;1.142186458553
+01/08/2025;01/07/2025;Spotify;Argentina;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.001177339429
+01/09/2025;01/08/2025;Spotify;Singapore;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;3;RUB;0.028921595218
+01/08/2025;01/07/2025;Spotify;Lithuania;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;1;RUB;0.064207516202
+01/07/2025;01/06/2025;Spotify;Germany;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";72;RUB;-3.100930791240
+01/08/2025;01/07/2025;Spotify;Sweden;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;26;RUB;0.361086343954
+01/07/2025;01/06/2025;Yandex;Kazakhstan;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;14;RUB;0.289111889915
+01/09/2025;01/08/2025;Spotify;Chile;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.038787123454
+01/09/2025;01/08/2025;Spotify;Poland;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";13;RUB;-0.478772711623
+01/08/2025;01/07/2025;"UMA (Vkontakte)";Kazakhstan;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;7;RUB;0.029400000038
+01/09/2025;01/08/2025;Spotify;Belarus;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;18;RUB;0.488240055844
+01/07/2025;01/06/2025;Spotify;Austria;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";5;RUB;-0.159707818291
+01/09/2025;01/08/2025;Spotify;Lithuania;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.001027499019
+01/08/2025;01/08/2025;"YouTube Official Content";Kazakhstan;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;1;RUB;0.036731719117
+01/08/2025;01/07/2025;Spotify;Japan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";3;RUB;-0.130803085024
+01/09/2025;01/08/2025;Spotify;Belgium;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.086258586665
+01/07/2025;01/06/2025;Spotify;Greece;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.168121826519
+01/07/2025;01/06/2025;Spotify;Israel;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;1;RUB;0.192342767562
+01/09/2025;01/08/2025;Yandex;Kazakhstan;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;21;RUB;0.365941155494
+01/09/2025;01/08/2025;Yandex;"Moldova, Republic Of";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;9;RUB;0.141663217482
+01/09/2025;01/08/2025;Spotify;Greece;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.003634670237
+01/07/2025;01/06/2025;Spotify;Belgium;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;5;RUB;0.103909311195
+01/09/2025;01/08/2025;Spotify;Pakistan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";2;RUB;-0.028026719422
+01/07/2025;01/06/2025;Spotify;"United States";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;137;RUB;21.967607300550
+01/09/2025;01/08/2025;Spotify;Finland;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;5;RUB;0.075133825506
+01/08/2025;01/07/2025;Spotify;Egypt;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;6;RUB;0.112823913215
+01/08/2025;01/07/2025;Spotify;Germany;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;15;RUB;1.070307912599
+01/08/2025;01/07/2025;Spotify;Egypt;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.013110914387
+01/07/2025;01/06/2025;Spotify;Spain;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;47;RUB;11.030403340795
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1445;RUB;30.330974712762
+01/07/2025;01/06/2025;Spotify;Sweden;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";2;RUB;-0.028618470212
+01/07/2025;01/06/2025;Spotify;Italy;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;2;RUB;0.097522450491
+01/07/2025;01/06/2025;Spotify;Nigeria;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;4;RUB;0.063082527281
+01/07/2025;01/06/2025;Spotify;"Czech Republic";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";19;RUB;-0.455883753116
+01/07/2025;01/06/2025;Spotify;"United Kingdom";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";15;RUB;-1.101443520757
+01/09/2025;01/08/2025;Spotify;Brazil;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";2;RUB;-0.036845838670
+01/07/2025;01/07/2025;"Apple Music";"Russian Federation";"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;2;RUB;0.157361120010
+01/07/2025;01/07/2025;"YouTube UGC";Turkey;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;1;RUB;0.012942650830
+01/09/2025;01/08/2025;Spotify;"United States";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;71;RUB;11.236634945057
+01/09/2025;01/08/2025;Yandex;Kyrgyzstan;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;1;RUB;0.021639298911
+01/08/2025;01/07/2025;Spotify;Estonia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";2;RUB;-0.002550724156
+01/08/2025;01/07/2025;Spotify;Latvia;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;1;RUB;0.002490594166
+01/09/2025;01/08/2025;Spotify;Spain;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.005770817791
+01/07/2025;01/06/2025;Yandex;Uzbekistan;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;6;RUB;0.131967420820
+01/07/2025;01/06/2025;Spotify;Slovakia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";4;RUB;-0.100567439022
+01/07/2025;01/06/2025;Spotify;"Hong Kong";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.004835906342
+01/09/2025;01/08/2025;Spotify;Colombia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.012190609661
+01/08/2025;01/07/2025;Spotify;Switzerland;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;3;RUB;0.047769599970
+01/07/2025;01/06/2025;Spotify;"Moldova, Republic Of";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";8;RUB;-0.132171605122
+01/07/2025;01/06/2025;Spotify;France;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;8;RUB;0.419125453470
+01/07/2025;01/06/2025;Spotify;Ukraine;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;15;RUB;0.129898945984
+01/09/2025;01/08/2025;Spotify;France;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;3;RUB;0.317929794917
+01/08/2025;01/07/2025;Spotify;"Hong Kong";"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;3;RUB;0.010161623992
+01/07/2025;01/06/2025;Spotify;Netherlands;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;60;RUB;3.349908447054
+01/07/2025;01/06/2025;Spotify;Germany;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;10;RUB;1.007011419560
+01/07/2025;01/07/2025;"YouTube Official Content";Ukraine;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.096258316706
+01/07/2025;01/06/2025;Spotify;Nigeria;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;76;RUB;1.027940582371
+01/07/2025;01/06/2025;Spotify;"Czech Republic";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.008400757211
+01/08/2025;01/07/2025;Spotify;India;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;6;RUB;0.172946864906
+01/08/2025;01/07/2025;Spotify;"Korea, Republic Of";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;6;RUB;0.238748351379
+01/08/2025;01/07/2025;Spotify;Poland;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;1;RUB;0.056984793242
+01/07/2025;01/06/2025;"UMA VK MUSIC";"Russian Federation";"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;5;RUB;0.748528317019
+01/09/2025;01/08/2025;Spotify;Finland;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;14;RUB;0.210343525792
+01/07/2025;01/06/2025;Spotify;Netherlands;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";13;RUB;-0.478326395655
+01/09/2025;01/08/2025;Spotify;Hungary;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;2;RUB;0.077781942296
+01/07/2025;01/06/2025;Spotify;Norway;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;1;RUB;0.022206623445
+01/08/2025;01/07/2025;Spotify;Greece;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;2;RUB;0.010360871546
+01/07/2025;01/06/2025;Spotify;Belarus;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;9;RUB;0.002505629342
+01/09/2025;01/08/2025;Spotify;Kazakhstan;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;13;RUB;0.113869030293
+01/08/2025;01/07/2025;Spotify;"Hong Kong";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1;RUB;0.003387208047
+01/08/2025;01/07/2025;Spotify;Kyrgyzstan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.041194426574
+01/08/2025;01/07/2025;Spotify;"Czech Republic";"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;1;RUB;0.187790795847
+01/07/2025;01/07/2025;"YouTube Official Content";Italy;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.051388943312
+01/09/2025;01/08/2025;Spotify;Germany;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";42;RUB;-1.895154428167
+01/07/2025;01/07/2025;"YouTube Official Content";Finland;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;1;RUB;0.076310306956
+01/07/2025;01/06/2025;Spotify;Estonia;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;2;RUB;0.012135035456
+01/09/2025;01/08/2025;Spotify;Greece;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.001564020815
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;89;RUB;4.327101198978
+01/09/2025;01/08/2025;Spotify;Austria;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.089224032439
+01/09/2025;01/08/2025;Spotify;Italy;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;3;RUB;0.083285876638
+01/07/2025;01/06/2025;Spotify;"United States";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";52;RUB;-3.628845194802
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;73;RUB;2.591977298259
+01/07/2025;01/05/2025;"Facebook / Instagram";Israel;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Creation;6;RUB;0.320740077048
+01/09/2025;01/08/2025;Spotify;Georgia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.045939857683
+01/09/2025;01/08/2025;Yandex;Georgia;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1;RUB;0.021639298911
+01/07/2025;01/06/2025;Soundcloud;Germany;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.321409392959
+01/09/2025;01/08/2025;Spotify;Egypt;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";3;RUB;-0.036924095352
+01/07/2025;01/06/2025;Spotify;Denmark;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";2;RUB;-0.016162968785
+01/08/2025;01/07/2025;Spotify;"Czech Republic";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";2;RUB;-0.106905905790
+01/09/2025;01/08/2025;Spotify;Japan;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;9;RUB;0.133028944969
+01/07/2025;01/06/2025;Spotify;Ukraine;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;169;RUB;1.056632286760
+01/09/2025;01/08/2025;Spotify;Thailand;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;2;RUB;0.033023574978
+01/07/2025;01/06/2025;Spotify;Norway;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";2;RUB;-0.018997050523
+01/07/2025;01/06/2025;Spotify;"Korea, Republic Of";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;2;RUB;0.056204374508
+01/07/2025;01/06/2025;Spotify;Armenia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.000000982570
+01/08/2025;01/07/2025;Spotify;Hungary;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.011357109167
+01/08/2025;01/07/2025;Spotify;Nigeria;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";29;RUB;-0.175592648662
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Russian Federation";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;399;RUB;12.454250927298
+01/07/2025;01/06/2025;Spotify;Switzerland;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.010019791334
+01/09/2025;01/08/2025;Spotify;"New Zealand";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1;RUB;0.034737062362
+01/09/2025;01/06/2025;"UMA (Vkontakte)";Worldwide;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;1;RUB;3.602305240409
+01/07/2025;01/06/2025;"UMA (Vkontakte)";Kazakhstan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;6;RUB;0.096742777069
+01/07/2025;01/06/2025;Spotify;"United States";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";78;RUB;-5.659606114805
+01/07/2025;01/06/2025;Spotify;Israel;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;9;RUB;0.705846365956
+01/09/2025;01/08/2025;Spotify;Lithuania;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;7;RUB;0.016771422379
+01/08/2025;01/08/2025;"YouTube UGC";"United Kingdom";"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;3;RUB;0.020698583257
+01/07/2025;01/06/2025;"UMA (Vkontakte)";Kazakhstan;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;2;RUB;0.008400000000
+01/08/2025;01/07/2025;Spotify;Turkey;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;4;RUB;0.074169892640
+01/08/2025;01/07/2025;Spotify;Egypt;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;2;RUB;0.024457634116
+01/07/2025;01/06/2025;Spotify;Bulgaria;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";3;RUB;-0.013666337915
+01/09/2025;01/08/2025;Spotify;Norway;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.018432970301
+01/08/2025;01/07/2025;Spotify;Philippines;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.055341001126
+01/09/2025;01/08/2025;Spotify;Malaysia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.033594737491
+01/09/2025;01/08/2025;Spotify;Ukraine;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;21;RUB;0.601953340337
+01/07/2025;01/06/2025;Spotify;Lithuania;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";3;RUB;-0.118725705137
+01/09/2025;01/08/2025;"UMA VK MUSIC";"Russian Federation";"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;1;RUB;0.099661454770
+01/08/2025;01/07/2025;Spotify;France;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;14;RUB;0.612038626350
+01/09/2025;01/08/2025;Spotify;Italy;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";2;RUB;-0.023827191760
+01/09/2025;01/08/2025;Yandex;Kazakhstan;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;18;RUB;0.389507379465
+01/07/2025;01/04/2025;"Facebook / Instagram";Turkey;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Creation;6;RUB;0.106865689256
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;112;RUB;2.942762708334
+01/07/2025;01/06/2025;Spotify;Australia;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;19;RUB;1.725778871478
+01/08/2025;01/07/2025;Spotify;Estonia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;5;RUB;0.014893752786
+01/08/2025;01/07/2025;Spotify;"United Kingdom";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;48;RUB;4.354255934398
+01/09/2025;01/08/2025;Spotify;Sweden;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.012202107083
+01/08/2025;01/07/2025;Yandex;Azerbaijan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.021427324346
+01/09/2025;01/08/2025;SberZvuk;Yemen;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;3;RUB;0.000000292150
+01/09/2025;01/08/2025;Spotify;India;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;19;RUB;0.443377840675
+01/07/2025;01/06/2025;Spotify;Cyprus;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.005944693495
+01/09/2025;01/08/2025;Yandex;Belarus;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;26;RUB;0.562621770208
+01/08/2025;01/07/2025;Spotify;India;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;15;RUB;0.389379492909
+01/09/2025;01/08/2025;Spotify;Ukraine;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;237;RUB;4.949174937677
+01/08/2025;01/07/2025;Spotify;Poland;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;14;RUB;0.922416439415
+01/09/2025;01/08/2025;Spotify;"United States";"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;3;RUB;0.458591531673
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;613;RUB;20.352258743414
+01/08/2025;01/07/2025;Spotify;Brazil;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.032391813094
+01/08/2025;01/07/2025;Spotify;"United Kingdom";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";16;RUB;-0.840067288406
+01/09/2025;01/08/2025;Spotify;Netherlands;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;3;RUB;0.138844396536
+01/07/2025;01/06/2025;Spotify;Italy;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";4;RUB;-0.138708093909
+01/07/2025;01/06/2025;Spotify;"Hong Kong";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;2;RUB;0.022599661078
+01/09/2025;01/08/2025;Spotify;Brazil;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;2;RUB;0.058362418704
+01/09/2025;01/08/2025;Spotify;Egypt;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;21;RUB;0.369386360991
+01/09/2025;01/08/2025;Spotify;"Czech Republic";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;14;RUB;1.618570574943
+01/08/2025;01/07/2025;Spotify;"United States";"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;8;RUB;1.754922431355
+01/07/2025;01/06/2025;"UMA VK MUSIC";"Russian Federation";"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;4;RUB;0.532845051909
+01/07/2025;01/06/2025;Spotify;Kazakhstan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;56;RUB;1.272213529361
+01/08/2025;01/07/2025;Spotify;Poland;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";9;RUB;-0.329089956113
+01/08/2025;01/07/2025;Spotify;"United Kingdom";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;28;RUB;2.339016601814
+01/07/2025;01/06/2025;Spotify;"Korea, Republic Of";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1;RUB;0.096294208014
+01/07/2025;01/07/2025;"YouTube Official Content";Ukraine;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;1;RUB;0.096258316706
+01/09/2025;01/08/2025;Spotify;Netherlands;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";10;RUB;-0.352454488665
+01/09/2025;01/08/2025;Spotify;Argentina;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;3;RUB;0.032504336428
+01/08/2025;01/07/2025;Spotify;Norway;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;7;RUB;0.101765660398
+01/08/2025;01/07/2025;Spotify;Italy;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;3;RUB;0.142163106767
+01/08/2025;01/07/2025;Spotify;Norway;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.006229473977
+01/09/2025;01/08/2025;Spotify;Bolivia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.000124543117
+01/08/2025;01/08/2025;"YouTube UGC";Estonia;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;1;RUB;0.031789527886
+01/09/2025;01/09/2025;"Apple Music";Poland;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;18;RUB;2.230083948732
+01/08/2025;01/07/2025;NetEase;"China Mainland";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;17;RUB;0.552602690327
+01/09/2025;01/08/2025;Spotify;Israel;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;6;RUB;0.463264679164
+01/08/2025;01/07/2025;Spotify;Hungary;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.004869680796
+01/08/2025;01/08/2025;"YouTube UGC";Ukraine;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;3;RUB;0.063048960460
+01/07/2025;01/06/2025;Spotify;Germany;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;13;RUB;1.208787094095
+01/08/2025;01/08/2025;"Apple Music";"Russian Federation";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;5;RUB;0.494434079994
+01/07/2025;01/05/2025;"Facebook / Instagram";"Russian Federation";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Creation;7;RUB;0.226984742576
+01/08/2025;01/07/2025;Spotify;"Hong Kong";"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;3;RUB;0.010161623992
+01/08/2025;01/07/2025;Spotify;Canada;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;66;RUB;10.649481411158
+01/08/2025;01/07/2025;Spotify;France;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;19;RUB;1.130729760538
+01/09/2025;01/08/2025;Spotify;Spain;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;7;RUB;1.315075602685
+01/08/2025;01/07/2025;Yandex;Uzbekistan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;9;RUB;0.192845919183
+01/07/2025;01/04/2025;"Facebook / Instagram";Ukraine;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Creation;12;RUB;0.067107540905
+01/07/2025;01/06/2025;Spotify;France;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;32;RUB;2.162836649994
+01/09/2025;01/08/2025;Spotify;Pakistan;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;1;RUB;0.030531229690
+01/07/2025;01/06/2025;Spotify;Australia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";8;RUB;-0.455834946249
+01/07/2025;01/06/2025;Spotify;Switzerland;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";6;RUB;-0.169082592869
+01/09/2025;01/08/2025;Spotify;Finland;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;13;RUB;0.672933220606
+01/09/2025;01/08/2025;Yandex;Kyrgyzstan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;7;RUB;0.151475091988
+01/09/2025;01/08/2025;Spotify;Estonia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;8;RUB;0.522302102780
+01/07/2025;01/06/2025;Spotify;"United Kingdom";"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;8;RUB;0.691402239651
+01/07/2025;01/06/2025;"UMA (Vkontakte)";Belarus;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;23;RUB;0.098858668450
+01/09/2025;01/09/2025;"Apple Music";"Russian Federation";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;11;RUB;0.931576240005
+01/09/2025;01/08/2025;Spotify;Greece;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";23;RUB;-0.035972308720
+01/09/2025;01/08/2025;Spotify;Israel;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.067635204143
+01/07/2025;01/06/2025;"UMA (Vkontakte)";Belarus;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;33;RUB;0.138600000000
+01/07/2025;01/06/2025;Spotify;"United States";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;123;RUB;21.114568722855
+01/07/2025;01/06/2025;Spotify;Japan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;6;RUB;0.089317790932
+01/07/2025;01/07/2025;"Apple Music";Kazakhstan;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;2;RUB;0.117909626830
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Russian Federation";"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;44;RUB;1.168663924723
+01/07/2025;01/06/2025;Spotify;Poland;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";8;RUB;-0.249660757911
+01/07/2025;01/06/2025;Yandex;Uzbekistan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;11;RUB;0.223128179505
+01/07/2025;01/06/2025;Spotify;Austria;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;3;RUB;0.295318614542
+01/08/2025;01/07/2025;"UMA VK MUSIC";"Russian Federation";"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;2;RUB;0.177597730820
+01/07/2025;01/04/2025;"Facebook / Instagram";"United States";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Creation;6;RUB;0.914973222423
+01/09/2025;01/08/2025;Spotify;"Serbia And Montenegro";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.002596193059
+01/07/2025;01/06/2025;"UMA (Vkontakte)";"Russian Federation";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;427;RUB;21.262667120846
+01/07/2025;01/06/2025;Spotify;Israel;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";4;RUB;-0.077453242615
+01/07/2025;01/07/2025;"Apple Music";"Russian Federation";"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;2;RUB;0.127485680007
+01/08/2025;01/07/2025;Spotify;Israel;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;3;RUB;0.397747879350
+01/09/2025;01/08/2025;Spotify;Hungary;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;2;RUB;0.027311950386
+01/08/2025;01/08/2025;"YouTube Official Content";Ukraine;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;10;RUB;0.944055674268
+01/09/2025;01/08/2025;Spotify;Portugal;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;3;RUB;0.105197740455
+01/07/2025;01/06/2025;Spotify;Pakistan;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;5;RUB;1.238461426763
+01/09/2025;01/08/2025;Spotify;Uzbekistan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;6;RUB;0.105509283538
+01/08/2025;01/07/2025;Spotify;"Viet Nam";"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;4;RUB;0.227092370918
+01/08/2025;01/07/2025;Spotify;Romania;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.005713707526
+01/08/2025;01/07/2025;Yandex;Kyrgyzstan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.003823270455
+01/08/2025;01/07/2025;Spotify;Switzerland;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";3;RUB;-0.020473046461
+01/09/2025;01/08/2025;Spotify;Australia;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;2;RUB;0.172854530022
+01/07/2025;01/06/2025;Yandex;"Russian Federation";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;6190;RUB;134.667678232952
+01/08/2025;01/07/2025;Spotify;France;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;5;RUB;0.218574539042
+01/08/2025;01/07/2025;Spotify;Spain;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;9;RUB;2.155808459216
+01/08/2025;01/07/2025;Spotify;Brazil;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1;RUB;0.049762070282
+01/09/2025;01/08/2025;Spotify;Egypt;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;4;RUB;0.097461085319
+01/07/2025;01/06/2025;Yandex;Kazakhstan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;65;RUB;1.429647058832
+01/09/2025;01/08/2025;Yandex;Kazakhstan;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;27;RUB;0.566564244931
+01/08/2025;01/07/2025;Spotify;Netherlands;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;6;RUB;0.266095064682
+01/09/2025;01/08/2025;Spotify;France;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";7;RUB;-0.092117652717
+01/07/2025;01/05/2025;"Facebook / Instagram";Turkey;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Creation;6;RUB;0.098690233225
+01/08/2025;01/07/2025;Yandex;Uzbekistan;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;4;RUB;0.085709297382
+01/07/2025;01/06/2025;Spotify;Canada;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;4;RUB;0.306372791678
+01/09/2025;01/08/2025;Spotify;Egypt;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;5;RUB;0.148606087358
+01/08/2025;01/07/2025;Spotify;France;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;1;RUB;0.043734832571
+01/07/2025;01/05/2025;"Facebook / Instagram";"Czech Republic";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Creation;6;RUB;0.170694570812
+01/09/2025;01/08/2025;Spotify;Argentina;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";3;RUB;-0.021157711910
+01/09/2025;01/08/2025;Spotify;"Viet Nam";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1;RUB;0.000571162436
+01/07/2025;01/06/2025;"UMA (Vkontakte)";"Moldova, Republic Of";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;2;RUB;0.008400000000
+01/09/2025;01/08/2025;Yandex;Uzbekistan;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;1;RUB;0.021639298911
+01/08/2025;01/07/2025;Spotify;Cyprus;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;2;RUB;0.207366865522
+01/08/2025;01/07/2025;Spotify;Kazakhstan;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;31;RUB;0.044531872475
+01/08/2025;01/07/2025;Spotify;Netherlands;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;1;RUB;0.044332575159
+01/07/2025;01/06/2025;Spotify;Mexico;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";4;RUB;-0.104026801380
+01/07/2025;01/06/2025;Spotify;"Serbia And Montenegro";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;2;RUB;0.002505614603
+01/07/2025;01/06/2025;Spotify;Hungary;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";4;RUB;-0.027900699325
+01/07/2025;01/06/2025;Spotify;Kazakhstan;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;12;RUB;0.120318645052
+01/09/2025;01/08/2025;Spotify;Ukraine;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;12;RUB;0.364868964362
+01/08/2025;01/07/2025;Spotify;Turkey;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";3;RUB;-0.036091910843
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;351;RUB;12.316054584807
+01/07/2025;01/06/2025;Spotify;Ukraine;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";62;RUB;-1.026746496358
+01/07/2025;01/06/2025;Spotify;Norway;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;13;RUB;0.878438994954
+01/08/2025;01/07/2025;"UMA (Vkontakte)";Belarus;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;4;RUB;0.016800000000
+01/07/2025;01/06/2025;Spotify;"Serbia And Montenegro";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";2;RUB;-0.001066956654
+01/08/2025;01/07/2025;"Amazon Music Streaming";"United States";"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;1;RUB;0.089936336380
+01/09/2025;01/08/2025;Yandex;Belarus;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;37;RUB;0.800654057684
+01/09/2025;01/08/2025;Spotify;Greece;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;23;RUB;0.083805094549
+01/07/2025;01/06/2025;Yandex;Belarus;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;4;RUB;0.012729912654
+01/08/2025;01/07/2025;Spotify;Romania;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;2;RUB;0.026649356988
+01/07/2025;01/06/2025;Spotify;Lithuania;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;3;RUB;0.290356514985
+01/08/2025;01/07/2025;Spotify;Finland;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;12;RUB;0.181713746230
+01/09/2025;01/08/2025;Spotify;Philippines;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;8;RUB;0.410198483681
+01/09/2025;01/08/2025;Yandex;Uzbekistan;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;4;RUB;0.086557195410
+01/08/2025;01/07/2025;"UMA VK MUSIC";"Russian Federation";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;29;RUB;4.054013722750
+01/09/2025;01/08/2025;Spotify;"Viet Nam";"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;9;RUB;0.520121305794
+01/07/2025;01/06/2025;Spotify;Spain;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";2;RUB;-0.131861582701
+01/07/2025;01/06/2025;Spotify;Croatia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.005748174678
+01/09/2025;01/08/2025;Spotify;Ukraine;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";35;RUB;-0.453757383271
+01/08/2025;01/07/2025;Spotify;Germany;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";8;RUB;-0.307636903506
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1781;RUB;37.506444206027
+01/07/2025;01/06/2025;Spotify;Finland;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;4;RUB;0.240195088479
+01/07/2025;01/06/2025;"UMA (Vkontakte)";Kazakhstan;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;5;RUB;0.021000000000
+01/07/2025;01/06/2025;Yandex;Kyrgyzstan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.021994570186
+01/09/2025;01/08/2025;SberZvuk;Yemen;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;18;RUB;0.000001752898
+01/09/2025;01/08/2025;Spotify;Switzerland;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;3;RUB;0.043408352122
+01/08/2025;01/07/2025;Spotify;"United Kingdom";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";6;RUB;-0.278917080065
+01/09/2025;01/08/2025;Spotify;Ecuador;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.035309114954
+01/09/2025;01/08/2025;Spotify;Ukraine;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;4;RUB;0.074874206154
+01/08/2025;01/07/2025;Yandex;Belarus;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;189;RUB;3.996952140731
+01/09/2025;01/08/2025;Spotify;Uzbekistan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";4;RUB;-0.034973679393
+01/09/2025;01/08/2025;Spotify;Bolivia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;2;RUB;0.000571162436
+01/07/2025;01/06/2025;Spotify;Finland;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";4;RUB;-0.141876461041
+01/07/2025;01/06/2025;Spotify;Slovakia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;4;RUB;0.247564548133
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;2818;RUB;58.448084192670
+01/07/2025;01/06/2025;Spotify;Turkey;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;14;RUB;0.117665626690
+01/09/2025;01/08/2025;Spotify;Austria;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;2;RUB;0.313152799731
+01/09/2025;01/08/2025;Spotify;Latvia;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";8;RUB;-0.373703645970
+01/09/2025;01/08/2025;Spotify;France;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;19;RUB;1.069164170511
+01/07/2025;01/06/2025;Spotify;"Hong Kong";"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;1;RUB;0.011299830539
+01/09/2025;01/08/2025;Spotify;Hungary;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.044250848712
+01/08/2025;01/07/2025;Spotify;Canada;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";3;RUB;-0.160879919379
+01/09/2025;01/08/2025;Spotify;Sweden;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;2;RUB;0.024352290358
+01/08/2025;01/07/2025;Spotify;Italy;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;21;RUB;2.031776872554
+01/07/2025;01/06/2025;Spotify;"United Kingdom";"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;3;RUB;0.259257416232
+01/08/2025;01/07/2025;Spotify;India;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;8;RUB;0.213095241950
+01/09/2025;01/08/2025;Spotify;Netherlands;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;6;RUB;0.277688792994
+01/08/2025;01/07/2025;Spotify;Netherlands;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";11;RUB;-0.282233911021
+01/07/2025;01/06/2025;Spotify;France;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;35;RUB;1.907558734370
+01/09/2025;01/08/2025;Spotify;Estonia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";6;RUB;-0.286650357174
+01/09/2025;01/08/2025;Spotify;India;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";17;RUB;-0.202114863861
+01/09/2025;01/08/2025;Spotify;Romania;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;6;RUB;0.084583968028
+01/07/2025;01/06/2025;Spotify;Belarus;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;5;RUB;0.001375631571
+01/08/2025;01/07/2025;Spotify;Belarus;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;5;RUB;0.000049811907
+01/07/2025;01/06/2025;Spotify;Pakistan;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;7;RUB;1.733885306081
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;11768;RUB;248.385924009794
+01/07/2025;01/06/2025;Spotify;Pakistan;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;3;RUB;0.743086686896
+01/07/2025;01/06/2025;Spotify;Kazakhstan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";42;RUB;-0.481436200235
+01/08/2025;01/07/2025;Spotify;Portugal;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;31;RUB;0.180518221230
+01/07/2025;01/06/2025;Spotify;India;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;10;RUB;0.290553033875
+01/09/2025;01/08/2025;Spotify;Ireland;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.034113976040
+01/08/2025;01/07/2025;Spotify;Netherlands;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";3;RUB;-0.057009208187
+01/07/2025;01/06/2025;Spotify;Portugal;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.002524494410
+01/09/2025;01/08/2025;Spotify;"Czech Republic";"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;2;RUB;0.026013853857
+01/07/2025;01/06/2025;Spotify;Sweden;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;3;RUB;0.100371973006
+01/07/2025;01/06/2025;Spotify;Kyrgyzstan;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.031181566562
+01/07/2025;01/06/2025;Spotify;Taiwan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.004077764918
+01/08/2025;01/07/2025;Yandex;Kazakhstan;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;18;RUB;0.368087784402
+01/09/2025;01/08/2025;Spotify;Philippines;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.000866460879
+01/07/2025;01/06/2025;Spotify;Slovenia;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.047865941807
+01/09/2025;01/08/2025;Spotify;Indonesia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.002516749475
+01/08/2025;01/07/2025;Spotify;Belarus;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;9;RUB;0.078403917530
+01/07/2025;01/06/2025;Spotify;Estonia;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.002596153587
+01/07/2025;01/07/2025;"YouTube Official Content";Germany;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;1;RUB;0.147731842787
+01/08/2025;01/07/2025;Spotify;Taiwan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.001716659777
+01/07/2025;01/06/2025;Spotify;Estonia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";2;RUB;-0.069267399706
+01/08/2025;01/07/2025;Spotify;Mexico;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;4;RUB;0.093845586054
+01/08/2025;01/08/2025;"YouTube UGC";Ukraine;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1;RUB;0.002539586119
+01/08/2025;01/07/2025;Yandex;Kazakhstan;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;8;RUB;0.171418594838
+01/09/2025;01/08/2025;Spotify;"United Kingdom";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;18;RUB;2.262945651802
+01/09/2025;01/08/2025;Spotify;Kyrgyzstan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.105249664263
+01/09/2025;01/08/2025;Spotify;"United States";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;164;RUB;25.174348875144
+01/09/2025;01/08/2025;Spotify;Italy;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;4;RUB;0.625111350783
+01/07/2025;01/06/2025;Spotify;Sweden;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;2;RUB;0.066914648670
+01/09/2025;01/09/2025;"Apple Music";Poland;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;15;RUB;2.099984745757
+01/08/2025;01/07/2025;Spotify;Norway;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.014545069586
+01/08/2025;01/07/2025;Spotify;Israel;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";3;RUB;-0.195181249637
+01/07/2025;01/06/2025;"UMA (Vkontakte)";Belarus;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;2;RUB;0.008400000000
+01/09/2025;01/08/2025;Spotify;Israel;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;1;RUB;0.009398218635
+01/07/2025;01/06/2025;Spotify;"Czech Republic";"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;3;RUB;0.058906512793
+01/08/2025;01/07/2025;Spotify;Denmark;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;2;RUB;0.017733030078
+01/08/2025;01/07/2025;Spotify;Kyrgyzstan;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";2;RUB;-0.000002846375
+01/09/2025;01/08/2025;Spotify;"Costa Rica";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.056285464272
+01/09/2025;01/08/2025;Spotify;Portugal;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.002624676983
+01/09/2025;01/08/2025;Spotify;Hungary;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;1;RUB;0.013655975194
+01/07/2025;01/07/2025;"Apple Music";"Russian Federation";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;22;RUB;2.196376000044
+01/09/2025;01/08/2025;Spotify;Morocco;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;1;RUB;0.002336573706
+01/07/2025;01/06/2025;Spotify;Hungary;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;7;RUB;0.114177418148
+01/09/2025;01/08/2025;Spotify;Egypt;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";4;RUB;-0.037716082539
+01/09/2025;01/08/2025;SberZvuk;Yemen;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;2;RUB;0.000000194714
+01/07/2025;01/06/2025;Spotify;Austria;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;1;RUB;0.044904543969
+01/07/2025;01/06/2025;Yandex;Uzbekistan;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1;RUB;0.021994570186
+01/07/2025;01/07/2025;"YouTube Official Content";"United Kingdom";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1;RUB;0.207170204631
+01/07/2025;01/05/2025;"Facebook / Instagram";Ukraine;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Creation;6;RUB;0.035371893342
+01/09/2025;01/08/2025;SberZvuk;"Russian Federation";"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;3;RUB;0.000000292150
+01/08/2025;01/07/2025;Yandex;"Moldova, Republic Of";"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;1;RUB;0.021427324346
+01/09/2025;01/08/2025;Spotify;Belgium;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.143465625282
+01/09/2025;01/06/2025;"UMA (Vkontakte)";Worldwide;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1;RUB;8.800268059758
+01/09/2025;01/08/2025;Spotify;Nigeria;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;90;RUB;1.499197444256
+01/09/2025;01/09/2025;"Apple Music";"Russian Federation";"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;5;RUB;0.446513199986
+01/09/2025;01/08/2025;Spotify;Bulgaria;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;2;RUB;0.016563711336
+01/08/2025;01/07/2025;Soundcloud;Finland;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;1;RUB;0.257368809455
+01/08/2025;01/07/2025;Spotify;Lithuania;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";5;RUB;-0.065673693293
+01/07/2025;01/05/2025;"Facebook / Instagram";Mexico;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Creation;6;RUB;0.064551955209
+01/09/2025;01/08/2025;Spotify;"United States";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";39;RUB;-2.871620394161
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;7161;RUB;148.339519949342
+01/09/2025;01/08/2025;Spotify;France;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";13;RUB;-0.324850295995
+01/08/2025;01/07/2025;Spotify;Australia;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;5;RUB;0.644615567346
+01/08/2025;01/07/2025;Spotify;Kazakhstan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";28;RUB;-0.265852291530
+01/07/2025;01/07/2025;"YouTube UGC";"United Kingdom";"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;9;RUB;0.045736809284
+01/08/2025;01/07/2025;Spotify;Belarus;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";6;RUB;-0.031221376171
+01/08/2025;01/07/2025;Spotify;Nigeria;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;61;RUB;0.953499088648
+01/07/2025;01/06/2025;Spotify;Turkey;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;1;RUB;0.018521896161
+01/07/2025;01/06/2025;Spotify;Canada;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;3;RUB;0.238966846076
+01/09/2025;01/06/2025;"UMA (Vkontakte)";Worldwide;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;10.827876505537
+01/08/2025;01/07/2025;Spotify;"Moldova, Republic Of";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;3;RUB;0.126024056972
+01/08/2025;01/07/2025;Yandex;Turkmenistan;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;1;RUB;0.003823270455
+01/08/2025;01/07/2025;Spotify;Australia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;2;RUB;0.171303062852
+01/08/2025;01/07/2025;Spotify;Israel;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";2;RUB;-0.007893404340
+01/08/2025;01/07/2025;Spotify;Uzbekistan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.001942663410
+01/07/2025;01/06/2025;Spotify;"United States";"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;8;RUB;1.381969274533
+01/07/2025;01/06/2025;Spotify;"United Kingdom";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";19;RUB;-0.975779495082
+01/09/2025;01/08/2025;Spotify;Brazil;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;1;RUB;0.109507420822
+01/08/2025;01/07/2025;Spotify;Egypt;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";2;RUB;-0.026221757569
+01/08/2025;01/07/2025;Spotify;Kazakhstan;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;11;RUB;0.002839267354
+01/08/2025;01/07/2025;Spotify;Spain;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.008923371754
+01/07/2025;01/06/2025;Spotify;Italy;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;42;RUB;4.118542503146
+01/09/2025;01/08/2025;Spotify;Portugal;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";3;RUB;-0.066409949365
+01/08/2025;01/07/2025;Spotify;Bolivia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.000348683201
+01/09/2025;01/08/2025;Spotify;Nigeria;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;37;RUB;0.622307394886
+01/07/2025;01/06/2025;Spotify;Portugal;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.005895563773
+01/09/2025;01/08/2025;Spotify;Brazil;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";7;RUB;-0.084236597403
+01/07/2025;01/06/2025;Spotify;Israel;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;3;RUB;0.202610874441
+01/07/2025;01/07/2025;"Apple Music";"Russian Federation";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;12;RUB;0.931328719981
+01/07/2025;01/05/2025;"Facebook / Instagram";Kazakhstan;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Creation;6;RUB;0.052121666086
+01/09/2025;01/08/2025;Spotify;Israel;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;10;RUB;1.636484306617
+01/09/2025;01/08/2025;Spotify;"United Kingdom";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;39;RUB;4.182674588846
+01/09/2025;01/08/2025;Spotify;Jamaica;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.002076954432
+01/07/2025;01/06/2025;Spotify;Uzbekistan;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;3;RUB;0.002898657101
+01/07/2025;01/06/2025;Spotify;"Moldova, Republic Of";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;11;RUB;0.244223733550
+01/07/2025;01/06/2025;"UMA VK MUSIC";"Russian Federation";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;31;RUB;3.718577820374
+01/07/2025;01/07/2025;"YouTube Official Content";Finland;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.251896776048
+01/08/2025;01/07/2025;Spotify;Bulgaria;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1;RUB;0.011157861614
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Russian Federation";"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;125;RUB;5.336365678302
+01/09/2025;01/08/2025;Spotify;Ukraine;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";131;RUB;-1.361765678653
+01/07/2025;01/06/2025;Spotify;Lithuania;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";6;RUB;-0.237451354266
+01/08/2025;01/07/2025;"UMA VK MUSIC";"Russian Federation";"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;3;RUB;0.239371898664
+01/08/2025;01/08/2025;"YouTube Official Content";Ukraine;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;11;RUB;1.634985164141
+01/09/2025;01/08/2025;Spotify;Nigeria;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";40;RUB;-0.268413125002
+01/09/2025;01/08/2025;Spotify;Egypt;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;5;RUB;0.148606087358
+01/07/2025;01/06/2025;Yandex;"Russian Federation";"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;36;RUB;0.827136791598
+01/08/2025;01/07/2025;Spotify;Kazakhstan;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;31;RUB;0.354262106165
+01/07/2025;01/06/2025;Yandex;Belarus;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;137;RUB;2.975631924699
+01/09/2025;01/08/2025;Spotify;Austria;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";4;RUB;-0.117274866782
+01/07/2025;01/06/2025;Spotify;Belarus;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";8;RUB;-0.092989611206
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;2065;RUB;42.453669486898
+01/07/2025;01/07/2025;"YouTube Official Content";Poland;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.126971619198
+01/09/2025;01/08/2025;Spotify;India;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;13;RUB;0.377642239178
+01/07/2025;01/06/2025;Spotify;Denmark;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.008081484355
+01/08/2025;01/07/2025;Spotify;"United Kingdom";"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;8;RUB;0.643171022784
+01/08/2025;01/07/2025;"UMA (Vkontakte)";Belarus;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;10;RUB;0.114900020342
+01/07/2025;01/06/2025;"UMA (Vkontakte)";"Russian Federation";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;950;RUB;32.718791684528
+01/09/2025;01/08/2025;Spotify;India;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;33;RUB;0.965835767063
+01/09/2025;01/08/2025;Spotify;Estonia;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;2;RUB;0.006905873348
+01/08/2025;01/07/2025;Spotify;Portugal;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;26;RUB;0.151378290026
+01/09/2025;01/08/2025;Spotify;Latvia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";11;RUB;-0.440573885478
+01/07/2025;01/06/2025;Spotify;Kazakhstan;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;13;RUB;0.450814108674
+01/07/2025;01/06/2025;Spotify;Latvia;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;3;RUB;0.006681634029
+01/08/2025;01/07/2025;Spotify;Taiwan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.003984950560
+01/09/2025;01/08/2025;Spotify;Latvia;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;1;RUB;0.006438558685
+01/07/2025;01/06/2025;Spotify;India;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;17;RUB;0.445213332965
+01/07/2025;01/06/2025;Spotify;Ukraine;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";201;RUB;-2.284363711626
+01/08/2025;01/07/2025;Yandex;Belarus;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;3;RUB;0.046677919146
+01/07/2025;01/06/2025;Spotify;Poland;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;3;RUB;0.313398343420
+01/08/2025;01/07/2025;Spotify;"United States";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";19;RUB;-1.367168520634
+01/08/2025;01/07/2025;"UMA (Vkontakte)";Belarus;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;3;RUB;0.012600000038
+01/09/2025;01/08/2025;Spotify;Turkey;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;15;RUB;0.196739521294
+01/08/2025;01/07/2025;Spotify;Latvia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;9;RUB;0.022614574570
+01/09/2025;01/08/2025;Spotify;"United Kingdom";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";17;RUB;-1.274827557005
+01/07/2025;01/06/2025;Spotify;Poland;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;84;RUB;7.285786733139
+01/07/2025;01/06/2025;Spotify;Australia;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;20;RUB;1.789647508369
+01/07/2025;01/06/2025;Spotify;Poland;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";48;RUB;-1.094926964650
+01/07/2025;01/06/2025;Spotify;Brazil;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.003889668356
+01/09/2025;01/08/2025;Spotify;Canada;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;4;RUB;0.518044351440
+01/07/2025;01/07/2025;"Apple Music";Kazakhstan;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1;RUB;0.058954813451
+01/08/2025;01/07/2025;Spotify;"United States";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;43;RUB;6.708664298162
+01/09/2025;01/08/2025;"UMA VK MUSIC";"Russian Federation";"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;5;RUB;0.340819177974
+01/08/2025;01/07/2025;"UMA (Vkontakte)";Kazakhstan;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;2;RUB;0.008400000000
+01/09/2025;01/08/2025;Spotify;India;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;7;RUB;0.210862811151
+01/08/2025;01/07/2025;Spotify;Georgia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.000003202182
+01/08/2025;01/07/2025;Spotify;India;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";5;RUB;-0.059688952242
+01/08/2025;01/07/2025;Spotify;India;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;5;RUB;0.144155587016
+01/07/2025;01/06/2025;Spotify;Finland;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;4;RUB;0.240195088479
+01/07/2025;01/06/2025;Spotify;Denmark;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;3;RUB;0.056695676378
+01/09/2025;01/08/2025;Spotify;Netherlands;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;15;RUB;0.909186757780
+01/09/2025;01/08/2025;Spotify;Poland;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;94;RUB;9.402684157193
+01/09/2025;01/08/2025;Spotify;Turkey;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";2;RUB;-0.013180575128
+01/09/2025;01/08/2025;Spotify;Germany;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";15;RUB;-0.631628388592
+01/09/2025;01/08/2025;Spotify;Canada;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";3;RUB;-0.141734706200
+01/07/2025;01/06/2025;Spotify;Hungary;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;10;RUB;0.492181319390
+01/09/2025;01/08/2025;Spotify;Canada;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;1;RUB;0.082403165902
+01/09/2025;01/08/2025;Spotify;Sweden;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;5;RUB;0.356561146713
+01/09/2025;01/08/2025;Spotify;"New Zealand";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.014897623062
+01/09/2025;01/08/2025;Spotify;"United States";"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;5;RUB;0.774859763169
+01/09/2025;01/08/2025;Spotify;Canada;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;32;RUB;4.412593461916
+01/07/2025;01/06/2025;Spotify;France;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";12;RUB;-0.450906191779
+01/08/2025;01/07/2025;Spotify;"Czech Republic";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;6;RUB;0.717689598550
+01/09/2025;01/08/2025;Spotify;Morocco;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.001003391498
+01/09/2025;01/08/2025;Spotify;Germany;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;27;RUB;2.130228322739
+01/09/2025;01/08/2025;Spotify;Australia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;6;RUB;0.732801441744
+01/08/2025;01/07/2025;Spotify;Ukraine;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;224;RUB;6.624183141754
+01/09/2025;01/08/2025;Yandex;Belarus;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;1;RUB;0.003942474724
+01/07/2025;01/06/2025;Spotify;Singapore;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1;RUB;0.012380683849
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Russian Federation";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;196;RUB;7.444558204031
+01/08/2025;01/07/2025;Spotify;"Moldova, Republic Of";"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;1;RUB;0.006774415945
+01/09/2025;01/08/2025;Spotify;Pakistan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;9;RUB;0.248819137240
+01/09/2025;01/08/2025;Spotify;Canada;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;1;RUB;0.082403165902
+01/07/2025;01/06/2025;Spotify;Latvia;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;6;RUB;0.093444685573
+01/08/2025;01/07/2025;Spotify;Australia;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;1;RUB;0.089013833519
+01/08/2025;01/07/2025;Spotify;Sweden;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;1;RUB;0.013897515166
+01/08/2025;01/07/2025;Spotify;Uzbekistan;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;2;RUB;0.003935138728
+01/09/2025;01/08/2025;Spotify;Ecuador;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1;RUB;0.063399033087
+01/08/2025;01/07/2025;"UMA (Vkontakte)";Kazakhstan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;9;RUB;0.037800000038
+01/07/2025;01/06/2025;Spotify;Belarus;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";35;RUB;-0.402994966442
+01/08/2025;01/07/2025;Spotify;Germany;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";29;RUB;-0.935344254489
+01/07/2025;01/06/2025;Spotify;Slovakia;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1;RUB;0.158246757201
+01/09/2025;01/08/2025;Spotify;Canada;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;1;RUB;0.082403165902
+01/08/2025;01/07/2025;Spotify;Italy;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.020307094663
+01/08/2025;01/07/2025;Spotify;Finland;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;5;RUB;0.075714060942
+01/09/2025;01/08/2025;Spotify;"Moldova, Republic Of";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;13;RUB;0.120515258352
+01/08/2025;01/07/2025;Spotify;Spain;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;3;RUB;0.062464100271
+01/09/2025;01/08/2025;Spotify;Singapore;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";2;RUB;-0.008268874677
+01/09/2025;01/08/2025;"UMA VK MUSIC";"Russian Federation";"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;1;RUB;0.099661454770
+01/08/2025;01/08/2025;"YouTube Official Content";Ukraine;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;9;RUB;0.642782949393
+01/08/2025;01/07/2025;Spotify;Canada;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;4;RUB;0.385593784971
+01/09/2025;01/08/2025;Spotify;Indonesia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;2;RUB;0.013604051307
+01/07/2025;01/06/2025;Spotify;Japan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";5;RUB;-0.031836465389
+01/07/2025;01/06/2025;Spotify;Finland;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;1;RUB;0.025350924148
+01/07/2025;01/06/2025;Spotify;Lithuania;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;1;RUB;0.062787754030
+01/09/2025;01/08/2025;Spotify;Philippines;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";8;RUB;-0.126505987062
+01/09/2025;01/08/2025;Spotify;"United States";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";87;RUB;-6.374473316854
+01/07/2025;01/06/2025;Spotify;France;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";62;RUB;-1.631862303581
+01/07/2025;01/06/2025;Spotify;"Czech Republic";"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;4;RUB;0.078558387047
+01/07/2025;01/06/2025;Spotify;Finland;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;27;RUB;0.685015369145
+01/07/2025;01/06/2025;Spotify;"Czech Republic";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;26;RUB;1.590131775430
+01/07/2025;01/06/2025;Spotify;Netherlands;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;3;RUB;0.149992972857
+01/07/2025;01/06/2025;Yandex;Azerbaijan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.021994570186
+01/07/2025;01/06/2025;Spotify;Egypt;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;4;RUB;0.109460962266
+01/07/2025;01/06/2025;Spotify;Nigeria;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;132;RUB;1.975505003602
+01/09/2025;01/08/2025;Spotify;Lithuania;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;2;RUB;0.004776995108
+01/09/2025;01/08/2025;Spotify;Estonia;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.070922577903
+01/09/2025;01/08/2025;Spotify;Australia;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;3;RUB;0.265279000881
+01/09/2025;01/08/2025;Spotify;"United Kingdom";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";12;RUB;-0.718653223060
+01/07/2025;01/06/2025;Spotify;Slovakia;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.044762138026
+01/07/2025;01/06/2025;Spotify;Belgium;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";8;RUB;-0.071110493330
+01/09/2025;01/08/2025;Spotify;"Viet Nam";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.000237440362
+01/09/2025;01/08/2025;Yandex;Ukraine;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;1;RUB;0.003942474724
+01/08/2025;01/08/2025;"YouTube UGC";Latvia;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1;RUB;0.000672750242
+01/08/2025;01/06/2025;"Facebook / Instagram";Argentina;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Creation;6;RUB;0.100584156198
+01/08/2025;01/07/2025;Spotify;"Hong Kong";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;5;RUB;0.129710141245
+01/08/2025;01/07/2025;Spotify;Japan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;3;RUB;0.158800280490
+01/07/2025;01/06/2025;Spotify;Israel;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;3;RUB;0.202610874441
+01/09/2025;01/08/2025;Spotify;"United Kingdom";"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;1;RUB;0.079755048956
+01/07/2025;01/06/2025;Spotify;Turkey;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";3;RUB;-0.035746213814
+01/09/2025;01/08/2025;Spotify;Ukraine;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;77;RUB;2.420586553058
+01/07/2025;01/06/2025;Yandex;Kazakhstan;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;26;RUB;0.553046731554
+01/07/2025;01/07/2025;"YouTube Official Content";Ukraine;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;2;RUB;0.163844002425
+01/08/2025;01/07/2025;Spotify;"United States";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";20;RUB;-1.396802740725
+01/09/2025;01/08/2025;Spotify;Japan;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";2;RUB;-0.012687298482
+01/09/2025;01/09/2025;"YouTube UGC";Ukraine;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;1;RUB;0.025849018707
+01/09/2025;01/06/2025;"UMA (Vkontakte)";Worldwide;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;1;RUB;5.233878812358
+01/09/2025;01/08/2025;Spotify;Nigeria;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";21;RUB;-0.140916890605
+01/08/2025;01/07/2025;Yandex;Ukraine;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.003823270455
+01/09/2025;01/08/2025;Spotify;Latvia;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;12;RUB;0.692145054106
+01/08/2025;01/07/2025;Spotify;Greece;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.168762656854
+01/09/2025;01/08/2025;Spotify;Finland;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;3;RUB;0.045069905262
+01/07/2025;01/06/2025;Spotify;Romania;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.012970240299
+01/07/2025;01/06/2025;Spotify;Belarus;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;42;RUB;0.981807948399
+01/07/2025;01/06/2025;Spotify;Belgium;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";5;RUB;-0.044444058285
+01/08/2025;01/07/2025;Spotify;Uzbekistan;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;1;RUB;0.001942663410
+01/07/2025;01/06/2025;Spotify;Brazil;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;3;RUB;0.333885422592
+01/07/2025;01/06/2025;Spotify;Bulgaria;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;3;RUB;0.031934308607
+01/07/2025;01/06/2025;Spotify;Latvia;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";2;RUB;-0.056823268316
+01/08/2025;01/07/2025;Spotify;Japan;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;2;RUB;0.026748980727
+01/09/2025;01/09/2025;"Apple Music";"Russian Federation";"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;15;RUB;1.603417200026
+01/07/2025;01/06/2025;Spotify;Romania;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.005556077534
+01/08/2025;01/07/2025;Spotify;Argentina;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1;RUB;0.002739653478
+01/09/2025;01/08/2025;Spotify;Estonia;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;2;RUB;0.062412479718
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;2126;RUB;44.637048438781
+01/07/2025;01/06/2025;Spotify;Turkey;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;4;RUB;0.074038454846
+01/07/2025;01/06/2025;NetEase;"China Mainland";"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;1;RUB;0.032836907556
+01/09/2025;01/09/2025;"Apple Music";Kazakhstan;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;1;RUB;0.057849198156
+01/08/2025;01/07/2025;Spotify;Nigeria;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;12;RUB;0.187143241353
+01/09/2025;01/08/2025;Spotify;Kyrgyzstan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.035561316542
+01/09/2025;01/08/2025;Spotify;Australia;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";3;RUB;-0.113836246217
+01/08/2025;01/07/2025;Spotify;Belarus;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";18;RUB;-0.249679084931
+01/07/2025;01/05/2025;TikTok;"Korea, Republic Of";"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Creation;1;RUB;0.069745987130
+01/09/2025;01/08/2025;Spotify;Germany;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;2;RUB;0.097928399982
+01/08/2025;01/07/2025;Spotify;Poland;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";24;RUB;-0.575400761636
+01/07/2025;01/06/2025;Yandex;"Russian Federation";"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;1918;RUB;41.850690044051
+01/07/2025;01/07/2025;"Apple Music";Kazakhstan;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;2;RUB;0.117909626830
+01/09/2025;01/08/2025;Spotify;Turkey;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";9;RUB;-0.076835756042
+01/08/2025;01/07/2025;Spotify;Lithuania;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;2;RUB;0.006077049618
+01/09/2025;01/08/2025;Spotify;Slovakia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.049169521810
+01/09/2025;01/08/2025;Spotify;Belarus;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";39;RUB;-0.294025221755
+01/07/2025;01/06/2025;Spotify;Pakistan;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;17;RUB;4.210857298984
+01/07/2025;01/06/2025;Yandex;Ukraine;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.003182478163
+01/07/2025;01/06/2025;Spotify;India;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;6;RUB;0.221132765738
+01/07/2025;01/06/2025;Spotify;Norway;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;3;RUB;0.066619870482
+01/08/2025;01/07/2025;Spotify;Kazakhstan;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";8;RUB;-0.146862016018
+01/08/2025;01/08/2025;"YouTube Official Content";Latvia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.102580327208
+01/08/2025;01/07/2025;Spotify;Romania;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.013349584485
+01/07/2025;01/06/2025;Spotify;Latvia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";7;RUB;-0.061570741202
+01/09/2025;01/08/2025;"UMA VK MUSIC";"Russian Federation";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;32;RUB;3.594139117262
+01/07/2025;01/06/2025;Spotify;Australia;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.049232800190
+01/09/2025;01/08/2025;Spotify;Kazakhstan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";30;RUB;-0.381685322326
+01/07/2025;01/06/2025;Spotify;Singapore;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.082734411411
+01/07/2025;01/06/2025;Spotify;Germany;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;155;RUB;21.795899448286
+01/09/2025;01/08/2025;Spotify;Netherlands;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";6;RUB;-0.196088157914
+01/08/2025;01/07/2025;Spotify;Lithuania;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;6;RUB;0.185698696790
+01/08/2025;01/07/2025;Spotify;Slovakia;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";2;RUB;-0.052838238714
+01/08/2025;01/07/2025;Spotify;Norway;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.006229473977
+01/08/2025;01/07/2025;Spotify;Israel;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;9;RUB;0.410449894321
+01/08/2025;01/07/2025;Spotify;Ukraine;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";44;RUB;-0.683095274901
+01/08/2025;01/07/2025;Spotify;Germany;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;18;RUB;1.868095017685
+01/08/2025;01/07/2025;Spotify;Kazakhstan;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;7;RUB;0.038355159219
+01/08/2025;01/07/2025;Spotify;Bulgaria;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.004781513765
+01/08/2025;01/07/2025;Spotify;Denmark;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;2;RUB;0.372841938218
+01/09/2025;01/08/2025;Spotify;Kazakhstan;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;19;RUB;0.684512241446
+01/08/2025;01/07/2025;Spotify;Egypt;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;4;RUB;0.048915268307
+01/07/2025;01/06/2025;Spotify;"United Kingdom";"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;11;RUB;0.950659651019
+01/07/2025;01/06/2025;Spotify;Sweden;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;4;RUB;0.356927255891
+01/08/2025;01/07/2025;Spotify;Ukraine;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;59;RUB;1.656245092767
+01/09/2025;01/08/2025;Spotify;"Moldova, Republic Of";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";5;RUB;-0.014550549105
+01/09/2025;01/09/2025;"YouTube UGC";"United States";"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;1;RUB;0.011230548521
+01/09/2025;01/07/2025;"Facebook / Instagram";Turkey;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Creation;5;RUB;0.101026363210
+01/09/2025;01/08/2025;"UMA (Vkontakte)";Kazakhstan;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;2;RUB;0.008400000000
+01/07/2025;01/06/2025;Spotify;"Czech Republic";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;4;RUB;0.407334325999
+01/07/2025;01/06/2025;Yandex;Kazakhstan;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;14;RUB;0.270299797966
+01/08/2025;01/07/2025;Spotify;Belarus;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;20;RUB;0.652436023032
+01/07/2025;01/06/2025;Spotify;Egypt;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.019489821346
+01/07/2025;01/06/2025;Spotify;Austria;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";3;RUB;-0.185030864824
+01/07/2025;01/06/2025;NetEase;"China Mainland";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;44;RUB;1.411766883070
+01/09/2025;01/08/2025;Spotify;Netherlands;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;8;RUB;0.370269045792
+01/09/2025;01/08/2025;Spotify;France;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;1;RUB;0.030687001270
+01/07/2025;01/06/2025;Spotify;Hungary;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;4;RUB;0.065244238910
+01/08/2025;01/07/2025;Yandex;Uzbekistan;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;3;RUB;0.064281973111
+01/07/2025;01/06/2025;Yandex;Belarus;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;24;RUB;0.509057591330
+01/08/2025;01/07/2025;Spotify;"United States";"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;5;RUB;0.849641274425
+01/09/2025;01/08/2025;Spotify;Malaysia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.014421184546
+01/09/2025;01/08/2025;Spotify;Poland;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;1;RUB;0.141855985591
+01/09/2025;01/08/2025;Spotify;Poland;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";16;RUB;-0.412075215242
+01/07/2025;01/04/2025;"Facebook / Instagram";Argentina;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Creation;7;RUB;0.116383736350
+01/09/2025;01/08/2025;Spotify;Germany;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;3;RUB;0.605691827113
+01/07/2025;01/06/2025;Spotify;Hungary;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;4;RUB;0.065244238910
+01/07/2025;01/06/2025;Spotify;Netherlands;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";37;RUB;-0.991460262906
+01/09/2025;01/08/2025;Spotify;Kazakhstan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;62;RUB;0.766344250130
+01/08/2025;01/07/2025;Yandex;Kyrgyzstan;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1;RUB;0.021427324346
+01/08/2025;01/07/2025;Spotify;Finland;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;1;RUB;0.015142812174
+01/07/2025;01/05/2025;"Facebook / Instagram";Brazil;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Creation;13;RUB;0.128220838018
+01/07/2025;01/06/2025;Spotify;Australia;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;21;RUB;1.879112653980
+01/08/2025;01/07/2025;Spotify;Nigeria;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;160;RUB;2.373785355270
+01/07/2025;01/06/2025;Spotify;Italy;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;2;RUB;0.097522450491
+01/07/2025;01/04/2025;"Facebook / Instagram";Iraq;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Creation;7;RUB;0.037446700603
+01/07/2025;01/06/2025;Spotify;Mexico;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;10;RUB;0.504807646767
+01/07/2025;01/07/2025;"YouTube UGC";"Korea, Republic Of";"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;1;RUB;0.005478888613
+01/08/2025;01/07/2025;Yandex;"Moldova, Republic Of";"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;2;RUB;0.042854648691
+01/09/2025;01/08/2025;Spotify;Singapore;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;1;RUB;0.009657837988
+01/09/2025;01/08/2025;Yandex;Belarus;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;37;RUB;0.712169937214
+01/07/2025;01/07/2025;"YouTube UGC";Ukraine;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;2;RUB;0.064468561943
+01/07/2025;01/06/2025;Yandex;"Russian Federation";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1085;RUB;23.735192624871
+01/08/2025;01/07/2025;Spotify;Netherlands;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;10;RUB;0.651539404144
+01/08/2025;01/07/2025;Spotify;Egypt;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;4;RUB;0.075215942094
+01/07/2025;01/06/2025;Spotify;"Korea, Republic Of";"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";1;RUB;-0.050954796059
+01/08/2025;01/07/2025;Spotify;Egypt;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;2;RUB;0.024457634116
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;48;RUB;1.003292696864
+01/08/2025;01/07/2025;Soundcloud;Germany;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;1;RUB;0.257368809455
+01/07/2025;01/06/2025;Spotify;Latvia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;13;RUB;0.108969689727
+01/07/2025;01/06/2025;Spotify;Latvia;"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;1;RUB;0.002210836414
+01/08/2025;01/07/2025;Spotify;Nigeria;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;26;RUB;0.401533592218
+01/09/2025;01/09/2025;"YouTube UGC";Germany;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.022232303716
+01/07/2025;01/07/2025;"YouTube UGC";Germany;"gwenn / thqlabel";gwenn;archive;demo1;3617663725408;DG-A0L-24-17855;;"Music Release";Stream;1;RUB;0.005045774852
+01/08/2025;01/07/2025;Spotify;Germany;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;108;RUB;10.605946040282
+01/09/2025;01/08/2025;Spotify;Romania;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.014071366049
+01/09/2025;01/08/2025;Spotify;Slovakia;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;1;RUB;0.172750682328
+01/07/2025;01/06/2025;Spotify;Egypt;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;2;RUB;0.049080568258
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;155;RUB;3.321235274583
+01/09/2025;01/08/2025;Spotify;Poland;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;1;RUB;0.141855985591
+01/08/2025;01/07/2025;Spotify;Greece;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.054794707064
+01/08/2025;01/06/2025;"Facebook / Instagram";Brazil;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Creation;6;RUB;0.049426851979
+01/09/2025;01/08/2025;Spotify;Latvia;"gwenn / thqlabel";gwenn;archive;2023/04;3617663725408;DG-A0L-24-17856;;"Music Release";Stream;1;RUB;0.006438558685
+01/07/2025;01/06/2025;Spotify;Nigeria;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";"Platform Promotion";6;RUB;-0.035532857562
+01/07/2025;01/06/2025;Spotify;Ukraine;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;340;RUB;6.319061675851
+01/07/2025;01/06/2025;Spotify;Taiwan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";"Platform Promotion";1;RUB;-0.001746139677
+01/07/2025;01/06/2025;Spotify;Pakistan;"gwenn / thqlabel";gwenn;archive;"milk outside a bag of milk outside a bag of milk";3617663725408;DG-A0L-24-17854;;"Music Release";Stream;3;RUB;0.743086686896
+01/08/2025;01/07/2025;Yandex;Belarus;"gwenn / thqlabel";gwenn;archive;"fak it";3617663725408;DG-A0L-24-17857;;"Music Release";Stream;60;RUB;1.232827299352
+01/09/2025;01/08/2025;Spotify;"Viet Nam";"gwenn / thqlabel";gwenn;4me;4me;3617661539816;DG-A08-24-74263;;"Music Release";Stream;6;RUB;0.346747537222

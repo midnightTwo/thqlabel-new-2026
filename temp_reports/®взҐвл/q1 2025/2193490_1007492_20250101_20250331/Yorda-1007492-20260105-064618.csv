@@ -1,0 +1,5 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/03/2025;01/03/2025;"Apple Music";"Russian Federation";thqlabel;Yorda;рядом;рядом;3617392520077;FR-96X-25-02214;;"Music Release";Stream;1;RUB;0.108907680002
+01/03/2025;01/03/2025;"YouTube Official Content";"United States";thqlabel;Yorda;рядом;рядом;3617392520077;FR-96X-25-02214;;"Music Release";Stream;1;RUB;0.388508837605
+01/03/2025;01/03/2025;"YouTube Official Content";"United Kingdom";thqlabel;Yorda;рядом;рядом;3617392520077;FR-96X-25-02214;;"Music Release";Stream;1;RUB;0.010527687804
+01/03/2025;01/03/2025;"YouTube Official Content";Ukraine;thqlabel;Yorda;рядом;рядом;3617392520077;FR-96X-25-02214;;"Music Release";Stream;1;RUB;0.113661126545

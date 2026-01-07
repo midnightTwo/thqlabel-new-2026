@@ -1,0 +1,331 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/12/2024;01/11/2024;Spotify;Kazakhstan;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;20;RUB;2.492957536370
+01/11/2024;01/10/2024;Spotify;France;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;14;RUB;0.526970915094
+01/10/2024;01/09/2024;Spotify;Uzbekistan;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;1;RUB;0.000224117678
+01/12/2024;01/11/2024;Spotify;Germany;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;1;RUB;0.090212938203
+01/12/2024;01/11/2024;Spotify;Germany;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.090212938203
+01/11/2024;01/10/2024;"Facebook / Instagram";"United States";thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;3;RUB;0.004717027400
+01/12/2024;01/11/2024;Soundcloud;Germany;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;5;RUB;1.042575918270
+01/11/2024;01/10/2024;"UMA (Vkontakte)";Ukraine;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;4;RUB;0.016800000000
+01/12/2024;01/11/2024;Spotify;France;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;3;RUB;0.123565084118
+01/10/2024;01/01/2023;"JOOX / THAILAND";Thailand;thqlabel;cawabang;drama;drama;3617057163014;FR-96X-23-39505;;"Music Release";Stream;1;RUB;0.008267318121
+01/10/2024;01/09/2024;"Facebook / Instagram";"United States";thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;7;RUB;0.011441861578
+01/12/2024;01/12/2024;"YouTube Official Content";Poland;thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;1;RUB;0.131157248274
+01/12/2024;01/11/2024;Spotify;Germany;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;3;RUB;0.270696711860
+01/12/2024;01/11/2024;"UMA (Vkontakte)";Ukraine;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.004200000000
+01/10/2024;01/09/2024;Yandex;Ukraine;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;2;RUB;0.008768252250
+01/12/2024;01/11/2024;Yandex;"Moldova, Republic Of";thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;4;RUB;0.067511521778
+01/11/2024;01/10/2024;Yandex;Uzbekistan;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;12;RUB;0.157448143134
+01/10/2024;01/09/2024;"UMA (Vkontakte)";"Russian Federation";thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;26;RUB;0.487409629481
+01/11/2024;01/11/2024;"YouTube Official Content";Peru;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.192922639589
+01/10/2024;01/09/2024;Spotify;"United Kingdom";thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;2;RUB;0.177165002348
+01/10/2024;01/09/2024;Spotify;Israel;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;2;RUB;0.030816176896
+01/10/2024;01/09/2024;Yandex;Kazakhstan;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;1;RUB;0.015914974666
+01/12/2024;01/11/2024;Spotify;Ukraine;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;3;RUB;0.142383578408
+01/10/2024;01/09/2024;"UMA (Vkontakte)";"Russian Federation";thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;42;RUB;0.743714444138
+01/11/2024;01/10/2024;Yandex;Kazakhstan;thqlabel;cawabang;drama;drama;3617057163014;FR-96X-23-39505;;"Music Release";Stream;58;RUB;0.798345372954
+01/10/2024;01/09/2024;Yandex;Kazakhstan;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;123;RUB;1.922949336986
+01/11/2024;01/11/2024;"YouTube UGC";Japan;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;4;RUB;0.515064068885
+01/11/2024;01/10/2024;"UMA (Vkontakte)";Ukraine;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;1;RUB;0.004200000043
+01/12/2024;01/11/2024;Spotify;Ireland;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;2;RUB;0.130339745777
+01/12/2024;01/12/2024;"YouTube UGC";Japan;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;1;RUB;0.125395157424
+01/10/2024;01/10/2024;"YouTube UGC";Italy;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.047140214712
+01/10/2024;01/09/2024;Spotify;France;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;30;RUB;1.289685072903
+01/11/2024;01/10/2024;Spotify;Netherlands;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.068939303620
+01/11/2024;01/07/2024;"HITTER - Beeline Kazakhstan";Kazakhstan;thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;1;RUB;0.802768204621
+01/12/2024;01/11/2024;"UMA (Vkontakte)";Kyrgyzstan;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;1;RUB;0.004200000000
+01/12/2024;01/11/2024;Spotify;"United States";thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;5;RUB;1.133104619273
+01/11/2024;01/10/2024;Yandex;"Moldova, Republic Of";thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;4;RUB;0.064931385926
+01/11/2024;01/10/2024;Spotify;Ukraine;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;34;RUB;0.515471438726
+01/10/2024;01/09/2024;Spotify;Belarus;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;1;RUB;0.045439853511
+01/11/2024;01/10/2024;Yandex;Belarus;thqlabel;cawabang;drama;drama;3617057163014;FR-96X-23-39505;;"Music Release";Stream;108;RUB;1.479276645602
+01/10/2024;01/09/2024;Spotify;Finland;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;1;RUB;0.190892208417
+01/12/2024;01/11/2024;"UMA (Vkontakte)";Ukraine;thqlabel;cawabang;drama;drama;3617057163014;FR-96X-23-39505;;"Music Release";Stream;2;RUB;0.008400000000
+01/10/2024;01/09/2024;Spotify;Canada;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;1;RUB;0.100404707143
+01/10/2024;01/09/2024;Yandex;"Moldova, Republic Of";thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;3;RUB;0.047744923914
+01/11/2024;01/10/2024;Spotify;Thailand;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;2;RUB;0.004405250086
+01/10/2024;01/09/2024;Yandex;Georgia;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;1;RUB;0.015914974666
+01/10/2024;01/10/2024;"YouTube UGC";Australia;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.102573339650
+01/10/2024;01/10/2024;"Apple Music";Poland;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.268686788706
+01/11/2024;01/10/2024;Yandex;Georgia;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;2;RUB;0.026241357189
+01/12/2024;01/11/2024;Soundcloud;France;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;1;RUB;0.208515183654
+01/12/2024;01/11/2024;Spotify;France;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;6;RUB;0.247130168324
+01/10/2024;01/09/2024;Yandex;"Russian Federation";thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;5899;RUB;92.418017728686
+01/12/2024;01/11/2024;Yandex;Belarus;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;53;RUB;0.894527662918
+01/12/2024;01/12/2024;"YouTube UGC";"Korea, Republic Of";thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;1;RUB;0.152470727754
+01/10/2024;01/09/2024;"UMA (Vkontakte)";Belarus;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;3;RUB;0.012600000042
+01/10/2024;01/09/2024;Yandex;Kazakhstan;thqlabel;cawabang;drama;drama;3617057163014;FR-96X-23-39505;;"Music Release";Stream;31;RUB;0.424179122978
+01/11/2024;01/10/2024;Spotify;"Moldova, Republic Of";thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;2;RUB;0.002746129942
+01/10/2024;01/09/2024;Yandex;Kyrgyzstan;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;3;RUB;0.047744923914
+01/10/2024;01/09/2024;Spotify;Poland;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;17;RUB;0.126346364388
+01/11/2024;01/10/2024;Spotify;Nigeria;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;8;RUB;0.100004892746
+01/11/2024;01/07/2024;"HITTER - Beeline Kazakhstan";Kazakhstan;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;1;RUB;0.802768204621
+01/12/2024;01/11/2024;Yandex;Armenia;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.016877880402
+01/12/2024;01/12/2024;"YouTube UGC";France;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;1;RUB;0.008190928910
+01/11/2024;01/10/2024;Yandex;Armenia;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;2;RUB;0.026241357189
+01/11/2024;01/10/2024;Yandex;"Russian Federation";thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;994;RUB;13.278479279656
+01/10/2024;01/09/2024;"UMA (Vkontakte)";Ukraine;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;1;RUB;0.004200000042
+01/11/2024;01/10/2024;Spotify;"United Kingdom";thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;1;RUB;0.093940528179
+01/11/2024;01/11/2024;"YouTube UGC";Thailand;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.011348442741
+01/12/2024;01/11/2024;Spotify;Thailand;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;1;RUB;0.002605636861
+01/11/2024;01/11/2024;"YouTube UGC";India;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.003213392018
+01/10/2024;01/09/2024;Yandex;"Moldova, Republic Of";thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;13;RUB;0.160771276242
+01/10/2024;01/10/2024;"Apple Music";"Russian Federation";thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;7;RUB;0.671468559957
+01/11/2024;01/10/2024;Spotify;"Moldova, Republic Of";thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;1;RUB;0.001373064970
+01/10/2024;01/09/2024;Yandex;Uzbekistan;thqlabel;cawabang;drama;drama;3617057163014;FR-96X-23-39505;;"Music Release";Stream;13;RUB;0.149240427742
+01/10/2024;01/09/2024;Spotify;Nigeria;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;11;RUB;0.117157495947
+01/11/2024;01/10/2024;Yandex;Uzbekistan;thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;2;RUB;0.026241357189
+01/10/2024;01/09/2024;"UMA (Vkontakte)";Belarus;thqlabel;cawabang;drama;drama;3617057163014;FR-96X-23-39505;;"Music Release";Stream;1;RUB;0.004200000042
+01/11/2024;01/10/2024;"UMA (Vkontakte)";"Russian Federation";thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;40;RUB;2.111499365580
+01/12/2024;01/11/2024;Spotify;Israel;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;2;RUB;0.023971859035
+01/10/2024;01/09/2024;Yandex;Belarus;thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;12;RUB;0.167917998826
+01/11/2024;01/10/2024;Yandex;Armenia;thqlabel;cawabang;drama;drama;3617057163014;FR-96X-23-39505;;"Music Release";Stream;1;RUB;0.013120678551
+01/10/2024;01/09/2024;Spotify;Netherlands;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;8;RUB;0.584274713583
+01/11/2024;01/11/2024;"YouTube UGC";Japan;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;4;RUB;0.214974070998
+01/10/2024;01/09/2024;Spotify;India;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;2;RUB;0.060231618448
+01/10/2024;01/09/2024;Yandex;Ukraine;thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;1;RUB;0.004384126083
+01/10/2024;01/09/2024;Yandex;Uzbekistan;thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;2;RUB;0.020299100749
+01/12/2024;01/11/2024;"UMA (Vkontakte)";"Russian Federation";thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;108;RUB;2.627201065184
+01/11/2024;01/10/2024;Spotify;France;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;20;RUB;0.752840079338
+01/12/2024;01/10/2024;"Facebook / Instagram";Worldwide;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Creation;13;RUB;0.433718334303
+01/10/2024;01/09/2024;Spotify;Egypt;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;1;RUB;0.033673676941
+01/12/2024;01/11/2024;Yandex;"Russian Federation";thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;6076;RUB;104.341506047336
+01/12/2024;01/12/2024;"YouTube UGC";Mexico;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;7;RUB;0.261610036913
+01/10/2024;01/10/2024;"YouTube UGC";"United States";thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;14;RUB;2.087550357156
+01/11/2024;01/10/2024;Spotify;"United States";thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;17;RUB;3.050092191530
+01/11/2024;01/10/2024;"UMA (Vkontakte)";Belarus;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;5;RUB;0.021000000043
+01/12/2024;01/11/2024;Spotify;Kazakhstan;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;15;RUB;1.745313479828
+01/11/2024;01/10/2024;"UMA (Vkontakte)";Kazakhstan;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;1;RUB;0.004200000043
+01/10/2024;01/09/2024;Spotify;"United States";thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;14;RUB;2.449325767402
+01/12/2024;01/11/2024;Yandex;Israel;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.016877880402
+01/11/2024;01/10/2024;Yandex;"Russian Federation";thqlabel;cawabang;drama;drama;3617057163014;FR-96X-23-39505;;"Music Release";Stream;8312;RUB;110.590267055558
+01/12/2024;01/11/2024;Spotify;Turkey;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;4;RUB;0.098029848786
+01/12/2024;01/11/2024;Spotify;"Czech Republic";thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;10;RUB;1.720357257480
+01/12/2024;01/12/2024;"YouTube UGC";"United States";thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;14;RUB;1.153356728710
+01/11/2024;01/10/2024;Spotify;Kazakhstan;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;3;RUB;0.365120853531
+01/11/2024;01/10/2024;Yandex;Turkmenistan;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.025569350101
+01/11/2024;01/11/2024;"YouTube UGC";Poland;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;4;RUB;0.346095238533
+01/12/2024;01/11/2024;Yandex;"Russian Federation";thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;3109;RUB;53.059014440353
+01/12/2024;01/11/2024;"UMA (Vkontakte)";Ukraine;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;1;RUB;0.004200000000
+01/10/2024;01/09/2024;"UMA (Vkontakte)";Belarus;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;3;RUB;0.012600000042
+01/11/2024;01/10/2024;Spotify;Poland;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;11;RUB;0.104295743692
+01/10/2024;01/09/2024;Spotify;Germany;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;1;RUB;0.070821177437
+01/10/2024;01/09/2024;Spotify;Germany;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;2;RUB;0.141586325434
+01/11/2024;01/10/2024;Spotify;Poland;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;19;RUB;0.180214805545
+01/12/2024;01/11/2024;Spotify;Nigeria;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;10;RUB;0.137230196118
+01/11/2024;01/11/2024;"Apple Music";"Russian Federation";thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;4;RUB;0.384352640071
+01/10/2024;01/09/2024;Spotify;France;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;21;RUB;0.902801906793
+01/12/2024;01/11/2024;Yandex;Belarus;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;101;RUB;1.721891928779
+01/11/2024;01/10/2024;Yandex;Turkmenistan;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;5;RUB;0.127846750674
+01/11/2024;01/10/2024;Spotify;Egypt;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;9;RUB;0.319123194264
+01/11/2024;01/10/2024;Yandex;"Moldova, Republic Of";thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;1;RUB;0.013120678551
+01/12/2024;01/11/2024;Yandex;"Russian Federation";thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;51;RUB;0.877997907239
+01/11/2024;01/10/2024;Spotify;Poland;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;15;RUB;0.142283857240
+01/11/2024;01/10/2024;Spotify;India;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;29;RUB;1.408535789260
+01/12/2024;01/11/2024;Soundcloud;France;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;1;RUB;0.208515183654
+01/10/2024;01/10/2024;"YouTube UGC";Canada;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;1;RUB;0.197697215598
+01/10/2024;01/09/2024;"UMA (Vkontakte)";Kazakhstan;thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;2;RUB;0.008400000000
+01/11/2024;01/10/2024;Yandex;Belarus;thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;22;RUB;0.301103600541
+01/10/2024;01/09/2024;"UMA (Vkontakte)";Ukraine;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;1;RUB;0.004200000042
+01/11/2024;01/10/2024;Yandex;Kazakhstan;thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;10;RUB;0.131206785858
+01/10/2024;01/10/2024;"YouTube UGC";"New Zealand";thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.066895273590
+01/10/2024;01/09/2024;Spotify;Norway;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;1;RUB;0.012214411927
+01/10/2024;01/10/2024;"YouTube UGC";Canada;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.115180116842
+01/11/2024;01/10/2024;"UMA (Vkontakte)";"Russian Federation";thqlabel;cawabang;drama;drama;3617057163014;FR-96X-23-39505;;"Music Release";Stream;12;RUB;0.392986482133
+01/12/2024;01/11/2024;Spotify;Ireland;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;2;RUB;0.130339745777
+01/11/2024;01/10/2024;Yandex;Kazakhstan;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;27;RUB;0.379155665105
+01/12/2024;01/11/2024;Yandex;Belarus;thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;28;RUB;0.507032662526
+01/10/2024;01/09/2024;Yandex;Turkmenistan;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.004384126083
+01/11/2024;01/10/2024;"UMA (Vkontakte)";Ukraine;thqlabel;cawabang;drama;drama;3617057163014;FR-96X-23-39505;;"Music Release";Stream;1;RUB;0.004200000043
+01/11/2024;01/10/2024;"UMA (Vkontakte)";Kazakhstan;thqlabel;cawabang;drama;drama;3617057163014;FR-96X-23-39505;;"Music Release";Stream;1;RUB;0.004200000043
+01/11/2024;01/11/2024;"YouTube UGC";"United States";thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;17;RUB;2.559851574423
+01/12/2024;01/12/2024;"YouTube UGC";Canada;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;1;RUB;3.828093170105
+01/10/2024;01/09/2024;Yandex;Uzbekistan;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;16;RUB;0.220047048822
+01/11/2024;01/10/2024;Yandex;Belarus;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;116;RUB;1.559344731346
+01/10/2024;01/09/2024;Spotify;Nigeria;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;5;RUB;0.056309559619
+01/12/2024;01/11/2024;Yandex;Uzbekistan;thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;1;RUB;0.016877880402
+01/11/2024;01/10/2024;Yandex;Georgia;thqlabel;cawabang;drama;drama;3617057163014;FR-96X-23-39505;;"Music Release";Stream;1;RUB;0.013120678551
+01/10/2024;01/09/2024;Yandex;Kazakhstan;thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;14;RUB;0.222809645239
+01/10/2024;01/10/2024;"YouTube UGC";Chile;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;2;RUB;0.047156405979
+01/12/2024;01/11/2024;Spotify;Ukraine;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;12;RUB;0.132192660442
+01/10/2024;01/09/2024;"UMA (Vkontakte)";Belarus;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;5;RUB;0.021000000042
+01/12/2024;01/11/2024;Yandex;Belarus;thqlabel;cawabang;drama;drama;3617057163014;FR-96X-23-39505;;"Music Release";Stream;56;RUB;0.962387309333
+01/10/2024;01/09/2024;Spotify;"United Kingdom";thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;5;RUB;0.442856476387
+01/11/2024;01/11/2024;"YouTube UGC";"United Kingdom";thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;3;RUB;0.156532815202
+01/11/2024;01/11/2024;"YouTube UGC";Australia;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;2;RUB;0.197512798274
+01/11/2024;01/10/2024;Spotify;"Czech Republic";thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;2;RUB;0.345726316571
+01/10/2024;01/09/2024;"UMA (Vkontakte)";"Russian Federation";thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;81;RUB;8.301945202226
+01/11/2024;01/10/2024;Spotify;Ukraine;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;28;RUB;0.513411898509
+01/11/2024;01/10/2024;Yandex;"Russian Federation";thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;3775;RUB;50.227687290975
+01/12/2024;01/11/2024;Yandex;Uzbekistan;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;21;RUB;0.406113504669
+01/12/2024;01/11/2024;Spotify;"Czech Republic";thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;8;RUB;1.376297386633
+01/10/2024;01/09/2024;Yandex;"Russian Federation";thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;2954;RUB;46.482416099996
+01/10/2024;01/10/2024;"Apple Music";"Russian Federation";thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;10;RUB;0.959240799974
+01/10/2024;01/09/2024;Spotify;"Czech Republic";thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;9;RUB;1.592243866870
+01/11/2024;01/10/2024;Spotify;Israel;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;1;RUB;0.005091782657
+01/12/2024;01/11/2024;"Facebook / Instagram";"United States";thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;4;RUB;0.006694379034
+01/12/2024;01/11/2024;Spotify;Kazakhstan;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;19;RUB;2.243858687802
+01/12/2024;01/11/2024;"UMA (Vkontakte)";Belarus;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;8;RUB;0.033600000000
+01/10/2024;01/09/2024;Spotify;"Moldova, Republic Of";thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;54;RUB;0.103262117597
+01/12/2024;01/11/2024;"UMA (Vkontakte)";Kazakhstan;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.004200000000
+01/10/2024;01/10/2024;"YouTube UGC";Argentina;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.003217812478
+01/11/2024;01/11/2024;"YouTube UGC";Canada;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;1;RUB;0.394610071732
+01/10/2024;01/09/2024;"UMA (Vkontakte)";"Russian Federation";thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;79;RUB;5.304524781144
+01/10/2024;01/09/2024;Spotify;Poland;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;18;RUB;0.133798270666
+01/11/2024;01/10/2024;"UMA (Vkontakte)";Belarus;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;3;RUB;0.012600000043
+01/11/2024;01/10/2024;Spotify;Canada;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;5;RUB;0.698775646290
+01/10/2024;01/09/2024;Yandex;"Russian Federation";thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;772;RUB;12.021150917478
+01/11/2024;01/10/2024;"UMA (Vkontakte)";"Russian Federation";thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;76;RUB;6.092789787572
+01/11/2024;01/10/2024;Spotify;Netherlands;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;2;RUB;0.137935818138
+01/11/2024;01/10/2024;Spotify;Netherlands;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;6;RUB;0.413750232016
+01/10/2024;01/09/2024;Yandex;Israel;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.015914974666
+01/12/2024;01/11/2024;"UMA VK MUSIC";"Russian Federation";thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;1;RUB;0.051354056282
+01/11/2024;01/11/2024;"YouTube UGC";Italy;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;2;RUB;0.157677818801
+01/12/2024;01/11/2024;Spotify;"United Kingdom";thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;1;RUB;0.110710614757
+01/10/2024;01/09/2024;Yandex;Kyrgyzstan;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;3;RUB;0.047744923914
+01/12/2024;01/11/2024;Spotify;"United States";thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;9;RUB;1.835468509228
+01/12/2024;01/11/2024;"UMA (Vkontakte)";"Russian Federation";thqlabel;cawabang;drama;drama;3617057163014;FR-96X-23-39505;;"Music Release";Stream;12;RUB;0.097554056282
+01/12/2024;01/11/2024;Yandex;Kazakhstan;thqlabel;cawabang;drama;drama;3617057163014;FR-96X-23-39505;;"Music Release";Stream;30;RUB;0.523562418118
+01/10/2024;01/09/2024;Yandex;Belarus;thqlabel;cawabang;drama;drama;3617057163014;FR-96X-23-39505;;"Music Release";Stream;25;RUB;0.351750972065
+01/10/2024;01/09/2024;"UMA (Vkontakte)";Belarus;thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;3;RUB;0.012600000042
+01/12/2024;01/11/2024;Yandex;Kyrgyzstan;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;1;RUB;0.034103885613
+01/10/2024;01/09/2024;Spotify;Netherlands;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;5;RUB;0.365143681279
+01/12/2024;01/12/2024;"YouTube UGC";Canada;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.036726282017
+01/10/2024;01/09/2024;Spotify;Norway;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;1;RUB;0.012214411927
+01/11/2024;01/10/2024;"UMA (Vkontakte)";Kazakhstan;thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;1;RUB;0.004200000043
+01/11/2024;01/10/2024;Yandex;Kazakhstan;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;87;RUB;1.191293723613
+01/12/2024;01/11/2024;Yandex;Uzbekistan;thqlabel;cawabang;drama;drama;3617057163014;FR-96X-23-39505;;"Music Release";Stream;5;RUB;0.101615407391
+01/10/2024;01/09/2024;"UMA VK MUSIC";"Russian Federation";thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;3;RUB;0.150121863552
+01/11/2024;01/10/2024;Spotify;Belgium;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;1;RUB;0.340577322931
+01/10/2024;01/09/2024;Spotify;"United States";thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;12;RUB;2.212937676117
+01/11/2024;01/10/2024;"UMA (Vkontakte)";Ukraine;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.004200000043
+01/10/2024;01/09/2024;"UMA (Vkontakte)";Kazakhstan;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.004200000042
+01/12/2024;01/11/2024;Yandex;Kyrgyzstan;thqlabel;cawabang;drama;drama;3617057163014;FR-96X-23-39505;;"Music Release";Stream;1;RUB;0.034103885613
+01/11/2024;01/10/2024;"UMA VK MUSIC";"Russian Federation";thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;2;RUB;0.227343152750
+01/12/2024;01/11/2024;Spotify;Sweden;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;1;RUB;0.046148723846
+01/10/2024;01/10/2024;"YouTube UGC";Hungary;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.035149110278
+01/12/2024;01/11/2024;"UMA VK MUSIC";"Russian Federation";thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;1;RUB;0.076217639641
+01/12/2024;01/11/2024;Yandex;Kazakhstan;thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;13;RUB;0.236638450862
+01/10/2024;01/10/2024;"YouTube UGC";"United Kingdom";thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;1;RUB;0.010817145337
+01/10/2024;01/10/2024;"YouTube UGC";"United States";thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;29;RUB;1.884239863092
+01/11/2024;01/10/2024;Yandex;"Russian Federation";thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;64;RUB;0.839723429874
+01/12/2024;01/11/2024;"UMA (Vkontakte)";Ukraine;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;3;RUB;0.012600000000
+01/12/2024;01/11/2024;Spotify;Turkey;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;2;RUB;0.073884280540
+01/10/2024;01/09/2024;"UMA (Vkontakte)";Kazakhstan;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;1;RUB;0.004200000042
+01/10/2024;01/10/2024;"YouTube UGC";"Hong Kong";thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;1;RUB;0.115550385899
+01/10/2024;01/09/2024;Likee;"Russian Federation";thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;39;RUB;1.267993923778
+01/11/2024;01/10/2024;Spotify;Ukraine;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;11;RUB;0.476567971414
+01/11/2024;01/10/2024;Spotify;Philippines;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;1;RUB;0.002460074768
+01/11/2024;01/10/2024;Yandex;"Moldova, Republic Of";thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;9;RUB;0.118086107307
+01/12/2024;01/11/2024;"UMA (Vkontakte)";Belarus;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;1;RUB;0.004200000000
+01/12/2024;01/11/2024;"UMA VK MUSIC";"Russian Federation";thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;5;RUB;0.661775030008
+01/12/2024;01/11/2024;"UMA (Vkontakte)";Kazakhstan;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;1;RUB;0.004200000000
+01/10/2024;01/09/2024;Yandex;Belarus;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;71;RUB;1.129963200610
+01/12/2024;01/11/2024;Yandex;Kazakhstan;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;24;RUB;0.456747146046
+01/12/2024;01/11/2024;Spotify;Canada;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;1;RUB;0.097277109220
+01/12/2024;01/11/2024;Spotify;Nigeria;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;4;RUB;0.054428864550
+01/10/2024;01/10/2024;"YouTube UGC";Taiwan;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;1;RUB;0.104230732623
+01/10/2024;01/10/2024;"YouTube UGC";Belarus;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.012465725862
+01/11/2024;01/10/2024;"UMA (Vkontakte)";Belarus;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;3;RUB;0.012600000043
+01/12/2024;01/11/2024;Spotify;France;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;4;RUB;0.164734152256
+01/10/2024;01/09/2024;"UMA (Vkontakte)";Kazakhstan;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;1;RUB;0.004200000042
+01/10/2024;01/10/2024;"Apple Music";Poland;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;1;RUB;0.268686788706
+01/12/2024;01/11/2024;Yandex;Kyrgyzstan;thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;1;RUB;0.016877880402
+01/11/2024;01/10/2024;Spotify;"Czech Republic";thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;5;RUB;0.864344396876
+01/12/2024;01/11/2024;Spotify;Nigeria;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;12;RUB;0.178746688235
+01/12/2024;01/11/2024;Spotify;Netherlands;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;26;RUB;1.544679488340
+01/10/2024;01/10/2024;"YouTube UGC";Germany;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;10;RUB;1.018327995033
+01/10/2024;01/04/2024;NCT;"Viet Nam";thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.017499510968
+01/11/2024;01/10/2024;Spotify;Turkey;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;3;RUB;0.072314749228
+01/11/2024;01/11/2024;"YouTube Official Content";Germany;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;1;RUB;0.016230399530
+01/12/2024;01/11/2024;Yandex;Georgia;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;4;RUB;0.067511521778
+01/11/2024;01/10/2024;Spotify;Canada;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;1;RUB;0.096629447138
+01/11/2024;01/11/2024;"YouTube Official Content";Sweden;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;1;RUB;0.232141251742
+01/12/2024;01/11/2024;"UMA (Vkontakte)";Belarus;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.004200000000
+01/12/2024;01/11/2024;Yandex;Kazakhstan;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;73;RUB;1.318215297607
+01/12/2024;01/11/2024;"UMA (Vkontakte)";"Russian Federation";thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;139;RUB;8.047834340557
+01/12/2024;01/11/2024;Spotify;India;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;2;RUB;0.076084596170
+01/11/2024;01/11/2024;"YouTube Official Content";Ukraine;thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;1;RUB;0.111427540465
+01/10/2024;01/10/2024;"YouTube UGC";Australia;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;1;RUB;0.530331045582
+01/11/2024;01/10/2024;Yandex;"Russian Federation";thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;6078;RUB;81.141735694175
+01/11/2024;01/10/2024;Spotify;Nigeria;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;5;RUB;0.062531661312
+01/11/2024;01/10/2024;Spotify;"United States";thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;25;RUB;4.423786474494
+01/12/2024;01/11/2024;Yandex;Armenia;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;1;RUB;0.016877880402
+01/11/2024;01/10/2024;Spotify;Kazakhstan;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;3;RUB;0.365120853531
+01/11/2024;01/10/2024;Spotify;Nigeria;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;19;RUB;0.260996760125
+01/12/2024;01/12/2024;"YouTube UGC";Brazil;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.003905861467
+01/12/2024;01/11/2024;Yandex;"Moldova, Republic Of";thqlabel;cawabang;drama;drama;3617057163014;FR-96X-23-39505;;"Music Release";Stream;2;RUB;0.033755760802
+01/12/2024;01/10/2024;"Facebook / Instagram";Worldwide;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Creation;7;RUB;0.233540641508
+01/12/2024;01/11/2024;"UMA (Vkontakte)";Ukraine;thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;1;RUB;0.004200000000
+01/10/2024;01/09/2024;Yandex;Belarus;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;121;RUB;1.844995993490
+01/10/2024;01/09/2024;Spotify;Kazakhstan;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;4;RUB;0.483309712286
+01/11/2024;01/10/2024;Yandex;Uzbekistan;thqlabel;cawabang;drama;drama;3617057163014;FR-96X-23-39505;;"Music Release";Stream;16;RUB;0.209930857511
+01/11/2024;01/10/2024;Spotify;India;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;1;RUB;0.031237227996
+01/10/2024;01/08/2024;"Facebook / Instagram";Worldwide;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Creation;7;RUB;0.259914813386
+01/12/2024;01/11/2024;Spotify;Netherlands;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;3;RUB;0.178225560863
+01/10/2024;01/09/2024;Yandex;"Moldova, Republic Of";thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;9;RUB;0.131703923326
+01/10/2024;01/09/2024;Spotify;Israel;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;1;RUB;0.015408088448
+01/11/2024;01/10/2024;Spotify;Turkey;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;9;RUB;0.194517537022
+01/12/2024;01/11/2024;Yandex;"Russian Federation";thqlabel;cawabang;drama;drama;3617057163014;FR-96X-23-39505;;"Music Release";Stream;3499;RUB;59.779195850610
+01/11/2024;01/10/2024;Yandex;"Moldova, Republic Of";thqlabel;cawabang;drama;drama;3617057163014;FR-96X-23-39505;;"Music Release";Stream;6;RUB;0.078724071566
+01/12/2024;01/11/2024;Spotify;Israel;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;2;RUB;0.023971859035
+01/10/2024;01/09/2024;Yandex;Armenia;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.015914974666
+01/11/2024;01/10/2024;Spotify;Germany;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;2;RUB;0.140853581200
+01/12/2024;01/11/2024;Spotify;Israel;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;2;RUB;0.023971859035
+01/12/2024;01/11/2024;"UMA (Vkontakte)";"Russian Federation";thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;54;RUB;0.895458441221
+01/12/2024;01/11/2024;Spotify;"United States";thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;11;RUB;2.096611236635
+01/11/2024;01/10/2024;Spotify;France;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;15;RUB;0.564615728073
+01/11/2024;01/10/2024;Spotify;Kazakhstan;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;3;RUB;0.365120853531
+01/12/2024;01/11/2024;Spotify;Ukraine;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;5;RUB;0.131150382594
+01/11/2024;01/10/2024;Yandex;Uzbekistan;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;18;RUB;0.261069557798
+01/11/2024;01/10/2024;Spotify;Turkey;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;5;RUB;0.120543661900
+01/12/2024;01/12/2024;"YouTube UGC";"United States";thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;64;RUB;7.950769809181
+01/12/2024;01/12/2024;"YouTube UGC";Australia;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;3;RUB;0.154101331220
+01/12/2024;01/11/2024;Yandex;Kyrgyzstan;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;3;RUB;0.085085651714
+01/12/2024;01/11/2024;Yandex;Ukraine;thqlabel;cawabang;drama;drama;3617057163014;FR-96X-23-39505;;"Music Release";Stream;1;RUB;0.034103885613
+01/12/2024;01/10/2024;"Facebook / Instagram";Worldwide;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Creation;13;RUB;0.433718334303
+01/11/2024;01/10/2024;Spotify;Ireland;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;1;RUB;0.065907118419
+01/10/2024;01/10/2024;"Apple Music";"Russian Federation";thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.069457359985
+01/12/2024;01/12/2024;"Apple Music";"Russian Federation";thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;2;RUB;0.196415520042
+01/11/2024;01/10/2024;Spotify;Israel;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;1;RUB;0.005091782657
+01/12/2024;01/12/2024;"YouTube UGC";"United Kingdom";thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;6;RUB;0.160121294220
+01/11/2024;01/11/2024;"YouTube UGC";"South Africa";thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.008365899760
+01/12/2024;01/11/2024;Soundcloud;Germany;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;8;RUB;1.668121469232
+01/10/2024;01/10/2024;"YouTube UGC";Thailand;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;15;RUB;1.798414320698
+01/12/2024;01/12/2024;"YouTube UGC";Japan;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.032725792591
+01/12/2024;01/11/2024;Yandex;Turkmenistan;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;6;RUB;0.204623313936
+01/10/2024;01/09/2024;Yandex;"Russian Federation";thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;42;RUB;0.668428935550
+01/10/2024;01/09/2024;Yandex;"Moldova, Republic Of";thqlabel;cawabang;drama;drama;3617057163014;FR-96X-23-39505;;"Music Release";Stream;3;RUB;0.047744923914
+01/10/2024;01/10/2024;"YouTube UGC";Ukraine;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.023661952534
+01/12/2024;01/11/2024;Yandex;"Russian Federation";thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;1174;RUB;20.159151731533
+01/12/2024;01/11/2024;Yandex;Israel;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;1;RUB;0.016877880402
+01/10/2024;01/09/2024;Yandex;Kazakhstan;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;41;RUB;0.640983112301
+01/12/2024;01/11/2024;Spotify;Netherlands;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;15;RUB;0.891185736310
+01/11/2024;01/10/2024;"UMA (Vkontakte)";"Russian Federation";thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;19;RUB;0.846101034583
+01/11/2024;01/10/2024;Spotify;Finland;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.020595974474
+01/10/2024;01/09/2024;Yandex;"Russian Federation";thqlabel;cawabang;drama;drama;3617057163014;FR-96X-23-39505;;"Music Release";Stream;2479;RUB;38.795963804299
+01/11/2024;01/10/2024;Spotify;Germany;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;3;RUB;0.211280371843
+01/11/2024;01/11/2024;"YouTube UGC";Argentina;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;1;RUB;0.019695876578
+01/11/2024;01/10/2024;"UMA (Vkontakte)";"Russian Federation";thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;45;RUB;3.427853093977
+01/12/2024;01/11/2024;"UMA (Vkontakte)";"Russian Federation";thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;140;RUB;7.685304233986
+01/11/2024;01/11/2024;"YouTube UGC";Ukraine;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.008605978882
+01/11/2024;01/11/2024;"YouTube UGC";Mexico;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;7;RUB;0.054064394344
+01/11/2024;01/10/2024;Yandex;Kyrgyzstan;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;59;RUB;0.774120036944
+01/11/2024;01/10/2024;"UMA (Vkontakte)";Belarus;thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;1;RUB;0.004200000043
+01/12/2024;01/11/2024;Spotify;Ireland;thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;4;RUB;0.260621588483
+01/10/2024;01/10/2024;"YouTube UGC";Kazakhstan;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;1;RUB;0.016000911794
+01/12/2024;01/11/2024;Yandex;Uzbekistan;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;12;RUB;0.202534565250
+01/11/2024;01/11/2024;"YouTube UGC";"United States";thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;33;RUB;1.251301340777
+01/11/2024;01/10/2024;Yandex;Belarus;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;69;RUB;0.942672837450
+01/11/2024;01/10/2024;Yandex;Georgia;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;8;RUB;0.104965428756
+01/11/2024;01/11/2024;"YouTube UGC";Italy;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;4;RUB;0.224045664794
+01/10/2024;01/09/2024;"UMA (Vkontakte)";Ukraine;thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;1;RUB;0.004200000042
+01/11/2024;01/11/2024;"YouTube UGC";France;thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;2;RUB;0.183329550997
+01/11/2024;01/10/2024;Spotify;"United States";thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;21;RUB;3.998822861446
+01/10/2024;01/09/2024;Yandex;Uzbekistan;thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;15;RUB;0.238724619821
+01/10/2024;01/09/2024;Spotify;"Moldova, Republic Of";thqlabel;cawabang;ivy;melissa;3617053701715;DG-A07-22-42733;;"Music Release";Stream;7;RUB;0.013391046402
+01/10/2024;01/09/2024;"UMA (Vkontakte)";"Russian Federation";thqlabel;cawabang;drama;drama;3617057163014;FR-96X-23-39505;;"Music Release";Stream;4;RUB;0.120468912984
+01/11/2024;01/10/2024;"UMA (Vkontakte)";Ukraine;thqlabel;cawabang;ivy;боль;3617053701715;DG-A07-22-42734;;"Music Release";Stream;1;RUB;0.004200000043
+01/11/2024;01/10/2024;Spotify;"Moldova, Republic Of";thqlabel;cawabang;ivy;+30;3617053701715;DG-A07-22-42735;;"Music Release";Stream;3;RUB;0.004119194912
+01/12/2024;01/12/2024;"YouTube UGC";"Korea, Republic Of";thqlabel;cawabang;ivy;bone;3617053701715;DG-A07-22-42732;;"Music Release";Stream;3;RUB;0.003365487732
+01/12/2024;01/10/2024;"Facebook / Instagram";Worldwide;thqlabel;cawabang;drama;drama;3617057163014;FR-96X-23-39505;;"Music Release";Creation;6;RUB;0.200177692795

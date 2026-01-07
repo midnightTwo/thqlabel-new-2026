@@ -1,0 +1,51 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/07/2025;01/06/2025;Yandex;Kyrgyzstan;"DARKI MUZIK";hayase;"РАДИ ТЕБЯ";"РАДИ ТЕБЯ";3617669325602;FR-10S-25-75418;;"Music Release";Stream;1;RUB;0.003182478163
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"DARKI MUZIK";hayase;"худшая привычка";"худшая привычка";3617666202784;DG-A0R-24-57833;;"Music Release";Stream;32;RUB;0.674760739253
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";hayase;GO!;GO!;3617666558256;DG-A0R-24-96250;;"Music Release";Stream;12;RUB;0.050400000000
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"DARKI MUZIK";hayase;"РАДИ ТЕБЯ";"РАДИ ТЕБЯ";3617669325602;FR-10S-25-75418;;"Music Release";Stream;404;RUB;8.712828951438
+01/09/2025;01/06/2025;"UMA (Vkontakte)";Worldwide;"DARKI MUZIK";hayase;GO!;GO!;3617666558256;DG-A0R-24-96250;;"Music Release";Stream;1;RUB;0.040804685064
+01/07/2025;01/06/2025;Yandex;Kazakhstan;"DARKI MUZIK";hayase;"МОЯ БОЛЬ";"МОЯ БОЛЬ";3617660674204;DG-A07-24-37141;;"Music Release";Stream;1;RUB;0.021994570186
+01/08/2025;01/08/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";hayase;"РАДИ ТЕБЯ";"РАДИ ТЕБЯ";3617669325602;FR-10S-25-75418;;"Music Release";Stream;9;RUB;0.798799680058
+01/07/2025;01/06/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";hayase;"худшая привычка";"худшая привычка";3617666202784;DG-A0R-24-57833;;"Music Release";Stream;28;RUB;0.117600000000
+01/09/2025;01/08/2025;Yandex;Belarus;"DARKI MUZIK";hayase;"РАДИ ТЕБЯ";"РАДИ ТЕБЯ";3617669325602;FR-10S-25-75418;;"Music Release";Stream;9;RUB;0.194753689654
+01/07/2025;01/06/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";hayase;"МОЯ БОЛЬ";"МОЯ БОЛЬ";3617660674204;DG-A07-24-37141;;"Music Release";Stream;12;RUB;0.050400000000
+01/07/2025;01/06/2025;Yandex;"Russian Federation";"DARKI MUZIK";hayase;"МОЯ БОЛЬ";"МОЯ БОЛЬ";3617660674204;DG-A07-24-37141;;"Music Release";Stream;42;RUB;0.867335669819
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"DARKI MUZIK";hayase;GO!;GO!;3617666558256;DG-A0R-24-96250;;"Music Release";Stream;14;RUB;0.302950183976
+01/07/2025;01/06/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";hayase;"РАДИ ТЕБЯ";"РАДИ ТЕБЯ";3617669325602;FR-10S-25-75418;;"Music Release";Stream;45;RUB;0.189000000000
+01/08/2025;01/01/2025;SberZvuk;"Russian Federation";"DARKI MUZIK";hayase;"худшая привычка";"худшая привычка";3617666202784;DG-A0R-24-57833;;"Music Release";Stream;1;RUB;0.311202413162
+01/08/2025;01/07/2025;Yandex;Kazakhstan;"DARKI MUZIK";hayase;"худшая привычка";"худшая привычка";3617666202784;DG-A0R-24-57833;;"Music Release";Stream;2;RUB;0.042854648691
+01/07/2025;01/06/2025;Yandex;"Moldova, Republic Of";"DARKI MUZIK";hayase;"РАДИ ТЕБЯ";"РАДИ ТЕБЯ";3617669325602;FR-10S-25-75418;;"Music Release";Stream;1;RUB;0.021994570186
+01/08/2025;01/07/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";hayase;"худшая привычка";"худшая привычка";3617666202784;DG-A0R-24-57833;;"Music Release";Stream;1;RUB;0.151543503911
+01/09/2025;01/09/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";hayase;"РАДИ ТЕБЯ";"РАДИ ТЕБЯ";3617669325602;FR-10S-25-75418;;"Music Release";Stream;4;RUB;0.357210559989
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";hayase;"МОЯ БОЛЬ";"МОЯ БОЛЬ";3617660674204;DG-A07-24-37141;;"Music Release";Stream;21;RUB;0.088200000038
+01/07/2025;01/06/2025;Yandex;Uzbekistan;"DARKI MUZIK";hayase;"РАДИ ТЕБЯ";"РАДИ ТЕБЯ";3617669325602;FR-10S-25-75418;;"Music Release";Stream;5;RUB;0.091160758686
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";hayase;"РАДИ ТЕБЯ";"РАДИ ТЕБЯ";3617669325602;FR-10S-25-75418;;"Music Release";Stream;11;RUB;0.214406485472
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";hayase;GO!;GO!;3617666558256;DG-A0R-24-96250;;"Music Release";Stream;27;RUB;0.260743503911
+01/09/2025;01/06/2025;"UMA (Vkontakte)";Worldwide;"DARKI MUZIK";hayase;"РАДИ ТЕБЯ";"РАДИ ТЕБЯ";3617669325602;FR-10S-25-75418;;"Music Release";Stream;1;RUB;0.141529248704
+01/07/2025;01/06/2025;Yandex;"Russian Federation";"DARKI MUZIK";hayase;"РАДИ ТЕБЯ";"РАДИ ТЕБЯ";3617669325602;FR-10S-25-75418;;"Music Release";Stream;1638;RUB;35.500844061012
+01/07/2025;01/06/2025;Yandex;Uzbekistan;"DARKI MUZIK";hayase;"МОЯ БОЛЬ";"МОЯ БОЛЬ";3617660674204;DG-A07-24-37141;;"Music Release";Stream;1;RUB;0.021994570186
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"DARKI MUZIK";hayase;"РАДИ ТЕБЯ";"РАДИ ТЕБЯ";3617669325602;FR-10S-25-75418;;"Music Release";Stream;251;RUB;5.542434100735
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";hayase;"МОЯ БОЛЬ";"МОЯ БОЛЬ";3617660674204;DG-A07-24-37141;;"Music Release";Stream;11;RUB;0.046200000039
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"DARKI MUZIK";hayase;GO!;GO!;3617666558256;DG-A0R-24-96250;;"Music Release";Stream;14;RUB;0.299982540910
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"DARKI MUZIK";hayase;"худшая привычка";"худшая привычка";3617666202784;DG-A0R-24-57833;;"Music Release";Stream;59;RUB;1.193795921042
+01/09/2025;01/07/2025;TikTok;Netherlands;"DARKI MUZIK";hayase;"РАДИ ТЕБЯ";"РАДИ ТЕБЯ";3617669325602;FR-10S-25-75418;;"Music Release";Creation;1;RUB;0.067899940593
+01/07/2025;01/06/2025;Yandex;"Russian Federation";"DARKI MUZIK";hayase;"худшая привычка";"худшая привычка";3617666202784;DG-A0R-24-57833;;"Music Release";Stream;53;RUB;1.146900125244
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";hayase;"худшая привычка";"худшая привычка";3617666202784;DG-A0R-24-57833;;"Music Release";Stream;39;RUB;0.332006485472
+01/09/2025;01/07/2025;TikTok;Estonia;"DARKI MUZIK";hayase;"РАДИ ТЕБЯ";"РАДИ ТЕБЯ";3617669325602;FR-10S-25-75418;;"Music Release";Creation;1;RUB;0.067899940593
+01/07/2025;01/06/2025;Yandex;"Russian Federation";"DARKI MUZIK";hayase;GO!;GO!;3617666558256;DG-A0R-24-96250;;"Music Release";Stream;22;RUB;0.483880542982
+01/08/2025;01/06/2025;TikTok;"United States";"DARKI MUZIK";hayase;"МОЯ БОЛЬ";"МОЯ БОЛЬ";3617660674204;DG-A07-24-37141;;"Music Release";Creation;2;RUB;0.132530305194
+01/08/2025;01/07/2025;Yandex;Kazakhstan;"DARKI MUZIK";hayase;"РАДИ ТЕБЯ";"РАДИ ТЕБЯ";3617669325602;FR-10S-25-75418;;"Music Release";Stream;26;RUB;0.557110433130
+01/09/2025;01/06/2025;"UMA (Vkontakte)";Worldwide;"DARKI MUZIK";hayase;"МОЯ БОЛЬ";"МОЯ БОЛЬ";3617660674204;DG-A07-24-37141;;"Music Release";Stream;1;RUB;0.059431799250
+01/07/2025;01/06/2025;Yandex;Kazakhstan;"DARKI MUZIK";hayase;"РАДИ ТЕБЯ";"РАДИ ТЕБЯ";3617669325602;FR-10S-25-75418;;"Music Release";Stream;15;RUB;0.311106460027
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"DARKI MUZIK";hayase;"МОЯ БОЛЬ";"МОЯ БОЛЬ";3617660674204;DG-A07-24-37141;;"Music Release";Stream;33;RUB;0.654289541877
+01/09/2025;01/06/2025;"UMA (Vkontakte)";Worldwide;"DARKI MUZIK";hayase;"худшая привычка";"худшая привычка";3617666202784;DG-A0R-24-57833;;"Music Release";Stream;1;RUB;0.411207585063
+01/09/2025;01/07/2025;TikTok;Finland;"DARKI MUZIK";hayase;"РАДИ ТЕБЯ";"РАДИ ТЕБЯ";3617669325602;FR-10S-25-75418;;"Music Release";Creation;1;RUB;0.067899940593
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"DARKI MUZIK";hayase;"МОЯ БОЛЬ";"МОЯ БОЛЬ";3617660674204;DG-A07-24-37141;;"Music Release";Stream;33;RUB;0.714096862274
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";hayase;"худшая привычка";"худшая привычка";3617666202784;DG-A0R-24-57833;;"Music Release";Stream;78;RUB;0.622287007747
+01/08/2025;01/08/2025;"YouTube Official Content";Kazakhstan;"DARKI MUZIK";hayase;"РАДИ ТЕБЯ";"РАДИ ТЕБЯ";3617669325602;FR-10S-25-75418;;"Music Release";Stream;1;RUB;0.019141229799
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";hayase;"РАДИ ТЕБЯ";"РАДИ ТЕБЯ";3617669325602;FR-10S-25-75418;;"Music Release";Stream;45;RUB;0.189000000038
+01/09/2025;01/08/2025;Yandex;Belarus;"DARKI MUZIK";hayase;"МОЯ БОЛЬ";"МОЯ БОЛЬ";3617660674204;DG-A07-24-37141;;"Music Release";Stream;1;RUB;0.021639298911
+01/08/2025;01/07/2025;Yandex;Belarus;"DARKI MUZIK";hayase;"РАДИ ТЕБЯ";"РАДИ ТЕБЯ";3617669325602;FR-10S-25-75418;;"Music Release";Stream;4;RUB;0.068105243566
+01/07/2025;01/06/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";hayase;GO!;GO!;3617666558256;DG-A0R-24-96250;;"Music Release";Stream;14;RUB;0.058800000000
+01/07/2025;01/06/2025;Yandex;Belarus;"DARKI MUZIK";hayase;"РАДИ ТЕБЯ";"РАДИ ТЕБЯ";3617669325602;FR-10S-25-75418;;"Music Release";Stream;19;RUB;0.417896832646
+01/09/2025;01/08/2025;Yandex;Kazakhstan;"DARKI MUZIK";hayase;"РАДИ ТЕБЯ";"РАДИ ТЕБЯ";3617669325602;FR-10S-25-75418;;"Music Release";Stream;4;RUB;0.068860371301

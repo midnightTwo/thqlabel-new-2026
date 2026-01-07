@@ -10,6 +10,7 @@ import {
   getAllPlatforms,
 } from '@/app/cabinet/release/create/components';
 import { getAllCountries } from '@/components/icons/CountryFlagsSVG';
+import { TrackAuthor } from '@/components/ui/TrackAuthors';
 
 // ============================================================================
 // TYPES
@@ -45,6 +46,7 @@ interface Track {
   version?: string;
   producers?: string[];
   featuring?: string[];
+  authors?: TrackAuthor[];
   isrc?: string;
 }
 
@@ -151,25 +153,25 @@ const UserSelectStep = memo(function UserSelectStep({ supabase, selectedUser, on
             {searchResults.map((user) => (
               <button key={user.id} type="button"
                 onClick={() => { onSelectUser(user); setUserSearch(''); setShowResults(false); setSearchError(''); }}
-                className="w-full px-4 py-4 flex items-center gap-4 hover:bg-white/5 transition text-left border-b border-white/5 last:border-b-0 group">
+                className="w-full px-3 sm:px-4 py-3 sm:py-4 flex items-center gap-2 sm:gap-4 hover:bg-white/5 transition text-left border-b border-white/5 last:border-b-0 group">
                 
                 {/* Аватар с бейджем роли */}
                 <div className="relative flex-shrink-0">
                   {getAvatarUrl(user.avatar_url, supabase) ? (
-                    <img src={getAvatarUrl(user.avatar_url, supabase)} alt="" className="w-14 h-14 rounded-xl object-cover ring-2 ring-white/10 group-hover:ring-purple-500/50 transition" />
+                    <img src={getAvatarUrl(user.avatar_url, supabase)} alt="" className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl object-cover ring-2 ring-white/10 group-hover:ring-purple-500/50 transition" />
                   ) : (
-                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center text-purple-400 font-bold text-xl ring-2 ring-white/10 group-hover:ring-purple-500/50 transition">
+                    <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex items-center justify-center text-purple-400 font-bold text-base sm:text-xl ring-2 ring-white/10 group-hover:ring-purple-500/50 transition">
                       {(user.nickname || user.display_name || user.email)?.[0]?.toUpperCase()}
                     </div>
                   )}
                   {/* Бейдж роли на углу */}
-                  <div className={`absolute -bottom-1 -right-1 w-6 h-6 rounded-lg flex items-center justify-center border-2 ${
+                  <div className={`absolute -bottom-1 -right-1 w-5 h-5 sm:w-6 sm:h-6 rounded-lg flex items-center justify-center border-2 ${
                     user.role === 'owner' ? 'bg-[#8b5cf6] border-[#a78bfa]' :
                     user.role === 'admin' ? 'bg-[#ff4757] border-[#ff6b81]' :
                     user.role === 'exclusive' ? 'bg-[#f59e0b] border-[#fbbf24]' : 
                     'bg-zinc-700 border-zinc-500'
                   }`}>
-                    <span className="text-white font-bold text-xs">
+                    <span className="text-white font-bold text-[10px] sm:text-xs">
                       {user.role === 'owner' ? '♛' :
                        user.role === 'admin' ? '★' :
                        user.role === 'exclusive' ? '◆' : '○'}
@@ -178,41 +180,41 @@ const UserSelectStep = memo(function UserSelectStep({ supabase, selectedUser, on
                 </div>
 
                 {/* Информация о пользователе */}
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
-                    <p className="text-white font-bold truncate text-base">
+                <div className="flex-1 min-w-0 overflow-hidden">
+                  <div className="flex items-center gap-2 mb-0.5 sm:mb-1">
+                    <p className="text-white font-bold truncate text-sm sm:text-base">
                       {user.nickname || user.display_name || 'Без имени'}
                     </p>
                   </div>
-                  <div className="flex items-center gap-2 text-sm mb-1">
-                    <svg className="w-3.5 h-3.5 text-blue-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm mb-0.5 sm:mb-1">
+                    <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-blue-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
-                    <p className="text-zinc-400 truncate">{user.email}</p>
+                    <p className="text-zinc-400 truncate text-xs sm:text-sm">{user.email}</p>
                   </div>
                   {user.member_id && (
-                    <div className="flex items-center gap-2 text-sm">
-                      <svg className="w-3.5 h-3.5 text-purple-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm">
+                      <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-purple-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
                       </svg>
-                      <p className="text-zinc-500 truncate">ID: {user.member_id}</p>
+                      <p className="text-zinc-500 truncate text-xs sm:text-sm">{user.member_id}</p>
                     </div>
                   )}
                 </div>
 
                 {/* Бейдж роли справа */}
-                <span className={`px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 flex-shrink-0 ${
+                <span className={`px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg text-[10px] sm:text-xs font-bold flex items-center gap-1 sm:gap-1.5 flex-shrink-0 ${
                   user.role === 'owner' ? 'bg-[#8b5cf6]/20 text-[#a78bfa] border border-[#8b5cf6]/30' :
                   user.role === 'admin' ? 'bg-[#ff4757]/20 text-[#ff6b81] border border-[#ff4757]/30' :
                   user.role === 'exclusive' ? 'bg-[#f59e0b]/20 text-[#fbbf24] border border-[#f59e0b]/30' : 
                   'bg-zinc-800/30 text-zinc-400 border border-zinc-700/50'
                 }`}>
-                  <span className="text-sm">
+                  <span className="text-xs sm:text-sm">
                     {user.role === 'owner' ? '♛' :
                      user.role === 'admin' ? '★' :
                      user.role === 'exclusive' ? '◆' : '○'}
                   </span>
-                  {user.role?.toUpperCase() || 'BASIC'}
+                  <span className="hidden sm:inline">{user.role?.toUpperCase() || 'BASIC'}</span>
                 </span>
               </button>
             ))}
@@ -227,25 +229,25 @@ const UserSelectStep = memo(function UserSelectStep({ supabase, selectedUser, on
       </div>
       
       {selectedUser && (
-        <div className="p-6 bg-gradient-to-br from-purple-500/10 to-blue-500/10 border border-purple-500/20 rounded-2xl mb-8 animate-fade-in">
-          <div className="flex items-center gap-4">
+        <div className="p-3 sm:p-6 bg-gradient-to-br from-purple-500/10 to-blue-500/10 border border-purple-500/20 rounded-xl sm:rounded-2xl mb-6 sm:mb-8 animate-fade-in">
+          <div className="flex items-start sm:items-center gap-2.5 sm:gap-4">
             {/* Аватар с бейджем */}
             <div className="relative flex-shrink-0">
               {getAvatarUrl(selectedUser.avatar_url, supabase) ? (
-                <img src={getAvatarUrl(selectedUser.avatar_url, supabase)} alt="" className="w-20 h-20 rounded-2xl object-cover ring-2 ring-purple-500/50" />
+                <img src={getAvatarUrl(selectedUser.avatar_url, supabase)} alt="" className="w-10 h-10 sm:w-20 sm:h-20 rounded-lg sm:rounded-2xl object-cover ring-2 ring-purple-500/50" />
               ) : (
-                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-purple-500/30 to-blue-500/30 flex items-center justify-center text-purple-300 font-bold text-3xl ring-2 ring-purple-500/50">
+                <div className="w-10 h-10 sm:w-20 sm:h-20 rounded-lg sm:rounded-2xl bg-gradient-to-br from-purple-500/30 to-blue-500/30 flex items-center justify-center text-purple-300 font-bold text-sm sm:text-3xl ring-2 ring-purple-500/50">
                   {(selectedUser.nickname || selectedUser.display_name || selectedUser.email)?.[0]?.toUpperCase()}
                 </div>
               )}
               {/* Бейдж роли */}
-              <div className={`absolute -bottom-2 -right-2 w-8 h-8 rounded-xl flex items-center justify-center border-2 ${
+              <div className={`absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 w-5 h-5 sm:w-8 sm:h-8 rounded-md sm:rounded-xl flex items-center justify-center border-2 ${
                 selectedUser.role === 'owner' ? 'bg-[#8b5cf6] border-[#a78bfa]' :
                 selectedUser.role === 'admin' ? 'bg-[#ff4757] border-[#ff6b81]' :
                 selectedUser.role === 'exclusive' ? 'bg-[#f59e0b] border-[#fbbf24]' :
                 'bg-zinc-700 border-zinc-500'
               }`}>
-                <span className="text-white font-bold text-base">
+                <span className="text-white font-bold text-[10px] sm:text-base">
                   {selectedUser.role === 'owner' ? '♛' :
                    selectedUser.role === 'admin' ? '★' :
                    selectedUser.role === 'exclusive' ? '◆' : '○'}
@@ -255,11 +257,11 @@ const UserSelectStep = memo(function UserSelectStep({ supabase, selectedUser, on
 
             {/* Информация */}
             <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-3 mb-2">
-                <p className="text-white font-black text-2xl truncate">
+              <div className="flex items-center gap-2 mb-0.5 sm:mb-2">
+                <p className="text-white font-bold text-sm sm:text-2xl truncate">
                   {selectedUser.nickname || selectedUser.display_name || 'Без имени'}
                 </p>
-                <span className={`px-3 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 ${
+                <span className={`hidden sm:flex px-3 py-1 rounded-lg text-xs font-bold items-center gap-1.5 ${
                   selectedUser.role === 'owner' ? 'bg-[#8b5cf6]/20 text-[#a78bfa] border border-[#8b5cf6]/30' :
                   selectedUser.role === 'admin' ? 'bg-[#ff4757]/20 text-[#ff6b81] border border-[#ff4757]/30' :
                   selectedUser.role === 'exclusive' ? 'bg-[#f59e0b]/20 text-[#fbbf24] border border-[#f59e0b]/30' :
@@ -274,27 +276,21 @@ const UserSelectStep = memo(function UserSelectStep({ supabase, selectedUser, on
                 </span>
               </div>
               
-              <div className="flex items-center gap-2 text-sm mb-1">
-                <svg className="w-4 h-4 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                <p className="text-zinc-300 truncate">{selectedUser.email}</p>
+              <div className="text-[11px] sm:text-sm text-zinc-400 space-y-0.5 sm:space-y-0 sm:flex sm:items-center sm:gap-2">
+                <span className="block sm:inline break-all">{selectedUser.email}</span>
+                {selectedUser.member_id && (
+                  <>
+                    <span className="hidden sm:inline text-zinc-600">•</span>
+                    <span className="block sm:inline text-zinc-500">{selectedUser.member_id}</span>
+                  </>
+                )}
               </div>
-              
-              {selectedUser.member_id && (
-                <div className="flex items-center gap-2 text-sm">
-                  <svg className="w-4 h-4 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
-                  </svg>
-                  <p className="text-zinc-400 truncate">ID: {selectedUser.member_id}</p>
-                </div>
-              )}
             </div>
 
             {/* Кнопка удаления */}
             <button type="button" onClick={() => onSelectUser(null)}
-              className="p-3 hover:bg-red-500/20 rounded-xl transition text-zinc-400 hover:text-red-400 border border-transparent hover:border-red-500/30">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              className="p-1.5 sm:p-3 hover:bg-red-500/20 rounded-lg sm:rounded-xl transition text-zinc-400 hover:text-red-400 flex-shrink-0 self-start sm:self-center">
+              <svg className="w-4 h-4 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
@@ -307,10 +303,11 @@ const UserSelectStep = memo(function UserSelectStep({ supabase, selectedUser, on
           type="button"
           onClick={onNext}
           disabled={!selectedUser}
-          className="px-8 py-4 bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 rounded-xl text-white font-bold transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 text-lg"
+          className="px-8 py-4 bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 rounded-xl font-bold transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 text-lg"
+          style={{ color: 'white' }}
         >
           Далее
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5" fill="none" stroke="white" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
@@ -441,9 +438,10 @@ function ReleaseTypeStep({ releaseType, onSelectType, onNext, onBack }: ReleaseT
           Назад
         </button>
         <button type="button" onClick={onNext} disabled={!releaseType}
-          className="px-8 py-4 bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 rounded-xl text-white font-bold transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
+          className="px-8 py-4 bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 rounded-xl font-bold transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+          style={{ color: 'white' }}>
           Далее
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5" fill="none" stroke="white" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
@@ -477,27 +475,23 @@ function AdminSendStep({ supabase, selectedUser, releaseType, releaseTitle, arti
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [nextCustomId, setNextCustomId] = useState<string>('');
+  const [expandedTrack, setExpandedTrack] = useState<number | null>(null);
   const allCountries = getAllCountries();
   const selectedCountries = allCountries.filter(c => !excludedCountries.includes(c));
 
   // Загрузка следующего custom_id для preview
   useEffect(() => {
     const loadNextCustomId = async () => {
-      console.log('🔍 Загрузка следующего custom_id...');
       const { data, error } = await supabase.rpc('generate_release_custom_id');
       
       if (error) {
-        console.error('❌ Ошибка загрузки custom_id:', error);
         setNextCustomId('Ошибка загрузки');
         return;
       }
       
-      console.log('✅ Получен custom_id из БД:', data);
-      
       if (data) {
         setNextCustomId(data);
       } else {
-        console.warn('⚠️ Функция вернула пустой результат');
         setNextCustomId('thqrel-0001');
       }
     };
@@ -506,7 +500,7 @@ function AdminSendStep({ supabase, selectedUser, releaseType, releaseTitle, arti
 
   const getMinTracks = (): number => {
     if (releaseType === 'ep') return 2;
-    if (releaseType === 'album') return 7;
+    if (releaseType === 'album') return 8;
     return 1;
   };
 
@@ -557,16 +551,15 @@ function AdminSendStep({ supabase, selectedUser, releaseType, releaseTitle, arti
               });
             
             if (audioUploadError) {
-              console.error(`Ошибка загрузки аудио для трека ${index}:`, audioUploadError);
+              // Ошибка загрузки аудио
             } else {
               const { data: audioUrlData } = supabase.storage
                 .from('release-audio')
                 .getPublicUrl(audioFileName);
               audioUrl = audioUrlData.publicUrl;
-              console.log(`✅ Аудио для трека ${index} загружено: ${audioUrl}`);
             }
-          } catch (err) {
-            console.error(`Ошибка при загрузке аудио для трека ${index}:`, err);
+          } catch {
+            // Ошибка при загрузке аудио
           }
         }
         
@@ -579,6 +572,7 @@ function AdminSendStep({ supabase, selectedUser, releaseType, releaseTitle, arti
           version: track.version || '',
           producers: track.producers || [],
           featuring: track.featuring || [],
+          authors: track.authors || [],
           order: index + 1,
           isrc: track.isrc || '',
           link: audioUrl,
@@ -589,7 +583,6 @@ function AdminSendStep({ supabase, selectedUser, releaseType, releaseTitle, arti
       // Генерируем custom_id вручную, так как статус published
       const { data: generatedCustomId, error: customIdError } = await supabase.rpc('generate_release_custom_id');
       if (customIdError) {
-        console.error('Ошибка генерации custom_id:', customIdError);
         throw new Error('Не удалось сгенерировать код релиза');
       }
 
@@ -604,16 +597,8 @@ function AdminSendStep({ supabase, selectedUser, releaseType, releaseTitle, arti
 
       if (releaseError) throw releaseError;
       
-      // Отладка: выводим сгенерированный код релиза
-      if (newRelease?.custom_id) {
-        console.log('✅ Админ создал релиз с кодом:', newRelease.custom_id);
-      } else {
-        console.warn('⚠️ Релиз создан админом, но custom_id не сгенерирован');
-      }
-      
       onSuccess();
     } catch (err: any) {
-      console.error('Error creating release:', err);
       setError(err?.message || 'Ошибка при создании релиза');
     } finally {
       setSubmitting(false);
@@ -622,115 +607,368 @@ function AdminSendStep({ supabase, selectedUser, releaseType, releaseTitle, arti
 
   return (
     <div className="animate-fade-up">
-      <div className="mb-8">
-        <div className="flex items-center gap-3 mb-3">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-green-500/20 flex items-center justify-center ring-1 ring-white/10">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-emerald-300">
+      {/* ===== МОБИЛЬНАЯ ВЕРСИЯ ===== */}
+      <div className="lg:hidden">
+        {/* Заголовок */}
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500/20 to-green-500/20 flex items-center justify-center ring-1 ring-white/10">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-emerald-300">
               <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
             </svg>
           </div>
           <div>
-            <h2 className="text-3xl font-black bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">Публикация релиза</h2>
-            <p className="text-sm text-zinc-500 mt-1">Проверьте данные и опубликуйте релиз</p>
+            <h2 className="text-xl font-bold text-white">Публикация</h2>
+            <p className="text-xs text-zinc-500">Проверьте данные</p>
           </div>
         </div>
-      </div>
 
-      {error && <div className="mb-6 p-4 bg-red-500/20 border border-red-500/30 rounded-xl text-red-400">{error}</div>}
+        {error && <div className="mb-4 p-3 bg-red-500/20 border border-red-500/30 rounded-xl text-red-400 text-sm">{error}</div>}
 
-      {!allValid && (
-        <div className="mb-8 p-8 bg-gradient-to-br from-red-500/10 via-orange-500/10 to-yellow-500/10 border border-red-500/20 rounded-2xl">
-          <div className="flex items-start gap-4 mb-6">
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-red-500/20 to-orange-500/20 flex items-center justify-center ring-1 ring-red-500/30 flex-shrink-0">
-              <svg className="w-7 h-7 text-red-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        {/* Ошибки валидации */}
+        {!allValid && (
+          <div className="mb-4 p-4 bg-gradient-to-br from-red-500/10 to-orange-500/10 border border-red-500/20 rounded-xl">
+            <div className="flex items-center gap-2 mb-3">
+              <svg className="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
               </svg>
+              <span className="text-sm font-semibold text-white">Не все данные заполнены</span>
             </div>
-            <div>
-              <h3 className="text-xl font-bold text-white mb-2">Не все данные заполнены</h3>
-              <p className="text-zinc-400 mb-4">Чтобы опубликовать релиз, необходимо заполнить все обязательные поля. Нажмите на кнопку, чтобы перейти к нужному шагу:</p>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {checks.filter(c => !c.valid).map((check, i) => (
-              <button
-                key={i}
-                onClick={() => setCurrentStep(check.step)}
-                className="group p-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-xl transition-all text-left"
-              >
-                <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-red-500/20 to-orange-500/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                    <svg className="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="space-y-2">
+              {checks.filter(c => !c.valid).map((check, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentStep(check.step)}
+                  className="w-full flex items-center gap-2 p-2 bg-white/5 rounded-lg text-left"
+                >
+                  <div className="w-6 h-6 rounded-full bg-red-500/20 flex items-center justify-center flex-shrink-0">
+                    <svg className="w-3 h-3 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                     </svg>
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="font-semibold text-white group-hover:text-red-300 transition-colors">{check.name}</span>
-                      <svg className="w-4 h-4 text-zinc-500 group-hover:text-red-400 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
-                    <p className="text-sm text-red-400">{check.issue}</p>
-                  </div>
+                  <span className="text-xs text-red-400 flex-1">{check.name}</span>
+                  <svg className="w-4 h-4 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Карточка релиза с обложкой */}
+        <div className="mb-4 p-4 bg-gradient-to-br from-zinc-800/50 to-zinc-900/50 border border-white/10 rounded-2xl">
+          <div className="flex gap-4">
+            {/* Обложка */}
+            <div className="w-24 h-24 rounded-xl overflow-hidden bg-zinc-800 flex-shrink-0 ring-1 ring-white/10">
+              {coverFile ? (
+                <img 
+                  src={URL.createObjectURL(coverFile)} 
+                  alt="Cover" 
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center">
+                  <svg className="w-8 h-8 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                  </svg>
                 </div>
-              </button>
-            ))}
+              )}
+            </div>
+            {/* Инфо релиза */}
+            <div className="flex-1 min-w-0">
+              <p className="text-white font-bold text-base truncate">{releaseTitle || 'Без названия'}</p>
+              <p className="text-zinc-400 text-sm truncate">{artistName || 'Без артиста'}</p>
+              <div className="flex items-center gap-2 mt-2">
+                <span className="px-2 py-0.5 text-xs font-medium bg-purple-500/20 text-purple-300 rounded-full">
+                  {releaseType === 'single' ? 'Сингл' : releaseType === 'ep' ? 'EP' : 'Альбом'}
+                </span>
+                <span className="text-xs text-zinc-500">{genre || '—'}</span>
+              </div>
+              <p className="text-xs text-zinc-500 mt-1">{releaseDate || '—'}</p>
+            </div>
           </div>
         </div>
-      )}
 
-      <div className="mb-6 p-5 bg-gradient-to-br from-purple-500/10 to-blue-500/10 border border-purple-500/20 rounded-xl">
-        <p className="text-xs text-zinc-400 mb-1">Код релиза</p>
-        <div className="flex items-center gap-2">
-          <span className="text-lg font-bold font-mono text-purple-300">{nextCustomId || 'Загрузка...'}</span>
-          <svg className="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        {/* Код релиза */}
+        <div className="mb-4 p-3 bg-gradient-to-r from-purple-500/10 to-blue-500/10 border border-purple-500/20 rounded-xl flex items-center justify-between">
+          <div>
+            <p className="text-xs text-zinc-400">Код релиза</p>
+            <span className="text-sm font-bold font-mono text-purple-300">{nextCustomId || '...'}</span>
+          </div>
+          <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         </div>
-        <p className="text-xs text-zinc-500 mt-1">Код будет сгенерирован автоматически при публикации</p>
-      </div>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-        <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">Пользователь</p><p className="text-white font-medium">{selectedUser?.nickname || selectedUser?.email || '—'}</p></div>
-        <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">Тип релиза</p><p className="text-white font-medium">{releaseType === 'single' ? 'Сингл' : releaseType === 'ep' ? 'EP' : releaseType === 'album' ? 'Альбом' : '—'}</p></div>
-        <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">Название</p><p className="text-white font-medium">{releaseTitle || '—'}</p></div>
-        <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">Артист</p><p className="text-white font-medium">{artistName || '—'}</p></div>
-        <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">Жанр</p><p className="text-white font-medium">{genre || '—'}</p></div>
-        <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">Дата релиза</p><p className="text-white font-medium">{releaseDate || '—'}</p></div>
-        <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">UPC</p><p className="text-white font-medium font-mono text-sm">{upc || '—'}</p></div>
-        <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">Треки</p><p className="text-white font-medium">{tracks.length || '—'}</p></div>
-        <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">Площадки</p><p className="text-white font-medium">{selectedPlatformsList.length || '—'}</p></div>
-      </div>
 
-      <div className="p-6 bg-white/5 border border-white/10 rounded-2xl mb-8">
-        <h3 className="text-lg font-bold text-white mb-4">Проверка</h3>
-        <div className="space-y-2">
-          {checks.map((check, i) => (
-            <div key={i} className="flex items-center gap-3">
-              {check.valid ? (
-                <div className="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center">
-                  <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-                </div>
-              ) : (
-                <div className="w-6 h-6 rounded-full bg-red-500/20 flex items-center justify-center">
-                  <svg className="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-                </div>
-              )}
-              <span className={check.valid ? 'text-zinc-300' : 'text-red-400'}>{check.name} {!check.valid && `— ${check.issue}`}</span>
+        {/* Треклист */}
+        {tracks.length > 0 && (
+          <div className="mb-4 p-3 bg-white/5 border border-white/10 rounded-xl">
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="text-sm font-semibold text-white">Треклист</h3>
+              <span className="text-xs text-zinc-500">{tracks.length} {tracks.length === 1 ? 'трек' : tracks.length < 5 ? 'трека' : 'треков'}</span>
             </div>
-          ))}
+            <div className="space-y-1.5 max-h-60 overflow-y-auto">
+              {tracks.map((track, idx) => (
+                <div key={idx} className="bg-white/5 rounded-lg overflow-hidden">
+                  <button
+                    type="button"
+                    onClick={() => setExpandedTrack(expandedTrack === idx ? null : idx)}
+                    className="w-full flex items-center gap-2 p-2 text-left"
+                  >
+                    <div className="w-6 h-6 rounded bg-zinc-700 flex items-center justify-center text-xs font-medium text-zinc-400 flex-shrink-0">
+                      {idx + 1}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm text-white truncate">{track.title || 'Без названия'}</p>
+                      {track.version && <p className="text-xs text-zinc-500">{track.version}</p>}
+                    </div>
+                    {track.audioFile && (
+                      <svg className="w-4 h-4 text-emerald-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    )}
+                    <svg className={`w-4 h-4 text-zinc-500 transition-transform flex-shrink-0 ${expandedTrack === idx ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  {expandedTrack === idx && (
+                    <div className="px-3 pb-3 pt-2 border-t border-white/10 bg-black/20">
+                      <div className="grid grid-cols-2 gap-2">
+                        {/* Язык */}
+                        <div className="p-2 bg-white/5 rounded-lg">
+                          <p className="text-[10px] text-zinc-500 uppercase tracking-wide">Язык</p>
+                          <p className="text-xs text-white mt-0.5">{track.language || '—'}</p>
+                        </div>
+                        {/* 18+ */}
+                        <div className="p-2 bg-white/5 rounded-lg">
+                          <p className="text-[10px] text-zinc-500 uppercase tracking-wide">Explicit</p>
+                          <div className="mt-0.5">
+                            {track.hasDrugs ? (
+                              <span className="px-2 py-0.5 text-xs bg-red-500/30 text-red-300 rounded-full">18+</span>
+                            ) : (
+                              <span className="px-2 py-0.5 text-xs bg-emerald-500/20 text-emerald-400 rounded-full">Нет</span>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Featuring */}
+                      {track.featuring && track.featuring.filter(f => f).length > 0 && (
+                        <div className="mt-2 p-2 bg-white/5 rounded-lg">
+                          <p className="text-[10px] text-zinc-500 uppercase tracking-wide">Featuring</p>
+                          <p className="text-xs text-white mt-0.5 break-words">{track.featuring.filter(f => f).join(', ')}</p>
+                        </div>
+                      )}
+                      
+                      {/* Продюсеры */}
+                      {track.producers && track.producers.filter(p => p).length > 0 && (
+                        <div className="mt-2 p-2 bg-white/5 rounded-lg">
+                          <p className="text-[10px] text-zinc-500 uppercase tracking-wide">Продюсеры</p>
+                          <p className="text-xs text-white mt-0.5 break-words">{track.producers.filter(p => p).join(', ')}</p>
+                        </div>
+                      )}
+                      
+                      {/* Авторы */}
+                      {track.authors && track.authors.filter(a => a && a.name).length > 0 && (
+                        <div className="mt-2 p-2 bg-white/5 rounded-lg">
+                          <p className="text-[10px] text-zinc-500 uppercase tracking-wide">Авторы</p>
+                          <p className="text-xs text-white mt-0.5 break-words">
+                            {track.authors.filter(a => a && a.name).map(a => {
+                              const roles = a.roles && a.roles.length > 0 ? a.roles.join(', ') : 'Автор';
+                              return `${a.name} (${roles})`;
+                            }).join('; ')}
+                          </p>
+                        </div>
+                      )}
+                      
+                      {/* ISRC */}
+                      {track.isrc && (
+                        <div className="mt-2 p-2 bg-white/5 rounded-lg">
+                          <p className="text-[10px] text-zinc-500 uppercase tracking-wide">ISRC</p>
+                          <p className="text-xs text-purple-300 font-mono mt-0.5">{track.isrc}</p>
+                        </div>
+                      )}
+                      
+                      {/* Текст */}
+                      {track.lyrics && (
+                        <div className="mt-2 p-2 bg-white/5 rounded-lg">
+                          <p className="text-[10px] text-zinc-500 uppercase tracking-wide">Текст</p>
+                          <p className="text-xs text-zinc-300 mt-1 max-h-24 overflow-y-auto break-words leading-relaxed">{track.lyrics.slice(0, 300)}{track.lyrics.length > 300 ? '...' : ''}</p>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Компактная информация */}
+        <div className="mb-4 grid grid-cols-2 gap-2">
+          <div className="p-3 bg-white/5 border border-white/10 rounded-xl">
+            <p className="text-xs text-zinc-500">Пользователь</p>
+            <p className="text-sm text-white font-medium truncate">{selectedUser?.nickname || selectedUser?.email?.split('@')[0] || '—'}</p>
+          </div>
+          <div className="p-3 bg-white/5 border border-white/10 rounded-xl">
+            <p className="text-xs text-zinc-500">UPC</p>
+            <p className="text-sm text-white font-mono truncate">{upc || '—'}</p>
+          </div>
+          <div className="p-3 bg-white/5 border border-white/10 rounded-xl">
+            <p className="text-xs text-zinc-500">Площадки</p>
+            <p className="text-sm text-white font-medium">{selectedPlatformsList.length}</p>
+          </div>
+          <div className="p-3 bg-white/5 border border-white/10 rounded-xl">
+            <p className="text-xs text-zinc-500">Страны</p>
+            <p className="text-sm text-white font-medium">{excludedCountries.length > 0 ? `${255 - excludedCountries.length}` : 'Все'}</p>
+          </div>
+        </div>
+
+        {/* Чеклист */}
+        <div className="mb-4 p-3 bg-white/5 border border-white/10 rounded-xl">
+          <h3 className="text-sm font-semibold text-white mb-2">Проверка</h3>
+          <div className="space-y-1.5">
+            {checks.map((check, i) => (
+              <div key={i} className="flex items-center gap-2">
+                {check.valid ? (
+                  <div className="w-5 h-5 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                    <svg className="w-3 h-3 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                  </div>
+                ) : (
+                  <div className="w-5 h-5 rounded-full bg-red-500/20 flex items-center justify-center">
+                    <svg className="w-3 h-3 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                  </div>
+                )}
+                <span className={`text-xs ${check.valid ? 'text-zinc-400' : 'text-red-400'}`}>{check.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Кнопки */}
+        <div className="flex gap-3 pt-4 border-t border-white/10">
+          <button type="button" onClick={onBack} className="flex-1 px-4 py-3 bg-white/5 hover:bg-white/10 rounded-xl text-zinc-400 hover:text-white transition font-medium flex items-center justify-center gap-2">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>Назад
+          </button>
+          <button type="button" onClick={handleSubmit} disabled={!allValid || submitting}
+            className="flex-1 px-4 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 rounded-xl text-white font-bold transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+            {submitting ? (<><div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" /></>) : (<><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Опубликовать</>)}
+          </button>
         </div>
       </div>
 
-      <div className="flex justify-between pt-6 border-t border-white/10">
-        <button type="button" onClick={onBack} className="px-6 py-3 bg-white/5 hover:bg-white/10 rounded-xl text-zinc-400 hover:text-white transition font-medium flex items-center gap-2">
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>Назад
-        </button>
-        <button type="button" onClick={handleSubmit} disabled={!allValid || submitting}
-          className="px-8 py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 rounded-xl text-white font-bold transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
-          {submitting ? (<><div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />Публикация...</>) : (<><svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Опубликовать релиз</>)}
-        </button>
+      {/* ===== ДЕСКТОП ВЕРСИЯ (оригинальная) ===== */}
+      <div className="hidden lg:block">
+        <div className="mb-8">
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-green-500/20 flex items-center justify-center ring-1 ring-white/10">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-emerald-300">
+                <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+            </div>
+            <div>
+              <h2 className="text-3xl font-black bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">Публикация релиза</h2>
+              <p className="text-sm text-zinc-500 mt-1">Проверьте данные и опубликуйте релиз</p>
+            </div>
+          </div>
+        </div>
+
+        {error && <div className="mb-6 p-4 bg-red-500/20 border border-red-500/30 rounded-xl text-red-400">{error}</div>}
+
+        {!allValid && (
+          <div className="mb-8 p-8 bg-gradient-to-br from-red-500/10 via-orange-500/10 to-yellow-500/10 border border-red-500/20 rounded-2xl">
+            <div className="flex items-start gap-4 mb-6">
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-red-500/20 to-orange-500/20 flex items-center justify-center ring-1 ring-red-500/30 flex-shrink-0">
+                <svg className="w-7 h-7 text-red-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-white mb-2">Не все данные заполнены</h3>
+                <p className="text-zinc-400 mb-4">Чтобы опубликовать релиз, необходимо заполнить все обязательные поля. Нажмите на кнопку, чтобы перейти к нужному шагу:</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {checks.filter(c => !c.valid).map((check, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentStep(check.step)}
+                  className="group p-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-xl transition-all text-left"
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-red-500/20 to-orange-500/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                      <svg className="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="font-semibold text-white group-hover:text-red-300 transition-colors">{check.name}</span>
+                        <svg className="w-4 h-4 text-zinc-500 group-hover:text-red-400 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
+                      <p className="text-sm text-red-400">{check.issue}</p>
+                    </div>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div className="mb-6 p-5 bg-gradient-to-br from-purple-500/10 to-blue-500/10 border border-purple-500/20 rounded-xl">
+          <p className="text-xs text-zinc-400 mb-1">Код релиза</p>
+          <div className="flex items-center gap-2">
+            <span className="text-lg font-bold font-mono text-purple-300">{nextCustomId || 'Загрузка...'}</span>
+            <svg className="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <p className="text-xs text-zinc-500 mt-1">Код будет сгенерирован автоматически при публикации</p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+          <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">Пользователь</p><p className="text-white font-medium">{selectedUser?.nickname || selectedUser?.email || '—'}</p></div>
+          <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">Тип релиза</p><p className="text-white font-medium">{releaseType === 'single' ? 'Сингл' : releaseType === 'ep' ? 'EP' : releaseType === 'album' ? 'Альбом' : '—'}</p></div>
+          <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">Название</p><p className="text-white font-medium">{releaseTitle || '—'}</p></div>
+          <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">Артист</p><p className="text-white font-medium">{artistName || '—'}</p></div>
+          <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">Жанр</p><p className="text-white font-medium">{genre || '—'}</p></div>
+          <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">Дата релиза</p><p className="text-white font-medium">{releaseDate || '—'}</p></div>
+          <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">UPC</p><p className="text-white font-medium font-mono text-sm">{upc || '—'}</p></div>
+          <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">Треки</p><p className="text-white font-medium">{tracks.length || '—'}</p></div>
+          <div className="p-4 bg-white/5 border border-white/10 rounded-xl"><p className="text-zinc-400 text-sm mb-1">Площадки</p><p className="text-white font-medium">{selectedPlatformsList.length || '—'}</p></div>
+        </div>
+
+        <div className="p-6 bg-white/5 border border-white/10 rounded-2xl mb-8">
+          <h3 className="text-lg font-bold text-white mb-4">Проверка</h3>
+          <div className="space-y-2">
+            {checks.map((check, i) => (
+              <div key={i} className="flex items-center gap-3">
+                {check.valid ? (
+                  <div className="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                    <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                  </div>
+                ) : (
+                  <div className="w-6 h-6 rounded-full bg-red-500/20 flex items-center justify-center">
+                    <svg className="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                  </div>
+                )}
+                <span className={check.valid ? 'text-zinc-300' : 'text-red-400'}>{check.name} {!check.valid && `— ${check.issue}`}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex justify-between pt-6 border-t border-white/10">
+          <button type="button" onClick={onBack} className="px-6 py-3 bg-white/5 hover:bg-white/10 rounded-xl text-zinc-400 hover:text-white transition font-medium flex items-center gap-2">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>Назад
+          </button>
+          <button type="button" onClick={handleSubmit} disabled={!allValid || submitting}
+            className="px-8 py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 rounded-xl text-white font-bold transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
+            {submitting ? (<><div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />Публикация...</>) : (<><svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Опубликовать релиз</>)}
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -752,10 +990,12 @@ interface StepsSidebarProps {
   selectedPlatforms: number;
   selectedCountries: number;
   onCancel?: () => void;
+  mobileStepsOpen: boolean;
+  setMobileStepsOpen: (open: boolean) => void;
 }
 
-function StepsSidebar({ currentStep, setCurrentStep, selectedUser, releaseType, releaseTitle, genre, coverFile, releaseDate, tracksCount, selectedPlatforms, selectedCountries, onCancel }: StepsSidebarProps) {
-  const getMinTracks = (): number => { if (releaseType === 'ep') return 2; if (releaseType === 'album') return 7; return 1; };
+function StepsSidebar({ currentStep, setCurrentStep, selectedUser, releaseType, releaseTitle, genre, coverFile, releaseDate, tracksCount, selectedPlatforms, selectedCountries, onCancel, mobileStepsOpen, setMobileStepsOpen }: StepsSidebarProps) {
+  const getMinTracks = (): number => { if (releaseType === 'ep') return 2; if (releaseType === 'album') return 8; return 1; };
 
   const isStepComplete = (stepId: string): boolean => {
     switch(stepId) {
@@ -795,7 +1035,115 @@ function StepsSidebar({ currentStep, setCurrentStep, selectedUser, releaseType, 
   const progressColor = getProgressColor();
 
   return (
-    <aside className="w-full lg:w-64 backdrop-blur-xl bg-gradient-to-br from-white/[0.07] to-white/[0.02] border border-white/10 rounded-3xl p-6 flex flex-col lg:self-start lg:sticky lg:top-24 shadow-2xl shadow-black/20">
+    <>
+      {/* Мобильная версия - компактная полоса прогресса с раскрывающимся списком */}
+      <div className="lg:hidden w-full mb-3">
+        <div className="backdrop-blur-xl border rounded-2xl shadow-lg relative overflow-hidden bg-gradient-to-br from-white/[0.07] to-white/[0.02] border-white/10 shadow-black/10">
+          {/* Декоративный градиент */}
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5 pointer-events-none" />
+          
+          {/* Основная строка - кликабельная */}
+          <div 
+            className="relative z-10 p-3 cursor-pointer"
+            onClick={() => setMobileStepsOpen(!mobileStepsOpen)}
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                {/* Текущий шаг */}
+                <div className="flex items-center gap-2">
+                  <div>
+                    <div className="text-xs font-medium text-purple-400">
+                      {steps.find(s => s.id === currentStep)?.label || 'Создание релиза'}
+                    </div>
+                    <div className="text-[10px] text-zinc-500">
+                      {releaseType ? (releaseType === 'single' ? 'Сингл' : releaseType === 'ep' ? 'EP' : 'Альбом') : 'Админ-панель'}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Стрелка раскрытия */}
+              <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all bg-white/5 hover:bg-white/10 ${!mobileStepsOpen ? 'animate-bounce-subtle' : ''}`}>
+                <svg 
+                  width="20" height="20" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2.5" 
+                  className={`transition-transform duration-200 text-zinc-300 ${mobileStepsOpen ? 'rotate-180' : ''}`}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+              
+              {/* Прогресс справа */}
+              <div className="flex items-center gap-2">
+                <div className="flex gap-0.5">
+                  {[0, 1, 2, 3, 4, 5].map((i) => (
+                    <div 
+                      key={i} 
+                      className={`w-4 h-1.5 rounded-full transition-all duration-300 ${i < completedSteps ? '' : 'bg-white/10'}`}
+                      style={i < completedSteps ? { 
+                        background: `linear-gradient(135deg, ${progressColor.from}, ${progressColor.to})`,
+                        boxShadow: `0 0 4px ${progressColor.from}60`
+                      } : undefined}
+                    />
+                  ))}
+                </div>
+                <span className="text-xs font-bold" style={{ color: progressColor.from }}>
+                  {completedSteps}/6
+                </span>
+              </div>
+            </div>
+          </div>
+          
+          {/* Раскрывающийся список шагов */}
+          {mobileStepsOpen && (
+            <div className="relative z-10 px-3 pb-3 pt-1 border-t border-white/10">
+              <div className="space-y-1.5">
+                {steps.map((step) => {
+                  const isComplete = isStepComplete(step.id);
+                  const isCurrent = currentStep === step.id;
+                  
+                  return (
+                    <button 
+                      key={step.id} 
+                      onClick={() => {
+                        setCurrentStep(step.id);
+                        setMobileStepsOpen(false);
+                      }}
+                      className={`w-full text-left py-2.5 px-3 rounded-xl flex items-center gap-2.5 transition-all ${
+                        isCurrent 
+                          ? 'bg-gradient-to-r from-purple-500/30 to-purple-600/30 text-white border border-white/20'
+                          : 'bg-white/5 text-zinc-400 hover:bg-white/10 border border-transparent hover:border-white/10'
+                      }`}
+                    >
+                      <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
+                        isComplete && step.id !== 'send' ? 'bg-emerald-500/20 text-emerald-500' : 'bg-white/10 text-zinc-400'
+                      }`}>
+                        {isComplete && step.id !== 'send' ? (
+                          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <polyline points="20 6 9 17 4 12" strokeWidth="3"/>
+                          </svg>
+                        ) : (
+                          step.icon
+                        )}
+                      </span>
+                      <span className="text-sm font-medium flex-1">{step.label}</span>
+                      {isCurrent && (
+                        <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Десктоп версия */}
+      <aside className="hidden lg:flex w-full lg:w-64 backdrop-blur-xl bg-gradient-to-br from-white/[0.07] to-white/[0.02] border border-white/10 rounded-3xl p-6 flex-col lg:self-start lg:sticky lg:top-24 shadow-2xl shadow-black/20">
       <div className="mb-4">
         <div className="flex items-center justify-between mb-2">
           <h3 className="font-bold text-lg bg-gradient-to-r from-white to-zinc-300 bg-clip-text text-transparent">Создание релиза</h3>
@@ -873,9 +1221,9 @@ function StepsSidebar({ currentStep, setCurrentStep, selectedUser, releaseType, 
             <svg className="w-3.5 h-3.5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
             <span className="text-[11px] font-semibold text-emerald-400">Готово к публикации</span>
           </div>
-        )}
-      </div>
+        )}n      </div>
     </aside>
+    </>
   );
 }
 
@@ -887,6 +1235,7 @@ export default function AdminCreateRelease({ supabase, onSuccess, onCancel }: Ad
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [releaseType, setReleaseType] = useState<ReleaseType | null>(null);
   const [success, setSuccess] = useState(false);
+  const [mobileStepsOpen, setMobileStepsOpen] = useState(false);
 
   // Release info state
   const [releaseTitle, setReleaseTitle] = useState('');
@@ -916,6 +1265,7 @@ export default function AdminCreateRelease({ supabase, onSuccess, onCancel }: Ad
   const [trackVersion, setTrackVersion] = useState('');
   const [trackProducers, setTrackProducers] = useState<string[]>([]);
   const [trackFeaturing, setTrackFeaturing] = useState<string[]>([]);
+  const [trackAuthors, setTrackAuthors] = useState<TrackAuthor[]>([]);
   const [trackIsrc, setTrackIsrc] = useState('');
 
   // Countries & Platforms
@@ -943,12 +1293,12 @@ export default function AdminCreateRelease({ supabase, onSuccess, onCancel }: Ad
 
   return (
     <div className="flex flex-col lg:flex-row gap-6">
-      <StepsSidebar currentStep={currentStep} setCurrentStep={setCurrentStep} selectedUser={selectedUser} releaseType={releaseType} releaseTitle={releaseTitle} genre={genre} coverFile={coverFile} releaseDate={releaseDate} tracksCount={tracks.length} selectedPlatforms={selectedPlatforms} selectedCountries={selectedCountriesCount} onCancel={onCancel} />
+      <StepsSidebar currentStep={currentStep} setCurrentStep={setCurrentStep} selectedUser={selectedUser} releaseType={releaseType} releaseTitle={releaseTitle} genre={genre} coverFile={coverFile} releaseDate={releaseDate} tracksCount={tracks.length} selectedPlatforms={selectedPlatforms} selectedCountries={selectedCountriesCount} onCancel={onCancel} mobileStepsOpen={mobileStepsOpen} setMobileStepsOpen={setMobileStepsOpen} />
       <section className="flex-1 backdrop-blur-xl bg-gradient-to-br from-white/[0.07] to-white/[0.02] border border-white/10 rounded-3xl p-6 lg:p-10 min-h-[500px] shadow-2xl shadow-black/20">
         {currentStep === 'user' && <UserSelectStep supabase={supabase} selectedUser={selectedUser} onSelectUser={setSelectedUser} onNext={() => setCurrentStep('type')} />}
         {currentStep === 'type' && <ReleaseTypeStep releaseType={releaseType} onSelectType={setReleaseType} onNext={() => setCurrentStep('release')} onBack={() => setCurrentStep('user')} />}
         {currentStep === 'release' && <ReleaseInfoStep releaseTitle={releaseTitle} setReleaseTitle={setReleaseTitle} artistName={artistName} setArtistName={setArtistName} collaborators={collaborators} setCollaborators={setCollaborators} collaboratorInput={collaboratorInput} setCollaboratorInput={setCollaboratorInput} genre={genre} setGenre={setGenre} subgenres={subgenres} setSubgenres={setSubgenres} subgenreInput={subgenreInput} setSubgenreInput={setSubgenreInput} releaseDate={releaseDate} setReleaseDate={setReleaseDate} showCalendar={showCalendar} setShowCalendar={setShowCalendar} calendarMonth={calendarMonth} setCalendarMonth={setCalendarMonth} calendarYear={calendarYear} setCalendarYear={setCalendarYear} coverFile={coverFile} setCoverFile={setCoverFile} upc={upc} setUpc={setUpc} onNext={() => setCurrentStep('tracklist')} />}
-        {currentStep === 'tracklist' && <TracklistStep releaseTitle={releaseTitle} releaseType={releaseType} coverFile={coverFile} tracks={tracks} setTracks={setTracks} currentTrack={currentTrack} setCurrentTrack={setCurrentTrack} trackTitle={trackTitle} setTrackTitle={setTrackTitle} trackLink={trackLink} setTrackLink={setTrackLink} trackAudioFile={trackAudioFile} setTrackAudioFile={setTrackAudioFile} trackAudioMetadata={trackAudioMetadata} setTrackAudioMetadata={setTrackAudioMetadata} trackHasDrugs={trackHasDrugs} setTrackHasDrugs={setTrackHasDrugs} trackLyrics={trackLyrics} setTrackLyrics={setTrackLyrics} trackLanguage={trackLanguage} setTrackLanguage={setTrackLanguage} trackVersion={trackVersion} setTrackVersion={setTrackVersion} trackProducers={trackProducers} setTrackProducers={setTrackProducers} trackFeaturing={trackFeaturing} setTrackFeaturing={setTrackFeaturing} trackIsrc={trackIsrc} setTrackIsrc={setTrackIsrc} onNext={() => setCurrentStep('countries')} onBack={() => setCurrentStep('release')} />}
+        {currentStep === 'tracklist' && <TracklistStep releaseTitle={releaseTitle} releaseType={releaseType} coverFile={coverFile} tracks={tracks} setTracks={setTracks} currentTrack={currentTrack} setCurrentTrack={setCurrentTrack} trackTitle={trackTitle} setTrackTitle={setTrackTitle} trackLink={trackLink} setTrackLink={setTrackLink} trackAudioFile={trackAudioFile} setTrackAudioFile={setTrackAudioFile} trackAudioMetadata={trackAudioMetadata} setTrackAudioMetadata={setTrackAudioMetadata} trackHasDrugs={trackHasDrugs} setTrackHasDrugs={setTrackHasDrugs} trackLyrics={trackLyrics} setTrackLyrics={setTrackLyrics} trackLanguage={trackLanguage} setTrackLanguage={setTrackLanguage} trackVersion={trackVersion} setTrackVersion={setTrackVersion} trackProducers={trackProducers} setTrackProducers={setTrackProducers} trackFeaturing={trackFeaturing} setTrackFeaturing={setTrackFeaturing} trackAuthors={trackAuthors} setTrackAuthors={setTrackAuthors} trackIsrc={trackIsrc} setTrackIsrc={setTrackIsrc} onNext={() => setCurrentStep('countries')} onBack={() => setCurrentStep('release')} />}
         {currentStep === 'countries' && <CountriesStep excludedCountries={excludedCountries} setExcludedCountries={setExcludedCountries} onNext={() => setCurrentStep('platforms')} onBack={() => setCurrentStep('tracklist')} />}
         {currentStep === 'platforms' && <PlatformsStep selectedPlatforms={selectedPlatforms} setSelectedPlatforms={setSelectedPlatforms} selectedPlatformsList={selectedPlatformsList} setSelectedPlatformsList={setSelectedPlatformsList} onNext={() => setCurrentStep('send')} onBack={() => setCurrentStep('countries')} />}
         {currentStep === 'send' && (

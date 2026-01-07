@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from 'react';
-import { supabase } from '../lib/supabase';
-import { Ticket, TicketMessage } from '../lib/types';
+import { supabase } from '@/lib/supabase/client';
+import { Ticket, TicketMessage } from '@/app/cabinet/lib/types';
 
 interface SupportTabProps {
   userId: string;
@@ -69,7 +69,6 @@ export default function SupportTab({ userId }: SupportTabProps) {
             table: 'ticket_messages',
           }, async (payload: any) => {
             if (!supabase) return;
-            console.log('🔔 Новое сообщение в тикете:', payload);
             const newMsg = payload.new;
             
             if (newMsg && newMsg.is_admin) {

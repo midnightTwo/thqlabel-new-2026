@@ -1,1 +1,1 @@
-export * from './supabase-server';
+export * from './supabase-server';export * from './client';

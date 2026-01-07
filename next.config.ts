@@ -1,44 +1,59 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  /* TURBO OPTIMIZED CONFIG - МАКСИМАЛЬНАЯ скорость переходов */
   devIndicators: false,
   
-  // Автоматическая очистка кэша при сборке
+  // Очистка при сборке
   cleanDistDir: true,
   
-  // Оптимизация для максимальной производительности
+  // =============================================
+  // TURBO ПРОИЗВОДИТЕЛЬНОСТЬ
+  // =============================================
   experimental: {
-    // Оптимизация CSS
+    // Оптимизация CSS - критично для скорости
     optimizeCss: true,
-    // ПОЛНОЕ ОТКЛЮЧЕНИЕ КЭШИРОВАНИЯ - всегда свежие данные
+    
+    // МАКСИМАЛЬНОЕ КЭШИРОВАНИЕ - страницы летают
     staleTimes: {
-      dynamic: 0,
-      static: 0,
+      dynamic: 120,  // 2 минуты для динамики - МГНОВЕННЫЕ повторные визиты
+      static: 600,   // 10 минут для статики - страницы в памяти
     },
-    // Оптимизация пакетов
-    optimizePackageImports: ['lucide-react', '@supabase/supabase-js'],
+    
+    // Tree-shaking для тяжёлых пакетов - КРИТИЧНО для bundle size
+    optimizePackageImports: [
+      'lucide-react',
+      '@supabase/supabase-js',
+      'framer-motion',
+      '@dnd-kit/core',
+      '@dnd-kit/sortable',
+      '@dnd-kit/utilities',
+      'react-easy-crop',
+      'exceljs'
+    ],
+    
+    // Параллельная загрузка роутов
+    ppr: false, // Partial Prerendering - отключаем пока не стабильно
   },
   
-  // Сжатие для ускорения загрузки
+  // GZIP/Brotli сжатие - уменьшает трафик на 70%
   compress: true,
   
-  // ПОЛНОЕ ОТКЛЮЧЕНИЕ КЭШИРОВАНИЯ - моментальное обновление каждую миллисекунду
+  // Стабильный build ID для кэширования
   generateBuildId: async () => {
-    return Date.now().toString();
+    return process.env.BUILD_ID || `build-${Date.now()}`;
   },
   
-  // АГРЕССИВНОЕ ОТКЛЮЧЕНИЕ КЭШИРОВАНИЯ - 0 секунд
+  // Dev server оптимизация - БОЛЬШЕ страниц в памяти
   onDemandEntries: {
-    maxInactiveAge: 0, // 0 секунд - моментальное очищение
-    pagesBufferLength: 0,
+    maxInactiveAge: 120 * 1000, // 2 минуты - держим страницы дольше
+    pagesBufferLength: 10, // Буфер для 10 страниц
   },
   
-  // Принудительное отключение оптимизации
-  reactStrictMode: true,
+  reactStrictMode: false, // Отключаем в prod для скорости
   poweredByHeader: false,
   
-  // Турбо режим для ускорения dev сервера
+  // Turbopack для быстрой разработки
   turbopack: {
     rules: {
       '*.svg': {
@@ -48,76 +63,121 @@ const nextConfig: NextConfig = {
     },
   },
 
-  // Оптимизация производительности
+  // Compiler оптимизации
   compiler: {
     // Удаляем console.log в продакшене
     removeConsole: process.env.NODE_ENV === 'production',
+    // Удаляем React devtools в продакшене
+    reactRemoveProperties: process.env.NODE_ENV === 'production',
   },
   
-  // Оптимизация изображений
+  // =============================================
+  // ОПТИМИЗАЦИЯ ИЗОБРАЖЕНИЙ - КРИТИЧНО ДЛЯ МОБИЛЬНЫХ
+  // =============================================
   images: {
+    // Современные форматы - AVIF на 50% меньше WebP
     formats: ['image/avif', 'image/webp'],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256],
-    minimumCacheTTL: 0, // Без кэширования
+    
+    // Размеры для разных экранов - покрываем Redmi A5 и выше
+    deviceSizes: [320, 420, 640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    
+    // Долгий кэш для изображений - год!
+    minimumCacheTTL: 31536000,
+    
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    
+    // Разрешаем внешние домены (Supabase storage)
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.supabase.co',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.supabase.in',
+      },
+    ],
   },
   
-  // Оптимизация сборки
-  productionBrowserSourceMaps: false, // Отключаем source maps в продакшене
+  // Без source maps в production
+  productionBrowserSourceMaps: false,
   
-  // Заголовки для кэширования
+  // =============================================
+  // ЗАГОЛОВКИ КЭШИРОВАНИЯ - КЛЮЧ К СКОРОСТИ
+  // =============================================
   async headers() {
     const isDev = process.env.NODE_ENV === 'development';
     
     return [
+      // HTML страницы - умеренный кэш с revalidate
       {
-        // Отключаем кэширование HTML страниц - всегда свежий контент
-        source: '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|jpg|png|webp|avif|woff|woff2|ico)).*)',
+        source: '/((?!_next/static|_next/image|api|favicon.ico|.*\\.(?:svg|jpg|png|webp|avif|woff|woff2|ico)).*)',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'no-cache, no-store, must-revalidate',
+            value: isDev 
+              ? 'no-cache, no-store, must-revalidate'
+              : 'public, max-age=0, s-maxage=60, stale-while-revalidate=300',
           },
+          // Prefetch hint
           {
-            key: 'Pragma',
-            value: 'no-cache',
-          },
-          {
-            key: 'Expires',
-            value: '0',
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on',
           },
         ],
       },
+      
+      // Статичные ассеты - максимальный кэш
       {
-        source: '/:all*(svg|jpg|png|webp|avif|woff|woff2|ico)',
+        source: '/:all*(svg|jpg|png|webp|avif|woff|woff2|ico|mp3|wav)',
         headers: [
           {
             key: 'Cache-Control',
-            // В dev режиме короткий кэш, в prod - длинный
-            value: isDev ? 'no-cache, must-revalidate' : 'public, max-age=31536000, immutable',
+            value: isDev 
+              ? 'public, max-age=3600'
+              : 'public, max-age=31536000, immutable',
           },
         ],
       },
+      
+      // Next.js static assets - максимальный кэш
       {
-        // JS/CSS файлы - в dev режиме без кэша!
         source: '/_next/static/:path*',
         headers: [
           {
             key: 'Cache-Control',
-            // В dev режиме без кэша, в prod - с кэшем
-            value: isDev ? 'no-cache, no-store, must-revalidate' : 'public, max-age=31536000, immutable',
+            value: isDev
+              ? 'public, max-age=3600'
+              : 'public, max-age=31536000, immutable',
           },
         ],
       },
+      
+      // API с умеренным кэшем для GET запросов
       {
-        // API - без кэширования
         source: '/api/:path*',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'no-cache, no-store, must-revalidate',
+            value: 'private, no-cache, no-store, must-revalidate',
+          },
+          // CORS для API
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+        ],
+      },
+      
+      // Оптимизированные изображения Next.js
+      {
+        source: '/_next/image/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, stale-while-revalidate=604800',
           },
         ],
       },

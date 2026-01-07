@@ -1,0 +1,787 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/05/2025;01/05/2025;"Apple Music";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;6;RUB;0.414284639996
+01/06/2025;01/05/2025;Spotify;Belarus;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;115;RUB;1.955343689818
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Kyrgyzstan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;12;RUB;0.052559809897
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Azerbaijan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;5;RUB;0.021000000036
+01/06/2025;01/06/2025;"YouTube Official Content";"Czech Republic";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.060123496537
+01/05/2025;01/04/2025;Yandex;Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;40;RUB;0.874010334410
+01/06/2025;01/05/2025;Yandex;"Moldova, Republic Of";thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;1;RUB;0.003164771929
+01/06/2025;01/06/2025;"YouTube Official Content";Germany;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.983345773422
+01/04/2025;01/03/2025;Yandex;Kazakhstan;thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;39;RUB;0.799682828052
+01/06/2025;01/06/2025;"YouTube UGC";"United Kingdom";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;5;RUB;0.025810591955
+01/05/2025;01/04/2025;Spotify;Turkey;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;3;RUB;0.076798927293
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;1;RUB;0.004200000038
+01/06/2025;01/05/2025;Spotify;Canada;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.055273536199
+01/06/2025;01/05/2025;Spotify;Lithuania;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";5;RUB;-0.176168268028
+01/05/2025;01/04/2025;Spotify;Germany;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;9;RUB;0.416200637999
+01/04/2025;01/03/2025;"UMA (Odnoklassniki)";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;1;RUB;0.004200000038
+01/06/2025;01/06/2025;"YouTube UGC";"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;2;RUB;0.004554810354
+01/06/2025;01/05/2025;Spotify;Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";34;RUB;-0.512419331640
+01/06/2025;01/05/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;336;RUB;38.738849681616
+01/06/2025;01/05/2025;Spotify;Australia;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";3;RUB;-0.180322414371
+01/04/2025;01/04/2025;"Apple Music";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;15;RUB;1.064024640031
+01/05/2025;01/04/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;242;RUB;32.417320044156
+01/06/2025;01/06/2025;"YouTube UGC";Denmark;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;15;RUB;0.023034326577
+01/06/2025;01/05/2025;"UMA VK MUSIC";Belarus;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;1;RUB;0.074437624754
+01/06/2025;01/05/2025;Spotify;India;thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;1;RUB;0.015820169297
+01/06/2025;01/05/2025;Spotify;Egypt;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;6;RUB;0.144274120466
+01/06/2025;01/05/2025;Spotify;"United Kingdom";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";23;RUB;-0.753112877648
+01/06/2025;01/05/2025;Spotify;Italy;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;3;RUB;0.122484986774
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Kyrgyzstan;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;2;RUB;0.008400000000
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Kyrgyzstan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;12;RUB;0.052559809897
+01/06/2025;01/06/2025;"YouTube UGC";Netherlands;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;18;RUB;0.049105176089
+01/04/2025;01/03/2025;Spotify;Mexico;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.039390976904
+01/05/2025;01/04/2025;Spotify;Hungary;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.124160694542
+01/05/2025;01/04/2025;Spotify;Spain;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.096472276753
+01/05/2025;01/04/2025;Spotify;France;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;28;RUB;0.968560289708
+01/06/2025;01/06/2025;"YouTube UGC";Israel;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.110536080923
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;4;RUB;0.016800000000
+01/04/2025;01/03/2025;Spotify;Netherlands;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;19;RUB;1.107846206254
+01/06/2025;01/06/2025;"YouTube Official Content";Denmark;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;3;RUB;0.529838312822
+01/06/2025;01/05/2025;Yandex;Uzbekistan;thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;1;RUB;0.020858201942
+01/06/2025;01/05/2025;Spotify;Georgia;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";3;RUB;-0.121603242455
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;10;RUB;0.042000000000
+01/06/2025;01/06/2025;"Apple Music";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;6;RUB;0.563829279967
+01/04/2025;01/04/2025;"YouTube Official Content";Poland;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;3;RUB;0.160110106654
+01/05/2025;01/04/2025;Spotify;Turkey;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;16;RUB;0.256433580586
+01/06/2025;01/05/2025;Yandex;"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;841;RUB;15.952590902250
+01/06/2025;01/05/2025;Spotify;Sweden;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";4;RUB;-0.039891451122
+01/05/2025;01/04/2025;Yandex;Turkmenistan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;44;RUB;0.178232318869
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;2029;RUB;63.258209217256
+01/06/2025;01/05/2025;Spotify;Cyprus;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;1;RUB;0.004076362647
+01/06/2025;01/05/2025;Spotify;Norway;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;3;RUB;0.052555961126
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;20;RUB;2.472586096647
+01/05/2025;01/04/2025;Spotify;Singapore;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.012484076099
+01/05/2025;01/04/2025;Yandex;Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;13;RUB;0.052659548752
+01/06/2025;01/05/2025;Spotify;Bulgaria;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;5;RUB;0.052798601808
+01/06/2025;01/06/2025;"YouTube UGC";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;9;RUB;0.005183816622
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;53;RUB;0.519981087645
+01/05/2025;01/05/2025;"YouTube Official Content";"United Kingdom";thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;1;RUB;0.007751466284
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Belarus;thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;8;RUB;0.093442510101
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;1;RUB;0.004200000036
+01/06/2025;01/06/2025;"YouTube UGC";France;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;8;RUB;0.016982935727
+01/05/2025;01/05/2025;"YouTube Official Content";Germany;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;25;RUB;2.781682343242
+01/04/2025;01/03/2025;Spotify;Austria;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.128220629162
+01/04/2025;01/04/2025;"YouTube Official Content";Latvia;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.061938471944
+01/06/2025;01/05/2025;Spotify;Spain;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.019168610042
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Belarus;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;88;RUB;0.510075249436
+01/04/2025;01/04/2025;"YouTube Official Content";Denmark;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.082440081994
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;135;RUB;3.130854426430
+01/04/2025;01/04/2025;"YouTube Official Content";Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;3;RUB;0.165898629820
+01/05/2025;01/04/2025;Yandex;Kazakhstan;thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;66;RUB;1.406518004030
+01/05/2025;01/04/2025;Spotify;"United Kingdom";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;26;RUB;2.123313035270
+01/05/2025;01/04/2025;Spotify;Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;125;RUB;2.962660878670
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;67;RUB;1.389493237733
+01/06/2025;01/05/2025;Spotify;Japan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;2;RUB;0.089291752954
+01/04/2025;01/03/2025;Yandex;Belarus;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;160;RUB;3.176649727672
+01/06/2025;01/05/2025;Spotify;France;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;33;RUB;1.101782586980
+01/04/2025;01/03/2025;Spotify;Poland;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;19;RUB;1.430722276629
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.004200000036
+01/04/2025;01/03/2025;Yandex;Belarus;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;14;RUB;0.298064911431
+01/05/2025;01/04/2025;Spotify;Egypt;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;9;RUB;0.162778741197
+01/05/2025;01/04/2025;Spotify;France;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;54;RUB;1.498623430158
+01/04/2025;01/04/2025;"YouTube Official Content";Lithuania;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.097954814001
+01/05/2025;01/04/2025;Spotify;Japan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;2;RUB;0.368838870677
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;22;RUB;0.092400000000
+01/05/2025;01/05/2025;"YouTube Official Content";Denmark;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;8;RUB;0.989603861587
+01/05/2025;01/04/2025;Spotify;Belarus;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;102;RUB;2.266709830700
+01/06/2025;01/05/2025;Yandex;"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;5163;RUB;100.967909706311
+01/04/2025;01/03/2025;Spotify;"Korea, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.028543461638
+01/04/2025;01/04/2025;"YouTube Official Content";Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;15;RUB;0.768443247544
+01/05/2025;01/04/2025;Yandex;Uzbekistan;thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;5;RUB;0.109251291774
+01/05/2025;01/04/2025;Spotify;Estonia;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.001991623015
+01/06/2025;01/05/2025;Spotify;Nigeria;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";49;RUB;-0.302235793194
+01/04/2025;01/04/2025;"YouTube Official Content";Singapore;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;2;RUB;0.218001257162
+01/05/2025;01/04/2025;Yandex;Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;217;RUB;4.510112254165
+01/05/2025;01/04/2025;Spotify;"United Arab Emirates";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;4;RUB;0.293934414153
+01/05/2025;01/04/2025;Yandex;"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;1;RUB;0.021850258413
+01/05/2025;01/04/2025;Yandex;"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;4547;RUB;93.154571968464
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Belarus;thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;1;RUB;0.004200000000
+01/06/2025;01/05/2025;Yandex;Kyrgyzstan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;7;RUB;0.146007413666
+01/04/2025;01/03/2025;Yandex;Ukraine;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;11;RUB;0.065669163558
+01/04/2025;01/03/2025;Yandex;Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;3;RUB;0.063871052487
+01/05/2025;01/05/2025;"YouTube Official Content";Germany;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;1;RUB;0.398071546070
+01/05/2025;01/04/2025;Spotify;Germany;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;9;RUB;1.318211567784
+01/05/2025;01/04/2025;Spotify;India;thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;2;RUB;0.031137325954
+01/06/2025;01/05/2025;Yandex;"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;5;RUB;0.033517289801
+01/04/2025;01/04/2025;"YouTube UGC";Latvia;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;3;RUB;0.065212787046
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Kyrgyzstan;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;2;RUB;0.008400000000
+01/05/2025;01/04/2025;Spotify;Pakistan;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.035120572058
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Armenia;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;3;RUB;0.012600000000
+01/06/2025;01/05/2025;Spotify;Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;3;RUB;0.037657826262
+01/06/2025;01/05/2025;Yandex;"Russian Federation";thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;5439;RUB;104.364259457643
+01/06/2025;01/05/2025;Spotify;India;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";14;RUB;-0.187289209231
+01/06/2025;01/05/2025;Spotify;Netherlands;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;37;RUB;2.474885954255
+01/05/2025;01/04/2025;Spotify;Poland;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;33;RUB;3.775340088093
+01/06/2025;01/06/2025;"YouTube Official Content";Lithuania;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.079640858838
+01/05/2025;01/05/2025;"YouTube UGC";Philippines;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.000833265448
+01/06/2025;01/05/2025;Spotify;Pakistan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";2;RUB;-0.027034603406
+01/04/2025;01/03/2025;Spotify;India;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;85;RUB;3.202566394160
+01/04/2025;01/04/2025;"YouTube Official Content";Netherlands;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.063673038220
+01/04/2025;01/04/2025;"YouTube Official Content";Belgium;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.111180882079
+01/05/2025;01/04/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;26;RUB;2.428030047398
+01/05/2025;01/04/2025;Spotify;Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;95;RUB;1.953782259739
+01/06/2025;01/05/2025;Yandex;Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;24;RUB;0.482903416884
+01/06/2025;01/05/2025;"UMA VK MUSIC";Belarus;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;2;RUB;0.148875249436
+01/06/2025;01/05/2025;Spotify;Canada;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";1;RUB;-0.023668969799
+01/06/2025;01/05/2025;Spotify;Israel;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.012229087868
+01/04/2025;01/04/2025;"YouTube Official Content";Poland;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.022766182822
+01/05/2025;01/04/2025;Spotify;Latvia;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;2;RUB;0.005246226542
+01/05/2025;01/04/2025;Spotify;Georgia;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;2;RUB;0.202902668654
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;1;RUB;0.004200000000
+01/05/2025;01/04/2025;Spotify;Netherlands;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;13;RUB;0.504997874768
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Georgia;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;2;RUB;0.720429072183
+01/05/2025;01/04/2025;Spotify;Netherlands;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;3;RUB;0.116534240445
+01/05/2025;01/05/2025;"YouTube Official Content";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;10;RUB;0.136826182532
+01/06/2025;01/05/2025;Spotify;Ireland;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;2;RUB;0.078567037039
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Georgia;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;2;RUB;0.365342162055
+01/06/2025;01/06/2025;"YouTube Official Content";Germany;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;7;RUB;0.922485738062
+01/06/2025;01/05/2025;Spotify;Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;123;RUB;1.278861968646
+01/06/2025;01/06/2025;"YouTube Official Content";Ukraine;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;6;RUB;0.212254513307
+01/05/2025;01/04/2025;Spotify;"United Arab Emirates";thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;3;RUB;0.220487242707
+01/05/2025;01/04/2025;Spotify;Japan;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;6;RUB;0.690364550300
+01/05/2025;01/04/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;191;RUB;29.746315973448
+01/06/2025;01/06/2025;"Apple Music";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;13;RUB;1.071024640047
+01/06/2025;01/05/2025;Spotify;Romania;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";1;RUB;-0.005127620542
+01/06/2025;01/05/2025;Spotify;Germany;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;14;RUB;1.114885200566
+01/05/2025;01/04/2025;Spotify;Italy;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;2;RUB;0.295586003942
+01/05/2025;01/05/2025;"Apple Music";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.104245033390
+01/06/2025;01/05/2025;Spotify;Cyprus;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";1;RUB;-0.062864999058
+01/05/2025;01/04/2025;Spotify;Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;6;RUB;0.103564397795
+01/06/2025;01/05/2025;Spotify;Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;5;RUB;0.228276307653
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Ukraine;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;1;RUB;0.004200000036
+01/06/2025;01/05/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;84;RUB;9.158320287747
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;7;RUB;0.869201833030
+01/05/2025;01/04/2025;Spotify;"United States";thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;26;RUB;3.042665663302
+01/05/2025;01/04/2025;Spotify;Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;70;RUB;0.152820776587
+01/06/2025;01/05/2025;Spotify;Thailand;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;2;RUB;0.031349169832
+01/04/2025;01/03/2025;Yandex;"Moldova, Republic Of";thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;1;RUB;0.021290350854
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;7540;RUB;177.486677316188
+01/05/2025;01/04/2025;Spotify;Latvia;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;6;RUB;0.015738679626
+01/05/2025;01/04/2025;Spotify;"United States";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;17;RUB;2.577403082377
+01/06/2025;01/05/2025;Spotify;India;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;7;RUB;0.254772664858
+01/06/2025;01/05/2025;Spotify;Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;44;RUB;4.150028313687
+01/06/2025;01/05/2025;Spotify;Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;416;RUB;12.244664953890
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;16237;RUB;423.309098137011
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;163;RUB;8.399027813791
+01/04/2025;01/03/2025;Yandex;Belarus;thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;75;RUB;1.458892469494
+01/04/2025;01/03/2025;Yandex;Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;6;RUB;0.035819543786
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;834;RUB;18.549847033222
+01/06/2025;01/05/2025;Spotify;"Serbia And Montenegro";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";3;RUB;-0.092533986474
+01/04/2025;01/04/2025;"YouTube Official Content";Cyprus;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;2;RUB;0.025078937831
+01/05/2025;01/04/2025;Yandex;Turkmenistan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.004050734508
+01/05/2025;01/05/2025;"YouTube Official Content";Netherlands;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;4;RUB;0.591695259378
+01/06/2025;01/05/2025;Yandex;Kazakhstan;thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;46;RUB;0.941783859751
+01/06/2025;01/05/2025;Spotify;Sweden;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;5;RUB;0.116418975759
+01/06/2025;01/05/2025;Spotify;Norway;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";14;RUB;-0.696251327848
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;12;RUB;0.050400000000
+01/05/2025;01/04/2025;Spotify;"United Arab Emirates";thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;4;RUB;0.293934414153
+01/05/2025;01/04/2025;Spotify;"United States";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;6;RUB;0.757496819402
+01/05/2025;01/04/2025;Spotify;Poland;thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;1;RUB;0.106819001250
+01/05/2025;01/04/2025;Spotify;Belarus;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;31;RUB;1.442129357155
+01/04/2025;01/03/2025;Spotify;Israel;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;4;RUB;0.862052528993
+01/04/2025;01/03/2025;Yandex;Kyrgyzstan;thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;2;RUB;0.027260274868
+01/04/2025;01/03/2025;Yandex;"Russian Federation";thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;4862;RUB;99.107733074418
+01/04/2025;01/03/2025;Spotify;Germany;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;61;RUB;4.508517206478
+01/05/2025;01/05/2025;"YouTube UGC";Estonia;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;2;RUB;0.043448035907
+01/05/2025;01/05/2025;"YouTube Official Content";"United Kingdom";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.004422758568
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.004200000000
+01/06/2025;01/06/2025;"YouTube Official Content";Estonia;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;6;RUB;1.308991353125
+01/06/2025;01/05/2025;Spotify;Netherlands;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;14;RUB;0.540312152201
+01/04/2025;01/03/2025;Spotify;"United Kingdom";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;50;RUB;4.543709300214
+01/05/2025;01/05/2025;"YouTube Official Content";Denmark;thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;3;RUB;0.385315379313
+01/05/2025;01/04/2025;"UMA VK MUSIC";"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.158060314118
+01/05/2025;01/05/2025;"YouTube UGC";"Saudi Arabia";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.000942311400
+01/06/2025;01/05/2025;Spotify;Turkey;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;1;RUB;0.002814631376
+01/06/2025;01/05/2025;Spotify;Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;137;RUB;2.938669124519
+01/04/2025;01/04/2025;"YouTube Official Content";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;2;RUB;0.041701864991
+01/05/2025;01/04/2025;Spotify;"United Arab Emirates";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;34;RUB;2.542816896711
+01/06/2025;01/05/2025;Spotify;Brazil;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;17;RUB;0.811875558548
+01/04/2025;01/03/2025;Spotify;Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;11;RUB;0.412355543734
+01/05/2025;01/05/2025;"YouTube Official Content";Belarus;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;7;RUB;0.147650302132
+01/06/2025;01/05/2025;Yandex;Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;28;RUB;0.548642794710
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;1;RUB;0.004200000038
+01/06/2025;01/05/2025;Spotify;Austria;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";4;RUB;-0.138465657246
+01/04/2025;01/03/2025;Spotify;Belgium;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;2;RUB;0.274337158994
+01/04/2025;01/04/2025;"YouTube Official Content";Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;28;RUB;1.290487308426
+01/04/2025;01/03/2025;Yandex;Kyrgyzstan;thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;1;RUB;0.021290350854
+01/05/2025;01/04/2025;Spotify;Egypt;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;2;RUB;0.056445511379
+01/05/2025;01/04/2025;Spotify;Estonia;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.099824032526
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Belarus;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;13;RUB;0.054600000036
+01/04/2025;01/04/2025;"Apple Music";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.095996319993
+01/04/2025;01/03/2025;"UMA (Odnoklassniki)";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.004200000038
+01/05/2025;01/04/2025;Yandex;Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;51;RUB;1.078764128634
+01/05/2025;01/05/2025;"YouTube Official Content";Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;23;RUB;1.250692448786
+01/05/2025;01/04/2025;Spotify;"United Kingdom";thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;1;RUB;0.066452202723
+01/05/2025;01/04/2025;Spotify;Nigeria;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;16;RUB;0.255170629219
+01/05/2025;01/04/2025;Yandex;Belarus;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;34;RUB;0.564913545830
+01/05/2025;01/04/2025;Spotify;Pakistan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.039492427436
+01/04/2025;01/04/2025;"YouTube Official Content";Netherlands;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.056445678637
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;2;RUB;0.008400000000
+01/06/2025;01/05/2025;Spotify;Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;162;RUB;5.933534096498
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;17;RUB;0.071400000038
+01/04/2025;01/04/2025;"YouTube Official Content";Netherlands;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;13;RUB;1.694623100296
+01/05/2025;01/05/2025;"YouTube Official Content";"Czech Republic";thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;3;RUB;0.024907113883
+01/05/2025;01/05/2025;"YouTube Official Content";"Korea, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.389106350703
+01/06/2025;01/05/2025;Spotify;Japan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";2;RUB;-0.067428584074
+01/04/2025;01/04/2025;"YouTube Official Content";Estonia;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.118070964945
+01/04/2025;01/03/2025;Yandex;"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;1;RUB;0.005969924014
+01/06/2025;01/05/2025;Yandex;Belarus;thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;93;RUB;1.674411331633
+01/06/2025;01/05/2025;Spotify;Bulgaria;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;6;RUB;0.063377743096
+01/05/2025;01/04/2025;Spotify;Finland;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;2;RUB;0.025211033033
+01/05/2025;01/03/2025;TikTok;"United States";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Creation;1;RUB;0.078127554129
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;9;RUB;0.037800000000
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Kyrgyzstan;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;1;RUB;0.004200000036
+01/05/2025;01/05/2025;"YouTube Official Content";"United Kingdom";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;2;RUB;0.362642922366
+01/06/2025;01/05/2025;Spotify;Georgia;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;2;RUB;0.146894639310
+01/06/2025;01/05/2025;Spotify;Ukraine;thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;3;RUB;0.173973334037
+01/06/2025;01/05/2025;Spotify;"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;2;RUB;0.016353978666
+01/04/2025;01/03/2025;Spotify;"Czech Republic";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;7;RUB;0.416304639094
+01/05/2025;01/04/2025;Yandex;Belarus;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;570;RUB;11.707067263983
+01/06/2025;01/05/2025;Spotify;Poland;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;8;RUB;0.323100267056
+01/06/2025;01/05/2025;Yandex;Ukraine;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;1;RUB;0.003164771929
+01/06/2025;01/05/2025;Spotify;Bulgaria;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;8;RUB;0.301796429215
+01/04/2025;01/03/2025;Yandex;Belarus;thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;28;RUB;0.580809396022
+01/05/2025;01/04/2025;Yandex;"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;12;RUB;0.208804528805
+01/05/2025;01/04/2025;Spotify;Belarus;thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;39;RUB;0.096715206188
+01/04/2025;01/03/2025;Spotify;Nigeria;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;27;RUB;0.436400031043
+01/05/2025;01/04/2025;Spotify;India;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;4;RUB;0.062226075786
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.004200000038
+01/05/2025;01/04/2025;Spotify;Pakistan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.039492427436
+01/05/2025;01/04/2025;"UMA VK MUSIC";Belarus;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;2;RUB;0.128085020129
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;1;RUB;-0.003076554127
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;696;RUB;15.362691721427
+01/06/2025;01/05/2025;Spotify;Brazil;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.107635384866
+01/06/2025;01/05/2025;Spotify;Sweden;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;2;RUB;0.046587001535
+01/06/2025;01/05/2025;Yandex;Kyrgyzstan;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;2;RUB;0.041716403884
+01/04/2025;01/04/2025;"Apple Music";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;1;RUB;0.081444159972
+01/05/2025;01/04/2025;Spotify;Norway;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.139073579202
+01/06/2025;01/05/2025;Spotify;Nigeria;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;92;RUB;1.361844846722
+01/06/2025;01/06/2025;"YouTube Official Content";"Czech Republic";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.094193477856
+01/06/2025;01/05/2025;Spotify;Germany;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;77;RUB;8.457675929315
+01/04/2025;01/03/2025;Yandex;Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;14;RUB;0.298064911431
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.004200000036
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;14;RUB;0.058800000000
+01/06/2025;01/05/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;54;RUB;6.397068494066
+01/04/2025;01/03/2025;Yandex;Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;32;RUB;0.665970799289
+01/06/2025;01/05/2025;Spotify;"Czech Republic";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;2;RUB;0.188192075005
+01/06/2025;01/05/2025;Spotify;Estonia;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;22;RUB;1.143953558146
+01/04/2025;01/03/2025;Spotify;Egypt;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;4;RUB;0.091878953802
+01/06/2025;01/05/2025;Yandex;Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;213;RUB;4.195088995841
+01/06/2025;01/05/2025;Spotify;Netherlands;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";28;RUB;-0.878892277422
+01/06/2025;01/06/2025;"YouTube Official Content";"United Kingdom";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.293762492842
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Belarus;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;331;RUB;3.146140618642
+01/04/2025;01/03/2025;Yandex;"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;1;RUB;0.005969924014
+01/05/2025;01/05/2025;"YouTube Official Content";Israel;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;1;RUB;0.025954609284
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Armenia;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.004200000036
+01/04/2025;01/04/2025;"YouTube Official Content";Norway;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;2;RUB;0.516033476532
+01/06/2025;01/05/2025;Spotify;Denmark;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;2;RUB;0.350809827382
+01/06/2025;01/06/2025;"YouTube UGC";Poland;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;15;RUB;0.039194229763
+01/06/2025;01/05/2025;Yandex;Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;212;RUB;4.121150503931
+01/06/2025;01/05/2025;Spotify;Lithuania;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;5;RUB;0.371337225070
+01/04/2025;01/03/2025;Spotify;Portugal;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;4;RUB;0.768923866452
+01/06/2025;01/05/2025;Spotify;Cyprus;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;2;RUB;0.008201253445
+01/04/2025;01/04/2025;"YouTube UGC";India;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.008049167738
+01/05/2025;01/04/2025;Spotify;Singapore;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.012484076099
+01/05/2025;01/04/2025;Spotify;Norway;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.018167488187
+01/06/2025;01/06/2025;"Apple Music";"Russian Federation";thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;1;RUB;0.067359040017
+01/06/2025;01/05/2025;Spotify;Turkey;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.002814631376
+01/05/2025;01/04/2025;Spotify;Poland;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;3;RUB;0.347902540777
+01/05/2025;01/05/2025;"YouTube Official Content";Ukraine;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;76;RUB;3.065277973937
+01/06/2025;01/05/2025;Spotify;Italy;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;4;RUB;0.163297146127
+01/05/2025;01/05/2025;"Apple Music";"Russian Federation";thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;4;RUB;0.406848959972
+01/04/2025;01/04/2025;"YouTube Official Content";Denmark;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.065600334123
+01/05/2025;01/05/2025;"YouTube Official Content";"Czech Republic";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;7;RUB;0.372349713462
+01/05/2025;01/04/2025;Yandex;"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;18333;RUB;373.499095759300
+01/05/2025;01/05/2025;"YouTube Official Content";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;2;RUB;0.969260121100
+01/05/2025;01/04/2025;Yandex;Belarus;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;60;RUB;1.204218358514
+01/06/2025;01/05/2025;Spotify;Nigeria;thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;1;RUB;0.014461381723
+01/04/2025;01/03/2025;Yandex;Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;6;RUB;0.127742104899
+01/04/2025;01/03/2025;Yandex;"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;1527;RUB;31.890567127718
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;5;RUB;0.021000000000
+01/06/2025;01/05/2025;Spotify;India;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;34;RUB;1.014092301006
+01/05/2025;01/04/2025;Yandex;Turkmenistan;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;5;RUB;0.020253672614
+01/06/2025;01/05/2025;Spotify;"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;22;RUB;1.012199670142
+01/06/2025;01/05/2025;Spotify;"Czech Republic";thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;2;RUB;0.188192075005
+01/06/2025;01/05/2025;Spotify;"Czech Republic";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.010336490925
+01/06/2025;01/05/2025;Spotify;Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;2;RUB;0.002960215756
+01/06/2025;01/05/2025;Spotify;France;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;29;RUB;0.968233182502
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Armenia;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.004200000000
+01/06/2025;01/05/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;200;RUB;21.475581420158
+01/06/2025;01/05/2025;Spotify;Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";258;RUB;-3.634759790322
+01/04/2025;01/03/2025;Yandex;"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;18214;RUB;367.933160314366
+01/05/2025;01/05/2025;"YouTube Official Content";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;4;RUB;0.097719685955
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;1744;RUB;38.929801665677
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;2018;RUB;44.001716770602
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Armenia;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;1;RUB;0.004200000038
+01/05/2025;01/04/2025;Spotify;Poland;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;11;RUB;1.004360918454
+01/04/2025;01/03/2025;Spotify;Pakistan;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.047339156274
+01/04/2025;01/04/2025;"YouTube Official Content";Belarus;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.009395567503
+01/05/2025;01/04/2025;Yandex;Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;3;RUB;0.065550775094
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;65;RUB;1.526811977664
+01/06/2025;01/06/2025;"YouTube Official Content";Belarus;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;3;RUB;0.028695305104
+01/06/2025;01/05/2025;Spotify;Belarus;thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;4;RUB;0.001261731344
+01/05/2025;01/05/2025;"YouTube Official Content";Netherlands;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;4;RUB;0.158125256574
+01/05/2025;01/04/2025;Yandex;"Russian Federation";thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;5660;RUB;117.965941575252
+01/06/2025;01/05/2025;Spotify;Denmark;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.008783590894
+01/05/2025;01/04/2025;Yandex;Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;28;RUB;0.576208186372
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Belarus;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;28;RUB;0.241002845861
+01/05/2025;01/04/2025;Spotify;Ukraine;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;118;RUB;4.580684538496
+01/04/2025;01/03/2025;Spotify;Georgia;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;4;RUB;0.455645627574
+01/05/2025;01/04/2025;Spotify;Israel;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.203242701879
+01/05/2025;01/05/2025;"YouTube Official Content";Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;33;RUB;1.083903019495
+01/05/2025;01/05/2025;"YouTube Official Content";Belarus;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.032332692662
+01/06/2025;01/06/2025;"YouTube Official Content";Germany;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;5;RUB;0.567825430934
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;39;RUB;0.163800000038
+01/05/2025;01/04/2025;Spotify;Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;98;RUB;2.551949265565
+01/06/2025;01/05/2025;Yandex;Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;44;RUB;0.864680595914
+01/06/2025;01/05/2025;Spotify;"United Kingdom";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;8;RUB;0.552832418511
+01/06/2025;01/05/2025;Spotify;Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";2;RUB;-0.001271367574
+01/06/2025;01/05/2025;Spotify;"United States";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;218;RUB;32.257373769953
+01/06/2025;01/05/2025;Spotify;Israel;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;6;RUB;0.761163666215
+01/04/2025;01/03/2025;Yandex;Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;4;RUB;0.085161403266
+01/04/2025;01/03/2025;Yandex;"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;1;RUB;0.005969924014
+01/05/2025;01/04/2025;Spotify;Mexico;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;2;RUB;0.043475673539
+01/06/2025;01/05/2025;Spotify;India;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;35;RUB;1.086835967713
+01/06/2025;01/05/2025;Spotify;Norway;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;14;RUB;1.577503817204
+01/04/2025;01/03/2025;Yandex;Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;1;RUB;0.021290350854
+01/05/2025;01/04/2025;Yandex;Ukraine;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;2;RUB;0.008101469016
+01/06/2025;01/05/2025;Spotify;Kyrgyzstan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;24;RUB;0.402249641617
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1479;RUB;41.895377995503
+01/04/2025;01/03/2025;Spotify;Cyprus;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;2;RUB;0.213351128707
+01/04/2025;01/04/2025;"YouTube UGC";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.005868671033
+01/05/2025;01/04/2025;Yandex;Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;4;RUB;0.016202938106
+01/06/2025;01/05/2025;Yandex;Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;67;RUB;1.379806100750
+01/04/2025;01/04/2025;"YouTube Official Content";Ukraine;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;17;RUB;0.734380229054
+01/05/2025;01/04/2025;Yandex;"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;4565;RUB;94.925051834977
+01/06/2025;01/05/2025;Spotify;"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;4;RUB;0.032756485484
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Belarus;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;6;RUB;0.025200000000
+01/05/2025;01/04/2025;Spotify;Japan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;6;RUB;1.106565197990
+01/05/2025;01/04/2025;Spotify;Brazil;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.049159085626
+01/06/2025;01/05/2025;Spotify;Estonia;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";22;RUB;-0.471864057310
+01/06/2025;01/05/2025;Yandex;Kyrgyzstan;thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;1;RUB;0.020858201942
+01/06/2025;01/05/2025;Spotify;Germany;thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;1;RUB;0.064299767774
+01/04/2025;01/04/2025;"Apple Music";"Russian Federation";thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;8;RUB;0.728507359958
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;3;RUB;0.012600000000
+01/05/2025;01/04/2025;Spotify;"United States";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;31;RUB;4.973422783634
+01/05/2025;01/04/2025;Spotify;Netherlands;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;5;RUB;0.194207533946
+01/05/2025;01/05/2025;"YouTube Official Content";Germany;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;41;RUB;3.688138344087
+01/06/2025;01/05/2025;"UMA VK MUSIC";Belarus;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;1;RUB;0.074437624754
+01/06/2025;01/06/2025;"Apple Music";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;8;RUB;0.766788960046
+01/04/2025;01/03/2025;Spotify;Hungary;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;2;RUB;0.111174533808
+01/05/2025;01/04/2025;Spotify;"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;2;RUB;0.006897816404
+01/06/2025;01/05/2025;Spotify;Cyprus;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;2;RUB;0.091184349970
+01/06/2025;01/05/2025;Spotify;Slovakia;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;28;RUB;4.485017991209
+01/06/2025;01/05/2025;Spotify;Estonia;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.002960215756
+01/04/2025;01/03/2025;Spotify;Norway;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;2;RUB;0.020845225066
+01/06/2025;01/05/2025;Spotify;Germany;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";61;RUB;-2.798252595670
+01/06/2025;01/05/2025;Spotify;Lithuania;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.080216993300
+01/04/2025;01/03/2025;Yandex;Uzbekistan;thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;3;RUB;0.063871052487
+01/04/2025;01/03/2025;Spotify;Sweden;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.032292602926
+01/06/2025;01/06/2025;"Apple Music";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.047663647089
+01/06/2025;01/05/2025;Spotify;Italy;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;5;RUB;0.204109300603
+01/06/2025;01/06/2025;"YouTube Official Content";Netherlands;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.155364580667
+01/06/2025;01/05/2025;Yandex;Belarus;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;118;RUB;2.248946670440
+01/04/2025;01/04/2025;"YouTube Official Content";"United States";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;4;RUB;0.269460057681
+01/05/2025;01/04/2025;Spotify;Philippines;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;4;RUB;0.101135589235
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Belarus;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;26;RUB;0.228885020129
+01/05/2025;01/04/2025;Spotify;Ireland;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;4;RUB;0.111773770762
+01/05/2025;01/05/2025;"YouTube Official Content";Netherlands;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;2;RUB;0.074162677324
+01/06/2025;01/05/2025;Spotify;Poland;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;43;RUB;2.410683179599
+01/06/2025;01/05/2025;Yandex;Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;32;RUB;0.667462462433
+01/05/2025;01/04/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;435;RUB;50.414870653410
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;4;RUB;0.016800000000
+01/05/2025;01/05/2025;"YouTube Official Content";Denmark;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;8;RUB;0.337223699682
+01/05/2025;01/04/2025;Spotify;Turkey;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.001165828121
+01/05/2025;01/04/2025;Spotify;Armenia;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.053870974305
+01/06/2025;01/05/2025;Spotify;"New Zealand";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.238903967411
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Kyrgyzstan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;8;RUB;0.037613726933
+01/04/2025;01/03/2025;Yandex;Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;12;RUB;0.240163782958
+01/04/2025;01/04/2025;"YouTube UGC";Estonia;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.027033986827
+01/04/2025;01/03/2025;Yandex;Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;398;RUB;8.289714502522
+01/05/2025;01/04/2025;Spotify;Japan;thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;2;RUB;0.368838870677
+01/04/2025;01/03/2025;Spotify;Belarus;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;16;RUB;1.221270259731
+01/05/2025;01/05/2025;"YouTube Official Content";Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;8;RUB;0.322660839396
+01/05/2025;01/04/2025;Spotify;Nigeria;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;21;RUB;0.324634549754
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;33;RUB;4.005518007106
+01/05/2025;01/04/2025;Spotify;Lithuania;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.005149074223
+01/05/2025;01/04/2025;Yandex;"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;5;RUB;0.073652244110
+01/05/2025;01/04/2025;Spotify;Finland;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;3;RUB;0.037840842530
+01/05/2025;01/04/2025;Yandex;Belarus;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;74;RUB;1.527921499401
+01/06/2025;01/05/2025;Spotify;Ukraine;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;85;RUB;2.243212750498
+01/04/2025;01/04/2025;"YouTube UGC";Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;7;RUB;0.068154684993
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Belarus;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;232;RUB;1.632667610672
+01/05/2025;01/04/2025;Spotify;Poland;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;3;RUB;0.375348077658
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;911;RUB;17.456916575347
+01/05/2025;01/04/2025;Yandex;Kyrgyzstan;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.021850258413
+01/06/2025;01/05/2025;Yandex;Belarus;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;21;RUB;0.296474801109
+01/04/2025;01/03/2025;Spotify;Switzerland;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.397958841553
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;14;RUB;0.058800000000
+01/05/2025;01/04/2025;Spotify;Nigeria;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;10;RUB;0.151120460065
+01/06/2025;01/06/2025;"Apple Music";Ukraine;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;1;RUB;0.168011150526
+01/04/2025;01/04/2025;"YouTube Official Content";Denmark;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;2;RUB;0.258667200619
+01/05/2025;01/04/2025;Spotify;Canada;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;10;RUB;0.557460144854
+01/05/2025;01/05/2025;"YouTube Official Content";Denmark;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;6;RUB;0.642277650274
+01/04/2025;01/03/2025;Yandex;"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;1847;RUB;37.775914844706
+01/05/2025;01/04/2025;Spotify;Italy;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;10;RUB;1.243744296733
+01/06/2025;01/05/2025;Yandex;Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;1;RUB;0.003164771929
+01/06/2025;01/05/2025;Spotify;"United Arab Emirates";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;15;RUB;1.102413476892
+01/06/2025;01/05/2025;Spotify;Slovakia;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;22;RUB;3.168741065114
+01/06/2025;01/05/2025;Spotify;Turkey;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";26;RUB;-0.115195027129
+01/05/2025;01/04/2025;Spotify;Egypt;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;6;RUB;0.168705043882
+01/05/2025;01/05/2025;"YouTube UGC";Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.000313911682
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1521;RUB;38.111638285926
+01/06/2025;01/05/2025;Spotify;Belarus;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;31;RUB;1.646025570878
+01/04/2025;01/04/2025;"YouTube Official Content";Austria;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.075549999203
+01/06/2025;01/05/2025;Spotify;Germany;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;8;RUB;0.514252557890
+01/06/2025;01/05/2025;Yandex;"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;18591;RUB;363.973764181329
+01/06/2025;01/05/2025;Yandex;Belarus;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;59;RUB;1.159860195247
+01/05/2025;01/04/2025;Spotify;"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.003448908166
+01/04/2025;01/03/2025;Yandex;Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;15;RUB;0.304034835446
+01/05/2025;01/05/2025;"YouTube Official Content";Denmark;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;11;RUB;0.610201012085
+01/06/2025;01/05/2025;Spotify;Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;46;RUB;4.688787648330
+01/04/2025;01/04/2025;"YouTube Official Content";Belarus;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.007347815591
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Belarus;thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;3;RUB;0.012600000038
+01/06/2025;01/05/2025;Spotify;Nigeria;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;64;RUB;0.912280228240
+01/06/2025;01/05/2025;Spotify;France;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;39;RUB;1.302106693697
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Belarus;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;218;RUB;1.573867610672
+01/06/2025;01/05/2025;Spotify;Egypt;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;29;RUB;0.008686515229
+01/06/2025;01/05/2025;Spotify;Slovakia;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;267;RUB;42.767838469107
+01/04/2025;01/04/2025;"Apple Music";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;2;RUB;0.165806480053
+01/04/2025;01/03/2025;Spotify;"United States";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;37;RUB;6.240570493771
+01/06/2025;01/05/2025;Spotify;Egypt;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";8;RUB;-0.138997879090
+01/06/2025;01/05/2025;Spotify;Finland;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;2;RUB;0.024361119580
+01/06/2025;01/05/2025;Spotify;Nigeria;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;48;RUB;0.731755597237
+01/06/2025;01/06/2025;"Apple Music";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;7;RUB;0.699429920029
+01/06/2025;01/05/2025;Spotify;Panama;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.136509620162
+01/06/2025;01/05/2025;Spotify;Finland;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;14;RUB;0.170382242927
+01/06/2025;01/05/2025;"UMA VK MUSIC";Belarus;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;5;RUB;0.372188123699
+01/06/2025;01/05/2025;Spotify;"Czech Republic";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;10;RUB;1.007443908795
+01/05/2025;01/04/2025;Yandex;Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;11;RUB;0.044558079735
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;15;RUB;0.063000000036
+01/05/2025;01/04/2025;Spotify;Nigeria;thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;1;RUB;0.015932984265
+01/05/2025;01/04/2025;Spotify;"United Kingdom";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;11;RUB;0.916243738446
+01/05/2025;01/04/2025;"UMA VK MUSIC";Belarus;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;7;RUB;0.448297570414
+01/04/2025;01/03/2025;Spotify;Japan;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.023044721294
+01/05/2025;01/04/2025;Yandex;Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;206;RUB;4.501153222166
+01/06/2025;01/05/2025;Spotify;Belarus;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;33;RUB;1.601088462493
+01/04/2025;01/03/2025;Yandex;Ukraine;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;9;RUB;0.053729315604
+01/04/2025;01/03/2025;Yandex;"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;4;RUB;0.054520549512
+01/05/2025;01/04/2025;Spotify;Germany;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;21;RUB;1.178166465173
+01/05/2025;01/04/2025;Spotify;Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.099095390024
+01/06/2025;01/05/2025;Spotify;Denmark;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.008783590894
+01/06/2025;01/05/2025;Spotify;Netherlands;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;19;RUB;0.733308531190
+01/06/2025;01/05/2025;Spotify;Belarus;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;100;RUB;3.328156038794
+01/05/2025;01/04/2025;"UMA VK MUSIC";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.063676217543
+01/05/2025;01/04/2025;Spotify;Canada;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;20;RUB;1.379951915930
+01/06/2025;01/05/2025;Spotify;Switzerland;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";7;RUB;-0.204223771563
+01/06/2025;01/05/2025;Spotify;Denmark;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;1;RUB;0.008783590894
+01/04/2025;01/03/2025;Yandex;Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;17;RUB;0.101488707343
+01/05/2025;01/04/2025;Spotify;Austria;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;60;RUB;1.580231340083
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;1633;RUB;43.995923864101
+01/04/2025;01/03/2025;Yandex;"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;11704;RUB;240.494932770587
+01/04/2025;01/03/2025;Spotify;Kyrgyzstan;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.042690221171
+01/06/2025;01/05/2025;Spotify;Kyrgyzstan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";2;RUB;-0.000007071252
+01/06/2025;01/06/2025;"YouTube Official Content";"Czech Republic";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;3;RUB;0.248054971061
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;9;RUB;1.047092860642
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;478;RUB;9.874449329010
+01/05/2025;01/04/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;458;RUB;53.560006339554
+01/04/2025;01/03/2025;Spotify;Turkey;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;9;RUB;0.222249090618
+01/05/2025;01/04/2025;"UMA VK MUSIC";"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.158060314118
+01/06/2025;01/06/2025;"YouTube Official Content";Ukraine;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;1;RUB;0.130700282706
+01/06/2025;01/05/2025;Spotify;Slovakia;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";5;RUB;-0.143091413779
+01/06/2025;01/05/2025;Spotify;Japan;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;5;RUB;0.050614836104
+01/05/2025;01/04/2025;Spotify;Finland;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;3;RUB;0.331192337741
+01/04/2025;01/04/2025;"YouTube Official Content";Poland;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;1;RUB;0.011009677846
+01/05/2025;01/04/2025;Spotify;Sweden;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;7;RUB;0.215046721218
+01/06/2025;01/05/2025;Spotify;Egypt;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.056438211314
+01/04/2025;01/03/2025;Spotify;"Serbia And Montenegro";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;3;RUB;0.370915036325
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Georgia;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;1;RUB;0.360214536128
+01/05/2025;01/04/2025;Spotify;France;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;53;RUB;1.470837932841
+01/06/2025;01/05/2025;Yandex;Turkmenistan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;7;RUB;0.022153403718
+01/05/2025;01/04/2025;Spotify;"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;1;RUB;0.003448908166
+01/05/2025;01/04/2025;Yandex;Turkmenistan;thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;2;RUB;0.008101469016
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;6;RUB;0.093097276607
+01/06/2025;01/05/2025;Spotify;Finland;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";11;RUB;-0.057326324513
+01/04/2025;01/03/2025;Yandex;Belarus;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;72;RUB;1.502264404960
+01/05/2025;01/04/2025;Spotify;France;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;73;RUB;2.408989641253
+01/05/2025;01/05/2025;"YouTube Official Content";Netherlands;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;3;RUB;0.218740326214
+01/06/2025;01/05/2025;Spotify;Switzerland;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;7;RUB;0.580105225697
+01/04/2025;01/03/2025;Yandex;Ukraine;thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;9;RUB;0.053729315604
+01/05/2025;01/04/2025;Yandex;Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;2;RUB;0.043700516681
+01/05/2025;01/04/2025;Yandex;Belarus;thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;95;RUB;1.862180258158
+01/06/2025;01/05/2025;Spotify;Austria;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;34;RUB;1.699309337363
+01/04/2025;01/03/2025;Spotify;Canada;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.196554976150
+01/04/2025;01/04/2025;"YouTube UGC";Canada;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;2;RUB;0.092213238855
+01/04/2025;01/03/2025;Yandex;Belarus;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;250;RUB;4.924256605771
+01/04/2025;01/04/2025;"YouTube Official Content";Denmark;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;4;RUB;0.448529937736
+01/05/2025;01/04/2025;Spotify;Georgia;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.101427046265
+01/05/2025;01/04/2025;Spotify;"United Kingdom";thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;17;RUB;1.129881755446
+01/05/2025;01/04/2025;Yandex;Kyrgyzstan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;14;RUB;0.305903617054
+01/06/2025;01/06/2025;"Apple Music";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;7;RUB;0.666870400020
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;15;RUB;1.862575356632
+01/04/2025;01/03/2025;Spotify;Spain;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;3;RUB;0.413255337699
+01/06/2025;01/06/2025;"YouTube UGC";Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;80;RUB;0.045502160599
+01/06/2025;01/05/2025;Yandex;Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;3;RUB;0.062574605898
+01/04/2025;01/04/2025;"YouTube Official Content";Belarus;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;1;RUB;0.019802965308
+01/04/2025;01/03/2025;Yandex;Belarus;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;21;RUB;0.447097367184
+01/06/2025;01/05/2025;Spotify;Japan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.181446665435
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;132;RUB;2.100781655694
+01/05/2025;01/04/2025;Spotify;Egypt;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;2;RUB;0.092683335362
+01/04/2025;01/04/2025;"YouTube Official Content";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.027632604931
+01/05/2025;01/04/2025;Spotify;Italy;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;5;RUB;0.387686425243
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;10430;RUB;301.014888079189
+01/06/2025;01/05/2025;Spotify;Italy;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";6;RUB;-0.217988566676
+01/05/2025;01/05/2025;"YouTube Official Content";"Czech Republic";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;8;RUB;0.220183550966
+01/05/2025;01/04/2025;Spotify;Japan;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;4;RUB;0.737677741426
+01/04/2025;01/03/2025;Spotify;Latvia;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;9;RUB;0.670496417714
+01/04/2025;01/03/2025;Spotify;Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;789;RUB;10.843566443462
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Azerbaijan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.004200000036
+01/05/2025;01/04/2025;Yandex;Turkmenistan;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;60;RUB;0.243044071218
+01/05/2025;01/05/2025;"Apple Music";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;5;RUB;0.428752799991
+01/06/2025;01/05/2025;Spotify;Germany;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;31;RUB;3.214309039098
+01/06/2025;01/05/2025;Spotify;Latvia;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;22;RUB;1.741043579702
+01/06/2025;01/05/2025;Yandex;Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;15;RUB;0.047471579363
+01/06/2025;01/06/2025;"YouTube Official Content";Belarus;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;1;RUB;0.013163401906
+01/04/2025;01/03/2025;Yandex;Kyrgyzstan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;6;RUB;0.097101251145
+01/06/2025;01/05/2025;Yandex;"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;1;RUB;0.003164771929
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;8;RUB;0.993373523527
+01/05/2025;01/04/2025;Spotify;Latvia;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;5;RUB;0.089234427196
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;3;RUB;0.012600000000
+01/04/2025;01/03/2025;Yandex;Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;11;RUB;0.065669163558
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;858;RUB;11.117257392978
+01/04/2025;01/04/2025;"YouTube Official Content";"Korea, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.393634080369
+01/05/2025;01/04/2025;Spotify;Thailand;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;2;RUB;0.002720265590
+01/05/2025;01/04/2025;Yandex;"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;1274;RUB;26.574481016602
+01/06/2025;01/05/2025;Yandex;Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;17;RUB;0.354589433158
+01/04/2025;01/04/2025;"Apple Music";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;2;RUB;0.165806480053
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Azerbaijan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;2;RUB;0.008400000000
+01/05/2025;01/04/2025;Spotify;France;thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;2;RUB;0.055522564094
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Belarus;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;277;RUB;1.374112874263
+01/06/2025;01/05/2025;Yandex;"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;22;RUB;0.105011843107
+01/04/2025;01/03/2025;Yandex;"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;5;RUB;0.091131327280
+01/04/2025;01/04/2025;"Apple Music";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;4;RUB;0.407986170768
+01/05/2025;01/04/2025;Spotify;Denmark;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;3;RUB;1.052499904475
+01/05/2025;01/04/2025;Yandex;Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;1;RUB;0.021850258413
+01/05/2025;01/04/2025;Spotify;Norway;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.018167488187
+01/06/2025;01/06/2025;"YouTube UGC";Latvia;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.011885886013
+01/06/2025;01/05/2025;Spotify;Sweden;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;2;RUB;0.046587001535
+01/04/2025;01/03/2025;Spotify;Algeria;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.000099977074
+01/04/2025;01/03/2025;Yandex;Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;26;RUB;0.538228694390
+01/05/2025;01/05/2025;"YouTube UGC";Brazil;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;4;RUB;0.001618938076
+01/05/2025;01/05/2025;"YouTube Official Content";Norway;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.236012362150
+01/06/2025;01/05/2025;Spotify;France;thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;2;RUB;0.066774702239
+01/06/2025;01/06/2025;"YouTube Official Content";Denmark;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;2;RUB;0.059690789477
+01/06/2025;01/05/2025;Yandex;Belarus;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;288;RUB;5.104797232586
+01/05/2025;01/05/2025;"YouTube Official Content";"Czech Republic";thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;3;RUB;0.173209190879
+01/06/2025;01/05/2025;Spotify;Nigeria;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;126;RUB;1.675579132008
+01/05/2025;01/05/2025;"YouTube Official Content";Poland;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.005097811158
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;13534;RUB;362.423077567281
+01/06/2025;01/05/2025;Spotify;Spain;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;6;RUB;0.618005692641
+01/05/2025;01/04/2025;Spotify;Georgia;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.101427046265
+01/04/2025;01/03/2025;Spotify;Italy;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.284734777240
+01/05/2025;01/04/2025;Spotify;"Czech Republic";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;7;RUB;0.215775363866
+01/05/2025;01/05/2025;"YouTube Official Content";Denmark;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;6;RUB;0.369626225377
+01/05/2025;01/04/2025;Spotify;Sweden;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;6;RUB;0.184346571118
+01/06/2025;01/05/2025;Spotify;Poland;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;20;RUB;1.690525819262
+01/06/2025;01/05/2025;Spotify;Belarus;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";61;RUB;-0.672403129773
+01/06/2025;01/06/2025;"YouTube UGC";Germany;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.095822130464
+01/06/2025;01/05/2025;Spotify;Hungary;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";4;RUB;-0.083968702779
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Kyrgyzstan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;12;RUB;0.050400000000
+01/06/2025;01/05/2025;Yandex;"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;19239;RUB;363.203208965378
+01/04/2025;01/04/2025;"YouTube Official Content";Belarus;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;5;RUB;0.048929224650
+01/04/2025;01/04/2025;"YouTube Official Content";Poland;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.041870503388
+01/05/2025;01/04/2025;Spotify;"New Zealand";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.204505682319
+01/05/2025;01/04/2025;Spotify;India;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;7;RUB;0.200522436290
+01/06/2025;01/06/2025;"YouTube Official Content";Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;32;RUB;1.083962006990
+01/06/2025;01/05/2025;Spotify;Austria;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.044742932742
+01/06/2025;01/05/2025;Yandex;Belarus;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;329;RUB;5.252246312902
+01/05/2025;01/04/2025;Spotify;Thailand;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.001360132831
+01/04/2025;01/04/2025;"YouTube Official Content";Ukraine;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;4;RUB;0.172795348066
+01/05/2025;01/04/2025;Yandex;Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;303;RUB;6.157840663283
+01/05/2025;01/04/2025;Yandex;Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;54;RUB;1.108715856137
+01/04/2025;01/03/2025;Spotify;Slovakia;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.141367617655
+01/05/2025;01/03/2025;TikTok;"United States";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Creation;1;RUB;0.078127554129
+01/05/2025;01/04/2025;Spotify;Netherlands;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;13;RUB;0.504997874768
+01/05/2025;01/05/2025;"Apple Music";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;26;RUB;1.795233440031
+01/06/2025;01/05/2025;Yandex;Kyrgyzstan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;6;RUB;0.125149211724
+01/06/2025;01/05/2025;Spotify;Romania;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;2;RUB;0.023924366439
+01/04/2025;01/03/2025;Yandex;"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;4757;RUB;97.226222929410
+01/04/2025;01/03/2025;Yandex;"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1812;RUB;37.137192117655
+01/05/2025;01/04/2025;Yandex;Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;39;RUB;0.816561028334
+01/05/2025;01/05/2025;"YouTube UGC";Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;2;RUB;0.011029304547
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;11;RUB;0.046200000038
+01/06/2025;01/05/2025;Spotify;"Serbia And Montenegro";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;3;RUB;0.171789568261
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;44;RUB;0.184800000000
+01/05/2025;01/04/2025;Spotify;Germany;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;59;RUB;3.883033504151
+01/06/2025;01/05/2025;Spotify;Cyprus;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.004076362647
+01/06/2025;01/05/2025;Spotify;"United Kingdom";thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;8;RUB;0.552832418511
+01/05/2025;01/04/2025;Yandex;"Moldova, Republic Of";thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;4;RUB;0.087401033434
+01/06/2025;01/05/2025;Spotify;Canada;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;12;RUB;0.663233926110
+01/05/2025;01/04/2025;Yandex;Ukraine;thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;14;RUB;0.056710283260
+01/05/2025;01/04/2025;Spotify;Lithuania;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;12;RUB;1.132116235104
+01/06/2025;01/05/2025;Spotify;"United States";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;174;RUB;25.409229978954
+01/06/2025;01/05/2025;Spotify;Israel;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.012229087868
+01/06/2025;01/05/2025;Spotify;Norway;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;4;RUB;0.070074614834
+01/05/2025;01/04/2025;Spotify;India;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;12;RUB;0.293400076289
+01/05/2025;01/04/2025;Spotify;Lithuania;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.005149074223
+01/06/2025;01/05/2025;Yandex;Belarus;thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;103;RUB;1.882993351125
+01/06/2025;01/05/2025;Yandex;Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;3;RUB;0.062574605898
+01/04/2025;01/03/2025;Spotify;"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.038841102885
+01/06/2025;01/05/2025;Yandex;"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;2;RUB;0.006329543930
+01/06/2025;01/06/2025;"YouTube Official Content";"United States";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;1.867791076005
+01/04/2025;01/03/2025;Yandex;Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;124;RUB;2.517440086306
+01/04/2025;01/03/2025;Yandex;Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;16;RUB;0.340645613064
+01/05/2025;01/04/2025;Spotify;"Serbia And Montenegro";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.101718503222
+01/05/2025;01/04/2025;Spotify;Nigeria;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;85;RUB;1.322631921686
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Belarus;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;24;RUB;0.171037624791
+01/05/2025;01/04/2025;Yandex;"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;3496;RUB;73.335633123727
+01/06/2025;01/05/2025;Spotify;Panama;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";1;RUB;-0.048133315621
+01/05/2025;01/04/2025;Spotify;Latvia;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;5;RUB;0.515150299436
+01/05/2025;01/04/2025;Spotify;"United Kingdom";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;14;RUB;0.930525132850
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;2;RUB;0.008400000000
+01/04/2025;01/03/2025;Spotify;Australia;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.097127751425
+01/06/2025;01/05/2025;Spotify;Bulgaria;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";3;RUB;-0.078092015953
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.004200000000
+01/05/2025;01/03/2025;"Facebook / Instagram";Worldwide;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Creation;6;RUB;0.143382672442
+01/05/2025;01/04/2025;Yandex;Belarus;thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;92;RUB;1.921226149962
+01/06/2025;01/06/2025;"YouTube Official Content";Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;2;RUB;0.145063091939
+01/04/2025;01/04/2025;"Apple Music";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;1;RUB;0.099223600019
+01/05/2025;01/04/2025;Spotify;Latvia;thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;1;RUB;0.002623113271
+01/06/2025;01/05/2025;Spotify;Poland;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";38;RUB;-0.873522709617
+01/05/2025;01/04/2025;Spotify;India;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;12;RUB;0.267557553000
+01/05/2025;01/04/2025;Spotify;Georgia;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;1;RUB;0.101427046265
+01/05/2025;01/04/2025;Yandex;Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;1;RUB;0.021850258413
+01/05/2025;01/04/2025;Yandex;Turkmenistan;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;34;RUB;0.137724973642
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Belarus;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;44;RUB;0.304485020129
+01/05/2025;01/05/2025;"YouTube UGC";Latvia;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.008895761341
+01/06/2025;01/05/2025;Yandex;"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;7307;RUB;142.331345808653
+01/06/2025;01/06/2025;"Apple Music";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;6;RUB;0.566951840068
+01/04/2025;01/04/2025;"Apple Music";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;1;RUB;0.101996542692
+01/05/2025;01/04/2025;Spotify;Finland;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;45;RUB;1.574062214855
+01/05/2025;01/04/2025;Spotify;Sweden;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;4;RUB;0.122897714102
+01/05/2025;01/04/2025;"UMA VK MUSIC";Belarus;thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;1;RUB;0.064042510101
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Georgia;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.004200000036
+01/05/2025;01/05/2025;"YouTube Official Content";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.009799901852
+01/06/2025;01/05/2025;Yandex;Ukraine;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;4;RUB;0.012659087859
+01/06/2025;01/05/2025;Spotify;"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";9;RUB;-0.082305484437
+01/06/2025;01/05/2025;Yandex;"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;2;RUB;0.006329543930
+01/04/2025;01/04/2025;"YouTube Official Content";Denmark;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;2;RUB;0.152810473451
+01/05/2025;01/04/2025;"UMA VK MUSIC";Belarus;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;2;RUB;0.128085020129
+01/06/2025;01/05/2025;Spotify;Egypt;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;8;RUB;0.267778202779
+01/06/2025;01/05/2025;Spotify;Australia;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;3;RUB;0.496442735422
+01/05/2025;01/04/2025;Spotify;"United Arab Emirates";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;4;RUB;0.293934414153
+01/05/2025;01/04/2025;Spotify;Bolivia;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;2;RUB;0.000242880907
+01/06/2025;01/06/2025;"YouTube Official Content";Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;6;RUB;0.353713166961
+01/06/2025;01/05/2025;Spotify;"Czech Republic";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";6;RUB;-0.302726578886
+01/06/2025;01/05/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;501;RUB;54.930251341606
+01/06/2025;01/05/2025;Spotify;Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;2;RUB;0.188628828218
+01/06/2025;01/05/2025;Spotify;"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;5;RUB;0.040909210778
+01/04/2025;01/04/2025;"YouTube Official Content";Finland;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;2;RUB;0.701824800982
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Georgia;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;2;RUB;0.720429072183
+01/06/2025;01/05/2025;Spotify;Bulgaria;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;4;RUB;0.042267998278
+01/06/2025;01/05/2025;Spotify;India;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;18;RUB;0.567973203812
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Belarus;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;10;RUB;0.042000000000
+01/05/2025;01/04/2025;"UMA VK MUSIC";Belarus;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;10;RUB;0.640425100571
+01/06/2025;01/05/2025;Spotify;Hungary;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;4;RUB;0.257053486718
+01/05/2025;01/04/2025;Spotify;Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;2;RUB;0.002234503922
+01/06/2025;01/05/2025;Spotify;Georgia;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;3;RUB;0.369104926266
+01/05/2025;01/04/2025;Yandex;Belarus;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;293;RUB;5.547748555211
+01/04/2025;01/03/2025;Spotify;Estonia;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;3;RUB;0.346470635695
+01/06/2025;01/05/2025;Spotify;Pakistan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;2;RUB;0.075897990044
+01/06/2025;01/05/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;42;RUB;4.090875442626
+01/06/2025;01/05/2025;Spotify;"United States";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;288;RUB;42.942296196298
+01/06/2025;01/06/2025;"YouTube UGC";"Czech Republic";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;32;RUB;0.007634747061
+01/06/2025;01/05/2025;Spotify;Israel;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";5;RUB;-0.255046086155
+01/06/2025;01/05/2025;Yandex;"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;15;RUB;0.082858439390
+01/06/2025;01/05/2025;Spotify;France;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;91;RUB;3.773158877362
+01/04/2025;01/03/2025;Yandex;Kyrgyzstan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;3;RUB;0.063871052487
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;2145;RUB;41.767502896868
+01/05/2025;01/04/2025;Spotify;Belgium;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.269792056849
+01/04/2025;01/03/2025;Spotify;Indonesia;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;2;RUB;0.002549416024
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Belarus;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;13;RUB;0.054600000038
+01/05/2025;01/04/2025;Yandex;Kyrgyzstan;thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;3;RUB;0.029951727430
+01/05/2025;01/05/2025;"YouTube Official Content";Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;11;RUB;0.480316849058
+01/06/2025;01/05/2025;Yandex;Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;18;RUB;0.056965895294
+01/06/2025;01/05/2025;Spotify;Finland;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.012180559790
+01/06/2025;01/05/2025;Spotify;Greece;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;15;RUB;0.932759102509
+01/06/2025;01/05/2025;Yandex;"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;3217;RUB;63.725158736073
+01/04/2025;01/04/2025;"YouTube Official Content";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;3;RUB;0.031776291143
+01/06/2025;01/05/2025;Spotify;"United Kingdom";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;51;RUB;3.764666479542
+01/04/2025;01/03/2025;Spotify;France;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;32;RUB;1.347641237554
+01/06/2025;01/05/2025;Spotify;Japan;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;13;RUB;0.200663822991
+01/05/2025;01/05/2025;"YouTube Official Content";"United States";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.138734951964
+01/05/2025;01/05/2025;"YouTube Official Content";"United Kingdom";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;3;RUB;0.449422100385
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;7;RUB;0.029400000036
+01/06/2025;01/06/2025;"YouTube Official Content";Belarus;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.554631377401
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Belarus;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;14;RUB;0.120501422968
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;2;RUB;0.008400000000
+01/05/2025;01/04/2025;Spotify;Italy;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;15;RUB;2.503373006489
+01/06/2025;01/05/2025;Spotify;"New Zealand";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";1;RUB;-0.071043097599
+01/06/2025;01/04/2025;TikTok;Germany;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Creation;1;RUB;0.071995677163
+01/05/2025;01/04/2025;Spotify;Ukraine;thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;1;RUB;0.000048576196
+01/05/2025;01/04/2025;Yandex;Kyrgyzstan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;6;RUB;0.131101550187
+01/06/2025;01/05/2025;Spotify;Turkey;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;26;RUB;0.275591192290
+01/05/2025;01/05/2025;"YouTube UGC";Poland;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;2;RUB;0.010528639442
+01/04/2025;01/04/2025;"YouTube Official Content";Germany;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;2;RUB;0.140668509370
+01/06/2025;01/05/2025;Spotify;Greece;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";1;RUB;-0.052073730190
+01/06/2025;01/05/2025;Spotify;Netherlands;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;7;RUB;0.270156076064
+01/05/2025;01/05/2025;"YouTube Official Content";Estonia;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.003864094315
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;15863;RUB;358.786008247210
+01/06/2025;01/05/2025;Spotify;Romania;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;2;RUB;0.023924366439
+01/06/2025;01/05/2025;Spotify;Azerbaijan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";1;RUB;-0.000625735497
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Georgia;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;1;RUB;0.361142162019
+01/05/2025;01/05/2025;"YouTube Official Content";Ukraine;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;15;RUB;0.858265854498
+01/06/2025;01/05/2025;Spotify;Italy;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;6;RUB;0.524637577039
+01/06/2025;01/05/2025;Spotify;Azerbaijan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.001455843802
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;2;RUB;0.008400000000
+01/06/2025;01/05/2025;Spotify;Brazil;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";17;RUB;-0.366326799882
+01/06/2025;01/05/2025;Spotify;Canada;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.055273536199
+01/06/2025;01/05/2025;Yandex;Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.020858201942
+01/05/2025;01/04/2025;Spotify;"Moldova, Republic Of";thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.003448908166
+01/05/2025;01/05/2025;"Apple Music";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;1;RUB;0.096635839961
+01/05/2025;01/05/2025;"YouTube Official Content";Belarus;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.028328932284
+01/06/2025;01/05/2025;Spotify;Denmark;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";1;RUB;-0.003763494898
+01/06/2025;01/05/2025;Spotify;Turkey;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.002814631376
+01/06/2025;01/05/2025;Spotify;"United Kingdom";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;116;RUB;8.016070069180
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;6363;RUB;144.840115370642
+01/06/2025;01/06/2025;"YouTube Official Content";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;2;RUB;0.073355220538
+01/05/2025;01/04/2025;Spotify;Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;17;RUB;0.018896169599
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Kyrgyzstan;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;2;RUB;0.008400000000
+01/05/2025;01/04/2025;Spotify;"Czech Republic";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;6;RUB;0.312053326144
+01/06/2025;01/05/2025;Yandex;Ukraine;thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;1;RUB;0.003164771929
+01/05/2025;01/04/2025;Spotify;Canada;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;1;RUB;0.177011569168
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";"как ты?";3617391060093;FR-2X4-25-98067;;"Music Release";Stream;1;RUB;0.004200000036
+01/06/2025;01/05/2025;Spotify;Finland;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;18;RUB;0.219055982981
+01/04/2025;01/03/2025;Spotify;Lithuania;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;5;RUB;0.502484898253
+01/04/2025;01/04/2025;"YouTube Official Content";France;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;4;RUB;0.422463260684
+01/06/2025;01/05/2025;Spotify;"United States";thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;84;RUB;12.131449358601
+01/05/2025;01/04/2025;Spotify;Sweden;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;6;RUB;0.184346571118
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Belarus;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;91;RUB;0.741255060314
+01/05/2025;01/04/2025;Spotify;Belarus;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;22;RUB;1.046913664162
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;15;RUB;0.063000000000
+01/05/2025;01/04/2025;Spotify;Slovakia;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.003691789000
+01/06/2025;01/05/2025;Spotify;Latvia;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";22;RUB;-0.714384257524
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.004200000038
+01/05/2025;01/04/2025;Yandex;Armenia;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.021850258413
+01/06/2025;01/05/2025;Spotify;"United States";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";45;RUB;-2.996312470158
+01/04/2025;01/04/2025;"YouTube Official Content";Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;20;RUB;1.608267234662
+01/06/2025;01/05/2025;Spotify;Romania;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;4;RUB;0.047897261030
+01/04/2025;01/03/2025;Yandex;Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;19;RUB;0.113428555222
+01/05/2025;01/04/2025;Yandex;"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;29198;RUB;608.444296963455
+01/04/2025;01/04/2025;"YouTube UGC";"United States";thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.100222626405
+01/04/2025;01/04/2025;"Apple Music";Ukraine;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.100164321110
+01/05/2025;01/04/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;тенденция;"девчачий рок-альбом";порноснимки;3617391060093;FR-2X4-25-98065;;"Music Release";Stream;96;RUB;11.654498544026
+01/06/2025;01/05/2025;Yandex;Armenia;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.020858201942
+01/05/2025;01/04/2025;Spotify;Belarus;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;25;RUB;0.412751729761
+01/06/2025;01/05/2025;Spotify;Slovakia;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;33;RUB;5.285926231958
+01/06/2025;01/05/2025;Spotify;France;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";59;RUB;-1.105009014112
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;62;RUB;0.736209740202
+01/06/2025;01/05/2025;Spotify;Spain;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";"Platform Promotion";6;RUB;-0.325645913965
+01/06/2025;01/06/2025;"YouTube Official Content";Netherlands;thqlabel;тенденция;"девчачий рок-альбом";юля;3617391060093;FR-2X4-25-98066;;"Music Release";Stream;1;RUB;0.046595709810
+01/04/2025;01/03/2025;Spotify;Philippines;thqlabel;тенденция;"девчачий рок-альбом";"Алина Парадокси";3617391060093;FR-2X4-25-98064;;"Music Release";Stream;7;RUB;0.183258027033
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;тенденция;юля;юля;3617390806876;FR-2X4-25-73054;;"Music Release";Stream;53;RUB;0.819477272545
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Uzbekistan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;1;RUB;0.004200000038
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;тенденция;"девчачий рок-альбом";"мир для женщин";3617391060093;FR-2X4-25-98062;;"Music Release";Stream;113;RUB;1.436030278202
+01/06/2025;01/06/2025;"YouTube UGC";Romania;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;1;RUB;0.004055950188
+01/06/2025;01/05/2025;"UMA VK MUSIC";Belarus;thqlabel;тенденция;"девчачий рок-альбом";"where is my mind?";3617391060093;FR-2X4-25-98063;;"Music Release";Stream;11;RUB;0.818813872154

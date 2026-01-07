@@ -1,12 +1,74 @@
 "use client";
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect, memo, useMemo } from 'react';
 import { Release } from './types';
 import { STATUS_COLORS, formatDate } from './constants';
 import { useTheme } from '@/contexts/ThemeContext';
+import { CoverImage } from '@/components/ui/CoverImage';
 
-// Компонент красивого бейджа статуса
-function StatusBadge({ status }: { status: string }) {
-  const config: Record<string, { text: string; className: string; icon?: React.ReactNode }> = {
+// Кэш для доминантных цветов - предотвращает повторные вычисления
+const colorCache = new Map<string, { r: number; g: number; b: number }>();
+
+// Функция для извлечения доминантного цвета из изображения - ОПТИМИЗИРОВАННАЯ
+function getDominantColor(imageUrl: string): Promise<{ r: number; g: number; b: number }> {
+  // Проверяем кэш
+  if (colorCache.has(imageUrl)) {
+    return Promise.resolve(colorCache.get(imageUrl)!);
+  }
+  
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      if (!ctx) {
+        resolve({ r: 139, g: 92, b: 246 }); // фиолетовый по умолчанию
+        return;
+      }
+      
+      // Уменьшаем для производительности
+      const size = 20; // Ещё меньше для скорости
+      canvas.width = size;
+      canvas.height = size;
+      ctx.drawImage(img, 0, 0, size, size);
+      
+      const imageData = ctx.getImageData(0, 0, size, size).data;
+      let r = 0, g = 0, b = 0, count = 0;
+      
+      // Выбираем пиксели из центральной части
+      for (let i = 0; i < imageData.length; i += 20) { // каждый 5-й пиксель
+        const red = imageData[i];
+        const green = imageData[i + 1];
+        const blue = imageData[i + 2];
+        const alpha = imageData[i + 3];
+        
+        // Пропускаем слишком тёмные или слишком светлые
+        if (alpha > 200 && (red + green + blue) > 60 && (red + green + blue) < 700) {
+          r += red;
+          g += green;
+          b += blue;
+          count++;
+        }
+      }
+      
+      const result = count > 0 
+        ? { r: Math.round(r / count), g: Math.round(g / count), b: Math.round(b / count) }
+        : { r: 139, g: 92, b: 246 };
+      
+      // Сохраняем в кэш
+      colorCache.set(imageUrl, result);
+      resolve(result);
+    };
+    img.onerror = () => {
+      resolve({ r: 139, g: 92, b: 246 });
+    };
+    img.src = imageUrl;
+  });
+}
+
+// Компонент красивого бейджа статуса - МЕМОИЗИРОВАННЫЙ
+const StatusBadge = memo(function StatusBadge({ status }: { status: string }) {
+  const config: Record<string, { text: string; className: string; icon?: React.ReactNode }> = useMemo(() => ({
     published: { 
       text: 'Выложен', 
       className: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
@@ -15,7 +77,7 @@ function StatusBadge({ status }: { status: string }) {
     approved: { 
       text: 'Одобрен', 
       className: 'bg-violet-500/20 text-violet-400 border-violet-500/30',
-      icon: <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 animate-pulse" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/></svg>
+      icon: <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/></svg>
     },
     pending: { 
       text: 'На модерации', 
@@ -31,8 +93,13 @@ function StatusBadge({ status }: { status: string }) {
       text: 'Черновик', 
       className: 'bg-zinc-500/20 text-zinc-400 border-zinc-500/30',
       icon: <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"/></svg>
+    },
+    awaiting_payment: { 
+      text: 'Ожидает оплаты', 
+      className: 'bg-orange-500/20 text-orange-400 border-orange-500/30',
+      icon: <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"/></svg>
     }
-  };
+  }), []);
   
   const cfg = config[status] || { text: status, className: 'bg-zinc-500/20 text-zinc-400 border-zinc-500/30' };
   
@@ -43,7 +110,7 @@ function StatusBadge({ status }: { status: string }) {
       <span className="inline sm:hidden">{cfg.text.length > 8 ? cfg.text.slice(0, 7) + '.' : cfg.text}</span>
     </div>
   );
-}
+});
 
 interface ReleaseCardProps {
   release: Release;
@@ -56,7 +123,8 @@ interface ReleaseCardProps {
   isDropTarget?: boolean;
 }
 
-export default function ReleaseCard({ release, onClick, onDelete, onDragStart, onDragEnd, isDragging, onDragEnter, isDropTarget }: ReleaseCardProps) {
+// Основной компонент - МЕМОИЗИРОВАННЫЙ для предотвращения лишних ререндеров
+const ReleaseCard = memo(function ReleaseCard({ release, onClick, onDelete, onDragStart, onDragEnd, isDragging, onDragEnter, isDropTarget }: ReleaseCardProps) {
   const { themeName } = useTheme();
   const isLight = themeName === 'light';
   const statusColor = STATUS_COLORS[release.status] || 'bg-zinc-500';
@@ -64,6 +132,16 @@ export default function ReleaseCard({ release, onClick, onDelete, onDragStart, o
   const canDrag = isDraft;
   const lastEnterTimeRef = useRef<number>(0);
   const [isDragStarting, setIsDragStarting] = useState(false);
+  const [dominantColor, setDominantColor] = useState<{ r: number; g: number; b: number } | null>(null);
+  
+  // Извлекаем доминантный цвет из обложки
+  useEffect(() => {
+    if (release.cover_url) {
+      getDominantColor(release.cover_url).then(setDominantColor);
+    } else {
+      setDominantColor(null);
+    }
+  }, [release.cover_url]);
   
   // Проверяем есть ли explicit контент в релизе
   const hasExplicitContent = release.tracks?.some(track => 
@@ -75,7 +153,8 @@ export default function ReleaseCard({ release, onClick, onDelete, onDragStart, o
     rejected: 'Отклонён',
     approved: 'Одобрен',
     published: 'Выложен',
-    draft: 'Черновик'
+    draft: 'Черновик',
+    awaiting_payment: 'Ожидает оплаты'
   }[release.status] || release.status;
 
   // Кружок для статуса
@@ -85,7 +164,8 @@ export default function ReleaseCard({ release, onClick, onDelete, onDragStart, o
       approved: 'bg-violet-400',
       published: 'bg-green-400',
       rejected: 'bg-red-400',
-      draft: 'bg-zinc-400'
+      draft: 'bg-zinc-400',
+      awaiting_payment: 'bg-orange-400'
     };
     return colors[release.status as keyof typeof colors] || 'bg-zinc-400';
   };
@@ -182,7 +262,7 @@ export default function ReleaseCard({ release, onClick, onDelete, onDragStart, o
           e.dataTransfer.dropEffect = 'move';
         }
       }}
-      className={`relative group p-3 sm:p-4 rounded-xl sm:rounded-2xl overflow-hidden w-full ${
+      className={`relative group p-2.5 sm:p-4 rounded-xl sm:rounded-2xl overflow-hidden w-full ${
         isDraft ? 'cursor-grab active:cursor-grabbing' : 'cursor-pointer'
       } ${
         isDragging ? 'opacity-0 scale-75 pointer-events-none' : 'opacity-100 scale-100'
@@ -198,30 +278,54 @@ export default function ReleaseCard({ release, onClick, onDelete, onDragStart, o
         transformStyle: 'preserve-3d',
         willChange: isDragging ? 'transform, opacity' : 'auto',
         background: isLight 
-          ? 'rgba(255, 255, 255, 0.65)' 
-          : 'linear-gradient(145deg, rgba(255, 255, 255, 0.015) 0%, rgba(255, 255, 255, 0.005) 100%)',
-        backdropFilter: 'blur(24px) saturate(180%)',
-        border: isLight 
-          ? '1px solid rgba(255, 255, 255, 0.8)' 
-          : '1px solid rgba(255, 255, 255, 0.03)',
-        boxShadow: isLight 
-          ? '0 8px 32px rgba(138, 99, 210, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9)' 
-          : '0 25px 50px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
+          ? 'rgba(255, 255, 255, 0.9)' 
+          : 'linear-gradient(145deg, rgba(30, 27, 50, 0.9) 0%, rgba(25, 22, 45, 0.85) 100%)',
+        backdropFilter: 'blur(20px) saturate(150%)',
+        border: dominantColor && release.cover_url
+          ? `1.5px solid rgba(${dominantColor.r}, ${dominantColor.g}, ${dominantColor.b}, ${isLight ? 0.35 : 0.25})`
+          : isLight 
+            ? '1.5px solid rgba(138, 99, 210, 0.2)' 
+            : '1px solid rgba(157, 141, 241, 0.15)',
+        boxShadow: dominantColor && release.cover_url
+          ? isLight
+            ? `0 4px 20px rgba(${dominantColor.r}, ${dominantColor.g}, ${dominantColor.b}, 0.15), 0 0 0 1px rgba(${dominantColor.r}, ${dominantColor.g}, ${dominantColor.b}, 0.08)`
+            : `0 15px 40px rgba(${dominantColor.r}, ${dominantColor.g}, ${dominantColor.b}, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.05)`
+          : isLight 
+            ? '0 4px 16px rgba(0, 0, 0, 0.06)' 
+            : '0 25px 50px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
       }}
       onMouseEnter={(e) => {
         if (isDragging) return;
         const target = e.currentTarget;
-        target.style.boxShadow = isLight 
-          ? '0 16px 48px rgba(138, 99, 210, 0.2), 0 0 30px rgba(138, 99, 210, 0.1)' 
-          : '0 30px 60px rgba(168, 85, 247, 0.3), 0 0 30px rgba(168, 85, 247, 0.2)';
-        target.style.borderColor = isLight ? 'rgba(138, 99, 210, 0.4)' : 'rgba(168, 85, 247, 0.3)';
+        const color = dominantColor && release.cover_url ? dominantColor : { r: 138, g: 99, b: 210 };
+        if (isLight) {
+          target.style.boxShadow = `0 8px 28px rgba(${color.r}, ${color.g}, ${color.b}, 0.25), 0 0 0 1px rgba(${color.r}, ${color.g}, ${color.b}, 0.15)`;
+          target.style.borderColor = `rgba(${color.r}, ${color.g}, ${color.b}, 0.5)`;
+        } else {
+          target.style.boxShadow = `0 30px 60px rgba(${color.r}, ${color.g}, ${color.b}, 0.4), 0 0 50px rgba(${color.r}, ${color.g}, ${color.b}, 0.25)`;
+          target.style.borderColor = `rgba(${color.r}, ${color.g}, ${color.b}, 0.4)`;
+        }
       }}
       onMouseLeave={(e) => {
         const target = e.currentTarget;
-        target.style.boxShadow = isLight 
-          ? '0 8px 32px rgba(138, 99, 210, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9)' 
-          : '0 25px 50px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05)';
-        target.style.borderColor = isLight ? 'rgba(255, 255, 255, 0.8)' : 'rgba(255, 255, 255, 0.03)';
+        const color = dominantColor && release.cover_url ? dominantColor : null;
+        if (isLight) {
+          if (color) {
+            target.style.boxShadow = `0 4px 20px rgba(${color.r}, ${color.g}, ${color.b}, 0.15), 0 0 0 1px rgba(${color.r}, ${color.g}, ${color.b}, 0.08)`;
+            target.style.borderColor = `rgba(${color.r}, ${color.g}, ${color.b}, 0.35)`;
+          } else {
+            target.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.06)';
+            target.style.borderColor = 'rgba(138, 99, 210, 0.2)';
+          }
+        } else {
+          if (color) {
+            target.style.boxShadow = `0 15px 40px rgba(${color.r}, ${color.g}, ${color.b}, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.05)`;
+            target.style.borderColor = `rgba(${color.r}, ${color.g}, ${color.b}, 0.15)`;
+          } else {
+            target.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05)';
+            target.style.borderColor = 'rgba(255, 255, 255, 0.03)';
+          }
+        }
       }}
       onClick={(e) => {
         // Предотвращаем клик при перетаскивании
@@ -254,11 +358,18 @@ export default function ReleaseCard({ release, onClick, onDelete, onDragStart, o
         }}
       >
         {release.cover_url ? (
-          <img 
+          <CoverImage 
             src={release.cover_url} 
-            className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-110" 
-            alt="" 
-            draggable="false" 
+            className="w-full h-full transition-all duration-500 group-hover:scale-110 group-hover:brightness-110" 
+            alt={release.title}
+            fallbackIcon={
+              <div 
+                className="text-2xl sm:text-3xl transition-all duration-300 group-hover:scale-125"
+                style={{ color: isLight ? '#8a63d2' : undefined }}
+              >
+                🎵
+              </div>
+            }
           />
         ) : (
           <div 
@@ -273,34 +384,54 @@ export default function ReleaseCard({ release, onClick, onDelete, onDragStart, o
       </div>
 
       {/* Информация с анимационными эффектами */}
-      <div className="mt-2 sm:mt-3 relative">
-        <div className={`font-bold truncate text-sm sm:text-base transition-all duration-300 ${isLight ? 'text-[#1a1535] group-hover:text-[#8a63d2]' : 'text-white group-hover:text-purple-300'}`}>
-          {release.title}
+      <div className="mt-2 sm:mt-3 relative min-w-0">
+        <div className={`font-bold truncate text-xs sm:text-base leading-tight transition-all duration-300 ${isLight ? 'text-[#1a1535] group-hover:text-[#8a63d2]' : 'text-white group-hover:text-purple-300'}`}>
+          {release.title || 'Без названия'}
         </div>
-        <div className={`text-xs sm:text-sm truncate transition-colors duration-300 ${isLight ? 'text-[#5c5580] group-hover:text-[#3d3660]' : 'text-zinc-400 group-hover:text-zinc-300'}`}>
-          {release.artist_name || release.artist}
+        <div className={`text-[10px] sm:text-sm truncate mt-0.5 transition-colors duration-300 ${isLight ? 'text-[#5c5580] group-hover:text-[#3d3660]' : 'text-zinc-400 group-hover:text-zinc-300'}`}>
+          {release.artist_name || release.artist || 'Исполнитель'}
         </div>
       </div>
 
       {/* Статус и дата с улучшенным стилем */}
-      <div className="mt-2 sm:mt-3 flex items-center justify-between gap-2">
-        <StatusBadge status={release.status} />
+      <div className="mt-2 sm:mt-3">
+        {/* Первая строка - статус и оплата */}
+        <div className="flex items-center gap-1 flex-wrap">
+          <StatusBadge status={release.status} />
+          
+          {/* Бейдж "Оплачено" для оплаченных черновиков */}
+          {isDraft && release.is_paid && (
+            <div className="flex items-center gap-0.5 text-[8px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 sm:py-1.5 rounded-md sm:rounded-lg font-medium bg-gradient-to-r from-emerald-500/25 to-teal-500/25 text-emerald-300 border border-emerald-400/40 shadow-sm shadow-emerald-500/20 backdrop-blur-sm">
+              <svg className="w-2 h-2 sm:w-3 sm:h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+          )}
+          
+          {/* Бейдж E для explicit контента */}
+          {hasExplicitContent && (
+            <div className="w-5 h-5 sm:w-6 sm:h-6 bg-rose-500/20 backdrop-blur-sm rounded text-[9px] sm:text-[10px] font-bold text-rose-400 border border-rose-500/30 flex items-center justify-center shrink-0">
+              E
+            </div>
+          )}
+        </div>
         
-        {/* Бейдж E для explicit контента (в footer справа) */}
-        {hasExplicitContent && (
-          <div className="w-6 h-6 sm:w-7 sm:h-7 bg-rose-500/20 backdrop-blur-sm rounded-md text-[11px] sm:text-xs font-bold text-rose-400 border border-rose-500/30 flex items-center justify-center">
-            E
-          </div>
-        )}
+        {/* Вторая строка - дата */}
+        <div className={`mt-1.5 text-[8px] sm:text-[10px] px-1.5 py-0.5 rounded-md backdrop-blur-sm inline-block ${isLight ? 'bg-zinc-100/80 text-zinc-600' : 'bg-zinc-800/50 text-zinc-500'}`}>
+          {formatDate(release.created_at)}
+        </div>
       </div>
       
       {/* Индикатор редактирования для pending релизов с улучшенной анимацией */}
       {release.status === 'pending' && (
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-xl sm:rounded-2xl flex items-end justify-center pb-3 sm:pb-4">
-          <div className="text-[10px] sm:text-xs font-bold text-white flex items-center gap-1 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="transition-all duration-300 group-hover:text-purple-300">
-              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" strokeWidth="2"/>
-              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" strokeWidth="2"/>
+          <div 
+            className="text-[10px] sm:text-xs font-bold flex items-center gap-1 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300"
+            style={{ color: '#ffffff' }}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
             </svg>
             Редактировать
           </div>
@@ -325,7 +456,7 @@ export default function ReleaseCard({ release, onClick, onDelete, onDragStart, o
 
     </div>
   );
-}
+});
 
 // Карточка добавления релиза
 interface AddReleaseCardProps {
@@ -344,29 +475,37 @@ export function AddReleaseCard({ onClick }: AddReleaseCardProps) {
         transformStyle: 'preserve-3d',
         perspective: '1000px',
         background: isLight 
-          ? 'rgba(255, 255, 255, 0.6)' 
+          ? 'rgba(255, 255, 255, 0.9)' 
           : 'linear-gradient(145deg, rgba(255, 255, 255, 0.015) 0%, rgba(255, 255, 255, 0.005) 100%)',
-        backdropFilter: 'blur(24px) saturate(180%)',
+        backdropFilter: 'blur(20px) saturate(150%)',
         border: isLight 
-          ? '1px solid rgba(255, 255, 255, 0.7)' 
+          ? '2px dashed rgba(138, 99, 210, 0.3)' 
           : '1px solid rgba(255, 255, 255, 0.03)',
         boxShadow: isLight 
-          ? '0 8px 32px rgba(138, 99, 210, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9)' 
+          ? '0 4px 16px rgba(0, 0, 0, 0.06)' 
           : '0 25px 50px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
       }}
       onMouseEnter={(e) => {
         const target = e.currentTarget;
-        target.style.boxShadow = isLight 
-          ? '0 16px 48px rgba(138, 99, 210, 0.2), 0 0 30px rgba(138, 99, 210, 0.1)' 
-          : '0 30px 60px rgba(168, 85, 247, 0.3), 0 0 30px rgba(168, 85, 247, 0.2)';
-        target.style.borderColor = 'rgba(138, 99, 210, 0.4)';
+        if (isLight) {
+          target.style.boxShadow = '0 8px 24px rgba(138, 99, 210, 0.15)';
+          target.style.borderColor = 'rgba(138, 99, 210, 0.5)';
+          target.style.borderStyle = 'solid';
+        } else {
+          target.style.boxShadow = '0 30px 60px rgba(168, 85, 247, 0.3), 0 0 30px rgba(168, 85, 247, 0.2)';
+          target.style.borderColor = 'rgba(138, 99, 210, 0.6)';
+        }
       }}
       onMouseLeave={(e) => {
         const target = e.currentTarget;
-        target.style.boxShadow = isLight 
-          ? '0 8px 32px rgba(138, 99, 210, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9)' 
-          : '0 25px 50px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05)';
-        target.style.borderColor = isLight ? 'rgba(255, 255, 255, 0.7)' : 'rgba(255, 255, 255, 0.03)';
+        if (isLight) {
+          target.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.06)';
+          target.style.borderColor = 'rgba(138, 99, 210, 0.3)';
+          target.style.borderStyle = 'dashed';
+        } else {
+          target.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05)';
+          target.style.borderColor = 'rgba(255, 255, 255, 0.03)';
+        }
       }}
     >
       {/* Обложка */}
@@ -406,3 +545,5 @@ export function AddReleaseCard({ onClick }: AddReleaseCardProps) {
     </div>
   );
 }
+
+export default ReleaseCard;

@@ -1,1 +1,2 @@
-export { default as ImageCropModal } from './ImageCropModal';
+export { default as ImageCropModal } from './ImageCropModal';export { default as AdminMobileNav } from './AdminMobileNav';
+export { default as FloatingTrashBin, ArchiveButton } from './FloatingTrashBin';

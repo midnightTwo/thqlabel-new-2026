@@ -1,5 +1,5 @@
 // Экспорт компонентов тикетов
-export { default as AdminTicketsPanel } from './AdminTicketsPanelRefactored';
+export { default as AdminTicketsPanel } from './AdminTicketsPanel';
 export { default as UserProfileModal } from './UserProfileModal';
 export { default as ReleaseInfoModal } from './ReleaseInfoModal';
 export { default as TicketListItem, UserRoleBadge } from './TicketListItem';

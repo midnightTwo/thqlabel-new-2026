@@ -1,0 +1,75 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/09/2025;01/06/2025;"UMA (Vkontakte)";Worldwide;"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";TRAMS;3617665360003;DG-A0Q-24-32107;;"Music Release";Stream;1;RUB;0.030477805802
+01/08/2025;01/03/2025;SberZvuk;"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ЕСЛИ Я КУРЮ";3617665360003;DG-A0Q-24-32106;;"Music Release";Stream;1;RUB;0.000221875548
+01/09/2025;01/07/2025;"Facebook / Instagram";"United States";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ПОЦЕЛУЙ МЕНЯ";3617665360003;DG-A0Q-24-32103;;"Music Release";Creation;6;RUB;0.922243465139
+01/09/2025;01/09/2025;"Apple Music";Ukraine;"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"FOR YOU MM";3617665360003;DG-A0Q-24-32104;;"Music Release";Stream;4;RUB;0.727783802287
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";TRAMS;3617665360003;DG-A0Q-24-32107;;"Music Release";Stream;1;RUB;0.004200000039
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ГДЕ МОЙ ФЕЙМ";3617665360003;DG-A0Q-24-32108;;"Music Release";Stream;1;RUB;0.004200000038
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ГДЕ МОЙ ФЕЙМ";3617665360003;DG-A0Q-24-32108;;"Music Release";Stream;1;RUB;0.021427324346
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"МОДЕЛЬНОЕ АГЕНСТВО";3617665360003;DG-A0Q-24-32102;;"Music Release";Stream;4;RUB;0.164143503948
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ЕСЛИ Я КУРЮ";3617665360003;DG-A0Q-24-32106;;"Music Release";Stream;4;RUB;0.085709297382
+01/08/2025;01/06/2025;"Facebook / Instagram";Worldwide;"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ПОЦЕЛУЙ МЕНЯ";3617665360003;DG-A0Q-24-32103;;"Music Release";Creation;6;RUB;0.128492557675
+01/08/2025;01/06/2025;"Facebook / Instagram";Worldwide;"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"FOR YOU MM";3617665360003;DG-A0Q-24-32104;;"Music Release";Creation;6;RUB;0.128492557675
+01/07/2025;01/06/2025;Yandex;"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"WE GET IT";3617665360003;DG-A0Q-24-32100;;"Music Release";Stream;4;RUB;0.087978280522
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ГДЕ МОЙ ФЕЙМ";3617665360003;DG-A0Q-24-32108;;"Music Release";Stream;1;RUB;0.021639298911
+01/07/2025;01/06/2025;Yandex;"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ЖЕСТКО ДЕЛАЕМ";3617665360003;DG-A0Q-24-32109;;"Music Release";Stream;1;RUB;0.021994570186
+01/07/2025;01/06/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";2М;3617665360003;DG-A0Q-24-32105;;"Music Release";Stream;1;RUB;0.080605458850
+01/09/2025;01/06/2025;"UMA (Vkontakte)";Worldwide;"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"FOR YOU MM";3617665360003;DG-A0Q-24-32104;;"Music Release";Stream;1;RUB;0.042014753049
+01/07/2025;01/04/2025;"Facebook / Instagram";India;"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ПОЦЕЛУЙ МЕНЯ";3617665360003;DG-A0Q-24-32103;;"Music Release";Creation;6;RUB;0.023581093885
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ПОЦЕЛУЙ МЕНЯ";3617665360003;DG-A0Q-24-32103;;"Music Release";Stream;8;RUB;0.171418594838
+01/09/2025;01/06/2025;"UMA (Vkontakte)";Worldwide;"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"WE GET IT";3617665360003;DG-A0Q-24-32100;;"Music Release";Stream;1;RUB;0.241956831878
+01/07/2025;01/04/2025;"Facebook / Instagram";Netherlands;"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ПОЦЕЛУЙ МЕНЯ";3617665360003;DG-A0Q-24-32103;;"Music Release";Creation;6;RUB;0.522795013164
+01/09/2025;01/06/2025;"UMA (Vkontakte)";Worldwide;"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ГДЕ МОЙ ФЕЙМ";3617665360003;DG-A0Q-24-32108;;"Music Release";Stream;1;RUB;0.059926294262
+01/07/2025;01/06/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ЖЕСТКО ДЕЛАЕМ";3617665360003;DG-A0Q-24-32109;;"Music Release";Stream;4;RUB;0.400889848318
+01/07/2025;01/06/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"WE GET IT";3617665360003;DG-A0Q-24-32100;;"Music Release";Stream;3;RUB;0.092128061667
+01/08/2025;01/07/2025;Yandex;Azerbaijan;"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"НЕ ПОНРАВИЛАСЬ";3617665360003;DG-A0Q-24-32101;;"Music Release";Stream;1;RUB;0.021427324346
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ЕСЛИ Я КУРЮ";3617665360003;DG-A0Q-24-32106;;"Music Release";Stream;3;RUB;0.159943503911
+01/09/2025;01/07/2025;Spotify;Worldwide;"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"МОДЕЛЬНОЕ АГЕНСТВО";3617665360003;DG-A0Q-24-32102;;"Music Release";;1;RUB;741.769428853765
+01/07/2025;01/05/2025;Spotify;Worldwide;"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"МОДЕЛЬНОЕ АГЕНСТВО";3617665360003;DG-A0Q-24-32102;;"Music Release";;1;RUB;-701.852828304602
+01/07/2025;01/06/2025;Yandex;Kazakhstan;"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"НЕ ПОНРАВИЛАСЬ";3617665360003;DG-A0Q-24-32101;;"Music Release";Stream;1;RUB;0.021994570186
+01/09/2025;01/06/2025;"UMA (Vkontakte)";Worldwide;"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ЖЕСТКО ДЕЛАЕМ";3617665360003;DG-A0Q-24-32109;;"Music Release";Stream;1;RUB;0.210819048528
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"НЕ ПОНРАВИЛАСЬ";3617665360003;DG-A0Q-24-32101;;"Music Release";Stream;7;RUB;0.151475091988
+01/07/2025;01/06/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ЕСЛИ Я КУРЮ";3617665360003;DG-A0Q-24-32106;;"Music Release";Stream;4;RUB;0.321361786724
+01/07/2025;01/06/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"МОДЕЛЬНОЕ АГЕНСТВО";3617665360003;DG-A0Q-24-32102;;"Music Release";Stream;1;RUB;0.149705663389
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";TRAMS;3617665360003;DG-A0Q-24-32107;;"Music Release";Stream;1;RUB;0.004200000038
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"WE GET IT";3617665360003;DG-A0Q-24-32100;;"Music Release";Stream;10;RUB;0.216392988566
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"FOR YOU MM";3617665360003;DG-A0Q-24-32104;;"Music Release";Stream;2;RUB;0.155743503948
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";2М;3617665360003;DG-A0Q-24-32105;;"Music Release";Stream;2;RUB;0.042854648691
+01/07/2025;01/06/2025;"UMA (Odnoklassniki)";Tajikistan;"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ПОЦЕЛУЙ МЕНЯ";3617665360003;DG-A0Q-24-32103;;"Music Release";Stream;1;RUB;0.004200000000
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"МОДЕЛЬНОЕ АГЕНСТВО";3617665360003;DG-A0Q-24-32102;;"Music Release";Stream;4;RUB;0.086557195410
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ПОЦЕЛУЙ МЕНЯ";3617665360003;DG-A0Q-24-32103;;"Music Release";Stream;2;RUB;0.008400000000
+01/07/2025;01/06/2025;Yandex;"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";TRAMS;3617665360003;DG-A0Q-24-32107;;"Music Release";Stream;1;RUB;0.021994570186
+01/07/2025;01/06/2025;Yandex;"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ЕСЛИ Я КУРЮ";3617665360003;DG-A0Q-24-32106;;"Music Release";Stream;7;RUB;0.153961990932
+01/09/2025;01/06/2025;"UMA (Vkontakte)";Worldwide;"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";2М;3617665360003;DG-A0Q-24-32105;;"Music Release";Stream;1;RUB;0.106880903709
+01/08/2025;01/03/2025;SberZvuk;"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"МОДЕЛЬНОЕ АГЕНСТВО";3617665360003;DG-A0Q-24-32102;;"Music Release";Stream;1;RUB;0.000221875548
+01/08/2025;01/03/2025;SberZvuk;"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ЖЕСТКО ДЕЛАЕМ";3617665360003;DG-A0Q-24-32109;;"Music Release";Stream;1;RUB;0.000221875548
+01/07/2025;01/06/2025;Yandex;"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"FOR YOU MM";3617665360003;DG-A0Q-24-32104;;"Music Release";Stream;1;RUB;0.021994570186
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ЖЕСТКО ДЕЛАЕМ";3617665360003;DG-A0Q-24-32109;;"Music Release";Stream;2;RUB;0.042854648691
+01/09/2025;01/06/2025;"UMA (Vkontakte)";Worldwide;"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"НЕ ПОНРАВИЛАСЬ";3617665360003;DG-A0Q-24-32101;;"Music Release";Stream;1;RUB;0.093295243962
+01/09/2025;01/06/2025;"UMA (Vkontakte)";Worldwide;"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ПОЦЕЛУЙ МЕНЯ";3617665360003;DG-A0Q-24-32103;;"Music Release";Stream;1;RUB;0.025236818560
+01/09/2025;01/06/2025;"UMA (Vkontakte)";Worldwide;"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ЕСЛИ Я КУРЮ";3617665360003;DG-A0Q-24-32106;;"Music Release";Stream;1;RUB;0.135488704399
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"МОДЕЛЬНОЕ АГЕНСТВО";3617665360003;DG-A0Q-24-32102;;"Music Release";Stream;4;RUB;0.085709297382
+01/07/2025;01/06/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ПОЦЕЛУЙ МЕНЯ";3617665360003;DG-A0Q-24-32103;;"Music Release";Stream;1;RUB;0.004200000000
+01/07/2025;01/06/2025;Yandex;"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"МОДЕЛЬНОЕ АГЕНСТВО";3617665360003;DG-A0Q-24-32102;;"Music Release";Stream;10;RUB;0.219945701342
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"WE GET IT";3617665360003;DG-A0Q-24-32100;;"Music Release";Stream;2;RUB;0.155743503948
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ПОЦЕЛУЙ МЕНЯ";3617665360003;DG-A0Q-24-32103;;"Music Release";Stream;2;RUB;0.043278597666
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"FOR YOU MM";3617665360003;DG-A0Q-24-32104;;"Music Release";Stream;1;RUB;0.021427324346
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ЕСЛИ Я КУРЮ";3617665360003;DG-A0Q-24-32106;;"Music Release";Stream;4;RUB;0.086557195410
+01/09/2025;01/07/2025;"Facebook / Instagram";India;"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ПОЦЕЛУЙ МЕНЯ";3617665360003;DG-A0Q-24-32103;;"Music Release";Creation;6;RUB;0.180019076099
+01/07/2025;01/06/2025;Yandex;"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"НЕ ПОНРАВИЛАСЬ";3617665360003;DG-A0Q-24-32101;;"Music Release";Stream;2;RUB;0.025177048349
+01/07/2025;01/06/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"НЕ ПОНРАВИЛАСЬ";3617665360003;DG-A0Q-24-32101;;"Music Release";Stream;3;RUB;0.092128061667
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";2М;3617665360003;DG-A0Q-24-32105;;"Music Release";Stream;2;RUB;0.176606485511
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"НЕ ПОНРАВИЛАСЬ";3617665360003;DG-A0Q-24-32101;;"Music Release";Stream;1;RUB;0.151543503911
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";TRAMS;3617665360003;DG-A0Q-24-32107;;"Music Release";Stream;1;RUB;0.021639298911
+01/09/2025;01/08/2025;"UMA (Odnoklassniki)";"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"НЕ ПОНРАВИЛАСЬ";3617665360003;DG-A0Q-24-32101;;"Music Release";Stream;2;RUB;0.008400000000
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";2М;3617665360003;DG-A0Q-24-32105;;"Music Release";Stream;2;RUB;0.008400000000
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"FOR YOU MM";3617665360003;DG-A0Q-24-32104;;"Music Release";Stream;1;RUB;0.021639298911
+01/08/2025;01/07/2025;"UMA (Odnoklassniki)";"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ЖЕСТКО ДЕЛАЕМ";3617665360003;DG-A0Q-24-32109;;"Music Release";Stream;1;RUB;0.004200000038
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";2М;3617665360003;DG-A0Q-24-32105;;"Music Release";Stream;5;RUB;0.108196494322
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"WE GET IT";3617665360003;DG-A0Q-24-32100;;"Music Release";Stream;3;RUB;0.064281973111
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ЖЕСТКО ДЕЛАЕМ";3617665360003;DG-A0Q-24-32109;;"Music Release";Stream;1;RUB;0.021639298911
+01/07/2025;01/07/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"FOR YOU MM";3617665360003;DG-A0Q-24-32104;;"Music Release";Stream;1;RUB;0.070161840006
+01/09/2025;01/06/2025;"UMA (Vkontakte)";Worldwide;"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"МОДЕЛЬНОЕ АГЕНСТВО";3617665360003;DG-A0Q-24-32102;;"Music Release";Stream;1;RUB;0.115146113392
+01/07/2025;01/06/2025;Yandex;"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ПОЦЕЛУЙ МЕНЯ";3617665360003;DG-A0Q-24-32103;;"Music Release";Stream;6;RUB;0.131967420820
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"ЖЕСТКО ДЕЛАЕМ";3617665360003;DG-A0Q-24-32109;;"Music Release";Stream;1;RUB;0.004200000038
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"DARKI MUZIK";"экстра!, щкёрт";"МАЙБАХ МЬЮЗИК";"НЕ ПОНРАВИЛАСЬ";3617665360003;DG-A0Q-24-32101;;"Music Release";Stream;3;RUB;0.064281973111

@@ -1,0 +1,242 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/05/2025;01/04/2025;Spotify;Argentina;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.074370118659
+01/04/2025;01/04/2025;"YouTube UGC";Netherlands;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;60;RUB;1.140931670514
+01/04/2025;01/04/2025;"YouTube UGC";Australia;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.190848181788
+01/05/2025;01/04/2025;Spotify;Finland;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.025211033033
+01/05/2025;01/05/2025;"YouTube UGC";"Russian Federation";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.107241794282
+01/04/2025;01/04/2025;"YouTube UGC";Israel;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;3;RUB;0.052385737967
+01/06/2025;01/06/2025;"YouTube Official Content";Ukraine;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;107;RUB;1.671449617013
+01/05/2025;01/05/2025;"YouTube UGC";Romania;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.018622141189
+01/06/2025;01/06/2025;"YouTube Official Content";Latvia;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.069802468419
+01/05/2025;01/05/2025;"YouTube UGC";France;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;13;RUB;0.197412427801
+01/04/2025;01/04/2025;"YouTube UGC";"Czech Republic";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;30;RUB;0.399207218746
+01/06/2025;01/06/2025;"YouTube Official Content";Azerbaijan;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;6;RUB;0.060897814214
+01/05/2025;01/05/2025;"YouTube UGC";Germany;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;39;RUB;2.099498002937
+01/06/2025;01/06/2025;"YouTube UGC";Ukraine;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;54;RUB;0.233681195612
+01/06/2025;01/06/2025;"YouTube Official Content";"Serbia And Montenegro";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.003142819114
+01/06/2025;01/06/2025;"YouTube UGC";France;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.193549074002
+01/05/2025;01/05/2025;"YouTube Official Content";Ukraine;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;3;RUB;0.161996356350
+01/06/2025;01/06/2025;"YouTube UGC";Kazakhstan;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;28;RUB;0.090115850954
+01/06/2025;01/06/2025;"YouTube Official Content";Belarus;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;19;RUB;0.034388818101
+01/04/2025;01/04/2025;"YouTube UGC";Spain;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;3;RUB;0.055515299477
+01/04/2025;01/04/2025;"YouTube UGC";Georgia;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.018272600658
+01/06/2025;01/05/2025;Yandex;"Russian Federation";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;556;RUB;10.111562517918
+01/05/2025;01/04/2025;NetEase;"China Mainland";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;16;RUB;0.454779045697
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;17;RUB;2.110918737477
+01/04/2025;01/04/2025;"YouTube UGC";Turkey;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.004653042962
+01/05/2025;01/05/2025;"YouTube UGC";Sweden;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;5;RUB;0.111910200996
+01/04/2025;01/04/2025;"YouTube UGC";Italy;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.033232087850
+01/06/2025;01/06/2025;"YouTube Official Content";Turkey;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;4;RUB;0.054232157297
+01/04/2025;01/04/2025;"YouTube Official Content";"Korea, Republic Of";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.630547717814
+01/04/2025;01/04/2025;"YouTube Official Content";Belarus;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.011539684191
+01/06/2025;01/06/2025;"YouTube Official Content";"United Arab Emirates";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;10;RUB;0.025301980184
+01/06/2025;01/06/2025;"YouTube Official Content";Bulgaria;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.015873514034
+01/05/2025;01/05/2025;"YouTube UGC";Austria;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.022727879978
+01/05/2025;01/05/2025;"YouTube Official Content";Netherlands;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;6;RUB;0.579241702328
+01/06/2025;01/05/2025;Yandex;Azerbaijan;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.020858201942
+01/05/2025;01/05/2025;"YouTube Official Content";Belarus;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;4;RUB;0.012802722136
+01/05/2025;01/04/2025;Spotify;"United States";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;25;RUB;3.097945395015
+01/05/2025;01/04/2025;Spotify;"United Kingdom";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.132952981569
+01/04/2025;01/03/2025;Yandex;"Russian Federation";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;468;RUB;8.073695339236
+01/04/2025;01/03/2025;Spotify;"Serbia And Montenegro";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.056237118035
+01/04/2025;01/04/2025;"YouTube UGC";Ukraine;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;80;RUB;0.530295562498
+01/04/2025;01/03/2025;Spotify;Egypt;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.003549186990
+01/04/2025;01/04/2025;"YouTube UGC";Kazakhstan;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;65;RUB;0.285193904796
+01/04/2025;01/04/2025;"YouTube UGC";Germany;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;26;RUB;0.309505365902
+01/05/2025;01/04/2025;Spotify;India;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;4;RUB;0.118137249229
+01/05/2025;01/05/2025;"YouTube UGC";Denmark;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;51;RUB;0.980854767472
+01/06/2025;01/05/2025;Spotify;Greece;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.325866370281
+01/06/2025;01/05/2025;Spotify;"United States";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;13;RUB;2.041917984166
+01/04/2025;01/04/2025;"Apple Music";"Russian Federation";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;41;RUB;4.230887360014
+01/06/2025;01/06/2025;"YouTube UGC";Poland;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;7;RUB;0.231384365293
+01/06/2025;01/05/2025;NetEase;"China Mainland";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;20;RUB;0.542598887117
+01/04/2025;01/03/2025;Spotify;Indonesia;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.001249713762
+01/06/2025;01/06/2025;"Apple Music";"Moldova, Republic Of";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;12;RUB;1.240425439269
+01/05/2025;01/05/2025;"YouTube UGC";Spain;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;5;RUB;0.118951143933
+01/06/2025;01/06/2025;"YouTube Official Content";Poland;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;17;RUB;0.778095742986
+01/04/2025;01/03/2025;Spotify;Mexico;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.039390976904
+01/06/2025;01/05/2025;Spotify;Belarus;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;12;RUB;0.643628558050
+01/06/2025;01/06/2025;"YouTube Official Content";Estonia;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;4;RUB;0.553200750487
+01/04/2025;01/04/2025;"YouTube Official Content";"United Kingdom";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.155870055740
+01/05/2025;01/05/2025;"Apple Music";"Russian Federation";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;20;RUB;1.914288320078
+01/05/2025;01/04/2025;Spotify;France;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;5;RUB;0.138782122171
+01/06/2025;01/05/2025;Spotify;Indonesia;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.006502768960
+01/06/2025;01/06/2025;"YouTube UGC";Japan;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.072772855501
+01/06/2025;01/06/2025;"YouTube Official Content";Sweden;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.147530306938
+01/05/2025;01/04/2025;Spotify;Uzbekistan;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.000437185545
+01/04/2025;01/04/2025;"YouTube UGC";Belarus;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;29;RUB;0.076908288545
+01/04/2025;01/04/2025;"YouTube UGC";Estonia;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;3;RUB;0.015858891922
+01/04/2025;01/04/2025;"YouTube UGC";"Moldova, Republic Of";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;11;RUB;0.026596683322
+01/05/2025;01/04/2025;Spotify;Belarus;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;16;RUB;1.027823228761
+01/04/2025;01/03/2025;"UMA (Odnoklassniki)";Tajikistan;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.004200000038
+01/05/2025;01/05/2025;"YouTube UGC";Singapore;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.067784594018
+01/06/2025;01/06/2025;"YouTube UGC";Belarus;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;16;RUB;0.018583626088
+01/06/2025;01/05/2025;Yandex;Belarus;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;8;RUB;0.131478755654
+01/06/2025;01/06/2025;"YouTube UGC";Sweden;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;10;RUB;0.207092043431
+01/05/2025;01/05/2025;"YouTube UGC";Switzerland;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.075339862724
+01/06/2025;01/05/2025;Spotify;"Moldova, Republic Of";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.008201253445
+01/04/2025;01/03/2025;Spotify;Greece;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;8;RUB;1.461515218046
+01/06/2025;01/05/2025;Spotify;Ukraine;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;17;RUB;0.073131862579
+01/06/2025;01/06/2025;"Apple Music";"United States";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.421355278116
+01/04/2025;01/04/2025;"YouTube Official Content";Netherlands;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;9;RUB;1.262162001142
+01/04/2025;01/04/2025;"YouTube UGC";Singapore;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.026771057830
+01/04/2025;01/04/2025;"YouTube Official Content";Canada;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.276344491715
+01/06/2025;01/05/2025;Spotify;France;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;5;RUB;0.166936755634
+01/06/2025;01/01/2025;Deezer;France;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;0;RUB;-0.002520584849
+01/04/2025;01/03/2025;Spotify;"United States";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;25;RUB;3.650663760707
+01/05/2025;01/05/2025;"YouTube UGC";Ukraine;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;44;RUB;0.197194309302
+01/05/2025;01/04/2025;Spotify;Bulgaria;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.051879351290
+01/04/2025;01/04/2025;"Apple Music";Italy;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.440099188705
+01/06/2025;01/06/2025;"YouTube Official Content";"United Kingdom";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;3;RUB;0.323004375211
+01/06/2025;01/06/2025;"YouTube UGC";Estonia;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.109082610582
+01/05/2025;01/05/2025;"YouTube Official Content";Brazil;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;17;RUB;0.157127526586
+01/05/2025;01/05/2025;"YouTube Official Content";"Czech Republic";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;6;RUB;0.290226070831
+01/04/2025;01/04/2025;"YouTube Official Content";Romania;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.117440321526
+01/05/2025;01/05/2025;"YouTube UGC";Belarus;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;25;RUB;0.042937359254
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;128;RUB;3.644073010566
+01/05/2025;01/12/2024;"Facebook / Instagram";Worldwide;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Creation;7;RUB;0.163821835523
+01/06/2025;01/05/2025;Spotify;Canada;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.055273536199
+01/05/2025;01/04/2025;Spotify;Ukraine;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;5;RUB;0.000145728515
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Kazakhstan;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.144194553142
+01/04/2025;01/03/2025;Spotify;Israel;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.098227499538
+01/04/2025;01/04/2025;"Apple Music";"United States";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.177148648013
+01/05/2025;01/04/2025;Spotify;Latvia;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.002623113271
+01/04/2025;01/04/2025;"YouTube UGC";France;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;4;RUB;0.157414186863
+01/04/2025;01/04/2025;"YouTube UGC";Denmark;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;65;RUB;1.382192374284
+01/05/2025;01/05/2025;"YouTube UGC";Poland;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.085785997166
+01/06/2025;01/06/2025;"YouTube UGC";Latvia;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.003591793263
+01/05/2025;01/05/2025;"YouTube UGC";Lithuania;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.025813834810
+01/05/2025;01/04/2025;Yandex;Belarus;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;5;RUB;0.091451767942
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;55;RUB;3.048826013342
+01/06/2025;01/06/2025;"YouTube Official Content";Switzerland;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.218152641219
+01/06/2025;01/06/2025;"YouTube Official Content";Israel;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.075609851622
+01/05/2025;01/04/2025;Spotify;Indonesia;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.000340033226
+01/05/2025;01/05/2025;"YouTube UGC";"United States";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;34;RUB;1.418758869584
+01/06/2025;01/06/2025;"YouTube Official Content";"United States";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;12;RUB;1.338638847846
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Kazakhstan;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.008400000000
+01/04/2025;01/04/2025;"YouTube UGC";Slovakia;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.039050685952
+01/06/2025;01/06/2025;"YouTube Official Content";France;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;4;RUB;0.300435290018
+01/04/2025;01/04/2025;"YouTube Official Content";"United States";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;3;RUB;1.484872491145
+01/04/2025;01/04/2025;"YouTube UGC";Finland;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.033516593455
+01/06/2025;01/06/2025;"YouTube UGC";"United Kingdom";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;7;RUB;0.506885322128
+01/05/2025;01/05/2025;"YouTube UGC";"United Kingdom";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;20;RUB;0.674094908537
+01/06/2025;01/05/2025;Spotify;Nigeria;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.016984844338
+01/04/2025;01/03/2025;Spotify;Poland;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;17;RUB;0.153464846534
+01/06/2025;01/05/2025;"UMA VK MUSIC";"Russian Federation";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;3;RUB;0.274623937748
+01/05/2025;01/05/2025;"YouTube UGC";Georgia;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.005622113136
+01/05/2025;01/05/2025;"YouTube Official Content";Taiwan;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.125934464575
+01/04/2025;01/04/2025;"YouTube UGC";"United States";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;43;RUB;2.282900359562
+01/04/2025;01/04/2025;"YouTube UGC";Azerbaijan;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;4;RUB;0.010857095597
+01/04/2025;01/04/2025;"YouTube Official Content";Ukraine;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;14;RUB;0.558509072790
+01/04/2025;01/04/2025;"Apple Music";Ukraine;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.090981477255
+01/04/2025;01/04/2025;"YouTube Official Content";Poland;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.454614360373
+01/06/2025;01/06/2025;"YouTube Official Content";Spain;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.067957770266
+01/05/2025;01/01/2025;"Facebook / Instagram";Worldwide;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Creation;6;RUB;0.153461095368
+01/06/2025;01/06/2025;"YouTube Official Content";Denmark;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;43;RUB;1.321100017161
+01/06/2025;01/06/2025;"YouTube UGC";Georgia;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;6;RUB;0.587111278841
+01/06/2025;01/05/2025;Spotify;Kazakhstan;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;4;RUB;0.006939522101
+01/05/2025;01/03/2025;Deezer;France;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.206919869427
+01/06/2025;01/06/2025;"YouTube Official Content";"Czech Republic";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;72;RUB;1.817232689954
+01/06/2025;01/05/2025;Spotify;Poland;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;4;RUB;0.074975955611
+01/04/2025;01/03/2025;Spotify;Germany;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;5;RUB;0.293882681798
+01/05/2025;01/05/2025;"YouTube UGC";Japan;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.118685113322
+01/04/2025;01/04/2025;"YouTube UGC";Latvia;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.028367960064
+01/06/2025;01/05/2025;Spotify;"United Kingdom";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.069104052323
+01/04/2025;01/04/2025;"YouTube UGC";Poland;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;5;RUB;0.202718204536
+01/04/2025;01/03/2025;Yandex;Ukraine;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;3;RUB;0.017909771893
+01/04/2025;01/04/2025;"YouTube UGC";Austria;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;5;RUB;0.070153575246
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Kazakhstan;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.008400000000
+01/04/2025;01/04/2025;"YouTube UGC";Switzerland;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.095575521332
+01/04/2025;01/04/2025;"YouTube UGC";"Korea, Republic Of";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.018006450247
+01/05/2025;01/04/2025;"UMA VK MUSIC";"Russian Federation";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;5;RUB;0.568726904982
+01/06/2025;01/06/2025;"YouTube UGC";Netherlands;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;59;RUB;1.080140737876
+01/04/2025;01/03/2025;Spotify;Nigeria;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;4;RUB;0.065934896613
+01/05/2025;01/05/2025;"YouTube Official Content";Argentina;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.055145542784
+01/06/2025;01/05/2025;Spotify;Germany;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;5;RUB;0.321401782644
+01/06/2025;01/06/2025;"YouTube Official Content";"Dominican Republic";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.001320895016
+01/04/2025;01/03/2025;Yandex;Belarus;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;7;RUB;0.118391601998
+01/06/2025;01/06/2025;"YouTube UGC";Norway;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;9;RUB;0.361339615494
+01/06/2025;01/06/2025;"YouTube Official Content";"Saudi Arabia";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.002322953252
+01/05/2025;01/04/2025;Spotify;Estonia;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.362426816087
+01/06/2025;01/06/2025;"YouTube UGC";Mexico;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.010775379862
+01/06/2025;01/06/2025;"YouTube UGC";Azerbaijan;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.005509151562
+01/04/2025;01/03/2025;Spotify;India;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;7;RUB;0.220549489882
+01/04/2025;01/04/2025;"YouTube UGC";"United Arab Emirates";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.024963070697
+01/06/2025;01/06/2025;"YouTube Official Content";Kazakhstan;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;75;RUB;0.648741684284
+01/04/2025;01/03/2025;Spotify;"United Kingdom";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.089229560629
+01/06/2025;01/05/2025;Spotify;Pakistan;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.037948995022
+01/06/2025;01/06/2025;"YouTube UGC";Switzerland;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.080841376610
+01/06/2025;01/06/2025;"Apple Music";Hungary;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.122997818454
+01/06/2025;01/05/2025;Spotify;Uzbekistan;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.001504371881
+01/05/2025;01/04/2025;Spotify;Sweden;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.030700140410
+01/04/2025;01/03/2025;"UMA (Odnoklassniki)";"Russian Federation";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.008400000000
+01/06/2025;01/06/2025;"YouTube Official Content";Italy;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.054179468999
+01/05/2025;01/05/2025;"YouTube UGC";Netherlands;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;98;RUB;1.923135094851
+01/05/2025;01/05/2025;"YouTube UGC";Latvia;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.025804967083
+01/06/2025;01/06/2025;"YouTube UGC";Slovakia;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.040516122470
+01/06/2025;01/06/2025;"YouTube Official Content";Norway;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.010248323278
+01/05/2025;01/04/2025;Spotify;Poland;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;22;RUB;0.194984781790
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;97;RUB;1.783806497074
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Armenia;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.004200000000
+01/04/2025;01/11/2024;Yandex;Worldwide;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;-1;RUB;-5.298257338803
+01/06/2025;01/06/2025;"YouTube UGC";Germany;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;25;RUB;0.736013971878
+01/05/2025;01/05/2025;"YouTube UGC";Finland;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.088206875544
+01/04/2025;01/04/2025;"YouTube UGC";Sweden;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;8;RUB;0.341590253882
+01/06/2025;01/06/2025;"YouTube Official Content";Germany;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;24;RUB;1.434059261432
+01/04/2025;01/03/2025;Spotify;Belarus;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;28;RUB;2.900285586108
+01/06/2025;01/06/2025;"YouTube Official Content";Netherlands;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;8;RUB;0.531068111470
+01/04/2025;01/04/2025;"Apple Music";Poland;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.145528419222
+01/05/2025;01/05/2025;"YouTube UGC";"Czech Republic";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;75;RUB;0.606496531662
+01/05/2025;01/05/2025;"YouTube Official Content";Germany;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;4;RUB;0.153446443532
+01/05/2025;01/04/2025;Spotify;Lithuania;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.005149074223
+01/04/2025;01/04/2025;"YouTube UGC";Thailand;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.005121100523
+01/06/2025;01/05/2025;Spotify;Estonia;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.005920431439
+01/04/2025;01/04/2025;"YouTube UGC";"United Kingdom";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;14;RUB;0.300327770995
+01/05/2025;01/05/2025;"YouTube UGC";Kazakhstan;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;37;RUB;0.130067688637
+01/06/2025;01/05/2025;Yandex;Kazakhstan;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;17;RUB;0.266122283163
+01/06/2025;01/06/2025;"YouTube Official Content";"Moldova, Republic Of";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;6;RUB;0.011523670110
+01/04/2025;01/03/2025;Yandex;Georgia;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.021290350854
+01/04/2025;01/04/2025;"YouTube Official Content";"Czech Republic";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.579469819770
+01/06/2025;01/06/2025;"YouTube UGC";Singapore;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.001535621786
+01/04/2025;01/03/2025;Spotify;Brazil;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;4;RUB;0.253591916026
+01/04/2025;01/04/2025;"YouTube Official Content";India;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.093473236137
+01/04/2025;01/03/2025;Yandex;Kazakhstan;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;3;RUB;0.048550625647
+01/05/2025;01/04/2025;Yandex;"Russian Federation";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;517;RUB;9.810832360838
+01/06/2025;01/05/2025;Spotify;India;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.054545614370
+01/05/2025;01/05/2025;"YouTube UGC";Norway;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;11;RUB;0.355798176936
+01/04/2025;01/04/2025;"YouTube UGC";Lithuania;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.102100794537
+01/04/2025;01/04/2025;"YouTube UGC";Norway;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;7;RUB;0.112278752398
+01/06/2025;01/06/2025;"YouTube UGC";"United States";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;26;RUB;1.486525254322
+01/04/2025;01/03/2025;Spotify;Kazakhstan;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.003899106861
+01/06/2025;01/06/2025;"YouTube Official Content";Brazil;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.145244828852
+01/04/2025;01/03/2025;Spotify;Sweden;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;3;RUB;0.096827825151
+01/05/2025;01/05/2025;"YouTube Official Content";Denmark;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;7;RUB;0.563692214454
+01/06/2025;01/05/2025;Spotify;Brazil;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.134519967062
+01/06/2025;01/05/2025;Spotify;Philippines;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.001649956261
+01/04/2025;01/03/2025;Soundcloud;Germany;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.220820300925
+01/05/2025;01/04/2025;Yandex;Kazakhstan;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;6;RUB;0.113302026282
+01/05/2025;01/04/2025;Spotify;"United Arab Emirates";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.009909539024
+01/06/2025;01/06/2025;"YouTube UGC";Denmark;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;37;RUB;0.471574701657
+01/05/2025;01/04/2025;Spotify;Greece;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;3;RUB;0.517579112878
+01/05/2025;01/05/2025;"Apple Music";"Moldova, Republic Of";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;3;RUB;0.324846152221
+01/06/2025;01/06/2025;"YouTube Official Content";Belgium;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.079982469530
+01/05/2025;01/04/2025;Spotify;Kazakhstan;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;5;RUB;0.036577857208
+01/05/2025;01/04/2025;Spotify;Morocco;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.040075341570
+01/04/2025;01/04/2025;"YouTube Official Content";Denmark;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;5;RUB;0.279891546718
+01/04/2025;01/03/2025;Spotify;Peru;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.002099519079
+01/06/2025;01/06/2025;"YouTube UGC";"Czech Republic";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;87;RUB;0.544868093673
+01/04/2025;01/04/2025;"YouTube Official Content";Thailand;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.214165594169
+01/05/2025;01/05/2025;"YouTube Official Content";"United Kingdom";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.645364780041
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;-0.198653961033
+01/04/2025;01/03/2025;Spotify;Ukraine;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;8;RUB;0.142417377119
+01/06/2025;01/05/2025;Spotify;Finland;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;3;RUB;0.036493156097
+01/06/2025;01/06/2025;"YouTube UGC";"Russian Federation";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.264844253648
+01/05/2025;01/05/2025;"YouTube UGC";Estonia;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.033652869504
+01/04/2025;01/03/2025;NetEase;"China Mainland";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;33;RUB;0.909858294759
+01/05/2025;01/04/2025;Spotify;Turkey;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.001165828121
+01/06/2025;01/05/2025;Spotify;Egypt;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.000291168761
+01/04/2025;01/04/2025;"YouTube Official Content";Mexico;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;1;RUB;0.090249966792
+01/05/2025;01/04/2025;Spotify;Germany;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;27;RUB;1.327489616552
+01/04/2025;01/03/2025;Spotify;Turkey;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;2;RUB;0.001799587782
+01/06/2025;01/06/2025;"Apple Music";"Russian Federation";glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;7;RUB;0.699429920029
+01/04/2025;01/03/2025;Spotify;France;glookipail;"GlookiPail, Мирби";мультики!;мультики!;3617664680089;DG-A0P-24-49703;;"Music Release";Stream;36;RUB;1.250663476747

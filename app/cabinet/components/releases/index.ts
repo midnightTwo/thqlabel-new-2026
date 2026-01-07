@@ -4,6 +4,7 @@ export * from './constants';
 export * from './hooks';
 export { default as ReleaseCard, AddReleaseCard } from './ReleaseCard';
 export { default as ReleaseDetailView } from './ReleaseDetailView';
+export { default as ReleaseStatistics } from './ReleaseStatistics';
 export { default as ReleasesFilters } from './ReleasesFilters';
 export { default as ReleasesGrid } from './ReleasesGrid';
 export { default as ReleasesHeader } from './ReleasesHeader';

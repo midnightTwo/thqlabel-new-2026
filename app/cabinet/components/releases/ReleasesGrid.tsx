@@ -191,14 +191,14 @@ function EmptyState({
             className="relative w-32 h-32 mx-auto rounded-3xl flex items-center justify-center"
             style={{
               background: isLight 
-                ? 'linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%)'
+                ? 'linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 100%)'
                 : 'linear-gradient(145deg, rgba(39, 39, 42, 0.8) 0%, rgba(24, 24, 27, 0.9) 100%)',
               backdropFilter: 'blur(20px)',
               border: isLight 
-                ? '1px solid rgba(255, 255, 255, 0.8)'
+                ? '2px solid rgba(138, 99, 210, 0.3)'
                 : '1px solid rgba(255, 255, 255, 0.1)',
               boxShadow: isLight 
-                ? '0 20px 60px rgba(138, 99, 210, 0.2), inset 0 1px 0 rgba(255, 255, 255, 1)'
+                ? '0 20px 60px rgba(138, 99, 210, 0.25), 0 0 40px rgba(138, 99, 210, 0.1), inset 0 1px 0 rgba(255, 255, 255, 1)'
                 : '0 20px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
             }}
           >
@@ -259,7 +259,7 @@ function EmptyState({
         {hasFilters && !isEmpty && (
           <button
             onClick={onResetFilters}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 text-white font-bold rounded-xl transition-all duration-300 border border-white/10 mt-3"
+            className={`inline-flex items-center gap-2 px-6 py-3 font-bold rounded-xl transition-all duration-300 border mt-3 ${isLight ? 'bg-white/80 hover:bg-white text-[#1a1535] border-gray-300 hover:border-purple-400 shadow-sm' : 'bg-white/5 hover:bg-white/10 text-white border-white/10'}`}
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />

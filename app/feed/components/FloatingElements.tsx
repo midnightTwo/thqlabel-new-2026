@@ -99,19 +99,19 @@ export const FloatingParticles = memo(({ isLight }: { isLight?: boolean }) => {
       {particles.map(p => (
         <div
           key={p.id}
-          className={`absolute rounded-full ${isLight ? 'page-sparkle' : 'bg-[#9d8df1]'}`}
+          className={`absolute rounded-full ${isLight ? 'bg-black' : 'bg-[#9d8df1]'}`}
           style={{
             left: `${p.x}%`,
             top: `${p.y}%`,
-            width: isLight ? p.size * 1.5 : p.size,
-            height: isLight ? p.size * 1.5 : p.size,
-            opacity: 1,
-            border: isLight ? '1px solid rgba(100,80,140,0.4)' : undefined,
+            width: isLight ? p.size * 1.2 : p.size,
+            height: isLight ? p.size * 1.2 : p.size,
+            opacity: isLight ? 0.25 : 1,
+            border: undefined,
             boxShadow: isLight 
-              ? '0 0 2px rgba(100,80,140,0.5), 0 0 6px rgba(180,140,220,0.4), 0 0 12px rgba(140,180,220,0.3)'
+              ? '0 0 3px rgba(0,0,0,0.2)'
               : '0 0 8px rgba(157, 141, 241, 0.5)',
             background: isLight 
-              ? 'linear-gradient(135deg, rgba(180,140,220,0.9) 0%, rgba(140,180,220,0.9) 50%, rgba(200,160,200,0.9) 100%)'
+              ? 'rgba(0,0,0,0.6)'
               : undefined,
             animationName: isLight ? 'sparkle-float' : 'particle-fly',
             animationDuration: `${p.duration}s`,

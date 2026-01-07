@@ -16,9 +16,8 @@ export default function CacheBuster() {
         try {
           const names = await caches.keys();
           await Promise.all(names.map(name => caches.delete(name)));
-          console.log('🧹 Service Worker caches cleared');
         } catch (e) {
-          console.warn('Failed to clear caches:', e);
+          // Cache clearing failed silently
         }
       }
       
@@ -27,11 +26,8 @@ export default function CacheBuster() {
         try {
           const registrations = await navigator.serviceWorker.getRegistrations();
           await Promise.all(registrations.map(r => r.unregister()));
-          if (registrations.length > 0) {
-            console.log('🧹 Service Workers unregistered:', registrations.length);
-          }
         } catch (e) {
-          console.warn('Failed to unregister service workers:', e);
+          // Service worker unregistration failed silently
         }
       }
     };

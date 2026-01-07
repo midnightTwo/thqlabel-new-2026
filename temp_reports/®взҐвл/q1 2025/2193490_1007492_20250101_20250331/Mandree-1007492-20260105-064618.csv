@@ -1,0 +1,176 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/03/2025;01/08/2024;Yandex;Worldwide;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;1;RUB;0.009299372458
+01/03/2025;01/11/2024;Yandex;Worldwide;"Stars Clique";Mandree;Дилемма;"Space Shit";5059487203171;RU-A1H-20-26874;;"Music Release";Stream;1;RUB;0.115758483898
+01/03/2025;01/09/2024;Yandex;Worldwide;"Stars Clique";Mandree;GONE;Gone;5059074500096;AE-A0D-19-94162;;"Music Release";Stream;1;RUB;0.008350423625
+01/03/2025;01/02/2025;"UMA VK MUSIC";"Russian Federation";"Stars Clique";Mandree;GONE;Колизей;5059074500096;AE-A0D-19-94160;;"Music Release";Stream;1;RUB;0.120822049358
+01/02/2025;01/01/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";Mandree;Дилемма;Саранча;5059487203171;RU-A1H-20-26877;;"Music Release";Stream;1;RUB;0.004200000000
+01/02/2025;01/01/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";Mandree;GONE;"Man Drip";5059074500096;AE-A0D-19-94166;;"Music Release";Stream;4;RUB;0.441061298726
+01/03/2025;01/11/2024;Yandex;Worldwide;"Stars Clique";Mandree;Дилемма;"Блеск души";5059487203171;RU-A1H-20-26873;;"Music Release";Stream;1;RUB;0.007717233196
+01/01/2025;01/01/2025;"Apple Music";"Russian Federation";"Stars Clique";Mandree;GONE;"Грув Стрит";5059074500096;AE-A0D-19-94161;;"Music Release";Stream;1;RUB;0.106520399995
+01/03/2025;01/11/2024;Yandex;Worldwide;"Stars Clique";Mandree;GONE;"Почему я жду Outro";5059074500096;AE-A0D-19-94167;;"Music Release";Stream;1;RUB;0.023151696839
+01/02/2025;01/02/2025;"YouTube UGC";Netherlands;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;1;RUB;0.032332496356
+01/01/2025;01/01/2025;"YouTube UGC";Germany;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;2;RUB;0.098395533435
+01/01/2025;01/12/2024;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";Mandree;Дилемма;"Блеск души";5059487203171;RU-A1H-20-26873;;"Music Release";Stream;3;RUB;0.012600000042
+01/02/2025;01/01/2025;Yandex;Belarus;"Stars Clique";Mandree;GONE;Колизей;5059074500096;AE-A0D-19-94160;;"Music Release";Stream;1;RUB;0.003219963738
+01/02/2025;01/01/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";Mandree;Дилемма;Saynomo;5059487203171;RU-A1H-20-26875;;"Music Release";Stream;1;RUB;0.004200000000
+01/03/2025;01/02/2025;Yandex;"Russian Federation";"Stars Clique";Mandree;Дилемма;Саранча;5059487203171;RU-A1H-20-26877;;"Music Release";Stream;1;RUB;0.021587041761
+01/03/2025;01/02/2025;Yandex;"Russian Federation";"Stars Clique";Mandree;Дилемма;$now;5059487203171;RU-A1H-20-26880;;"Music Release";Stream;1;RUB;0.021587041761
+01/01/2025;01/01/2025;"YouTube UGC";"United States";"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;162;RUB;32.601631428860
+01/01/2025;01/01/2025;"YouTube UGC";Brazil;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;1;RUB;0.040011929460
+01/03/2025;01/10/2024;Yandex;Worldwide;"Stars Clique";Mandree;Дилемма;Саранча;5059487203171;RU-A1H-20-26877;;"Music Release";Stream;1;RUB;0.055111028877
+01/03/2025;01/02/2025;Yandex;"Russian Federation";"Stars Clique";Mandree;GONE;Колизей;5059074500096;AE-A0D-19-94160;;"Music Release";Stream;1;RUB;0.003258713412
+01/01/2025;01/01/2025;"Apple Music";Ukraine;"Stars Clique";Mandree;Дилемма;$now;5059487203171;RU-A1H-20-26880;;"Music Release";Stream;1;RUB;0.232391218213
+01/02/2025;01/02/2025;"YouTube UGC";Canada;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;2;RUB;0.834096873920
+01/03/2025;01/03/2025;"YouTube UGC";"United Kingdom";"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;2;RUB;0.145229011320
+01/02/2025;01/01/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";Mandree;GONE;Придуши;5059074500096;AE-A0D-19-94165;;"Music Release";Stream;3;RUB;0.012600000000
+01/03/2025;01/10/2024;Yandex;Worldwide;"Stars Clique";Mandree;GONE;"Грув Стрит";5059074500096;AE-A0D-19-94161;;"Music Release";Stream;1;RUB;0.047238026726
+01/01/2025;01/12/2024;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";Mandree;GONE;"Man Drip";5059074500096;AE-A0D-19-94166;;"Music Release";Stream;2;RUB;0.131782205288
+01/03/2025;01/10/2024;Yandex;Worldwide;"Stars Clique";Mandree;GONE;Придуши;5059074500096;AE-A0D-19-94165;;"Music Release";Stream;1;RUB;0.023619013363
+01/01/2025;01/01/2025;"YouTube UGC";Italy;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;1;RUB;0.134321737720
+01/01/2025;01/12/2024;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;33;RUB;0.727829870073
+01/03/2025;01/11/2024;Yandex;Worldwide;"Stars Clique";Mandree;GONE;"Грув Стрит";5059074500096;AE-A0D-19-94161;;"Music Release";Stream;1;RUB;0.030868929961
+01/03/2025;01/10/2024;Yandex;Worldwide;"Stars Clique";Mandree;Дилемма;"Space Shit";5059487203171;RU-A1H-20-26874;;"Music Release";Stream;1;RUB;0.125968065399
+01/01/2025;01/01/2025;"YouTube UGC";Netherlands;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;2;RUB;0.203187340184
+01/02/2025;01/02/2025;"YouTube UGC";Poland;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;2;RUB;0.172159714616
+01/02/2025;01/12/2024;TikTok;Pakistan;"Stars Clique";Mandree;GONE;Gone;5059074500096;AE-A0D-19-94162;;"Music Release";Creation;1;RUB;0.097145593481
+01/03/2025;01/02/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";Mandree;GONE;Колизей;5059074500096;AE-A0D-19-94160;;"Music Release";Stream;2;RUB;0.125022049358
+01/03/2025;01/10/2024;Yandex;Worldwide;"Stars Clique";Mandree;Дилемма;Дилемма;5059487203171;RU-A1H-20-26872;;"Music Release";Stream;1;RUB;0.031492015440
+01/01/2025;01/12/2024;Yandex;"Russian Federation";"Stars Clique";Mandree;GONE;"Грув Стрит";5059074500096;AE-A0D-19-94161;;"Music Release";Stream;6;RUB;0.105488294727
+01/03/2025;01/09/2024;Yandex;Worldwide;"Stars Clique";Mandree;Дилемма;Покемон;5059487203171;RU-A1H-20-26876;;"Music Release";Stream;1;RUB;0.008350423625
+01/01/2025;01/01/2025;"YouTube UGC";Portugal;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;1;RUB;0.024345286642
+01/03/2025;01/11/2024;Yandex;Worldwide;"Stars Clique";Mandree;Дилемма;Котопёс;5059487203171;RU-A1H-20-26871;;"Music Release";Stream;1;RUB;0.023151696839
+01/01/2025;01/12/2024;Yandex;"Russian Federation";"Stars Clique";Mandree;Дилемма;Саранча;5059487203171;RU-A1H-20-26877;;"Music Release";Stream;2;RUB;0.035162764938
+01/01/2025;01/12/2024;Yandex;"Russian Federation";"Stars Clique";Mandree;Дилемма;"Блеск души";5059487203171;RU-A1H-20-26873;;"Music Release";Stream;1;RUB;0.017581382469
+01/03/2025;01/09/2024;Yandex;Worldwide;"Stars Clique";Mandree;GONE;Аутсайдер;5059074500096;AE-A0D-19-94163;;"Music Release";Stream;1;RUB;0.008350423625
+01/01/2025;01/01/2025;"YouTube UGC";"New Zealand";"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;8;RUB;2.080113135971
+01/02/2025;01/02/2025;"YouTube UGC";Mexico;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;1;RUB;0.099010308000
+01/03/2025;01/11/2024;Yandex;Worldwide;"Stars Clique";Mandree;GONE;Придуши;5059074500096;AE-A0D-19-94165;;"Music Release";Stream;1;RUB;0.023151696839
+01/02/2025;01/01/2025;Yandex;"Russian Federation";"Stars Clique";Mandree;GONE;"Грув Стрит";5059074500096;AE-A0D-19-94161;;"Music Release";Stream;5;RUB;0.112153438564
+01/01/2025;01/12/2024;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";Mandree;GONE;Intro;5059074500096;AE-A0D-19-94159;;"Music Release";Stream;2;RUB;0.008400000000
+01/02/2025;01/01/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";Mandree;Дилемма;Дилемма;5059487203171;RU-A1H-20-26872;;"Music Release";Stream;1;RUB;0.004200000000
+01/02/2025;01/01/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";Mandree;Дилемма;Покемон;5059487203171;RU-A1H-20-26876;;"Music Release";Stream;2;RUB;0.008400000000
+01/02/2025;01/02/2025;"YouTube UGC";"South Africa";"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;1;RUB;0.004458776119
+01/02/2025;01/02/2025;"YouTube UGC";"United States";"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;190;RUB;28.485671605874
+01/03/2025;01/02/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;11;RUB;0.090830832723
+01/03/2025;01/04/2024;Yandex;Worldwide;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;1;RUB;0.044626590682
+01/02/2025;01/01/2025;Yandex;"Russian Federation";"Stars Clique";Mandree;Дилемма;Saynomo;5059487203171;RU-A1H-20-26875;;"Music Release";Stream;1;RUB;0.022430687713
+01/02/2025;01/02/2025;"YouTube Official Content";Hungary;"Stars Clique";Mandree;Дилемма;Котопёс;5059487203171;RU-A1H-20-26871;;"Music Release";Stream;1;RUB;0.046897406956
+01/03/2025;01/02/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";Mandree;GONE;"Грув Стрит";5059074500096;AE-A0D-19-94161;;"Music Release";Stream;3;RUB;0.063785197398
+01/02/2025;01/02/2025;"YouTube UGC";Spain;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;1;RUB;0.093073766087
+01/03/2025;01/11/2024;Yandex;Worldwide;"Stars Clique";Mandree;Дилемма;$now;5059487203171;RU-A1H-20-26880;;"Music Release";Stream;1;RUB;0.084889553937
+01/01/2025;01/12/2024;Yandex;Belarus;"Stars Clique";Mandree;GONE;Колизей;5059074500096;AE-A0D-19-94160;;"Music Release";Stream;2;RUB;0.262007372599
+01/01/2025;01/01/2025;"YouTube UGC";Poland;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;2;RUB;0.022767351386
+01/02/2025;01/02/2025;"YouTube UGC";Thailand;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;1;RUB;0.217498888850
+01/03/2025;01/11/2024;Yandex;Worldwide;"Stars Clique";Mandree;Дилемма;Топаз;5059487203171;RU-A1H-20-26878;;"Music Release";Stream;1;RUB;0.023151696839
+01/01/2025;01/01/2025;"YouTube UGC";"United Kingdom";"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;2;RUB;0.009580321199
+01/01/2025;01/01/2025;"YouTube UGC";Argentina;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;1;RUB;0.001944241613
+01/01/2025;01/01/2025;"YouTube Official Content";Ukraine;"Stars Clique";Mandree;GONE;Колизей;5059074500096;AE-A0D-19-94160;;"Music Release";Stream;1;RUB;0.010059337217
+01/01/2025;01/01/2025;"YouTube UGC";"Puerto Rico";"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;3;RUB;0.906919358111
+01/01/2025;01/12/2024;Yandex;"Russian Federation";"Stars Clique";Mandree;Дилемма;"Space Shit";5059487203171;RU-A1H-20-26874;;"Music Release";Stream;13;RUB;0.341980275711
+01/03/2025;01/03/2024;Yandex;Worldwide;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;1;RUB;0.032680712914
+01/03/2025;01/03/2025;"YouTube UGC";Germany;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;1;RUB;0.159124379646
+01/03/2025;01/02/2025;Yandex;"Russian Federation";"Stars Clique";Mandree;GONE;"Грув Стрит";5059074500096;AE-A0D-19-94161;;"Music Release";Stream;3;RUB;0.064761125356
+01/03/2025;01/03/2025;"YouTube UGC";Canada;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;6;RUB;0.161091275034
+01/03/2025;01/09/2024;Yandex;Worldwide;"Stars Clique";Mandree;Дилемма;Топаз;5059487203171;RU-A1H-20-26878;;"Music Release";Stream;1;RUB;0.050102551110
+01/02/2025;01/01/2025;"UMA (Odnoklassniki)";"Russian Federation";"Stars Clique";Mandree;Дилемма;"Все бегут и ты за ними";5059487203171;RU-A1H-20-26879;;"Music Release";Stream;1;RUB;0.004200000000
+01/03/2025;01/02/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";Mandree;Дилемма;Дилемма;5059487203171;RU-A1H-20-26872;;"Music Release";Stream;2;RUB;0.008400000000
+01/03/2025;01/03/2025;"Apple Music";"Russian Federation";"Stars Clique";Mandree;Дилемма;"Space Shit";5059487203171;RU-A1H-20-26874;;"Music Release";Stream;1;RUB;0.073946320005
+01/03/2025;01/11/2024;Yandex;Worldwide;"Stars Clique";Mandree;Дилемма;Дилемма;5059487203171;RU-A1H-20-26872;;"Music Release";Stream;1;RUB;0.007717233196
+01/01/2025;01/12/2024;Yandex;"Russian Federation";"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;3;RUB;0.052744147321
+01/03/2025;01/10/2024;Yandex;Worldwide;"Stars Clique";Mandree;Дилемма;Топаз;5059487203171;RU-A1H-20-26878;;"Music Release";Stream;1;RUB;0.007873005718
+01/01/2025;01/12/2024;Yandex;"Russian Federation";"Stars Clique";Mandree;Дилемма;"Все бегут и ты за ними";5059487203171;RU-A1H-20-26879;;"Music Release";Stream;1;RUB;0.017581382469
+01/02/2025;01/01/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";Mandree;GONE;"Грув Стрит";5059074500096;AE-A0D-19-94161;;"Music Release";Stream;4;RUB;0.016800000000
+01/02/2025;01/01/2025;Yandex;"Russian Federation";"Stars Clique";Mandree;GONE;Придуши;5059074500096;AE-A0D-19-94165;;"Music Release";Stream;8;RUB;0.179445501780
+01/03/2025;01/02/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";Mandree;"Speak Wiz Dead";"Speak Wiz Dead";3617390647608;FR-2X4-25-60072;;"Music Release";Stream;1;RUB;0.004200000000
+01/01/2025;01/01/2025;"YouTube UGC";Sweden;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;2;RUB;0.096282227330
+01/02/2025;01/01/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";Mandree;Дилемма;"Блеск души";5059487203171;RU-A1H-20-26873;;"Music Release";Stream;1;RUB;0.097465221345
+01/03/2025;01/09/2024;Yandex;Worldwide;"Stars Clique";Mandree;Дилемма;Saynomo;5059487203171;RU-A1H-20-26875;;"Music Release";Stream;1;RUB;0.025051273994
+01/02/2025;01/02/2025;"YouTube UGC";"New Zealand";"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;3;RUB;0.190351521133
+01/03/2025;01/09/2024;Yandex;Worldwide;"Stars Clique";Mandree;Дилемма;Дилемма;5059487203171;RU-A1H-20-26872;;"Music Release";Stream;1;RUB;0.050102551110
+01/02/2025;01/02/2025;"YouTube UGC";France;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;5;RUB;1.002434780434
+01/03/2025;01/09/2024;Yandex;Worldwide;"Stars Clique";Mandree;GONE;Intro;5059074500096;AE-A0D-19-94159;;"Music Release";Stream;1;RUB;0.016700850370
+01/03/2025;01/10/2024;Yandex;Worldwide;"Stars Clique";Mandree;GONE;"Почему я жду Outro";5059074500096;AE-A0D-19-94167;;"Music Release";Stream;1;RUB;0.007873005718
+01/01/2025;01/12/2024;"UMA VK MUSIC";"Russian Federation";"Stars Clique";Mandree;Дилемма;"Space Shit";5059487203171;RU-A1H-20-26874;;"Music Release";Stream;1;RUB;0.127582205246
+01/02/2025;01/01/2025;Yandex;Kazakhstan;"Stars Clique";Mandree;Дилемма;"Space Shit";5059487203171;RU-A1H-20-26874;;"Music Release";Stream;1;RUB;0.003219963738
+01/02/2025;01/01/2025;Yandex;"Russian Federation";"Stars Clique";Mandree;Дилемма;Саранча;5059487203171;RU-A1H-20-26877;;"Music Release";Stream;2;RUB;0.044861375503
+01/03/2025;01/10/2024;Yandex;Worldwide;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;1;RUB;0.047238026726
+01/02/2025;01/01/2025;Yandex;"Russian Federation";"Stars Clique";Mandree;Дилемма;"Space Shit";5059487203171;RU-A1H-20-26874;;"Music Release";Stream;5;RUB;0.112153438564
+01/02/2025;01/02/2025;"YouTube UGC";Brazil;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;2;RUB;0.016841434266
+01/03/2025;01/03/2025;"YouTube UGC";Brazil;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;1;RUB;0.002854566326
+01/03/2025;01/02/2025;Yandex;Uzbekistan;"Stars Clique";Mandree;GONE;Придуши;5059074500096;AE-A0D-19-94165;;"Music Release";Stream;1;RUB;0.021587041761
+01/01/2025;01/12/2024;Yandex;"Russian Federation";"Stars Clique";Mandree;Дилемма;Покемон;5059487203171;RU-A1H-20-26876;;"Music Release";Stream;1;RUB;0.017581382469
+01/03/2025;01/03/2025;"YouTube UGC";Netherlands;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;2;RUB;0.216451620978
+01/03/2025;01/03/2025;"YouTube UGC";"United States";"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;141;RUB;17.279260404492
+01/03/2025;01/10/2024;Yandex;Worldwide;"Stars Clique";Mandree;Дилемма;Saynomo;5059487203171;RU-A1H-20-26875;;"Music Release";Stream;1;RUB;0.007873005718
+01/01/2025;01/12/2024;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";Mandree;GONE;"Грув Стрит";5059074500096;AE-A0D-19-94161;;"Music Release";Stream;5;RUB;0.413952458415
+01/03/2025;01/06/2024;Yandex;Worldwide;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;1;RUB;0.007968290678
+01/01/2025;01/01/2025;"Apple Music";Poland;"Stars Clique";Mandree;GONE;Колизей;5059074500096;AE-A0D-19-94160;;"Music Release";Stream;1;RUB;0.166189213645
+01/03/2025;01/11/2024;Yandex;Worldwide;"Stars Clique";Mandree;Дилемма;Саранча;5059487203171;RU-A1H-20-26877;;"Music Release";Stream;1;RUB;0.007717233196
+01/03/2025;01/11/2024;Yandex;Worldwide;"Stars Clique";Mandree;Дилемма;"Все бегут и ты за ними";5059487203171;RU-A1H-20-26879;;"Music Release";Stream;1;RUB;0.015434463569
+01/03/2025;01/09/2024;Yandex;Worldwide;"Stars Clique";Mandree;GONE;"Грув Стрит";5059074500096;AE-A0D-19-94161;;"Music Release";Stream;1;RUB;0.025051273994
+01/01/2025;01/01/2025;"YouTube UGC";Chile;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;13;RUB;0.789848825830
+01/01/2025;01/12/2024;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";Mandree;GONE;"Почему я жду Outro";5059074500096;AE-A0D-19-94167;;"Music Release";Stream;1;RUB;0.004200000042
+01/02/2025;01/02/2025;"YouTube UGC";Chile;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;35;RUB;2.205163255744
+01/01/2025;01/12/2024;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";Mandree;Дилемма;Саранча;5059487203171;RU-A1H-20-26877;;"Music Release";Stream;3;RUB;0.092072351838
+01/01/2025;01/01/2025;"YouTube UGC";Thailand;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;1;RUB;0.218591081962
+01/02/2025;01/02/2025;"YouTube UGC";Germany;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;1;RUB;0.007057605589
+01/03/2025;01/09/2024;Yandex;Worldwide;"Stars Clique";Mandree;Дилемма;$now;5059487203171;RU-A1H-20-26880;;"Music Release";Stream;1;RUB;0.016700850370
+01/01/2025;01/12/2024;Yandex;"Russian Federation";"Stars Clique";Mandree;GONE;Intro;5059074500096;AE-A0D-19-94159;;"Music Release";Stream;1;RUB;0.017581382469
+01/01/2025;01/12/2024;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";Mandree;GONE;Gone;5059074500096;AE-A0D-19-94162;;"Music Release";Stream;1;RUB;0.004200000042
+01/03/2025;01/02/2025;Yandex;"Russian Federation";"Stars Clique";Mandree;Дилемма;Топаз;5059487203171;RU-A1H-20-26878;;"Music Release";Stream;2;RUB;0.024845755172
+01/02/2025;01/01/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";Mandree;GONE;Колизей;5059074500096;AE-A0D-19-94160;;"Music Release";Stream;1;RUB;0.004200000000
+01/03/2025;01/03/2025;"YouTube UGC";Chile;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;2;RUB;0.036942948246
+01/02/2025;01/02/2025;"YouTube UGC";"United Kingdom";"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;6;RUB;1.115025246396
+01/02/2025;01/01/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;33;RUB;0.861731292038
+01/01/2025;01/12/2024;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";Mandree;Дилемма;Дилемма;5059487203171;RU-A1H-20-26872;;"Music Release";Stream;3;RUB;0.092072351838
+01/03/2025;01/02/2025;Yandex;"Russian Federation";"Stars Clique";Mandree;Дилемма;"Space Shit";5059487203171;RU-A1H-20-26874;;"Music Release";Stream;21;RUB;0.453327877419
+01/01/2025;01/01/2025;"Apple Music";Ukraine;"Stars Clique";Mandree;GONE;"Грув Стрит";5059074500096;AE-A0D-19-94161;;"Music Release";Stream;1;RUB;0.232391218213
+01/03/2025;01/07/2024;Yandex;Worldwide;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;1;RUB;0.273904712066
+01/03/2025;01/02/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";Mandree;GONE;"Man Drip";5059074500096;AE-A0D-19-94166;;"Music Release";Stream;1;RUB;0.120822049358
+01/03/2025;01/03/2025;"YouTube UGC";India;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;1;RUB;0.007619399057
+01/03/2025;01/09/2024;Yandex;Worldwide;"Stars Clique";Mandree;GONE;Придуши;5059074500096;AE-A0D-19-94165;;"Music Release";Stream;1;RUB;0.025051273994
+01/03/2025;01/10/2024;Yandex;Worldwide;"Stars Clique";Mandree;GONE;Gone;5059074500096;AE-A0D-19-94162;;"Music Release";Stream;1;RUB;0.007873005718
+01/03/2025;01/10/2024;Yandex;Worldwide;"Stars Clique";Mandree;Дилемма;"Все бегут и ты за ними";5059487203171;RU-A1H-20-26879;;"Music Release";Stream;1;RUB;0.007873005718
+01/03/2025;01/03/2025;"YouTube UGC";Italy;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;3;RUB;0.077167656970
+01/01/2025;01/01/2025;"YouTube UGC";Mexico;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;2;RUB;0.103157516577
+01/03/2025;01/02/2025;"UMA VK MUSIC";"Russian Federation";"Stars Clique";Mandree;Дилемма;Топаз;5059487203171;RU-A1H-20-26878;;"Music Release";Stream;1;RUB;0.120822049358
+01/02/2025;01/01/2025;Yandex;"Russian Federation";"Stars Clique";Mandree;GONE;Аутсайдер;5059074500096;AE-A0D-19-94163;;"Music Release";Stream;1;RUB;0.022430687713
+01/01/2025;01/12/2024;Yandex;"Russian Federation";"Stars Clique";Mandree;Дилемма;Котопёс;5059487203171;RU-A1H-20-26871;;"Music Release";Stream;1;RUB;0.017581382469
+01/03/2025;01/02/2025;Yandex;"Russian Federation";"Stars Clique";Mandree;GONE;Придуши;5059074500096;AE-A0D-19-94165;;"Music Release";Stream;9;RUB;0.194283376069
+01/01/2025;01/01/2025;"Apple Music";"Russian Federation";"Stars Clique";Mandree;Дилемма;"Блеск души";5059487203171;RU-A1H-20-26873;;"Music Release";Stream;1;RUB;0.106520399995
+01/03/2025;01/11/2024;Yandex;Worldwide;"Stars Clique";Mandree;GONE;"Man Drip";5059074500096;AE-A0D-19-94166;;"Music Release";Stream;1;RUB;0.023151696839
+01/03/2025;01/02/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;12;RUB;0.435514245348
+01/03/2025;01/09/2024;Yandex;Worldwide;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;1;RUB;0.192059777916
+01/03/2025;01/02/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";Mandree;GONE;"Почему я жду Outro";5059074500096;AE-A0D-19-94167;;"Music Release";Stream;4;RUB;0.133422049358
+01/03/2025;01/03/2025;"YouTube Official Content";Belarus;"Stars Clique";Mandree;Дилемма;Котопёс;5059487203171;RU-A1H-20-26871;;"Music Release";Stream;1;RUB;0.013797463825
+01/02/2025;01/02/2025;"YouTube UGC";Australia;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;1;RUB;0.234888324538
+01/03/2025;01/10/2024;Yandex;Worldwide;"Stars Clique";Mandree;Дилемма;$now;5059487203171;RU-A1H-20-26880;;"Music Release";Stream;1;RUB;0.007873005718
+01/01/2025;01/01/2025;"YouTube UGC";Ukraine;"Stars Clique";Mandree;GONE;"Грув Стрит";5059074500096;AE-A0D-19-94161;;"Music Release";Stream;1;RUB;0.003155870513
+01/03/2025;01/03/2025;"YouTube UGC";France;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;5;RUB;1.012852037582
+01/03/2025;01/02/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";Mandree;GONE;Придуши;5059074500096;AE-A0D-19-94165;;"Music Release";Stream;2;RUB;0.008400000000
+01/01/2025;01/12/2024;Yandex;"Russian Federation";"Stars Clique";Mandree;GONE;"Почему я жду Outro";5059074500096;AE-A0D-19-94167;;"Music Release";Stream;1;RUB;0.017581382469
+01/01/2025;01/01/2025;"YouTube UGC";Switzerland;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;1;RUB;0.013525159255
+01/02/2025;01/02/2025;"YouTube UGC";Portugal;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;1;RUB;0.029096698793
+01/01/2025;01/12/2024;Yandex;"Russian Federation";"Stars Clique";Mandree;GONE;Придуши;5059074500096;AE-A0D-19-94165;;"Music Release";Stream;2;RUB;0.035162764938
+01/01/2025;01/01/2025;"YouTube UGC";Philippines;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;1;RUB;0.011270966032
+01/03/2025;01/09/2024;Yandex;Worldwide;"Stars Clique";Mandree;Дилемма;"Все бегут и ты за ними";5059487203171;RU-A1H-20-26879;;"Music Release";Stream;1;RUB;0.008350423625
+01/03/2025;01/02/2025;"UMA (Vkontakte)";Kazakhstan;"Stars Clique";Mandree;Дилемма;Котопёс;5059487203171;RU-A1H-20-26871;;"Music Release";Stream;2;RUB;0.008400000000
+01/01/2025;01/12/2024;"UMA (Vkontakte)";Kazakhstan;"Stars Clique";Mandree;Дилемма;Котопёс;5059487203171;RU-A1H-20-26871;;"Music Release";Stream;1;RUB;0.004200000042
+01/03/2025;01/09/2024;Yandex;Worldwide;"Stars Clique";Mandree;Дилемма;Котопёс;5059487203171;RU-A1H-20-26871;;"Music Release";Stream;1;RUB;0.016700850370
+01/02/2025;01/01/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;8;RUB;0.083391881749
+01/03/2025;01/02/2025;Yandex;"Russian Federation";"Stars Clique";Mandree;Дилемма;Котопёс;5059487203171;RU-A1H-20-26871;;"Music Release";Stream;2;RUB;0.024845755172
+01/03/2025;01/10/2024;Yandex;Worldwide;"Stars Clique";Mandree;Дилемма;Котопёс;5059487203171;RU-A1H-20-26871;;"Music Release";Stream;1;RUB;0.007873005718
+01/01/2025;01/12/2024;Yandex;"Russian Federation";"Stars Clique";Mandree;GONE;"Man Drip";5059074500096;AE-A0D-19-94166;;"Music Release";Stream;2;RUB;0.035162764938
+01/02/2025;01/01/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";Mandree;GONE;"Почему я жду Outro";5059074500096;AE-A0D-19-94167;;"Music Release";Stream;2;RUB;0.008400000000
+01/03/2025;01/08/2024;Yandex;Worldwide;"Stars Clique";Mandree;GONE;"Грув Стрит";5059074500096;AE-A0D-19-94161;;"Music Release";Stream;1;RUB;0.018598744915
+01/03/2025;01/09/2024;Yandex;Worldwide;"Stars Clique";Mandree;Дилемма;"Блеск души";5059487203171;RU-A1H-20-26873;;"Music Release";Stream;1;RUB;0.016700850370
+01/01/2025;01/01/2025;"YouTube UGC";France;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;2;RUB;0.163090878521
+01/03/2025;01/09/2024;Yandex;Worldwide;"Stars Clique";Mandree;Дилемма;"Space Shit";5059487203171;RU-A1H-20-26874;;"Music Release";Stream;1;RUB;0.066803401554
+01/01/2025;01/01/2025;"YouTube UGC";Canada;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;1;RUB;0.218149547492
+01/03/2025;01/05/2024;Yandex;Worldwide;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;1;RUB;0.025523694744
+01/03/2025;01/11/2024;Yandex;Worldwide;"трэп хаус квэльчиков";Mandree;звёзды;звёзды;3617227323156;DG-A09-23-19396;;"Music Release";Stream;1;RUB;0.054020626725
+01/03/2025;01/09/2024;Yandex;Worldwide;"Stars Clique";Mandree;Дилемма;Саранча;5059487203171;RU-A1H-20-26877;;"Music Release";Stream;1;RUB;0.025051273994
+01/03/2025;01/11/2024;Yandex;Worldwide;"Stars Clique";Mandree;Дилемма;Покемон;5059487203171;RU-A1H-20-26876;;"Music Release";Stream;1;RUB;0.007717233196
+01/03/2025;01/08/2024;Yandex;Worldwide;"Stars Clique";Mandree;GONE;Intro;5059074500096;AE-A0D-19-94159;;"Music Release";Stream;1;RUB;0.001821702449
+01/02/2025;01/01/2025;"UMA (Vkontakte)";Kazakhstan;"Stars Clique";Mandree;Дилемма;Котопёс;5059487203171;RU-A1H-20-26871;;"Music Release";Stream;1;RUB;0.004200000000
+01/03/2025;01/10/2024;Yandex;Worldwide;"Stars Clique";Mandree;GONE;"Man Drip";5059074500096;AE-A0D-19-94166;;"Music Release";Stream;1;RUB;0.007873005718

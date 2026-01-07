@@ -1,0 +1,336 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/09/2025;01/08/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";romanastasi;"Любовь с ядом";"Любовь с ядом";3617397576758;FR-X45-25-51984;;"Music Release";Stream;9;RUB;0.969698123556
+01/09/2025;01/08/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Почему?;3617398035841;FR-X45-25-86382;;"Music Release";Stream;5;RUB;0.466809654566
+01/08/2025;01/07/2025;"Facebook / Instagram";"United States";"DARKI MUZIK";romanastasi;РЕКУ;РЕКУ;3617666229101;DG-A0R-24-60333;;"Music Release";Stream;1;RUB;0.006256352444
+01/08/2025;01/07/2025;"Facebook / Instagram";Spain;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;1;RUB;0.002045828774
+01/07/2025;01/06/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";romanastasi;РЕКУ;РЕКУ;3617666229101;DG-A0R-24-60333;;"Music Release";Stream;11;RUB;0.191705663389
+01/08/2025;01/07/2025;Yandex;Kazakhstan;"DARKI MUZIK";romanastasi;РЕКУ;РЕКУ;3617666229101;DG-A0R-24-60333;;"Music Release";Stream;1;RUB;0.021427324346
+01/08/2025;01/07/2025;Yandex;Ukraine;"DARKI MUZIK";romanastasi;RSTYLE;Падать;3617398035841;FR-X45-25-86380;;"Music Release";Stream;1;RUB;0.003823270455
+01/09/2025;01/07/2025;TikTok;Canada;"DARKI MUZIK";romanastasi;RSTYLE;Angels;3617398035841;FR-X45-25-86381;;"Music Release";Creation;1;RUB;0.067899940593
+01/08/2025;01/07/2025;Yandex;Uzbekistan;"DARKI MUZIK";romanastasi;RSTYLE;Angels;3617398035841;FR-X45-25-86381;;"Music Release";Stream;1;RUB;0.021427324346
+01/09/2025;01/06/2025;"UMA (Vkontakte)";Worldwide;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;1;RUB;0.554084021166
+01/08/2025;01/07/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Падать;3617398035841;FR-X45-25-86380;;"Music Release";Stream;11;RUB;0.976787519434
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;10;RUB;1.051238912675
+01/07/2025;01/07/2025;"YouTube UGC";Poland;"DARKI MUZIK";romanastasi;RSTYLE;Падать;3617398035841;FR-X45-25-86380;;"Music Release";Stream;1;RUB;0.009822694383
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;113;RUB;2.379982557124
+01/08/2025;01/07/2025;"Facebook / Instagram";Netherlands;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;1;RUB;0.003597399147
+01/07/2025;01/07/2025;"YouTube UGC";"Korea, Republic Of";"DARKI MUZIK";romanastasi;RSTYLE;Двигай;3617398035841;FR-X45-25-86378;;"Music Release";Stream;1;RUB;0.002139144370
+01/09/2025;01/08/2025;"UMA (Vkontakte)";Belarus;"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;1;RUB;0.004200000039
+01/08/2025;01/08/2025;"YouTube UGC";Brazil;"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;1;RUB;0.009933772512
+01/09/2025;01/08/2025;SberZvuk;"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Потеряйся;3617398035841;FR-X45-25-86379;;"Music Release";Stream;4;RUB;0.334244822454
+01/09/2025;01/09/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;10;RUB;0.893026400050
+01/07/2025;01/07/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";romanastasi;Moneydealer;Moneydealer;3617392638703;FR-96X-25-10180;;"Music Release";Stream;1;RUB;0.087199280004
+01/07/2025;01/07/2025;"YouTube UGC";Ukraine;"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;31;RUB;0.075013270030
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;"На двоих";3617398035841;FR-X45-25-86376;;"Music Release";Stream;205;RUB;4.406140888302
+01/08/2025;01/06/2025;"Facebook / Instagram";Kazakhstan;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Creation;7;RUB;1.082457346004
+01/09/2025;01/08/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Angels;3617398035841;FR-X45-25-86381;;"Music Release";Stream;11;RUB;1.047685706225
+01/07/2025;01/06/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;11;RUB;0.628222653630
+01/07/2025;01/07/2025;"YouTube UGC";Estonia;"DARKI MUZIK";romanastasi;RSTYLE;"На двоих";3617398035841;FR-X45-25-86376;;"Music Release";Stream;1;RUB;0.006496251048
+01/09/2025;01/08/2025;"UMA (Vkontakte)";Kazakhstan;"DARKI MUZIK";romanastasi;RSTYLE;ПроценТЫ;3617398035841;FR-X45-25-86377;;"Music Release";Stream;6;RUB;0.025200000000
+01/07/2025;01/07/2025;"YouTube Official Content";"United States";"DARKI MUZIK";romanastasi;RSTYLE;ИГРА;3617398035841;FR-X45-25-86375;;"Music Release";Stream;3;RUB;0.154098614579
+01/08/2025;01/07/2025;"Facebook / Instagram";Turkey;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;1;RUB;0.000650662757
+01/08/2025;01/07/2025;Yandex;Belarus;"DARKI MUZIK";romanastasi;RSTYLE;Падать;3617398035841;FR-X45-25-86380;;"Music Release";Stream;7;RUB;0.026762892962
+01/08/2025;01/07/2025;"Facebook / Instagram";Finland;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;1;RUB;0.003315867470
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Падать;3617398035841;FR-X45-25-86380;;"Music Release";Stream;13;RUB;0.349287007785
+01/07/2025;01/06/2025;Yandex;"Russian Federation";"DARKI MUZIK";romanastasi;Moneydealer;Moneydealer;3617392638703;FR-96X-25-10180;;"Music Release";Stream;66;RUB;1.414017445047
+01/08/2025;01/07/2025;"Facebook / Instagram";Ireland;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;1;RUB;0.003628681034
+01/07/2025;01/07/2025;"YouTube UGC";Latvia;"DARKI MUZIK";romanastasi;RSTYLE;"На двоих";3617398035841;FR-X45-25-86376;;"Music Release";Stream;1;RUB;0.005469082963
+01/08/2025;01/08/2025;"YouTube UGC";Brazil;"DARKI MUZIK";romanastasi;RSTYLE;Потеряйся;3617398035841;FR-X45-25-86379;;"Music Release";Stream;1;RUB;0.009933772512
+01/07/2025;01/06/2025;"Facebook / Instagram";Hungary;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;1;RUB;0.001342346177
+01/08/2025;01/06/2025;SberZvuk;"Russian Federation";"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;1;RUB;0.322405569168
+01/08/2025;01/08/2025;"YouTube Official Content";Israel;"DARKI MUZIK";romanastasi;RSTYLE;ПроценТЫ;3617398035841;FR-X45-25-86377;;"Music Release";Stream;1;RUB;0.039624891720
+01/08/2025;01/08/2025;"YouTube UGC";Brazil;"DARKI MUZIK";romanastasi;Moneydealer;Moneydealer;3617392638703;FR-96X-25-10180;;"Music Release";Stream;1;RUB;0.246906134800
+01/07/2025;01/06/2025;"Facebook / Instagram";Netherlands;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;4;RUB;0.014843260836
+01/07/2025;01/07/2025;"YouTube Official Content";Finland;"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;1;RUB;0.024784932855
+01/09/2025;01/07/2025;"Facebook / Instagram";"Russian Federation";"DARKI MUZIK";romanastasi;"Любовь с ядом";"Любовь с ядом";3617397576758;FR-X45-25-51984;;"Music Release";Creation;12;RUB;0.325223549158
+01/08/2025;01/08/2025;"YouTube UGC";Brazil;"DARKI MUZIK";romanastasi;RSTYLE;"На двоих";3617398035841;FR-X45-25-86376;;"Music Release";Stream;2;RUB;0.059602644114
+01/07/2025;01/07/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";romanastasi;"Любовь с ядом";"Любовь с ядом";3617397576758;FR-X45-25-51984;;"Music Release";Stream;7;RUB;0.623165200034
+01/08/2025;01/08/2025;"YouTube UGC";Germany;"DARKI MUZIK";romanastasi;Moneydealer;Moneydealer;3617392638703;FR-96X-25-10180;;"Music Release";Stream;1;RUB;0.007053830269
+01/09/2025;01/07/2025;SberZvuk;"Russian Federation";"DARKI MUZIK";romanastasi;"Любовь с ядом";"Любовь с ядом";3617397576758;FR-X45-25-51984;;"Music Release";Stream;1;RUB;0.085036292169
+01/07/2025;01/07/2025;"YouTube UGC";Belarus;"DARKI MUZIK";romanastasi;RSTYLE;Потеряйся;3617398035841;FR-X45-25-86379;;"Music Release";Stream;1;RUB;0.010069404640
+01/07/2025;01/07/2025;"YouTube UGC";Italy;"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;1;RUB;0.009073732500
+01/08/2025;01/06/2025;TikTok;Kazakhstan;"DARKI MUZIK";romanastasi;"Любовь с ядом";"Любовь с ядом";3617397576758;FR-X45-25-51984;;"Music Release";Creation;1;RUB;0.066265152634
+01/08/2025;01/08/2025;"YouTube UGC";Poland;"DARKI MUZIK";romanastasi;RSTYLE;ПроценТЫ;3617398035841;FR-X45-25-86377;;"Music Release";Stream;1;RUB;0.019852635083
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;ИГРА;3617398035841;FR-X45-25-86375;;"Music Release";Stream;27;RUB;0.495776948571
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;ПроценТЫ;3617398035841;FR-X45-25-86377;;"Music Release";Stream;52;RUB;1.089849892352
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"DARKI MUZIK";romanastasi;"Любовь с ядом";"Любовь с ядом";3617397576758;FR-X45-25-51984;;"Music Release";Stream;351;RUB;7.498020774918
+01/07/2025;01/06/2025;"Facebook / Instagram";"Viet Nam";"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;1;RUB;0.000942224138
+01/09/2025;01/07/2025;"Facebook / Instagram";"Russian Federation";"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Creation;6;RUB;0.162611774579
+01/09/2025;01/08/2025;SberZvuk;"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Падать;3617398035841;FR-X45-25-86380;;"Music Release";Stream;5;RUB;0.417806028087
+01/07/2025;01/07/2025;"YouTube Official Content";"Moldova, Republic Of";"DARKI MUZIK";romanastasi;RSTYLE;ИГРА;3617398035841;FR-X45-25-86375;;"Music Release";Stream;3;RUB;0.044999433142
+01/08/2025;01/07/2025;Yandex;Uzbekistan;"DARKI MUZIK";romanastasi;RSTYLE;Падать;3617398035841;FR-X45-25-86380;;"Music Release";Stream;1;RUB;0.003823270455
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;18;RUB;1.401691535012
+01/09/2025;01/08/2025;"UMA (Vkontakte)";Kazakhstan;"DARKI MUZIK";romanastasi;RSTYLE;Падать;3617398035841;FR-X45-25-86380;;"Music Release";Stream;1;RUB;0.004200000039
+01/07/2025;01/07/2025;"YouTube UGC";Kazakhstan;"DARKI MUZIK";romanastasi;RSTYLE;Падать;3617398035841;FR-X45-25-86380;;"Music Release";Stream;1;RUB;0.006627735754
+01/07/2025;01/07/2025;"YouTube Official Content";"United Kingdom";"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;1;RUB;0.013438436054
+01/08/2025;01/06/2025;"Facebook / Instagram";Worldwide;"DARKI MUZIK";romanastasi;"Любовь с ядом";"Любовь с ядом";3617397576758;FR-X45-25-51984;;"Music Release";Creation;6;RUB;0.128492557675
+01/07/2025;01/07/2025;"YouTube Official Content";Poland;"DARKI MUZIK";romanastasi;RSTYLE;Потеряйся;3617398035841;FR-X45-25-86379;;"Music Release";Stream;1;RUB;0.063303901868
+01/09/2025;01/08/2025;Yandex;Belarus;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;2;RUB;0.043278597666
+01/09/2025;01/08/2025;SberZvuk;"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Двигай;3617398035841;FR-X45-25-86378;;"Music Release";Stream;2;RUB;0.167122411266
+01/07/2025;01/07/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;ПроценТЫ;3617398035841;FR-X45-25-86377;;"Music Release";Stream;1;RUB;0.070161840006
+01/09/2025;01/07/2025;TikTok;Bulgaria;"DARKI MUZIK";romanastasi;RSTYLE;Падать;3617398035841;FR-X45-25-86380;;"Music Release";Creation;1;RUB;0.067899940593
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";romanastasi;РЕКУ;РЕКУ;3617666229101;DG-A0R-24-60333;;"Music Release";Stream;23;RUB;0.096600000039
+01/08/2025;01/07/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;5;RUB;0.443994326974
+01/07/2025;01/07/2025;"YouTube Official Content";Ukraine;"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;3;RUB;0.075810060706
+01/08/2025;01/08/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Двигай;3617398035841;FR-X45-25-86378;;"Music Release";Stream;1;RUB;0.105813679974
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;ИГРА;3617398035841;FR-X45-25-86375;;"Music Release";Stream;37;RUB;0.491812970905
+01/08/2025;01/08/2025;"YouTube UGC";Ukraine;"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;1;RUB;0.012208606410
+01/07/2025;01/06/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";romanastasi;Moneydealer;Moneydealer;3617392638703;FR-96X-25-10180;;"Music Release";Stream;17;RUB;0.071400000000
+01/07/2025;01/06/2025;"Facebook / Instagram";Indonesia;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;1;RUB;0.000490471626
+01/09/2025;01/07/2025;TikTok;Germany;"DARKI MUZIK";romanastasi;"Любовь с ядом";"Любовь с ядом";3617397576758;FR-X45-25-51984;;"Music Release";Creation;1;RUB;0.067899940593
+01/07/2025;01/06/2025;Yandex;"Russian Federation";"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;97;RUB;2.204137836586
+01/07/2025;01/06/2025;"Facebook / Instagram";"Czech Republic";"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;4;RUB;0.004465889558
+01/07/2025;01/07/2025;"YouTube Official Content";Ukraine;"DARKI MUZIK";romanastasi;RSTYLE;ИГРА;3617398035841;FR-X45-25-86375;;"Music Release";Stream;16;RUB;0.762105708195
+01/07/2025;01/06/2025;"Facebook / Instagram";Kazakhstan;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;2;RUB;0.000012911285
+01/07/2025;01/06/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;10;RUB;0.756287507926
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";romanastasi;Moneydealer;Moneydealer;3617392638703;FR-96X-25-10180;;"Music Release";Stream;12;RUB;0.197743503948
+01/07/2025;01/07/2025;"YouTube Official Content";Kazakhstan;"DARKI MUZIK";romanastasi;RSTYLE;ИГРА;3617398035841;FR-X45-25-86375;;"Music Release";Stream;19;RUB;0.150733320806
+01/07/2025;01/07/2025;"YouTube Official Content";"Moldova, Republic Of";"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;1;RUB;0.145980980542
+01/09/2025;01/09/2025;"YouTube Official Content";Latvia;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;3;RUB;0.727420561109
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;31;RUB;0.466612970905
+01/08/2025;01/07/2025;"Facebook / Instagram";Kazakhstan;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;4;RUB;0.000025025465
+01/08/2025;01/06/2025;"Facebook / Instagram";"Russian Federation";"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Creation;7;RUB;0.211009831558
+01/07/2025;01/06/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";romanastasi;"Любовь с ядом";"Любовь с ядом";3617397576758;FR-X45-25-51984;;"Music Release";Stream;1;RUB;0.058239277351
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Двигай;3617398035841;FR-X45-25-86378;;"Music Release";Stream;63;RUB;1.347889105226
+01/09/2025;01/07/2025;SberZvuk;"Russian Federation";"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;5;RUB;0.085064080962
+01/08/2025;01/07/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;ПроценТЫ;3617398035841;FR-X45-25-86377;;"Music Release";Stream;12;RUB;1.065586384769
+01/07/2025;01/07/2025;"YouTube Official Content";Kazakhstan;"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;2;RUB;0.009027172801
+01/08/2025;01/08/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Angels;3617398035841;FR-X45-25-86381;;"Music Release";Stream;2;RUB;0.211627360023
+01/09/2025;01/08/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;10;RUB;1.014526114385
+01/07/2025;01/07/2025;"YouTube UGC";Belarus;"DARKI MUZIK";romanastasi;RSTYLE;Двигай;3617398035841;FR-X45-25-86378;;"Music Release";Stream;1;RUB;0.010069404640
+01/07/2025;01/07/2025;"YouTube UGC";Ukraine;"DARKI MUZIK";romanastasi;RSTYLE;Двигай;3617398035841;FR-X45-25-86378;;"Music Release";Stream;3;RUB;0.011670439975
+01/08/2025;01/08/2025;"YouTube UGC";Ukraine;"DARKI MUZIK";romanastasi;RSTYLE;Двигай;3617398035841;FR-X45-25-86378;;"Music Release";Stream;1;RUB;0.012208606410
+01/07/2025;01/07/2025;"YouTube Official Content";Belarus;"DARKI MUZIK";romanastasi;RSTYLE;ИГРА;3617398035841;FR-X45-25-86375;;"Music Release";Stream;1;RUB;0.009868496207
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";romanastasi;"Любовь с ядом";"Любовь с ядом";3617397576758;FR-X45-25-51984;;"Music Release";Stream;75;RUB;0.746874425636
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"DARKI MUZIK";romanastasi;Moneydealer;Moneydealer;3617392638703;FR-96X-25-10180;;"Music Release";Stream;57;RUB;1.221357488062
+01/07/2025;01/07/2025;"YouTube UGC";Poland;"DARKI MUZIK";romanastasi;RSTYLE;Двигай;3617398035841;FR-X45-25-86378;;"Music Release";Stream;1;RUB;0.009822694383
+01/09/2025;01/08/2025;Yandex;Kazakhstan;"DARKI MUZIK";romanastasi;"Любовь с ядом";"Любовь с ядом";3617397576758;FR-X45-25-51984;;"Music Release";Stream;1;RUB;0.021639298911
+01/08/2025;01/08/2025;"Apple Music";Kyrgyzstan;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;1;RUB;0.216318302336
+01/09/2025;01/07/2025;"Facebook / Instagram";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Creation;6;RUB;0.162611774579
+01/07/2025;01/07/2025;"YouTube UGC";Belarus;"DARKI MUZIK";romanastasi;RSTYLE;"На двоих";3617398035841;FR-X45-25-86376;;"Music Release";Stream;1;RUB;0.010069404640
+01/07/2025;01/07/2025;"YouTube Official Content";Ireland;"DARKI MUZIK";romanastasi;RSTYLE;ИГРА;3617398035841;FR-X45-25-86375;;"Music Release";Stream;1;RUB;0.005298063639
+01/09/2025;01/09/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;ПроценТЫ;3617398035841;FR-X45-25-86377;;"Music Release";Stream;2;RUB;0.178605279994
+01/09/2025;01/07/2025;TikTok;"United States";"DARKI MUZIK";romanastasi;RSTYLE;"На двоих";3617398035841;FR-X45-25-86376;;"Music Release";Creation;1;RUB;0.067899940593
+01/07/2025;01/06/2025;"Facebook / Instagram";Turkmenistan;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;1;RUB;0.000038719115
+01/08/2025;01/01/2025;SberZvuk;"Russian Federation";"DARKI MUZIK";romanastasi;РЕКУ;РЕКУ;3617666229101;DG-A0R-24-60333;;"Music Release";Stream;1;RUB;0.311202413162
+01/07/2025;01/07/2025;"YouTube UGC";Belarus;"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;1;RUB;0.010069404640
+01/09/2025;01/07/2025;"Facebook / Instagram";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Потеряйся;3617398035841;FR-X45-25-86379;;"Music Release";Creation;5;RUB;0.135509812150
+01/08/2025;01/07/2025;Yandex;Kazakhstan;"DARKI MUZIK";romanastasi;"Любовь с ядом";"Любовь с ядом";3617397576758;FR-X45-25-51984;;"Music Release";Stream;2;RUB;0.042854648691
+01/07/2025;01/07/2025;"Apple Music";Australia;"DARKI MUZIK";romanastasi;RSTYLE;ПроценТЫ;3617398035841;FR-X45-25-86377;;"Music Release";Stream;1;RUB;0.260019928185
+01/07/2025;01/06/2025;"UMA (Vkontakte)";Belarus;"DARKI MUZIK";romanastasi;РЕКУ;РЕКУ;3617666229101;DG-A0R-24-60333;;"Music Release";Stream;2;RUB;0.008400000000
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Moldova, Republic Of";"DARKI MUZIK";romanastasi;RSTYLE;ИГРА;3617398035841;FR-X45-25-86375;;"Music Release";Stream;1;RUB;0.004200000038
+01/08/2025;01/07/2025;Yandex;Belarus;"DARKI MUZIK";romanastasi;"Любовь с ядом";"Любовь с ядом";3617397576758;FR-X45-25-51984;;"Music Release";Stream;6;RUB;0.128563946147
+01/09/2025;01/07/2025;TikTok;Bulgaria;"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Creation;1;RUB;0.067899940593
+01/07/2025;01/07/2025;"YouTube UGC";Latvia;"DARKI MUZIK";romanastasi;RSTYLE;Падать;3617398035841;FR-X45-25-86380;;"Music Release";Stream;1;RUB;0.005469082963
+01/09/2025;01/08/2025;"Facebook / Instagram";Italy;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;1;RUB;0.001611986623
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;ПроценТЫ;3617398035841;FR-X45-25-86377;;"Music Release";Stream;31;RUB;0.466612970905
+01/09/2025;01/07/2025;"Facebook / Instagram";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;"На двоих";3617398035841;FR-X45-25-86376;;"Music Release";Creation;12;RUB;0.325223549158
+01/08/2025;01/07/2025;"Facebook / Instagram";"Czech Republic";"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;1;RUB;0.001082347447
+01/09/2025;01/07/2025;TikTok;"United States";"DARKI MUZIK";romanastasi;RSTYLE;Потеряйся;3617398035841;FR-X45-25-86379;;"Music Release";Creation;1;RUB;0.067899940593
+01/09/2025;01/08/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;ИГРА;3617398035841;FR-X45-25-86375;;"Music Release";Stream;2;RUB;0.254975263278
+01/09/2025;01/07/2025;SberZvuk;"Russian Federation";"DARKI MUZIK";romanastasi;РЕКУ;РЕКУ;3617666229101;DG-A0R-24-60333;;"Music Release";Stream;1;RUB;0.085036292169
+01/07/2025;01/06/2025;Yandex;Kazakhstan;"DARKI MUZIK";romanastasi;РЕКУ;РЕКУ;3617666229101;DG-A0R-24-60333;;"Music Release";Stream;2;RUB;0.043989140298
+01/08/2025;01/08/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";romanastasi;РЕКУ;РЕКУ;3617666229101;DG-A0R-24-60333;;"Music Release";Stream;1;RUB;0.105813679974
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Потеряйся;3617398035841;FR-X45-25-86379;;"Music Release";Stream;9;RUB;0.185143503911
+01/08/2025;01/08/2025;"YouTube UGC";Ukraine;"DARKI MUZIK";romanastasi;RSTYLE;Падать;3617398035841;FR-X45-25-86380;;"Music Release";Stream;1;RUB;0.012208606410
+01/09/2025;01/08/2025;Yandex;Belarus;"DARKI MUZIK";romanastasi;RSTYLE;ИГРА;3617398035841;FR-X45-25-86375;;"Music Release";Stream;1;RUB;0.021639298911
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Почему?;3617398035841;FR-X45-25-86382;;"Music Release";Stream;6;RUB;0.025200000000
+01/07/2025;01/07/2025;"YouTube UGC";France;"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;1;RUB;0.005435577222
+01/08/2025;01/07/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Двигай;3617398035841;FR-X45-25-86378;;"Music Release";Stream;8;RUB;0.710390923204
+01/07/2025;01/05/2025;"Facebook / Instagram";"Russian Federation";"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Creation;12;RUB;0.389116701579
+01/07/2025;01/06/2025;Yandex;Belarus;"DARKI MUZIK";romanastasi;РЕКУ;РЕКУ;3617666229101;DG-A0R-24-60333;;"Music Release";Stream;1;RUB;0.021994570186
+01/07/2025;01/07/2025;"YouTube UGC";"Korea, Republic Of";"DARKI MUZIK";romanastasi;RSTYLE;Падать;3617398035841;FR-X45-25-86380;;"Music Release";Stream;1;RUB;0.002139144370
+01/08/2025;01/07/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;30;RUB;2.634865062039
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Потеряйся;3617398035841;FR-X45-25-86379;;"Music Release";Stream;22;RUB;0.387580454327
+01/09/2025;01/09/2025;"YouTube Official Content";Ukraine;"DARKI MUZIK";romanastasi;RSTYLE;Потеряйся;3617398035841;FR-X45-25-86379;;"Music Release";Stream;1;RUB;0.053028463323
+01/07/2025;01/07/2025;"YouTube Official Content";"United Kingdom";"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;1;RUB;0.118399215816
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;ПроценТЫ;3617398035841;FR-X45-25-86377;;"Music Release";Stream;39;RUB;1.342548031176
+01/08/2025;01/07/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";romanastasi;"Любовь с ядом";"Любовь с ядом";3617397576758;FR-X45-25-51984;;"Music Release";Stream;40;RUB;4.179401000882
+01/08/2025;01/08/2025;"Apple Music";Kyrgyzstan;"DARKI MUZIK";romanastasi;Moneydealer;Moneydealer;3617392638703;FR-96X-25-10180;;"Music Release";Stream;1;RUB;0.216318302336
+01/09/2025;01/08/2025;"Facebook / Instagram";India;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;1;RUB;0.000802592350
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;ИГРА;3617398035841;FR-X45-25-86375;;"Music Release";Stream;35;RUB;1.178404527228
+01/07/2025;01/07/2025;"YouTube Official Content";France;"DARKI MUZIK";romanastasi;РЕКУ;РЕКУ;3617666229101;DG-A0R-24-60333;;"Music Release";Stream;1;RUB;0.239481571168
+01/07/2025;01/04/2025;"Facebook / Instagram";Worldwide;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Creation;12;RUB;0.261636961795
+01/09/2025;01/07/2025;TikTok;"United States";"DARKI MUZIK";romanastasi;RSTYLE;Падать;3617398035841;FR-X45-25-86380;;"Music Release";Creation;1;RUB;0.067899940593
+01/08/2025;01/07/2025;NetEase;"China Mainland";"DARKI MUZIK";romanastasi;РЕКУ;РЕКУ;3617666229101;DG-A0R-24-60333;;"Music Release";Stream;1;RUB;0.033716300086
+01/07/2025;01/07/2025;"YouTube UGC";"Moldova, Republic Of";"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;4;RUB;0.010849503133
+01/08/2025;01/07/2025;Yandex;Kazakhstan;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;2;RUB;0.042854648691
+01/07/2025;01/07/2025;"YouTube UGC";"Korea, Republic Of";"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;2;RUB;0.008635850260
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;ПроценТЫ;3617398035841;FR-X45-25-86377;;"Music Release";Stream;75;RUB;1.620588722502
+01/07/2025;01/07/2025;"YouTube Official Content";"United Kingdom";"DARKI MUZIK";romanastasi;RSTYLE;ИГРА;3617398035841;FR-X45-25-86375;;"Music Release";Stream;1;RUB;0.138113469778
+01/07/2025;01/06/2025;"UMA (Odnoklassniki)";"Russian Federation";"DARKI MUZIK";romanastasi;"Любовь с ядом";"Любовь с ядом";3617397576758;FR-X45-25-51984;;"Music Release";Stream;1;RUB;0.004200000000
+01/07/2025;01/07/2025;"YouTube Official Content";Lithuania;"DARKI MUZIK";romanastasi;RSTYLE;ИГРА;3617398035841;FR-X45-25-86375;;"Music Release";Stream;1;RUB;0.305127535489
+01/08/2025;01/08/2025;"YouTube UGC";Ukraine;"DARKI MUZIK";romanastasi;RSTYLE;Потеряйся;3617398035841;FR-X45-25-86379;;"Music Release";Stream;1;RUB;0.012208606410
+01/09/2025;01/08/2025;SberZvuk;"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;ИГРА;3617398035841;FR-X45-25-86375;;"Music Release";Stream;2;RUB;0.167122411266
+01/07/2025;01/07/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;2;RUB;0.203607040040
+01/07/2025;01/06/2025;"Facebook / Instagram";Jordan;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;3;RUB;0.003523660555
+01/08/2025;01/07/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;ИГРА;3617398035841;FR-X45-25-86375;;"Music Release";Stream;2;RUB;0.177597730820
+01/08/2025;01/07/2025;"Facebook / Instagram";Ukraine;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;4;RUB;0.002277319535
+01/08/2025;01/07/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;"На двоих";3617398035841;FR-X45-25-86376;;"Music Release";Stream;7;RUB;0.656720547607
+01/09/2025;01/08/2025;SberZvuk;"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Angels;3617398035841;FR-X45-25-86381;;"Music Release";Stream;2;RUB;0.167122411266
+01/07/2025;01/07/2025;"YouTube Official Content";Germany;"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;3;RUB;0.342077550025
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;"На двоих";3617398035841;FR-X45-25-86376;;"Music Release";Stream;71;RUB;1.827958106912
+01/07/2025;01/07/2025;"YouTube UGC";Chile;"DARKI MUZIK";romanastasi;RSTYLE;"На двоих";3617398035841;FR-X45-25-86376;;"Music Release";Stream;1;RUB;0.015703127044
+01/08/2025;01/07/2025;"Facebook / Instagram";Poland;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;1;RUB;0.001307576854
+01/08/2025;01/07/2025;"Facebook / Instagram";Sweden;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;2;RUB;0.006131225046
+01/07/2025;01/07/2025;"YouTube Official Content";Canada;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;1;RUB;0.566210896181
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;17;RUB;1.102804527228
+01/07/2025;01/07/2025;"Apple Music";Australia;"DARKI MUZIK";romanastasi;"Любовь с ядом";"Любовь с ядом";3617397576758;FR-X45-25-51984;;"Music Release";Stream;1;RUB;0.260019928185
+01/09/2025;01/09/2025;"YouTube UGC";Germany;"DARKI MUZIK";romanastasi;RSTYLE;"На двоих";3617398035841;FR-X45-25-86376;;"Music Release";Stream;1;RUB;0.011253328556
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Angels;3617398035841;FR-X45-25-86381;;"Music Release";Stream;1;RUB;0.004200000039
+01/07/2025;01/07/2025;"YouTube Official Content";Germany;"DARKI MUZIK";romanastasi;RSTYLE;Потеряйся;3617398035841;FR-X45-25-86379;;"Music Release";Stream;1;RUB;0.303535842559
+01/08/2025;01/07/2025;Yandex;Turkmenistan;"DARKI MUZIK";romanastasi;RSTYLE;Падать;3617398035841;FR-X45-25-86380;;"Music Release";Stream;3;RUB;0.011469811290
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Падать;3617398035841;FR-X45-25-86380;;"Music Release";Stream;7;RUB;0.029400000039
+01/07/2025;01/06/2025;Yandex;"Russian Federation";"DARKI MUZIK";romanastasi;РЕКУ;РЕКУ;3617666229101;DG-A0R-24-60333;;"Music Release";Stream;18;RUB;0.412422437190
+01/08/2025;01/08/2025;"YouTube Official Content";Ukraine;"DARKI MUZIK";romanastasi;RSTYLE;ИГРА;3617398035841;FR-X45-25-86375;;"Music Release";Stream;1;RUB;0.032843295168
+01/09/2025;01/09/2025;"YouTube Official Content";Italy;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;6;RUB;0.576424419065
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"DARKI MUZIK";romanastasi;РЕКУ;РЕКУ;3617666229101;DG-A0R-24-60333;;"Music Release";Stream;18;RUB;0.332879676622
+01/09/2025;01/08/2025;Yandex;Kazakhstan;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;1;RUB;0.021639298911
+01/07/2025;01/07/2025;"YouTube UGC";Kazakhstan;"DARKI MUZIK";romanastasi;RSTYLE;Потеряйся;3617398035841;FR-X45-25-86379;;"Music Release";Stream;1;RUB;0.006627735754
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;80;RUB;1.729461093730
+01/07/2025;01/07/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;"На двоих";3617398035841;FR-X45-25-86376;;"Music Release";Stream;1;RUB;0.070161840006
+01/07/2025;01/07/2025;"YouTube UGC";Latvia;"DARKI MUZIK";romanastasi;RSTYLE;Потеряйся;3617398035841;FR-X45-25-86379;;"Music Release";Stream;1;RUB;0.005469082963
+01/07/2025;01/06/2025;"Facebook / Instagram";Denmark;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;2;RUB;0.010248297785
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";romanastasi;РЕКУ;РЕКУ;3617666229101;DG-A0R-24-60333;;"Music Release";Stream;13;RUB;0.054600000038
+01/08/2025;01/07/2025;"Facebook / Instagram";"United Arab Emirates";"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;1;RUB;0.003716270273
+01/08/2025;01/07/2025;Yandex;Belarus;"DARKI MUZIK";romanastasi;RSTYLE;"На двоих";3617398035841;FR-X45-25-86376;;"Music Release";Stream;1;RUB;0.021427324346
+01/09/2025;01/07/2025;TikTok;Bulgaria;"DARKI MUZIK";romanastasi;RSTYLE;Потеряйся;3617398035841;FR-X45-25-86379;;"Music Release";Creation;1;RUB;0.067899940593
+01/09/2025;01/09/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Падать;3617398035841;FR-X45-25-86380;;"Music Release";Stream;2;RUB;0.178605279994
+01/08/2025;01/07/2025;"Facebook / Instagram";"United Kingdom";"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;5;RUB;0.018737760650
+01/09/2025;01/08/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Потеряйся;3617398035841;FR-X45-25-86379;;"Music Release";Stream;3;RUB;0.298984364310
+01/07/2025;01/07/2025;"YouTube UGC";Kazakhstan;"DARKI MUZIK";romanastasi;RSTYLE;Двигай;3617398035841;FR-X45-25-86378;;"Music Release";Stream;1;RUB;0.006627735754
+01/07/2025;01/07/2025;"YouTube UGC";Belarus;"DARKI MUZIK";romanastasi;RSTYLE;Падать;3617398035841;FR-X45-25-86380;;"Music Release";Stream;1;RUB;0.010069404640
+01/07/2025;01/07/2025;"YouTube UGC";"United Kingdom";"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;1;RUB;0.003833056426
+01/09/2025;01/06/2025;"UMA (Vkontakte)";Worldwide;"DARKI MUZIK";romanastasi;РЕКУ;РЕКУ;3617666229101;DG-A0R-24-60333;;"Music Release";Stream;1;RUB;0.191210265970
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";romanastasi;Moneydealer;Moneydealer;3617392638703;FR-96X-25-10180;;"Music Release";Stream;4;RUB;0.016800000000
+01/09/2025;01/06/2025;"UMA (Vkontakte)";Worldwide;"DARKI MUZIK";romanastasi;Moneydealer;Moneydealer;3617392638703;FR-96X-25-10180;;"Music Release";Stream;1;RUB;0.030770864951
+01/07/2025;01/07/2025;"Apple Music";Turkey;"DARKI MUZIK";romanastasi;RSTYLE;"На двоих";3617398035841;FR-X45-25-86376;;"Music Release";Stream;2;RUB;0.074264178444
+01/09/2025;01/08/2025;SberZvuk;"Russian Federation";"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;31;RUB;2.590397374081
+01/07/2025;01/07/2025;"YouTube UGC";Ukraine;"DARKI MUZIK";romanastasi;RSTYLE;Падать;3617398035841;FR-X45-25-86380;;"Music Release";Stream;3;RUB;0.011670439975
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Двигай;3617398035841;FR-X45-25-86378;;"Music Release";Stream;39;RUB;0.332006485472
+01/08/2025;01/07/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";romanastasi;РЕКУ;РЕКУ;3617666229101;DG-A0R-24-60333;;"Music Release";Stream;1;RUB;0.151543503911
+01/07/2025;01/06/2025;"Facebook / Instagram";Finland;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;2;RUB;0.006840799512
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Падать;3617398035841;FR-X45-25-86380;;"Music Release";Stream;118;RUB;1.433639239783
+01/07/2025;01/07/2025;"YouTube Official Content";Italy;"DARKI MUZIK";romanastasi;RSTYLE;ИГРА;3617398035841;FR-X45-25-86375;;"Music Release";Stream;2;RUB;0.311244184082
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Почему?;3617398035841;FR-X45-25-86382;;"Music Release";Stream;7;RUB;0.133778267878
+01/07/2025;01/07/2025;"YouTube Official Content";France;"DARKI MUZIK";romanastasi;RSTYLE;ИГРА;3617398035841;FR-X45-25-86375;;"Music Release";Stream;1;RUB;0.115215829958
+01/07/2025;01/07/2025;"YouTube UGC";Poland;"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;6;RUB;0.072559217290
+01/09/2025;01/06/2025;"UMA (Vkontakte)";Worldwide;"DARKI MUZIK";romanastasi;"Любовь с ядом";"Любовь с ядом";3617397576758;FR-X45-25-51984;;"Music Release";Stream;1;RUB;0.024914706998
+01/07/2025;01/06/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";romanastasi;"Любовь с ядом";"Любовь с ядом";3617397576758;FR-X45-25-51984;;"Music Release";Stream;122;RUB;0.512400000000
+01/08/2025;01/08/2025;"YouTube Official Content";Ukraine;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;1;RUB;0.031269409271
+01/09/2025;01/07/2025;TikTok;"United States";"DARKI MUZIK";romanastasi;RSTYLE;ПроценТЫ;3617398035841;FR-X45-25-86377;;"Music Release";Creation;1;RUB;0.067899940593
+01/07/2025;01/05/2025;TikTok;Germany;"DARKI MUZIK";romanastasi;Moneydealer;Moneydealer;3617392638703;FR-96X-25-10180;;"Music Release";Creation;1;RUB;0.069745987130
+01/07/2025;01/05/2025;"Facebook / Instagram";Latvia;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Creation;6;RUB;0.133144014990
+01/09/2025;01/07/2025;TikTok;Bulgaria;"DARKI MUZIK";romanastasi;RSTYLE;Двигай;3617398035841;FR-X45-25-86378;;"Music Release";Creation;1;RUB;0.067899940593
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;130;RUB;2.801123890856
+01/07/2025;01/06/2025;"Facebook / Instagram";Germany;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;7;RUB;0.020554686476
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Почему?;3617398035841;FR-X45-25-86382;;"Music Release";Stream;29;RUB;0.619360077258
+01/08/2025;01/07/2025;Yandex;Kyrgyzstan;"DARKI MUZIK";romanastasi;RSTYLE;ПроценТЫ;3617398035841;FR-X45-25-86377;;"Music Release";Stream;1;RUB;0.021427324346
+01/09/2025;01/09/2025;"YouTube Official Content";Germany;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;42;RUB;16.270134650200
+01/09/2025;01/08/2025;"UMA (Vkontakte)";Belarus;"DARKI MUZIK";romanastasi;РЕКУ;РЕКУ;3617666229101;DG-A0R-24-60333;;"Music Release";Stream;1;RUB;0.004200000039
+01/07/2025;01/07/2025;"YouTube Official Content";Georgia;"DARKI MUZIK";romanastasi;RSTYLE;Потеряйся;3617398035841;FR-X45-25-86379;;"Music Release";Stream;1;RUB;0.020100807877
+01/07/2025;01/07/2025;"YouTube Official Content";Germany;"DARKI MUZIK";romanastasi;RSTYLE;ИГРА;3617398035841;FR-X45-25-86375;;"Music Release";Stream;4;RUB;2.351930956463
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;"На двоих";3617398035841;FR-X45-25-86376;;"Music Release";Stream;164;RUB;3.666488131354
+01/08/2025;01/08/2025;"YouTube Official Content";Kazakhstan;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;1;RUB;0.030690774796
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Angels;3617398035841;FR-X45-25-86381;;"Music Release";Stream;31;RUB;0.679818779914
+01/07/2025;01/06/2025;Yandex;Kazakhstan;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;1;RUB;0.021994570186
+01/07/2025;01/07/2025;"YouTube UGC";Japan;"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;1;RUB;0.018602234418
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;ИГРА;3617398035841;FR-X45-25-86375;;"Music Release";Stream;96;RUB;2.070562533906
+01/09/2025;01/08/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Падать;3617398035841;FR-X45-25-86380;;"Music Release";Stream;17;RUB;1.694244730938
+01/07/2025;01/07/2025;"YouTube Official Content";Kazakhstan;"DARKI MUZIK";romanastasi;RSTYLE;Двигай;3617398035841;FR-X45-25-86378;;"Music Release";Stream;2;RUB;0.014120590220
+01/07/2025;01/06/2025;Yandex;Uzbekistan;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;1;RUB;0.021994570186
+01/07/2025;01/07/2025;"YouTube Official Content";Romania;"DARKI MUZIK";romanastasi;RSTYLE;Потеряйся;3617398035841;FR-X45-25-86379;;"Music Release";Stream;1;RUB;0.050388450664
+01/08/2025;01/07/2025;Yandex;Kyrgyzstan;"DARKI MUZIK";romanastasi;RSTYLE;ИГРА;3617398035841;FR-X45-25-86375;;"Music Release";Stream;1;RUB;0.021427324346
+01/08/2025;01/07/2025;"Facebook / Instagram";"United States";"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;7;RUB;0.043794467406
+01/07/2025;01/06/2025;"Facebook / Instagram";Ukraine;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;3;RUB;0.001761830278
+01/09/2025;01/07/2025;TikTok;France;"DARKI MUZIK";romanastasi;RSTYLE;ИГРА;3617398035841;FR-X45-25-86375;;"Music Release";Creation;1;RUB;0.067899940593
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;101;RUB;2.043994591766
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Двигай;3617398035841;FR-X45-25-86378;;"Music Release";Stream;34;RUB;0.700342512966
+01/09/2025;01/08/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Двигай;3617398035841;FR-X45-25-86378;;"Music Release";Stream;9;RUB;0.896953092854
+01/09/2025;01/07/2025;TikTok;Canada;"DARKI MUZIK";romanastasi;"Любовь с ядом";"Любовь с ядом";3617397576758;FR-X45-25-51984;;"Music Release";Creation;1;RUB;0.067899940593
+01/07/2025;01/07/2025;"YouTube UGC";Latvia;"DARKI MUZIK";romanastasi;RSTYLE;Двигай;3617398035841;FR-X45-25-86378;;"Music Release";Stream;1;RUB;0.005469082963
+01/09/2025;01/07/2025;TikTok;Canada;"DARKI MUZIK";romanastasi;RSTYLE;"На двоих";3617398035841;FR-X45-25-86376;;"Music Release";Creation;1;RUB;0.067899940593
+01/07/2025;01/07/2025;"YouTube UGC";"United States";"DARKI MUZIK";romanastasi;RSTYLE;"На двоих";3617398035841;FR-X45-25-86376;;"Music Release";Stream;1;RUB;0.085821739818
+01/09/2025;01/08/2025;Yandex;Belarus;"DARKI MUZIK";romanastasi;RSTYLE;Потеряйся;3617398035841;FR-X45-25-86379;;"Music Release";Stream;1;RUB;0.021639298911
+01/07/2025;01/07/2025;"YouTube Official Content";Kazakhstan;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;1;RUB;0.006480464128
+01/07/2025;01/06/2025;"Facebook / Instagram";Japan;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;1;RUB;0.003052546054
+01/09/2025;01/08/2025;SberZvuk;"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;25;RUB;2.089030140360
+01/09/2025;01/07/2025;SberZvuk;"Russian Federation";"DARKI MUZIK";romanastasi;Moneydealer;Moneydealer;3617392638703;FR-96X-25-10180;;"Music Release";Stream;1;RUB;0.085036292169
+01/08/2025;01/07/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Потеряйся;3617398035841;FR-X45-25-86379;;"Music Release";Stream;3;RUB;0.266396596155
+01/09/2025;01/07/2025;"Facebook / Instagram";Latvia;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Creation;6;RUB;0.124408568761
+01/08/2025;01/07/2025;Yandex;Uzbekistan;"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;1;RUB;0.003823270455
+01/09/2025;01/08/2025;SberZvuk;"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;"На двоих";3617398035841;FR-X45-25-86376;;"Music Release";Stream;37;RUB;3.091764607802
+01/07/2025;01/07/2025;"YouTube UGC";Kazakhstan;"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;47;RUB;0.239144820913
+01/07/2025;01/07/2025;"YouTube UGC";Estonia;"DARKI MUZIK";romanastasi;RSTYLE;Двигай;3617398035841;FR-X45-25-86378;;"Music Release";Stream;1;RUB;0.006496251048
+01/09/2025;01/08/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;ПроценТЫ;3617398035841;FR-X45-25-86377;;"Music Release";Stream;19;RUB;1.876474963438
+01/08/2025;01/06/2025;TikTok;Germany;"DARKI MUZIK";romanastasi;"Любовь с ядом";"Любовь с ядом";3617397576758;FR-X45-25-51984;;"Music Release";Creation;3;RUB;0.198795457829
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Потеряйся;3617398035841;FR-X45-25-86379;;"Music Release";Stream;20;RUB;0.084000000000
+01/07/2025;01/07/2025;"YouTube UGC";Poland;"DARKI MUZIK";romanastasi;RSTYLE;Потеряйся;3617398035841;FR-X45-25-86379;;"Music Release";Stream;1;RUB;0.009822694383
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Падать;3617398035841;FR-X45-25-86380;;"Music Release";Stream;23;RUB;0.480007049521
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Angels;3617398035841;FR-X45-25-86381;;"Music Release";Stream;19;RUB;0.393449854188
+01/08/2025;01/07/2025;"Facebook / Instagram";Germany;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;2;RUB;0.005693278926
+01/07/2025;01/07/2025;"YouTube UGC";Germany;"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;14;RUB;0.159212604789
+01/07/2025;01/07/2025;"YouTube Official Content";Latvia;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;5;RUB;0.620535796058
+01/07/2025;01/07/2025;"YouTube UGC";"Korea, Republic Of";"DARKI MUZIK";romanastasi;RSTYLE;"На двоих";3617398035841;FR-X45-25-86376;;"Music Release";Stream;1;RUB;0.002139144370
+01/08/2025;01/08/2025;"YouTube UGC";Ukraine;"DARKI MUZIK";romanastasi;RSTYLE;"На двоих";3617398035841;FR-X45-25-86376;;"Music Release";Stream;2;RUB;0.042730120155
+01/07/2025;01/07/2025;"YouTube Official Content";Poland;"DARKI MUZIK";romanastasi;RSTYLE;ИГРА;3617398035841;FR-X45-25-86375;;"Music Release";Stream;2;RUB;0.089862435347
+01/07/2025;01/06/2025;"Facebook / Instagram";Poland;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;2;RUB;0.002697603638
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"DARKI MUZIK";romanastasi;Moneydealer;Moneydealer;3617392638703;FR-96X-25-10180;;"Music Release";Stream;45;RUB;0.938374800286
+01/07/2025;01/07/2025;"YouTube UGC";"United States";"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;3;RUB;0.051843712731
+01/09/2025;01/07/2025;TikTok;Belarus;"DARKI MUZIK";romanastasi;RSTYLE;Падать;3617398035841;FR-X45-25-86380;;"Music Release";Creation;1;RUB;0.067899940593
+01/07/2025;01/06/2025;"Facebook / Instagram";Italy;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;1;RUB;0.001529500849
+01/07/2025;01/04/2025;"Facebook / Instagram";Worldwide;"DARKI MUZIK";romanastasi;Moneydealer;Moneydealer;3617392638703;FR-96X-25-10180;;"Music Release";Creation;6;RUB;0.130818480898
+01/08/2025;01/08/2025;"Apple Music";Kazakhstan;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;10;RUB;1.017165989866
+01/08/2025;01/07/2025;Yandex;Kazakhstan;"DARKI MUZIK";romanastasi;RSTYLE;Падать;3617398035841;FR-X45-25-86380;;"Music Release";Stream;4;RUB;0.015293081671
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Двигай;3617398035841;FR-X45-25-86378;;"Music Release";Stream;30;RUB;1.599435038886
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";romanastasi;"Любовь с ядом";"Любовь с ядом";3617397576758;FR-X45-25-51984;;"Music Release";Stream;86;RUB;3.482903893042
+01/09/2025;01/08/2025;Yandex;Belarus;"DARKI MUZIK";romanastasi;RSTYLE;"На двоих";3617398035841;FR-X45-25-86376;;"Music Release";Stream;6;RUB;0.129835793155
+01/09/2025;01/08/2025;"Facebook / Instagram";"United States";"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;1;RUB;0.006801620647
+01/07/2025;01/07/2025;"YouTube UGC";Germany;"DARKI MUZIK";romanastasi;Moneydealer;Moneydealer;3617392638703;FR-96X-25-10180;;"Music Release";Stream;1;RUB;0.004482727066
+01/07/2025;01/07/2025;"YouTube UGC";"Korea, Republic Of";"DARKI MUZIK";romanastasi;RSTYLE;Потеряйся;3617398035841;FR-X45-25-86379;;"Music Release";Stream;1;RUB;0.002139144370
+01/09/2025;01/08/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;"На двоих";3617398035841;FR-X45-25-86376;;"Music Release";Stream;10;RUB;0.886027036183
+01/07/2025;01/07/2025;"YouTube UGC";Latvia;"DARKI MUZIK";romanastasi;Moneydealer;Moneydealer;3617392638703;FR-96X-25-10180;;"Music Release";Stream;1;RUB;0.012300429750
+01/07/2025;01/05/2025;TikTok;Germany;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Creation;1;RUB;0.069745987130
+01/07/2025;01/06/2025;"Facebook / Instagram";France;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;8;RUB;0.066652649817
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Moldova, Republic Of";"DARKI MUZIK";romanastasi;RSTYLE;Почему?;3617398035841;FR-X45-25-86382;;"Music Release";Stream;1;RUB;0.004200000038
+01/07/2025;01/07/2025;"YouTube Official Content";Mexico;"DARKI MUZIK";romanastasi;RSTYLE;Потеряйся;3617398035841;FR-X45-25-86379;;"Music Release";Stream;1;RUB;0.022556562739
+01/09/2025;01/09/2025;"YouTube UGC";Germany;"DARKI MUZIK";romanastasi;Moneydealer;Moneydealer;3617392638703;FR-96X-25-10180;;"Music Release";Stream;1;RUB;0.014738671249
+01/07/2025;01/06/2025;"Facebook / Instagram";"United States";"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;6;RUB;0.038721532183
+01/07/2025;01/07/2025;"Apple Music";Turkey;"DARKI MUZIK";romanastasi;RSTYLE;ИГРА;3617398035841;FR-X45-25-86375;;"Music Release";Stream;2;RUB;0.074264178444
+01/08/2025;01/07/2025;Yandex;"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Потеряйся;3617398035841;FR-X45-25-86379;;"Music Release";Stream;60;RUB;1.283607132190
+01/07/2025;01/07/2025;"YouTube UGC";Latvia;"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;1;RUB;0.005469082963
+01/08/2025;01/08/2025;"YouTube UGC";Brazil;"DARKI MUZIK";romanastasi;RSTYLE;Падать;3617398035841;FR-X45-25-86380;;"Music Release";Stream;1;RUB;0.009933772512
+01/09/2025;01/08/2025;"UMA (Vkontakte)";Kazakhstan;"DARKI MUZIK";romanastasi;RSTYLE;"На двоих";3617398035841;FR-X45-25-86376;;"Music Release";Stream;7;RUB;0.029400000039
+01/09/2025;01/07/2025;TikTok;"United States";"DARKI MUZIK";romanastasi;"Любовь с ядом";"Любовь с ядом";3617397576758;FR-X45-25-51984;;"Music Release";Creation;2;RUB;0.135799881186
+01/09/2025;01/08/2025;Yandex;Belarus;"DARKI MUZIK";romanastasi;РЕКУ;РЕКУ;3617666229101;DG-A0R-24-60333;;"Music Release";Stream;1;RUB;0.021639298911
+01/09/2025;01/08/2025;Yandex;Belarus;"DARKI MUZIK";romanastasi;RSTYLE;ПроценТЫ;3617398035841;FR-X45-25-86377;;"Music Release";Stream;1;RUB;0.021639298911
+01/08/2025;01/08/2025;"YouTube UGC";Brazil;"DARKI MUZIK";romanastasi;RSTYLE;Двигай;3617398035841;FR-X45-25-86378;;"Music Release";Stream;1;RUB;0.009933772512
+01/07/2025;01/07/2025;"YouTube Official Content";Georgia;"DARKI MUZIK";romanastasi;RSTYLE;ИГРА;3617398035841;FR-X45-25-86375;;"Music Release";Stream;2;RUB;0.019827946298
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"DARKI MUZIK";romanastasi;РЕКУ;РЕКУ;3617666229101;DG-A0R-24-60333;;"Music Release";Stream;12;RUB;0.224277938090
+01/09/2025;01/08/2025;SberZvuk;"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;ПроценТЫ;3617398035841;FR-X45-25-86377;;"Music Release";Stream;34;RUB;2.841080990980
+01/07/2025;01/07/2025;"YouTube UGC";Kazakhstan;"DARKI MUZIK";romanastasi;RSTYLE;"На двоих";3617398035841;FR-X45-25-86376;;"Music Release";Stream;1;RUB;0.006627735754
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"DARKI MUZIK";romanastasi;"Любовь с ядом";"Любовь с ядом";3617397576758;FR-X45-25-51984;;"Music Release";Stream;76;RUB;1.642903898320
+01/08/2025;01/08/2025;"Apple Music";Kazakhstan;"DARKI MUZIK";romanastasi;"Любовь с ядом";"Любовь с ядом";3617397576758;FR-X45-25-51984;;"Music Release";Stream;14;RUB;1.424032385843
+01/08/2025;01/07/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Почему?;3617398035841;FR-X45-25-86382;;"Music Release";Stream;4;RUB;0.417940100066
+01/07/2025;01/06/2025;Yandex;"Russian Federation";"DARKI MUZIK";romanastasi;"Любовь с ядом";"Любовь с ядом";3617397576758;FR-X45-25-51984;;"Music Release";Stream;93;RUB;1.951434562669
+01/09/2025;01/08/2025;"Facebook / Instagram";Finland;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;1;RUB;0.003604860774
+01/09/2025;01/08/2025;"Facebook / Instagram";Kyrgyzstan;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;1;RUB;0.000020406077
+01/07/2025;01/07/2025;"Apple Music";Turkey;"DARKI MUZIK";romanastasi;RSTYLE;ПроценТЫ;3617398035841;FR-X45-25-86377;;"Music Release";Stream;1;RUB;0.037132089222
+01/07/2025;01/07/2025;"YouTube UGC";"United Kingdom";"DARKI MUZIK";romanastasi;Moneydealer;Moneydealer;3617392638703;FR-96X-25-10180;;"Music Release";Stream;1;RUB;0.008922142742
+01/07/2025;01/07/2025;"YouTube UGC";Estonia;"DARKI MUZIK";romanastasi;RSTYLE;медвежонок;3617398035841;FR-X45-25-86383;;"Music Release";Stream;1;RUB;0.006496251048
+01/07/2025;01/07/2025;"YouTube UGC";Estonia;"DARKI MUZIK";romanastasi;RSTYLE;Потеряйся;3617398035841;FR-X45-25-86379;;"Music Release";Stream;1;RUB;0.006496251048
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;"На двоих";3617398035841;FR-X45-25-86376;;"Music Release";Stream;232;RUB;4.967226862342
+01/08/2025;01/06/2025;"Facebook / Instagram";Tajikistan;"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Creation;6;RUB;0.005098105511
+01/09/2025;01/08/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";romanastasi;Захотела-получила;Захотела-получила;3617669393113;FR-10S-25-81520;;"Music Release";Stream;39;RUB;4.528783657458
+01/09/2025;01/08/2025;Yandex;Kazakhstan;"DARKI MUZIK";romanastasi;RSTYLE;"На двоих";3617398035841;FR-X45-25-86376;;"Music Release";Stream;1;RUB;0.021639298911
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Angels;3617398035841;FR-X45-25-86381;;"Music Release";Stream;11;RUB;0.046200000038
+01/07/2025;01/07/2025;"YouTube UGC";Poland;"DARKI MUZIK";romanastasi;RSTYLE;"На двоих";3617398035841;FR-X45-25-86376;;"Music Release";Stream;1;RUB;0.009822694383
+01/07/2025;01/07/2025;"YouTube UGC";Estonia;"DARKI MUZIK";romanastasi;RSTYLE;Падать;3617398035841;FR-X45-25-86380;;"Music Release";Stream;1;RUB;0.006496251048
+01/07/2025;01/07/2025;"YouTube UGC";Ukraine;"DARKI MUZIK";romanastasi;RSTYLE;Потеряйся;3617398035841;FR-X45-25-86379;;"Music Release";Stream;3;RUB;0.011670439975
+01/09/2025;01/08/2025;Yandex;Belarus;"DARKI MUZIK";romanastasi;RSTYLE;Почему?;3617398035841;FR-X45-25-86382;;"Music Release";Stream;1;RUB;0.021639298911
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Moldova, Republic Of";"DARKI MUZIK";romanastasi;RSTYLE;Двигай;3617398035841;FR-X45-25-86378;;"Music Release";Stream;1;RUB;0.004200000038
+01/08/2025;01/07/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";romanastasi;Moneydealer;Moneydealer;3617392638703;FR-96X-25-10180;;"Music Release";Stream;1;RUB;0.088798865410
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Почему?;3617398035841;FR-X45-25-86382;;"Music Release";Stream;5;RUB;0.021000000039
+01/08/2025;01/08/2025;"YouTube Official Content";Kazakhstan;"DARKI MUZIK";romanastasi;RSTYLE;"На двоих";3617398035841;FR-X45-25-86376;;"Music Release";Stream;1;RUB;0.219395063580
+01/08/2025;01/07/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";romanastasi;RSTYLE;Angels;3617398035841;FR-X45-25-86381;;"Music Release";Stream;6;RUB;0.532793192459
+01/07/2025;01/07/2025;"YouTube UGC";Ukraine;"DARKI MUZIK";romanastasi;RSTYLE;"На двоих";3617398035841;FR-X45-25-86376;;"Music Release";Stream;3;RUB;0.011670439975

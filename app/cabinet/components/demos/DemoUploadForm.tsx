@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { supabase } from '../lib/supabase';
+import { supabase } from '@/lib/supabase/client';
 
 interface DemoUploadFormProps {
   userId?: string | null;
@@ -191,7 +191,7 @@ export default function DemoUploadForm({ userId, artistName, onClose }: DemoUplo
           </div>
 
           <div className="mt-3">
-            <label className="text-[10px] text-zinc-500 uppercase tracking-widest mb-2 block">Соавторы (feat.)</label>
+            <label className="text-[10px] text-zinc-500 uppercase tracking-widest mb-2 block">Featuring артисты (feat.)</label>
             <div className="space-y-2">
               {coauthors.map((c, i) => (
                 <div key={i} className="flex gap-2">

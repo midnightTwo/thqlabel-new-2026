@@ -1,0 +1,388 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/01/2025;01/08/2024;Soundcloud;France;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;0;RUB;0.001501293618
+01/01/2025;01/12/2024;"UMA (Vkontakte)";Armenia;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;39;RUB;0.292073343898
+01/03/2025;01/06/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;1.293829811759
+01/03/2025;01/10/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.148377374590
+01/02/2025;01/01/2025;Spotify;Lithuania;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.219585647526
+01/03/2025;01/08/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня No Pitch";4680961153616;UK-EX3-21-47282;;"Music Release";Stream;1;RUB;0.009299372458
+01/02/2025;01/01/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;216;RUB;4.691342755414
+01/01/2025;01/12/2024;Spotify;Albania;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";"Platform Promotion";8;RUB;-0.004186483695
+01/03/2025;01/02/2025;"UMA VK MUSIC";"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;46;RUB;4.155098705833
+01/02/2025;01/01/2025;Spotify;"United States";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;116;RUB;12.651483844141
+01/03/2025;01/02/2025;Spotify;Latvia;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;24;RUB;1.620594117997
+01/03/2025;01/02/2025;Spotify;Finland;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;0.011640419946
+01/03/2025;01/03/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.150353701468
+01/01/2025;01/12/2024;"UMA (Vkontakte)";Kazakhstan;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня No Pitch";4680961153616;UK-EX3-21-47282;;"Music Release";Stream;1;RUB;0.004200000042
+01/01/2025;01/12/2024;Spotify;Canada;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";"Platform Promotion";2;RUB;-0.089247649395
+01/02/2025;01/01/2025;Spotify;"Korea, Republic Of";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.052937666670
+01/01/2025;01/12/2024;Spotify;Netherlands;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.066772167059
+01/01/2025;01/12/2024;Spotify;Algeria;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;0.001473749079
+01/02/2025;01/01/2025;Spotify;Australia;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.214276417042
+01/02/2025;01/01/2025;Spotify;Egypt;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.062473663098
+01/02/2025;01/01/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;6;RUB;0.115373402302
+01/01/2025;01/12/2024;Spotify;Spain;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;2;RUB;0.043362230774
+01/02/2025;01/01/2025;Spotify;Ukraine;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;45;RUB;1.547511809842
+01/03/2025;01/02/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;0.021587041761
+01/02/2025;01/01/2025;Spotify;"New Zealand";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;14;RUB;2.403895835141
+01/01/2025;01/12/2024;Yandex;Uzbekistan;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;2;RUB;0.035162764938
+01/03/2025;01/02/2025;Spotify;Netherlands;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;19;RUB;0.731464152435
+01/01/2025;01/12/2024;Spotify;"Korea, Republic Of";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;9;RUB;0.473470208001
+01/02/2025;01/01/2025;"UMA (Vkontakte)";Kazakhstan;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня No Pitch";4680961153616;UK-EX3-21-47282;;"Music Release";Stream;1;RUB;0.004200000000
+01/03/2025;01/02/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;1.092048520565
+01/01/2025;01/12/2024;Spotify;Kazakhstan;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;6;RUB;0.578729903254
+01/02/2025;01/01/2025;Spotify;"United Kingdom";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;2;RUB;0.144998691610
+01/01/2025;01/12/2024;Yandex;Israel;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;0.017581382469
+01/03/2025;01/02/2025;Spotify;Egypt;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.028580946069
+01/03/2025;01/02/2025;"UMA VK MUSIC";"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;44;RUB;5.077047105734
+01/01/2025;01/12/2024;Spotify;Belgium;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.318443153412
+01/01/2025;01/12/2024;Spotify;Kazakhstan;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";"Platform Promotion";2;RUB;-0.070982068825
+01/02/2025;01/01/2025;"UMA (Vkontakte)";Belarus;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня No Pitch";4680961153616;UK-EX3-21-47282;;"Music Release";Stream;1;RUB;0.004200000000
+01/03/2025;01/02/2025;Spotify;Paraguay;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.001733679549
+01/01/2025;01/12/2024;"UMA VK MUSIC";"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня No Pitch";4680961153616;UK-EX3-21-47282;;"Music Release";Stream;7;RUB;0.849165583312
+01/01/2025;01/12/2024;Spotify;"Czech Republic";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";"Platform Promotion";3;RUB;-0.174280943383
+01/01/2025;01/12/2024;"UMA VK MUSIC";"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;15;RUB;1.899666593589
+01/03/2025;01/01/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.291238880142
+01/01/2025;01/01/2025;"Apple Music";Turkey;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;79;RUB;3.915815584598
+01/01/2025;01/12/2024;Yandex;Belarus;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.017581382469
+01/03/2025;01/02/2025;Spotify;"Czech Republic";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;4;RUB;0.221118450610
+01/03/2025;01/03/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;1.109611104218
+01/01/2025;01/12/2024;Spotify;Latvia;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";"Platform Promotion";1;RUB;-0.064796209716
+01/02/2025;01/01/2025;Spotify;Japan;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;3;RUB;0.037473883534
+01/03/2025;01/02/2025;Spotify;Turkey;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;3;RUB;0.068703244631
+01/03/2025;01/02/2025;Spotify;Lithuania;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;3;RUB;0.309337968920
+01/02/2025;01/01/2025;"UMA VK MUSIC";"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня No Pitch";4680961153616;UK-EX3-21-47282;;"Music Release";Stream;9;RUB;1.221168772138
+01/01/2025;01/01/2025;"YouTube UGC";"United States";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;2;RUB;0.035098227824
+01/03/2025;01/02/2025;Spotify;Singapore;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.014513374694
+01/03/2025;01/04/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.215955561285
+01/01/2025;01/01/2025;"YouTube UGC";Ukraine;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;6;RUB;0.018623975445
+01/01/2025;01/12/2024;"UMA VK MUSIC";"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;23;RUB;2.662793363793
+01/01/2025;01/12/2024;Spotify;Nigeria;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;2;RUB;0.031685603930
+01/03/2025;01/02/2025;"UMA (Vkontakte)";Kazakhstan;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;0.004200000000
+01/01/2025;01/12/2024;Yandex;"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;466;RUB;10.121103386229
+01/01/2025;01/12/2024;Spotify;Ukraine;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;28;RUB;0.420018470440
+01/03/2025;01/01/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня No Pitch";4680961153616;UK-EX3-21-47282;;"Music Release";Stream;1;RUB;0.074777890458
+01/03/2025;01/02/2025;Spotify;"Korea, Republic Of";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;2;RUB;0.368481209093
+01/02/2025;01/01/2025;Spotify;Panama;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.086494064925
+01/03/2025;01/03/2025;"Apple Music";Canada;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.130553448846
+01/01/2025;01/12/2024;Spotify;Canada;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;4;RUB;0.633768760786
+01/01/2025;01/01/2025;"YouTube UGC";Belarus;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;2;RUB;0.024153533756
+01/03/2025;01/04/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;0.875717206968
+01/03/2025;01/02/2025;Spotify;Nigeria;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;2;RUB;0.032741777046
+01/02/2025;01/01/2025;"UMA (Vkontakte)";Ukraine;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;8;RUB;0.033600000000
+01/01/2025;01/12/2024;Spotify;France;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;64;RUB;2.405441721566
+01/03/2025;01/02/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;216;RUB;4.571159383528
+01/02/2025;01/02/2025;"YouTube UGC";"United States";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.005911063174
+01/02/2025;01/01/2025;Spotify;"Czech Republic";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;49;RUB;0.558963997618
+01/03/2025;01/01/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;2.199924828273
+01/01/2025;01/12/2024;"UMA (Vkontakte)";Belarus;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;11;RUB;0.046200000042
+01/01/2025;01/12/2024;Spotify;Belarus;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";"Platform Promotion";11;RUB;-0.036823238670
+01/01/2025;01/12/2024;Spotify;"United States";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";"Platform Promotion";8;RUB;-0.723896934779
+01/02/2025;01/01/2025;Spotify;Austria;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.024845136681
+01/02/2025;01/01/2025;"UMA (Vkontakte)";Belarus;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;44;RUB;0.184800000000
+01/03/2025;01/02/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;53;RUB;2.473667035445
+01/01/2025;01/12/2024;Spotify;India;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;9;RUB;0.396381797726
+01/02/2025;01/01/2025;Spotify;Switzerland;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.012319476474
+01/03/2025;01/02/2025;Spotify;Turkey;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;12;RUB;0.368283064452
+01/02/2025;01/02/2025;"YouTube UGC";Ukraine;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;0.003930311789
+01/01/2025;01/01/2025;"YouTube UGC";Brazil;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.140726233108
+01/01/2025;01/12/2024;"UMA (Vkontakte)";Ukraine;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;7;RUB;0.029400000042
+01/02/2025;01/01/2025;Spotify;Norway;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;2;RUB;0.024690498900
+01/01/2025;01/12/2024;Yandex;"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;241;RUB;5.257913904630
+01/02/2025;01/02/2025;"YouTube UGC";Poland;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;0.009544221689
+01/03/2025;01/11/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.046303393603
+01/02/2025;01/02/2025;"YouTube UGC";"Korea, Republic Of";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;0.002247014215
+01/03/2025;01/01/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;1.692087154549
+01/03/2025;01/03/2025;"Apple Music";Turkey;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.033189101372
+01/03/2025;01/07/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;1.315985852358
+01/02/2025;01/01/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;10;RUB;0.224306877206
+01/02/2025;01/01/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;7;RUB;0.157014814067
+01/02/2025;01/02/2025;"YouTube Official Content";Netherlands;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.258484167643
+01/02/2025;01/01/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня No Pitch";4680961153616;UK-EX3-21-47282;;"Music Release";Stream;93;RUB;2.593214527369
+01/01/2025;01/12/2024;Spotify;Germany;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;28;RUB;2.799046154376
+01/01/2025;01/12/2024;Spotify;Uzbekistan;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";"Platform Promotion";2;RUB;-0.000180250842
+01/01/2025;01/12/2024;Spotify;"Moldova, Republic Of";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.003060863354
+01/02/2025;01/01/2025;Spotify;India;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;17;RUB;0.531799309774
+01/03/2025;01/02/2025;Spotify;Poland;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;24;RUB;0.430051645200
+01/03/2025;01/02/2025;Spotify;"United States";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;5;RUB;0.723538784963
+01/03/2025;01/10/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;1.697343029457
+01/01/2025;01/12/2024;Spotify;Lithuania;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.004534612349
+01/02/2025;01/01/2025;Spotify;Finland;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;3;RUB;0.039638812459
+01/03/2025;01/02/2025;"UMA VK MUSIC";"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;14;RUB;1.691508691307
+01/03/2025;01/03/2025;"Apple Music";Kazakhstan;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.125796037626
+01/02/2025;01/01/2025;Spotify;Germany;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;39;RUB;2.676264496170
+01/02/2025;01/01/2025;Spotify;"Moldova, Republic Of";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;6;RUB;0.003762862964
+01/02/2025;01/01/2025;Spotify;Kazakhstan;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;5;RUB;0.608912031438
+01/02/2025;01/01/2025;Spotify;Poland;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;51;RUB;1.817921689495
+01/01/2025;01/12/2024;Spotify;Kazakhstan;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;5;RUB;0.435322787129
+01/03/2025;01/02/2025;Spotify;Japan;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.015305913953
+01/03/2025;01/03/2025;"YouTube Official Content";Poland;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.215111626254
+01/03/2025;01/02/2025;Spotify;Romania;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.009114201214
+01/01/2025;01/12/2024;Spotify;Belarus;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;3;RUB;0.096813968335
+01/01/2025;01/12/2024;Spotify;Nigeria;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;8;RUB;0.114045489701
+01/01/2025;01/12/2024;Spotify;France;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";"Platform Promotion";5;RUB;-0.080525727343
+01/01/2025;01/12/2024;Spotify;Poland;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";"Platform Promotion";1;RUB;-0.002977296939
+01/03/2025;01/02/2025;Spotify;Estonia;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;2;RUB;0.001832747003
+01/03/2025;01/02/2025;Spotify;Nigeria;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;22;RUB;0.409841880027
+01/03/2025;01/02/2025;Spotify;Canada;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;20;RUB;1.697916202127
+01/01/2025;01/12/2024;Spotify;Poland;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;58;RUB;2.376873658061
+01/03/2025;01/02/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня No Pitch";4680961153616;UK-EX3-21-47282;;"Music Release";Stream;96;RUB;2.138279086103
+01/01/2025;01/01/2025;"YouTube UGC";Malaysia;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;4;RUB;0.021088856736
+01/02/2025;01/01/2025;Spotify;Finland;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;3;RUB;0.039638812459
+01/01/2025;01/12/2024;Yandex;"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня No Pitch";4680961153616;UK-EX3-21-47282;;"Music Release";Stream;1;RUB;0.017581382469
+01/03/2025;01/03/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;1.199483062669
+01/02/2025;01/01/2025;Spotify;Ukraine;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;15;RUB;0.471439045112
+01/01/2025;01/12/2024;Spotify;Switzerland;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;2;RUB;0.062917746652
+01/02/2025;01/01/2025;Yandex;Belarus;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;7;RUB;0.157014814067
+01/03/2025;01/02/2025;Spotify;Latvia;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;6;RUB;0.009163724984
+01/03/2025;01/02/2025;Spotify;Ukraine;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;43;RUB;1.779102023873
+01/01/2025;01/12/2024;Spotify;Estonia;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;5;RUB;0.568073564194
+01/01/2025;01/12/2024;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;314;RUB;6.958450620728
+01/01/2025;01/12/2024;Spotify;Netherlands;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";"Platform Promotion";8;RUB;-0.228952189697
+01/03/2025;01/03/2025;"YouTube UGC";"United States";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.014980575383
+01/03/2025;01/02/2025;Yandex;Uzbekistan;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;0.021587041761
+01/03/2025;01/02/2025;Spotify;"Moldova, Republic Of";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;3;RUB;0.003071094484
+01/01/2025;01/12/2024;Spotify;Ireland;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;2;RUB;0.110361128481
+01/01/2025;01/12/2024;Spotify;Netherlands;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;58;RUB;3.873749285022
+01/02/2025;01/01/2025;Spotify;Australia;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.098091898450
+01/03/2025;01/11/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;1.784272413914
+01/02/2025;01/01/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;65;RUB;3.393639531370
+01/03/2025;01/03/2025;"YouTube UGC";Greece;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;9;RUB;0.056795560690
+01/01/2025;01/12/2024;"UMA (Vkontakte)";Ukraine;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;7;RUB;0.029400000042
+01/02/2025;01/01/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;265;RUB;4.677132676122
+01/01/2025;01/12/2024;Spotify;Finland;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;6;RUB;0.070853306891
+01/02/2025;01/01/2025;Spotify;Taiwan;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.002886571874
+01/01/2025;01/12/2024;Spotify;Germany;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";"Platform Promotion";3;RUB;-0.150598930270
+01/01/2025;01/12/2024;Spotify;"United States";"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;12;RUB;2.404024762894
+01/02/2025;01/01/2025;Spotify;Israel;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;2;RUB;0.485201807484
+01/01/2025;01/12/2024;Spotify;Denmark;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.015304316774
+01/01/2025;01/12/2024;Spotify;Italy;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;3;RUB;0.128329535610
+01/03/2025;01/02/2025;Spotify;"United States";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;54;RUB;7.752470223905
+01/02/2025;01/01/2025;Spotify;India;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;4;RUB;0.115411329769
+01/03/2025;01/02/2025;Spotify;India;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;21;RUB;0.608174763371
+01/03/2025;01/08/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;2.445544315450
+01/03/2025;01/02/2025;Spotify;Norway;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;2;RUB;0.029026749388
+01/03/2025;01/02/2025;Spotify;Mexico;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.048840230183
+01/01/2025;01/12/2024;Spotify;India;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;2;RUB;0.069662982535
+01/02/2025;01/01/2025;Spotify;Iceland;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.436439360959
+01/02/2025;01/01/2025;Spotify;"Trinidad And Tobago";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;3;RUB;0.000567010349
+01/03/2025;01/02/2025;Spotify;"Trinidad And Tobago";"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.000544870698
+01/01/2025;01/12/2024;Spotify;Ukraine;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;274;RUB;5.503375830870
+01/01/2025;01/01/2025;"Apple Music";Japan;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.165925642277
+01/02/2025;01/01/2025;Spotify;Ukraine;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;200;RUB;1.971579736110
+01/03/2025;01/03/2025;"YouTube UGC";Ukraine;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;2;RUB;0.000127242966
+01/01/2025;01/12/2024;Spotify;Latvia;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;6;RUB;0.258076126307
+01/01/2025;01/12/2024;Spotify;"United States";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;34;RUB;7.071104419100
+01/03/2025;01/05/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня No Pitch";4680961153616;UK-EX3-21-47282;;"Music Release";Stream;1;RUB;0.025523694744
+01/02/2025;01/01/2025;Spotify;Estonia;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;6;RUB;0.002731923810
+01/01/2025;01/12/2024;Spotify;Ukraine;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;64;RUB;1.104574906745
+01/01/2025;01/12/2024;Yandex;Kazakhstan;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;2;RUB;0.035162764938
+01/01/2025;01/01/2025;"Apple Music";"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.072089920003
+01/01/2025;01/12/2024;Spotify;Albania;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;8;RUB;0.009749416555
+01/02/2025;01/01/2025;Spotify;France;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;15;RUB;0.349017469275
+01/01/2025;01/12/2024;Spotify;"United Kingdom";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;36;RUB;3.591526450004
+01/01/2025;01/12/2024;"UMA (Vkontakte)";Ukraine;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;2;RUB;0.008400000000
+01/02/2025;01/01/2025;"UMA (Vkontakte)";Ukraine;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня No Pitch";4680961153616;UK-EX3-21-47282;;"Music Release";Stream;1;RUB;0.004200000000
+01/02/2025;01/01/2025;Spotify;"United States";"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;8;RUB;0.872517900406
+01/01/2025;01/12/2024;"UMA (Vkontakte)";Kazakhstan;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;7;RUB;0.290825455670
+01/01/2025;01/12/2024;Spotify;Kazakhstan;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;23;RUB;0.661203148608
+01/03/2025;01/02/2025;Spotify;"United Kingdom";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;3;RUB;0.214976271598
+01/01/2025;01/12/2024;Spotify;Austria;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;3;RUB;0.185975795288
+01/02/2025;01/01/2025;Spotify;Sweden;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.017783344738
+01/01/2025;01/01/2025;"YouTube UGC";Hungary;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;0.009041112454
+01/02/2025;01/01/2025;Spotify;Latvia;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;14;RUB;0.825301847071
+01/03/2025;01/09/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;2.411823371908
+01/03/2025;01/02/2025;Spotify;"New Zealand";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;5;RUB;1.111734407398
+01/03/2025;01/02/2025;Spotify;Germany;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;10;RUB;1.139820026377
+01/02/2025;01/01/2025;Spotify;Argentina;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;0.064071586854
+01/01/2025;01/12/2024;Spotify;Panama;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;2;RUB;0.183141656883
+01/03/2025;01/03/2025;"YouTube UGC";"United States";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;2;RUB;0.038898642306
+01/03/2025;01/02/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;250;RUB;5.643566154983
+01/03/2025;01/02/2025;Spotify;India;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.049236499775
+01/03/2025;01/02/2025;Spotify;Sweden;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;3;RUB;0.057459099254
+01/03/2025;01/02/2025;Spotify;Poland;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;3;RUB;0.122001507930
+01/02/2025;01/01/2025;Spotify;"United Kingdom";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;8;RUB;0.579994766594
+01/02/2025;01/01/2025;Spotify;Latvia;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;19;RUB;1.219782823609
+01/02/2025;01/01/2025;Spotify;Poland;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;5;RUB;0.260822388922
+01/03/2025;01/02/2025;"UMA (Vkontakte)";Belarus;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;10;RUB;0.042000000000
+01/03/2025;01/02/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.179380632149
+01/02/2025;01/01/2025;Spotify;Turkey;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;15;RUB;0.418243648910
+01/01/2025;01/12/2024;Spotify;France;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;32;RUB;1.202692564802
+01/02/2025;01/02/2025;"Apple Music";Kazakhstan;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;5;RUB;0.396043068400
+01/02/2025;01/01/2025;Spotify;Armenia;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.000206183733
+01/01/2025;01/12/2024;Spotify;Belarus;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.037183821382
+01/03/2025;01/10/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня No Pitch";4680961153616;UK-EX3-21-47282;;"Music Release";Stream;1;RUB;0.015746007720
+01/02/2025;01/01/2025;Spotify;Spain;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.009432904600
+01/03/2025;01/02/2025;Spotify;Netherlands;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;2;RUB;0.076975372858
+01/03/2025;01/02/2025;Spotify;Denmark;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;2;RUB;0.015454514985
+01/02/2025;01/01/2025;Spotify;Turkey;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.036906883469
+01/03/2025;01/02/2025;Spotify;Pakistan;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.050970179398
+01/03/2025;01/11/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;5.716482214082
+01/03/2025;01/02/2025;"UMA (Vkontakte)";Kazakhstan;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.004200000000
+01/01/2025;01/12/2024;Spotify;Egypt;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;4;RUB;0.197028907261
+01/01/2025;01/12/2024;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня No Pitch";4680961153616;UK-EX3-21-47282;;"Music Release";Stream;92;RUB;2.913229304196
+01/01/2025;01/12/2024;Spotify;Japan;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;7;RUB;0.372121616008
+01/02/2025;01/01/2025;"UMA (Vkontakte)";Kazakhstan;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.004200000000
+01/03/2025;01/02/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;7;RUB;0.151109292473
+01/03/2025;01/02/2025;Spotify;Sweden;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;2;RUB;0.038289551634
+01/02/2025;01/01/2025;Spotify;Nigeria;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;0.014999864614
+01/01/2025;01/12/2024;Spotify;"United Kingdom";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;6;RUB;0.598568832291
+01/03/2025;01/08/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;2.179315048982
+01/01/2025;01/12/2024;"UMA VK MUSIC";"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;25;RUB;3.122128109800
+01/01/2025;01/12/2024;"UMA (Vkontakte)";Kazakhstan;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;2;RUB;0.008400000000
+01/01/2025;01/12/2024;Spotify;India;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";"Platform Promotion";4;RUB;-0.057207633113
+01/01/2025;01/12/2024;Yandex;"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;14;RUB;0.246139354306
+01/02/2025;01/01/2025;Spotify;"United Kingdom";"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.072525118820
+01/01/2025;01/12/2024;Spotify;India;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;3;RUB;0.125948858500
+01/03/2025;01/02/2025;Spotify;"New Zealand";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;9;RUB;2.001161565290
+01/03/2025;01/02/2025;Spotify;Germany;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;16;RUB;1.416366674642
+01/01/2025;01/12/2024;Spotify;Croatia;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;0.003174228636
+01/03/2025;01/11/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня No Pitch";4680961153616;UK-EX3-21-47282;;"Music Release";Stream;1;RUB;0.031187282346
+01/03/2025;01/03/2025;"Apple Music";"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;0.091464799964
+01/02/2025;01/01/2025;Spotify;France;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;31;RUB;0.721333769721
+01/01/2025;01/12/2024;Spotify;Ireland;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;4;RUB;0.220722256877
+01/03/2025;01/02/2025;Spotify;France;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;48;RUB;1.402744985864
+01/03/2025;01/02/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;1.408091397110
+01/03/2025;01/05/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;2.859235068078
+01/01/2025;01/08/2024;Soundcloud;"United States";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;0;RUB;0.013511641973
+01/03/2025;01/02/2025;Spotify;Kazakhstan;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;8;RUB;0.158260187832
+01/03/2025;01/02/2025;Spotify;Japan;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.015305913953
+01/03/2025;01/02/2025;Spotify;Austria;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;3;RUB;0.078164181710
+01/03/2025;01/07/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня No Pitch";4680961153616;UK-EX3-21-47282;;"Music Release";Stream;1;RUB;0.027390470582
+01/03/2025;01/02/2025;Spotify;France;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;8;RUB;0.192686100744
+01/03/2025;01/02/2025;Spotify;Slovakia;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.004705701676
+01/03/2025;01/02/2025;Spotify;Nigeria;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;4;RUB;0.063006864034
+01/02/2025;01/01/2025;Spotify;Turkey;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;5;RUB;0.141338936014
+01/02/2025;01/02/2025;"YouTube Official Content";Denmark;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.254819053617
+01/01/2025;01/12/2024;Spotify;Denmark;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";"Platform Promotion";1;RUB;-0.006568305058
+01/01/2025;01/12/2024;Spotify;"Moldova, Republic Of";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";"Platform Promotion";1;RUB;-0.001305644423
+01/03/2025;01/09/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.108555525992
+01/01/2025;01/12/2024;Spotify;Canada;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.212730002646
+01/03/2025;01/02/2025;Spotify;Australia;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;11;RUB;1.254639142572
+01/02/2025;01/01/2025;Spotify;Finland;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;5;RUB;0.066081877998
+01/01/2025;01/12/2024;Spotify;France;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;27;RUB;1.014789604628
+01/01/2025;01/12/2024;Spotify;Estonia;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";"Platform Promotion";1;RUB;-0.002147786730
+01/03/2025;01/02/2025;Spotify;Belarus;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;10;RUB;0.379725354544
+01/02/2025;01/01/2025;Spotify;Estonia;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;2;RUB;0.215204243725
+01/03/2025;01/02/2025;Spotify;Kazakhstan;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.000049533727
+01/01/2025;01/12/2024;Spotify;Ukraine;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";"Platform Promotion";26;RUB;-0.209242901911
+01/02/2025;01/02/2025;"YouTube Official Content";"United States";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.761621379446
+01/03/2025;01/06/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня No Pitch";4680961153616;UK-EX3-21-47282;;"Music Release";Stream;1;RUB;0.007968290678
+01/01/2025;01/12/2024;Spotify;Netherlands;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;25;RUB;1.669700955861
+01/01/2025;01/12/2024;Spotify;"Trinidad And Tobago";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;2;RUB;0.000793557138
+01/02/2025;01/01/2025;Spotify;Poland;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;4;RUB;0.173658221743
+01/01/2025;01/12/2024;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;62;RUB;3.056606530650
+01/02/2025;01/01/2025;"UMA VK MUSIC";"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;39;RUB;5.012498999262
+01/03/2025;01/02/2025;"UMA VK MUSIC";"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня No Pitch";4680961153616;UK-EX3-21-47282;;"Music Release";Stream;11;RUB;1.263605691125
+01/03/2025;01/02/2025;Spotify;Belarus;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;2;RUB;0.201552633398
+01/02/2025;01/01/2025;Spotify;Kazakhstan;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;2;RUB;0.214740330461
+01/02/2025;01/01/2025;Spotify;France;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;34;RUB;0.791126944010
+01/01/2025;01/12/2024;Spotify;Turkey;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;4;RUB;0.094319942864
+01/02/2025;01/01/2025;"UMA (Vkontakte)";Ukraine;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;2;RUB;0.008400000000
+01/02/2025;01/01/2025;"UMA (Odnoklassniki)";"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.004200000000
+01/01/2025;01/12/2024;Spotify;Egypt;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;0.049257226837
+01/02/2025;01/01/2025;Spotify;Kazakhstan;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;3;RUB;0.350924668592
+01/03/2025;01/02/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня No Pitch";4680961153616;UK-EX3-21-47282;;"Music Release";Stream;1;RUB;0.021931168265
+01/03/2025;01/02/2025;Spotify;Estonia;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;2;RUB;0.001832747003
+01/01/2025;01/12/2024;Spotify;"United States";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;12;RUB;2.679105668613
+01/03/2025;01/02/2025;Spotify;"Czech Republic";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;30;RUB;0.356048195351
+01/03/2025;01/07/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;2.332422290389
+01/02/2025;01/01/2025;Spotify;Netherlands;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;34;RUB;1.273235934109
+01/03/2025;01/09/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;1.626284698024
+01/02/2025;01/01/2025;Spotify;Paraguay;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;0.035824419006
+01/02/2025;01/01/2025;"UMA VK MUSIC";"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;6;RUB;0.814112514758
+01/03/2025;01/02/2025;Spotify;Ukraine;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;151;RUB;2.561536202202
+01/02/2025;01/01/2025;Spotify;Egypt;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;2;RUB;0.124998872150
+01/01/2025;01/12/2024;Spotify;Uzbekistan;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;2;RUB;0.000396778611
+01/03/2025;01/05/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.144634271799
+01/03/2025;01/09/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня No Pitch";4680961153616;UK-EX3-21-47282;;"Music Release";Stream;1;RUB;0.050102551110
+01/02/2025;01/01/2025;Spotify;Norway;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;0.012371022426
+01/01/2025;01/12/2024;Spotify;Turkey;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;73;RUB;3.475723758358
+01/03/2025;01/02/2025;Spotify;"United Kingdom";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;15;RUB;1.348703647637
+01/03/2025;01/02/2025;Spotify;Turkey;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;4;RUB;0.112689172032
+01/01/2025;01/01/2025;"Apple Music";Kazakhstan;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;3;RUB;0.263934873926
+01/03/2025;01/10/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;2.080700823027
+01/02/2025;01/02/2025;"Apple Music";Turkey;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;7;RUB;0.347330977582
+01/03/2025;01/02/2025;"UMA (Vkontakte)";Kazakhstan;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;2;RUB;0.008400000000
+01/03/2025;01/05/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;1.428609701721
+01/02/2025;01/01/2025;"UMA (Vkontakte)";Kazakhstan;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;2;RUB;0.008400000000
+01/02/2025;01/01/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;111;RUB;2.418759058178
+01/02/2025;01/01/2025;Spotify;"New Zealand";"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;2;RUB;0.448088740359
+01/02/2025;01/01/2025;Spotify;"United States";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;8;RUB;1.415605783530
+01/03/2025;01/02/2025;Spotify;Ukraine;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;31;RUB;0.960805187739
+01/02/2025;01/01/2025;Yandex;Uzbekistan;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.022430687713
+01/02/2025;01/01/2025;"UMA (Vkontakte)";Belarus;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;11;RUB;0.046200000000
+01/01/2025;01/12/2024;Spotify;Germany;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;6;RUB;0.451817439566
+01/01/2025;01/12/2024;Spotify;Estonia;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;3;RUB;0.524938064068
+01/02/2025;01/01/2025;Spotify;"Czech Republic";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;11;RUB;1.588387745034
+01/03/2025;01/03/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня No Pitch";4680961153616;UK-EX3-21-47282;;"Music Release";Stream;1;RUB;0.035971207644
+01/03/2025;01/02/2025;Spotify;"United States";"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;19;RUB;2.749467240812
+01/03/2025;01/02/2025;Spotify;Germany;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;3;RUB;0.217353884322
+01/02/2025;01/01/2025;Spotify;Belarus;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;10;RUB;0.578551485798
+01/01/2025;01/12/2024;Yandex;Belarus;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;9;RUB;0.611921657458
+01/01/2025;01/12/2024;Spotify;Poland;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;10;RUB;0.520006678804
+01/01/2025;01/12/2024;Likee;"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;37;RUB;1.167564142751
+01/03/2025;01/07/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.157121583345
+01/01/2025;01/12/2024;Spotify;Portugal;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;2;RUB;0.082076483918
+01/03/2025;01/03/2025;"YouTube Official Content";"United States";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.136513147409
+01/01/2025;01/12/2024;Spotify;Sweden;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;2;RUB;0.091372439178
+01/01/2025;01/12/2024;Yandex;Kazakhstan;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;3;RUB;0.052744147321
+01/03/2025;01/06/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;1.514964107780
+01/02/2025;01/01/2025;Spotify;Germany;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;3;RUB;0.216699075653
+01/02/2025;01/01/2025;Spotify;Netherlands;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.037473888715
+01/02/2025;01/02/2025;"YouTube UGC";"United States";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;0.007112537722
+01/03/2025;01/02/2025;Spotify;France;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;28;RUB;0.674351838678
+01/02/2025;01/01/2025;Spotify;Germany;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;18;RUB;1.318287110090
+01/01/2025;01/12/2024;Spotify;Nigeria;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";"Platform Promotion";1;RUB;-0.005625834452
+01/03/2025;01/02/2025;Spotify;Finland;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;7;RUB;0.081582002177
+01/03/2025;01/02/2025;Spotify;Kazakhstan;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;9;RUB;0.800910432466
+01/02/2025;01/01/2025;"UMA (Vkontakte)";Ukraine;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;4;RUB;0.016800000000
+01/01/2025;01/12/2024;Spotify;Latvia;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;4;RUB;0.249743770452
+01/02/2025;01/01/2025;Spotify;"New Zealand";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;20;RUB;3.198527876398
+01/03/2025;01/03/2025;"YouTube UGC";Ukraine;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;0.000328298703
+01/03/2025;01/02/2025;Spotify;"Serbia And Montenegro";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.071972468970
+01/01/2025;01/12/2024;Yandex;Belarus;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;30;RUB;2.682465246554
+01/01/2025;01/12/2024;Spotify;"Czech Republic";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;9;RUB;1.753988063228
+01/03/2025;01/02/2025;"UMA (Vkontakte)";Belarus;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;19;RUB;0.155458921453
+01/01/2025;01/12/2024;Spotify;Finland;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;6;RUB;0.070853306891
+01/01/2025;01/12/2024;Spotify;Finland;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;3;RUB;0.035426653446
+01/02/2025;01/01/2025;"UMA (Vkontakte)";Armenia;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;2;RUB;0.015740002319
+01/01/2025;01/12/2024;Spotify;"Viet Nam";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;0.003287594002
+01/03/2025;01/02/2025;Yandex;Belarus;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;6;RUB;0.092865593940
+01/03/2025;01/02/2025;Spotify;Brazil;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.053397330753
+01/03/2025;01/02/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;471;RUB;12.055596614793
+01/02/2025;01/01/2025;"UMA VK MUSIC";Kazakhstan;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;0.080345984946
+01/01/2025;01/11/2024;"Facebook / Instagram";Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня No Pitch";4680961153616;UK-EX3-21-47282;;"Music Release";Creation;6;RUB;0.197000219999
+01/03/2025;01/02/2025;Yandex;Uzbekistan;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;3;RUB;0.064761125356
+01/03/2025;01/06/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.073207483478
+01/01/2025;01/12/2024;Spotify;Austria;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";"Platform Promotion";1;RUB;-0.026561087032
+01/03/2025;01/02/2025;Spotify;"New Zealand";"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;2;RUB;0.444713576420
+01/03/2025;01/03/2025;"YouTube Official Content";Poland;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;2;RUB;0.117637622382
+01/02/2025;01/01/2025;"UMA (Vkontakte)";Kazakhstan;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;4;RUB;0.169091969892
+01/02/2025;01/01/2025;Spotify;Netherlands;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;13;RUB;0.486851302939
+01/03/2025;01/02/2025;Spotify;Indonesia;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.000544870698
+01/02/2025;01/01/2025;Spotify;Slovakia;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.002268020752
+01/01/2025;01/12/2024;Spotify;Germany;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;40;RUB;3.292525254270
+01/01/2025;01/01/2025;"Apple Music";"Czech Republic";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.391216906764
+01/03/2025;01/02/2025;Spotify;Belgium;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;7;RUB;0.136663498665
+01/01/2025;01/12/2024;Spotify;Belarus;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;2;RUB;0.150265717289
+01/02/2025;01/01/2025;"UMA VK MUSIC";"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;35;RUB;4.374500752699
+01/02/2025;01/01/2025;Spotify;Nigeria;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;29;RUB;0.437264075170
+01/03/2025;01/02/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;114;RUB;2.369281121493
+01/02/2025;01/01/2025;Spotify;Lithuania;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;1;RUB;0.001391740023
+01/03/2025;01/04/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;1.661920858543
+01/03/2025;01/02/2025;"UMA (Vkontakte)";Belarus;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня No Pitch";4680961153616;UK-EX3-21-47282;;"Music Release";Stream;2;RUB;0.008400000000
+01/02/2025;01/01/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня No Pitch";4680961153616;UK-EX3-21-47282;;"Music Release";Stream;1;RUB;0.022430687713
+01/03/2025;01/02/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня No Pitch";4680961153616;UK-EX3-21-47282;;"Music Release";Stream;2;RUB;0.043174083595
+01/01/2025;01/12/2024;Spotify;"Czech Republic";"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;48;RUB;1.386571084746
+01/03/2025;01/08/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.111592479446
+01/01/2025;01/12/2024;Spotify;Nigeria;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;3;RUB;0.041775122110
+01/02/2025;01/01/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;448;RUB;16.110648021294
+01/02/2025;01/01/2025;Spotify;Ireland;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;1;RUB;0.043607853975
+01/03/2025;01/04/2024;Yandex;Worldwide;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня No Pitch";4680961153616;UK-EX3-21-47282;;"Music Release";Stream;1;RUB;0.014875530302
+01/03/2025;01/02/2025;Spotify;Uzbekistan;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;5;RUB;0.000049533727
+01/01/2025;01/12/2024;"UMA (Vkontakte)";Belarus;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;33;RUB;0.138600000042
+01/01/2025;01/12/2024;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;439;RUB;9.360608942780
+01/01/2025;01/12/2024;"UMA (Vkontakte)";Ukraine;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня No Pitch";4680961153616;UK-EX3-21-47282;;"Music Release";Stream;1;RUB;0.004200000042
+01/01/2025;01/12/2024;Spotify;Poland;"трэп хаус квэльчиков";PSYCHOKID;"без меня";"без меня Remix";4680961178084;UK-EX3-22-02770;;"Music Release";Stream;27;RUB;1.613981860984
+01/03/2025;01/02/2025;Spotify;Netherlands;"трэп хаус квэльчиков";PSYCHOKID;"Без меня";"Без меня";4680961153616;UK-EX3-21-47281;;"Music Release";Stream;9;RUB;0.346488235548
+01/01/2025;01/12/2024;Spotify;Australia;"трэп хаус квэльчиков";PSYCHOKID;"НЕ БОЛЕЮ";"НЕ БОЛЕЮ";4680961199799;UK-EX3-22-06685;;"Music Release";Stream;1;RUB;0.232002105194

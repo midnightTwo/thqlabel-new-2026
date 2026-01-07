@@ -1,5 +1,21 @@
 // Типы для модерации релизов
 
+export interface Contributor {
+  role: 'composer' | 'lyricist' | 'producer' | 'arranger' | 'performer' | 'mixer' | 'mastering' | 'other';
+  fullName: string;
+}
+
+export const CONTRIBUTOR_ROLES = [
+  { value: 'composer', label: 'Композитор' },
+  { value: 'lyricist', label: 'Автор слов' },
+  { value: 'producer', label: 'Продюсер' },
+  { value: 'arranger', label: 'Аранжир.' },
+  { value: 'performer', label: 'Исполнитель' },
+  { value: 'mixer', label: 'Микс' },
+  { value: 'mastering', label: 'Мастеринг' },
+  { value: 'other', label: 'Другое' }
+] as const;
+
 export interface Release {
   id: string;
   created_at: string;
@@ -8,6 +24,10 @@ export interface Release {
   artist_name: string;
   cover_url: string;
   genre: string;
+  subgenres?: string[];
+  collaborators?: string[];
+  release_artists?: string[];
+  contributors?: Contributor[];
   status: string;
   payment_status: string | null;
   payment_receipt_url: string | null;
@@ -40,6 +60,22 @@ export interface Track {
   explicit?: boolean;
   isrc?: string;
   upc?: string;
+  lyrics?: string;
+  language?: string;
+  version?: string;
+  hasDrugs?: boolean;
+  isInstrumental?: boolean;
+  featuring?: string[];
+  producers?: string[];
+  link?: string;
+  audio_url?: string;
+  audioMetadata?: {
+    format: string;
+    duration?: number;
+    bitrate?: string;
+    sampleRate?: string;
+    size: number;
+  };
 }
 
 export const statusConfig: Record<string, { label: string; color: string; emoji: string }> = {

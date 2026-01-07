@@ -22,9 +22,9 @@ interface NewsListProps {
 export function NewsList({ news, loading, onEdit, onDelete }: NewsListProps) {
   return (
     <div className="space-y-3">
-      <div className="flex justify-between items-center">
-        <h3 className="font-black text-lg">Опубликованные новости ({news.length})</h3>
-        <p className="text-xs text-zinc-500">Нажмите на новость для редактирования или удаления</p>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1 sm:gap-4">
+        <h3 className="font-black text-base sm:text-lg">Опубликованные новости ({news.length})</h3>
+        <p className="text-[10px] sm:text-xs text-zinc-500">Нажмите на новость для редактирования</p>
       </div>
       
       {loading ? (
@@ -69,21 +69,21 @@ interface NewsCardProps {
 
 function NewsCard({ item, onEdit, onDelete }: NewsCardProps) {
   return (
-    <div className="bg-gradient-to-br from-white/[0.03] to-white/[0.01] border border-white/10 rounded-2xl p-5 hover:border-[#6050ba]/50 transition-all group">
-      <div className="flex gap-4">
+    <div className="bg-gradient-to-br from-white/[0.03] to-white/[0.01] border border-white/10 rounded-2xl p-3 sm:p-5 hover:border-[#6050ba]/50 transition-all group">
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
         {item.image && (
-          <img src={item.image} alt="" className="w-24 h-24 rounded-xl object-cover flex-shrink-0 border border-white/5" />
+          <img src={item.image} alt="" className="w-full sm:w-24 h-40 sm:h-24 rounded-xl object-cover flex-shrink-0 border border-white/5" />
         )}
         <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-2">
+          <div className="flex items-center flex-wrap gap-2 mb-2">
             {item.category && (
               <span className="text-[10px] px-2.5 py-1 bg-[#6050ba]/20 text-[#9d8df1] rounded-full font-bold">{item.category}</span>
             )}
             <span className="text-[9px] text-zinc-600">ID: {item.id}</span>
           </div>
-          <h4 className="font-bold text-white mb-2 line-clamp-1 text-base">{item.title}</h4>
+          <h4 className="font-bold text-white mb-2 line-clamp-2 sm:line-clamp-1 text-sm sm:text-base">{item.title}</h4>
           <p className="text-xs text-zinc-400 line-clamp-2 leading-relaxed">{item.content || 'Без текста'}</p>
-          <div className="flex items-center gap-3 mt-3">
+          <div className="flex items-center flex-wrap gap-2 sm:gap-3 mt-3">
             <p className="text-[10px] text-zinc-600">
               {new Date(item.created_at).toLocaleString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
             </p>
@@ -94,16 +94,16 @@ function NewsCard({ item, onEdit, onDelete }: NewsCardProps) {
             )}
           </div>
         </div>
-        <div className="flex flex-col gap-2 flex-shrink-0">
+        <div className="flex flex-row sm:flex-col gap-2 flex-shrink-0 mt-2 sm:mt-0">
           <button 
             onClick={onEdit}
-            className="px-4 py-2 bg-[#6050ba]/20 hover:bg-[#6050ba]/40 rounded-lg text-xs font-bold transition group-hover:scale-105"
+            className="flex-1 sm:flex-none px-4 py-2 bg-[#6050ba]/20 hover:bg-[#6050ba]/40 rounded-lg text-xs font-bold transition active:scale-95 sm:group-hover:scale-105 min-h-[40px] sm:min-h-0"
           >
             Изменить
           </button>
           <button 
             onClick={onDelete}
-            className="px-4 py-2 bg-red-500/10 hover:bg-red-500/30 text-red-400 rounded-lg text-xs font-bold transition group-hover:scale-105"
+            className="flex-1 sm:flex-none px-4 py-2 bg-red-500/10 hover:bg-red-500/30 text-red-400 rounded-lg text-xs font-bold transition active:scale-95 sm:group-hover:scale-105 min-h-[40px] sm:min-h-0"
           >
             Удалить
           </button>

@@ -1,7 +1,55 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Release } from '../types';
+
+// Функция для извлечения доминантного цвета из изображения
+function getDominantColor(imageUrl: string): Promise<{ r: number; g: number; b: number }> {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      if (!ctx) {
+        resolve({ r: 139, g: 92, b: 246 });
+        return;
+      }
+      
+      const size = 50;
+      canvas.width = size;
+      canvas.height = size;
+      ctx.drawImage(img, 0, 0, size, size);
+      
+      const imageData = ctx.getImageData(0, 0, size, size).data;
+      let r = 0, g = 0, b = 0, count = 0;
+      
+      for (let i = 0; i < imageData.length; i += 16) {
+        const red = imageData[i];
+        const green = imageData[i + 1];
+        const blue = imageData[i + 2];
+        const alpha = imageData[i + 3];
+        
+        if (alpha > 200 && (red + green + blue) > 60 && (red + green + blue) < 700) {
+          r += red;
+          g += green;
+          b += blue;
+          count++;
+        }
+      }
+      
+      if (count > 0) {
+        resolve({ r: Math.round(r / count), g: Math.round(g / count), b: Math.round(b / count) });
+      } else {
+        resolve({ r: 139, g: 92, b: 246 });
+      }
+    };
+    img.onerror = () => {
+      resolve({ r: 139, g: 92, b: 246 });
+    };
+    img.src = imageUrl;
+  });
+}
 
 interface ReleaseCardProps {
   release: Release;
@@ -18,10 +66,45 @@ export default function ReleaseCard({
   onSelect,
   onView
 }: ReleaseCardProps) {
+  const [dominantColor, setDominantColor] = useState<{ r: number; g: number; b: number } | null>(null);
+  
+  // Извлекаем доминантный цвет из обложки
+  useEffect(() => {
+    if (release.cover_url) {
+      getDominantColor(release.cover_url).then(setDominantColor);
+    } else {
+      setDominantColor(null);
+    }
+  }, [release.cover_url]);
+
+  // Динамический стиль свечения
+  const dynamicStyle = dominantColor && release.cover_url ? {
+    boxShadow: `0 0 25px rgba(${dominantColor.r}, ${dominantColor.g}, ${dominantColor.b}, 0.12), 0 0 10px rgba(${dominantColor.r}, ${dominantColor.g}, ${dominantColor.b}, 0.08)`,
+    borderColor: `rgba(${dominantColor.r}, ${dominantColor.g}, ${dominantColor.b}, 0.15)`
+  } : {};
+
   return (
     <div
       onClick={() => onView(release.id, release.release_type)}
       className="p-3 sm:p-5 bg-white/[0.02] border border-white/5 rounded-xl hover:border-[#6050ba]/50 transition cursor-pointer relative"
+      style={dynamicStyle}
+      onMouseEnter={(e) => {
+        if (dominantColor && release.cover_url) {
+          const target = e.currentTarget;
+          target.style.boxShadow = `0 0 40px rgba(${dominantColor.r}, ${dominantColor.g}, ${dominantColor.b}, 0.25), 0 0 20px rgba(${dominantColor.r}, ${dominantColor.g}, ${dominantColor.b}, 0.15)`;
+          target.style.borderColor = `rgba(${dominantColor.r}, ${dominantColor.g}, ${dominantColor.b}, 0.35)`;
+        }
+      }}
+      onMouseLeave={(e) => {
+        const target = e.currentTarget;
+        if (dominantColor && release.cover_url) {
+          target.style.boxShadow = `0 0 25px rgba(${dominantColor.r}, ${dominantColor.g}, ${dominantColor.b}, 0.12), 0 0 10px rgba(${dominantColor.r}, ${dominantColor.g}, ${dominantColor.b}, 0.08)`;
+          target.style.borderColor = `rgba(${dominantColor.r}, ${dominantColor.g}, ${dominantColor.b}, 0.15)`;
+        } else {
+          target.style.boxShadow = '';
+          target.style.borderColor = '';
+        }
+      }}
     >
       <div className="flex items-start gap-3 sm:gap-4">
         {/* Чекбокс для выбора (только в архиве) */}
@@ -126,6 +209,7 @@ function StatusBadge({ status }: { status: string }) {
     approved: { text: 'ОДОБРЕН', className: 'bg-violet-500/20 text-violet-400', showCheck: true },
     published: { text: 'ВЫЛОЖЕН', className: 'bg-emerald-500/20 text-emerald-400', showCheck: true },
     rejected: { text: 'ОТКЛОНЁН', className: 'bg-red-500/20 text-red-400', showX: true },
+    awaiting_payment: { text: 'ОЖИДАЕТ ОПЛАТЫ', className: 'bg-orange-500/20 text-orange-400' },
     draft: { text: 'ЧЕРНОВИК', className: 'bg-zinc-500/20 text-zinc-400' },
   };
 

@@ -6,6 +6,7 @@ import {
   DragOverlay,
   DragStartEvent,
   PointerSensor,
+  TouchSensor,
   useSensor,
   useSensors,
   closestCenter,
@@ -56,6 +57,12 @@ export function DraggableReleasesGrid({
       activationConstraint: {
         distance: 8, // Начинаем drag после 8px движения (предотвращает случайный drag при клике)
       },
+    }),
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        delay: 200, // Задержка 200мс перед началом drag на touch-устройствах
+        tolerance: 5, // Допустимое смещение в пикселях во время задержки
+      },
     })
   );
 
@@ -95,6 +102,13 @@ export function DraggableReleasesGrid({
     // СЛУЧАЙ 1: Перетащили на корзину - УДАЛЕНИЕ
     if (over.id === 'trash-zone') {
       const releaseToDelete = releases.find(r => r.id === active.id);
+      
+      // ЗАЩИТА: Оплаченные черновики нельзя удалять!
+      if (releaseToDelete?.is_paid) {
+        console.warn('Оплаченный черновик нельзя удалить');
+        setActiveId(null);
+        return;
+      }
       
       if (releaseToDelete && releaseToDelete.status === 'draft') {
         // Показываем визуальный эффект удаления

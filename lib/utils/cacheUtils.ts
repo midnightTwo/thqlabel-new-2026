@@ -38,10 +38,8 @@ export async function clearAllCache(): Promise<void> {
         sessionStorage.removeItem(key);
       }
     }
-
-    console.log('✅ Cache cleared successfully');
-  } catch (e) {
-    console.warn('Cache clear warning:', e);
+  } catch {
+    // Cache clearing failed silently
   }
 }
 

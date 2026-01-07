@@ -1,0 +1,51 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/01/2025;01/10/2024;SberZvuk;"Russian Federation";thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;1;RUB;0.302031717942
+01/01/2025;01/12/2024;Yandex;Kazakhstan;thqlabel;"Concolor Area";Неправда;Неправда;3617665331683;DG-A0Q-24-29161;;"Music Release";Stream;1;RUB;0.017581382469
+01/03/2025;01/02/2025;Yandex;"Russian Federation";thqlabel;"Concolor Area";Неправда;Неправда;3617665331683;DG-A0Q-24-29161;;"Music Release";Stream;499;RUB;10.643635551700
+01/02/2025;01/01/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;3;RUB;0.407056257379
+01/01/2025;01/12/2024;Yandex;Belarus;thqlabel;"Concolor Area";Неправда;Неправда;3617665331683;DG-A0Q-24-29161;;"Music Release";Stream;8;RUB;0.140651059579
+01/03/2025;01/02/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;"Concolor Area";Неправда;Неправда;3617665331683;DG-A0Q-24-29161;;"Music Release";Stream;3;RUB;0.297029296114
+01/03/2025;01/02/2025;Yandex;Kazakhstan;thqlabel;"Concolor Area";Неправда;Неправда;3617665331683;DG-A0Q-24-29161;;"Music Release";Stream;10;RUB;0.215870417829
+01/01/2025;01/01/2025;"Apple Music";Ukraine;thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;1;RUB;0.099142637550
+01/03/2025;01/02/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;19;RUB;0.429666148148
+01/02/2025;01/01/2025;Yandex;"Russian Federation";thqlabel;"Concolor Area";Неправда;Неправда;3617665331683;DG-A0Q-24-29161;;"Music Release";Stream;108;RUB;2.422514273763
+01/01/2025;01/12/2024;"UMA (Vkontakte)";Ukraine;thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;1;RUB;0.004200000042
+01/03/2025;01/02/2025;Yandex;Uzbekistan;thqlabel;"Concolor Area";Неправда;Неправда;3617665331683;DG-A0Q-24-29161;;"Music Release";Stream;2;RUB;0.043174083595
+01/02/2025;01/02/2025;"Apple Music";"Russian Federation";thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;1;RUB;0.100788240029
+01/03/2025;01/03/2025;"Apple Music";Ukraine;thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;1;RUB;0.103632553896
+01/03/2025;01/02/2025;Yandex;Belarus;thqlabel;"Concolor Area";Неправда;Неправда;3617665331683;DG-A0Q-24-29161;;"Music Release";Stream;8;RUB;0.172696334308
+01/02/2025;01/01/2025;Yandex;"Russian Federation";thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;85;RUB;1.906608456212
+01/03/2025;01/03/2025;"Apple Music";Turkey;thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;1;RUB;0.033189101372
+01/02/2025;01/01/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"Concolor Area";Неправда;Неправда;3617665331683;DG-A0Q-24-29161;;"Music Release";Stream;22;RUB;0.223885419126
+01/03/2025;01/11/2024;Yandex;Worldwide;thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;1;RUB;0.594226883129
+01/03/2025;01/11/2024;Yandex;Worldwide;thqlabel;"Concolor Area";Неправда;Неправда;3617665331683;DG-A0Q-24-29161;;"Music Release";Stream;1;RUB;9.358379125780
+01/02/2025;01/01/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;75;RUB;1.745020811385
+01/02/2025;01/01/2025;Yandex;Belarus;thqlabel;"Concolor Area";Неправда;Неправда;3617665331683;DG-A0Q-24-29161;;"Music Release";Stream;8;RUB;0.179445501780
+01/01/2025;01/11/2024;TikTok;"United Kingdom";thqlabel;"Concolor Area";Неправда;Неправда;3617665331683;DG-A0Q-24-29161;;"Music Release";Creation;1;RUB;0.129672055189
+01/03/2025;01/06/2024;Yandex;Worldwide;thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;1;RUB;1.546837270421
+01/01/2025;01/12/2024;"UMA (Vkontakte)";Belarus;thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;7;RUB;0.029400000042
+01/03/2025;01/03/2025;"Apple Music";"Russian Federation";thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;2;RUB;0.217815360005
+01/03/2025;01/09/2024;Yandex;Worldwide;thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;1;RUB;1.743789356446
+01/01/2025;01/12/2024;Yandex;"Russian Federation";thqlabel;"Concolor Area";Неправда;Неправда;3617665331683;DG-A0Q-24-29161;;"Music Release";Stream;447;RUB;8.085722561900
+01/02/2025;01/02/2025;"Apple Music";Ukraine;thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;2;RUB;0.170384212720
+01/03/2025;01/10/2024;Yandex;Worldwide;thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;1;RUB;0.613691090472
+01/03/2025;01/02/2025;"UMA (Vkontakte)";Belarus;thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;2;RUB;0.008400000000
+01/02/2025;01/01/2025;"UMA (Vkontakte)";Ukraine;thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;3;RUB;0.012600000000
+01/02/2025;01/01/2025;Yandex;Kazakhstan;thqlabel;"Concolor Area";Неправда;Неправда;3617665331683;DG-A0Q-24-29161;;"Music Release";Stream;1;RUB;0.022430687713
+01/01/2025;01/12/2024;Yandex;"Russian Federation";thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;133;RUB;2.678590777066
+01/01/2025;01/01/2025;"YouTube Official Content";Latvia;thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;1;RUB;0.406974025131
+01/01/2025;01/12/2024;"UMA (Vkontakte)";"Russian Federation";thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;31;RUB;1.168561499058
+01/03/2025;01/08/2024;Yandex;Worldwide;thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;1;RUB;1.534205734888
+01/01/2025;01/12/2024;Yandex;Belarus;thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;2;RUB;0.035162764938
+01/03/2025;01/02/2025;Yandex;"Russian Federation";thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;144;RUB;3.090205688525
+01/03/2025;01/02/2025;Yandex;Belarus;thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;4;RUB;0.086348167117
+01/01/2025;01/12/2024;"UMA (Vkontakte)";"Russian Federation";thqlabel;"Concolor Area";Неправда;Неправда;3617665331683;DG-A0Q-24-29161;;"Music Release";Stream;9;RUB;0.407946615738
+01/03/2025;01/02/2025;Yandex;Kazakhstan;thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;4;RUB;0.086348167117
+01/01/2025;01/12/2024;Yandex;Kazakhstan;thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;2;RUB;0.035162764938
+01/01/2025;01/12/2024;"UMA VK MUSIC";"Russian Federation";thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;1;RUB;0.127582205246
+01/02/2025;01/01/2025;"UMA (Vkontakte)";Belarus;thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;3;RUB;0.083484605422
+01/01/2025;01/01/2025;"Apple Music";"Russian Federation";thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;1;RUB;0.106520399995
+01/03/2025;01/02/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;2;RUB;0.161936409871
+01/02/2025;01/02/2025;"Apple Music";Germany;thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;1;RUB;0.513603613112
+01/03/2025;01/02/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"Concolor Area";Неправда;Неправда;3617665331683;DG-A0Q-24-29161;;"Music Release";Stream;12;RUB;0.050400000000
+01/03/2025;01/07/2024;Yandex;Worldwide;thqlabel;"Concolor Area";Туман;Туман;3617389538320;DG-A05-24-80366;;"Music Release";Stream;1;RUB;5.845786990790

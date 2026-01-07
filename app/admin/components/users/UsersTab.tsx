@@ -198,10 +198,13 @@ export default function UsersTab({ supabase, currentUserRole }: { supabase: any;
   const sortedUsers = useMemo(() => {
     // Сначала фильтруем
     const filtered = users.filter(user => {
-      const matchesSearch = !searchTerm || 
-        user.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.nickname?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.member_id?.toLowerCase().includes(searchTerm.toLowerCase());
+      const search = searchTerm?.toLowerCase().trim() || '';
+      const matchesSearch = !search || 
+        user.id?.toLowerCase().includes(search) ||
+        user.email?.toLowerCase().includes(search) ||
+        user.nickname?.toLowerCase().includes(search) ||
+        user.display_name?.toLowerCase().includes(search) ||
+        user.member_id?.toLowerCase().includes(search);
       
       const matchesRole = filterRole === 'all' || getUserRole(user) === filterRole;
       return matchesSearch && matchesRole;

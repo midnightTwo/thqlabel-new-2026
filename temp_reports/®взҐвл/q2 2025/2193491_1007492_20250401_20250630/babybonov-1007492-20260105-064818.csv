@@ -1,0 +1,111 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"Stars Clique";babybonov;"пустая улица";"газ 21";3617660001451;DG-A06-24-42093;;"Music Release";Stream;36;RUB;0.740784678534
+01/04/2025;01/11/2024;Yandex;Worldwide;"Stars Clique";babybonov;"пустая улица";"дальше снов";3617660001451;DG-A06-24-42098;;"Music Release";Stream;-1;RUB;-0.003647874884
+01/04/2025;01/11/2024;Yandex;Worldwide;"Stars Clique";babybonov;"пустая улица";"забудьте обо мне";3617660001451;DG-A06-24-42094;;"Music Release";Stream;-1;RUB;-0.022037728958
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";babybonov;"пустая улица";"газ 21";3617660001451;DG-A06-24-42093;;"Music Release";Stream;23;RUB;1.416288594869
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"Stars Clique";babybonov;"пустая улица";"забудьте обо мне";3617660001451;DG-A06-24-42094;;"Music Release";Stream;1;RUB;-0.297374213913
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";babybonov;"пустая улица";"забудьте обо мне";3617660001451;DG-A06-24-42094;;"Music Release";Stream;14;RUB;0.178622873985
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"Stars Clique";babybonov;"пустая улица";"дальше снов";3617660001451;DG-A06-24-42098;;"Music Release";Stream;1;RUB;-0.240219854762
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";babybonov;"пустая улица";"2000 птиц";3617660001451;DG-A06-24-42095;;"Music Release";Stream;15;RUB;0.850129019138
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"Stars Clique";babybonov;"пустая улица";"дальше снов";3617660001451;DG-A06-24-42098;;"Music Release";Stream;111;RUB;2.156019546742
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"Stars Clique";babybonov;"пустая улица";"всегда в дыму";3617660001451;DG-A06-24-42096;;"Music Release";Stream;87;RUB;1.865373429611
+01/04/2025;01/03/2025;Yandex;Belarus;"Stars Clique";babybonov;"пустая улица";"нахуй жизнь";3617660001451;DG-A06-24-42100;;"Music Release";Stream;2;RUB;0.042580701633
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"Stars Clique";babybonov;"пустая улица";"газ 21";3617660001451;DG-A06-24-42093;;"Music Release";Stream;1;RUB;-0.236710430010
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"Stars Clique";babybonov;"пустая улица";"газ 21";3617660001451;DG-A06-24-42093;;"Music Release";Stream;52;RUB;1.047215815551
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"Stars Clique";babybonov;"пустая улица";"нахуй жизнь";3617660001451;DG-A06-24-42100;;"Music Release";Stream;30;RUB;0.625746058549
+01/06/2025;01/05/2025;Yandex;Kazakhstan;"Stars Clique";babybonov;"пустая улица";"нахуй жизнь";3617660001451;DG-A06-24-42100;;"Music Release";Stream;4;RUB;0.083432807841
+01/06/2025;01/04/2025;Tidal;Mexico;"Stars Clique";babybonov;"пустая улица";"пустая улица";3617660001451;DG-A06-24-42097;;"Music Release";Stream;1;RUB;0.285598701460
+01/04/2025;01/11/2024;Yandex;Worldwide;"Stars Clique";babybonov;"пустая улица";"только небо свет и звезды";3617660001451;DG-A06-24-42099;;"Music Release";Stream;-1;RUB;-0.014666737601
+01/04/2025;01/04/2025;"YouTube Official Content";Georgia;"Stars Clique";babybonov;"пустая улица";"всегда в дыму";3617660001451;DG-A06-24-42096;;"Music Release";Stream;1;RUB;0.024645296337
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";babybonov;"пустая улица";"нахуй жизнь";3617660001451;DG-A06-24-42100;;"Music Release";Stream;18;RUB;1.388752708933
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";babybonov;"пустая улица";"2000 птиц";3617660001451;DG-A06-24-42095;;"Music Release";Stream;9;RUB;0.163181197778
+01/04/2025;01/03/2025;Yandex;Belarus;"Stars Clique";babybonov;"пустая улица";"только небо свет и звезды";3617660001451;DG-A06-24-42099;;"Music Release";Stream;1;RUB;0.021290350854
+01/04/2025;01/11/2024;Yandex;Worldwide;"Stars Clique";babybonov;"пустая улица";"газ 21";3617660001451;DG-A06-24-42093;;"Music Release";Stream;-1;RUB;-0.010943622926
+01/06/2025;01/05/2025;Yandex;Kazakhstan;"Stars Clique";babybonov;"пустая улица";"дальше снов";3617660001451;DG-A06-24-42098;;"Music Release";Stream;1;RUB;0.020858201942
+01/04/2025;01/03/2025;Yandex;Belarus;"Stars Clique";babybonov;"пустая улица";"пустая улица";3617660001451;DG-A06-24-42097;;"Music Release";Stream;3;RUB;0.063871052487
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"Stars Clique";babybonov;"пустая улица";"нахуй жизнь";3617660001451;DG-A06-24-42100;;"Music Release";Stream;1;RUB;-0.192425068902
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";babybonov;"пустая улица";"дальше снов";3617660001451;DG-A06-24-42098;;"Music Release";Stream;5;RUB;0.146381197778
+01/06/2025;01/05/2025;Yandex;Kazakhstan;"Stars Clique";babybonov;"пустая улица";"всегда в дыму";3617660001451;DG-A06-24-42096;;"Music Release";Stream;6;RUB;0.125149211724
+01/06/2025;01/05/2025;Yandex;Belarus;"Stars Clique";babybonov;"пустая улица";"нахуй жизнь";3617660001451;DG-A06-24-42100;;"Music Release";Stream;1;RUB;0.020858201942
+01/06/2025;01/05/2025;Yandex;Belarus;"Stars Clique";babybonov;"пустая улица";"пустая улица";3617660001451;DG-A06-24-42097;;"Music Release";Stream;5;RUB;0.104291009782
+01/05/2025;01/04/2025;Yandex;Kazakhstan;"Stars Clique";babybonov;"пустая улица";"пустая улица";3617660001451;DG-A06-24-42097;;"Music Release";Stream;3;RUB;0.065550775094
+01/04/2025;01/03/2025;Yandex;Kazakhstan;"Stars Clique";babybonov;"пустая улица";"всегда в дыму";3617660001451;DG-A06-24-42096;;"Music Release";Stream;1;RUB;0.021290350854
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";babybonov;"пустая улица";"забудьте обо мне";3617660001451;DG-A06-24-42094;;"Music Release";Stream;18;RUB;1.515260285291
+01/04/2025;01/03/2025;Yandex;Belarus;"Stars Clique";babybonov;"пустая улица";"забудьте обо мне";3617660001451;DG-A06-24-42094;;"Music Release";Stream;1;RUB;0.021290350854
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";babybonov;"пустая улица";"нахуй жизнь";3617660001451;DG-A06-24-42100;;"Music Release";Stream;21;RUB;1.440103867926
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";babybonov;"пустая улица";"всегда в дыму";3617660001451;DG-A06-24-42096;;"Music Release";Stream;3;RUB;0.263362395518
+01/05/2025;01/04/2025;Yandex;Kazakhstan;"Stars Clique";babybonov;"пустая улица";"всегда в дыму";3617660001451;DG-A06-24-42096;;"Music Release";Stream;1;RUB;0.021850258413
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"Stars Clique";babybonov;"пустая улица";"забудьте обо мне";3617660001451;DG-A06-24-42094;;"Music Release";Stream;17;RUB;0.354589433158
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"Stars Clique";babybonov;"пустая улица";"пустая улица";3617660001451;DG-A06-24-42097;;"Music Release";Stream;63;RUB;1.323167705177
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Kazakhstan;"Stars Clique";babybonov;"пустая улица";"всегда в дыму";3617660001451;DG-A06-24-42096;;"Music Release";Stream;3;RUB;0.012600000036
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";babybonov;"пустая улица";"только небо свет и звезды";3617660001451;DG-A06-24-42099;;"Music Release";Stream;3;RUB;0.252245748042
+01/04/2025;01/03/2025;Yandex;Kazakhstan;"Stars Clique";babybonov;"пустая улица";"газ 21";3617660001451;DG-A06-24-42093;;"Music Release";Stream;1;RUB;0.021290350854
+01/06/2025;01/05/2025;Yandex;Belarus;"Stars Clique";babybonov;"пустая улица";"2000 птиц";3617660001451;DG-A06-24-42095;;"Music Release";Stream;2;RUB;0.041716403884
+01/04/2025;01/03/2025;Yandex;Kazakhstan;"Stars Clique";babybonov;"пустая улица";"пустая улица";3617660001451;DG-A06-24-42097;;"Music Release";Stream;1;RUB;0.021290350854
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"Stars Clique";babybonov;"пустая улица";"пустая улица";3617660001451;DG-A06-24-42097;;"Music Release";Stream;1;RUB;-0.154103130956
+01/06/2025;01/05/2025;Yandex;Kazakhstan;"Stars Clique";babybonov;"пустая улица";"забудьте обо мне";3617660001451;DG-A06-24-42094;;"Music Release";Stream;1;RUB;0.020858201942
+01/06/2025;01/05/2025;Yandex;Kazakhstan;"Stars Clique";babybonov;"пустая улица";"2000 птиц";3617660001451;DG-A06-24-42095;;"Music Release";Stream;5;RUB;0.104291009782
+01/05/2025;01/04/2025;"UMA VK MUSIC";"Russian Federation";"Stars Clique";babybonov;"пустая улица";"всегда в дыму";3617660001451;DG-A06-24-42096;;"Music Release";Stream;1;RUB;0.124022873985
+01/05/2025;01/02/2025;"Facebook / Instagram";"United States";"Stars Clique";babybonov;"пустая улица";"пустая улица";3617660001451;DG-A06-24-42097;;"Music Release";Creation;6;RUB;1.170534473027
+01/06/2025;01/05/2025;Yandex;Belarus;"Stars Clique";babybonov;"пустая улица";"газ 21";3617660001451;DG-A06-24-42093;;"Music Release";Stream;2;RUB;0.041716403884
+01/06/2025;01/05/2025;Yandex;Kazakhstan;"Stars Clique";babybonov;"пустая улица";"газ 21";3617660001451;DG-A06-24-42093;;"Music Release";Stream;4;RUB;0.083432807841
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"Stars Clique";babybonov;"пустая улица";"пустая улица";3617660001451;DG-A06-24-42097;;"Music Release";Stream;145;RUB;2.829811553176
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";babybonov;"пустая улица";"забудьте обо мне";3617660001451;DG-A06-24-42094;;"Music Release";Stream;1;RUB;0.129581197778
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Kazakhstan;"Stars Clique";babybonov;"пустая улица";"всегда в дыму";3617660001451;DG-A06-24-42096;;"Music Release";Stream;3;RUB;0.012600000000
+01/04/2025;01/03/2025;Yandex;Belarus;"Stars Clique";babybonov;"пустая улица";"2000 птиц";3617660001451;DG-A06-24-42095;;"Music Release";Stream;1;RUB;0.021290350854
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"Stars Clique";babybonov;"пустая улица";"забудьте обо мне";3617660001451;DG-A06-24-42094;;"Music Release";Stream;26;RUB;0.553549121230
+01/04/2025;01/11/2024;Yandex;Worldwide;"Stars Clique";babybonov;"пустая улица";"нахуй жизнь";3617660001451;DG-A06-24-42100;;"Music Release";Stream;-1;RUB;-0.003647874884
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"Stars Clique";babybonov;"пустая улица";"всегда в дыму";3617660001451;DG-A06-24-42096;;"Music Release";Stream;126;RUB;2.610440015978
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Kazakhstan;"Stars Clique";babybonov;"пустая улица";"забудьте обо мне";3617660001451;DG-A06-24-42094;;"Music Release";Stream;1;RUB;0.004200000036
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";babybonov;"пустая улица";"газ 21";3617660001451;DG-A06-24-42093;;"Music Release";Stream;6;RUB;0.275962395482
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Kazakhstan;"Stars Clique";babybonov;"пустая улица";"забудьте обо мне";3617660001451;DG-A06-24-42094;;"Music Release";Stream;1;RUB;0.004200000000
+01/06/2025;01/05/2025;Yandex;Kazakhstan;"Stars Clique";babybonov;"пустая улица";"пустая улица";3617660001451;DG-A06-24-42097;;"Music Release";Stream;7;RUB;0.146007413666
+01/04/2025;01/03/2025;Yandex;Belarus;"Stars Clique";babybonov;"пустая улица";"газ 21";3617660001451;DG-A06-24-42093;;"Music Release";Stream;7;RUB;0.149032455753
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"Stars Clique";babybonov;"пустая улица";"всегда в дыму";3617660001451;DG-A06-24-42096;;"Music Release";Stream;15;RUB;0.288714408456
+01/05/2025;01/04/2025;Yandex;Kazakhstan;"Stars Clique";babybonov;"пустая улица";"2000 птиц";3617660001451;DG-A06-24-42095;;"Music Release";Stream;1;RUB;0.021850258413
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"Stars Clique";babybonov;"пустая улица";"дальше снов";3617660001451;DG-A06-24-42098;;"Music Release";Stream;4;RUB;0.087401033434
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"Stars Clique";babybonov;"пустая улица";"2000 птиц";3617660001451;DG-A06-24-42095;;"Music Release";Stream;75;RUB;1.564365146444
+01/05/2025;01/04/2025;Yandex;Belarus;"Stars Clique";babybonov;"пустая улица";"газ 21";3617660001451;DG-A06-24-42093;;"Music Release";Stream;5;RUB;0.109251291774
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"Stars Clique";babybonov;"пустая улица";"только небо свет и звезды";3617660001451;DG-A06-24-42099;;"Music Release";Stream;4;RUB;0.085161403266
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"Stars Clique";babybonov;"пустая улица";"нахуй жизнь";3617660001451;DG-A06-24-42100;;"Music Release";Stream;22;RUB;0.462906160090
+01/05/2025;01/04/2025;Yandex;Belarus;"Stars Clique";babybonov;"пустая улица";"нахуй жизнь";3617660001451;DG-A06-24-42100;;"Music Release";Stream;3;RUB;0.065550775094
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";babybonov;"пустая улица";"дальше снов";3617660001451;DG-A06-24-42098;;"Music Release";Stream;17;RUB;1.341238827606
+01/06/2025;01/05/2025;Yandex;Belarus;"Stars Clique";babybonov;"пустая улица";"только небо свет и звезды";3617660001451;DG-A06-24-42099;;"Music Release";Stream;4;RUB;0.083432807841
+01/06/2025;01/05/2025;"UMA (Odnoklassniki)";"Russian Federation";"Stars Clique";babybonov;"пустая улица";"только небо свет и звезды";3617660001451;DG-A06-24-42099;;"Music Release";Stream;3;RUB;0.012600000036
+01/06/2025;01/05/2025;Yandex;Belarus;"Stars Clique";babybonov;"пустая улица";"забудьте обо мне";3617660001451;DG-A06-24-42094;;"Music Release";Stream;1;RUB;0.020858201942
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";babybonov;"пустая улица";"пустая улица";3617660001451;DG-A06-24-42097;;"Music Release";Stream;7;RUB;0.269045748042
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";babybonov;"пустая улица";"дальше снов";3617660001451;DG-A06-24-42098;;"Music Release";Stream;19;RUB;1.209106063545
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";babybonov;"пустая улица";"только небо свет и звезды";3617660001451;DG-A06-24-42099;;"Music Release";Stream;3;RUB;0.137981197778
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";babybonov;"пустая улица";"пустая улица";3617660001451;DG-A06-24-42097;;"Music Release";Stream;4;RUB;0.142181197814
+01/05/2025;01/04/2025;Yandex;Belarus;"Stars Clique";babybonov;"пустая улица";"пустая улица";3617660001451;DG-A06-24-42097;;"Music Release";Stream;3;RUB;0.065550775094
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Kazakhstan;"Stars Clique";babybonov;"пустая улица";"забудьте обо мне";3617660001451;DG-A06-24-42094;;"Music Release";Stream;1;RUB;0.004200000038
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";babybonov;"пустая улица";"всегда в дыму";3617660001451;DG-A06-24-42096;;"Music Release";Stream;9;RUB;0.157771690422
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"Stars Clique";babybonov;"пустая улица";"только небо свет и звезды";3617660001451;DG-A06-24-42099;;"Music Release";Stream;31;RUB;0.677358009202
+01/05/2025;01/04/2025;Yandex;Belarus;"Stars Clique";babybonov;"пустая улица";"только небо свет и звезды";3617660001451;DG-A06-24-42099;;"Music Release";Stream;2;RUB;0.043700516681
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"Stars Clique";babybonov;"пустая улица";"забудьте обо мне";3617660001451;DG-A06-24-42094;;"Music Release";Stream;41;RUB;0.895860592750
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"Stars Clique";babybonov;"пустая улица";"2000 птиц";3617660001451;DG-A06-24-42095;;"Music Release";Stream;66;RUB;1.406518004030
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";babybonov;"пустая улица";"2000 птиц";3617660001451;DG-A06-24-42095;;"Music Release";Stream;29;RUB;1.468296636777
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";"Stars Clique";babybonov;"пустая улица";"всегда в дыму";3617660001451;DG-A06-24-42096;;"Music Release";Stream;1;RUB;0.124171690422
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"Stars Clique";babybonov;"пустая улица";"2000 птиц";3617660001451;DG-A06-24-42095;;"Music Release";Stream;1;RUB;-0.378987659504
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"Stars Clique";babybonov;"пустая улица";"газ 21";3617660001451;DG-A06-24-42093;;"Music Release";Stream;65;RUB;1.214235686990
+01/05/2025;01/03/2025;"Facebook / Instagram";Worldwide;"Stars Clique";babybonov;"пустая улица";"нахуй жизнь";3617660001451;DG-A06-24-42100;;"Music Release";Creation;13;RUB;0.310662456910
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"Stars Clique";babybonov;"пустая улица";"только небо свет и звезды";3617660001451;DG-A06-24-42099;;"Music Release";Stream;1;RUB;-0.129506379999
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"Stars Clique";babybonov;"пустая улица";"пустая улица";3617660001451;DG-A06-24-42097;;"Music Release";Stream;16;RUB;0.310004759310
+01/05/2025;01/04/2025;"UMA (Odnoklassniki)";"Russian Federation";"Stars Clique";babybonov;"пустая улица";"только небо свет и звезды";3617660001451;DG-A06-24-42099;;"Music Release";Stream;2;RUB;0.203049146140
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"Stars Clique";babybonov;"пустая улица";"только небо свет и звезды";3617660001451;DG-A06-24-42099;;"Music Release";Stream;81;RUB;1.797625994018
+01/04/2025;01/11/2024;Yandex;Worldwide;"Stars Clique";babybonov;"пустая улица";"всегда в дыму";3617660001451;DG-A06-24-42096;;"Music Release";Stream;-1;RUB;-0.091347342074
+01/04/2025;01/11/2024;Yandex;Worldwide;"Stars Clique";babybonov;"пустая улица";"2000 птиц";3617660001451;DG-A06-24-42095;;"Music Release";Stream;-1;RUB;-0.003647874884
+01/04/2025;01/02/2025;TikTok;Netherlands;"Stars Clique";babybonov;"пустая улица";"пустая улица";3617660001451;DG-A06-24-42097;;"Music Release";Creation;1;RUB;0.094602758506
+01/04/2025;01/11/2024;Yandex;Worldwide;"Stars Clique";babybonov;"пустая улица";"пустая улица";3617660001451;DG-A06-24-42097;;"Music Release";Stream;-1;RUB;-0.047422367339
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Belarus;"Stars Clique";babybonov;"пустая улица";"газ 21";3617660001451;DG-A06-24-42093;;"Music Release";Stream;1;RUB;0.004200000036
+01/06/2025;01/05/2025;Yandex;Kazakhstan;"Stars Clique";babybonov;"пустая улица";"только небо свет и звезды";3617660001451;DG-A06-24-42099;;"Music Release";Stream;5;RUB;0.104291009782
+01/04/2025;01/03/2025;"UMA (Odnoklassniki)";"Russian Federation";"Stars Clique";babybonov;"пустая улица";"только небо свет и звезды";3617660001451;DG-A06-24-42099;;"Music Release";Stream;3;RUB;0.012600000038
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";babybonov;"пустая улица";"газ 21";3617660001451;DG-A06-24-42093;;"Music Release";Stream;4;RUB;0.136622873985
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"Stars Clique";babybonov;"пустая улица";"нахуй жизнь";3617660001451;DG-A06-24-42100;;"Music Release";Stream;11;RUB;0.218873432179
+01/05/2025;01/04/2025;Yandex;Belarus;"Stars Clique";babybonov;"пустая улица";"2000 птиц";3617660001451;DG-A06-24-42095;;"Music Release";Stream;1;RUB;0.021850258413
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";"Stars Clique";babybonov;"пустая улица";"забудьте обо мне";3617660001451;DG-A06-24-42094;;"Music Release";Stream;1;RUB;0.124171690422
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"Stars Clique";babybonov;"пустая улица";"всегда в дыму";3617660001451;DG-A06-24-42096;;"Music Release";Stream;1;RUB;-0.204247540616
+01/06/2025;01/05/2025;Yandex;Belarus;"Stars Clique";babybonov;"пустая улица";"дальше снов";3617660001451;DG-A06-24-42098;;"Music Release";Stream;6;RUB;0.125149211724
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";babybonov;"пустая улица";"пустая улица";3617660001451;DG-A06-24-42097;;"Music Release";Stream;11;RUB;0.482772880512
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";babybonov;"пустая улица";"всегда в дыму";3617660001451;DG-A06-24-42096;;"Music Release";Stream;10;RUB;0.161822873985
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";babybonov;"пустая улица";"нахуй жизнь";3617660001451;DG-A06-24-42100;;"Music Release";Stream;8;RUB;0.785887186591

@@ -1,8 +1,99 @@
 "use client";
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Release, FilterState } from './types';
 import { FILTER_OPTIONS, SORT_OPTIONS } from './constants';
 import { useTheme } from '@/contexts/ThemeContext';
+
+// Кастомный красивый Select компонент
+interface CustomSelectProps {
+  value: string;
+  onChange: (value: string) => void;
+  options: { value: string; label: string }[];
+  isLight: boolean;
+  placeholder?: string;
+}
+
+function CustomSelect({ value, onChange, options, isLight, placeholder }: CustomSelectProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  
+  const selectedOption = options.find(opt => opt.value === value);
+  
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  return (
+    <div ref={ref} className="relative">
+      {/* Trigger Button */}
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className={`w-full px-3 py-2.5 text-left text-xs sm:text-sm rounded-xl transition-all duration-200 flex items-center justify-between gap-2 ${
+          isLight
+            ? 'bg-white/80 border border-purple-200/50 text-[#1a1535] hover:border-purple-300/70 hover:bg-white/95'
+            : 'bg-[#1e1b32]/90 border border-[#9d8df1]/20 text-white hover:border-[#9d8df1]/40 hover:bg-[#1e1b32]'
+        } ${isOpen ? (isLight ? 'border-purple-400/70 shadow-lg shadow-purple-500/10' : 'border-[#9d8df1]/50 shadow-lg shadow-purple-500/20') : ''}`}
+      >
+        <span className={!selectedOption ? (isLight ? 'text-gray-400' : 'text-zinc-500') : ''}>
+          {selectedOption?.label || placeholder || 'Выберите...'}
+        </span>
+        <svg 
+          className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''} ${isLight ? 'text-purple-500' : 'text-[#9d8df1]'}`} 
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      
+      {/* Dropdown */}
+      {isOpen && (
+        <div className={`absolute z-50 w-full mt-2 py-1 rounded-xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 ${
+          isLight
+            ? 'bg-white/95 backdrop-blur-xl border border-purple-200/50 shadow-xl shadow-purple-500/15'
+            : 'bg-[#1a1730]/95 backdrop-blur-xl border border-[#9d8df1]/25 shadow-2xl shadow-purple-900/40'
+        }`}>
+          <div className="max-h-60 overflow-y-auto scrollbar-thin scrollbar-thumb-purple-500/30 scrollbar-track-transparent">
+            {options.map((option, index) => (
+              <button
+                key={option.value}
+                type="button"
+                onClick={() => {
+                  onChange(option.value);
+                  setIsOpen(false);
+                }}
+                className={`w-full px-3 py-2.5 text-left text-xs sm:text-sm transition-all duration-150 flex items-center gap-2 ${
+                  value === option.value
+                    ? isLight
+                      ? 'bg-gradient-to-r from-purple-100 to-purple-50 text-purple-700 font-medium'
+                      : 'bg-gradient-to-r from-[#9d8df1]/25 to-[#6050ba]/20 text-[#c4b5fd] font-medium'
+                    : isLight
+                      ? 'text-[#1a1535] hover:bg-purple-50/80'
+                      : 'text-zinc-300 hover:bg-[#9d8df1]/10'
+                }`}
+              >
+                {value === option.value && (
+                  <svg className={`w-4 h-4 ${isLight ? 'text-purple-500' : 'text-[#9d8df1]'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                )}
+                <span className={value === option.value ? '' : 'ml-6'}>{option.label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 interface ReleasesFiltersProps {
   filters: FilterState;
@@ -100,101 +191,78 @@ function FilterPanel({ filters, setFilters, genres, isLight }: FilterPanelProps)
   const hasActiveFilters = filters.searchQuery || filters.filterStatus !== 'all' || filters.filterGenre !== 'all' || filters.filterReleaseType !== 'all';
 
   return (
-    <div className={`p-3 sm:p-4 border rounded-2xl space-y-3 sm:space-y-4 ${
+    <div className={`p-4 sm:p-5 rounded-2xl space-y-4 sm:space-y-5 transition-all duration-300 ${
       isLight 
-        ? 'bg-white/50 border-white/70' 
-        : 'bg-zinc-900/50 border-zinc-800'
+        ? 'bg-gradient-to-br from-white/70 to-purple-50/50 border border-purple-200/30 shadow-lg shadow-purple-500/5' 
+        : 'bg-gradient-to-br from-[#1e1b32]/90 to-[#0d0b16]/80 border border-[#9d8df1]/15 shadow-xl shadow-purple-900/20 backdrop-blur-xl'
     }`}>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
         {/* Фильтр по статусу */}
         <div>
-          <label className={`block text-xs mb-1.5 sm:mb-1 ${isLight ? 'text-[#5c5580]' : 'text-zinc-500'}`}>Статус</label>
-          <select
+          <label className={`block text-xs font-medium mb-1.5 sm:mb-2 ${isLight ? 'text-[#5c5580]' : 'text-zinc-400'}`}>Статус</label>
+          <CustomSelect
             value={filters.filterStatus}
-            onChange={(e) => setFilters(prev => ({ ...prev, filterStatus: e.target.value }))}
-            className={`w-full px-3 py-2 border rounded-xl text-xs sm:text-sm focus:outline-none focus:border-[#8a63d2] ${
-              isLight 
-                ? 'bg-white/60 border-white/70 text-[#1a1535]' 
-                : 'bg-zinc-800 border-zinc-700 text-white'
-            }`}
-          >
-            {FILTER_OPTIONS.map((status) => (
-              <option key={status.value} value={status.value}>
-                {status.label}
-              </option>
-            ))}
-          </select>
+            onChange={(value) => setFilters(prev => ({ ...prev, filterStatus: value }))}
+            options={FILTER_OPTIONS}
+            isLight={isLight}
+          />
         </div>
 
         {/* Фильтр по типу релиза */}
         <div>
-          <label className={`block text-xs mb-1.5 sm:mb-1 ${isLight ? 'text-[#5c5580]' : 'text-zinc-500'}`}>Тип</label>
-          <select
+          <label className={`block text-xs font-medium mb-1.5 sm:mb-2 ${isLight ? 'text-[#5c5580]' : 'text-zinc-400'}`}>Тип</label>
+          <CustomSelect
             value={filters.filterReleaseType || 'all'}
-            onChange={(e) => setFilters(prev => ({ ...prev, filterReleaseType: e.target.value as any }))}
-            className={`w-full px-3 py-2 border rounded-xl text-xs sm:text-sm focus:outline-none focus:border-[#8a63d2] ${
-              isLight 
-                ? 'bg-white/60 border-white/70 text-[#1a1535]' 
-                : 'bg-zinc-800 border-zinc-700 text-white'
-            }`}
-          >
-            <option value="all">Все типы</option>
-            <option value="basic">Basic</option>
-            <option value="exclusive">Exclusive</option>
-          </select>
+            onChange={(value) => setFilters(prev => ({ ...prev, filterReleaseType: value as any }))}
+            options={[
+              { value: 'all', label: 'Все типы' },
+              { value: 'basic', label: 'Basic' },
+              { value: 'exclusive', label: 'Exclusive' }
+            ]}
+            isLight={isLight}
+          />
         </div>
 
         {/* Фильтр по жанру */}
         <div>
-          <label className={`block text-xs mb-1.5 sm:mb-1 ${isLight ? 'text-[#5c5580]' : 'text-zinc-500'}`}>Жанр</label>
-          <select 
-            value={filters.filterGenre} 
-            onChange={(e) => setFilters(prev => ({ ...prev, filterGenre: e.target.value }))} 
-            className={`w-full px-3 py-2 border rounded-xl text-xs sm:text-sm focus:outline-none focus:border-[#8a63d2] ${
-              isLight 
-                ? 'bg-white/60 border-white/70 text-[#1a1535]' 
-                : 'bg-zinc-800 border-zinc-700 text-white'
-            }`}
-          >
-            <option value="all">Все жанры</option>
-            {genres.map((genre) => (
-              <option key={genre} value={genre}>{genre}</option>
-            ))}
-          </select>
+          <label className={`block text-xs font-medium mb-1.5 sm:mb-2 ${isLight ? 'text-[#5c5580]' : 'text-zinc-400'}`}>Жанр</label>
+          <CustomSelect
+            value={filters.filterGenre}
+            onChange={(value) => setFilters(prev => ({ ...prev, filterGenre: value }))}
+            options={[
+              { value: 'all', label: 'Все жанры' },
+              ...genres.map(genre => ({ value: genre, label: genre }))
+            ]}
+            isLight={isLight}
+          />
         </div>
 
         {/* Сортировка */}
         <div>
-          <label className={`block text-xs mb-1.5 sm:mb-1 ${isLight ? 'text-[#5c5580]' : 'text-zinc-500'}`}>Сортировка</label>
-          <select 
-            value={filters.sortBy} 
-            onChange={(e) => setFilters(prev => ({ ...prev, sortBy: e.target.value as any }))} 
-            className={`w-full px-3 py-2 border rounded-xl text-xs sm:text-sm focus:outline-none focus:border-[#8a63d2] ${
-              isLight 
-                ? 'bg-white/60 border-white/70 text-[#1a1535]' 
-                : 'bg-zinc-800 border-zinc-700 text-white'
-            }`}
-          >
-            {SORT_OPTIONS.map(opt => (
-              <option key={opt.value} value={opt.value}>{opt.label}</option>
-            ))}
-          </select>
+          <label className={`block text-xs font-medium mb-1.5 sm:mb-2 ${isLight ? 'text-[#5c5580]' : 'text-zinc-400'}`}>Сортировка</label>
+          <CustomSelect
+            value={filters.sortBy}
+            onChange={(value) => setFilters(prev => ({ ...prev, sortBy: value as any }))}
+            options={SORT_OPTIONS}
+            isLight={isLight}
+          />
         </div>
       </div>
 
       {/* Порядок сортировки и кнопка сброса */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 sm:gap-0">
-        <div className="flex items-center gap-2">
-          <label className={`text-xs ${isLight ? 'text-[#5c5580]' : 'text-zinc-500'}`}>Порядок:</label>
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-0 pt-1">
+        <div className="flex items-center gap-3">
+          <label className={`text-xs font-medium ${isLight ? 'text-[#5c5580]' : 'text-zinc-400'}`}>Порядок:</label>
           <button
             onClick={() => setFilters(prev => ({ ...prev, order: prev.order === 'asc' ? 'desc' : 'asc' }))}
-            className={`px-3 py-1.5 border rounded-xl text-xs transition-colors ${
+            className={`px-4 py-2 rounded-xl text-xs font-medium transition-all duration-200 flex items-center gap-2 ${
               isLight 
-                ? 'bg-white/60 border-white/70 text-[#1a1535] hover:bg-white/80' 
-                : 'bg-zinc-800 border-zinc-700 text-white hover:bg-zinc-700'
+                ? 'bg-white/70 border border-purple-200/50 text-[#5b21b6] hover:bg-white/90 hover:border-purple-300/70 hover:shadow-md hover:shadow-purple-500/10' 
+                : 'bg-[#1e1b32]/80 border border-[#9d8df1]/20 text-[#c4b5fd] hover:bg-[#1e1b32] hover:border-[#9d8df1]/40 hover:shadow-lg hover:shadow-purple-500/10'
             }`}
           >
-            {filters.order === 'desc' ? '↓ Сначала новые' : '↑ Сначала старые'}
+            <span className="text-sm">{filters.order === 'desc' ? '↓' : '↑'}</span>
+            {filters.order === 'desc' ? 'Сначала новые' : 'Сначала старые'}
           </button>
         </div>
 
@@ -209,7 +277,11 @@ function FilterPanel({ filters, setFilters, genres, isLight }: FilterPanelProps)
             sortBy: 'date',
             order: 'desc'
           }))}
-          className="px-4 py-1.5 bg-red-500/10 hover:bg-red-500/20 text-red-500 border border-red-500/30 rounded-xl text-xs font-medium transition-colors flex items-center gap-1.5"
+          className={`px-4 py-2 rounded-xl text-xs font-medium transition-all duration-200 flex items-center justify-center gap-2 ${
+            isLight
+              ? 'bg-red-50 hover:bg-red-100 text-red-600 border border-red-200/50 hover:border-red-300/70 hover:shadow-md hover:shadow-red-500/10'
+              : 'bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 hover:border-red-500/40 hover:shadow-lg hover:shadow-red-500/10'
+          }`}
         >
           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

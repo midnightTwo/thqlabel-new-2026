@@ -1,0 +1,48 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/11/2024;01/10/2024;Yandex;"Russian Federation";"DARKI MUZIK";STARLEAN;Единичка;"big step";3617662660762;DG-A0M-24-61394;;"Music Release";Stream;19;RUB;0.249292893166
+01/10/2024;01/09/2024;Yandex;Kazakhstan;"DARKI MUZIK";STARLEAN;Единичка;"big step";3617662660762;DG-A0M-24-61394;;"Music Release";Stream;4;RUB;0.063659898580
+01/10/2024;01/08/2024;TikTok;Canada;"DARKI MUZIK";STARLEAN;Единичка;Б.Т.Т.Т.;3617662660762;DG-A0M-24-61399;;"Music Release";Creation;1;RUB;0.126200877126
+01/10/2024;01/08/2024;TikTok;Canada;"DARKI MUZIK";STARLEAN;Единичка;"На сцене";3617662660762;DG-A0M-24-61396;;"Music Release";Creation;3;RUB;0.378602631295
+01/11/2024;01/10/2024;Yandex;"Russian Federation";"DARKI MUZIK";STARLEAN;Единичка;Б.Т.Т.Т.;3617662660762;DG-A0M-24-61399;;"Music Release";Stream;17;RUB;0.223051536063
+01/11/2024;01/10/2024;Yandex;"Russian Federation";"DARKI MUZIK";STARLEAN;Единичка;"Моя хоу";3617662660762;DG-A0M-24-61398;;"Music Release";Stream;15;RUB;0.196810178874
+01/11/2024;01/10/2024;Yandex;"Russian Federation";"DARKI MUZIK";STARLEAN;Единичка;"Что их привлекает";3617662660762;DG-A0M-24-61400;;"Music Release";Stream;12;RUB;0.157448143134
+01/10/2024;01/09/2024;Yandex;"Russian Federation";"DARKI MUZIK";STARLEAN;Единичка;"big step";3617662660762;DG-A0M-24-61394;;"Music Release";Stream;48;RUB;0.763918783462
+01/10/2024;01/09/2024;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";STARLEAN;Единичка;"Моя хоу";3617662660762;DG-A0M-24-61398;;"Music Release";Stream;27;RUB;1.688188912858
+01/10/2024;01/10/2024;"Apple Music";Ukraine;"DARKI MUZIK";STARLEAN;Единичка;Б.Т.Т.Т.;3617662660762;DG-A0M-24-61399;;"Music Release";Stream;1;RUB;0.109242966967
+01/11/2024;01/09/2024;TikTok;"United States";"DARKI MUZIK";STARLEAN;Единичка;"Моя хоу";3617662660762;DG-A0M-24-61398;;"Music Release";Creation;2;RUB;0.261108086774
+01/11/2024;01/09/2024;TikTok;Canada;"DARKI MUZIK";STARLEAN;Единичка;"Моя хоу";3617662660762;DG-A0M-24-61398;;"Music Release";Creation;1;RUB;0.130554043386
+01/11/2024;01/10/2024;Yandex;Kazakhstan;"DARKI MUZIK";STARLEAN;Единичка;"Что их привлекает";3617662660762;DG-A0M-24-61400;;"Music Release";Stream;1;RUB;0.013120678551
+01/11/2024;01/09/2024;TikTok;"United States";"DARKI MUZIK";STARLEAN;Единичка;Б.Т.Т.Т.;3617662660762;DG-A0M-24-61399;;"Music Release";Creation;2;RUB;0.261108086774
+01/12/2024;01/11/2024;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";STARLEAN;Единичка;"Что их привлекает";3617662660762;DG-A0M-24-61400;;"Music Release";Stream;1;RUB;0.111840112216
+01/10/2024;01/10/2024;"YouTube Official Content";Ukraine;"DARKI MUZIK";STARLEAN;Единичка;"На сцене";3617662660762;DG-A0M-24-61396;;"Music Release";Stream;1;RUB;0.099212719742
+01/10/2024;01/09/2024;Yandex;Kazakhstan;"DARKI MUZIK";STARLEAN;Единичка;"Что их привлекает";3617662660762;DG-A0M-24-61400;;"Music Release";Stream;4;RUB;0.063659898580
+01/10/2024;01/08/2024;TikTok;Kyrgyzstan;"DARKI MUZIK";STARLEAN;Единичка;Б.Т.Т.Т.;3617662660762;DG-A0M-24-61399;;"Music Release";Creation;1;RUB;0.126200877126
+01/12/2024;01/11/2024;Yandex;"Russian Federation";"DARKI MUZIK";STARLEAN;Единичка;"На сцене";3617662660762;DG-A0M-24-61396;;"Music Release";Stream;12;RUB;0.202534565250
+01/12/2024;01/11/2024;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";STARLEAN;Единичка;Б.Т.Т.Т.;3617662660762;DG-A0M-24-61399;;"Music Release";Stream;1;RUB;0.111840112216
+01/10/2024;01/09/2024;Yandex;Kazakhstan;"DARKI MUZIK";STARLEAN;Единичка;"Моя хоу";3617662660762;DG-A0M-24-61398;;"Music Release";Stream;3;RUB;0.047744923914
+01/10/2024;01/09/2024;Yandex;Kazakhstan;"DARKI MUZIK";STARLEAN;Единичка;"На сцене";3617662660762;DG-A0M-24-61396;;"Music Release";Stream;4;RUB;0.063659898580
+01/11/2024;01/10/2024;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";STARLEAN;Единичка;"Моя хоу";3617662660762;DG-A0M-24-61398;;"Music Release";Stream;11;RUB;0.252310290886
+01/10/2024;01/08/2024;TikTok;Canada;"DARKI MUZIK";STARLEAN;Единичка;"Что их привлекает";3617662660762;DG-A0M-24-61400;;"Music Release";Creation;2;RUB;0.252401754169
+01/11/2024;01/09/2024;TikTok;"United States";"DARKI MUZIK";STARLEAN;Единичка;"big step";3617662660762;DG-A0M-24-61394;;"Music Release";Creation;2;RUB;0.261108086774
+01/10/2024;01/09/2024;Yandex;Kazakhstan;"DARKI MUZIK";STARLEAN;Единичка;Б.Т.Т.Т.;3617662660762;DG-A0M-24-61399;;"Music Release";Stream;3;RUB;0.047744923914
+01/12/2024;01/11/2024;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";STARLEAN;Единичка;"Моя хоу";3617662660762;DG-A0M-24-61398;;"Music Release";Stream;4;RUB;0.265902281148
+01/12/2024;01/11/2024;Yandex;"Russian Federation";"DARKI MUZIK";STARLEAN;Единичка;Б.Т.Т.Т.;3617662660762;DG-A0M-24-61399;;"Music Release";Stream;6;RUB;0.101267282582
+01/10/2024;01/09/2024;Yandex;"Russian Federation";"DARKI MUZIK";STARLEAN;Единичка;"На сцене";3617662660762;DG-A0M-24-61396;;"Music Release";Stream;24;RUB;0.381959391730
+01/10/2024;01/09/2024;Yandex;"Russian Federation";"DARKI MUZIK";STARLEAN;Единичка;"Моя хоу";3617662660762;DG-A0M-24-61398;;"Music Release";Stream;20;RUB;0.318299493151
+01/11/2024;01/10/2024;Yandex;Kazakhstan;"DARKI MUZIK";STARLEAN;Единичка;"На сцене";3617662660762;DG-A0M-24-61396;;"Music Release";Stream;1;RUB;0.013120678551
+01/11/2024;01/10/2024;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";STARLEAN;Единичка;"big step";3617662660762;DG-A0M-24-61394;;"Music Release";Stream;1;RUB;0.004200000043
+01/11/2024;01/10/2024;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";STARLEAN;Единичка;"На сцене";3617662660762;DG-A0M-24-61396;;"Music Release";Stream;2;RUB;0.117871576375
+01/10/2024;01/09/2024;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";STARLEAN;Единичка;"big step";3617662660762;DG-A0M-24-61394;;"Music Release";Stream;4;RUB;0.016800000000
+01/12/2024;01/11/2024;Yandex;"Russian Federation";"DARKI MUZIK";STARLEAN;Единичка;"big step";3617662660762;DG-A0M-24-61394;;"Music Release";Stream;9;RUB;0.151900923872
+01/10/2024;01/09/2024;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";STARLEAN;Единичка;Б.Т.Т.Т.;3617662660762;DG-A0M-24-61399;;"Music Release";Stream;1;RUB;0.050040621212
+01/12/2024;01/11/2024;Yandex;"Russian Federation";"DARKI MUZIK";STARLEAN;Единичка;"Моя хоу";3617662660762;DG-A0M-24-61398;;"Music Release";Stream;6;RUB;0.101267282582
+01/11/2024;01/10/2024;Yandex;"Russian Federation";"DARKI MUZIK";STARLEAN;Единичка;"На сцене";3617662660762;DG-A0M-24-61396;;"Music Release";Stream;18;RUB;0.236172214614
+01/10/2024;01/09/2024;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";STARLEAN;Единичка;"На сцене";3617662660762;DG-A0M-24-61396;;"Music Release";Stream;3;RUB;0.012600000042
+01/10/2024;01/09/2024;Yandex;"Russian Federation";"DARKI MUZIK";STARLEAN;Единичка;Б.Т.Т.Т.;3617662660762;DG-A0M-24-61399;;"Music Release";Stream;34;RUB;0.541109138306
+01/11/2024;01/10/2024;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";STARLEAN;Единичка;"Что их привлекает";3617662660762;DG-A0M-24-61400;;"Music Release";Stream;1;RUB;0.004200000043
+01/11/2024;01/10/2024;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";STARLEAN;Единичка;Б.Т.Т.Т.;3617662660762;DG-A0M-24-61399;;"Music Release";Stream;2;RUB;0.008400000000
+01/12/2024;01/11/2024;Yandex;"Russian Federation";"DARKI MUZIK";STARLEAN;Единичка;"Что их привлекает";3617662660762;DG-A0M-24-61400;;"Music Release";Stream;12;RUB;0.202534565250
+01/10/2024;01/09/2024;Yandex;"Russian Federation";"DARKI MUZIK";STARLEAN;Единичка;"Что их привлекает";3617662660762;DG-A0M-24-61400;;"Music Release";Stream;19;RUB;0.302384518485
+01/12/2024;01/11/2024;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";STARLEAN;Единичка;"big step";3617662660762;DG-A0M-24-61394;;"Music Release";Stream;2;RUB;0.008400000000
+01/11/2024;01/10/2024;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";STARLEAN;Единичка;"На сцене";3617662660762;DG-A0M-24-61396;;"Music Release";Stream;2;RUB;0.227343152750
+01/10/2024;01/09/2024;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";STARLEAN;Единичка;"Моя хоу";3617662660762;DG-A0M-24-61398;;"Music Release";Stream;2;RUB;0.215737825884

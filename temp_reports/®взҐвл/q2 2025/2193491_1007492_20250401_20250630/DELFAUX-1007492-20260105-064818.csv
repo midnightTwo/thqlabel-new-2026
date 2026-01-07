@@ -1,0 +1,80 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/04/2025;01/04/2025;"Apple Music";"Russian Federation";thqlabel;DELFAUX;#heavy_mental;никакуся;5063466226648;RU-A1D-24-77609;;"Music Release";Stream;1;RUB;0.095996319993
+01/05/2025;01/05/2025;"Apple Music";"Moldova, Republic Of";thqlabel;DELFAUX;#heavy_mental;зубки;5063466226648;RU-A1D-24-77615;;"Music Release";Stream;1;RUB;0.170563612100
+01/06/2025;01/06/2025;"YouTube Official Content";Portugal;thqlabel;DELFAUX;#heavy_mental;"мы плачем вместе";5063466226648;RU-A1D-24-77613;;"Music Release";Stream;1;RUB;0.489680142018
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;DELFAUX;#heavy_mental;"heavy mental";5063466226648;RU-A1D-24-77621;;"Music Release";Stream;16;RUB;0.603804664044
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;DELFAUX;#heavy_mental;заряд;5063466226648;RU-A1D-24-77612;;"Music Release";Stream;1;RUB;0.004200000038
+01/05/2025;01/05/2025;"Apple Music";Latvia;thqlabel;DELFAUX;#heavy_mental;никакуся;5063466226648;RU-A1D-24-77609;;"Music Release";Stream;1;RUB;0.276689873253
+01/06/2025;01/05/2025;Spotify;Uzbekistan;thqlabel;DELFAUX;#heavy_mental;"город выбьет голову";5063466226648;RU-A1D-24-77610;;"Music Release";Stream;1;RUB;0.001504371881
+01/06/2025;01/06/2025;"YouTube Official Content";Ukraine;thqlabel;DELFAUX;#heavy_mental;зубки;5063466226648;RU-A1D-24-77615;;"Music Release";Stream;1;RUB;0.038662722446
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;DELFAUX;#heavy_mental;"ЕЩЁ ОДИН ГОД";5063466226648;RU-A1D-24-77611;;"Music Release";Stream;1;RUB;-0.000064156270
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;DELFAUX;#heavy_mental;"cell city life";5063466226648;RU-A1D-24-77619;;"Music Release";Stream;1;RUB;-0.000061651710
+01/05/2025;01/05/2025;"Apple Music";Poland;thqlabel;DELFAUX;#heavy_mental;"ЕЩЁ ОДИН ГОД";5063466226648;RU-A1D-24-77611;;"Music Release";Stream;1;RUB;0.147608159486
+01/06/2025;01/06/2025;"YouTube Official Content";Hungary;thqlabel;DELFAUX;#heavy_mental;"мы плачем вместе";5063466226648;RU-A1D-24-77613;;"Music Release";Stream;1;RUB;0.150360171534
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;DELFAUX;#heavy_mental;мыло;5063466226648;RU-A1D-24-77608;;"Music Release";Stream;1;RUB;-0.002052038263
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;DELFAUX;#heavy_mental;"we all gonna die";5063466226648;RU-A1D-24-77616;;"Music Release";Stream;3;RUB;0.012600000036
+01/06/2025;01/06/2025;"YouTube Official Content";Ukraine;thqlabel;DELFAUX;#heavy_mental;"heavy mental";5063466226648;RU-A1D-24-77621;;"Music Release";Stream;1;RUB;0.038662722446
+01/06/2025;01/05/2025;Spotify;France;thqlabel;DELFAUX;#heavy_mental;"heavy mental";5063466226648;RU-A1D-24-77621;;"Music Release";Stream;1;RUB;0.248124311445
+01/04/2025;01/04/2025;"Apple Music";Germany;thqlabel;DELFAUX;#heavy_mental;"heavy mental";5063466226648;RU-A1D-24-77621;;"Music Release";Stream;112;RUB;54.481120282160
+01/05/2025;01/05/2025;"YouTube Official Content";Ukraine;thqlabel;DELFAUX;#heavy_mental;"мы плачем вместе";5063466226648;RU-A1D-24-77613;;"Music Release";Stream;6;RUB;0.264190025029
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;DELFAUX;#heavy_mental;"город выбьет голову";5063466226648;RU-A1D-24-77610;;"Music Release";Stream;1;RUB;-0.000128312468
+01/04/2025;01/04/2025;"Apple Music";Poland;thqlabel;DELFAUX;#heavy_mental;"ЕЩЁ ОДИН ГОД";5063466226648;RU-A1D-24-77611;;"Music Release";Stream;1;RUB;0.145528419222
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;DELFAUX;#heavy_mental;"рожаю обстоятельства";5063466226648;RU-A1D-24-77618;;"Music Release";Stream;1;RUB;-0.000061651710
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;DELFAUX;#heavy_mental;"we all gonna die";5063466226648;RU-A1D-24-77616;;"Music Release";Stream;2;RUB;0.008400000000
+01/05/2025;01/05/2025;"Apple Music";Germany;thqlabel;DELFAUX;#heavy_mental;"КАК ДОМОЙ";5063466226648;RU-A1D-24-77617;;"Music Release";Stream;1;RUB;0.484353006634
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Ukraine;thqlabel;DELFAUX;#heavy_mental;"я не знаю что правильно(";5063466226648;RU-A1D-24-77607;;"Music Release";Stream;1;RUB;0.004200000036
+01/04/2025;01/02/2025;TikTok;Nigeria;thqlabel;DELFAUX;#heavy_mental;"ВРЕМЯ ПОСТРЕЛЯТЬ";5063466226648;RU-A1D-24-77622;;"Music Release";Creation;1;RUB;0.094602758506
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;DELFAUX;#heavy_mental;"я не знаю что правильно(";5063466226648;RU-A1D-24-77607;;"Music Release";Stream;1;RUB;0.004200000038
+01/06/2025;01/04/2025;TikTok;Denmark;thqlabel;DELFAUX;#heavy_mental;"heavy mental";5063466226648;RU-A1D-24-77621;;"Music Release";Creation;2;RUB;0.143991354471
+01/06/2025;01/06/2025;"YouTube Official Content";Ukraine;thqlabel;DELFAUX;#heavy_mental;"ТИПЫ УМИРАЮТ Alternative Version";5063466226648;RU-A1D-24-77625;;"Music Release";Stream;1;RUB;0.038662722446
+01/06/2025;01/05/2025;Spotify;France;thqlabel;DELFAUX;#heavy_mental;"город выбьет голову";5063466226648;RU-A1D-24-77610;;"Music Release";Stream;1;RUB;0.248124311445
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;DELFAUX;#heavy_mental;"я не знаю что правильно(";5063466226648;RU-A1D-24-77607;;"Music Release";Stream;1;RUB;-0.002237752468
+01/06/2025;01/04/2025;Deezer;Ukraine;thqlabel;DELFAUX;#heavy_mental;"ВРЕМЯ ПОСТРЕЛЯТЬ";5063466226648;RU-A1D-24-77622;;"Music Release";Stream;1;RUB;0.014662326966
+01/06/2025;01/06/2025;"Apple Music";"Russian Federation";thqlabel;DELFAUX;#heavy_mental;"heavy mental";5063466226648;RU-A1D-24-77621;;"Music Release";Stream;1;RUB;0.067359040017
+01/04/2025;01/04/2025;"Apple Music";"United States";thqlabel;DELFAUX;#heavy_mental;мыло;5063466226648;RU-A1D-24-77608;;"Music Release";Stream;1;RUB;0.150268770160
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;DELFAUX;#heavy_mental;никакуся;5063466226648;RU-A1D-24-77609;;"Music Release";Stream;1;RUB;-0.000254120374
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;DELFAUX;#heavy_mental;мыло;5063466226648;RU-A1D-24-77608;;"Music Release";Stream;1;RUB;0.004200000036
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;DELFAUX;#heavy_mental;"heavy mental";5063466226648;RU-A1D-24-77621;;"Music Release";Stream;5;RUB;0.294741635584
+01/05/2025;01/05/2025;"YouTube Official Content";Poland;thqlabel;DELFAUX;#heavy_mental;"мы плачем вместе";5063466226648;RU-A1D-24-77613;;"Music Release";Stream;1;RUB;0.134849681693
+01/06/2025;01/06/2025;"YouTube Official Content";Denmark;thqlabel;DELFAUX;#heavy_mental;"мы плачем вместе";5063466226648;RU-A1D-24-77613;;"Music Release";Stream;1;RUB;0.172604537829
+01/06/2025;01/06/2025;"YouTube Official Content";Nigeria;thqlabel;DELFAUX;#heavy_mental;"мы плачем вместе";5063466226648;RU-A1D-24-77613;;"Music Release";Stream;1;RUB;0.007458888045
+01/04/2025;01/04/2025;"YouTube Official Content";Poland;thqlabel;DELFAUX;#heavy_mental;"мы плачем вместе";5063466226648;RU-A1D-24-77613;;"Music Release";Stream;2;RUB;0.372283533153
+01/06/2025;01/06/2025;"YouTube Official Content";Ukraine;thqlabel;DELFAUX;#heavy_mental;"ЕЩЁ ОДИН ГОД";5063466226648;RU-A1D-24-77611;;"Music Release";Stream;3;RUB;0.115988167266
+01/06/2025;01/06/2025;"YouTube Official Content";Ukraine;thqlabel;DELFAUX;#heavy_mental;"мы плачем вместе";5063466226648;RU-A1D-24-77613;;"Music Release";Stream;6;RUB;0.418483463525
+01/05/2025;01/04/2025;Spotify;"United States";thqlabel;DELFAUX;#heavy_mental;"heavy mental";5063466226648;RU-A1D-24-77621;;"Music Release";Stream;1;RUB;0.126249469876
+01/06/2025;01/06/2025;"YouTube Official Content";"United Kingdom";thqlabel;DELFAUX;#heavy_mental;"мы плачем вместе";5063466226648;RU-A1D-24-77613;;"Music Release";Stream;1;RUB;0.223504543379
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;DELFAUX;#heavy_mental;заряд;5063466226648;RU-A1D-24-77612;;"Music Release";Stream;1;RUB;-0.000064156270
+01/05/2025;01/05/2025;"Apple Music";"Moldova, Republic Of";thqlabel;DELFAUX;#heavy_mental;"КАК ДОМОЙ";5063466226648;RU-A1D-24-77617;;"Music Release";Stream;1;RUB;0.170563612100
+01/06/2025;01/06/2025;"YouTube Official Content";Latvia;thqlabel;DELFAUX;#heavy_mental;мыло;5063466226648;RU-A1D-24-77608;;"Music Release";Stream;1;RUB;0.406384863446
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;DELFAUX;#heavy_mental;"ТИПЫ УМИРАЮТ Alternative Version";5063466226648;RU-A1D-24-77625;;"Music Release";Stream;1;RUB;-0.000061651710
+01/05/2025;01/04/2025;Spotify;"United States";thqlabel;DELFAUX;#heavy_mental;"город выбьет голову";5063466226648;RU-A1D-24-77610;;"Music Release";Stream;1;RUB;0.126249469876
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;DELFAUX;#heavy_mental;"мы плачем вместе";5063466226648;RU-A1D-24-77613;;"Music Release";Stream;1;RUB;-0.000064156270
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;DELFAUX;#heavy_mental;мыло;5063466226648;RU-A1D-24-77608;;"Music Release";Stream;5;RUB;0.021000000038
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;DELFAUX;#heavy_mental;"ВРЕМЯ ПОСТРЕЛЯТЬ";5063466226648;RU-A1D-24-77622;;"Music Release";Stream;1;RUB;0.004200000036
+01/04/2025;01/02/2025;TikTok;Belarus;thqlabel;DELFAUX;#heavy_mental;"ВРЕМЯ ПОСТРЕЛЯТЬ";5063466226648;RU-A1D-24-77622;;"Music Release";Creation;1;RUB;0.094602758506
+01/04/2025;01/03/2025;Spotify;Nigeria;thqlabel;DELFAUX;#heavy_mental;"город выбьет голову";5063466226648;RU-A1D-24-77610;;"Music Release";Stream;1;RUB;0.018095854894
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;DELFAUX;#heavy_mental;"heavy mental";5063466226648;RU-A1D-24-77621;;"Music Release";Stream;1;RUB;0.004200000036
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;DELFAUX;#heavy_mental;"we all gonna die";5063466226648;RU-A1D-24-77616;;"Music Release";Stream;11;RUB;0.046200000038
+01/04/2025;01/04/2025;"Apple Music";"Russian Federation";thqlabel;DELFAUX;#heavy_mental;зубки;5063466226648;RU-A1D-24-77615;;"Music Release";Stream;1;RUB;0.095996319993
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;DELFAUX;#heavy_mental;никакуся;5063466226648;RU-A1D-24-77609;;"Music Release";Stream;2;RUB;0.008400000000
+01/04/2025;01/02/2025;TikTok;Nigeria;thqlabel;DELFAUX;#heavy_mental;нахх;5063466226648;RU-A1D-24-77614;;"Music Release";Creation;1;RUB;0.094602758506
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;DELFAUX;#heavy_mental;"ВРЕМЯ ПОСТРЕЛЯТЬ";5063466226648;RU-A1D-24-77622;;"Music Release";Stream;1;RUB;-0.000123303418
+01/05/2025;01/05/2025;"Apple Music";Latvia;thqlabel;DELFAUX;#heavy_mental;"КАК ДОМОЙ";5063466226648;RU-A1D-24-77617;;"Music Release";Stream;1;RUB;0.276689873253
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;DELFAUX;#heavy_mental;"ЕЩЁ ОДИН ГОД";5063466226648;RU-A1D-24-77611;;"Music Release";Stream;1;RUB;0.004200000038
+01/06/2025;01/06/2025;"Apple Music";"Russian Federation";thqlabel;DELFAUX;#heavy_mental;"город выбьет голову";5063466226648;RU-A1D-24-77610;;"Music Release";Stream;1;RUB;0.098227919990
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;DELFAUX;#heavy_mental;никакуся;5063466226648;RU-A1D-24-77609;;"Music Release";Stream;2;RUB;0.008400000000
+01/04/2025;01/04/2025;"YouTube Official Content";Ukraine;thqlabel;DELFAUX;#heavy_mental;"мы плачем вместе";5063466226648;RU-A1D-24-77613;;"Music Release";Stream;9;RUB;0.456741521420
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;DELFAUX;#heavy_mental;"heavy mental";5063466226648;RU-A1D-24-77621;;"Music Release";Stream;1;RUB;-0.000384937330
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;DELFAUX;#heavy_mental;"ВРЕМЯ ПОСТРЕЛЯТЬ";5063466226648;RU-A1D-24-77622;;"Music Release";Stream;2;RUB;0.008400000000
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;DELFAUX;#heavy_mental;"город выбьет голову";5063466226648;RU-A1D-24-77610;;"Music Release";Stream;1;RUB;0.004200000038
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;DELFAUX;#heavy_mental;"we all gonna die";5063466226648;RU-A1D-24-77616;;"Music Release";Stream;1;RUB;-0.001469815608
+01/06/2025;01/06/2025;"YouTube Official Content";Lithuania;thqlabel;DELFAUX;#heavy_mental;"мы плачем вместе";5063466226648;RU-A1D-24-77613;;"Music Release";Stream;1;RUB;0.233155735287
+01/06/2025;01/04/2025;TikTok;Belarus;thqlabel;DELFAUX;#heavy_mental;"мы плачем вместе";5063466226648;RU-A1D-24-77613;;"Music Release";Creation;1;RUB;0.071995677163
+01/04/2025;01/04/2025;"Apple Music";"Russian Federation";thqlabel;DELFAUX;#heavy_mental;"heavy mental";5063466226648;RU-A1D-24-77621;;"Music Release";Stream;1;RUB;0.095996319993
+01/05/2025;01/05/2025;"YouTube Official Content";Ukraine;thqlabel;DELFAUX;#heavy_mental;мыло;5063466226648;RU-A1D-24-77608;;"Music Release";Stream;2;RUB;0.143984405009
+01/05/2025;01/03/2025;"Facebook / Instagram";Worldwide;thqlabel;DELFAUX;#heavy_mental;"ЕЩЁ ОДИН ГОД";5063466226648;RU-A1D-24-77611;;"Music Release";Creation;13;RUB;0.310662456910
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;DELFAUX;#heavy_mental;мыло;5063466226648;RU-A1D-24-77608;;"Music Release";Stream;1;RUB;0.004200000000
+01/05/2025;01/05/2025;"YouTube Official Content";"United States";thqlabel;DELFAUX;#heavy_mental;"мы плачем вместе";5063466226648;RU-A1D-24-77613;;"Music Release";Stream;1;RUB;0.094367700586
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;DELFAUX;#heavy_mental;"рожаю обстоятельства";5063466226648;RU-A1D-24-77618;;"Music Release";Stream;1;RUB;0.124171690422
+01/06/2025;01/06/2025;"Apple Music";Ukraine;thqlabel;DELFAUX;#heavy_mental;"heavy mental";5063466226648;RU-A1D-24-77621;;"Music Release";Stream;1;RUB;0.168011150526
+01/05/2025;01/05/2025;"Apple Music";Germany;thqlabel;DELFAUX;#heavy_mental;"heavy mental";5063466226648;RU-A1D-24-77621;;"Music Release";Stream;19;RUB;9.202707127072

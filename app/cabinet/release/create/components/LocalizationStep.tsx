@@ -28,9 +28,9 @@ export default function LocalizationStep({ onNext, onBack }: LocalizationStepPro
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="15 18 9 12 15 6" strokeWidth="2"/></svg>
           Назад
         </button>
-        <button onClick={onNext} className="px-8 py-3 bg-[#6050ba] hover:bg-[#7060ca] rounded-xl font-bold transition flex items-center gap-2">
+        <button onClick={onNext} className="px-8 py-3 bg-[#6050ba] hover:bg-[#7060ca] rounded-xl font-bold transition flex items-center gap-2" style={{ color: 'white' }}>
           Далее
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="9 18 15 12 9 6" strokeWidth="2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white"><polyline points="9 18 15 12 9 6" strokeWidth="2"/></svg>
         </button>
       </div>
     </div>

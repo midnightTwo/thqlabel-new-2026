@@ -1,0 +1,8 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/02/2025;01/01/2025;"Amazon Music Streaming";Germany;thqlabel;shameless;"удачный день";"удачный день";5063316885025;RU-A1D-24-22698;;"Music Release";Stream;1;RUB;0.171287114266
+01/03/2025;01/02/2025;"Amazon Music Streaming";"United States";thqlabel;shameless;"удачный день";"удачный день";5063316885025;RU-A1D-24-22698;;"Music Release";Stream;2;RUB;0.437080952533
+01/02/2025;01/01/2025;"Amazon Music Streaming";France;thqlabel;shameless;"удачный день";"удачный день";5063316885025;RU-A1D-24-22698;;"Music Release";Stream;1;RUB;0.611283144095
+01/01/2025;01/12/2024;Yandex;Kazakhstan;thqlabel;shameless;"удачный день";"удачный день";5063316885025;RU-A1D-24-22698;;"Music Release";Stream;2;RUB;0.035162764938
+01/01/2025;01/12/2024;Yandex;"Russian Federation";thqlabel;shameless;"удачный день";"удачный день";5063316885025;RU-A1D-24-22698;;"Music Release";Stream;5;RUB;0.087906912258
+01/03/2025;01/02/2025;Yandex;"Russian Federation";thqlabel;shameless;"удачный день";"удачный день";5063316885025;RU-A1D-24-22698;;"Music Release";Stream;12;RUB;0.259044501425
+01/02/2025;01/01/2025;"Amazon Music Streaming";"United States";thqlabel;shameless;"удачный день";"удачный день";5063316885025;RU-A1D-24-22698;;"Music Release";Stream;1;RUB;0.190828338146

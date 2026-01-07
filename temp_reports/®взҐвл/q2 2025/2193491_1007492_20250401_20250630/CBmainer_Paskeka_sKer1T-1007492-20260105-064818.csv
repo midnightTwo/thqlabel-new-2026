@@ -1,0 +1,82 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/04/2025;01/01/2025;"Facebook / Instagram";Kyrgyzstan;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;5;RUB;0.000099902091
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";сайберлав;Послала;3617669979294;FR-2X4-25-16031;;"Music Release";Stream;1;RUB;-0.007677626028
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";сайберлав;Сердце;3617669979294;FR-2X4-25-16032;;"Music Release";Stream;32;RUB;0.649769032419
+01/05/2025;01/04/2025;"UMA (Odnoklassniki)";"Russian Federation";"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";сайберлав;Послала;3617669979294;FR-2X4-25-16031;;"Music Release";Stream;4;RUB;0.016800000000
+01/04/2025;01/01/2025;"Facebook / Instagram";Estonia;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;3;RUB;0.004295301107
+01/04/2025;01/01/2025;"Facebook / Instagram";Tajikistan;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;5;RUB;0.000066584748
+01/04/2025;01/01/2025;"Facebook / Instagram";Austria;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;7;RUB;0.026524309226
+01/04/2025;01/01/2025;"Facebook / Instagram";Uzbekistan;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;200;RUB;0.003996084697
+01/04/2025;01/01/2025;"Facebook / Instagram";"United States";"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;59;RUB;0.392903394641
+01/04/2025;01/01/2025;"Facebook / Instagram";Italy;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;4;RUB;0.006313093857
+01/04/2025;01/01/2025;"Facebook / Instagram";Portugal;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;1;RUB;0.000006658474
+01/04/2025;01/01/2025;"Facebook / Instagram";Belgium;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;1;RUB;0.007112215808
+01/04/2025;01/01/2025;"Facebook / Instagram";Nigeria;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;1;RUB;0.000046614347
+01/04/2025;01/01/2025;"Facebook / Instagram";Bulgaria;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;2;RUB;0.002157635717
+01/04/2025;01/01/2025;"Facebook / Instagram";Canada;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;20;RUB;0.067126523656
+01/04/2025;01/11/2024;Yandex;Worldwide;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;-1;RUB;-0.189915189852
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";сайберлав;Послала;3617669979294;FR-2X4-25-16031;;"Music Release";Stream;66;RUB;1.370918956438
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";сайберлав;Послала;3617669979294;FR-2X4-25-16031;;"Music Release";Stream;8;RUB;0.632714370143
+01/06/2025;01/05/2025;"UMA (Odnoklassniki)";"Russian Federation";"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";сайберлав;Послала;3617669979294;FR-2X4-25-16031;;"Music Release";Stream;5;RUB;0.021000000036
+01/04/2025;01/01/2025;"Facebook / Instagram";Hungary;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;26;RUB;0.036013970425
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";сайберлав;Сердце;3617669979294;FR-2X4-25-16032;;"Music Release";Stream;1;RUB;-0.002102216686
+01/04/2025;01/01/2025;"Facebook / Instagram";Norway;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;7;RUB;0.041487931570
+01/04/2025;01/01/2025;"Facebook / Instagram";Greece;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;3;RUB;0.003076635258
+01/04/2025;01/01/2025;"Facebook / Instagram";Netherlands;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;17;RUB;0.065095428954
+01/04/2025;01/01/2025;"Facebook / Instagram";Latvia;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;18;RUB;0.019059164260
+01/04/2025;01/01/2025;"Facebook / Instagram";Turkey;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;8;RUB;0.005540610754
+01/06/2025;01/05/2025;"Amazon Music Streaming";Germany;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";сайберлав;Послала;3617669979294;FR-2X4-25-16031;;"Music Release";Stream;2;RUB;0.213523757169
+01/04/2025;01/01/2025;"Facebook / Instagram";Mongolia;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;1;RUB;0.000439519322
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Послала;3617389854062;DG-A06-24-19555;;"Music Release";Stream;1;RUB;-0.016588262005
+01/05/2025;01/01/2025;"Facebook / Instagram";India;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Creation;13;RUB;0.050129563070
+01/04/2025;01/01/2025;"Facebook / Instagram";"Serbia And Montenegro";"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;1;RUB;0.000293012857
+01/04/2025;01/01/2025;"Facebook / Instagram";Ukraine;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;211;RUB;0.127866250287
+01/04/2025;01/01/2025;"Facebook / Instagram";Denmark;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;4;RUB;0.021150195209
+01/04/2025;01/01/2025;"Facebook / Instagram";"Hong Kong";"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;2;RUB;0.033137069465
+01/04/2025;01/11/2024;Yandex;Worldwide;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Послала;3617389854062;DG-A06-24-19555;;"Music Release";Stream;-1;RUB;-0.415857677051
+01/04/2025;01/01/2025;"Facebook / Instagram";France;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;24;RUB;0.206334136062
+01/04/2025;01/01/2025;"Facebook / Instagram";India;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;3;RUB;0.002357415005
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";сайберлав;Послала;3617669979294;FR-2X4-25-16031;;"Music Release";Stream;2;RUB;0.248343380919
+01/04/2025;01/01/2025;"Facebook / Instagram";"Korea, Republic Of";"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;3;RUB;0.008630552989
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";сайберлав;Сердце;3617669979294;FR-2X4-25-16032;;"Music Release";Stream;1;RUB;0.004200000000
+01/04/2025;01/01/2025;"Facebook / Instagram";"United Arab Emirates";"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;8;RUB;0.031645351186
+01/04/2025;01/01/2025;"Facebook / Instagram";Lithuania;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;16;RUB;0.019072431196
+01/04/2025;01/01/2025;"Facebook / Instagram";Slovakia;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;4;RUB;0.006126636618
+01/04/2025;01/03/2025;"UMA (Odnoklassniki)";Belarus;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";сайберлав;Послала;3617669979294;FR-2X4-25-16031;;"Music Release";Stream;2;RUB;0.008400000000
+01/04/2025;01/01/2025;"Facebook / Instagram";"Viet Nam";"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;1;RUB;0.000972267265
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;1;RUB;-0.027739563593
+01/04/2025;01/01/2025;"Facebook / Instagram";Sweden;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;14;RUB;0.045683365454
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";сайберлав;Послала;3617669979294;FR-2X4-25-16031;;"Music Release";Stream;34;RUB;0.620711716394
+01/04/2025;01/01/2025;"Facebook / Instagram";Colombia;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;1;RUB;0.000326310254
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Belarus;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";сайберлав;Послала;3617669979294;FR-2X4-25-16031;;"Music Release";Stream;2;RUB;0.008400000000
+01/04/2025;01/03/2025;Yandex;Kazakhstan;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";сайберлав;Сердце;3617669979294;FR-2X4-25-16032;;"Music Release";Stream;1;RUB;0.021290350854
+01/04/2025;01/01/2025;"Facebook / Instagram";Kazakhstan;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;187;RUB;0.001245134786
+01/04/2025;01/01/2025;"Facebook / Instagram";Indonesia;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;1;RUB;0.000506114043
+01/04/2025;01/01/2025;"Facebook / Instagram";Romania;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;1;RUB;0.002284166833
+01/04/2025;01/01/2025;"Facebook / Instagram";Switzerland;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;4;RUB;0.042593383253
+01/04/2025;01/01/2025;"Facebook / Instagram";"Czech Republic";"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;33;RUB;0.038018346347
+01/04/2025;01/01/2025;"Facebook / Instagram";Armenia;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;4;RUB;0.001092129859
+01/04/2025;01/03/2025;"UMA (Odnoklassniki)";"Russian Federation";"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";сайберлав;Послала;3617669979294;FR-2X4-25-16031;;"Music Release";Stream;4;RUB;0.016800000000
+01/04/2025;01/01/2025;"Facebook / Instagram";Spain;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;4;RUB;0.008710464734
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";сайберлав;Сердце;3617669979294;FR-2X4-25-16032;;"Music Release";Stream;59;RUB;1.194848990703
+01/04/2025;01/01/2025;"Facebook / Instagram";Israel;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;4;RUB;0.027330079604
+01/04/2025;01/01/2025;"Facebook / Instagram";Japan;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;3;RUB;0.009449665436
+01/04/2025;01/01/2025;"Facebook / Instagram";Morocco;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;1;RUB;0.000159823341
+01/04/2025;01/01/2025;"Facebook / Instagram";"United Kingdom";"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;15;RUB;0.059834494011
+01/04/2025;01/01/2025;"Facebook / Instagram";Poland;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;33;RUB;0.045929769062
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";сайберлав;Послала;3617669979294;FR-2X4-25-16031;;"Music Release";Stream;1;RUB;0.004200000038
+01/05/2025;01/01/2025;"Facebook / Instagram";Thailand;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Creation;13;RUB;0.025678661921
+01/04/2025;01/01/2025;"Facebook / Instagram";"New Zealand";"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;1;RUB;0.008524002396
+01/04/2025;01/01/2025;"Facebook / Instagram";Iraq;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;2;RUB;0.000918989494
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";сайберлав;Послала;3617669979294;FR-2X4-25-16031;;"Music Release";Stream;1;RUB;0.004200000036
+01/04/2025;01/01/2025;"Facebook / Instagram";Georgia;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;15;RUB;0.007691588070
+01/04/2025;01/01/2025;"Facebook / Instagram";Germany;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;53;RUB;0.160590844185
+01/04/2025;01/01/2025;"Facebook / Instagram";Cyprus;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;2;RUB;0.003263092573
+01/04/2025;01/03/2025;Yandex;Belarus;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";сайберлав;Послала;3617669979294;FR-2X4-25-16031;;"Music Release";Stream;1;RUB;0.021290350854
+01/04/2025;01/01/2025;"Facebook / Instagram";Philippines;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;1;RUB;0.001218665850
+01/06/2025;01/06/2025;"YouTube Official Content";Latvia;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";сайберлав;Сердце;3617669979294;FR-2X4-25-16032;;"Music Release";Stream;1;RUB;0.040742778496
+01/04/2025;01/01/2025;"Facebook / Instagram";Pakistan;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;1;RUB;0.000299671331
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";сайберлав;Сердце;3617669979294;FR-2X4-25-16032;;"Music Release";Stream;45;RUB;0.965462102353
+01/04/2025;01/01/2025;"Facebook / Instagram";Finland;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;3;RUB;0.010588414591
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";сайберлав;Послала;3617669979294;FR-2X4-25-16031;;"Music Release";Stream;115;RUB;2.325826928994
+01/04/2025;01/01/2025;"Facebook / Instagram";Singapore;"DARKI MUZIK";"CBmainer, Paskeka, sKer1T";CYB3RLOVE;Сердце;3617389854062;DG-A06-24-19556;;"Music Release";Stream;6;RUB;0.078833731923

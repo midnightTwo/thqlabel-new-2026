@@ -1,0 +1,179 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/05/2025;01/05/2025;"Apple Music";Ukraine;thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;10;RUB;0.905365436110
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Belarus;thqlabel;oukoo;40%;fps;3617390425305;FR-2X4-25-43118;;"Music Release";Stream;13;RUB;0.054600000000
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;oukoo;40%;fps;3617390425305;FR-2X4-25-43118;;"Music Release";Stream;1;RUB;-0.005230932969
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Belarus;thqlabel;oukoo;"хотя бы";"больше никакого спорта";3617660911385;DG-A07-24-76764;;"Music Release";Stream;1;RUB;0.004200000000
+01/05/2025;01/05/2025;"YouTube UGC";"United Kingdom";thqlabel;oukoo;"tuscan house";"tuscan house";3617396058606;FR-X28-25-34859;;"Music Release";Stream;1;RUB;0.005054581231
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;oukoo;"хотя бы";"тайтл файт";3617660911385;DG-A07-24-76763;;"Music Release";Stream;1;RUB;0.004200000036
+01/06/2025;01/05/2025;Yandex;Armenia;thqlabel;oukoo;"face to face";"face to face";3617393694838;FR-96X-25-80032;;"Music Release";Stream;1;RUB;0.003164771929
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;oukoo;"tuscan house";"tuscan house";3617396058606;FR-X28-25-34859;;"Music Release";Stream;13;RUB;0.179981197778
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;oukoo;"хотя бы";"тайтл файт";3617660911385;DG-A07-24-76763;;"Music Release";Stream;1;RUB;0.124171690422
+01/06/2025;01/06/2025;Likee;"Russian Federation";thqlabel;oukoo;"хотя бы";днд;3617660911385;DG-A07-24-76765;;"Music Release";Stream;7;RUB;0.186375215934
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;oukoo;"хотя бы";обсессия;3617660911385;DG-A07-24-76766;;"Music Release";Stream;1;RUB;-0.077580574166
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;oukoo;40%;fps;3617390425305;FR-2X4-25-43118;;"Music Release";Stream;60;RUB;1.432693528779
+01/04/2025;01/03/2025;Yandex;"Russian Federation";thqlabel;oukoo;"хотя бы";"больше никакого спорта";3617660911385;DG-A07-24-76764;;"Music Release";Stream;7;RUB;0.149032455753
+01/05/2025;01/04/2025;Yandex;"Russian Federation";thqlabel;oukoo;40%;fps;3617390425305;FR-2X4-25-43118;;"Music Release";Stream;440;RUB;9.609537915281
+01/04/2025;01/03/2025;Yandex;Kazakhstan;thqlabel;oukoo;"щенки видят больше";тишетише;3617665872261;DG-A0R-24-20347;;"Music Release";Stream;7;RUB;0.087750748319
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;oukoo;"face to face";"face to face";3617393694838;FR-96X-25-80032;;"Music Release";Stream;62;RUB;0.836117402811
+01/06/2025;01/06/2025;"YouTube Official Content";Germany;thqlabel;oukoo;"face to face";"face to face";3617393694838;FR-96X-25-80032;;"Music Release";Stream;1;RUB;0.065293206250
+01/06/2025;01/06/2025;"YouTube UGC";Belarus;thqlabel;oukoo;"tuscan house";"tuscan house";3617396058606;FR-X28-25-34859;;"Music Release";Stream;1;RUB;0.002234026018
+01/06/2025;01/05/2025;Yandex;"Russian Federation";thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;379;RUB;7.641157793850
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Belarus;thqlabel;oukoo;"щенки видят больше";гладьгладь;3617665872261;DG-A0R-24-20346;;"Music Release";Stream;7;RUB;0.029400000036
+01/05/2025;01/04/2025;Yandex;Uzbekistan;thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;1;RUB;0.004050734508
+01/05/2025;01/05/2025;"YouTube UGC";Ukraine;thqlabel;oukoo;40%;fps;3617390425305;FR-2X4-25-43118;;"Music Release";Stream;1;RUB;0.002914879464
+01/06/2025;01/05/2025;Yandex;Kazakhstan;thqlabel;oukoo;"хотя бы";"тайтл файт";3617660911385;DG-A07-24-76763;;"Music Release";Stream;5;RUB;0.086597579769
+01/05/2025;01/05/2025;"YouTube UGC";Ukraine;thqlabel;oukoo;"face to face";"face to face";3617393694838;FR-96X-25-80032;;"Music Release";Stream;2;RUB;0.009305976108
+01/04/2025;01/03/2025;Yandex;"Moldova, Republic Of";thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;2;RUB;0.027260274868
+01/06/2025;01/05/2025;Yandex;Uzbekistan;thqlabel;oukoo;"face to face";"face to face";3617393694838;FR-96X-25-80032;;"Music Release";Stream;4;RUB;0.030352517800
+01/05/2025;01/04/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;oukoo;"щенки видят больше";тишетише;3617665872261;DG-A0R-24-20347;;"Music Release";Stream;1;RUB;0.124022873985
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;oukoo;"щенки видят больше";тишетише;3617665872261;DG-A0R-24-20347;;"Music Release";Stream;39;RUB;1.454102947214
+01/04/2025;01/11/2024;Yandex;Worldwide;thqlabel;oukoo;"щенки видят больше";тишетише;3617665872261;DG-A0R-24-20347;;"Music Release";Stream;-1;RUB;-0.828518927034
+01/05/2025;01/04/2025;Yandex;Belarus;thqlabel;oukoo;40%;fps;3617390425305;FR-2X4-25-43118;;"Music Release";Stream;1;RUB;0.021850258413
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Belarus;thqlabel;oukoo;"щенки видят больше";тишетише;3617665872261;DG-A0R-24-20347;;"Music Release";Stream;12;RUB;0.050400000000
+01/04/2025;01/04/2025;"Apple Music";Poland;thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;1;RUB;0.145528419222
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;1;RUB;0.004200000000
+01/06/2025;01/06/2025;"YouTube Official Content";"United States";thqlabel;oukoo;"tuscan house";"tuscan house";3617396058606;FR-X28-25-34859;;"Music Release";Stream;1;RUB;0.011250381586
+01/04/2025;01/11/2024;Yandex;Worldwide;thqlabel;oukoo;"хотя бы";обсессия;3617660911385;DG-A07-24-76766;;"Music Release";Stream;-1;RUB;-0.094844732954
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;1;RUB;0.124171690422
+01/04/2025;01/03/2025;Yandex;"Russian Federation";thqlabel;oukoo;40%;fps;3617390425305;FR-2X4-25-43118;;"Music Release";Stream;309;RUB;6.628447430835
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Belarus;thqlabel;oukoo;40%;fps;3617390425305;FR-2X4-25-43118;;"Music Release";Stream;15;RUB;0.063000000038
+01/06/2025;01/05/2025;Yandex;"Russian Federation";thqlabel;oukoo;"хотя бы";днд;3617660911385;DG-A07-24-76765;;"Music Release";Stream;6;RUB;0.125149211724
+01/06/2025;01/05/2025;Yandex;Belarus;thqlabel;oukoo;"face to face";"face to face";3617393694838;FR-96X-25-80032;;"Music Release";Stream;32;RUB;0.614382172465
+01/05/2025;01/05/2025;"YouTube Official Content";France;thqlabel;oukoo;"face to face";"face to face";3617393694838;FR-96X-25-80032;;"Music Release";Stream;1;RUB;0.371232385030
+01/05/2025;01/05/2025;"Apple Music";"Russian Federation";thqlabel;oukoo;"tuscan house";"tuscan house";3617396058606;FR-X28-25-34859;;"Music Release";Stream;1;RUB;0.101712239957
+01/06/2025;01/06/2025;"YouTube Official Content";Denmark;thqlabel;oukoo;"face to face";"face to face";3617393694838;FR-96X-25-80032;;"Music Release";Stream;1;RUB;0.149967130468
+01/04/2025;01/04/2025;"YouTube UGC";Latvia;thqlabel;oukoo;"щенки видят больше";гладьгладь;3617665872261;DG-A0R-24-20346;;"Music Release";Stream;1;RUB;0.003292463795
+01/04/2025;01/03/2025;Yandex;"Russian Federation";thqlabel;oukoo;"хотя бы";обсессия;3617660911385;DG-A07-24-76766;;"Music Release";Stream;11;RUB;0.274780518413
+01/05/2025;01/04/2025;Yandex;Kazakhstan;thqlabel;oukoo;"щенки видят больше";тишетише;3617665872261;DG-A0R-24-20347;;"Music Release";Stream;9;RUB;0.036456610719
+01/06/2025;01/05/2025;Yandex;"Russian Federation";thqlabel;oukoo;"щенки видят больше";тишетише;3617665872261;DG-A0R-24-20347;;"Music Release";Stream;86;RUB;1.812149149814
+01/06/2025;01/05/2025;Yandex;"Russian Federation";thqlabel;oukoo;"face to face";"face to face";3617393694838;FR-96X-25-80032;;"Music Release";Stream;1065;RUB;20.729037663443
+01/06/2025;01/06/2025;"YouTube UGC";Ukraine;thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;1;RUB;0.001116826479
+01/04/2025;01/03/2025;Yandex;"Russian Federation";thqlabel;oukoo;"хотя бы";"тайтл файт";3617660911385;DG-A07-24-76763;;"Music Release";Stream;18;RUB;0.388199217592
+01/05/2025;01/05/2025;"YouTube UGC";Sweden;thqlabel;oukoo;"tuscan house";"tuscan house";3617396058606;FR-X28-25-34859;;"Music Release";Stream;1;RUB;0.004212150990
+01/05/2025;01/05/2025;"Apple Music";Ukraine;thqlabel;oukoo;40%;fps;3617390425305;FR-2X4-25-43118;;"Music Release";Stream;6;RUB;0.543219261666
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;oukoo;"хотя бы";днд;3617660911385;DG-A07-24-76765;;"Music Release";Stream;15;RUB;0.063000000000
+01/06/2025;01/05/2025;Yandex;Kazakhstan;thqlabel;oukoo;"хотя бы";"больше никакого спорта";3617660911385;DG-A07-24-76764;;"Music Release";Stream;3;RUB;0.044881175812
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Belarus;thqlabel;oukoo;"щенки видят больше";гладьгладь;3617665872261;DG-A0R-24-20346;;"Music Release";Stream;20;RUB;0.126859384072
+01/05/2025;01/04/2025;NetEase;"China Mainland";thqlabel;oukoo;40%;fps;3617390425305;FR-2X4-25-43118;;"Music Release";Stream;13;RUB;0.399281331011
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Belarus;thqlabel;oukoo;"хотя бы";"больше никакого спорта";3617660911385;DG-A07-24-76764;;"Music Release";Stream;1;RUB;0.004200000038
+01/06/2025;01/05/2025;Yandex;"Russian Federation";thqlabel;oukoo;"tuscan house";"tuscan house";3617396058606;FR-X28-25-34859;;"Music Release";Stream;141;RUB;2.834845895330
+01/06/2025;01/05/2025;Yandex;"Russian Federation";thqlabel;oukoo;"хотя бы";"тайтл файт";3617660911385;DG-A07-24-76763;;"Music Release";Stream;7;RUB;0.146007413666
+01/04/2025;01/11/2024;Yandex;Worldwide;thqlabel;oukoo;"хотя бы";"тайтл файт";3617660911385;DG-A07-24-76763;;"Music Release";Stream;-1;RUB;-0.240985431925
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Kyrgyzstan;thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;1;RUB;0.004200000036
+01/06/2025;01/06/2025;"YouTube UGC";"Russian Federation";thqlabel;oukoo;40%;fps;3617390425305;FR-2X4-25-43118;;"Music Release";Stream;1;RUB;0.002121669744
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;oukoo;"хотя бы";днд;3617660911385;DG-A07-24-76765;;"Music Release";Stream;4;RUB;0.016800000000
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;oukoo;"щенки видят больше";гладьгладь;3617665872261;DG-A0R-24-20346;;"Music Release";Stream;56;RUB;6.270401321647
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;oukoo;"хотя бы";"больше никакого спорта";3617660911385;DG-A07-24-76764;;"Music Release";Stream;4;RUB;0.016800000000
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;oukoo;"щенки видят больше";тишетише;3617665872261;DG-A0R-24-20347;;"Music Release";Stream;129;RUB;3.185065996770
+01/04/2025;01/03/2025;Yandex;Kazakhstan;thqlabel;oukoo;"щенки видят больше";гладьгладь;3617665872261;DG-A0R-24-20346;;"Music Release";Stream;4;RUB;0.069840976502
+01/06/2025;01/05/2025;NetEase;"China Mainland";thqlabel;oukoo;40%;fps;3617390425305;FR-2X4-25-43118;;"Music Release";Stream;7;RUB;0.213205706544
+01/06/2025;01/05/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;oukoo;"щенки видят больше";гладьгладь;3617665872261;DG-A0R-24-20346;;"Music Release";Stream;11;RUB;1.528442483487
+01/04/2025;01/03/2025;Yandex;Belarus;thqlabel;oukoo;"щенки видят больше";гладьгладь;3617665872261;DG-A0R-24-20346;;"Music Release";Stream;2;RUB;0.042580701633
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;oukoo;"хотя бы";"больше никакого спорта";3617660911385;DG-A07-24-76764;;"Music Release";Stream;1;RUB;0.004200000036
+01/05/2025;01/04/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;oukoo;"щенки видят больше";гладьгладь;3617665872261;DG-A0R-24-20346;;"Music Release";Stream;34;RUB;5.268067330144
+01/06/2025;01/06/2025;"Apple Music";Ukraine;thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;1;RUB;0.086428610388
+01/04/2025;01/03/2025;Soundcloud;Portugal;thqlabel;oukoo;"хотя бы";днд;3617660911385;DG-A07-24-76765;;"Music Release";Stream;1;RUB;0.220820300925
+01/06/2025;01/05/2025;Yandex;"Russian Federation";thqlabel;oukoo;"хотя бы";обсессия;3617660911385;DG-A07-24-76766;;"Music Release";Stream;7;RUB;0.146007413666
+01/05/2025;01/05/2025;"YouTube UGC";Ukraine;thqlabel;oukoo;"щенки видят больше";тишетише;3617665872261;DG-A0R-24-20347;;"Music Release";Stream;1;RUB;0.001378663597
+01/05/2025;01/04/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;oukoo;"хотя бы";"тайтл файт";3617660911385;DG-A07-24-76763;;"Music Release";Stream;3;RUB;0.372068622101
+01/06/2025;01/06/2025;"YouTube Official Content";Peru;thqlabel;oukoo;"tuscan house";"tuscan house";3617396058606;FR-X28-25-34859;;"Music Release";Stream;2;RUB;0.036301838422
+01/06/2025;01/05/2025;Yandex;Kazakhstan;thqlabel;oukoo;40%;fps;3617390425305;FR-2X4-25-43118;;"Music Release";Stream;4;RUB;0.012659087859
+01/05/2025;01/04/2025;Yandex;"Russian Federation";thqlabel;oukoo;"хотя бы";днд;3617660911385;DG-A07-24-76765;;"Music Release";Stream;7;RUB;0.152951808527
+01/05/2025;01/05/2025;"YouTube UGC";Ukraine;thqlabel;oukoo;"щенки видят больше";гладьгладь;3617665872261;DG-A0R-24-20346;;"Music Release";Stream;1;RUB;0.001378663597
+01/06/2025;01/05/2025;Yandex;"Moldova, Republic Of";thqlabel;oukoo;"face to face";"face to face";3617393694838;FR-96X-25-80032;;"Music Release";Stream;1;RUB;0.003164771929
+01/04/2025;01/03/2025;Yandex;"Russian Federation";thqlabel;oukoo;"хотя бы";днд;3617660911385;DG-A07-24-76765;;"Music Release";Stream;5;RUB;0.106451754120
+01/04/2025;01/03/2025;Yandex;Kazakhstan;thqlabel;oukoo;"хотя бы";"больше никакого спорта";3617660911385;DG-A07-24-76764;;"Music Release";Stream;7;RUB;0.087750748319
+01/05/2025;01/04/2025;Yandex;Ukraine;thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;2;RUB;0.008101469016
+01/05/2025;01/04/2025;Yandex;Belarus;thqlabel;oukoo;"хотя бы";"больше никакого спорта";3617660911385;DG-A07-24-76764;;"Music Release";Stream;1;RUB;0.021850258413
+01/04/2025;01/03/2025;NetEase;"China Mainland";thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;7;RUB;0.219183994616
+01/04/2025;01/11/2024;Yandex;Worldwide;thqlabel;oukoo;"хотя бы";"больше никакого спорта";3617660911385;DG-A07-24-76764;;"Music Release";Stream;-1;RUB;-0.131398718056
+01/04/2025;01/03/2025;Yandex;Belarus;thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;31;RUB;0.629360021520
+01/04/2025;01/03/2025;Yandex;Kazakhstan;thqlabel;oukoo;"хотя бы";"тайтл файт";3617660911385;DG-A07-24-76763;;"Music Release";Stream;28;RUB;0.519527688514
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;oukoo;40%;fps;3617390425305;FR-2X4-25-43118;;"Music Release";Stream;19;RUB;0.455943593259
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;oukoo;"хотя бы";"тайтл файт";3617660911385;DG-A07-24-76763;;"Music Release";Stream;1;RUB;-0.146319720114
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;oukoo;"щенки видят больше";гладьгладь;3617665872261;DG-A0R-24-20346;;"Music Release";Stream;46;RUB;1.276503223402
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Belarus;thqlabel;oukoo;"щенки видят больше";тишетише;3617665872261;DG-A0R-24-20347;;"Music Release";Stream;18;RUB;0.075600000000
+01/04/2025;01/03/2025;Yandex;Belarus;thqlabel;oukoo;"хотя бы";обсессия;3617660911385;DG-A07-24-76766;;"Music Release";Stream;1;RUB;0.021290350854
+01/06/2025;01/05/2025;Yandex;"Russian Federation";thqlabel;oukoo;"щенки видят больше";гладьгладь;3617665872261;DG-A0R-24-20346;;"Music Release";Stream;146;RUB;2.993517898926
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Belarus;thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;1;RUB;0.004200000038
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Kyrgyzstan;thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;3;RUB;0.012600000000
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Belarus;thqlabel;oukoo;"хотя бы";днд;3617660911385;DG-A07-24-76765;;"Music Release";Stream;1;RUB;0.004200000036
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;oukoo;"щенки видят больше";гладьгладь;3617665872261;DG-A0R-24-20346;;"Music Release";Stream;1;RUB;-0.194529183208
+01/04/2025;01/04/2025;"YouTube UGC";"Russian Federation";thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;1;RUB;0.002084104335
+01/06/2025;01/05/2025;Yandex;Kazakhstan;thqlabel;oukoo;"щенки видят больше";тишетише;3617665872261;DG-A0R-24-20347;;"Music Release";Stream;8;RUB;0.025318175718
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Belarus;thqlabel;oukoo;"щенки видят больше";тишетише;3617665872261;DG-A0R-24-20347;;"Music Release";Stream;11;RUB;0.046200000036
+01/06/2025;01/05/2025;Yandex;Kazakhstan;thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;3;RUB;0.027187745871
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Belarus;thqlabel;oukoo;"щенки видят больше";гладьгладь;3617665872261;DG-A0R-24-20346;;"Music Release";Stream;17;RUB;0.071400000000
+01/06/2025;01/05/2025;Yandex;Kazakhstan;thqlabel;oukoo;"face to face";"face to face";3617393694838;FR-96X-25-80032;;"Music Release";Stream;10;RUB;0.190888589478
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;oukoo;"хотя бы";днд;3617660911385;DG-A07-24-76765;;"Music Release";Stream;4;RUB;0.016800000000
+01/05/2025;01/01/2025;"Facebook / Instagram";Worldwide;thqlabel;oukoo;"хотя бы";"тайтл файт";3617660911385;DG-A07-24-76763;;"Music Release";Creation;6;RUB;0.153461095368
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;77;RUB;2.052523003325
+01/05/2025;01/04/2025;Yandex;"Russian Federation";thqlabel;oukoo;"хотя бы";"тайтл файт";3617660911385;DG-A07-24-76763;;"Music Release";Stream;9;RUB;0.229454462025
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;oukoo;"щенки видят больше";тишетише;3617665872261;DG-A0R-24-20347;;"Music Release";Stream;1;RUB;-0.155235735433
+01/04/2025;01/03/2025;Yandex;"Russian Federation";thqlabel;oukoo;"щенки видят больше";тишетише;3617665872261;DG-A0R-24-20347;;"Music Release";Stream;237;RUB;5.049982609758
+01/06/2025;01/06/2025;"YouTube UGC";Netherlands;thqlabel;oukoo;"щенки видят больше";гладьгладь;3617665872261;DG-A0R-24-20346;;"Music Release";Stream;1;RUB;0.003405262985
+01/06/2025;01/06/2025;"iTunes Match";"Russian Federation";thqlabel;oukoo;"щенки видят больше";гладьгладь;3617665872261;DG-A0R-24-20346;;"Music Release";Stream;2;RUB;0.009341366510
+01/04/2025;01/03/2025;NetEase;"China Mainland";thqlabel;oukoo;40%;fps;3617390425305;FR-2X4-25-43118;;"Music Release";Stream;48;RUB;1.527314061548
+01/04/2025;01/04/2025;"YouTube UGC";Ukraine;thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;3;RUB;0.005138244371
+01/05/2025;01/05/2025;"YouTube UGC";Canada;thqlabel;oukoo;"щенки видят больше";гладьгладь;3617665872261;DG-A0R-24-20346;;"Music Release";Stream;1;RUB;0.006905710736
+01/04/2025;01/03/2025;Yandex;Kazakhstan;thqlabel;oukoo;40%;fps;3617390425305;FR-2X4-25-43118;;"Music Release";Stream;4;RUB;0.069840976502
+01/04/2025;01/03/2025;Yandex;"Russian Federation";thqlabel;oukoo;"щенки видят больше";гладьгладь;3617665872261;DG-A0R-24-20346;;"Music Release";Stream;444;RUB;9.654643904881
+01/05/2025;01/04/2025;Yandex;"Russian Federation";thqlabel;oukoo;"щенки видят больше";тишетише;3617665872261;DG-A0R-24-20347;;"Music Release";Stream;159;RUB;3.647610554461
+01/04/2025;01/03/2025;Yandex;Uzbekistan;thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;6;RUB;0.127742104899
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Belarus;thqlabel;oukoo;40%;fps;3617390425305;FR-2X4-25-43118;;"Music Release";Stream;7;RUB;0.029400000036
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;oukoo;"щенки видят больше";гладьгладь;3617665872261;DG-A0R-24-20346;;"Music Release";Stream;227;RUB;4.680939925074
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;1;RUB;-0.001347280584
+01/06/2025;01/05/2025;Yandex;Kazakhstan;thqlabel;oukoo;"хотя бы";днд;3617660911385;DG-A07-24-76765;;"Music Release";Stream;2;RUB;0.024022973870
+01/06/2025;01/05/2025;Yandex;Belarus;thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;5;RUB;0.104291009782
+01/05/2025;01/04/2025;Yandex;Uzbekistan;thqlabel;oukoo;"щенки видят больше";гладьгладь;3617665872261;DG-A0R-24-20346;;"Music Release";Stream;1;RUB;0.021850258413
+01/06/2025;01/06/2025;"YouTube UGC";Austria;thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;1;RUB;0.015042117962
+01/05/2025;01/04/2025;Yandex;"Russian Federation";thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;1158;RUB;25.466867129841
+01/04/2025;01/04/2025;"YouTube UGC";Ukraine;thqlabel;oukoo;40%;fps;3617390425305;FR-2X4-25-43118;;"Music Release";Stream;3;RUB;0.005138244371
+01/04/2025;01/03/2025;Yandex;Kazakhstan;thqlabel;oukoo;"хотя бы";днд;3617660911385;DG-A07-24-76765;;"Music Release";Stream;5;RUB;0.075810900366
+01/04/2025;01/03/2025;Likee;"Russian Federation";thqlabel;oukoo;"хотя бы";днд;3617660911385;DG-A07-24-76765;;"Music Release";Stream;47;RUB;1.011543034349
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;oukoo;"хотя бы";"тайтл файт";3617660911385;DG-A07-24-76763;;"Music Release";Stream;6;RUB;0.145171690460
+01/05/2025;01/04/2025;Yandex;Kazakhstan;thqlabel;oukoo;40%;fps;3617390425305;FR-2X4-25-43118;;"Music Release";Stream;7;RUB;0.046154665535
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;oukoo;"хотя бы";"больше никакого спорта";3617660911385;DG-A07-24-76764;;"Music Release";Stream;1;RUB;0.004200000000
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Kyrgyzstan;thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;9;RUB;0.037800000038
+01/05/2025;01/05/2025;"YouTube UGC";Ukraine;thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;1;RUB;0.002914879464
+01/04/2025;01/11/2024;Yandex;Worldwide;thqlabel;oukoo;"щенки видят больше";гладьгладь;3617665872261;DG-A0R-24-20346;;"Music Release";Stream;-1;RUB;-0.901852620359
+01/06/2025;01/05/2025;NetEase;"China Mainland";thqlabel;oukoo;"face to face";"face to face";3617393694838;FR-96X-25-80032;;"Music Release";Stream;7;RUB;0.213205706544
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;oukoo;"хотя бы";"тайтл файт";3617660911385;DG-A07-24-76763;;"Music Release";Stream;2;RUB;0.076835408896
+01/04/2025;01/04/2025;"YouTube UGC";"Russian Federation";thqlabel;oukoo;40%;fps;3617390425305;FR-2X4-25-43118;;"Music Release";Stream;1;RUB;0.002084104335
+01/06/2025;01/06/2025;"YouTube UGC";Ukraine;thqlabel;oukoo;40%;fps;3617390425305;FR-2X4-25-43118;;"Music Release";Stream;1;RUB;0.001116826479
+01/06/2025;01/06/2025;"Apple Music";Turkey;thqlabel;oukoo;"face to face";"face to face";3617393694838;FR-96X-25-80032;;"Music Release";Stream;1;RUB;0.062291783782
+01/04/2025;01/11/2024;Yandex;Worldwide;thqlabel;oukoo;"хотя бы";днд;3617660911385;DG-A07-24-76765;;"Music Release";Stream;-1;RUB;-0.091196859794
+01/06/2025;01/05/2025;Yandex;Kazakhstan;thqlabel;oukoo;"хотя бы";обсессия;3617660911385;DG-A07-24-76766;;"Music Release";Stream;2;RUB;0.041716403884
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;25;RUB;0.731905988814
+01/04/2025;01/04/2025;"YouTube UGC";"United States";thqlabel;oukoo;40%;fps;3617390425305;FR-2X4-25-43118;;"Music Release";Stream;1;RUB;0.006228304479
+01/06/2025;01/06/2025;"YouTube UGC";"Russian Federation";thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;1;RUB;0.002121669744
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;oukoo;"хотя бы";"больше никакого спорта";3617660911385;DG-A07-24-76764;;"Music Release";Stream;1;RUB;-0.094909160260
+01/04/2025;01/03/2025;Yandex;Ukraine;thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;2;RUB;0.011939847878
+01/04/2025;01/03/2025;Yandex;Kazakhstan;thqlabel;oukoo;"хотя бы";обсессия;3617660911385;DG-A07-24-76766;;"Music Release";Stream;3;RUB;0.048550625647
+01/05/2025;01/04/2025;Yandex;Belarus;thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;6;RUB;0.131101550187
+01/05/2025;01/04/2025;Yandex;Kazakhstan;thqlabel;oukoo;"щенки видят больше";гладьгладь;3617665872261;DG-A0R-24-20346;;"Music Release";Stream;2;RUB;0.008101469016
+01/05/2025;01/03/2025;"Facebook / Instagram";Worldwide;thqlabel;oukoo;40%;fps;3617390425305;FR-2X4-25-43118;;"Music Release";Creation;13;RUB;0.310662456910
+01/05/2025;01/04/2025;Yandex;Kazakhstan;thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;9;RUB;0.107654706047
+01/04/2025;01/03/2025;Yandex;"Russian Federation";thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;3526;RUB;73.894024141470
+01/06/2025;01/05/2025;Yandex;"Russian Federation";thqlabel;oukoo;40%;fps;3617390425305;FR-2X4-25-43118;;"Music Release";Stream;89;RUB;1.697139103801
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;oukoo;"хотя бы";днд;3617660911385;DG-A07-24-76765;;"Music Release";Stream;1;RUB;-0.078656879926
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;oukoo;"хотя бы";обсессия;3617660911385;DG-A07-24-76766;;"Music Release";Stream;3;RUB;0.132571690422
+01/04/2025;01/03/2025;Yandex;Kazakhstan;thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;27;RUB;0.528878191490
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;147;RUB;2.927886860097
+01/06/2025;01/05/2025;Yandex;Belarus;thqlabel;oukoo;"tuscan house";"tuscan house";3617396058606;FR-X28-25-34859;;"Music Release";Stream;2;RUB;0.041716403884
+01/05/2025;01/04/2025;Yandex;"Russian Federation";thqlabel;oukoo;"хотя бы";обсессия;3617660911385;DG-A07-24-76766;;"Music Release";Stream;8;RUB;0.174802066867
+01/06/2025;01/06/2025;"Apple Music";Turkey;thqlabel;oukoo;40%;fps;3617390425305;FR-2X4-25-43118;;"Music Release";Stream;1;RUB;0.062291783782
+01/06/2025;01/06/2025;"YouTube UGC";Austria;thqlabel;oukoo;40%;fps;3617390425305;FR-2X4-25-43118;;"Music Release";Stream;1;RUB;0.015042117962
+01/05/2025;01/04/2025;Yandex;Kazakhstan;thqlabel;oukoo;"хотя бы";"тайтл файт";3617660911385;DG-A07-24-76763;;"Music Release";Stream;11;RUB;0.204753794224
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;oukoo;"щенки видят больше";тишетише;3617665872261;DG-A0R-24-20347;;"Music Release";Stream;9;RUB;0.163181197778
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;oukoo;"щенки видят больше";гладьгладь;3617665872261;DG-A0R-24-20346;;"Music Release";Stream;95;RUB;1.285583060299
+01/05/2025;01/04/2025;Yandex;"Russian Federation";thqlabel;oukoo;"щенки видят больше";гладьгладь;3617665872261;DG-A0R-24-20346;;"Music Release";Stream;469;RUB;10.100799217001
+01/06/2025;01/06/2025;"YouTube UGC";Kazakhstan;thqlabel;oukoo;"face to face";"face to face";3617393694838;FR-96X-25-80032;;"Music Release";Stream;1;RUB;0.017109850075
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;oukoo;40%;fps;3617390425305;FR-2X4-25-43118;;"Music Release";Stream;37;RUB;0.755258452261
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Belarus;thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;1;RUB;0.004200000000
+01/04/2025;01/03/2025;Yandex;Belarus;thqlabel;oukoo;40%;fps;3617390425305;FR-2X4-25-43118;;"Music Release";Stream;1;RUB;0.021290350854
+01/06/2025;01/05/2025;Yandex;"Russian Federation";thqlabel;oukoo;"хотя бы";"больше никакого спорта";3617660911385;DG-A07-24-76764;;"Music Release";Stream;9;RUB;0.187723817550
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;oukoo;"щенки видят больше";тишетише;3617665872261;DG-A0R-24-20347;;"Music Release";Stream;4;RUB;0.474991337722
+01/04/2025;01/04/2025;"YouTube UGC";"United States";thqlabel;oukoo;40%;"лучше бы я забыл";3617390425305;FR-2X4-25-43120;;"Music Release";Stream;1;RUB;0.006228304479
+01/05/2025;01/04/2025;Yandex;Belarus;thqlabel;oukoo;"щенки видят больше";гладьгладь;3617665872261;DG-A0R-24-20346;;"Music Release";Stream;1;RUB;0.021850258413
+01/05/2025;01/04/2025;Yandex;"Russian Federation";thqlabel;oukoo;"хотя бы";"больше никакого спорта";3617660911385;DG-A07-24-76764;;"Music Release";Stream;6;RUB;0.131101550187

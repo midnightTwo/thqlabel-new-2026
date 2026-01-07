@@ -12,7 +12,7 @@ const RELEASES = [
   { id: 3, title: 'МЕХАНИЗМ', artist: 'athygue', cover: 'https://t2.genius.com/unsafe/430x430/https%3A%2F%2Fimages.genius.com%2Fa4b2333f9c0768cf4f07d1252caff125.1000x1000x1.png' },
   { id: 4, title: 'ДЕВЧАЧИЙ РОК-АЛЬБОМ', artist: 'тенденция', cover: 'https://images.genius.com/2fa8d85da644fad7afc1ba3d40d0d513.1000x1000x1.png' },
   { id: 5, title: 'TIRED OF YOU / WHAT PAIN IS', artist: 'breakfall', cover: 'https://cdn-images.dzcdn.net/images/cover/7101d738b828553e74b9f0035a6dfa1a/500x500-000000-80-0-0.jpg' },
-  { id: 6, title: 'LABEL', artist: 'YUUKKII', cover: 'https://t2.genius.com/unsafe/430x430/https%3A%2F%2Fimages.genius.com%2F4dbc0ecc8a3f9924cc950ec1ae1390c4.600x600x1.webp' },
+  { id: 6, title: 'hate&love', artist: 'frommee', cover: 'https://t2.genius.com/unsafe/430x430/https%3A%2F%2Fimages.genius.com%2F43f01d20830d2acedb8267d3ea7a21e8.1000x1000x1.png' },
   { id: 7, title: 'кейон', artist: 'ева киллер', cover: 'https://m.media-amazon.com/images/I/51knFhnMP0L._UX716_FMwebp_QL85_.jpg' },
   { id: 8, title: 'Холодно', artist: 'qqdie', cover: 'https://images.genius.com/ece70e671b3422967c2012217763c557.807x807x1.jpg' },
 ];
@@ -221,19 +221,19 @@ const FloatingParticles = memo(({ isLight }: { isLight?: boolean }) => {
       {particles.map(p => (
         <div
           key={p.id}
-          className={`absolute rounded-full ${isLight ? 'page-sparkle' : 'bg-[#9d8df1]'}`}
+          className={`absolute rounded-full ${isLight ? 'bg-black' : 'bg-[#9d8df1]'}`}
           style={{
             left: `${p.x}%`,
             top: `${p.y}%`,
-            width: isLight ? p.size * 1.5 : p.size,
-            height: isLight ? p.size * 1.5 : p.size,
-            opacity: 1,
-            border: isLight ? '1px solid rgba(100,80,140,0.4)' : undefined,
+            width: isLight ? p.size * 1.2 : p.size,
+            height: isLight ? p.size * 1.2 : p.size,
+            opacity: isLight ? 0.25 : 1,
+            border: undefined,
             boxShadow: isLight 
-              ? '0 0 2px rgba(100,80,140,0.5), 0 0 6px rgba(180,140,220,0.4), 0 0 12px rgba(140,180,220,0.3)'
+              ? '0 0 3px rgba(0,0,0,0.2)'
               : '0 0 8px rgba(157, 141, 241, 0.5)',
             background: isLight 
-              ? 'linear-gradient(135deg, rgba(180,140,220,0.9) 0%, rgba(140,180,220,0.9) 50%, rgba(200,160,200,0.9) 100%)'
+              ? 'rgba(0,0,0,0.6)'
               : undefined,
             animationName: isLight ? 'sparkle-float' : 'particle-fly',
             animationDuration: `${p.duration}s`,
@@ -738,19 +738,7 @@ export default function FeedPage() {
               ))}
             </div>
 
-            {/* Текст логотипа */}
-            <div 
-              className="text-4xl md:text-5xl font-black italic mt-6"
-              style={{
-                opacity: introReady ? 1 : 0,
-                transform: introReady ? 'translateY(0)' : 'translateY(10px)',
-                transition: 'opacity 0.5s ease-out 0.3s, transform 0.5s ease-out 0.3s',
-                animation: introReady ? 'text-glow 3s ease-in-out infinite' : 'none',
-              }}
-            >
-              <span className="intro-text-thq">thq</span>
-              <span className="text-[#8050e0]" style={{ textShadow: '0 0 30px rgba(128,80,224,0.8)' }}> label</span>
-            </div>
+           
             
             {/* Анимированные точки загрузки */}
             <div 
@@ -761,7 +749,7 @@ export default function FeedPage() {
                 transition: 'opacity 0.5s ease-out 0.5s, transform 0.5s ease-out 0.5s',
               }}
             >
-              <span className="intro-loading-text text-xs uppercase tracking-[0.3em] font-medium">Загрузка</span>
+              <span className="intro-loading-text text-xs uppercase tracking-[0.3em] font-bold">Загрузка</span>
               <span className="flex gap-1 ml-1">
                 {[0, 1, 2].map((i) => (
                   <span 
@@ -1049,11 +1037,11 @@ export default function FeedPage() {
           </div>
 
           {/* Центральная колонка - Планета Сатурн с логотипом */}
-          <div className="lg:col-span-6 flex flex-col justify-center items-center order-2 lg:order-none">
+          <div className="lg:col-span-6 flex flex-col justify-center items-center order-2 lg:order-none pointer-events-none">
             {/* Контейнер для Сатурна - БЕСКОНЕЧНАЯ АНИМАЦИЯ */}
             <div className={`relative mb-4 transition-all duration-1000 delay-200 ${mounted ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
               <div 
-                className="relative flex items-center justify-center"
+                className="relative flex items-center justify-center overflow-visible"
                 style={{
                   width: '400px',
                   height: '400px',
@@ -1243,7 +1231,7 @@ export default function FeedPage() {
                       ? 'bg-gradient-to-br from-[#6050ba] via-[#9d8df1] to-[#6050ba]'
                       : 'bg-gradient-to-br from-[#a89ef5] via-[#c4b5fd] to-white'
                   }`}>
-                    <AnimatedCounter end={150} suffix="+" delay={2200} />
+                    <AnimatedCounter end={700} suffix="+" delay={2200} />
                   </div>
                   <div className={`text-[9px] uppercase tracking-wider font-bold ${
                     isLight ? 'text-gray-500' : 'text-white/70'
@@ -1255,7 +1243,7 @@ export default function FeedPage() {
                       ? 'bg-gradient-to-br from-[#6050ba] via-[#9d8df1] to-[#6050ba]'
                       : 'bg-gradient-to-br from-[#a89ef5] via-[#c4b5fd] to-white'
                   }`}>
-                    <AnimatedCounter end={50} suffix="+" delay={2200} />
+                    <AnimatedCounter end={100} suffix="+" delay={2200} />
                   </div>
                   <div className={`text-[9px] uppercase tracking-wider font-bold ${
                     isLight ? 'text-gray-500' : 'text-white/70'
@@ -1267,7 +1255,7 @@ export default function FeedPage() {
                       ? 'bg-gradient-to-br from-[#6050ba] via-[#9d8df1] to-[#6050ba]'
                       : 'bg-gradient-to-br from-[#a89ef5] via-[#c4b5fd] to-white'
                   }`}>
-                    <AnimatedCounter end={1000000} suffix="+" delay={2200} />
+                    <AnimatedCounter end={50000000} suffix="+" delay={2200} />
                   </div>
                   <div className={`text-[9px] uppercase tracking-wider font-bold ${
                     isLight ? 'text-gray-500' : 'text-white/70'
@@ -1339,7 +1327,7 @@ export default function FeedPage() {
                 <p className={`text-[9px] font-medium tracking-wider ${
                   isLight ? 'text-gray-400' : 'text-white/30'
                 }`}>
-                  © 2025 <span className={isLight ? 'text-[#6050ba]/50' : 'text-[#9d8df1]/50'}>thqlabel</span>. Все права защищены.
+                  © 2026 <span className={isLight ? 'text-[#6050ba]/50' : 'text-[#9d8df1]/50'}>thqlabel</span>. Все права защищены.
                 </p>
               </div>
             </div>

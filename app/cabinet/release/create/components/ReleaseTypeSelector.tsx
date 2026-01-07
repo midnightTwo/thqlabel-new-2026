@@ -13,36 +13,36 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
   const isLight = themeName === 'light';
   
   return (
-    <div className="min-h-screen relative flex items-center justify-center p-6 pt-24 bg-black">
+    <div className="min-h-screen relative flex items-center justify-center p-4 sm:p-6 pt-20 sm:pt-24 bg-black">
       <AnimatedBackground />
       {/* Тёмный overlay для светлой темы */}
       {isLight && <div className="fixed inset-0 bg-black/5 z-10" />}
 
       <div className="max-w-6xl w-full relative z-20">
         {/* Заголовок */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-black mb-3 text-white">
+        <div className="text-center mb-5 sm:mb-8">
+          <h1 className={`text-2xl sm:text-4xl font-black mb-2 sm:mb-3 ${isLight ? 'text-gray-900' : 'text-white'}`}>
             Выберите тип релиза
           </h1>
-          <p className="text-sm text-white/70">
+          <p className={`text-xs sm:text-sm ${isLight ? 'text-gray-500' : 'text-white/70'}`}>
             Exclusive Plan · Все функции бесплатно
           </p>
         </div>
 
         {/* Карточки выбора */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
           {/* Сингл */}
           <button
             onClick={() => onSelectType('single')}
-            className={`group relative rounded-3xl p-6 text-left overflow-hidden transition-all duration-500 hover:scale-[1.03] hover:-translate-y-2 will-change-transform backdrop-blur-xl border shadow-2xl ${
+            className={`group relative rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-left overflow-hidden transition-all duration-500 hover:scale-[1.02] sm:hover:scale-[1.03] hover:-translate-y-1 sm:hover:-translate-y-2 will-change-transform backdrop-blur-xl border shadow-2xl touch-manipulation ${
               isLight 
-                ? 'bg-[rgba(25,25,30,0.75)] border-purple-500/30 hover:border-purple-500/70 hover:shadow-purple-500/30' 
+                ? 'bg-white border-purple-200 hover:border-purple-400 hover:shadow-purple-200/50' 
                 : 'bg-gradient-to-br from-zinc-900/90 via-zinc-900/80 to-black/90 border-zinc-800/50 hover:border-purple-500/70 hover:shadow-purple-500/20'
             }`}
           >
             {/* Фон карточки с анимированными градиентами */}
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-transparent to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="absolute -top-20 -right-20 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl group-hover:bg-purple-500/20 transition-all duration-700" />
+            <div className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${isLight ? 'bg-gradient-to-br from-purple-50 via-transparent to-transparent' : 'bg-gradient-to-br from-purple-900/30 via-transparent to-transparent'}`} />
+            <div className={`absolute -top-20 -right-20 w-40 h-40 rounded-full blur-3xl transition-all duration-700 ${isLight ? 'bg-purple-200/30 group-hover:bg-purple-300/40' : 'bg-purple-500/10 group-hover:bg-purple-500/20'}`} />
             
             {/* Светящийся эффект при наведении */}
             <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
@@ -54,8 +54,8 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
             
             <div className="relative z-10">
               {/* Icon с музыкальной ноткой */}
-              <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-purple-800 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-all duration-300 shadow-lg shadow-purple-500/30">
-                <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-purple-600 to-purple-800 rounded-lg flex items-center justify-center mb-2 sm:mb-3 group-hover:scale-110 transition-all duration-300 shadow-lg shadow-purple-500/30">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M9 18V5l12-2v13" />
                   <circle cx="6" cy="18" r="3" />
                   <circle cx="18" cy="16" r="3" />
@@ -63,35 +63,35 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
               </div>
 
               {/* Заголовок */}
-              <h3 className="text-xl font-black mb-1.5 text-white group-hover:text-purple-300 transition-colors duration-300">Сингл</h3>
-              <p className="text-zinc-400 text-xs mb-6 group-hover:text-zinc-300 transition-colors font-medium">
+              <h3 className={`text-lg sm:text-xl font-black mb-1 sm:mb-1.5 transition-colors duration-300 ${isLight ? 'text-gray-900 group-hover:text-purple-700' : 'text-white group-hover:text-purple-300'}`}>Сингл</h3>
+              <p className={`text-[11px] sm:text-xs mb-4 sm:mb-6 transition-colors font-medium ${isLight ? 'text-gray-500 group-hover:text-gray-600' : 'text-zinc-400 group-hover:text-zinc-300'}`}>
                 Один мощный трек
               </p>
 
               {/* Особенности */}
-              <div className="space-y-2.5 mb-6">
-                <div className="flex items-center gap-2 text-xs">
-                  <div className="w-4 h-4 rounded-full bg-purple-500/20 flex items-center justify-center shrink-0">
-                    <svg className="w-2.5 h-2.5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3">
+              <div className="space-y-2 sm:space-y-2.5 mb-4 sm:mb-6">
+                <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs">
+                  <div className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full flex items-center justify-center shrink-0 ${isLight ? 'bg-purple-100' : 'bg-purple-500/20'}`}>
+                    <svg className={`w-2 h-2 sm:w-2.5 sm:h-2.5 ${isLight ? 'text-purple-600' : 'text-purple-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <span className="font-bold text-white">Строго 1 трек</span>
+                  <span className={`font-bold ${isLight ? 'text-gray-700' : 'text-white'}`}>Строго 1 трек</span>
                 </div>
-                <div className="flex items-center gap-2 text-xs">
-                  <div className="w-4 h-4 rounded-full bg-purple-500/20 flex items-center justify-center shrink-0">
-                    <svg className="w-2.5 h-2.5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3">
+                <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs">
+                  <div className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full flex items-center justify-center shrink-0 ${isLight ? 'bg-purple-100' : 'bg-purple-500/20'}`}>
+                    <svg className={`w-2 h-2 sm:w-2.5 sm:h-2.5 ${isLight ? 'text-purple-600' : 'text-purple-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <span className="font-bold text-purple-400">Быстрая публикация</span>
+                  <span className={`font-bold ${isLight ? 'text-purple-600' : 'text-purple-400'}`}>Быстрая публикация</span>
                 </div>
               </div>
 
               {/* Кнопка выбора */}
-              <div className="flex items-center justify-between px-3 py-2.5 bg-gradient-to-r from-purple-600/20 to-purple-600/5 rounded-lg border border-purple-500/30 group-hover:border-purple-500 group-hover:bg-purple-600/30 transition-all duration-300">
-                <span className="text-xs font-bold text-white">Выбрать формат</span>
-                <svg className="w-4 h-4 text-purple-400 group-hover:text-white transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+              <div className={`flex items-center justify-between px-2.5 sm:px-3 py-2 sm:py-2.5 rounded-lg border transition-all duration-300 ${isLight ? 'bg-purple-50 border-purple-200 group-hover:border-purple-400 group-hover:bg-purple-100' : 'bg-gradient-to-r from-purple-600/20 to-purple-600/5 border-purple-500/30 group-hover:border-purple-500 group-hover:bg-purple-600/30'}`}>
+                <span className={`text-[11px] sm:text-xs font-bold ${isLight ? 'text-gray-700' : 'text-white'}`}>Выбрать формат</span>
+                <svg className={`w-3.5 h-3.5 sm:w-4 sm:h-4 transform group-hover:translate-x-1 transition-all ${isLight ? 'text-purple-600 group-hover:text-purple-700' : 'text-purple-400 group-hover:text-white'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </div>
@@ -101,15 +101,15 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
           {/* EP */}
           <button
             onClick={() => onSelectType('ep')}
-            className={`group relative rounded-3xl p-6 text-left overflow-hidden transition-all duration-500 hover:scale-[1.03] hover:-translate-y-2 will-change-transform backdrop-blur-xl border shadow-2xl ${
+            className={`group relative rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-left overflow-hidden transition-all duration-500 hover:scale-[1.02] sm:hover:scale-[1.03] hover:-translate-y-1 sm:hover:-translate-y-2 will-change-transform backdrop-blur-xl border shadow-2xl touch-manipulation ${
               isLight 
-                ? 'bg-[rgba(25,25,30,0.75)] border-blue-500/30 hover:border-blue-500/70 hover:shadow-blue-500/30' 
+                ? 'bg-white border-blue-200 hover:border-blue-400 hover:shadow-blue-200/50' 
                 : 'bg-gradient-to-br from-zinc-900/90 via-zinc-900/80 to-black/90 border-zinc-800/50 hover:border-blue-500/70 hover:shadow-blue-500/20'
             }`}
           >
             {/* Фон карточки с анимированными градиентами */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-900/30 via-transparent to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="absolute -top-20 -right-20 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-all duration-700" />
+            <div className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${isLight ? 'bg-gradient-to-br from-blue-50 via-transparent to-transparent' : 'bg-gradient-to-br from-blue-900/30 via-transparent to-transparent'}`} />
+            <div className={`absolute -top-20 -right-20 w-40 h-40 rounded-full blur-3xl transition-all duration-700 ${isLight ? 'bg-blue-200/30 group-hover:bg-blue-300/40' : 'bg-blue-500/10 group-hover:bg-blue-500/20'}`} />
             
             {/* Светящийся эффект при наведении */}
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
@@ -121,8 +121,8 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
             
             <div className="relative z-10">
               {/* Icon с пластинками */}
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-all duration-300 shadow-lg shadow-blue-500/30">
-                <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center mb-2 sm:mb-3 group-hover:scale-110 transition-all duration-300 shadow-lg shadow-blue-500/30">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <circle cx="12" cy="12" r="10" />
                   <circle cx="12" cy="12" r="3" />
                   <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
@@ -130,35 +130,35 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
               </div>
 
               {/* Заголовок */}
-              <h3 className="text-xl font-black mb-1.5 text-white group-hover:text-blue-300 transition-colors duration-300">EP</h3>
-              <p className="text-zinc-400 text-xs mb-6 group-hover:text-zinc-300 transition-colors font-medium">
+              <h3 className={`text-lg sm:text-xl font-black mb-1 sm:mb-1.5 transition-colors duration-300 ${isLight ? 'text-gray-900 group-hover:text-blue-700' : 'text-white group-hover:text-blue-300'}`}>EP</h3>
+              <p className={`text-[11px] sm:text-xs mb-4 sm:mb-6 transition-colors font-medium ${isLight ? 'text-gray-500 group-hover:text-gray-600' : 'text-zinc-400 group-hover:text-zinc-300'}`}>
                 Мини-альбом 2-7 треков
               </p>
 
               {/* Особенности */}
-              <div className="space-y-2.5 mb-6">
-                <div className="flex items-center gap-2 text-xs">
-                  <div className="w-4 h-4 rounded-full bg-blue-500/20 flex items-center justify-center shrink-0">
-                    <svg className="w-2.5 h-2.5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3">
+              <div className="space-y-2 sm:space-y-2.5 mb-4 sm:mb-6">
+                <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs">
+                  <div className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full flex items-center justify-center shrink-0 ${isLight ? 'bg-blue-100' : 'bg-blue-500/20'}`}>
+                    <svg className={`w-2 h-2 sm:w-2.5 sm:h-2.5 ${isLight ? 'text-blue-600' : 'text-blue-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <span className="font-bold text-white">От 2 до 7 треков</span>
+                  <span className={`font-bold ${isLight ? 'text-gray-700' : 'text-white'}`}>От 2 до 7 треков</span>
                 </div>
-                <div className="flex items-center gap-2 text-xs">
-                  <div className="w-4 h-4 rounded-full bg-blue-500/20 flex items-center justify-center shrink-0">
-                    <svg className="w-2.5 h-2.5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3">
+                <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs">
+                  <div className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full flex items-center justify-center shrink-0 ${isLight ? 'bg-blue-100' : 'bg-blue-500/20'}`}>
+                    <svg className={`w-2 h-2 sm:w-2.5 sm:h-2.5 ${isLight ? 'text-blue-600' : 'text-blue-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <span className="font-bold text-blue-400">Свободные названия</span>
+                  <span className={`font-bold ${isLight ? 'text-blue-600' : 'text-blue-400'}`}>Свободные названия</span>
                 </div>
               </div>
 
               {/* Кнопка выбора */}
-              <div className="flex items-center justify-between px-3 py-2.5 bg-gradient-to-r from-blue-600/20 to-blue-600/5 rounded-lg border border-blue-500/30 group-hover:border-blue-500 group-hover:bg-blue-600/30 transition-all duration-300">
-                <span className="text-xs font-bold text-white">Выбрать формат</span>
-                <svg className="w-4 h-4 text-blue-400 group-hover:text-white transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+              <div className={`flex items-center justify-between px-2.5 sm:px-3 py-2 sm:py-2.5 rounded-lg border transition-all duration-300 ${isLight ? 'bg-blue-50 border-blue-200 group-hover:border-blue-400 group-hover:bg-blue-100' : 'bg-gradient-to-r from-blue-600/20 to-blue-600/5 border-blue-500/30 group-hover:border-blue-500 group-hover:bg-blue-600/30'}`}>
+                <span className={`text-[11px] sm:text-xs font-bold ${isLight ? 'text-gray-700' : 'text-white'}`}>Выбрать формат</span>
+                <svg className={`w-3.5 h-3.5 sm:w-4 sm:h-4 transform group-hover:translate-x-1 transition-all ${isLight ? 'text-blue-600 group-hover:text-blue-700' : 'text-blue-400 group-hover:text-white'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </div>
@@ -168,15 +168,15 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
           {/* Альбом */}
           <button
             onClick={() => onSelectType('album')}
-            className={`group relative rounded-3xl p-6 text-left overflow-hidden transition-all duration-500 hover:scale-[1.03] hover:-translate-y-2 will-change-transform backdrop-blur-xl border shadow-2xl ${
+            className={`group relative rounded-2xl sm:rounded-3xl p-4 sm:p-6 text-left overflow-hidden transition-all duration-500 hover:scale-[1.02] sm:hover:scale-[1.03] hover:-translate-y-1 sm:hover:-translate-y-2 will-change-transform backdrop-blur-xl border shadow-2xl touch-manipulation ${
               isLight 
-                ? 'bg-[rgba(25,25,30,0.75)] border-emerald-500/30 hover:border-emerald-500/70 hover:shadow-emerald-500/30' 
+                ? 'bg-white border-emerald-200 hover:border-emerald-400 hover:shadow-emerald-200/50' 
                 : 'bg-gradient-to-br from-zinc-900/90 via-zinc-900/80 to-black/90 border-zinc-800/50 hover:border-emerald-500/70 hover:shadow-emerald-500/20'
             }`}
           >
             {/* Фон карточки с анимированными градиентами */}
-            <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/30 via-transparent to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="absolute -top-20 -right-20 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl group-hover:bg-emerald-500/20 transition-all duration-700" />
+            <div className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${isLight ? 'bg-gradient-to-br from-emerald-50 via-transparent to-transparent' : 'bg-gradient-to-br from-emerald-900/30 via-transparent to-transparent'}`} />
+            <div className={`absolute -top-20 -right-20 w-40 h-40 rounded-full blur-3xl transition-all duration-700 ${isLight ? 'bg-emerald-200/30 group-hover:bg-emerald-300/40' : 'bg-emerald-500/10 group-hover:bg-emerald-500/20'}`} />
             
             {/* Светящий эффект при наведении */}
             <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
@@ -187,7 +187,7 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
             </div>
             
             {/* Бейдж ПОПУЛЯРНО */}
-            <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 bg-gradient-to-r from-emerald-500/30 to-teal-500/30 backdrop-blur-sm rounded-full text-[10px] font-bold text-emerald-300 border border-emerald-400/40 shadow-lg shadow-emerald-500/20">
+            <div className={`absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 backdrop-blur-sm rounded-full text-[10px] font-bold border shadow-lg ${isLight ? 'bg-gradient-to-r from-emerald-100 to-teal-100 text-emerald-600 border-emerald-300 shadow-emerald-200/50' : 'bg-gradient-to-r from-emerald-500/30 to-teal-500/30 text-emerald-300 border-emerald-400/40 shadow-emerald-500/20'}`}>
               <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
@@ -207,35 +207,35 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
               </div>
 
               {/* Заголовок */}
-              <h3 className="text-xl font-black mb-1.5 text-white group-hover:text-emerald-300 transition-colors duration-300">Альбом</h3>
-              <p className="text-zinc-400 text-xs mb-6 group-hover:text-zinc-300 transition-colors font-medium">
+              <h3 className={`text-xl font-black mb-1.5 transition-colors duration-300 ${isLight ? 'text-gray-900 group-hover:text-emerald-700' : 'text-white group-hover:text-emerald-300'}`}>Альбом</h3>
+              <p className={`text-xs mb-6 transition-colors font-medium ${isLight ? 'text-gray-500 group-hover:text-gray-600' : 'text-zinc-400 group-hover:text-zinc-300'}`}>
                 Полноценный релиз 8-50 треков
               </p>
 
               {/* Особенности */}
               <div className="space-y-2.5 mb-6">
                 <div className="flex items-center gap-2 text-xs">
-                  <div className="w-4 h-4 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0">
-                    <svg className="w-2.5 h-2.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3">
+                  <div className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 ${isLight ? 'bg-emerald-100' : 'bg-emerald-500/20'}`}>
+                    <svg className={`w-2.5 h-2.5 ${isLight ? 'text-emerald-600' : 'text-emerald-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <span className="font-bold text-white">От 8 до 50 треков</span>
+                  <span className={`font-bold ${isLight ? 'text-gray-700' : 'text-white'}`}>От 8 до 50 треков</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs">
-                  <div className="w-4 h-4 rounded-full bg-emerald-500/20 flex items-center justify-center shrink-0">
-                    <svg className="w-2.5 h-2.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3">
+                  <div className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 ${isLight ? 'bg-emerald-100' : 'bg-emerald-500/20'}`}>
+                    <svg className={`w-2.5 h-2.5 ${isLight ? 'text-emerald-600' : 'text-emerald-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <span className="font-bold text-emerald-400">Полная свобода</span>
+                  <span className={`font-bold ${isLight ? 'text-emerald-600' : 'text-emerald-400'}`}>Полная свобода</span>
                 </div>
               </div>
 
               {/* Кнопка выбора */}
-              <div className="flex items-center justify-between px-3 py-2.5 bg-gradient-to-r from-emerald-600/20 to-emerald-600/5 rounded-lg border border-emerald-500/30 group-hover:border-emerald-500 group-hover:bg-emerald-600/30 transition-all duration-300">
-                <span className="text-xs font-bold text-white">Выбрать формат</span>
-                <svg className="w-4 h-4 text-emerald-400 group-hover:text-white transform group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+              <div className={`flex items-center justify-between px-3 py-2.5 rounded-lg border transition-all duration-300 ${isLight ? 'bg-emerald-50 border-emerald-200 group-hover:border-emerald-400 group-hover:bg-emerald-100' : 'bg-gradient-to-r from-emerald-600/20 to-emerald-600/5 border-emerald-500/30 group-hover:border-emerald-500 group-hover:bg-emerald-600/30'}`}>
+                <span className={`text-xs font-bold ${isLight ? 'text-gray-700' : 'text-white'}`}>Выбрать формат</span>
+                <svg className={`w-4 h-4 transform group-hover:translate-x-1 transition-all ${isLight ? 'text-emerald-600 group-hover:text-emerald-700' : 'text-emerald-400 group-hover:text-white'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </div>
@@ -246,16 +246,16 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
         {/* Подсказка снизу */}
         <div className={`mt-8 flex items-start gap-3 p-4 border rounded-xl max-w-3xl mx-auto ${
           isLight 
-            ? 'bg-[rgba(25,25,30,0.75)] border-purple-500/30' 
+            ? 'bg-purple-50 border-purple-200' 
             : 'bg-gradient-to-r from-purple-500/10 to-blue-500/10 border-purple-500/20'
         }`}>
-          <svg className="w-5 h-5 text-purple-400 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg className={`w-5 h-5 flex-shrink-0 mt-0.5 ${isLight ? 'text-purple-600' : 'text-purple-400'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <circle cx="12" cy="12" r="10"/>
             <path d="M12 16v-4M12 8h.01"/>
           </svg>
           <div className="text-sm">
-            <div className="font-semibold text-purple-400 mb-1">Exclusive Plan включает</div>
-            <div className="text-white text-xs">Все функции без ограничений · Бесплатная публикация · Приоритетная поддержка</div>
+            <div className={`font-semibold mb-1 ${isLight ? 'text-purple-700' : 'text-purple-400'}`}>Exclusive Plan включает</div>
+            <div className={`text-xs ${isLight ? 'text-gray-600' : 'text-white'}`}>Все функции без ограничений · Бесплатная публикация · Приоритетная поддержка</div>
           </div>
         </div>
 
@@ -265,7 +265,7 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
             onClick={onBack}
             className={`inline-flex items-center gap-2 px-6 py-3 border rounded-xl font-semibold transition-all group ${
               isLight 
-                ? 'bg-[rgba(25,25,30,0.75)] hover:bg-[rgba(25,25,30,0.85)] border-purple-500/30 hover:border-purple-500/50 text-white' 
+                ? 'bg-white hover:bg-gray-50 border-gray-200 hover:border-gray-300 text-gray-700' 
                 : 'bg-white/5 hover:bg-white/10 border-white/10 hover:border-white/20 text-white'
             }`}
           >

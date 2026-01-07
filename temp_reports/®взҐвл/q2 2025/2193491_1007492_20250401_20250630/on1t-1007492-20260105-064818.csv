@@ -1,0 +1,476 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/05/2025;01/03/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"how so";3616849729599;FR-X45-22-01149;;"Music Release";Stream;1;RUB;0.034293914669
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"разбила сердце";3616849729599;FR-X45-22-01133;;"Music Release";Stream;1;RUB;0.124171690422
+01/05/2025;01/06/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";дневник;3616849729599;FR-X45-22-01135;;"Music Release";Stream;1;RUB;0.125328085382
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"to the castle";3616849729599;FR-X45-22-01134;;"Music Release";Stream;42;RUB;0.846512755835
+01/04/2025;01/07/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"не хотел";3616849729599;FR-X45-22-01132;;"Music Release";Stream;1;RUB;0.159611296013
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"in the past";3616849729599;FR-X45-22-01142;;"Music Release";Stream;29;RUB;0.580258920954
+01/05/2025;01/04/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";"to the castle";3616849729599;FR-X45-22-01134;;"Music Release";Stream;3;RUB;0.065550775094
+01/04/2025;01/09/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"убийственная любовь";3616849729599;FR-X45-22-01153;;"Music Release";Stream;1;RUB;0.209139225296
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"без тебя";3616849729599;FR-X45-22-01146;;"Music Release";Stream;4;RUB;0.016800000000
+01/05/2025;01/04/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";дневник;3616849729599;FR-X45-22-01135;;"Music Release";Stream;4;RUB;0.087401033434
+01/05/2025;01/04/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";"убийственная любовь";3616849729599;FR-X45-22-01153;;"Music Release";Stream;1;RUB;0.021850258413
+01/06/2025;01/05/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";"in the past";3616849729599;FR-X45-22-01142;;"Music Release";Stream;1;RUB;0.020858201942
+01/06/2025;01/05/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";"in the past";3616849729599;FR-X45-22-01142;;"Music Release";Stream;1;RUB;0.020858201942
+01/04/2025;01/07/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";загоны;3616849729599;FR-X45-22-01141;;"Music Release";Stream;1;RUB;0.073334920570
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"to the castle";3616849729599;FR-X45-22-01134;;"Music Release";Stream;1;RUB;0.004200000036
+01/04/2025;01/09/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"love n' hate";3616849729599;FR-X45-22-01129;;"Music Release";Stream;1;RUB;0.500913712953
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";дневник;3616849729599;FR-X45-22-01135;;"Music Release";Stream;9;RUB;0.157771690422
+01/05/2025;01/03/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";перешел;3616849729599;FR-X45-22-01137;;"Music Release";Stream;1;RUB;0.029509451660
+01/04/2025;01/09/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";чувства;3616849729599;FR-X45-22-01139;;"Music Release";Stream;1;RUB;0.231921481361
+01/06/2025;01/05/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";"с тобой";3616849729599;FR-X45-22-01131;;"Music Release";Stream;2;RUB;0.041716403884
+01/06/2025;01/05/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";"без тебя";3616849729599;FR-X45-22-01146;;"Music Release";Stream;1;RUB;0.020858201942
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"разбила сердце";3616849729599;FR-X45-22-01133;;"Music Release";Stream;1;RUB;-0.028356977122
+01/04/2025;01/08/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";доверие;3616849729599;FR-X45-22-01151;;"Music Release";Stream;1;RUB;0.051992829467
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";перешел;3616849729599;FR-X45-22-01137;;"Music Release";Stream;4;RUB;0.016800000000
+01/04/2025;01/11/2024;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"how so";3616849729599;FR-X45-22-01149;;"Music Release";Stream;-1;RUB;-0.120455095205
+01/04/2025;01/11/2024;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"без тебя";3616849729599;FR-X45-22-01146;;"Music Release";Stream;-1;RUB;-0.021887245778
+01/04/2025;01/09/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"не хотел";3616849729599;FR-X45-22-01132;;"Music Release";Stream;1;RUB;0.273602203295
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"убийственная любовь";3616849729599;FR-X45-22-01153;;"Music Release";Stream;2;RUB;0.008400000000
+01/04/2025;01/09/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;1;RUB;0.183070280689
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"грустный мотив";3616849729599;FR-X45-22-01143;;"Music Release";Stream;3;RUB;0.012600000000
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";загоны;3616849729599;FR-X45-22-01141;;"Music Release";Stream;1;RUB;-0.026425736334
+01/04/2025;01/07/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"four walls";3616849729599;FR-X45-22-01152;;"Music Release";Stream;1;RUB;0.453805849898
+01/05/2025;01/03/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"разбила сердце";3616849729599;FR-X45-22-01133;;"Music Release";Stream;1;RUB;0.100075754418
+01/04/2025;01/08/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";разлюбить;3616849729599;FR-X45-22-01147;;"Music Release";Stream;1;RUB;0.038994622044
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"убийственная любовь";3616849729599;FR-X45-22-01153;;"Music Release";Stream;56;RUB;1.114979019289
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"не хотел";3616849729599;FR-X45-22-01132;;"Music Release";Stream;46;RUB;0.948715283806
+01/04/2025;01/08/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"не хотел";3616849729599;FR-X45-22-01132;;"Music Release";Stream;1;RUB;0.209346233229
+01/06/2025;01/05/2025;Yandex;Ukraine;"трэп хаус квэльчиков";on1t;"love n' hate";"to the castle";3616849729599;FR-X45-22-01134;;"Music Release";Stream;1;RUB;0.003164771929
+01/04/2025;01/07/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";thoughts;3616849729599;FR-X45-22-01140;;"Music Release";Stream;1;RUB;0.021569093879
+01/05/2025;01/04/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";перешел;3616849729599;FR-X45-22-01137;;"Music Release";Stream;1;RUB;0.021850258413
+01/04/2025;01/03/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";"с тобой";3616849729599;FR-X45-22-01131;;"Music Release";Stream;1;RUB;0.021290350854
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"разбила сердце";3616849729599;FR-X45-22-01133;;"Music Release";Stream;42;RUB;0.858351051984
+01/06/2025;01/05/2025;Spotify;Netherlands;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;8;RUB;0.308735941635
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";доверие;3616849729599;FR-X45-22-01151;;"Music Release";Stream;2;RUB;0.008400000000
+01/06/2025;01/05/2025;Spotify;France;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;13;RUB;0.434035564590
+01/05/2025;01/04/2025;Spotify;Ukraine;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;1;RUB;0.000048576196
+01/05/2025;01/03/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";загоны;3616849729599;FR-X45-22-01141;;"Music Release";Stream;1;RUB;0.029364304456
+01/06/2025;01/05/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";"four walls";3616849729599;FR-X45-22-01152;;"Music Release";Stream;5;RUB;0.104291009782
+01/05/2025;01/04/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";разлюбить;3616849729599;FR-X45-22-01147;;"Music Release";Stream;1;RUB;0.021850258413
+01/05/2025;01/04/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";доверие;3616849729599;FR-X45-22-01151;;"Music Release";Stream;1;RUB;0.021850258413
+01/05/2025;01/12/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;1;RUB;0.016828963761
+01/04/2025;01/07/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;1;RUB;0.145775510422
+01/06/2025;01/05/2025;Spotify;Italy;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;2;RUB;0.081624309025
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";разлюбить;3616849729599;FR-X45-22-01147;;"Music Release";Stream;10;RUB;0.042000000000
+01/04/2025;01/08/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";перешел;3616849729599;FR-X45-22-01137;;"Music Release";Stream;1;RUB;0.860903012304
+01/04/2025;01/03/2025;Spotify;France;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;22;RUB;0.764324919923
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";дневник;3616849729599;FR-X45-22-01135;;"Music Release";Stream;5;RUB;0.140822873985
+01/04/2025;01/07/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"грустный мотив";3616849729599;FR-X45-22-01143;;"Music Release";Stream;1;RUB;0.047452006550
+01/04/2025;01/11/2024;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";thoughts;3616849729599;FR-X45-22-01140;;"Music Release";Stream;-1;RUB;-0.102140482646
+01/05/2025;01/12/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"с тобой";3616849729599;FR-X45-22-01131;;"Music Release";Stream;1;RUB;0.011166037970
+01/05/2025;01/12/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";загоны;3616849729599;FR-X45-22-01141;;"Music Release";Stream;1;RUB;0.027936301847
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;7;RUB;0.029400000000
+01/04/2025;01/03/2025;Yandex;Ukraine;"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;2;RUB;0.011939847878
+01/04/2025;01/08/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"four walls";3616849729599;FR-X45-22-01152;;"Music Release";Stream;1;RUB;0.297375867566
+01/04/2025;01/07/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"to the castle";3616849729599;FR-X45-22-01134;;"Music Release";Stream;1;RUB;0.147524712746
+01/04/2025;01/04/2025;"Apple Music";Germany;"трэп хаус квэльчиков";on1t;"love n' hate";дневник;3616849729599;FR-X45-22-01135;;"Music Release";Stream;1;RUB;0.193055777661
+01/04/2025;01/03/2025;Soundcloud;"United States";"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;8;RUB;1.766562407323
+01/04/2025;01/03/2025;Yandex;Ukraine;"трэп хаус квэльчиков";on1t;"love n' hate";"to the castle";3616849729599;FR-X45-22-01134;;"Music Release";Stream;3;RUB;0.017909771893
+01/05/2025;01/04/2025;NetEase;"China Mainland";"трэп хаус квэльчиков";on1t;"love n' hate";"не хотел";3616849729599;FR-X45-22-01132;;"Music Release";Stream;1;RUB;0.030713948550
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"in the past";3616849729599;FR-X45-22-01142;;"Music Release";Stream;1;RUB;-0.054217889590
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"love n' hate";3616849729599;FR-X45-22-01129;;"Music Release";Stream;13;RUB;0.054600000036
+01/05/2025;01/04/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";"без тебя";3616849729599;FR-X45-22-01146;;"Music Release";Stream;3;RUB;0.065550775094
+01/05/2025;01/05/2025;"YouTube Official Content";Latvia;"трэп хаус квэльчиков";on1t;"love n' hate";"не хотел";3616849729599;FR-X45-22-01132;;"Music Release";Stream;1;RUB;0.006261695042
+01/05/2025;01/12/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"to the castle";3616849729599;FR-X45-22-01134;;"Music Release";Stream;1;RUB;0.038199585402
+01/05/2025;01/05/2025;"Apple Music";Taiwan;"трэп хаус квэльчиков";on1t;"love n' hate";"разбила сердце";3616849729599;FR-X45-22-01133;;"Music Release";Stream;1;RUB;0.088088914505
+01/04/2025;01/09/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";загоны;3616849729599;FR-X45-22-01141;;"Music Release";Stream;1;RUB;0.134677661248
+01/04/2025;01/04/2025;"YouTube Official Content";Norway;"трэп хаус квэльчиков";on1t;"love n' hate";загоны;3616849729599;FR-X45-22-01141;;"Music Release";Stream;2;RUB;0.004240050988
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"без тебя";3616849729599;FR-X45-22-01146;;"Music Release";Stream;69;RUB;1.421522504634
+01/05/2025;01/03/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"to the castle";3616849729599;FR-X45-22-01134;;"Music Release";Stream;1;RUB;0.063014539771
+01/04/2025;01/08/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;1;RUB;0.056325564775
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"four walls";3616849729599;FR-X45-22-01152;;"Music Release";Stream;1;RUB;0.004200000038
+01/04/2025;01/03/2025;NetEase;"China Mainland";"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;1;RUB;0.031311999220
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"убийственная любовь";3616849729599;FR-X45-22-01153;;"Music Release";Stream;1;RUB;-0.020375086072
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"с тобой";3616849729599;FR-X45-22-01131;;"Music Release";Stream;97;RUB;2.012677917904
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";чувства;3616849729599;FR-X45-22-01139;;"Music Release";Stream;90;RUB;1.895325157041
+01/04/2025;01/03/2025;NetEase;"China Mainland";"трэп хаус квэльчиков";on1t;"love n' hate";дневник;3616849729599;FR-X45-22-01135;;"Music Release";Stream;35;RUB;0.990116247522
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"не хотел";3616849729599;FR-X45-22-01132;;"Music Release";Stream;1;RUB;-0.042526784851
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";"in the past";3616849729599;FR-X45-22-01142;;"Music Release";Stream;1;RUB;0.004200000000
+01/05/2025;01/03/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"без тебя";3616849729599;FR-X45-22-01146;;"Music Release";Stream;1;RUB;0.030664239315
+01/05/2025;01/04/2025;Spotify;India;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;2;RUB;0.050616370777
+01/06/2025;01/05/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";дневник;3616849729599;FR-X45-22-01135;;"Music Release";Stream;4;RUB;0.030352517800
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";чувства;3616849729599;FR-X45-22-01139;;"Music Release";Stream;1;RUB;0.004200000036
+01/04/2025;01/11/2024;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"грустный мотив";3616849729599;FR-X45-22-01143;;"Music Release";Stream;-1;RUB;-0.029182995545
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"in the past";3616849729599;FR-X45-22-01142;;"Music Release";Stream;58;RUB;1.188879066764
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"без тебя";3616849729599;FR-X45-22-01146;;"Music Release";Stream;9;RUB;0.037800000038
+01/06/2025;01/05/2025;Spotify;India;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;1;RUB;0.025283154013
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"без тебя";3616849729599;FR-X45-22-01146;;"Music Release";Stream;106;RUB;2.138132147783
+01/05/2025;01/05/2025;"Apple Music";Canada;"трэп хаус квэльчиков";on1t;"love n' hate";"не хотел";3616849729599;FR-X45-22-01132;;"Music Release";Stream;1;RUB;0.288209507255
+01/05/2025;01/04/2025;Soundcloud;"United States";"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;16;RUB;3.689875877486
+01/05/2025;01/04/2025;Yandex;Ukraine;"трэп хаус квэльчиков";on1t;"love n' hate";перешел;3616849729599;FR-X45-22-01137;;"Music Release";Stream;1;RUB;0.004050734508
+01/04/2025;01/03/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";"разбила сердце";3616849729599;FR-X45-22-01133;;"Music Release";Stream;1;RUB;0.021290350854
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"с тобой";3616849729599;FR-X45-22-01131;;"Music Release";Stream;60;RUB;1.251492117097
+01/04/2025;01/03/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";"in the past";3616849729599;FR-X45-22-01142;;"Music Release";Stream;1;RUB;0.021290350854
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"грустный мотив";3616849729599;FR-X45-22-01143;;"Music Release";Stream;8;RUB;0.033600000000
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";сон;3616849729599;FR-X45-22-01148;;"Music Release";Stream;47;RUB;1.000646488338
+01/05/2025;01/05/2025;"YouTube Official Content";Latvia;"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;1;RUB;0.103608938186
+01/06/2025;01/05/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";"грустный мотив";3616849729599;FR-X45-22-01143;;"Music Release";Stream;2;RUB;0.041716403884
+01/05/2025;01/06/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"разбила сердце";3616849729599;FR-X45-22-01133;;"Music Release";Stream;1;RUB;0.026114691766
+01/05/2025;01/04/2025;NetEase;"China Mainland";"трэп хаус квэльчиков";on1t;"love n' hate";дневник;3616849729599;FR-X45-22-01135;;"Music Release";Stream;23;RUB;0.706420816444
+01/05/2025;01/12/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";дневник;3616849729599;FR-X45-22-01135;;"Music Release";Stream;1;RUB;0.122720341734
+01/04/2025;01/03/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";"без тебя";3616849729599;FR-X45-22-01146;;"Music Release";Stream;1;RUB;0.021290350854
+01/05/2025;01/03/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"с тобой";3616849729599;FR-X45-22-01131;;"Music Release";Stream;1;RUB;0.013574588663
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"to the castle";3616849729599;FR-X45-22-01134;;"Music Release";Stream;53;RUB;1.105484703431
+01/06/2025;01/05/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";разлюбить;3616849729599;FR-X45-22-01147;;"Music Release";Stream;3;RUB;0.062574605898
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";сон;3616849729599;FR-X45-22-01148;;"Music Release";Stream;45;RUB;0.938619087823
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"грустный мотив";3616849729599;FR-X45-22-01143;;"Music Release";Stream;48;RUB;1.028215966599
+01/05/2025;01/04/2025;Spotify;"United States";"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;5;RUB;0.858680984761
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";дневник;3616849729599;FR-X45-22-01135;;"Music Release";Stream;163;RUB;3.419195921934
+01/05/2025;01/03/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;1;RUB;0.018636592285
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"с тобой";3616849729599;FR-X45-22-01131;;"Music Release";Stream;1;RUB;0.004200000036
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"убийственная любовь";3616849729599;FR-X45-22-01153;;"Music Release";Stream;3;RUB;0.012600000000
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;78;RUB;1.609246322257
+01/06/2025;01/05/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";доверие;3616849729599;FR-X45-22-01151;;"Music Release";Stream;3;RUB;0.062574605898
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Azerbaijan;"трэп хаус квэльчиков";on1t;"love n' hate";"four walls";3616849729599;FR-X45-22-01152;;"Music Release";Stream;1;RUB;0.004200000000
+01/06/2025;01/05/2025;"Ultimate Music";"China Mainland";"трэп хаус квэльчиков";on1t;"love n' hate";дневник;3616849729599;FR-X45-22-01135;;"Music Release";Stream;1;RUB;0.016979518061
+01/04/2025;01/09/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"how so";3616849729599;FR-X45-22-01149;;"Music Release";Stream;1;RUB;0.106282216680
+01/05/2025;01/04/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";thoughts;3616849729599;FR-X45-22-01140;;"Music Release";Stream;1;RUB;0.021850258413
+01/06/2025;01/05/2025;Spotify;Nigeria;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;1;RUB;0.014461381723
+01/04/2025;01/09/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"four walls";3616849729599;FR-X45-22-01152;;"Music Release";Stream;1;RUB;0.115960741093
+01/04/2025;01/03/2025;Yandex;Ukraine;"трэп хаус квэльчиков";on1t;"love n' hate";thoughts;3616849729599;FR-X45-22-01140;;"Music Release";Stream;1;RUB;0.005969924014
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;2;RUB;0.008400000000
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";сон;3616849729599;FR-X45-22-01148;;"Music Release";Stream;1;RUB;-0.015461222054
+01/06/2025;01/06/2025;"Apple Music";Ukraine;"трэп хаус квэльчиков";on1t;"love n' hate";"не хотел";3616849729599;FR-X45-22-01132;;"Music Release";Stream;3;RUB;0.444827114290
+01/05/2025;01/05/2025;"YouTube Official Content";Latvia;"трэп хаус квэльчиков";on1t;"love n' hate";загоны;3616849729599;FR-X45-22-01141;;"Music Release";Stream;2;RUB;0.005679753063
+01/04/2025;01/07/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";простишь;3616849729599;FR-X45-22-01144;;"Music Release";Stream;1;RUB;0.038824368968
+01/04/2025;01/11/2024;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;-1;RUB;-0.091196859794
+01/04/2025;01/03/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";"four walls";3616849729599;FR-X45-22-01152;;"Music Release";Stream;2;RUB;0.042580701633
+01/06/2025;01/05/2025;NetEase;"China Mainland";"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;1;RUB;0.030457958088
+01/04/2025;01/04/2025;"YouTube Official Content";Norway;"трэп хаус квэльчиков";on1t;"love n' hate";"разбила сердце";3616849729599;FR-X45-22-01133;;"Music Release";Stream;1;RUB;0.395336570942
+01/04/2025;01/07/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"how so";3616849729599;FR-X45-22-01149;;"Music Release";Stream;1;RUB;0.074189793675
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";разлюбить;3616849729599;FR-X45-22-01147;;"Music Release";Stream;79;RUB;1.647797954212
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"how so";3616849729599;FR-X45-22-01149;;"Music Release";Stream;33;RUB;0.614261382818
+01/04/2025;01/03/2025;Spotify;Ukraine;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;5;RUB;0.085230476769
+01/05/2025;01/12/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";thoughts;3616849729599;FR-X45-22-01140;;"Music Release";Stream;1;RUB;0.007429767381
+01/05/2025;01/03/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"four walls";3616849729599;FR-X45-22-01152;;"Music Release";Stream;1;RUB;0.011076905310
+01/05/2025;01/03/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"in the past";3616849729599;FR-X45-22-01142;;"Music Release";Stream;1;RUB;0.015597725542
+01/04/2025;01/07/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"love n' hate";3616849729599;FR-X45-22-01129;;"Music Release";Stream;1;RUB;0.831633248959
+01/05/2025;01/05/2025;"YouTube Official Content";France;"трэп хаус квэльчиков";on1t;"love n' hate";"грустный мотив";3616849729599;FR-X45-22-01143;;"Music Release";Stream;1;RUB;0.117063435186
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";разлюбить;3616849729599;FR-X45-22-01147;;"Music Release";Stream;7;RUB;0.029400000000
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";перешел;3616849729599;FR-X45-22-01137;;"Music Release";Stream;50;RUB;1.042910097606
+01/06/2025;01/06/2025;"Apple Music";Ukraine;"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;9;RUB;1.145779579134
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;70;RUB;1.369322370711
+01/06/2025;01/05/2025;Yandex;Kyrgyzstan;"трэп хаус квэльчиков";on1t;"love n' hate";"с тобой";3616849729599;FR-X45-22-01131;;"Music Release";Stream;1;RUB;0.020858201942
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"без тебя";3616849729599;FR-X45-22-01146;;"Music Release";Stream;6;RUB;0.145022873985
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"разбила сердце";3616849729599;FR-X45-22-01133;;"Music Release";Stream;156;RUB;3.305974300462
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";простишь;3616849729599;FR-X45-22-01144;;"Music Release";Stream;13;RUB;0.054600000038
+01/04/2025;01/08/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";простишь;3616849729599;FR-X45-22-01144;;"Music Release";Stream;1;RUB;0.064991036741
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;56;RUB;1.168059309330
+01/05/2025;01/06/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"грустный мотив";3616849729599;FR-X45-22-01143;;"Music Release";Stream;1;RUB;0.004769681693
+01/04/2025;01/08/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";дневник;3616849729599;FR-X45-22-01135;;"Music Release";Stream;1;RUB;0.565381542115
+01/04/2025;01/09/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"in the past";3616849729599;FR-X45-22-01142;;"Music Release";Stream;1;RUB;0.026570553907
+01/05/2025;01/06/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"без тебя";3616849729599;FR-X45-22-01146;;"Music Release";Stream;1;RUB;0.013299594510
+01/04/2025;01/09/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";простишь;3616849729599;FR-X45-22-01144;;"Music Release";Stream;1;RUB;0.106282216680
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"to the castle";3616849729599;FR-X45-22-01134;;"Music Release";Stream;1;RUB;-0.018242056670
+01/05/2025;01/05/2025;"Apple Music";Turkey;"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;2;RUB;0.091025154054
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";загоны;3616849729599;FR-X45-22-01141;;"Music Release";Stream;44;RUB;0.900067455867
+01/06/2025;01/05/2025;Spotify;"United States";"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;10;RUB;1.551978008023
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;1;RUB;-0.037003128572
+01/06/2025;01/05/2025;NetEase;"China Mainland";"трэп хаус квэльчиков";on1t;"love n' hate";дневник;3616849729599;FR-X45-22-01135;;"Music Release";Stream;29;RUB;0.883280784190
+01/06/2025;01/05/2025;Yandex;Ukraine;"трэп хаус квэльчиков";on1t;"love n' hate";разлюбить;3616849729599;FR-X45-22-01147;;"Music Release";Stream;1;RUB;0.003164771929
+01/05/2025;01/06/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";разлюбить;3616849729599;FR-X45-22-01147;;"Music Release";Stream;1;RUB;0.002893629478
+01/04/2025;01/09/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"без тебя";3616849729599;FR-X45-22-01146;;"Music Release";Stream;1;RUB;0.089891795661
+01/04/2025;01/08/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"грустный мотив";3616849729599;FR-X45-22-01143;;"Music Release";Stream;1;RUB;0.051992829467
+01/04/2025;01/03/2025;Spotify;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;1;RUB;0.084830568248
+01/04/2025;01/11/2024;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;-1;RUB;-0.204280963642
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"how so";3616849729599;FR-X45-22-01149;;"Music Release";Stream;65;RUB;1.355783126879
+01/04/2025;01/07/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"с тобой";3616849729599;FR-X45-22-01131;;"Music Release";Stream;1;RUB;0.099217833165
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";доверие;3616849729599;FR-X45-22-01151;;"Music Release";Stream;72;RUB;1.502264404960
+01/04/2025;01/08/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"in the past";3616849729599;FR-X45-22-01142;;"Music Release";Stream;1;RUB;0.021663679389
+01/04/2025;01/09/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"с тобой";3616849729599;FR-X45-22-01131;;"Music Release";Stream;1;RUB;0.124999137660
+01/06/2025;01/06/2025;"Apple Music";Turkey;"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;1;RUB;0.016100312879
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;4;RUB;0.016800000000
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";сон;3616849729599;FR-X45-22-01148;;"Music Release";Stream;1;RUB;0.004200000000
+01/05/2025;01/04/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";"грустный мотив";3616849729599;FR-X45-22-01143;;"Music Release";Stream;2;RUB;0.043700516681
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"разбила сердце";3616849729599;FR-X45-22-01133;;"Music Release";Stream;10;RUB;0.042000000000
+01/06/2025;01/05/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";"how so";3616849729599;FR-X45-22-01149;;"Music Release";Stream;1;RUB;0.020858201942
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";простишь;3616849729599;FR-X45-22-01144;;"Music Release";Stream;35;RUB;0.730037068331
+01/05/2025;01/04/2025;Yandex;Ukraine;"трэп хаус квэльчиков";on1t;"love n' hate";"to the castle";3616849729599;FR-X45-22-01134;;"Music Release";Stream;3;RUB;0.012152203598
+01/05/2025;01/12/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";перешел;3616849729599;FR-X45-22-01137;;"Music Release";Stream;1;RUB;0.019890787626
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;60;RUB;1.231459768397
+01/04/2025;01/03/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";перешел;3616849729599;FR-X45-22-01137;;"Music Release";Stream;1;RUB;0.021290350854
+01/05/2025;01/04/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";"убийственная любовь";3616849729599;FR-X45-22-01153;;"Music Release";Stream;1;RUB;0.021850258413
+01/04/2025;01/03/2025;Spotify;Nigeria;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;1;RUB;0.006498511460
+01/04/2025;01/11/2024;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"in the past";3616849729599;FR-X45-22-01142;;"Music Release";Stream;-1;RUB;-0.051070242222
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";загоны;3616849729599;FR-X45-22-01141;;"Music Release";Stream;4;RUB;0.016800000000
+01/05/2025;01/06/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;1;RUB;0.005690118732
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"разбила сердце";3616849729599;FR-X45-22-01133;;"Music Release";Stream;4;RUB;0.016800000000
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";thoughts;3616849729599;FR-X45-22-01140;;"Music Release";Stream;52;RUB;1.061136961940
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"to the castle";3616849729599;FR-X45-22-01134;;"Music Release";Stream;55;RUB;1.125008014352
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"four walls";3616849729599;FR-X45-22-01152;;"Music Release";Stream;298;RUB;6.056503311772
+01/05/2025;01/04/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";доверие;3616849729599;FR-X45-22-01151;;"Music Release";Stream;1;RUB;0.021850258413
+01/04/2025;01/08/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";чувства;3616849729599;FR-X45-22-01139;;"Music Release";Stream;1;RUB;0.160998682064
+01/06/2025;01/06/2025;"Apple Music";Israel;"трэп хаус квэльчиков";on1t;"love n' hate";"разбила сердце";3616849729599;FR-X45-22-01133;;"Music Release";Stream;1;RUB;0.170739938873
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";дневник;3616849729599;FR-X45-22-01135;;"Music Release";Stream;1;RUB;-0.169673339005
+01/04/2025;01/03/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";чувства;3616849729599;FR-X45-22-01139;;"Music Release";Stream;2;RUB;0.042580701633
+01/05/2025;01/04/2025;Spotify;France;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;20;RUB;0.555031336367
+01/04/2025;01/03/2025;"UMA VK Clips";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";доверие;3616849729599;FR-X45-22-01151;;"Music Release";Stream;10;RUB;0.008063801761
+01/05/2025;01/05/2025;"Apple Music";Taiwan;"трэп хаус квэльчиков";on1t;"love n' hate";"не хотел";3616849729599;FR-X45-22-01132;;"Music Release";Stream;1;RUB;0.088088914505
+01/05/2025;01/05/2025;"YouTube UGC";Germany;"трэп хаус квэльчиков";on1t;"love n' hate";"how so";3616849729599;FR-X45-22-01149;;"Music Release";Stream;1;RUB;0.006872456874
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";доверие;3616849729599;FR-X45-22-01151;;"Music Release";Stream;116;RUB;2.356634731404
+01/05/2025;01/12/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";разлюбить;3616849729599;FR-X45-22-01147;;"Music Release";Stream;1;RUB;0.002833420794
+01/05/2025;01/04/2025;"UMA VK Clips";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";доверие;3616849729599;FR-X45-22-01151;;"Music Release";Stream;2;RUB;0.001586435298
+01/05/2025;01/03/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"не хотел";3616849729599;FR-X45-22-01132;;"Music Release";Stream;1;RUB;0.040898096130
+01/05/2025;01/04/2025;Yandex;Ukraine;"трэп хаус квэльчиков";on1t;"love n' hate";thoughts;3616849729599;FR-X45-22-01140;;"Music Release";Stream;4;RUB;0.016202938106
+01/05/2025;01/04/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";сон;3616849729599;FR-X45-22-01148;;"Music Release";Stream;2;RUB;0.043700516681
+01/05/2025;01/12/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";доверие;3616849729599;FR-X45-22-01151;;"Music Release";Stream;1;RUB;0.016495066215
+01/04/2025;01/08/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"с тобой";3616849729599;FR-X45-22-01131;;"Music Release";Stream;1;RUB;0.149375392924
+01/04/2025;01/08/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";загоны;3616849729599;FR-X45-22-01141;;"Music Release";Stream;1;RUB;0.090987450162
+01/04/2025;01/08/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";thoughts;3616849729599;FR-X45-22-01140;;"Music Release";Stream;1;RUB;0.034661885387
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"убийственная любовь";3616849729599;FR-X45-22-01153;;"Music Release";Stream;10;RUB;0.042000000000
+01/04/2025;01/03/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";простишь;3616849729599;FR-X45-22-01144;;"Music Release";Stream;1;RUB;0.021290350854
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"разбила сердце";3616849729599;FR-X45-22-01133;;"Music Release";Stream;47;RUB;0.920164999873
+01/05/2025;01/06/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";перешел;3616849729599;FR-X45-22-01137;;"Music Release";Stream;1;RUB;0.020313456571
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";загоны;3616849729599;FR-X45-22-01141;;"Music Release";Stream;57;RUB;1.135870672574
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"с тобой";3616849729599;FR-X45-22-01131;;"Music Release";Stream;1;RUB;0.004200000000
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";простишь;3616849729599;FR-X45-22-01144;;"Music Release";Stream;4;RUB;0.016800000000
+01/05/2025;01/05/2025;"YouTube Official Content";Latvia;"трэп хаус квэльчиков";on1t;"love n' hate";дневник;3616849729599;FR-X45-22-01135;;"Music Release";Stream;1;RUB;0.063105781050
+01/05/2025;01/12/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"грустный мотив";3616849729599;FR-X45-22-01143;;"Music Release";Stream;1;RUB;0.004670437368
+01/04/2025;01/07/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;1;RUB;0.034510550177
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";доверие;3616849729599;FR-X45-22-01151;;"Music Release";Stream;3;RUB;0.012600000000
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"love n' hate";3616849729599;FR-X45-22-01129;;"Music Release";Stream;15;RUB;0.063000000000
+01/05/2025;01/05/2025;"Apple Music";Switzerland;"трэп хаус квэльчиков";on1t;"love n' hate";перешел;3616849729599;FR-X45-22-01137;;"Music Release";Stream;1;RUB;0.266919728435
+01/04/2025;01/08/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"how so";3616849729599;FR-X45-22-01149;;"Music Release";Stream;1;RUB;0.160311222210
+01/06/2025;01/05/2025;"UMA VK MUSIC";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"разбила сердце";3616849729599;FR-X45-22-01133;;"Music Release";Stream;1;RUB;0.129581197778
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"how so";3616849729599;FR-X45-22-01149;;"Music Release";Stream;1;RUB;-0.085157474074
+01/04/2025;01/08/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"без тебя";3616849729599;FR-X45-22-01146;;"Music Release";Stream;1;RUB;0.076406343847
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";разлюбить;3616849729599;FR-X45-22-01147;;"Music Release";Stream;1;RUB;-0.023097970535
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"in the past";3616849729599;FR-X45-22-01142;;"Music Release";Stream;2;RUB;0.076721370022
+01/05/2025;01/04/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";"how so";3616849729599;FR-X45-22-01149;;"Music Release";Stream;2;RUB;0.043700516681
+01/06/2025;01/05/2025;Spotify;Ukraine;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;2;RUB;0.000485281292
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"не хотел";3616849729599;FR-X45-22-01132;;"Music Release";Stream;49;RUB;1.052863135786
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"how so";3616849729599;FR-X45-22-01149;;"Music Release";Stream;20;RUB;0.542953745608
+01/04/2025;01/03/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";дневник;3616849729599;FR-X45-22-01135;;"Music Release";Stream;6;RUB;0.127742104899
+01/04/2025;01/08/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"love n' hate";3616849729599;FR-X45-22-01129;;"Music Release";Stream;1;RUB;1.258827242460
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;1;RUB;-0.031505265332
+01/06/2025;01/05/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";чувства;3616849729599;FR-X45-22-01139;;"Music Release";Stream;1;RUB;0.020858201942
+01/05/2025;01/04/2025;NetEase;"China Mainland";"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;1;RUB;0.030713948550
+01/05/2025;01/03/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"грустный мотив";3616849729599;FR-X45-22-01143;;"Music Release";Stream;1;RUB;0.010395579982
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"to the castle";3616849729599;FR-X45-22-01134;;"Music Release";Stream;4;RUB;0.016800000000
+01/04/2025;01/11/2024;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";чувства;3616849729599;FR-X45-22-01139;;"Music Release";Stream;-1;RUB;-0.083901110027
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";дневник;3616849729599;FR-X45-22-01135;;"Music Release";Stream;251;RUB;5.169978738320
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";дневник;3616849729599;FR-X45-22-01135;;"Music Release";Stream;97;RUB;1.970165299344
+01/06/2025;01/06/2025;"Apple Music";"Korea, Republic Of";"трэп хаус квэльчиков";on1t;"love n' hate";"love n' hate";3616849729599;FR-X45-22-01129;;"Music Release";Stream;1;RUB;0.096486689020
+01/05/2025;01/06/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"love n' hate";3616849729599;FR-X45-22-01129;;"Music Release";Stream;1;RUB;0.359245502490
+01/06/2025;01/05/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";"не хотел";3616849729599;FR-X45-22-01132;;"Music Release";Stream;1;RUB;0.020858201942
+01/04/2025;01/03/2025;NetEase;"China Mainland";"трэп хаус квэльчиков";on1t;"love n' hate";доверие;3616849729599;FR-X45-22-01151;;"Music Release";Stream;5;RUB;0.156559996176
+01/04/2025;01/09/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"разбила сердце";3616849729599;FR-X45-22-01133;;"Music Release";Stream;1;RUB;0.139927759898
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"love n' hate";3616849729599;FR-X45-22-01129;;"Music Release";Stream;1;RUB;-0.047862081657
+01/05/2025;01/12/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"four walls";3616849729599;FR-X45-22-01152;;"Music Release";Stream;1;RUB;0.035477399766
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";загоны;3616849729599;FR-X45-22-01141;;"Music Release";Stream;5;RUB;0.021000000000
+01/04/2025;01/09/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"to the castle";3616849729599;FR-X45-22-01134;;"Music Release";Stream;1;RUB;0.124817591795
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"four walls";3616849729599;FR-X45-22-01152;;"Music Release";Stream;157;RUB;3.341492943315
+01/05/2025;01/03/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";thoughts;3616849729599;FR-X45-22-01140;;"Music Release";Stream;1;RUB;0.017441855634
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;6;RUB;0.025200000000
+01/05/2025;01/12/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";простишь;3616849729599;FR-X45-22-01144;;"Music Release";Stream;1;RUB;0.008656534066
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"love n' hate";3616849729599;FR-X45-22-01129;;"Music Release";Stream;122;RUB;2.576733900751
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";перешел;3616849729599;FR-X45-22-01137;;"Music Release";Stream;120;RUB;2.508880817388
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"love n' hate";3616849729599;FR-X45-22-01129;;"Music Release";Stream;39;RUB;0.849507088122
+01/05/2025;01/04/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";"four walls";3616849729599;FR-X45-22-01152;;"Music Release";Stream;1;RUB;0.021850258413
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";загоны;3616849729599;FR-X45-22-01141;;"Music Release";Stream;69;RUB;1.423072925783
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";перешел;3616849729599;FR-X45-22-01137;;"Music Release";Stream;6;RUB;0.025200000000
+01/06/2025;01/05/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";"не хотел";3616849729599;FR-X45-22-01132;;"Music Release";Stream;1;RUB;0.020858201942
+01/06/2025;01/05/2025;Yandex;Kyrgyzstan;"трэп хаус квэльчиков";on1t;"love n' hate";доверие;3616849729599;FR-X45-22-01151;;"Music Release";Stream;1;RUB;0.020858201942
+01/04/2025;01/03/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;2;RUB;0.042580701633
+01/06/2025;01/06/2025;"Apple Music";"Czech Republic";"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;1;RUB;0.297650565095
+01/05/2025;01/03/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";простишь;3616849729599;FR-X45-22-01144;;"Music Release";Stream;1;RUB;0.010650352044
+01/04/2025;01/03/2025;Spotify;"United Kingdom";"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;3;RUB;0.267688681886
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";сон;3616849729599;FR-X45-22-01148;;"Music Release";Stream;1;RUB;0.004200000038
+01/04/2025;01/03/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";перешел;3616849729599;FR-X45-22-01137;;"Music Release";Stream;2;RUB;0.042580701633
+01/06/2025;01/06/2025;"Apple Music";Germany;"трэп хаус квэльчиков";on1t;"love n' hate";дневник;3616849729599;FR-X45-22-01135;;"Music Release";Stream;2;RUB;0.691331691990
+01/04/2025;01/08/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"убийственная любовь";3616849729599;FR-X45-22-01153;;"Music Release";Stream;1;RUB;0.170351612458
+01/05/2025;01/04/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";"love n' hate";3616849729599;FR-X45-22-01129;;"Music Release";Stream;1;RUB;0.021850258413
+01/05/2025;01/04/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";дневник;3616849729599;FR-X45-22-01135;;"Music Release";Stream;1;RUB;0.021850258413
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";перешел;3616849729599;FR-X45-22-01137;;"Music Release";Stream;7;RUB;0.029400000000
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";thoughts;3616849729599;FR-X45-22-01140;;"Music Release";Stream;58;RUB;1.209775713214
+01/04/2025;01/11/2024;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"убийственная любовь";3616849729599;FR-X45-22-01153;;"Music Release";Stream;-1;RUB;-0.051070240498
+01/06/2025;01/05/2025;Yandex;Ukraine;"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;2;RUB;0.006329543930
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"не хотел";3616849729599;FR-X45-22-01132;;"Music Release";Stream;9;RUB;0.037800000038
+01/05/2025;01/04/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";"four walls";3616849729599;FR-X45-22-01152;;"Music Release";Stream;2;RUB;0.043700516681
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";сон;3616849729599;FR-X45-22-01148;;"Music Release";Stream;25;RUB;0.528456935110
+01/04/2025;01/03/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";"love n' hate";3616849729599;FR-X45-22-01129;;"Music Release";Stream;1;RUB;0.005969924014
+01/05/2025;01/06/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";thoughts;3616849729599;FR-X45-22-01140;;"Music Release";Stream;1;RUB;0.007587646011
+01/05/2025;01/03/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";чувства;3616849729599;FR-X45-22-01139;;"Music Release";Stream;1;RUB;0.042462824364
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"с тобой";3616849729599;FR-X45-22-01131;;"Music Release";Stream;1;RUB;0.004200000038
+01/05/2025;01/12/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"убийственная любовь";3616849729599;FR-X45-22-01153;;"Music Release";Stream;1;RUB;0.008173179031
+01/05/2025;01/12/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;1;RUB;0.005571722547
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"in the past";3616849729599;FR-X45-22-01142;;"Music Release";Stream;5;RUB;0.620858452261
+01/05/2025;01/04/2025;Yandex;Ukraine;"трэп хаус квэльчиков";on1t;"love n' hate";разлюбить;3616849729599;FR-X45-22-01147;;"Music Release";Stream;2;RUB;0.008101469016
+01/05/2025;01/12/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"love n' hate";3616849729599;FR-X45-22-01129;;"Music Release";Stream;1;RUB;0.351770560290
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";простишь;3616849729599;FR-X45-22-01144;;"Music Release";Stream;1;RUB;-0.026694203758
+01/04/2025;01/11/2024;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";сон;3616849729599;FR-X45-22-01148;;"Music Release";Stream;-1;RUB;-0.040126618471
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";перешел;3616849729599;FR-X45-22-01137;;"Music Release";Stream;66;RUB;1.388718480270
+01/04/2025;01/04/2025;"Apple Music";Ukraine;"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;2;RUB;0.181962954436
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"four walls";3616849729599;FR-X45-22-01152;;"Music Release";Stream;1;RUB;-0.006671442805
+01/04/2025;01/09/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";доверие;3616849729599;FR-X45-22-01151;;"Music Release";Stream;1;RUB;0.067248058142
+01/06/2025;01/05/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";разлюбить;3616849729599;FR-X45-22-01147;;"Music Release";Stream;1;RUB;0.020858201942
+01/06/2025;01/05/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";сон;3616849729599;FR-X45-22-01148;;"Music Release";Stream;1;RUB;0.020858201942
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"без тебя";3616849729599;FR-X45-22-01146;;"Music Release";Stream;131;RUB;2.712433822578
+01/04/2025;01/07/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"без тебя";3616849729599;FR-X45-22-01146;;"Music Release";Stream;1;RUB;0.037075167994
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";разлюбить;3616849729599;FR-X45-22-01147;;"Music Release";Stream;3;RUB;0.012600000036
+01/05/2025;01/05/2025;"YouTube Official Content";Latvia;"трэп хаус квэльчиков";on1t;"love n' hate";"грустный мотив";3616849729599;FR-X45-22-01143;;"Music Release";Stream;1;RUB;0.108287751154
+01/04/2025;01/03/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";разлюбить;3616849729599;FR-X45-22-01147;;"Music Release";Stream;2;RUB;0.042580701633
+01/06/2025;01/05/2025;Spotify;Romania;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;1;RUB;0.011986447332
+01/04/2025;01/03/2025;Yandex;Ukraine;"трэп хаус квэльчиков";on1t;"love n' hate";разлюбить;3616849729599;FR-X45-22-01147;;"Music Release";Stream;1;RUB;0.005969924014
+01/04/2025;01/09/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";thoughts;3616849729599;FR-X45-22-01140;;"Music Release";Stream;1;RUB;0.071676483906
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";thoughts;3616849729599;FR-X45-22-01140;;"Music Release";Stream;1;RUB;-0.012642647379
+01/04/2025;01/09/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";разлюбить;3616849729599;FR-X45-22-01147;;"Music Release";Stream;1;RUB;0.070854811095
+01/05/2025;01/06/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";загоны;3616849729599;FR-X45-22-01141;;"Music Release";Stream;1;RUB;0.028529933803
+01/04/2025;01/11/2024;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";перешел;3616849729599;FR-X45-22-01137;;"Music Release";Stream;-1;RUB;-0.080253236043
+01/05/2025;01/04/2025;Spotify;"United Kingdom";"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;1;RUB;0.066452202723
+01/04/2025;01/08/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"to the castle";3616849729599;FR-X45-22-01134;;"Music Release";Stream;1;RUB;0.166018877226
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";простишь;3616849729599;FR-X45-22-01144;;"Music Release";Stream;22;RUB;0.462906160090
+01/05/2025;01/03/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;1;RUB;0.015607876043
+01/06/2025;01/05/2025;Spotify;Germany;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;19;RUB;1.221355910462
+01/04/2025;01/04/2025;"YouTube UGC";Slovakia;"трэп хаус квэльчиков";on1t;"love n' hate";"how so";3616849729599;FR-X45-22-01149;;"Music Release";Stream;1;RUB;0.004749407738
+01/05/2025;01/12/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"how so";3616849729599;FR-X45-22-01149;;"Music Release";Stream;1;RUB;0.018592614552
+01/04/2025;01/11/2024;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";загоны;3616849729599;FR-X45-22-01141;;"Music Release";Stream;-1;RUB;-0.160656955191
+01/04/2025;01/07/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";перешел;3616849729599;FR-X45-22-01137;;"Music Release";Stream;1;RUB;1.071497358336
+01/06/2025;01/06/2025;"Apple Music";Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";"не хотел";3616849729599;FR-X45-22-01132;;"Music Release";Stream;1;RUB;0.100311282917
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";доверие;3616849729599;FR-X45-22-01151;;"Music Release";Stream;1;RUB;0.004200000038
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"how so";3616849729599;FR-X45-22-01149;;"Music Release";Stream;5;RUB;0.260645748042
+01/04/2025;01/03/2025;Yandex;Ukraine;"трэп хаус квэльчиков";on1t;"love n' hate";перешел;3616849729599;FR-X45-22-01137;;"Music Release";Stream;1;RUB;0.005969924014
+01/04/2025;01/09/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";перешел;3616849729599;FR-X45-22-01137;;"Music Release";Stream;1;RUB;0.505022075281
+01/05/2025;01/04/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";"in the past";3616849729599;FR-X45-22-01142;;"Music Release";Stream;1;RUB;0.021850258413
+01/05/2025;01/06/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"to the castle";3616849729599;FR-X45-22-01134;;"Music Release";Stream;1;RUB;0.039011306857
+01/04/2025;01/09/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";сон;3616849729599;FR-X45-22-01148;;"Music Release";Stream;1;RUB;0.026570553907
+01/06/2025;01/05/2025;Yandex;Ukraine;"трэп хаус квэльчиков";on1t;"love n' hate";перешел;3616849729599;FR-X45-22-01137;;"Music Release";Stream;2;RUB;0.006329543930
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"разбила сердце";3616849729599;FR-X45-22-01133;;"Music Release";Stream;7;RUB;0.097721369986
+01/04/2025;01/08/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"разбила сердце";3616849729599;FR-X45-22-01133;;"Music Release";Stream;1;RUB;0.165331418722
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";доверие;3616849729599;FR-X45-22-01151;;"Music Release";Stream;93;RUB;1.904425921590
+01/04/2025;01/07/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";сон;3616849729599;FR-X45-22-01148;;"Music Release";Stream;1;RUB;0.017255275089
+01/05/2025;01/12/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"разбила сердце";3616849729599;FR-X45-22-01133;;"Music Release";Stream;1;RUB;0.025571314581
+01/04/2025;01/03/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";"разбила сердце";3616849729599;FR-X45-22-01133;;"Music Release";Stream;2;RUB;0.042580701633
+01/04/2025;01/03/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";чувства;3616849729599;FR-X45-22-01139;;"Music Release";Stream;1;RUB;0.021290350854
+01/05/2025;01/06/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"in the past";3616849729599;FR-X45-22-01142;;"Music Release";Stream;1;RUB;0.010132552398
+01/05/2025;01/12/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";сон;3616849729599;FR-X45-22-01148;;"Music Release";Stream;1;RUB;0.002342131644
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"love n' hate";3616849729599;FR-X45-22-01129;;"Music Release";Stream;13;RUB;0.174571690422
+01/05/2025;01/12/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"без тебя";3616849729599;FR-X45-22-01146;;"Music Release";Stream;1;RUB;0.013022865387
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"how so";3616849729599;FR-X45-22-01149;;"Music Release";Stream;28;RUB;0.565488969108
+01/05/2025;01/04/2025;Yandex;Uzbekistan;"трэп хаус квэльчиков";on1t;"love n' hate";дневник;3616849729599;FR-X45-22-01135;;"Music Release";Stream;1;RUB;0.021850258413
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";thoughts;3616849729599;FR-X45-22-01140;;"Music Release";Stream;2;RUB;0.079385868625
+01/05/2025;01/06/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"не хотел";3616849729599;FR-X45-22-01132;;"Music Release";Stream;1;RUB;0.047931828565
+01/05/2025;01/05/2025;"YouTube Official Content";Latvia;"трэп хаус квэльчиков";on1t;"love n' hate";"с тобой";3616849729599;FR-X45-22-01131;;"Music Release";Stream;1;RUB;0.128120331532
+01/04/2025;01/09/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"грустный мотив";3616849729599;FR-X45-22-01143;;"Music Release";Stream;1;RUB;0.097425365078
+01/04/2025;01/09/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";дневник;3616849729599;FR-X45-22-01135;;"Music Release";Stream;1;RUB;0.595415480242
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"in the past";3616849729599;FR-X45-22-01142;;"Music Release";Stream;29;RUB;0.569500996653
+01/06/2025;01/05/2025;Spotify;Latvia;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;1;RUB;0.001649956261
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"in the past";3616849729599;FR-X45-22-01142;;"Music Release";Stream;8;RUB;0.033600000000
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";доверие;3616849729599;FR-X45-22-01151;;"Music Release";Stream;1;RUB;-0.044198138594
+01/05/2025;01/12/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";чувства;3616849729599;FR-X45-22-01139;;"Music Release";Stream;1;RUB;0.032999658704
+01/04/2025;01/04/2025;"YouTube UGC";Poland;"трэп хаус квэльчиков";on1t;"love n' hate";"how so";3616849729599;FR-X45-22-01149;;"Music Release";Stream;1;RUB;0.004359359759
+01/06/2025;01/06/2025;"Apple Music";"Czech Republic";"трэп хаус квэльчиков";on1t;"love n' hate";"разбила сердце";3616849729599;FR-X45-22-01133;;"Music Release";Stream;1;RUB;0.155603452097
+01/04/2025;01/03/2025;Spotify;Portugal;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;1;RUB;0.008098145018
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";доверие;3616849729599;FR-X45-22-01151;;"Music Release";Stream;8;RUB;0.153571690460
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"убийственная любовь";3616849729599;FR-X45-22-01153;;"Music Release";Stream;33;RUB;0.649860430555
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"грустный мотив";3616849729599;FR-X45-22-01143;;"Music Release";Stream;59;RUB;1.210169417542
+01/05/2025;01/06/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";простишь;3616849729599;FR-X45-22-01144;;"Music Release";Stream;1;RUB;0.008840480977
+01/06/2025;01/05/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";"убийственная любовь";3616849729599;FR-X45-22-01153;;"Music Release";Stream;1;RUB;0.020858201942
+01/06/2025;01/05/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";"how so";3616849729599;FR-X45-22-01149;;"Music Release";Stream;1;RUB;0.020858201942
+01/04/2025;01/07/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";дневник;3616849729599;FR-X45-22-01135;;"Music Release";Stream;1;RUB;0.538293568105
+01/04/2025;01/04/2025;"YouTube Official Content";Pakistan;"трэп хаус квэльчиков";on1t;"love n' hate";"in the past";3616849729599;FR-X45-22-01142;;"Music Release";Stream;1;RUB;0.006504623685
+01/04/2025;01/03/2025;"UMA VK Clips";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";сон;3616849729599;FR-X45-22-01148;;"Music Release";Stream;5;RUB;0.004031900918
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";разлюбить;3616849729599;FR-X45-22-01147;;"Music Release";Stream;75;RUB;1.550815030607
+01/05/2025;01/04/2025;NetEase;"China Mainland";"трэп хаус квэльчиков";on1t;"love n' hate";"разбила сердце";3616849729599;FR-X45-22-01133;;"Music Release";Stream;3;RUB;0.092141845652
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"с тобой";3616849729599;FR-X45-22-01131;;"Music Release";Stream;1;RUB;-0.022835215333
+01/04/2025;01/03/2025;Spotify;"United States";"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;12;RUB;1.867122332641
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";чувства;3616849729599;FR-X45-22-01139;;"Music Release";Stream;111;RUB;2.286626806322
+01/04/2025;01/04/2025;"Apple Music";Poland;"трэп хаус квэльчиков";on1t;"love n' hate";"love n' hate";3616849729599;FR-X45-22-01129;;"Music Release";Stream;1;RUB;0.139914493711
+01/05/2025;01/06/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"how so";3616849729599;FR-X45-22-01149;;"Music Release";Stream;1;RUB;0.018987697963
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";дневник;3616849729599;FR-X45-22-01135;;"Music Release";Stream;2;RUB;0.008400000000
+01/04/2025;01/11/2024;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";простишь;3616849729599;FR-X45-22-01144;;"Music Release";Stream;-1;RUB;-0.032830869604
+01/04/2025;01/03/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";"four walls";3616849729599;FR-X45-22-01152;;"Music Release";Stream;2;RUB;0.042580701633
+01/04/2025;01/03/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";сон;3616849729599;FR-X45-22-01148;;"Music Release";Stream;2;RUB;0.042580701633
+01/04/2025;01/09/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;1;RUB;0.035427405585
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";thoughts;3616849729599;FR-X45-22-01140;;"Music Release";Stream;61;RUB;1.347868372905
+01/04/2025;01/08/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";сон;3616849729599;FR-X45-22-01148;;"Music Release";Stream;1;RUB;0.012998207423
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"грустный мотив";3616849729599;FR-X45-22-01143;;"Music Release";Stream;1;RUB;-0.035115603716
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";чувства;3616849729599;FR-X45-22-01139;;"Music Release";Stream;1;RUB;-0.018382666433
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"four walls";3616849729599;FR-X45-22-01152;;"Music Release";Stream;142;RUB;3.007909389030
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;1;RUB;0.004200000036
+01/05/2025;01/04/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";"с тобой";3616849729599;FR-X45-22-01131;;"Music Release";Stream;1;RUB;0.021850258413
+01/06/2025;01/05/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";чувства;3616849729599;FR-X45-22-01139;;"Music Release";Stream;1;RUB;0.020858201942
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";разлюбить;3616849729599;FR-X45-22-01147;;"Music Release";Stream;115;RUB;2.494980187553
+01/04/2025;01/03/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";загоны;3616849729599;FR-X45-22-01141;;"Music Release";Stream;1;RUB;0.021290350854
+01/05/2025;01/03/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";доверие;3616849729599;FR-X45-22-01151;;"Music Release";Stream;1;RUB;0.031278068369
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;95;RUB;2.057975020311
+01/05/2025;01/04/2025;Yandex;Ukraine;"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;3;RUB;0.012152203598
+01/04/2025;01/03/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";дневник;3616849729599;FR-X45-22-01135;;"Music Release";Stream;1;RUB;0.021290350854
+01/06/2025;01/05/2025;Yandex;Ukraine;"трэп хаус квэльчиков";on1t;"love n' hate";thoughts;3616849729599;FR-X45-22-01140;;"Music Release";Stream;1;RUB;0.003164771929
+01/05/2025;01/03/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"убийственная любовь";3616849729599;FR-X45-22-01153;;"Music Release";Stream;1;RUB;0.016432862946
+01/05/2025;01/06/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";доверие;3616849729599;FR-X45-22-01151;;"Music Release";Stream;1;RUB;0.016845577832
+01/05/2025;01/03/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";дневник;3616849729599;FR-X45-22-01135;;"Music Release";Stream;1;RUB;0.215084990036
+01/04/2025;01/03/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";"love n' hate";3616849729599;FR-X45-22-01129;;"Music Release";Stream;2;RUB;0.042580701633
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Azerbaijan;"трэп хаус квэльчиков";on1t;"love n' hate";"in the past";3616849729599;FR-X45-22-01142;;"Music Release";Stream;1;RUB;0.004200000000
+01/04/2025;01/11/2024;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"разбила сердце";3616849729599;FR-X45-22-01133;;"Music Release";Stream;-1;RUB;-0.178745842980
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;126;RUB;2.651943349052
+01/06/2025;01/06/2025;"Apple Music";Cyprus;"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;1;RUB;0.399337954085
+01/05/2025;01/12/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"in the past";3616849729599;FR-X45-22-01142;;"Music Release";Stream;1;RUB;0.009921721054
+01/05/2025;01/05/2025;"Apple Music";Ukraine;"трэп хаус квэльчиков";on1t;"love n' hate";"не хотел";3616849729599;FR-X45-22-01132;;"Music Release";Stream;1;RUB;0.071886532499
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";чувства;3616849729599;FR-X45-22-01139;;"Music Release";Stream;2;RUB;0.057919337152
+01/05/2025;01/05/2025;"Apple Music";Taiwan;"трэп хаус квэльчиков";on1t;"love n' hate";перешел;3616849729599;FR-X45-22-01137;;"Music Release";Stream;1;RUB;0.088088914505
+01/05/2025;01/04/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";"без тебя";3616849729599;FR-X45-22-01146;;"Music Release";Stream;1;RUB;0.021850258413
+01/04/2025;01/11/2024;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"love n' hate";3616849729599;FR-X45-22-01129;;"Music Release";Stream;-1;RUB;-0.182694684224
+01/04/2025;01/07/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"разбила сердце";3616849729599;FR-X45-22-01133;;"Music Release";Stream;1;RUB;0.112159289538
+01/05/2025;01/05/2025;"Apple Music";Switzerland;"трэп хаус квэльчиков";on1t;"love n' hate";"разбила сердце";3616849729599;FR-X45-22-01133;;"Music Release";Stream;1;RUB;0.848525407912
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"in the past";3616849729599;FR-X45-22-01142;;"Music Release";Stream;17;RUB;0.191371690422
+01/06/2025;01/05/2025;Yandex;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";"разбила сердце";3616849729599;FR-X45-22-01133;;"Music Release";Stream;1;RUB;0.020858201942
+01/04/2025;01/11/2024;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"с тобой";3616849729599;FR-X45-22-01131;;"Music Release";Stream;-1;RUB;-0.018239370894
+01/05/2025;01/04/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";thoughts;3616849729599;FR-X45-22-01140;;"Music Release";Stream;4;RUB;0.087401033434
+01/06/2025;01/05/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";"to the castle";3616849729599;FR-X45-22-01134;;"Music Release";Stream;1;RUB;0.020858201942
+01/04/2025;01/07/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";доверие;3616849729599;FR-X45-22-01151;;"Music Release";Stream;1;RUB;0.077648739361
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"love n' hate";3616849729599;FR-X45-22-01129;;"Music Release";Stream;162;RUB;3.357114271087
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"не хотел";3616849729599;FR-X45-22-01132;;"Music Release";Stream;37;RUB;0.771753472214
+01/04/2025;01/07/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";чувства;3616849729599;FR-X45-22-01139;;"Music Release";Stream;1;RUB;0.125955618941
+01/04/2025;01/07/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"убийственная любовь";3616849729599;FR-X45-22-01153;;"Music Release";Stream;1;RUB;0.047452006550
+01/05/2025;01/03/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";сон;3616849729599;FR-X45-22-01148;;"Music Release";Stream;1;RUB;0.002888314832
+01/05/2025;01/06/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"four walls";3616849729599;FR-X45-22-01152;;"Music Release";Stream;1;RUB;0.036231276108
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";чувства;3616849729599;FR-X45-22-01139;;"Music Release";Stream;51;RUB;1.063768299547
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"убийственная любовь";3616849729599;FR-X45-22-01153;;"Music Release";Stream;49;RUB;1.027906763207
+01/05/2025;01/06/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";сон;3616849729599;FR-X45-22-01148;;"Music Release";Stream;1;RUB;0.002391900701
+01/05/2025;01/04/2025;Spotify;Germany;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;18;RUB;0.832401275926
+01/05/2025;01/04/2025;"UMA VK MUSIC";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"in the past";3616849729599;FR-X45-22-01142;;"Music Release";Stream;5;RUB;0.620114370143
+01/05/2025;01/04/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;1;RUB;0.021850258413
+01/04/2025;01/03/2025;Spotify;Germany;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;15;RUB;0.881648045320
+01/04/2025;01/03/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";"без тебя";3616849729599;FR-X45-22-01146;;"Music Release";Stream;2;RUB;0.042580701633
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";перешел;3616849729599;FR-X45-22-01137;;"Music Release";Stream;1;RUB;-0.023376509924
+01/06/2025;01/05/2025;Yandex;Uzbekistan;"трэп хаус квэльчиков";on1t;"love n' hate";"four walls";3616849729599;FR-X45-22-01152;;"Music Release";Stream;1;RUB;0.020858201942
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"to the castle";3616849729599;FR-X45-22-01134;;"Music Release";Stream;14;RUB;0.058800000000
+01/04/2025;01/11/2024;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"four walls";3616849729599;FR-X45-22-01152;;"Music Release";Stream;-1;RUB;-0.010943622926
+01/04/2025;01/07/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";разлюбить;3616849729599;FR-X45-22-01147;;"Music Release";Stream;1;RUB;0.056079645556
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"how so";3616849729599;FR-X45-22-01149;;"Music Release";Stream;28;RUB;0.117600000000
+01/06/2025;01/05/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";"four walls";3616849729599;FR-X45-22-01152;;"Music Release";Stream;4;RUB;0.083432807841
+01/06/2025;01/05/2025;"UMA VK MUSIC";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"in the past";3616849729599;FR-X45-22-01142;;"Music Release";Stream;4;RUB;0.518324791036
+01/04/2025;01/07/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"in the past";3616849729599;FR-X45-22-01142;;"Music Release";Stream;1;RUB;0.064707283063
+01/05/2025;01/03/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"love n' hate";3616849729599;FR-X45-22-01129;;"Music Release";Stream;1;RUB;0.205147810611
+01/04/2025;01/11/2024;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"to the castle";3616849729599;FR-X45-22-01134;;"Music Release";Stream;-1;RUB;-0.156933837968
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"без тебя";3616849729599;FR-X45-22-01146;;"Music Release";Stream;1;RUB;-0.016060757676
+01/04/2025;01/03/2025;NetEase;"China Mainland";"трэп хаус квэльчиков";on1t;"love n' hate";"разбила сердце";3616849729599;FR-X45-22-01133;;"Music Release";Stream;2;RUB;0.062623998440
+01/05/2025;01/06/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"убийственная любовь";3616849729599;FR-X45-22-01153;;"Music Release";Stream;1;RUB;0.008346854778
+01/04/2025;01/03/2025;Spotify;Poland;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;1;RUB;0.005998625940
+01/05/2025;01/04/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";чувства;3616849729599;FR-X45-22-01139;;"Music Release";Stream;1;RUB;0.021850258413
+01/04/2025;01/11/2024;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";разлюбить;3616849729599;FR-X45-22-01147;;"Music Release";Stream;-1;RUB;-0.018239372618
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"с тобой";3616849729599;FR-X45-22-01131;;"Music Release";Stream;139;RUB;2.898077056024
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";"to the castle";3616849729599;FR-X45-22-01134;;"Music Release";Stream;1;RUB;0.004200000038
+01/05/2025;01/06/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;1;RUB;0.017186570534
+01/06/2025;01/05/2025;Yandex;Kazakhstan;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;1;RUB;0.020858201942
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";простишь;3616849729599;FR-X45-22-01144;;"Music Release";Stream;29;RUB;0.617420173642
+01/05/2025;01/04/2025;Spotify;Netherlands;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;3;RUB;0.116534240445
+01/05/2025;01/04/2025;"UMA VK MUSIC";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"грустный мотив";3616849729599;FR-X45-22-01143;;"Music Release";Stream;1;RUB;0.124022873985
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"не хотел";3616849729599;FR-X45-22-01132;;"Music Release";Stream;1;RUB;0.004200000036
+01/05/2025;01/04/2025;Yandex;Uzbekistan;"трэп хаус квэльчиков";on1t;"love n' hate";"four walls";3616849729599;FR-X45-22-01152;;"Music Release";Stream;1;RUB;0.021850258413
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;1;RUB;0.004200000036
+01/04/2025;01/08/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";останусь;3616849729599;FR-X45-22-01130;;"Music Release";Stream;1;RUB;0.215053888094
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";загоны;3616849729599;FR-X45-22-01141;;"Music Release";Stream;13;RUB;0.054600000038
+01/06/2025;01/05/2025;Yandex;Uzbekistan;"трэп хаус квэльчиков";on1t;"love n' hate";дневник;3616849729599;FR-X45-22-01135;;"Music Release";Stream;1;RUB;0.020858201942
+01/04/2025;01/11/2024;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"не хотел";3616849729599;FR-X45-22-01132;;"Music Release";Stream;-1;RUB;-0.040126618471
+01/04/2025;01/11/2024;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";дневник;3616849729599;FR-X45-22-01135;;"Music Release";Stream;-1;RUB;-0.284835165145
+01/05/2025;01/12/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"не хотел";3616849729599;FR-X45-22-01132;;"Music Release";Stream;1;RUB;0.046934494814
+01/05/2025;01/06/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";"с тобой";3616849729599;FR-X45-22-01131;;"Music Release";Stream;1;RUB;0.011403310442
+01/05/2025;01/03/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";разлюбить;3616849729599;FR-X45-22-01147;;"Music Release";Stream;1;RUB;0.002898064506
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"грустный мотив";3616849729599;FR-X45-22-01143;;"Music Release";Stream;53;RUB;1.105484703431
+01/04/2025;01/11/2024;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";доверие;3616849729599;FR-X45-22-01151;;"Music Release";Stream;-1;RUB;-0.193337340790
+01/05/2025;01/06/2023;Yandex;Worldwide;"трэп хаус квэльчиков";on1t;"love n' hate";чувства;3616849729599;FR-X45-22-01139;;"Music Release";Stream;1;RUB;0.033700884354
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"трэп хаус квэльчиков";on1t;"love n' hate";"не хотел";3616849729599;FR-X45-22-01132;;"Music Release";Stream;6;RUB;0.025200000000
+01/06/2025;01/05/2025;Spotify;Belarus;"трэп хаус квэльчиков";on1t;"love n' hate";"has changed";3616849729599;FR-X45-22-01138;;"Music Release";Stream;4;RUB;0.001261731344

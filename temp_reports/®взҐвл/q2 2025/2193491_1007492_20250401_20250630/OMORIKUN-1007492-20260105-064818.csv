@@ -1,0 +1,840 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/04/2025;01/03/2025;Spotify;Taiwan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";1;RUB;-0.031138081658
+01/04/2025;01/03/2025;Spotify;Netherlands;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;20;RUB;0.868651022475
+01/04/2025;01/03/2025;Spotify;"United Kingdom";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";11;RUB;-0.860395042136
+01/06/2025;01/05/2025;Spotify;Romania;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;5;RUB;0.059883708216
+01/05/2025;01/04/2025;Spotify;Canada;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";3;RUB;-0.071656521898
+01/05/2025;01/04/2025;Spotify;Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;25;RUB;0.158164009720
+01/05/2025;01/04/2025;Spotify;Germany;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;86;RUB;4.150736562264
+01/06/2025;01/05/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;71;RUB;7.491592373271
+01/04/2025;01/03/2025;Spotify;Singapore;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";1;RUB;-0.004725346126
+01/04/2025;01/03/2025;Spotify;Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";27;RUB;-0.363662197728
+01/04/2025;01/04/2025;"Apple Music";Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;2;RUB;0.350017912497
+01/05/2025;01/04/2025;Yandex;"Moldova, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;5;RUB;0.020253672614
+01/04/2025;01/03/2025;Spotify;"Moldova, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;3;RUB;0.005548728994
+01/04/2025;01/04/2025;"YouTube UGC";Spain;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.012472357750
+01/05/2025;01/05/2025;"YouTube Official Content";Sweden;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.546097873530
+01/05/2025;01/05/2025;"YouTube UGC";Germany;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;12;RUB;0.550467111187
+01/05/2025;01/04/2025;Spotify;Bulgaria;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";1;RUB;-0.037722797550
+01/06/2025;01/05/2025;Spotify;Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";89;RUB;-1.032447610096
+01/06/2025;01/05/2025;Spotify;Turkey;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;12;RUB;0.172274854430
+01/04/2025;01/03/2025;Yandex;Uzbekistan;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;1;RUB;0.005969924014
+01/05/2025;01/04/2025;Spotify;Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";20;RUB;-0.356948402342
+01/06/2025;01/05/2025;Spotify;Greece;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";2;RUB;-0.005236184852
+01/06/2025;01/05/2025;Spotify;Israel;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";1;RUB;-0.062453341898
+01/06/2025;01/06/2025;"YouTube UGC";Taiwan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;3;RUB;0.067723522814
+01/04/2025;01/03/2025;Yandex;"Moldova, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;6;RUB;0.035819543786
+01/05/2025;01/05/2025;"YouTube Official Content";Latvia;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;1;RUB;0.177451496522
+01/05/2025;01/04/2025;Spotify;Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";14;RUB;-0.181260124452
+01/04/2025;01/03/2025;Spotify;Sweden;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;3;RUB;0.212701277538
+01/04/2025;01/03/2025;Spotify;Latvia;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";9;RUB;-0.125890498608
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Tajikistan;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;1;RUB;0.004200000038
+01/04/2025;01/03/2025;Spotify;France;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;109;RUB;3.786782845579
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;9;RUB;0.037800000038
+01/04/2025;01/04/2025;"Apple Music";Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;4;RUB;0.531980866933
+01/05/2025;01/04/2025;Spotify;Poland;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;7;RUB;0.549542224109
+01/06/2025;01/06/2025;"YouTube UGC";Malaysia;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.029996679511
+01/06/2025;01/06/2025;"YouTube UGC";Netherlands;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.026482968684
+01/04/2025;01/04/2025;"Apple Music";Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;1;RUB;0.058960772998
+01/05/2025;01/04/2025;Spotify;Netherlands;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";7;RUB;-0.116506498618
+01/05/2025;01/05/2025;"YouTube Official Content";Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;17;RUB;0.924313308657
+01/04/2025;01/03/2025;Spotify;Germany;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";20;RUB;-0.839191313465
+01/05/2025;01/05/2025;"YouTube UGC";Austria;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.034539638083
+01/05/2025;01/04/2025;Spotify;France;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;24;RUB;0.666027927194
+01/06/2025;01/05/2025;Spotify;Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;43;RUB;2.997194088983
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Tajikistan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.008400000000
+01/05/2025;01/05/2025;"YouTube UGC";Estonia;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.029986329499
+01/06/2025;01/05/2025;Yandex;"Moldova, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;4;RUB;0.012659087859
+01/04/2025;01/03/2025;Spotify;Indonesia;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.027093793803
+01/06/2025;01/05/2025;Spotify;Estonia;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";2;RUB;-0.065959429710
+01/04/2025;01/03/2025;Spotify;Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;40;RUB;1.688163320914
+01/04/2025;01/04/2025;"YouTube Official Content";Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;15;RUB;0.935124263074
+01/06/2025;01/05/2025;Spotify;Spain;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;4;RUB;0.699630001665
+01/05/2025;01/04/2025;Spotify;Poland;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;3;RUB;0.402599309975
+01/05/2025;01/04/2025;Spotify;Slovakia;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.007383578072
+01/04/2025;01/04/2025;"YouTube UGC";Germany;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.005483615710
+01/04/2025;01/03/2025;Spotify;Switzerland;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";1;RUB;-0.122631909354
+01/05/2025;01/04/2025;Spotify;Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;24;RUB;0.529334541520
+01/04/2025;01/03/2025;Spotify;Belgium;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.016296267111
+01/04/2025;01/03/2025;Spotify;France;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;18;RUB;0.625356752719
+01/04/2025;01/04/2025;"Apple Music";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;14;RUB;1.068038720006
+01/05/2025;01/04/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;83;RUB;8.847254435939
+01/05/2025;01/04/2025;Spotify;Uzbekistan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";1;RUB;-0.031418998408
+01/04/2025;01/04/2025;"YouTube UGC";Argentina;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;5;RUB;0.007628007734
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Tajikistan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.004200000000
+01/06/2025;01/05/2025;Spotify;Kyrgyzstan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;2;RUB;0.085409502838
+01/05/2025;01/05/2025;"YouTube Official Content";Denmark;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.061406510640
+01/04/2025;01/03/2025;Spotify;Denmark;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.013546896864
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;6;RUB;0.025200000000
+01/05/2025;01/04/2025;Spotify;France;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;15;RUB;0.509126844504
+01/05/2025;01/04/2025;Spotify;"Korea, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";1;RUB;-0.049726247090
+01/06/2025;01/05/2025;Spotify;Philippines;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;2;RUB;0.003348440746
+01/04/2025;01/03/2025;Spotify;France;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";22;RUB;-0.327514092254
+01/04/2025;01/04/2025;"Apple Music";Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;3;RUB;0.440999389752
+01/04/2025;01/03/2025;Spotify;Croatia;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";1;RUB;-0.001162876454
+01/05/2025;01/04/2025;Spotify;Spain;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";2;RUB;-0.132813637347
+01/06/2025;01/05/2025;Spotify;Poland;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;36;RUB;3.131617101506
+01/04/2025;01/04/2025;"YouTube UGC";Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;35;RUB;0.067663683513
+01/05/2025;01/05/2025;"Apple Music";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;6;RUB;0.286473040006
+01/06/2025;01/05/2025;Yandex;"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1910;RUB;39.029170060499
+01/06/2025;01/05/2025;Spotify;Netherlands;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;7;RUB;0.583113969604
+01/05/2025;01/04/2025;Spotify;Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;107;RUB;1.431831374038
+01/05/2025;01/04/2025;Spotify;Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;100;RUB;3.501127555878
+01/05/2025;01/04/2025;Spotify;"Moldova, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;6;RUB;0.272755203418
+01/06/2025;01/06/2025;"Apple Music";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;4;RUB;0.336789600034
+01/06/2025;01/06/2025;"YouTube Official Content";Netherlands;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;1;RUB;0.066090297984
+01/04/2025;01/03/2025;Spotify;Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";9;RUB;-0.131558164683
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Belarus;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;2;RUB;0.131802845861
+01/04/2025;01/03/2025;Spotify;Nigeria;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";11;RUB;-0.064964947366
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;381;RUB;12.675101505106
+01/06/2025;01/06/2025;"Apple Music";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;2;RUB;0.136952480058
+01/04/2025;01/03/2025;Spotify;Canada;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";4;RUB;-0.203825032229
+01/04/2025;01/03/2025;Spotify;Indonesia;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.001249713762
+01/04/2025;01/03/2025;Yandex;Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;15;RUB;0.304034835446
+01/04/2025;01/03/2025;Spotify;Singapore;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.011047469414
+01/06/2025;01/05/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;40;RUB;4.270290665912
+01/05/2025;01/04/2025;Spotify;Canada;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;16;RUB;0.891955662318
+01/06/2025;01/05/2025;Spotify;France;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;37;RUB;1.235331991458
+01/06/2025;01/05/2025;Yandex;Uzbekistan;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;2;RUB;0.041716403884
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Armenia;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;1;RUB;0.004200000038
+01/04/2025;01/03/2025;"UMA VK MUSIC";Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.065901422930
+01/05/2025;01/05/2025;"YouTube Official Content";"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.666306544012
+01/05/2025;01/04/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;33;RUB;3.405432754742
+01/05/2025;01/04/2025;Spotify;Hungary;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;3;RUB;0.185560975434
+01/06/2025;01/06/2025;"YouTube UGC";Peru;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;4;RUB;0.010085651513
+01/06/2025;01/05/2025;Spotify;Chile;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";1;RUB;-0.026061961076
+01/04/2025;01/03/2025;Spotify;Switzerland;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.376763696616
+01/06/2025;01/05/2025;Spotify;Canada;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;10;RUB;0.574767136655
+01/04/2025;01/04/2025;"YouTube UGC";Italy;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.069924130654
+01/04/2025;01/03/2025;Spotify;Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;125;RUB;10.280895116838
+01/04/2025;01/04/2025;"YouTube UGC";France;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;28;RUB;0.710267880564
+01/04/2025;01/03/2025;Spotify;"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;23;RUB;3.235458869653
+01/04/2025;01/04/2025;"YouTube UGC";Romania;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.001145313977
+01/06/2025;01/06/2025;"YouTube UGC";Spain;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.006368058642
+01/06/2025;01/05/2025;Spotify;Australia;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.153640048953
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;-7.923880466125
+01/04/2025;01/04/2025;"YouTube UGC";Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;1;RUB;0.007039673150
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;41;RUB;5.189660129252
+01/05/2025;01/04/2025;Spotify;Finland;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;6;RUB;0.075633099099
+01/05/2025;01/04/2025;Spotify;Israel;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";3;RUB;-0.069813673779
+01/06/2025;01/05/2025;Yandex;Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;14;RUB;0.292014827332
+01/06/2025;01/06/2025;"YouTube Official Content";Denmark;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.209498501554
+01/05/2025;01/05/2025;"YouTube UGC";Brazil;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;3;RUB;0.054172748768
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Azerbaijan;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.004200000036
+01/04/2025;01/03/2025;Spotify;Indonesia;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";1;RUB;-0.021825643338
+01/04/2025;01/03/2025;Yandex;"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1549;RUB;32.364329466806
+01/05/2025;01/05/2025;"YouTube UGC";Canada;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;11;RUB;0.105022434030
+01/04/2025;01/04/2025;"YouTube Official Content";Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;11;RUB;0.314245596118
+01/06/2025;01/05/2025;Spotify;"Serbia And Montenegro";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";1;RUB;-0.001922060456
+01/05/2025;01/04/2025;Spotify;France;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";27;RUB;-0.390316117137
+01/05/2025;01/04/2025;Spotify;Slovakia;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";2;RUB;-0.003155716310
+01/06/2025;01/05/2025;Spotify;India;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;14;RUB;0.381576654817
+01/04/2025;01/03/2025;Spotify;Canada;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";1;RUB;-0.059139953079
+01/05/2025;01/05/2025;"YouTube Official Content";Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;38;RUB;2.010275125162
+01/06/2025;01/05/2025;Spotify;Hungary;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";2;RUB;-0.005304817478
+01/05/2025;01/04/2025;Spotify;Pakistan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;2;RUB;0.078984855018
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;8;RUB;0.033600000000
+01/06/2025;01/05/2025;Spotify;Azerbaijan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.001455843802
+01/04/2025;01/03/2025;Spotify;India;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;9;RUB;0.297881765733
+01/04/2025;01/04/2025;"YouTube UGC";Germany;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;20;RUB;0.713516833400
+01/06/2025;01/05/2025;Spotify;France;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;11;RUB;0.367260862351
+01/06/2025;01/05/2025;Spotify;Sweden;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";2;RUB;-0.019945753294
+01/04/2025;01/03/2025;Spotify;Belgium;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.016296267111
+01/04/2025;01/04/2025;"YouTube UGC";"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.034599550141
+01/05/2025;01/04/2025;Spotify;Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";65;RUB;-0.931397945301
+01/05/2025;01/05/2025;"YouTube UGC";Venezuela;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;3;RUB;0.001296899116
+01/06/2025;01/05/2025;Spotify;Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";28;RUB;-0.453828856389
+01/06/2025;01/06/2025;"YouTube Official Content";Poland;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;2;RUB;0.352633416456
+01/04/2025;01/03/2025;Spotify;Ireland;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.044589786027
+01/04/2025;01/03/2025;Spotify;Turkey;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";15;RUB;-0.205127169708
+01/05/2025;01/04/2025;Spotify;Nigeria;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;24;RUB;0.293011452367
+01/06/2025;01/05/2025;"UMA VK MUSIC";Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.072097276571
+01/06/2025;01/05/2025;Spotify;Canada;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";8;RUB;-0.218062849359
+01/05/2025;01/04/2025;Spotify;Japan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";2;RUB;-0.009296646495
+01/05/2025;01/04/2025;Spotify;Egypt;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;27;RUB;0.397644550227
+01/06/2025;01/05/2025;Spotify;Chile;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.039598951356
+01/04/2025;01/03/2025;Spotify;"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";14;RUB;-0.937298926190
+01/05/2025;01/04/2025;Spotify;Poland;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";3;RUB;-0.005397305334
+01/05/2025;01/04/2025;Spotify;Kyrgyzstan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";1;RUB;-0.032504120619
+01/05/2025;01/05/2025;"YouTube UGC";Bulgaria;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.007652946302
+01/04/2025;01/03/2025;Spotify;Germany;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;15;RUB;2.114715602632
+01/05/2025;01/03/2025;"Facebook / Instagram";Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Creation;6;RUB;0.035168304485
+01/06/2025;01/05/2025;Spotify;Finland;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";6;RUB;-0.339022428621
+01/04/2025;01/04/2025;"Apple Music";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;7;RUB;0.342161680065
+01/04/2025;01/03/2025;Spotify;Philippines;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;3;RUB;0.005398763346
+01/05/2025;01/04/2025;Spotify;"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;23;RUB;3.156722548063
+01/05/2025;01/04/2025;Spotify;Kyrgyzstan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.101621350903
+01/06/2025;01/05/2025;Spotify;France;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;24;RUB;0.976337379645
+01/04/2025;01/04/2025;"YouTube UGC";"Korea, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.000406700765
+01/04/2025;01/03/2025;Spotify;Japan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.097777602593
+01/04/2025;01/03/2025;Spotify;Lithuania;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";5;RUB;-0.129917033379
+01/05/2025;01/05/2025;"YouTube Official Content";Brazil;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.119278033394
+01/04/2025;01/03/2025;Spotify;"Korea, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";7;RUB;-0.392984830937
+01/04/2025;01/03/2025;Spotify;Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;112;RUB;2.294674195392
+01/05/2025;01/04/2025;Spotify;Latvia;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.002623113271
+01/06/2025;01/05/2025;Spotify;Brazil;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;8;RUB;0.265740021455
+01/04/2025;01/03/2025;Spotify;Germany;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;44;RUB;4.411039590294
+01/04/2025;01/03/2025;Yandex;Uzbekistan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.005969924014
+01/04/2025;01/03/2025;Spotify;Taiwan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.048088984517
+01/04/2025;01/03/2025;Spotify;Netherlands;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;10;RUB;0.434300516988
+01/05/2025;01/03/2025;"Facebook / Instagram";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Creation;6;RUB;0.203917636648
+01/05/2025;01/04/2025;Spotify;"Czech Republic";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";4;RUB;-0.105415913190
+01/04/2025;01/03/2025;Spotify;Egypt;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;12;RUB;0.220449507710
+01/05/2025;01/04/2025;Spotify;Estonia;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;2;RUB;0.232242676231
+01/06/2025;01/05/2025;Spotify;Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;43;RUB;3.251287369700
+01/06/2025;01/05/2025;Spotify;Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;1;RUB;0.080702274592
+01/04/2025;01/03/2025;Spotify;Australia;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.213701048578
+01/06/2025;01/05/2025;Spotify;Denmark;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.008783590894
+01/06/2025;01/05/2025;Spotify;Poland;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;88;RUB;11.425559170497
+01/04/2025;01/03/2025;Spotify;Canada;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.061635881381
+01/05/2025;01/04/2025;Spotify;Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;73;RUB;4.677982595643
+01/06/2025;01/05/2025;Spotify;Lithuania;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;50;RUB;0.299030316310
+01/06/2025;01/05/2025;Spotify;"United Kingdom";thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;3;RUB;0.207312156969
+01/04/2025;01/03/2025;Spotify;Austria;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";1;RUB;-0.012227770451
+01/05/2025;01/04/2025;Spotify;Sweden;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;2;RUB;0.254684867478
+01/05/2025;01/04/2025;Spotify;Turkey;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;20;RUB;0.539778418409
+01/06/2025;01/05/2025;Spotify;Netherlands;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;12;RUB;0.537303403562
+01/05/2025;01/04/2025;Spotify;Japan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.010832486238
+01/06/2025;01/06/2025;"YouTube UGC";Thailand;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;3;RUB;0.059883484016
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;2;RUB;0.008400000000
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;6;RUB;0.025200000000
+01/05/2025;01/04/2025;Spotify;"United Arab Emirates";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";1;RUB;-0.002123888984
+01/04/2025;01/04/2025;"YouTube UGC";Georgia;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.008233233700
+01/06/2025;01/06/2025;"YouTube UGC";Nigeria;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.000240611163
+01/04/2025;01/03/2025;Spotify;Pakistan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";2;RUB;-0.035770092014
+01/05/2025;01/05/2025;"Apple Music";Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;9;RUB;1.406632940765
+01/04/2025;01/03/2025;Spotify;France;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;42;RUB;1.930957685206
+01/04/2025;01/03/2025;Yandex;"Moldova, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;6;RUB;0.035819543786
+01/05/2025;01/04/2025;Spotify;Sweden;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.141210930731
+01/05/2025;01/04/2025;Spotify;"United Arab Emirates";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;3;RUB;0.014864308537
+01/06/2025;01/05/2025;Yandex;Belarus;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;14;RUB;0.292014827332
+01/04/2025;01/03/2025;Spotify;Finland;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;8;RUB;0.098077533890
+01/05/2025;01/05/2025;"Apple Music";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;11;RUB;0.600753999993
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;9;RUB;0.037800000036
+01/04/2025;01/04/2025;"Apple Music";Germany;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.230897109581
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Kyrgyzstan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;9;RUB;0.037800000000
+01/04/2025;01/03/2025;"UMA VK MUSIC";Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.065901422930
+01/05/2025;01/12/2024;"Facebook / Instagram";Guinea;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Creation;7;RUB;0.002785148734
+01/06/2025;01/06/2025;"YouTube UGC";Italy;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.033263129246
+01/04/2025;01/03/2025;Spotify;Latvia;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";12;RUB;-0.245282300098
+01/05/2025;01/05/2025;"Apple Music";"United States";thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;1;RUB;0.151224455139
+01/05/2025;01/04/2025;Spotify;Japan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.021713548744
+01/04/2025;01/03/2025;Spotify;Netherlands;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;34;RUB;1.576588883759
+01/04/2025;01/03/2025;Spotify;Nigeria;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;50;RUB;1.235167046398
+01/04/2025;01/03/2025;Spotify;Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;25;RUB;1.815384169138
+01/04/2025;01/03/2025;Spotify;"United Kingdom";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";6;RUB;-0.302728726801
+01/04/2025;01/03/2025;Spotify;"Czech Republic";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.008148133593
+01/06/2025;01/05/2025;Spotify;Estonia;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;3;RUB;0.421855004800
+01/06/2025;01/05/2025;Spotify;Canada;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;3;RUB;0.165820608670
+01/04/2025;01/03/2025;Spotify;Italy;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;2;RUB;0.063485457738
+01/05/2025;01/04/2025;Spotify;Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;55;RUB;4.148016490930
+01/06/2025;01/05/2025;Spotify;Netherlands;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";18;RUB;-0.366857156865
+01/04/2025;01/04/2025;"YouTube UGC";Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.007039673150
+01/04/2025;01/03/2025;Spotify;"United Kingdom";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;32;RUB;8.809332090343
+01/04/2025;01/04/2025;"YouTube UGC";Bulgaria;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.004099615282
+01/05/2025;01/04/2025;Spotify;Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";14;RUB;-0.152161526506
+01/06/2025;01/05/2025;Spotify;"United Arab Emirates";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.006260128351
+01/06/2025;01/05/2025;Spotify;"United Arab Emirates";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";1;RUB;-0.056289160570
+01/06/2025;01/06/2025;"YouTube Official Content";Poland;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;2;RUB;0.121112406974
+01/04/2025;01/03/2025;Spotify;Netherlands;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";16;RUB;-0.371438487822
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;769;RUB;24.405088812478
+01/06/2025;01/05/2025;Yandex;"Moldova, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;2;RUB;0.006329543930
+01/04/2025;01/03/2025;Spotify;Ireland;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";1;RUB;-0.019109051383
+01/05/2025;01/04/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;52;RUB;5.704171748778
+01/06/2025;01/05/2025;Spotify;Germany;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";19;RUB;-0.669003172975
+01/04/2025;01/03/2025;Spotify;India;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;3;RUB;0.134669152047
+01/04/2025;01/01/2025;"Facebook / Instagram";Canada;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.003356326217
+01/05/2025;01/04/2025;Yandex;"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1745;RUB;37.469357662442
+01/05/2025;01/01/2025;"Facebook / Instagram";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Creation;13;RUB;0.441424722842
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;66;RUB;8.116816557033
+01/05/2025;01/05/2025;"YouTube UGC";"Korea, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;5;RUB;0.062759098742
+01/04/2025;01/03/2025;Spotify;Finland;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;2;RUB;0.024494389204
+01/06/2025;01/05/2025;Spotify;Latvia;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";2;RUB;-0.001423329934
+01/06/2025;01/05/2025;Spotify;Sweden;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.139663948449
+01/06/2025;01/06/2025;"YouTube UGC";Germany;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;7;RUB;0.470513782054
+01/04/2025;01/04/2025;"YouTube UGC";Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.008207641987
+01/04/2025;01/04/2025;"YouTube UGC";"Czech Republic";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;15;RUB;0.270556280627
+01/05/2025;01/05/2025;"YouTube UGC";Argentina;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.005422674410
+01/05/2025;01/04/2025;Spotify;Latvia;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;3;RUB;0.083988200654
+01/04/2025;01/03/2025;Spotify;Poland;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;7;RUB;0.859053220897
+01/05/2025;01/04/2025;"Facebook / Instagram";"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.013006911175
+01/05/2025;01/05/2025;"YouTube UGC";France;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;11;RUB;0.312795046323
+01/05/2025;01/04/2025;Spotify;France;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";6;RUB;-0.140612819300
+01/06/2025;01/06/2025;"YouTube UGC";Netherlands;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.007385299654
+01/06/2025;01/05/2025;Spotify;"United Kingdom";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.138208104646
+01/06/2025;01/05/2025;Spotify;Pakistan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;3;RUB;0.138450745255
+01/04/2025;01/03/2025;Yandex;Georgia;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.021290350854
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;-10.980712386883
+01/04/2025;01/03/2025;Spotify;Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";79;RUB;-1.110376701562
+01/04/2025;01/04/2025;"Apple Music";Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.058960772998
+01/04/2025;01/03/2025;Spotify;Brazil;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";5;RUB;-0.147450452830
+01/05/2025;01/05/2025;"YouTube UGC";Indonesia;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.009497292000
+01/06/2025;01/05/2025;Spotify;"United Kingdom";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";6;RUB;-0.394945548494
+01/06/2025;01/05/2025;Spotify;Slovakia;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";3;RUB;-0.094072050729
+01/05/2025;01/04/2025;Spotify;Turkey;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;31;RUB;0.738503565466
+01/04/2025;01/03/2025;Yandex;"Moldova, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.005969924014
+01/04/2025;01/03/2025;Soundcloud;Germany;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.220820300925
+01/05/2025;01/05/2025;"YouTube UGC";Peru;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;4;RUB;0.012215237883
+01/05/2025;01/05/2025;"YouTube UGC";Hungary;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.011075691463
+01/06/2025;01/05/2025;Spotify;Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;25;RUB;1.113817562390
+01/04/2025;01/03/2025;Spotify;Pakistan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;2;RUB;0.109174991803
+01/04/2025;01/03/2025;Spotify;"United Kingdom";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;8;RUB;0.961979659184
+01/05/2025;01/04/2025;Spotify;"Korea, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;4;RUB;0.614342841852
+01/04/2025;01/03/2025;Spotify;"Moldova, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;2;RUB;0.003699152638
+01/05/2025;01/04/2025;Spotify;Sweden;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";2;RUB;-0.103543648823
+01/05/2025;01/04/2025;Spotify;Switzerland;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.021519244034
+01/05/2025;01/05/2025;"YouTube Official Content";Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.037360670788
+01/05/2025;01/04/2025;Yandex;Kyrgyzstan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.021850258413
+01/05/2025;01/05/2025;"YouTube Official Content";"Czech Republic";thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;1;RUB;0.046159632546
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Uzbekistan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.004200000000
+01/06/2025;01/05/2025;Spotify;"Czech Republic";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";13;RUB;-0.425761962623
+01/05/2025;01/04/2025;Spotify;Israel;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";2;RUB;-0.128952733830
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;3;RUB;0.012600000000
+01/05/2025;01/04/2025;Spotify;"United Kingdom";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.066452202723
+01/05/2025;01/04/2025;Spotify;"Czech Republic";thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;4;RUB;0.025842523290
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;-7.272559717785
+01/05/2025;01/04/2025;Spotify;Pakistan;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;3;RUB;0.098123866614
+01/05/2025;01/04/2025;Spotify;Norway;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;1;RUB;0.018167488187
+01/05/2025;01/04/2025;Spotify;Germany;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.046244515325
+01/06/2025;01/05/2025;Spotify;Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;12;RUB;0.180087877934
+01/04/2025;01/03/2025;Yandex;Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;19;RUB;0.113428555222
+01/05/2025;01/04/2025;Spotify;Italy;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;7;RUB;0.905556990342
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;11;RUB;0.046200000036
+01/05/2025;01/05/2025;"YouTube UGC";Denmark;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;4;RUB;0.230056216596
+01/05/2025;01/04/2025;Spotify;"United Kingdom";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;2;RUB;0.132952981569
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;42;RUB;0.176400000000
+01/05/2025;01/04/2025;Spotify;India;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;12;RUB;0.324197354518
+01/06/2025;01/06/2025;"YouTube Official Content";"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;2;RUB;0.711974116553
+01/04/2025;01/03/2025;Yandex;Kyrgyzstan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.042580701633
+01/05/2025;01/04/2025;Spotify;Germany;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;4;RUB;0.532443416532
+01/05/2025;01/04/2025;Spotify;Nigeria;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;39;RUB;0.496497059271
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;549;RUB;22.625728672851
+01/05/2025;01/04/2025;Spotify;"Moldova, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.042115540780
+01/04/2025;01/03/2025;Spotify;Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;7;RUB;0.479890069031
+01/05/2025;01/05/2025;"YouTube UGC";Lithuania;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.006888312282
+01/06/2025;01/05/2025;Spotify;Switzerland;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;5;RUB;0.782370457508
+01/05/2025;01/04/2025;Spotify;Latvia;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";2;RUB;-0.057136264541
+01/04/2025;01/03/2025;Spotify;Hungary;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";6;RUB;-0.251071759650
+01/04/2025;01/04/2025;"Apple Music";Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.058960772998
+01/05/2025;01/05/2025;"YouTube UGC";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.006918826011
+01/05/2025;01/04/2025;Spotify;Norway;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.330609423680
+01/05/2025;01/04/2025;Spotify;Egypt;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";2;RUB;-0.047697497987
+01/06/2025;01/05/2025;Spotify;Egypt;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;21;RUB;0.279473481278
+01/04/2025;01/03/2025;Spotify;Spain;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";2;RUB;-0.140447899703
+01/04/2025;01/04/2025;"YouTube UGC";Turkey;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;12;RUB;0.054419585963
+01/05/2025;01/04/2025;Yandex;Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;19;RUB;0.415154908829
+01/05/2025;01/05/2025;"YouTube UGC";Finland;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.069292100640
+01/05/2025;01/04/2025;Spotify;Sweden;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";1;RUB;-0.013163517959
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;3;RUB;0.079454386654
+01/05/2025;01/04/2025;Soundcloud;Germany;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.461234484686
+01/06/2025;01/05/2025;Spotify;Pakistan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";3;RUB;-0.040551905072
+01/06/2025;01/05/2025;Spotify;"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;44;RUB;6.501313046926
+01/05/2025;01/04/2025;Spotify;Pakistan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";1;RUB;-0.014127130423
+01/05/2025;01/04/2025;Spotify;Norway;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";2;RUB;-0.015577961841
+01/06/2025;01/05/2025;Spotify;"Serbia And Montenegro";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.004464587637
+01/04/2025;01/03/2025;Spotify;Turkey;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;73;RUB;2.297523787758
+01/05/2025;01/04/2025;Spotify;Nigeria;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;14;RUB;0.192215910858
+01/06/2025;01/05/2025;Yandex;"Moldova, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;4;RUB;0.012659087859
+01/04/2025;01/03/2025;Spotify;"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;56;RUB;8.491104920054
+01/04/2025;01/03/2025;Yandex;Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;8;RUB;0.170322806532
+01/04/2025;01/03/2025;Spotify;Philippines;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;1;RUB;0.001799587782
+01/06/2025;01/05/2025;Spotify;Switzerland;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";2;RUB;-0.029344334247
+01/06/2025;01/05/2025;Spotify;Finland;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;2;RUB;0.024361119580
+01/04/2025;01/03/2025;Spotify;Uzbekistan;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.044189877656
+01/05/2025;01/04/2025;Yandex;Uzbekistan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;3;RUB;0.065550775094
+01/04/2025;01/04/2025;"YouTube Official Content";"Czech Republic";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.081404160459
+01/05/2025;01/05/2025;"Apple Music";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;7;RUB;0.452945360041
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;290;RUB;10.197657914334
+01/04/2025;01/03/2025;Yandex;Uzbekistan;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.005969924014
+01/05/2025;01/04/2025;Spotify;Croatia;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;5;RUB;0.000971523410
+01/06/2025;01/06/2025;"YouTube Official Content";Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;27;RUB;1.497087916187
+01/06/2025;01/05/2025;Spotify;Poland;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;18;RUB;2.388554353874
+01/06/2025;01/05/2025;Spotify;Finland;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;11;RUB;0.890927886488
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;1;RUB;-4.312481200270
+01/06/2025;01/05/2025;Spotify;"United Arab Emirates";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.163005977367
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Kyrgyzstan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.004200000038
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;37;RUB;4.422967429374
+01/06/2025;01/05/2025;Spotify;Turkey;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";6;RUB;-0.028196449962
+01/05/2025;01/04/2025;Spotify;Canada;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.055765445000
+01/04/2025;01/04/2025;"Apple Music";Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.058960772998
+01/04/2025;01/03/2025;Spotify;Italy;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";4;RUB;-0.190574488856
+01/04/2025;01/03/2025;Spotify;Canada;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;3;RUB;0.210101873014
+01/04/2025;01/03/2025;Spotify;Sweden;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";2;RUB;-0.027655450848
+01/05/2025;01/04/2025;Spotify;Brazil;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";4;RUB;-0.041812432391
+01/04/2025;01/03/2025;Spotify;Lithuania;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;5;RUB;0.310278921034
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Kyrgyzstan;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;7;RUB;0.029400000000
+01/05/2025;01/04/2025;Spotify;Brazil;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;4;RUB;0.453409985390
+01/05/2025;01/05/2025;"YouTube UGC";Italy;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.055139273398
+01/05/2025;01/04/2025;Yandex;Uzbekistan;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;1;RUB;0.021850258413
+01/06/2025;01/05/2025;Spotify;Poland;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;20;RUB;2.653906189138
+01/04/2025;01/03/2025;Spotify;Georgia;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";2;RUB;-0.000000071384
+01/05/2025;01/04/2025;Spotify;Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;181;RUB;6.919675692994
+01/06/2025;01/06/2025;"YouTube UGC";France;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;9;RUB;0.384782825192
+01/06/2025;01/06/2025;"YouTube UGC";Morocco;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.006871256785
+01/04/2025;01/03/2025;Spotify;Italy;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";2;RUB;-0.027197055799
+01/05/2025;01/04/2025;Spotify;Estonia;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.001991623015
+01/05/2025;01/04/2025;Spotify;Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;37;RUB;1.385635284152
+01/06/2025;01/05/2025;Spotify;India;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;15;RUB;0.482272532140
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Azerbaijan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.008400000000
+01/04/2025;01/03/2025;Spotify;Hungary;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;4;RUB;0.244144075148
+01/06/2025;01/05/2025;Spotify;Georgia;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;2;RUB;0.160676627283
+01/04/2025;01/03/2025;Yandex;Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;21;RUB;0.293893098562
+01/04/2025;01/03/2025;Spotify;Austria;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.028543461638
+01/05/2025;01/04/2025;Spotify;Israel;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;3;RUB;0.215678201783
+01/06/2025;01/06/2025;"YouTube UGC";Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;13;RUB;0.038538306617
+01/04/2025;01/03/2025;Spotify;Finland;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";4;RUB;-0.129213623105
+01/05/2025;01/05/2025;"Apple Music";"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.151224455139
+01/06/2025;01/05/2025;Spotify;Japan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";4;RUB;-0.252365531078
+01/04/2025;01/03/2025;Spotify;Japan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";2;RUB;-0.081699285582
+01/04/2025;01/03/2025;Spotify;India;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";7;RUB;-0.103714742617
+01/05/2025;01/05/2025;"YouTube Official Content";"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;2;RUB;0.666306544012
+01/05/2025;01/04/2025;Spotify;Switzerland;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.021519244034
+01/06/2025;01/05/2025;Spotify;Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;91;RUB;0.558995665407
+01/05/2025;01/04/2025;Yandex;Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;7;RUB;0.152951808527
+01/06/2025;01/05/2025;Spotify;India;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;13;RUB;0.364252133075
+01/04/2025;01/04/2025;"YouTube UGC";Poland;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;18;RUB;0.405706492182
+01/06/2025;01/05/2025;Yandex;"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;699;RUB;14.138848118550
+01/04/2025;01/03/2025;Spotify;Lithuania;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;3;RUB;0.091029148410
+01/04/2025;01/03/2025;Spotify;Nigeria;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;26;RUB;0.354018906694
+01/05/2025;01/04/2025;Spotify;Italy;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.222187408765
+01/06/2025;01/06/2025;"YouTube UGC";Romania;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.006473036190
+01/06/2025;01/06/2025;"YouTube UGC";"United Kingdom";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;3;RUB;0.208853236859
+01/05/2025;01/04/2025;Spotify;"Moldova, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;2;RUB;0.045564448946
+01/06/2025;01/05/2025;Spotify;Finland;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;2;RUB;0.024361119580
+01/04/2025;01/03/2025;Spotify;Uzbekistan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";1;RUB;-0.035833434654
+01/04/2025;01/04/2025;"YouTube UGC";Brazil;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;4;RUB;0.080073573747
+01/05/2025;01/04/2025;Spotify;India;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;10;RUB;0.366604366828
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;518;RUB;13.867232548391
+01/06/2025;01/05/2025;Spotify;Turkey;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.018100991230
+01/04/2025;01/03/2025;Spotify;France;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;65;RUB;2.258182679380
+01/04/2025;01/03/2025;Spotify;Croatia;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.002699381673
+01/04/2025;01/03/2025;"UMA VK MUSIC";Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.065901422930
+01/05/2025;01/05/2025;"YouTube UGC";"Moldova, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.005276273358
+01/05/2025;01/04/2025;Yandex;Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;7;RUB;0.152951808527
+01/06/2025;01/06/2025;"YouTube Official Content";"Czech Republic";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.070554012187
+01/04/2025;01/03/2025;Spotify;Egypt;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.067984427117
+01/04/2025;01/03/2025;Spotify;Uzbekistan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.044189877656
+01/04/2025;01/04/2025;"Apple Music";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;12;RUB;0.774327120069
+01/05/2025;01/05/2025;"YouTube UGC";Spain;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;3;RUB;0.073209401092
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Moldova, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.004200000000
+01/06/2025;01/06/2025;"YouTube UGC";"Korea, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;3;RUB;0.024131107542
+01/04/2025;01/03/2025;Spotify;Italy;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;16;RUB;1.013767751199
+01/04/2025;01/03/2025;Spotify;Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";18;RUB;-0.622671767674
+01/06/2025;01/05/2025;Spotify;Sweden;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;2;RUB;0.046587001535
+01/06/2025;01/05/2025;Yandex;"Moldova, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;6;RUB;0.018988631789
+01/04/2025;01/03/2025;Spotify;Sweden;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";1;RUB;-0.013827689695
+01/04/2025;01/03/2025;Spotify;Hungary;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";5;RUB;-0.209226502079
+01/06/2025;01/06/2025;"YouTube Official Content";Poland;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.111547305224
+01/04/2025;01/03/2025;Yandex;"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;766;RUB;16.446846568982
+01/06/2025;01/05/2025;Spotify;Italy;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;7;RUB;0.285782132830
+01/04/2025;01/03/2025;Spotify;Egypt;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";7;RUB;-0.058121393594
+01/04/2025;01/03/2025;Spotify;Estonia;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;2;RUB;0.451696532213
+01/06/2025;01/05/2025;Spotify;Greece;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;4;RUB;0.024458175810
+01/06/2025;01/05/2025;Spotify;Norway;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";1;RUB;-0.007502933653
+01/06/2025;01/05/2025;Spotify;Uzbekistan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;2;RUB;0.002960215756
+01/04/2025;01/03/2025;Yandex;Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;8;RUB;0.155002379767
+01/06/2025;01/05/2025;Spotify;Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;57;RUB;1.166470618688
+01/05/2025;01/05/2025;"YouTube UGC";Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;29;RUB;0.065041487014
+01/06/2025;01/05/2025;Spotify;Egypt;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;25;RUB;0.473828628331
+01/05/2025;01/05/2025;"YouTube UGC";Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.007636598697
+01/05/2025;01/04/2025;Spotify;Germany;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";13;RUB;-0.314352491848
+01/05/2025;01/04/2025;Spotify;Nigeria;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";16;RUB;-0.091631425262
+01/06/2025;01/05/2025;Spotify;Japan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;4;RUB;0.739714229362
+01/04/2025;01/03/2025;Spotify;Mexico;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";3;RUB;-0.056542976574
+01/04/2025;01/03/2025;Spotify;Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;94;RUB;4.289917335110
+01/04/2025;01/03/2025;Spotify;"Moldova, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";2;RUB;-0.032526049427
+01/04/2025;01/03/2025;Spotify;Finland;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;7;RUB;0.241444703522
+01/06/2025;01/05/2025;Spotify;Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;23;RUB;0.007133629755
+01/04/2025;01/04/2025;"YouTube UGC";Bolivia;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.015991967165
+01/04/2025;01/03/2025;Spotify;Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;131;RUB;10.441108417553
+01/04/2025;01/03/2025;Spotify;Lithuania;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";3;RUB;-0.065389093036
+01/05/2025;01/04/2025;Spotify;"Moldova, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";1;RUB;-0.030502643588
+01/05/2025;01/04/2025;Spotify;Belarus;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;2;RUB;0.000194304711
+01/06/2025;01/05/2025;Spotify;Spain;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";4;RUB;-0.198667280183
+01/06/2025;01/06/2025;"YouTube UGC";Mexico;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;6;RUB;0.015792191109
+01/06/2025;01/05/2025;Spotify;"United Kingdom";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;22;RUB;4.645063723702
+01/06/2025;01/05/2025;Spotify;Germany;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;9;RUB;0.888550003522
+01/06/2025;01/05/2025;Spotify;Ireland;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.133064123259
+01/05/2025;01/04/2025;Spotify;"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";5;RUB;-0.292345223930
+01/05/2025;01/04/2025;Spotify;Canada;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;4;RUB;0.222964627536
+01/04/2025;01/03/2025;Spotify;Poland;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;2;RUB;0.283834983349
+01/04/2025;01/03/2025;Spotify;"Moldova, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.040690679242
+01/05/2025;01/05/2025;"YouTube UGC";Japan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.001560712758
+01/05/2025;01/04/2025;Spotify;Austria;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;2;RUB;0.052656569988
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;181;RUB;6.328687061025
+01/04/2025;01/04/2025;"YouTube UGC";Mexico;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;11;RUB;0.015326600401
+01/05/2025;01/04/2025;Yandex;"Moldova, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;5;RUB;0.020253672614
+01/05/2025;01/04/2025;Spotify;Israel;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.375396653927
+01/04/2025;01/03/2025;Spotify;Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;333;RUB;13.029765181838
+01/04/2025;01/03/2025;Spotify;Egypt;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;2;RUB;0.022094938828
+01/05/2025;01/04/2025;Spotify;Spain;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;6;RUB;0.401724938812
+01/06/2025;01/06/2025;"YouTube UGC";Australia;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;4;RUB;0.323990166358
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;7;RUB;0.096254386654
+01/04/2025;01/03/2025;Spotify;"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;9;RUB;1.363037775785
+01/05/2025;01/04/2025;Spotify;Germany;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";22;RUB;-0.890102522925
+01/04/2025;01/03/2025;Spotify;"Czech Republic";thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;1;RUB;0.008148133593
+01/04/2025;01/03/2025;Spotify;Slovakia;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.339372261716
+01/06/2025;01/06/2025;"YouTube Official Content";"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.355987058277
+01/06/2025;01/05/2025;Spotify;Austria;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";2;RUB;-0.161910697522
+01/06/2025;01/05/2025;Spotify;"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";19;RUB;-1.273205615408
+01/04/2025;01/04/2025;"YouTube UGC";"Moldova, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.009856741865
+01/04/2025;01/03/2025;Yandex;Kyrgyzstan;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;1;RUB;0.021290350854
+01/04/2025;01/03/2025;Spotify;Sweden;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;3;RUB;0.212701277538
+01/05/2025;01/04/2025;Spotify;"Czech Republic";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";12;RUB;-0.316247656503
+01/06/2025;01/05/2025;Yandex;"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;824;RUB;16.805707172233
+01/05/2025;01/04/2025;Spotify;Slovakia;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;2;RUB;0.066112169497
+01/04/2025;01/03/2025;Spotify;Turkey;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;67;RUB;2.187998706022
+01/04/2025;01/03/2025;Spotify;"Korea, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;2;RUB;0.352869170006
+01/04/2025;01/03/2025;Spotify;Israel;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";3;RUB;-0.080116219629
+01/05/2025;01/05/2025;"YouTube Official Content";Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;13;RUB;0.654011731947
+01/05/2025;01/04/2025;Spotify;Latvia;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;5;RUB;0.545607563893
+01/06/2025;01/05/2025;Spotify;Denmark;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.008783590894
+01/06/2025;01/05/2025;Spotify;Hungary;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;3;RUB;0.018586277326
+01/06/2025;01/05/2025;Spotify;Sweden;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;7;RUB;0.163005962809
+01/05/2025;01/04/2025;Spotify;"New Zealand";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";1;RUB;-0.073349255728
+01/05/2025;01/04/2025;Yandex;"Moldova, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;4;RUB;0.016202938106
+01/06/2025;01/05/2025;Spotify;Slovakia;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;3;RUB;0.329603036090
+01/06/2025;01/05/2025;Spotify;Nigeria;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;76;RUB;0.997495613743
+01/04/2025;01/04/2025;"YouTube Official Content";Germany;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.387892390574
+01/04/2025;01/03/2025;Spotify;Brazil;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;5;RUB;0.292832927282
+01/05/2025;01/04/2025;Spotify;India;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";1;RUB;-0.013708126186
+01/05/2025;01/04/2025;Spotify;Uzbekistan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.031137325954
+01/04/2025;01/03/2025;Yandex;"Moldova, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;4;RUB;0.023879695832
+01/04/2025;01/04/2025;"YouTube UGC";Estonia;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.009749579637
+01/05/2025;01/04/2025;Yandex;Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;20;RUB;0.401406119505
+01/05/2025;01/04/2025;Yandex;Kyrgyzstan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.043700516681
+01/05/2025;01/04/2025;Spotify;"United Arab Emirates";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";2;RUB;-0.004247847408
+01/06/2025;01/05/2025;Spotify;Denmark;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";4;RUB;-0.015054118118
+01/04/2025;01/04/2025;"YouTube Official Content";Romania;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;2;RUB;0.097906631612
+01/04/2025;01/04/2025;"YouTube UGC";Canada;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;33;RUB;0.413889611486
+01/04/2025;01/03/2025;Spotify;Lithuania;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;48;RUB;0.096477820324
+01/05/2025;01/05/2025;"YouTube Official Content";Romania;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.158567532415
+01/05/2025;01/04/2025;Spotify;Canada;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";1;RUB;-0.023885528138
+01/05/2025;01/04/2025;Yandex;Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;15;RUB;0.238756256234
+01/04/2025;01/03/2025;Spotify;"Korea, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;7;RUB;1.120943231141
+01/05/2025;01/04/2025;Spotify;Netherlands;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";11;RUB;-0.183081564322
+01/05/2025;01/04/2025;Spotify;Sweden;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.030700140410
+01/06/2025;01/05/2025;Spotify;Hungary;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;2;RUB;0.012374672249
+01/05/2025;01/04/2025;Spotify;"Czech Republic";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;7;RUB;0.280964576386
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Azerbaijan;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.004200000038
+01/05/2025;01/04/2025;Spotify;Nigeria;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;78;RUB;0.952627188788
+01/05/2025;01/04/2025;Spotify;Finland;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;2;RUB;0.025211033033
+01/06/2025;01/05/2025;Spotify;Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;216;RUB;6.106633768843
+01/06/2025;01/05/2025;Spotify;Nigeria;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;20;RUB;0.273504521760
+01/04/2025;01/03/2025;Spotify;Poland;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;21;RUB;1.336793787298
+01/04/2025;01/03/2025;Spotify;Slovakia;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.004149049583
+01/04/2025;01/03/2025;Yandex;Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;15;RUB;0.089548859390
+01/06/2025;01/05/2025;Spotify;"Czech Republic";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;16;RUB;1.295458340429
+01/05/2025;01/04/2025;Yandex;Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;15;RUB;0.309954351562
+01/06/2025;01/05/2025;Spotify;Singapore;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.012762897311
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;74;RUB;9.204766390898
+01/04/2025;01/03/2025;Spotify;"Czech Republic";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;20;RUB;2.044981591304
+01/05/2025;01/05/2025;"YouTube UGC";Chile;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.016581291956
+01/05/2025;01/04/2025;Spotify;Netherlands;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;3;RUB;0.116534240445
+01/06/2025;01/05/2025;Spotify;Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";24;RUB;-0.154164762720
+01/05/2025;01/04/2025;Spotify;Denmark;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;4;RUB;0.407408346090
+01/05/2025;01/04/2025;Spotify;"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";16;RUB;-0.974880162778
+01/04/2025;01/03/2025;Spotify;Belgium;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.016296267111
+01/05/2025;01/04/2025;Yandex;Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;33;RUB;0.703259002051
+01/06/2025;01/05/2025;Spotify;India;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;25;RUB;0.669930788166
+01/05/2025;01/04/2025;Spotify;Greece;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";1;RUB;-0.002324716795
+01/04/2025;01/03/2025;Yandex;Belarus;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;4;RUB;0.085161403266
+01/04/2025;01/03/2025;Spotify;Israel;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";1;RUB;-0.067168899674
+01/05/2025;01/04/2025;Spotify;Poland;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;11;RUB;0.667436597239
+01/05/2025;01/04/2025;Spotify;Netherlands;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;14;RUB;0.543858826594
+01/04/2025;01/03/2025;Spotify;Latvia;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;15;RUB;0.442948566019
+01/05/2025;01/04/2025;Spotify;"United Kingdom";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";1;RUB;-0.028477641821
+01/05/2025;01/04/2025;Spotify;Turkey;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";3;RUB;-0.039064339577
+01/06/2025;01/05/2025;Yandex;"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;928;RUB;18.954665337360
+01/06/2025;01/05/2025;Spotify;Norway;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;2;RUB;0.035037307417
+01/05/2025;01/01/2025;"Facebook / Instagram";Worldwide;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Creation;6;RUB;0.153461095368
+01/06/2025;01/05/2025;Soundcloud;Netherlands;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.222556798526
+01/04/2025;01/03/2025;Spotify;Israel;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;3;RUB;0.254541693468
+01/05/2025;01/04/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;41;RUB;4.462316240204
+01/04/2025;01/03/2025;Yandex;"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1168;RUB;24.084582828746
+01/04/2025;01/03/2025;Spotify;Estonia;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.001399679411
+01/05/2025;01/04/2025;Yandex;"Moldova, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.021850258413
+01/04/2025;01/03/2025;Spotify;Netherlands;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;6;RUB;0.260590297860
+01/04/2025;01/04/2025;"Apple Music";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;14;RUB;1.005415040018
+01/05/2025;01/05/2025;"YouTube UGC";Mexico;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;10;RUB;0.055196908880
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;9;RUB;0.157485020129
+01/06/2025;01/06/2025;"YouTube UGC";Japan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;4;RUB;0.047429973167
+01/04/2025;01/03/2025;Spotify;"United Arab Emirates";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";1;RUB;-0.003954879760
+01/04/2025;01/03/2025;Spotify;Poland;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;11;RUB;1.005069778679
+01/05/2025;01/04/2025;Spotify;Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;9;RUB;0.646597419658
+01/05/2025;01/04/2025;Spotify;Hungary;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";2;RUB;-0.041708056091
+01/04/2025;01/03/2025;Spotify;Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;4;RUB;0.173160335061
+01/06/2025;01/05/2025;Spotify;Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;89;RUB;2.967106873748
+01/05/2025;01/04/2025;Yandex;Kyrgyzstan;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;1;RUB;0.021850258413
+01/04/2025;01/03/2025;Spotify;"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";32;RUB;-2.231008054093
+01/06/2025;01/06/2025;"YouTube UGC";Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.035718388927
+01/06/2025;01/05/2025;"UMA VK MUSIC";Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.074437624754
+01/04/2025;01/03/2025;Spotify;Japan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;6;RUB;0.511682791310
+01/04/2025;01/03/2025;Spotify;Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";176;RUB;-2.467565967021
+01/05/2025;01/04/2025;Spotify;Netherlands;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;27;RUB;1.048808164003
+01/04/2025;01/03/2025;Spotify;Portugal;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";1;RUB;-0.057137340378
+01/04/2025;01/04/2025;"YouTube UGC";"United Kingdom";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;15;RUB;0.874083713974
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Azerbaijan;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;1;RUB;0.004200000000
+01/05/2025;01/04/2025;Spotify;"United Arab Emirates";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;3;RUB;0.014864308537
+01/04/2025;01/03/2025;Spotify;India;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;15;RUB;0.531928153932
+01/04/2025;01/03/2025;Spotify;Israel;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.179658846446
+01/05/2025;01/05/2025;"YouTube Official Content";Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;14;RUB;0.712314703060
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;373;RUB;13.705570681754
+01/06/2025;01/06/2025;"YouTube Official Content";Poland;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;1;RUB;0.068322155158
+01/04/2025;01/03/2025;Spotify;Turkey;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";1;RUB;-0.014624221514
+01/04/2025;01/03/2025;Yandex;Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;30;RUB;0.638710524495
+01/04/2025;01/03/2025;Spotify;Brazil;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;4;RUB;0.183707918955
+01/05/2025;01/04/2025;Spotify;Japan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";1;RUB;-0.004648323284
+01/06/2025;01/05/2025;Spotify;Kyrgyzstan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";2;RUB;-0.059927036966
+01/06/2025;01/05/2025;Spotify;Denmark;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;4;RUB;0.035134363719
+01/06/2025;01/05/2025;Yandex;Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;5;RUB;0.104291009782
+01/06/2025;01/05/2025;Spotify;Belgium;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.011986447332
+01/06/2025;01/05/2025;Spotify;"United States";thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;7;RUB;0.982403405218
+01/05/2025;01/04/2025;Spotify;Estonia;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.116097050090
+01/04/2025;01/11/2024;Yandex;Worldwide;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;-1;RUB;-5.959612265015
+01/04/2025;01/04/2025;"YouTube UGC";Netherlands;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.115656109047
+01/04/2025;01/03/2025;Spotify;Slovakia;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;4;RUB;0.182158273970
+01/04/2025;01/03/2025;Spotify;Poland;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";15;RUB;-0.393108766823
+01/04/2025;01/03/2025;Spotify;Germany;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;28;RUB;3.200766801354
+01/04/2025;01/04/2025;"YouTube Official Content";Hungary;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;1;RUB;0.018116581421
+01/06/2025;01/05/2025;Spotify;Philippines;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.001649956261
+01/06/2025;01/05/2025;Spotify;Japan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.195325709710
+01/04/2025;01/03/2025;Yandex;Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;24;RUB;0.495647992757
+01/04/2025;01/11/2024;Yandex;Worldwide;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;-1;RUB;-4.497943273619
+01/05/2025;01/04/2025;Spotify;Nigeria;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";6;RUB;-0.034361826124
+01/06/2025;01/05/2025;Spotify;Latvia;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;2;RUB;0.003299912667
+01/05/2025;01/05/2025;"YouTube UGC";"Czech Republic";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.029586525431
+01/06/2025;01/06/2025;"YouTube Official Content";Netherlands;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.153815945166
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Tajikistan;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;2;RUB;0.008400000000
+01/05/2025;01/04/2025;Spotify;Egypt;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";4;RUB;-0.095394996047
+01/05/2025;01/04/2025;Spotify;France;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;1;RUB;0.027736993912
+01/06/2025;01/05/2025;Spotify;Greece;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.012229087868
+01/06/2025;01/05/2025;Spotify;"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;30;RUB;4.472546243222
+01/06/2025;01/05/2025;Spotify;Norway;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;1;RUB;0.017518653709
+01/04/2025;01/04/2025;"YouTube Official Content";"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.354220287315
+01/04/2025;01/04/2025;"YouTube UGC";India;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.015638629577
+01/04/2025;01/03/2025;Spotify;Germany;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;22;RUB;2.987765577522
+01/05/2025;01/04/2025;Spotify;Pakistan;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;2;RUB;0.078984855018
+01/05/2025;01/04/2025;Spotify;Denmark;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";1;RUB;-0.108921724989
+01/05/2025;01/04/2025;Spotify;Italy;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";5;RUB;-0.320126685878
+01/05/2025;01/04/2025;Spotify;Bulgaria;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.131835729645
+01/06/2025;01/05/2025;Spotify;Kyrgyzstan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.042704751419
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;4;RUB;0.016800000000
+01/06/2025;01/05/2025;Spotify;Turkey;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;1;RUB;0.018100991230
+01/04/2025;01/04/2025;"YouTube Official Content";Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;15;RUB;0.831207873271
+01/04/2025;01/03/2025;Spotify;"Korea, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";2;RUB;-0.112281351678
+01/05/2025;01/04/2025;Yandex;Kyrgyzstan;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.021850258413
+01/05/2025;01/05/2025;"YouTube Official Content";"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;2;RUB;0.666306544012
+01/05/2025;01/04/2025;Spotify;Sweden;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;3;RUB;0.092148992615
+01/06/2025;01/05/2025;Spotify;"Czech Republic";thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;9;RUB;0.092979895489
+01/06/2025;01/05/2025;Spotify;Hungary;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;3;RUB;0.018586277326
+01/04/2025;01/03/2025;Spotify;Finland;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.012247194602
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;42;RUB;0.484907114764
+01/04/2025;01/04/2025;"YouTube Official Content";Netherlands;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.186538151654
+01/04/2025;01/03/2025;Spotify;Finland;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";1;RUB;-0.005252868215
+01/04/2025;01/03/2025;Spotify;Turkey;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;66;RUB;2.125463030674
+01/05/2025;01/05/2025;"YouTube UGC";India;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.004025929621
+01/06/2025;01/06/2025;"YouTube UGC";Argentina;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;5;RUB;0.029007396378
+01/06/2025;01/05/2025;Yandex;Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;46;RUB;0.924090429810
+01/06/2025;01/05/2025;Spotify;"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;32;RUB;4.764636984001
+01/06/2025;01/05/2025;Spotify;Nigeria;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;36;RUB;0.475963866030
+01/05/2025;01/04/2025;Spotify;Slovakia;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";2;RUB;-0.046527367451
+01/06/2025;01/06/2025;"Apple Music";Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;5;RUB;0.432143052013
+01/06/2025;01/06/2025;"YouTube UGC";Switzerland;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.059039017815
+01/06/2025;01/05/2025;Spotify;Egypt;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;4;RUB;0.225752845038
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;28;RUB;0.184454386692
+01/04/2025;01/03/2025;Spotify;Hungary;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;3;RUB;0.183108056361
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Kyrgyzstan;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;6;RUB;0.025200000000
+01/05/2025;01/04/2025;Spotify;Germany;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;38;RUB;3.076571826161
+01/06/2025;01/06/2025;"YouTube UGC";Canada;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;7;RUB;0.434498540971
+01/06/2025;01/05/2025;Spotify;"Serbia And Montenegro";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.004464587637
+01/04/2025;01/04/2025;"YouTube Official Content";Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;12;RUB;0.660941458697
+01/05/2025;01/04/2025;Yandex;"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;880;RUB;18.384277062259
+01/05/2025;01/04/2025;Spotify;Brazil;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;4;RUB;0.068589549444
+01/04/2025;01/03/2025;Spotify;Hungary;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;7;RUB;0.326175284649
+01/05/2025;01/04/2025;Spotify;Poland;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.134264538205
+01/05/2025;01/04/2025;Spotify;"Czech Republic";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;17;RUB;1.198034109654
+01/04/2025;01/03/2025;Spotify;Philippines;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;2;RUB;0.003599175564
+01/04/2025;01/03/2025;Spotify;"Czech Republic";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";19;RUB;-0.607093378998
+01/06/2025;01/05/2025;Spotify;Switzerland;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.034260857438
+01/05/2025;01/04/2025;Spotify;Greece;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.005440531181
+01/04/2025;01/11/2024;Yandex;Worldwide;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;-1;RUB;-3.521703578574
+01/04/2025;01/03/2025;Spotify;Japan;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;1;RUB;0.023044721294
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;12;RUB;0.261112874300
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;179;RUB;6.384818036891
+01/05/2025;01/04/2025;Spotify;Poland;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";5;RUB;-0.047208002900
+01/06/2025;01/05/2025;Yandex;Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;5;RUB;0.015823859788
+01/06/2025;01/05/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;66;RUB;7.082474490286
+01/04/2025;01/03/2025;Spotify;Brazil;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";3;RUB;-0.076220611916
+01/05/2025;01/05/2025;"YouTube UGC";Poland;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;16;RUB;0.357130147878
+01/05/2025;01/04/2025;Spotify;"United States";thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;4;RUB;0.504997879578
+01/06/2025;01/06/2025;"YouTube UGC";Cyprus;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.017882723265
+01/04/2025;01/03/2025;Spotify;Austria;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";2;RUB;-0.024455540978
+01/06/2025;01/05/2025;Spotify;Finland;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;6;RUB;0.220900032410
+01/06/2025;01/05/2025;Soundcloud;Germany;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;36;RUB;8.012044748417
+01/06/2025;01/05/2025;Spotify;Lithuania;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";3;RUB;-0.007683111648
+01/05/2025;01/04/2025;Spotify;Brazil;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";1;RUB;-0.033492645738
+01/04/2025;01/03/2025;Spotify;France;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";27;RUB;-0.401949113206
+01/06/2025;01/05/2025;"UMA VK MUSIC";Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.074437624754
+01/05/2025;01/04/2025;Spotify;"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;25;RUB;3.270002180171
+01/05/2025;01/05/2025;"Apple Music";Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.175043060518
+01/05/2025;01/04/2025;Spotify;India;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;15;RUB;0.465796918862
+01/05/2025;01/04/2025;Spotify;Romania;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;2;RUB;0.062323228106
+01/06/2025;01/05/2025;Spotify;Uzbekistan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";2;RUB;-0.001271367574
+01/06/2025;01/05/2025;Spotify;Ireland;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";1;RUB;-0.093583025880
+01/06/2025;01/05/2025;Yandex;Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;7;RUB;0.110620553712
+01/04/2025;01/03/2025;Spotify;"United Kingdom";thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;2;RUB;0.178459121258
+01/04/2025;01/04/2025;"YouTube UGC";"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;110;RUB;3.270850096400
+01/05/2025;01/04/2025;Spotify;Estonia;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";1;RUB;-0.000845572367
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;530;RUB;14.118577905278
+01/06/2025;01/05/2025;Yandex;Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;12;RUB;0.037977263505
+01/04/2025;01/03/2025;Spotify;Turkey;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;89;RUB;2.714178306682
+01/04/2025;01/03/2025;Spotify;Slovakia;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";2;RUB;-0.094574621950
+01/05/2025;01/04/2025;Spotify;Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";50;RUB;-0.698564957466
+01/06/2025;01/05/2025;Spotify;Brazil;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;6;RUB;0.645812309196
+01/04/2025;01/03/2025;Spotify;Germany;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";4;RUB;-0.156655894184
+01/04/2025;01/03/2025;Spotify;"United Arab Emirates";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;3;RUB;0.027693661346
+01/04/2025;01/04/2025;"Apple Music";Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;2;RUB;0.350017912497
+01/05/2025;01/04/2025;Spotify;Brazil;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;5;RUB;0.566786769891
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Tajikistan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.004200000038
+01/04/2025;01/03/2025;Spotify;Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;180;RUB;6.400334052456
+01/05/2025;01/05/2025;"YouTube UGC";Latvia;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;3;RUB;0.082718043814
+01/05/2025;01/04/2025;Spotify;Finland;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;2;RUB;0.025211033033
+01/05/2025;01/04/2025;Spotify;Lithuania;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;42;RUB;0.216844000685
+01/04/2025;01/03/2025;Yandex;Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;12;RUB;0.255484209798
+01/05/2025;01/04/2025;Spotify;Uzbekistan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";1;RUB;-0.031418998408
+01/05/2025;01/05/2025;"YouTube UGC";Netherlands;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;3;RUB;0.161675656416
+01/05/2025;01/04/2025;Spotify;Norway;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;2;RUB;0.036334976374
+01/06/2025;01/05/2025;Spotify;Australia;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";1;RUB;-0.060107492227
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;3;RUB;0.012600000036
+01/06/2025;01/05/2025;Spotify;Germany;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;28;RUB;1.799908274925
+01/06/2025;01/05/2025;Spotify;Germany;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;48;RUB;3.634368478943
+01/05/2025;01/05/2025;"Apple Music";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;13;RUB;0.674658320042
+01/05/2025;01/05/2025;"Apple Music";"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.151224455139
+01/05/2025;01/04/2025;Spotify;Turkey;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";5;RUB;-0.052592463286
+01/06/2025;01/05/2025;Spotify;"United Kingdom";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;3;RUB;0.447671968182
+01/06/2025;01/05/2025;Spotify;Germany;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;5;RUB;0.941397128458
+01/06/2025;01/05/2025;Spotify;Israel;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.090893181137
+01/06/2025;01/05/2025;Spotify;Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;76;RUB;3.415166921263
+01/04/2025;01/02/2025;"Facebook / Instagram";"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;9;RUB;0.065284860537
+01/05/2025;01/04/2025;Spotify;Netherlands;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;16;RUB;0.621532115213
+01/05/2025;01/04/2025;Yandex;Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;8;RUB;0.032405876138
+01/06/2025;01/05/2025;Spotify;Poland;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";12;RUB;-0.289220514950
+01/06/2025;01/05/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;148;RUB;14.147713326085
+01/05/2025;01/04/2025;Spotify;Singapore;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;4;RUB;0.049984880594
+01/04/2025;01/03/2025;Spotify;Croatia;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.002699381673
+01/05/2025;01/05/2025;"YouTube UGC";Belgium;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.158775923026
+01/05/2025;01/05/2025;"YouTube UGC";Turkey;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.003158771873
+01/04/2025;01/03/2025;Spotify;Latvia;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;2;RUB;0.167311674770
+01/04/2025;01/03/2025;Spotify;Poland;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";8;RUB;-0.217540319146
+01/06/2025;01/05/2025;Spotify;Belarus;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;3;RUB;0.039744535663
+01/04/2025;01/03/2025;Spotify;Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";8;RUB;-0.276743065017
+01/05/2025;01/04/2025;Spotify;Switzerland;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.043038487994
+01/06/2025;01/05/2025;Yandex;Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;6;RUB;0.125149211724
+01/06/2025;01/05/2025;Spotify;France;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";16;RUB;-0.359485325367
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Kyrgyzstan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;6;RUB;0.025200000000
+01/05/2025;01/04/2025;Spotify;Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";12;RUB;-0.227122032986
+01/05/2025;01/04/2025;Spotify;Italy;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";1;RUB;-0.076742856498
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Moldova, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.004200000036
+01/04/2025;01/03/2025;Spotify;India;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";5;RUB;-0.070718872183
+01/04/2025;01/03/2025;Spotify;Australia;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.213701048578
+01/04/2025;01/01/2025;"Facebook / Instagram";"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;10;RUB;0.066593795658
+01/04/2025;01/03/2025;Spotify;Sweden;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.032292602926
+01/05/2025;01/04/2025;Spotify;Turkey;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;21;RUB;0.584662771830
+01/06/2025;01/05/2025;Spotify;Spain;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.226820463850
+01/06/2025;01/05/2025;Spotify;Brazil;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";5;RUB;-0.129500300832
+01/05/2025;01/04/2025;Yandex;"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;609;RUB;12.981840149080
+01/05/2025;01/04/2025;Yandex;Belarus;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;16;RUB;0.349604133808
+01/05/2025;01/04/2025;Spotify;Egypt;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.128921159343
+01/06/2025;01/05/2025;Yandex;Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;22;RUB;0.458880442941
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;13;RUB;0.122497276571
+01/06/2025;01/05/2025;Spotify;Netherlands;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;6;RUB;0.305775725952
+01/06/2025;01/05/2025;Spotify;Nigeria;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";22;RUB;-0.135697703061
+01/04/2025;01/03/2025;Spotify;"United Kingdom";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;4;RUB;0.356968231090
+01/05/2025;01/05/2025;"YouTube UGC";"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;101;RUB;2.905496912086
+01/04/2025;01/03/2025;Spotify;"Korea, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.176459579328
+01/04/2025;01/11/2024;Yandex;Worldwide;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;-1;RUB;-4.004201130178
+01/05/2025;01/04/2025;Spotify;"United Kingdom";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;15;RUB;3.673961574305
+01/06/2025;01/05/2025;Spotify;Austria;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;3;RUB;0.488920875799
+01/04/2025;01/03/2025;Spotify;Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;9;RUB;0.666147408959
+01/04/2025;01/04/2025;"YouTube UGC";Chile;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.002784102817
+01/05/2025;01/04/2025;Spotify;"Czech Republic";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;4;RUB;0.196344885476
+01/06/2025;01/06/2025;"YouTube UGC";Poland;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;12;RUB;0.301403299852
+01/06/2025;01/06/2025;"YouTube UGC";Latvia;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;3;RUB;0.033226365331
+01/05/2025;01/04/2025;Yandex;"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;862;RUB;18.702953365418
+01/05/2025;01/04/2025;Spotify;Egypt;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;38;RUB;0.723202042312
+01/04/2025;01/03/2025;"Facebook / Instagram";"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;18;RUB;0.122594847818
+01/04/2025;01/04/2025;"YouTube UGC";Japan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;3;RUB;0.049039759605
+01/06/2025;01/05/2025;"Facebook / Instagram";"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;4;RUB;0.026353703876
+01/04/2025;01/03/2025;Spotify;Portugal;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.154114697702
+01/06/2025;01/05/2025;Spotify;Egypt;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";3;RUB;-0.059515456020
+01/04/2025;01/03/2025;Spotify;Australia;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.213701048578
+01/05/2025;01/04/2025;Spotify;"New Zealand";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;1;RUB;0.204505682319
+01/06/2025;01/05/2025;Spotify;"Czech Republic";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;6;RUB;0.397057132078
+01/04/2025;01/03/2025;Spotify;Egypt;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";1;RUB;-0.013390789747
+01/05/2025;01/05/2025;"YouTube Official Content";Germany;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;3;RUB;0.655778702725
+01/06/2025;01/05/2025;Spotify;Brazil;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.014655494254
+01/06/2025;01/05/2025;Spotify;India;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";4;RUB;-0.054298398190
+01/06/2025;01/05/2025;Spotify;Turkey;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;3;RUB;0.054254450414
+01/04/2025;01/03/2025;Spotify;Nigeria;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;96;RUB;1.938105962878
+01/04/2025;01/03/2025;Spotify;Japan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";6;RUB;-0.183146975971
+01/04/2025;01/03/2025;Spotify;Austria;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;2;RUB;0.057086923426
+01/06/2025;01/05/2025;Spotify;Italy;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";7;RUB;-0.122376919489
+01/06/2025;01/05/2025;Spotify;Italy;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;6;RUB;0.244921464834
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;695;RUB;21.953254893426
+01/06/2025;01/06/2025;"YouTube Official Content";Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;8;RUB;0.463966507003
+01/06/2025;01/06/2025;"Apple Music";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;2;RUB;0.199837119977
+01/04/2025;01/03/2025;Spotify;Slovakia;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";4;RUB;-0.052625659610
+01/05/2025;01/04/2025;Spotify;Turkey;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;20;RUB;0.539778418409
+01/05/2025;01/04/2025;Spotify;"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;13;RUB;1.641291670304
+01/06/2025;01/06/2025;"YouTube UGC";"United States";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;83;RUB;2.947247004829
+01/05/2025;01/04/2025;Spotify;Latvia;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";4;RUB;-0.224042740934
+01/05/2025;01/05/2025;"YouTube UGC";Slovakia;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.014412934280
+01/04/2025;01/03/2025;Spotify;Latvia;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;22;RUB;0.832059409342
+01/04/2025;01/03/2025;Spotify;Brazil;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;6;RUB;0.730832601782
+01/04/2025;01/03/2025;Spotify;Japan;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;3;RUB;0.069134163806
+01/05/2025;01/04/2025;Spotify;Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;47;RUB;2.330247540722
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Azerbaijan;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;1;RUB;0.004200000036
+01/06/2025;01/05/2025;Spotify;Nigeria;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;16;RUB;0.250308072345
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;847;RUB;25.811577932405
+01/04/2025;01/03/2025;Spotify;Mexico;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;3;RUB;0.088229789664
+01/05/2025;01/04/2025;Yandex;Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;4;RUB;0.016202938106
+01/05/2025;01/04/2025;Spotify;India;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";1;RUB;-0.013708126186
+01/06/2025;01/05/2025;Spotify;Lithuania;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;3;RUB;0.017955401972
+01/06/2025;01/05/2025;Spotify;Netherlands;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;43;RUB;1.807963939113
+01/04/2025;01/03/2025;Spotify;Spain;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;2;RUB;0.204953052466
+01/04/2025;01/03/2025;Spotify;"Czech Republic";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";4;RUB;-0.161452738232
+01/04/2025;01/03/2025;Spotify;Nigeria;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;12;RUB;0.193605651755
+01/05/2025;01/05/2025;"YouTube UGC";"United Kingdom";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;4;RUB;0.104851522681
+01/06/2025;01/05/2025;Yandex;Uzbekistan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;3;RUB;0.062574605898
+01/04/2025;01/03/2025;Spotify;"Moldova, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";2;RUB;-0.001582637502
+01/04/2025;01/03/2025;Spotify;Nigeria;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";26;RUB;-0.153553511998
+01/04/2025;01/03/2025;Spotify;Australia;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;1;RUB;0.213701048578
+01/06/2025;01/06/2025;"YouTube UGC";Turkey;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;7;RUB;0.033580417226
+01/04/2025;01/03/2025;Spotify;Netherlands;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";"Platform Promotion";8;RUB;-0.148890351604
+01/06/2025;01/05/2025;Spotify;Georgia;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";2;RUB;-0.040534642914
+01/04/2025;01/03/2025;Spotify;India;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;9;RUB;0.296582063471
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.004200000000
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;614;RUB;22.717148019149
+01/05/2025;01/04/2025;Spotify;Ukraine;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;52;RUB;2.269381588150
+01/05/2025;01/05/2025;"YouTube UGC";Australia;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;4;RUB;0.051913882973
+01/06/2025;01/05/2025;Spotify;Norway;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;2;RUB;0.035037307417
+01/04/2025;01/03/2025;Spotify;Canada;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;5;RUB;0.493536947918
+01/04/2025;01/03/2025;Spotify;Estonia;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";2;RUB;-0.141468094639
+01/04/2025;01/03/2025;Spotify;Denmark;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";1;RUB;-0.005811597331
+01/05/2025;01/04/2025;Spotify;France;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;41;RUB;1.230677306573
+01/05/2025;01/04/2025;Spotify;"Moldova, Republic Of";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";3;RUB;-0.091507868320
+01/06/2025;01/05/2025;Yandex;Belarus;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;20;RUB;0.417164039057
+01/04/2025;01/04/2025;"YouTube UGC";Morocco;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;4;RUB;0.010535884174
+01/04/2025;01/03/2025;Spotify;Brazil;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;1;RUB;0.011647332008
+01/04/2025;01/03/2025;Spotify;"Czech Republic";thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;5;RUB;0.467842833526
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Belarus;thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;1;RUB;0.004200000000
+01/06/2025;01/05/2025;Spotify;Norway;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.017518653709
+01/04/2025;01/03/2025;Yandex;"Russian Federation";thqlabel;OMORIKUN;"Идеальная грусть";Broke;3617660406522;DG-A06-24-96012;;"Music Release";Stream;802;RUB;16.909300970746
+01/04/2025;01/04/2025;"YouTube UGC";Norway;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;2;RUB;0.065636039594
+01/05/2025;01/04/2025;Spotify;Pakistan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;4;RUB;0.137616294051
+01/05/2025;01/04/2025;Spotify;Uzbekistan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;1;RUB;0.039152394283
+01/05/2025;01/04/2025;Spotify;India;thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";Stream;17;RUB;0.541235703632
+01/04/2025;01/03/2025;Spotify;Sweden;thqlabel;OMORIKUN;"Идеальная грусть";"Белое платье";3617660406522;DG-A06-24-96010;;"Music Release";Stream;1;RUB;0.032292602926
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;OMORIKUN;"Идеальная грусть";"Heavens are crying";3617660406522;DG-A06-24-96011;;"Music Release";Stream;9;RUB;0.104654386654
+01/05/2025;01/04/2025;Spotify;"United Kingdom";thqlabel;OMORIKUN;"Идеальная грусть";"Магнитная роза";3617660406522;DG-A06-24-96009;;"Music Release";"Platform Promotion";5;RUB;-0.217563803806

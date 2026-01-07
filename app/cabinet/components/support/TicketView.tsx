@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import { fetchWithAuth } from '../../lib/fetchWithAuth';
-import { statusColors, statusLabels, categoryLabels } from './TicketCard';
+import { statusColors, statusLabels, categoryLabels, statusColorsLight } from './TicketCard';
 import TicketAvatar from '@/components/icons/TicketAvatar';
 import { supabase } from '@/lib/supabase/client';
 
@@ -11,9 +11,10 @@ interface TicketViewProps {
   onUpdate: () => void;
   onClose: () => void;
   onUpdateUnreadCount?: () => void;
+  isLight?: boolean;
 }
 
-export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdateUnreadCount }: TicketViewProps) {
+export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdateUnreadCount, isLight }: TicketViewProps) {
   const [messages, setMessages] = useState(ticket.ticket_messages || []);
   const [newMessage, setNewMessage] = useState('');
   const [images, setImages] = useState<string[]>([]);
@@ -283,11 +284,6 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
     setError('');
 
     const replyId = replyToMessage?.id || null;
-    console.log('📤 Отправка сообщения:', {
-      message: newMessage.substring(0, 50),
-      reply_to_message_id: replyId,
-      replyToMessage: replyToMessage
-    });
 
     try {
       const response = await fetchWithAuth(`/api/support/tickets/${ticket.id}/messages`, {
@@ -301,21 +297,17 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
       });
 
       const data = await response.json();
-      console.log('📥 Ответ от сервера:', data);
 
       if (response.ok) {
-        console.log('✅ Сообщение отправлено, reply_to_message:', data.message?.reply_to_message);
         setMessages([...messages, data.message]);
         setNewMessage('');
         setImages([]);
         setReplyToMessage(null);
         onUpdate();
       } else {
-        console.error('❌ Ошибка:', data.error);
         setError(data.error || 'Ошибка отправки сообщения');
       }
-    } catch (err) {
-      console.error('❌ Ошибка соединения:', err);
+    } catch {
       setError('Ошибка соединения с сервером');
     } finally {
       setSending(false);
@@ -324,11 +316,15 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
 
   return (
     <div className="flex flex-col h-full">
-      <div className="p-3 border-b border-white/10 bg-white/5 backdrop-blur-md">
+      <div className={`p-3 border-b backdrop-blur-md ${isLight ? 'border-gray-200 bg-gray-100/80' : 'border-white/10 bg-white/5'}`}>
         <div className="flex items-start justify-between gap-3">
           <button
             onClick={onBack}
-            className="px-3 py-1.5 flex items-center gap-1.5 text-sm text-white bg-gradient-to-r from-blue-500/20 to-purple-500/20 hover:from-blue-500/30 hover:to-purple-500/30 border border-white/20 hover:border-white/30 rounded-lg transition-all duration-200 group flex-shrink-0 shadow-lg"
+            className={`px-3 py-1.5 flex items-center gap-1.5 text-sm rounded-lg transition-all duration-200 group flex-shrink-0 shadow-lg ${
+              isLight 
+                ? 'text-gray-700 bg-white hover:bg-gray-100 border border-gray-300 hover:border-gray-400' 
+                : 'text-white bg-gradient-to-r from-blue-500/20 to-purple-500/20 hover:from-blue-500/30 hover:to-purple-500/30 border border-white/20 hover:border-white/30'
+            }`}
             title="Назад к списку тикетов"
           >
             <svg className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -338,20 +334,22 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
           </button>
           
           <div className="flex-1 min-w-0 text-right">
-            <h3 className="text-sm font-bold text-white mb-1 truncate">{ticket.subject}</h3>
+            <h3 className={`text-sm font-bold mb-1 truncate ${isLight ? 'text-gray-800' : 'text-white'}`}>{ticket.subject}</h3>
             <div className="flex items-center gap-2 flex-wrap justify-end">
               <span className={`text-[10px] px-2 py-0.5 rounded-full border ${
-                statusColors[ticket.status as keyof typeof statusColors] || 'bg-zinc-500/20 text-zinc-400 border-zinc-500/30'
+                isLight 
+                  ? (statusColorsLight[ticket.status as keyof typeof statusColorsLight] || 'bg-gray-100 text-gray-600 border-gray-300')
+                  : (statusColors[ticket.status as keyof typeof statusColors] || 'bg-zinc-500/20 text-zinc-400 border-zinc-500/30')
               }`}>
                 {statusLabels[ticket.status as keyof typeof statusLabels] || ticket.status}
               </span>
               
               {ticket.category && (
-                <span className="text-[10px] px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-400 border border-purple-500/30">
+                <span className={`text-[10px] px-2 py-0.5 rounded-full border ${isLight ? 'bg-purple-100 text-purple-700 border-purple-300' : 'bg-purple-500/20 text-purple-400 border-purple-500/30'}`}>
                   {categoryLabels[ticket.category] || ticket.category}
                 </span>
               )}
-              <span className="text-[10px] text-zinc-500">#{ticket.id.slice(0, 8)}</span>
+              <span className={`text-[10px] ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>#{ticket.id.slice(0, 8)}</span>
             </div>
           </div>
         </div>
@@ -405,16 +403,14 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
                     setTimeout(() => {
                       setHighlightedMessageId(null);
                     }, 2000);
-                    
-                    console.log('Reply to message:', msg);
                   }}
-                  className={`absolute ${isFromAdmin ? 'left-full ml-2' : 'right-full mr-2'} top-8 p-1.5 bg-zinc-800/90 hover:bg-zinc-700 border border-zinc-600 rounded-lg transition-opacity duration-200 ${
+                  className={`absolute ${isFromAdmin ? 'left-full ml-2' : 'right-full mr-2'} top-8 p-1.5 rounded-lg transition-opacity duration-200 ${
                     showActions === msg.id ? 'opacity-100' : 'opacity-0 pointer-events-none'
-                  }`}
+                  } ${isLight ? 'bg-white hover:bg-gray-100 border border-gray-300' : 'bg-zinc-800/90 hover:bg-zinc-700 border border-zinc-600'}`}
                   style={{ zIndex: 10 }}
                   title="Ответить"
                 >
-                  <svg className={`w-3.5 h-3.5 text-zinc-400 ${!isFromAdmin ? 'transform scale-x-[-1]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className={`w-3.5 h-3.5 ${isLight ? 'text-gray-500' : 'text-zinc-400'} ${!isFromAdmin ? 'transform scale-x-[-1]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
                   </svg>
                 </button>
@@ -428,7 +424,11 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
                     isAdmin={isFromAdmin}
                   />
                   <div className={`flex flex-col ${isFromAdmin ? 'items-start' : 'items-end'}`}>
-                    <span className={`text-xs font-medium ${isFromAdmin ? 'bg-gradient-to-r from-green-400 to-emerald-400 text-transparent bg-clip-text' : 'text-blue-300'}`}>
+                    <span className={`text-xs font-medium ${
+                      isFromAdmin 
+                        ? (isLight ? 'text-green-600' : 'bg-gradient-to-r from-green-400 to-emerald-400 text-transparent bg-clip-text')
+                        : (isLight ? 'text-blue-600' : 'text-blue-300')
+                    }`}>
                       {displayName}
                     </span>
                   </div>
@@ -437,12 +437,11 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
                 <div 
                   ref={(el) => { 
                     messageRefs.current[msg.id] = el;
-                    console.log(`📌 Зарегистрирован ref для сообщения: ${msg.id}`);
                   }}
                   className={`px-3 py-2 rounded-lg backdrop-blur-md border transition-all duration-300 cursor-pointer ${
                   isFromAdmin
-                    ? 'bg-green-500/20 border-green-500/40 hover:bg-green-500/25'
-                    : 'bg-blue-500/20 border-blue-500/40 hover:bg-blue-500/25'
+                    ? (isLight ? 'bg-green-100 border-green-300 hover:bg-green-200' : 'bg-green-500/20 border-green-500/40 hover:bg-green-500/25')
+                    : (isLight ? 'bg-blue-100 border-blue-300 hover:bg-blue-200' : 'bg-blue-500/20 border-blue-500/40 hover:bg-blue-500/25')
                   } ${highlightedMessageId === msg.id ? 'ring-4 ring-amber-400 !bg-amber-400/30 !border-amber-400 shadow-[0_0_30px_rgba(251,191,36,0.5)] animate-pulse' : ''}`}
                   style={{ 
                     boxShadow: highlightedMessageId === msg.id 
@@ -465,12 +464,9 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
                     if ((e.target as HTMLElement).closest('[title="Перейти к сообщению"]')) return;
                     if ((e.target as HTMLElement).tagName === 'A') return;
                     
-                    console.log('🔥 Клик на сообщение:', msg.id);
                     setHighlightedMessageId(msg.id);
-                    console.log('✨ Установлена подсветка для:', msg.id, 'Текущая:', highlightedMessageId);
                     
                     setTimeout(() => {
-                      console.log('⏰ Убираем подсветку с:', msg.id);
                       setHighlightedMessageId(null);
                     }, 2000);
                   }}
@@ -478,35 +474,30 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
                   {/* Превью ответа на сообщение */}
                   {msg.reply_to_message && (
                     <div 
-                      className="mb-2 p-2 bg-black/30 border-l-2 border-blue-400/50 rounded cursor-pointer hover:bg-black/40 transition-colors"
+                      className={`mb-2 p-2 border-l-2 rounded cursor-pointer transition-colors ${
+                        isLight 
+                          ? 'bg-gray-200/80 border-blue-400/50 hover:bg-gray-300/80' 
+                          : 'bg-black/30 border-blue-400/50 hover:bg-black/40'
+                      }`}
                       onClick={(e) => {
                         e.stopPropagation();
                         const replyMsgId = msg.reply_to_message.id;
-                        console.log('🎯 Клик на превью ответа, ищем сообщение:', replyMsgId);
-                        console.log('📦 Доступные messageRefs:', Object.keys(messageRefs.current));
-                        console.log('🔍 Найден ref для сообщения:', !!messageRefs.current[replyMsgId]);
                         
                         setHighlightedMessageId(replyMsgId);
-                        console.log('✨ Установлена подсветка для:', replyMsgId);
                         
                         // Прокрутка к исходному сообщению
                         setTimeout(() => {
                           const element = messageRefs.current[replyMsgId];
-                          console.log('📍 Элемент для прокрутки:', element);
                           if (element) {
                             element.scrollIntoView({ 
                               behavior: 'smooth', 
                               block: 'center' 
                             });
-                            console.log('✅ Прокрутка выполнена');
-                          } else {
-                            console.error('❌ Элемент не найден для ID:', replyMsgId);
                           }
                         }, 100);
                         
                         // Убираем подсветку через 2 секунды
                         setTimeout(() => {
-                          console.log('⏰ Убираем подсветку с:', replyMsgId);
                           setHighlightedMessageId(null);
                         }, 2000);
                       }}
@@ -516,15 +507,15 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
                         <svg className="w-3 h-3 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
                         </svg>
-                        <span className="text-xs text-blue-400 font-medium">
+                        <span className={`text-xs font-medium ${isLight ? 'text-blue-600' : 'text-blue-400'}`}>
                           {msg.reply_to_message.sender_nickname || msg.reply_to_message.sender_username || 'Пользователь'}
                         </span>
                       </div>
-                      <p className="text-xs text-zinc-400 truncate">{msg.reply_to_message.message}</p>
+                      <p className={`text-xs truncate ${isLight ? 'text-gray-600' : 'text-zinc-400'}`}>{msg.reply_to_message.message}</p>
                     </div>
                   )}
                   
-                  {msg.message && <p className="text-sm text-white whitespace-pre-wrap break-words">{msg.message}</p>}
+                  {msg.message && <p className={`text-sm whitespace-pre-wrap break-words ${isLight ? 'text-gray-800' : 'text-white'}`}>{msg.message}</p>}
 
                   {msg.images && msg.images.length > 0 && (
                     <div className="mt-2 flex flex-wrap gap-2">
@@ -537,28 +528,28 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
                   )}
 
                   {isFirstUserMessage && ticket.release && (
-                    <div className="mt-3 pt-3 border-t border-purple-500/30">
+                    <div className={`mt-3 pt-3 border-t ${isLight ? 'border-purple-300' : 'border-purple-500/30'}`}>
                       <div className="flex items-center gap-2 mb-2">
-                        <svg className="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className={`w-4 h-4 ${isLight ? 'text-purple-600' : 'text-purple-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
                         </svg>
-                        <span className="text-xs text-purple-300 font-medium">Обращение по релизу:</span>
+                        <span className={`text-xs font-medium ${isLight ? 'text-purple-700' : 'text-purple-300'}`}>Обращение по релизу:</span>
                       </div>
-                      <div className="flex items-center gap-3 bg-black/30 rounded-lg p-2">
+                      <div className={`flex items-center gap-3 rounded-lg p-2 ${isLight ? 'bg-gray-200/80' : 'bg-black/30'}`}>
                         {ticket.release.artwork_url ? (
                           <img src={ticket.release.artwork_url} alt={ticket.release.title} className="w-12 h-12 rounded object-cover flex-shrink-0" />
                         ) : (
                           <div className="w-12 h-12 rounded bg-gradient-to-br from-purple-500/30 to-blue-500/30 flex items-center justify-center flex-shrink-0">
-                            <svg className="w-6 h-6 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className={`w-6 h-6 ${isLight ? 'text-purple-600' : 'text-purple-300'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
                             </svg>
                           </div>
                         )}
                         <div className="flex-1 min-w-0">
-                          <div className="text-sm font-medium text-white truncate">{ticket.release.title}</div>
-                          <div className="text-xs text-zinc-400 truncate">{ticket.release.artist}</div>
+                          <div className={`text-sm font-medium truncate ${isLight ? 'text-gray-800' : 'text-white'}`}>{ticket.release.title}</div>
+                          <div className={`text-xs truncate ${isLight ? 'text-gray-600' : 'text-zinc-400'}`}>{ticket.release.artist}</div>
                           {ticket.release.status && (
-                            <span className="text-[10px] px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300">
+                            <span className={`text-[10px] px-1.5 py-0.5 rounded ${isLight ? 'bg-purple-200 text-purple-700' : 'bg-purple-500/20 text-purple-300'}`}>
                               {ticket.release.status === 'pending' && '⏳ На модерации'}
                               {ticket.release.status === 'distributed' && '📤 На дистрибьюции'}
                               {ticket.release.status === 'rejected' && '❌ Отклонён'}
@@ -570,7 +561,7 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
                     </div>
                   )}
 
-                  <div className="mt-1 text-[10px] text-zinc-500">
+                  <div className={`mt-1 text-[10px] ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>
                     {new Date(msg.created_at).toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })}
                   </div>
                 </div>
@@ -587,30 +578,34 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
                         reactionsCount > 0
                           ? hasUserReaction
                             ? 'bg-pink-500/30 border border-pink-400/40'
-                            : 'bg-zinc-700/50 border border-zinc-500/40'
-                          : 'bg-zinc-800/60 border border-zinc-600/40 opacity-0 group-hover:opacity-100 hover:bg-pink-500/20 hover:border-pink-400/40'
+                            : (isLight ? 'bg-gray-200 border border-gray-400' : 'bg-zinc-700/50 border border-zinc-500/40')
+                          : (isLight 
+                              ? 'bg-gray-100 border border-gray-300 opacity-0 group-hover:opacity-100 hover:bg-pink-100 hover:border-pink-300' 
+                              : 'bg-zinc-800/60 border border-zinc-600/40 opacity-0 group-hover:opacity-100 hover:bg-pink-500/20 hover:border-pink-400/40')
                       }`}
                     >
                       <span>{hasUserReaction ? '❤️' : '🤍'}</span>
                       {reactionsCount > 0 && (
-                        <span className={`font-medium ${hasUserReaction ? 'text-pink-300' : 'text-zinc-400'}`}>{reactionsCount}</span>
+                        <span className={`font-medium ${hasUserReaction ? 'text-pink-300' : (isLight ? 'text-gray-600' : 'text-zinc-400')}`}>{reactionsCount}</span>
                       )}
                     </button>
                     
                     {/* Тултип с именами кто поставил лайк */}
                     {reactionsCount > 0 && (
                       <div className={`absolute ${isFromAdmin ? 'left-0' : 'right-0'} bottom-full mb-1 opacity-0 group-hover/reaction:opacity-100 transition-opacity pointer-events-none z-50`}>
-                        <div className="bg-zinc-900/95 backdrop-blur-xl border border-white/20 rounded-lg px-2 py-1.5 shadow-2xl max-w-[180px]">
-                          <div className="text-[9px] text-zinc-400 font-semibold mb-1">Понравилось:</div>
+                        <div className={`backdrop-blur-xl border rounded-lg px-2 py-1.5 shadow-2xl max-w-[180px] ${
+                          isLight ? 'bg-white/95 border-gray-300' : 'bg-zinc-900/95 border-white/20'
+                        }`}>
+                          <div className={`text-[9px] font-semibold mb-1 ${isLight ? 'text-gray-500' : 'text-zinc-400'}`}>Понравилось:</div>
                           <div className="flex flex-col gap-1 max-h-32 overflow-y-auto">
                             {msg.reactions?.map((reaction: any, idx: number) => {
                               const isCurrentUser = reaction.user_id === currentUserId;
                               return (
-                                <div key={idx} className={`flex items-center gap-1.5 ${isCurrentUser ? 'text-pink-300' : 'text-zinc-300'}`}>
+                                <div key={idx} className={`flex items-center gap-1.5 ${isCurrentUser ? 'text-pink-300' : (isLight ? 'text-gray-700' : 'text-zinc-300')}`}>
                                   {reaction.user?.avatar ? (
                                     <div className="w-3 h-3 rounded-full bg-cover bg-center flex-shrink-0" style={{ backgroundImage: `url(${reaction.user.avatar})` }} />
                                   ) : (
-                                    <div className={`w-3 h-3 rounded-full ${isCurrentUser ? 'bg-pink-500/30' : 'bg-zinc-700'} flex items-center justify-center flex-shrink-0`}>
+                                    <div className={`w-3 h-3 rounded-full flex items-center justify-center flex-shrink-0 ${isCurrentUser ? 'bg-pink-500/30' : (isLight ? 'bg-gray-300' : 'bg-zinc-700')}`}>
                                       <span className="text-[6px]">{reaction.user?.nickname?.charAt(0) || '?'}</span>
                                     </div>
                                   )}
@@ -634,14 +629,14 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
 
         {adminTyping && (
           <div className="flex justify-start px-4 py-1 animate-fade-in">
-            <div className="bg-white/5 backdrop-blur-md rounded-lg px-3 py-1.5 border border-white/10">
+            <div className={`backdrop-blur-md rounded-lg px-3 py-1.5 border ${isLight ? 'bg-gray-100/80 border-gray-300' : 'bg-white/5 border-white/10'}`}>
               <div className="flex items-center gap-2">
-                <span className="text-xs text-zinc-300">{adminTypingName}</span>
-                <span className="text-[10px] text-zinc-500">печатает</span>
+                <span className={`text-xs ${isLight ? 'text-gray-700' : 'text-zinc-300'}`}>{adminTypingName}</span>
+                <span className={`text-[10px] ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>печатает</span>
                 <div className="flex gap-0.5">
-                  <span className="w-1 h-1 bg-zinc-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
-                  <span className="w-1 h-1 bg-zinc-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
-                  <span className="w-1 h-1 bg-zinc-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                  <span className={`w-1 h-1 rounded-full animate-bounce ${isLight ? 'bg-gray-400' : 'bg-zinc-500'}`} style={{ animationDelay: '0ms' }}></span>
+                  <span className={`w-1 h-1 rounded-full animate-bounce ${isLight ? 'bg-gray-400' : 'bg-zinc-500'}`} style={{ animationDelay: '150ms' }}></span>
+                  <span className={`w-1 h-1 rounded-full animate-bounce ${isLight ? 'bg-gray-400' : 'bg-zinc-500'}`} style={{ animationDelay: '300ms' }}></span>
                 </div>
               </div>
             </div>
@@ -651,29 +646,29 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
 
       {/* Input */}
       {ticket.status !== 'closed' && (
-        <div className="p-4 border-t border-white/10 bg-white/5 backdrop-blur-md">
+        <div className={`p-4 border-t backdrop-blur-md ${isLight ? 'border-gray-200 bg-gray-100/80' : 'border-white/10 bg-white/5'}`}>
           <form onSubmit={handleSendMessage} className="space-y-3">
             {/* Превью ответа */}
             {replyToMessage && (
-              <div className="p-2 bg-white/5 border border-white/10 rounded-lg">
+              <div className={`p-2 border rounded-lg ${isLight ? 'bg-gray-200/80 border-gray-300' : 'bg-white/5 border-white/10'}`}>
                 <div className="flex items-start justify-between gap-2">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
-                      <svg className="w-3 h-3 text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className={`w-3 h-3 flex-shrink-0 ${isLight ? 'text-blue-600' : 'text-blue-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
                       </svg>
-                      <span className="text-xs font-medium text-blue-400">
+                      <span className={`text-xs font-medium ${isLight ? 'text-blue-600' : 'text-blue-400'}`}>
                         Ответ на {replyToMessage.sender_nickname || replyToMessage.sender_username || 'сообщение'}
                       </span>
                     </div>
-                    <p className="text-xs text-zinc-400 truncate">{replyToMessage.message}</p>
+                    <p className={`text-xs truncate ${isLight ? 'text-gray-600' : 'text-zinc-400'}`}>{replyToMessage.message}</p>
                   </div>
                   <button
                     type="button"
                     onClick={() => setReplyToMessage(null)}
-                    className="p-1 hover:bg-white/10 rounded transition-colors flex-shrink-0"
+                    className={`p-1 rounded transition-colors flex-shrink-0 ${isLight ? 'hover:bg-gray-300' : 'hover:bg-white/10'}`}
                   >
-                    <svg className="w-4 h-4 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className={`w-4 h-4 ${isLight ? 'text-gray-500' : 'text-zinc-500'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                     </svg>
                   </button>
@@ -702,14 +697,22 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
                 }
               }}
               placeholder="Отправить сообщение"
-              className="w-full px-3 py-2 bg-white/5 backdrop-blur-md border border-white/10 rounded-lg text-sm text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 resize-none"
+              className={`w-full px-3 py-2 backdrop-blur-md border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 resize-none ${
+                isLight 
+                  ? 'bg-white border-gray-300 text-gray-800 placeholder-gray-400' 
+                  : 'bg-white/5 border-white/10 text-white placeholder-zinc-500'
+              }`}
               rows={2}
             />
 
             <div className="flex items-center gap-2">
               <label className="flex-1 cursor-pointer">
                 <input type="file" accept="image/*" multiple onChange={handleImageUpload} disabled={uploading} className="hidden" />
-                <div className="px-3 py-2 bg-white/5 backdrop-blur-md hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-lg text-sm text-zinc-400 hover:text-white transition-all flex items-center gap-2">
+                <div className={`px-3 py-2 backdrop-blur-md border rounded-lg text-sm transition-all flex items-center gap-2 ${
+                  isLight 
+                    ? 'bg-white hover:bg-gray-100 border-gray-300 hover:border-gray-400 text-gray-600 hover:text-gray-800' 
+                    : 'bg-white/5 hover:bg-white/10 border-white/10 hover:border-white/20 text-zinc-400 hover:text-white'
+                }`}>
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
@@ -721,7 +724,7 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
                 type="submit"
                 disabled={sending || uploading || (newMessage.trim() === '' && images.length === 0)}
                 className="px-4 py-2 bg-gradient-to-r from-blue-500/40 to-purple-500/40 backdrop-blur-md hover:from-blue-500/50 hover:to-purple-500/50 border border-white/20 text-white rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
-                style={{ boxShadow: '0 4px 16px 0 rgba(59, 130, 246, 0.3)' }}
+                style={{ boxShadow: '0 4px 16px 0 rgba(59, 130, 246, 0.3)', color: '#ffffff' }}
               >
                 {sending ? (
                   <>
@@ -743,7 +746,7 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
               <div className="flex flex-wrap gap-2">
                 {images.map((url, i) => (
                   <div key={i} className="relative group">
-                    <img src={url} alt="" className="w-20 h-20 object-cover rounded-lg border-2 border-zinc-700" />
+                    <img src={url} alt="" className={`w-20 h-20 object-cover rounded-lg border-2 ${isLight ? 'border-gray-300' : 'border-zinc-700'}`} />
                     <button
                       type="button"
                       onClick={() => setImages(images.filter((_, idx) => idx !== i))}
@@ -759,7 +762,7 @@ export default function TicketView({ ticket, onBack, onUpdate, onClose, onUpdate
             )}
 
             {error && (
-              <div className="p-2 bg-red-500/10 backdrop-blur-md border border-red-500/30 rounded text-red-400 text-xs">{error}</div>
+              <div className={`p-2 backdrop-blur-md border rounded text-xs ${isLight ? 'bg-red-100 border-red-300 text-red-600' : 'bg-red-500/10 border-red-500/30 text-red-400'}`}>{error}</div>
             )}
           </form>
         </div>

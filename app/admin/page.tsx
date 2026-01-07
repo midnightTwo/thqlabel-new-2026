@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import Toast from '@/components/ui/Toast';
 import { useTheme } from '@/contexts/ThemeContext';
 import { supabase } from '@/lib/supabase/client';
+import { AdminMobileNav } from './components/ui';
 
 // Ленивая загрузка тяжёлых компонентов для ускорения первоначальной загрузки
 const AnimatedBackground = dynamic(() => import('@/components/ui/AnimatedBackground'), { 
@@ -17,10 +18,11 @@ const ReleasesModeration = lazy(() => import('./components/releases/ReleasesMode
 const ContractsTab = lazy(() => import('./components/contracts/ContractsTab'));
 const ArchiveTab = lazy(() => import('./components/archive/ArchiveTab'));
 const NewsTab = lazy(() => import('./components/news/NewsTab'));
-const PayoutsTab = lazy(() => import('./components/payouts/PayoutsTab'));
 const UsersTab = lazy(() => import('./components/users/UsersTab'));
 const AdminTicketsPanel = lazy(() => import('./components/tickets/AdminTicketsPanel'));
 const WithdrawalsTab = lazy(() => import('./components/withdrawals/WithdrawalsTab'));
+const ReportsTab = lazy(() => import('./components/reports/ReportsTab'));
+const TransactionsTab = lazy(() => import('./components/finance/TransactionsTab'));
 
 // Компонент загрузки для Suspense
 const TabLoader = memo(() => (
@@ -190,7 +192,7 @@ const AccessDeniedScreen = memo(({
 });
 AccessDeniedScreen.displayName = 'AccessDeniedScreen';
 
-type Tab = 'releases' | 'contracts' | 'archive' | 'payouts' | 'users' | 'news' | 'tickets' | 'withdrawals';
+type Tab = 'releases' | 'contracts' | 'archive' | 'users' | 'news' | 'tickets' | 'withdrawals' | 'reports' | 'transactions';
 
 export default function AdminPage() {
   const { themeName } = useTheme();
@@ -208,7 +210,7 @@ export default function AdminPage() {
       // Сначала проверяем URL параметр tab
       const urlParams = new URLSearchParams(window.location.search);
       const tabFromUrl = urlParams.get('tab') as Tab;
-      const validTabs: Tab[] = ['releases', 'contracts', 'archive', 'payouts', 'users', 'news', 'tickets', 'withdrawals'];
+      const validTabs: Tab[] = ['releases', 'contracts', 'archive', 'users', 'news', 'tickets', 'withdrawals', 'reports', 'transactions'];
       if (tabFromUrl && validTabs.includes(tabFromUrl)) {
         return tabFromUrl;
       }
@@ -253,6 +255,11 @@ export default function AdminPage() {
     
     const checkAdmin = async () => {
       try {
+        if (!supabase) {
+          setAccessDenied({ type: 'not_authorized' });
+          setCheckingAuth(false);
+          return;
+        }
         const { data: { user }, error: userError } = await supabase.auth.getUser();
 
         if (userError || !user || !user.email) {
@@ -290,10 +297,11 @@ export default function AdminPage() {
     { id: 'users', label: 'Пользователи', icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg> },
     { id: 'releases', label: 'Релизы', icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" /></svg> },
     { id: 'tickets', label: 'Тикеты', icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" /></svg> },
-    { id: 'payouts', label: 'Выплаты', icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> },
-    { id: 'withdrawals', label: 'Заявки', icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg> },
+    { id: 'transactions', label: 'Транзакции', icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" /></svg> },
+    { id: 'withdrawals', label: 'Заявки на вывод', icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg> },
     { id: 'news', label: 'Новости', icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" /></svg> },
     { id: 'contracts', label: 'Договоры', icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg> },
+    { id: 'reports', label: 'Отчёты', icon: <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg> },
   ];
 
   // Показываем красивый экран отказа в доступе
@@ -328,12 +336,23 @@ export default function AdminPage() {
   return (
     <div className={`min-h-screen pt-4 sm:pt-6 relative ${isLight ? 'text-gray-800' : 'text-white'}`}>
       <AnimatedBackground />
+      
+      {/* Mobile Navigation - только на мобильных */}
+      <AdminMobileNav
+        currentTab={activeTab}
+        onTabChange={(tab) => setActiveTab(tab as Tab)}
+        tabs={tabs}
+        userEmail={userEmail}
+        userRole={currentUserRole}
+        isLight={isLight}
+      />
+      
       <div className="max-w-[1600px] mx-auto p-3 sm:p-4 md:p-5 lg:p-6 flex flex-col lg:flex-row gap-4 sm:gap-5 lg:gap-6 items-stretch relative z-10">
         
-        {/* Sidebar - адаптивный с анимацией сворачивания */}
+        {/* Sidebar - скрыт на мобильных, управляется через AdminMobileNav */}
         {!sidebarCollapsed && (
         <aside 
-          className={`backdrop-blur-xl rounded-2xl sm:rounded-3xl flex flex-col lg:sticky lg:top-4 shadow-2xl transition-all duration-500 ease-in-out w-full lg:w-64 p-3 sm:p-4 lg:p-5 lg:h-[calc(100vh-2rem)] overflow-hidden ${
+          className={`hidden lg:flex backdrop-blur-xl rounded-2xl sm:rounded-3xl flex-col lg:sticky lg:top-4 shadow-2xl transition-all duration-500 ease-in-out w-full lg:w-64 p-3 sm:p-4 lg:p-5 lg:h-[calc(100vh-2rem)] overflow-hidden ${
             isLight 
               ? 'bg-white/50 border border-white/60' 
               : 'bg-[#0d0d0f]/40 border border-white/10'
@@ -348,15 +367,24 @@ export default function AdminPage() {
               <img 
                 src="/logo.png" 
                 alt="thqlabel" 
-                className={`h-10 sm:h-12 md:h-16 w-auto drop-shadow-[0_0_25px_rgba(160,141,241,0.8)] ${isLight ? 'invert brightness-0' : ''}`}
+                className="h-10 sm:h-12 md:h-16 w-auto"
+                style={{ 
+                  filter: isLight 
+                    ? 'brightness(0) saturate(100%)' 
+                    : 'drop-shadow(0 0 25px rgba(160,141,241,0.8))' 
+                }}
               />
               <div className="flex items-center gap-2">
                 <button 
                   onClick={() => setSidebarCollapsed(true)}
-                  className="hidden lg:flex w-10 h-10 md:w-11 md:h-11 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-purple-500/50 rounded-2xl transition-all items-center justify-center shrink-0 group"
+                  className={`hidden lg:flex w-10 h-10 md:w-11 md:h-11 rounded-2xl transition-all items-center justify-center shrink-0 group ${
+                    isLight 
+                      ? 'bg-gray-100 hover:bg-gray-200 border border-gray-200 hover:border-purple-500/50' 
+                      : 'bg-white/5 hover:bg-white/10 border border-white/10 hover:border-purple-500/50'
+                  }`}
                   title="Скрыть панель"
                 >
-                  <svg className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                  <svg className={`w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform ${isLight ? 'text-gray-600' : 'text-white'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
                   </svg>
                 </button>
@@ -399,7 +427,7 @@ export default function AdminPage() {
           <nav className="space-y-1 sm:space-y-1.5 flex-1 overflow-x-auto lg:overflow-visible">
             <div className="flex lg:flex-col gap-2 lg:gap-1.5 pb-2 lg:pb-0">
             {tabs.map((tab) => {
-              const isMainTab = ['users', 'releases', 'tickets', 'payouts', 'withdrawals', 'news'].includes(tab.id);
+              const isMainTab = ['users', 'releases', 'tickets', 'transactions', 'withdrawals', 'news'].includes(tab.id);
               return (
               <button
                 key={tab.id}
@@ -408,10 +436,10 @@ export default function AdminPage() {
                   activeTab === tab.id 
                     ? isMainTab 
                       ? isLight
-                        ? 'bg-gradient-to-r from-[#6050ba]/20 to-[#8070da]/20 backdrop-blur-md text-[#6050ba] shadow-lg border border-[#6050ba]/30'
+                        ? 'bg-gradient-to-r from-[#6050ba] to-[#8070da] backdrop-blur-md text-white shadow-lg border border-[#6050ba]/30'
                         : 'bg-gradient-to-r from-[#6050ba]/30 to-[#8070da]/30 backdrop-blur-md text-white shadow-lg border border-[#9d8df1]/40'
                       : isLight
-                        ? 'bg-[#6050ba]/15 backdrop-blur-md text-[#6050ba] shadow-lg border border-[#6050ba]/25'
+                        ? 'bg-[#6050ba] backdrop-blur-md text-white shadow-lg border border-[#6050ba]/25'
                         : 'bg-[#6050ba]/30 backdrop-blur-md text-white shadow-lg border border-[#6050ba]/40'
                     : isMainTab
                       ? isLight
@@ -459,14 +487,15 @@ export default function AdminPage() {
           style={{ boxShadow: isLight ? '0 8px 32px rgba(96, 80, 186, 0.1)' : '0 8px 32px 0 rgba(0, 0, 0, 0.37)' }}
         >
           <Suspense fallback={<TabLoader />}>
-            {activeTab === 'releases' && <ReleasesModeration supabase={supabase} onSidebarCollapse={setSidebarCollapsed} />}
-            {activeTab === 'news' && <NewsTab supabase={supabase} />}
-            {activeTab === 'withdrawals' && <WithdrawalsTab supabase={supabase} currentUserRole={currentUserRole} />}
-            {activeTab === 'payouts' && <PayoutsTab supabase={supabase} currentAdmin={userEmail} currentUserRole={currentUserRole} />}
-            {activeTab === 'tickets' && <AdminTicketsPanel supabase={supabase} initialTicketId={initialTicketId} onTicketOpened={() => setInitialTicketId(null)} />}
-            {activeTab === 'users' && <UsersTab supabase={supabase} currentUserRole={currentUserRole} />}
+            {activeTab === 'releases' && supabase && <ReleasesModeration supabase={supabase} onSidebarCollapse={setSidebarCollapsed} />}
+            {activeTab === 'news' && supabase && <NewsTab supabase={supabase} />}
+            {activeTab === 'withdrawals' && supabase && <WithdrawalsTab supabase={supabase} currentUserRole={currentUserRole} />}
+            {activeTab === 'tickets' && supabase && <AdminTicketsPanel supabase={supabase} initialTicketId={initialTicketId} onTicketOpened={() => setInitialTicketId(null)} />}
+            {activeTab === 'users' && supabase && <UsersTab supabase={supabase} currentUserRole={currentUserRole} />}
             {activeTab === 'contracts' && <ContractsTab />}
-            {activeTab === 'archive' && <ArchiveTab supabase={supabase} />}
+            {activeTab === 'archive' && supabase && <ArchiveTab supabase={supabase} />}
+            {activeTab === 'reports' && supabase && <ReportsTab supabase={supabase} />}
+            {activeTab === 'transactions' && supabase && <TransactionsTab supabase={supabase} currentUserRole={currentUserRole} />}
           </Suspense>
         </section>
 

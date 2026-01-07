@@ -98,6 +98,20 @@ CREATE TABLE withdrawal_requests (
 );
 ```
 
+### release_contributors
+Контрибьюторы (авторы) релизов - композиторы, авторы текстов и т.д.
+```sql
+CREATE TABLE release_contributors (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  release_id UUID NOT NULL,
+  release_type TEXT NOT NULL CHECK (release_type IN ('basic', 'exclusive')),
+  role TEXT NOT NULL CHECK (role IN ('composer', 'lyricist', 'producer', 'arranger', 'performer', 'mixer', 'mastering', 'other')),
+  full_name TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  UNIQUE(release_id, release_type, role, full_name)
+);
+```
+
 ## RLS политики
 
 Для каждой таблицы необходимо настроить Row Level Security (RLS).

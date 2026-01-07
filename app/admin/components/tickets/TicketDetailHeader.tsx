@@ -16,34 +16,34 @@ export default function TicketDetailHeader({
   onViewRelease
 }: TicketDetailHeaderProps) {
   return (
-    <div className="p-4 border-b border-zinc-800">
-      <div className="flex items-start justify-between gap-4 mb-3">
+    <div className="p-3 sm:p-4 border-b border-zinc-800">
+      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-4 mb-3">
         <div className="flex-1">
-          <h3 className="font-bold text-white text-lg mb-2">{ticket.subject}</h3>
+          <h3 className="font-bold text-white text-base sm:text-lg mb-2">{ticket.subject}</h3>
           
           {/* Информация о пользователе */}
-          <div className="flex items-center gap-3 mb-2">
+          <div className="flex items-center gap-2 sm:gap-3 mb-2">
             {ticket.user_avatar ? (
               <div 
-                className="w-10 h-10 rounded-full bg-cover bg-center flex-shrink-0 border-2 border-zinc-700"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-cover bg-center flex-shrink-0 border-2 border-zinc-700"
                 style={{ backgroundImage: `url(${ticket.user_avatar})` }}
               />
             ) : (
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-zinc-600 to-zinc-700 flex items-center justify-center flex-shrink-0">
-                <span className="text-white font-bold text-lg">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-zinc-600 to-zinc-700 flex items-center justify-center flex-shrink-0">
+                <span className="text-white font-bold text-base sm:text-lg">
                   {(ticket.user_nickname || ticket.user_email || 'U').charAt(0).toUpperCase()}
                 </span>
               </div>
             )}
-            <div className="flex-1">
-              <p className="text-sm text-white font-medium">
+            <div className="flex-1 min-w-0">
+              <p className="text-sm text-white font-medium truncate">
                 {ticket.user_nickname || ticket.user_email?.split('@')[0] || 'Пользователь'}
               </p>
-              <div className="flex items-center gap-2 text-xs text-zinc-400">
-                {ticket.user_email && <span>{ticket.user_email}</span>}
+              <div className="flex items-center gap-1 sm:gap-2 text-[10px] sm:text-xs text-zinc-400 flex-wrap">
+                {ticket.user_email && <span className="truncate max-w-[140px] sm:max-w-none">{ticket.user_email}</span>}
                 {ticket.user_telegram && (
                   <>
-                    <span>•</span>
+                    <span className="hidden sm:inline">•</span>
                     <span>@{ticket.user_telegram}</span>
                   </>
                 )}
@@ -53,11 +53,11 @@ export default function TicketDetailHeader({
           </div>
         </div>
         
-        <div className="flex gap-2">
+        <div className="flex gap-2 self-start sm:self-auto">
           <select
             value={ticket.status}
             onChange={(e) => onStatusChange(ticket.id, e.target.value)}
-            className="px-3 py-1.5 bg-zinc-800 border border-zinc-700 rounded-lg text-sm text-white focus:outline-none focus:border-blue-500"
+            className="px-3 py-2 sm:py-1.5 bg-zinc-800 border border-zinc-700 rounded-lg text-sm text-white focus:outline-none focus:border-blue-500 min-h-[40px] sm:min-h-0 flex-1 sm:flex-initial"
           >
             <option value="open">Открыт</option>
             <option value="in_progress">В работе</option>
@@ -67,7 +67,7 @@ export default function TicketDetailHeader({
         </div>
       </div>
 
-      <div className="flex items-center gap-3 text-xs text-zinc-500">
+      <div className="flex items-center gap-2 sm:gap-3 text-[10px] sm:text-xs text-zinc-500 flex-wrap">
         <span>ID: {ticket.id.slice(0, 8)}</span>
         <span>•</span>
         <span>Создан: {new Date(ticket.created_at).toLocaleString('ru-RU')}</span>

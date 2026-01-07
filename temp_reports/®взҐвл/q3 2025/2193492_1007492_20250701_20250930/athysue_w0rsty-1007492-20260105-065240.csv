@@ -1,0 +1,427 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/09/2025;01/08/2025;Spotify;Uzbekistan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;20;RUB;0.036710169022
+01/07/2025;01/06/2025;Spotify;Slovakia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.078116219838
+01/07/2025;01/06/2025;Spotify;Australia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";2;RUB;-0.123254621072
+01/08/2025;01/07/2025;Spotify;"Serbia And Montenegro";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;1;RUB;0.003735891174
+01/07/2025;01/06/2025;Spotify;"Serbia And Montenegro";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";1;RUB;-0.040616433737
+01/08/2025;01/08/2025;"YouTube Official Content";"United Kingdom";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;3;RUB;0.679293777818
+01/08/2025;01/08/2025;"YouTube Official Content";Ukraine;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;9;RUB;0.641741407067
+01/09/2025;01/09/2025;"Apple Music";"United States";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;26;RUB;5.757343463912
+01/07/2025;01/06/2025;Spotify;Kazakhstan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;35;RUB;1.527098377798
+01/09/2025;01/08/2025;Spotify;Sweden;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;4;RUB;0.048756504525
+01/07/2025;01/06/2025;Spotify;"Moldova, Republic Of";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;3;RUB;0.082341373850
+01/09/2025;01/08/2025;Spotify;Canada;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;1;RUB;0.068279875889
+01/07/2025;01/06/2025;Spotify;Peru;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.001719539409
+01/08/2025;01/07/2025;Spotify;Canada;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;6;RUB;0.582549967115
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;111;RUB;3.695219527526
+01/07/2025;01/06/2025;Spotify;Egypt;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;9;RUB;0.603558339735
+01/08/2025;01/07/2025;Spotify;Poland;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;3;RUB;0.283927728438
+01/09/2025;01/08/2025;Spotify;Turkey;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;5;RUB;0.008723208505
+01/08/2025;01/07/2025;Spotify;Philippines;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.077656724352
+01/09/2025;01/07/2025;TikTok;"United Kingdom";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Creation;1;RUB;0.067899940593
+01/08/2025;01/07/2025;Spotify;Brazil;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;5;RUB;0.366416205399
+01/07/2025;01/06/2025;Yandex;Kazakhstan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;23;RUB;0.487063021145
+01/07/2025;01/06/2025;Yandex;Belarus;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;140;RUB;3.079239819080
+01/07/2025;01/06/2025;Spotify;Spain;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";6;RUB;-0.234671504640
+01/08/2025;01/08/2025;"Apple Music";Ukraine;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;5;RUB;0.494863984160
+01/08/2025;01/07/2025;Spotify;"Korea, Republic Of";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";1;RUB;-0.052876522633
+01/08/2025;01/07/2025;Spotify;Mexico;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.131802240302
+01/07/2025;01/07/2025;"Apple Music";"United States";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;1;RUB;0.350096958737
+01/08/2025;01/07/2025;Spotify;Australia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.189633835518
+01/08/2025;01/07/2025;Spotify;Belarus;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;2;RUB;0.182560548205
+01/09/2025;01/08/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;3;RUB;0.335369320047
+01/09/2025;01/08/2025;Yandex;Belarus;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;1;RUB;0.021639298911
+01/07/2025;01/06/2025;Spotify;Ireland;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.090103866053
+01/08/2025;01/07/2025;Spotify;Japan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;6;RUB;0.313366550885
+01/07/2025;01/06/2025;Yandex;Uzbekistan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;1;RUB;0.021994570186
+01/07/2025;01/06/2025;Spotify;Netherlands;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;24;RUB;1.199796393684
+01/09/2025;01/08/2025;Spotify;Israel;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;3;RUB;0.028194655983
+01/07/2025;01/07/2025;"YouTube UGC";Spain;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;4;RUB;0.042856603013
+01/08/2025;01/07/2025;Spotify;Egypt;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.050758307978
+01/09/2025;01/08/2025;"UMA VK MUSIC";Belarus;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;1;RUB;0.087365758564
+01/09/2025;01/07/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;9;RUB;0.085091869678
+01/09/2025;01/09/2025;"Apple Music";"United States";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;20;RUB;3.880569434773
+01/09/2025;01/09/2025;"Apple Music";"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;2;RUB;0.209562079979
+01/09/2025;01/08/2025;Spotify;Japan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;54;RUB;1.583418023045
+01/07/2025;01/06/2025;"UMA VK MUSIC";Belarus;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;5;RUB;0.388811558547
+01/07/2025;01/06/2025;Spotify;"Korea, Republic Of";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";1;RUB;-0.050954796059
+01/07/2025;01/06/2025;Spotify;"United Kingdom";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;52;RUB;6.911516870782
+01/09/2025;01/08/2025;Spotify;Poland;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;29;RUB;1.862664583793
+01/09/2025;01/08/2025;Spotify;Italy;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.312581637374
+01/08/2025;01/07/2025;Spotify;Kazakhstan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;3;RUB;0.110432942790
+01/09/2025;01/08/2025;Spotify;India;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;13;RUB;0.396802138277
+01/08/2025;01/07/2025;Spotify;"Czech Republic";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";1;RUB;-0.004338970706
+01/07/2025;01/06/2025;Spotify;France;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";17;RUB;-0.805653759435
+01/08/2025;01/07/2025;Spotify;Estonia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.469128306455
+01/07/2025;01/06/2025;Spotify;Netherlands;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;81;RUB;4.049368143837
+01/08/2025;01/07/2025;"UMA (Vkontakte)";Belarus;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;3;RUB;0.085500020305
+01/09/2025;01/09/2025;"Apple Music";Turkey;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;5;RUB;0.199621046688
+01/09/2025;01/08/2025;Spotify;Finland;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;20;RUB;0.640688487954
+01/08/2025;01/07/2025;Spotify;Estonia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";2;RUB;-0.136965739973
+01/09/2025;01/08/2025;Spotify;India;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;39;RUB;1.209877846730
+01/07/2025;01/06/2025;Spotify;Malaysia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.095459003170
+01/07/2025;01/06/2025;Spotify;Latvia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";3;RUB;-0.167621194846
+01/09/2025;01/08/2025;Spotify;Estonia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;6;RUB;0.690120018342
+01/08/2025;01/07/2025;Spotify;Romania;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;1;RUB;0.013349584485
+01/09/2025;01/09/2025;"YouTube Official Content";"United Kingdom";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;3;RUB;1.026054122680
+01/08/2025;01/07/2025;Spotify;Spain;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;4;RUB;0.162436547850
+01/07/2025;01/06/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;62;RUB;7.044199331738
+01/08/2025;01/07/2025;Spotify;Argentina;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.061716922037
+01/08/2025;01/07/2025;Spotify;Nigeria;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";5;RUB;-0.030274594577
+01/09/2025;01/09/2025;"Apple Music";Japan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.200292781253
+01/08/2025;01/07/2025;Spotify;"United States";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;95;RUB;14.436728705598
+01/07/2025;01/06/2025;Spotify;Germany;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";11;RUB;-0.474353438458
+01/09/2025;01/08/2025;Yandex;"Moldova, Republic Of";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;3;RUB;0.064917896578
+01/07/2025;01/06/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;6;RUB;0.168285554063
+01/07/2025;01/06/2025;Spotify;"United States";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";38;RUB;-2.734331919209
+01/07/2025;01/07/2025;"Apple Music";"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;3;RUB;0.301406560067
+01/08/2025;01/05/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;13;RUB;2.830923896123
+01/08/2025;01/07/2025;Spotify;Lithuania;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.003038524846
+01/07/2025;01/06/2025;Spotify;Iceland;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;6;RUB;0.000098249570
+01/07/2025;01/07/2025;"YouTube UGC";Ukraine;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.002117804934
+01/08/2025;01/07/2025;Spotify;"United Kingdom";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";1;RUB;-0.106666524080
+01/07/2025;01/06/2025;Spotify;Ireland;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";2;RUB;-0.038542248089
+01/08/2025;01/07/2025;Spotify;France;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;1;RUB;0.043734832571
+01/07/2025;01/06/2025;Spotify;India;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;31;RUB;1.048182131062
+01/09/2025;01/08/2025;Spotify;Pakistan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;2;RUB;0.061010535494
+01/09/2025;01/08/2025;Spotify;"Korea, Republic Of";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.102082308846
+01/08/2025;01/07/2025;Spotify;Georgia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;2;RUB;0.252944737764
+01/08/2025;01/02/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;14;RUB;4.277857677266
+01/09/2025;01/08/2025;Spotify;Turkey;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;3;RUB;0.038735199646
+01/07/2025;01/06/2025;Spotify;"United Kingdom";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;3;RUB;0.487120955450
+01/08/2025;01/07/2025;Spotify;"United Kingdom";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;17;RUB;3.051575526626
+01/09/2025;01/08/2025;Spotify;France;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;22;RUB;0.674646702851
+01/07/2025;01/06/2025;Spotify;Belarus;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;18;RUB;0.896174825722
+01/07/2025;01/06/2025;Spotify;Denmark;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";3;RUB;-0.024244453141
+01/09/2025;01/06/2025;"UMA (Vkontakte)";Worldwide;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;1;RUB;2.842048045486
+01/09/2025;01/08/2025;Spotify;Nigeria;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;38;RUB;0.644686588943
+01/08/2025;01/07/2025;Spotify;Sweden;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.300764144635
+01/09/2025;01/08/2025;Spotify;Belgium;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.160185108198
+01/08/2025;01/07/2025;Yandex;Kyrgyzstan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;4;RUB;0.068105243566
+01/08/2025;01/07/2025;Spotify;Peru;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;3;RUB;0.005778183330
+01/09/2025;01/08/2025;Spotify;Sweden;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;18;RUB;0.514980859217
+01/08/2025;01/07/2025;Spotify;Egypt;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;2;RUB;0.050758307978
+01/08/2025;01/04/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;15;RUB;5.284839143622
+01/07/2025;01/06/2025;Spotify;Romania;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;5;RUB;0.313054435582
+01/09/2025;01/08/2025;Spotify;Latvia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;3;RUB;0.649100174094
+01/09/2025;01/08/2025;Spotify;Israel;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.018796437348
+01/07/2025;01/06/2025;Spotify;Poland;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;4;RUB;0.056302633880
+01/08/2025;01/07/2025;Spotify;Philippines;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";2;RUB;-0.031297090208
+01/07/2025;01/07/2025;"Apple Music";Turkey;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.069151849973
+01/08/2025;01/08/2025;"YouTube Official Content";Romania;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.146541772737
+01/07/2025;01/06/2025;"UMA (Vkontakte)";Belarus;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;13;RUB;0.201724623375
+01/07/2025;01/06/2025;Spotify;Nigeria;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;231;RUB;3.456224769548
+01/08/2025;01/07/2025;Spotify;Turkey;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;4;RUB;0.008717079355
+01/09/2025;01/09/2025;"YouTube Official Content";"United States";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.560149208378
+01/08/2025;01/06/2025;TikTok;Sweden;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Creation;1;RUB;0.066265152634
+01/09/2025;01/08/2025;Spotify;"Czech Republic";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;3;RUB;0.038994813702
+01/08/2025;01/07/2025;Spotify;India;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;1;RUB;0.024756505410
+01/09/2025;01/08/2025;Yandex;Kazakhstan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;17;RUB;0.332474432412
+01/07/2025;01/06/2025;Spotify;Romania;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";3;RUB;-0.110327200915
+01/08/2025;01/07/2025;Spotify;Netherlands;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;44;RUB;2.945027910656
+01/07/2025;01/06/2025;Spotify;Netherlands;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";8;RUB;-0.171044622417
+01/07/2025;01/06/2025;Spotify;Sweden;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.178488192770
+01/07/2025;01/06/2025;Spotify;Kazakhstan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;24;RUB;0.767700680311
+01/08/2025;01/07/2025;Spotify;Latvia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;7;RUB;0.993547802203
+01/08/2025;01/06/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;13;RUB;4.191272399554
+01/07/2025;01/07/2025;"Apple Music";"United States";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.700193917547
+01/09/2025;01/08/2025;Spotify;Pakistan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;3;RUB;0.091541770402
+01/09/2025;01/09/2025;"YouTube Official Content";Philippines;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.100459470863
+01/07/2025;01/06/2025;Yandex;"Moldova, Republic Of";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;6;RUB;0.113155328871
+01/08/2025;01/07/2025;Spotify;Finland;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;39;RUB;0.744787292441
+01/07/2025;01/06/2025;Spotify;Ukraine;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;20;RUB;0.706927224350
+01/07/2025;01/06/2025;Spotify;"Viet Nam";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;4;RUB;0.007713362554
+01/07/2025;01/06/2025;Spotify;Ukraine;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";35;RUB;-0.515296465278
+01/09/2025;01/08/2025;Yandex;Kazakhstan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;3;RUB;0.064917896578
+01/09/2025;01/08/2025;Spotify;Ukraine;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;78;RUB;2.047824985489
+01/08/2025;01/08/2025;"Apple Music";Turkey;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;3;RUB;0.095028775963
+01/09/2025;01/08/2025;Spotify;Kazakhstan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;37;RUB;2.324683162981
+01/09/2025;01/08/2025;Spotify;"Viet Nam";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;5;RUB;0.002751964562
+01/09/2025;01/09/2025;"Apple Music";Japan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;2;RUB;0.400585562584
+01/09/2025;01/09/2025;"YouTube Official Content";"United States";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;5;RUB;0.575969957738
+01/08/2025;01/07/2025;Spotify;Georgia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;24;RUB;3.035635724385
+01/07/2025;01/06/2025;Spotify;Sweden;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";1;RUB;-0.014309235069
+01/07/2025;01/06/2025;Spotify;Lithuania;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.073055860909
+01/08/2025;01/04/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;2;RUB;0.704645219114
+01/07/2025;01/06/2025;Spotify;Finland;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;1;RUB;0.025350924148
+01/07/2025;01/07/2025;"YouTube Official Content";Luxembourg;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.100731424276
+01/08/2025;01/01/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;4;RUB;1.244809652571
+01/07/2025;01/06/2025;Spotify;Italy;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";1;RUB;-0.076142328932
+01/07/2025;01/06/2025;Spotify;Germany;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;82;RUB;8.142854353634
+01/09/2025;01/08/2025;Yandex;"Moldova, Republic Of";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;6;RUB;0.094442144936
+01/09/2025;01/08/2025;Spotify;Denmark;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;4;RUB;0.058881657254
+01/07/2025;01/06/2025;Spotify;Uzbekistan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";1;RUB;-0.000415567089
+01/08/2025;01/07/2025;Spotify;Belarus;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";6;RUB;-0.000018273813
+01/08/2025;01/07/2025;Spotify;Uzbekistan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;9;RUB;0.017683198222
+01/09/2025;01/08/2025;Spotify;Uzbekistan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;3;RUB;0.005503923983
+01/08/2025;01/07/2025;Spotify;Finland;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;3;RUB;0.045428436520
+01/08/2025;01/07/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;5;RUB;0.694972880979
+01/08/2025;01/07/2025;Spotify;Romania;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;10;RUB;0.236556643451
+01/08/2025;01/07/2025;Spotify;Portugal;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.183058667053
+01/07/2025;01/07/2025;"Apple Music";Ukraine;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;3;RUB;0.427512942937
+01/08/2025;01/07/2025;"UMA (Vkontakte)";Belarus;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;24;RUB;0.100800000000
+01/08/2025;01/07/2025;Yandex;Belarus;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;2;RUB;0.025250594801
+01/08/2025;01/07/2025;Yandex;Belarus;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;133;RUB;2.849834138835
+01/09/2025;01/08/2025;Spotify;Kazakhstan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;4;RUB;0.337557008758
+01/07/2025;01/06/2025;Spotify;Nigeria;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";26;RUB;-0.153975533558
+01/09/2025;01/08/2025;Spotify;Indonesia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.013604051307
+01/09/2025;01/08/2025;Spotify;Latvia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;2;RUB;0.430448799575
+01/08/2025;01/08/2025;"Apple Music";"United States";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;7;RUB;1.317867115397
+01/09/2025;01/08/2025;"UMA (Vkontakte)";Belarus;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.008400000000
+01/08/2025;01/07/2025;Spotify;Ukraine;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;44;RUB;3.299987383148
+01/09/2025;01/08/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;38;RUB;5.853245517001
+01/07/2025;01/07/2025;"YouTube UGC";"Korea, Republic Of";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;1;RUB;0.005348954514
+01/08/2025;01/06/2025;TikTok;Japan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Creation;1;RUB;0.066265152634
+01/08/2025;01/05/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;35;RUB;3.538990520438
+01/08/2025;01/07/2025;Yandex;"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;3814;RUB;81.584958195341
+01/08/2025;01/07/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;20;RUB;0.150192054544
+01/08/2025;01/07/2025;Yandex;Ukraine;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.003823270455
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;133;RUB;4.717585621526
+01/07/2025;01/06/2025;Spotify;Turkey;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";3;RUB;-0.035746213814
+01/07/2025;01/07/2025;"YouTube Official Content";Ukraine;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;7;RUB;0.473099800030
+01/08/2025;01/03/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;11;RUB;3.760945696244
+01/08/2025;01/07/2025;Spotify;Malaysia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";2;RUB;-0.026350556826
+01/09/2025;01/08/2025;Spotify;Finland;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;6;RUB;0.090139810602
+01/07/2025;01/06/2025;Spotify;"Korea, Republic Of";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.060675176986
+01/08/2025;01/07/2025;"UMA (Vkontakte)";Ukraine;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;21;RUB;0.088200000038
+01/08/2025;01/07/2025;Spotify;"United Kingdom";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;2;RUB;0.160792755734
+01/09/2025;01/06/2025;"UMA (Vkontakte)";Worldwide;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;11.158768494030
+01/08/2025;01/07/2025;Spotify;Netherlands;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";2;RUB;-0.038006110274
+01/08/2025;01/07/2025;Yandex;"Moldova, Republic Of";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.042854648691
+01/09/2025;01/08/2025;Spotify;Egypt;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;4;RUB;0.148813782826
+01/09/2025;01/08/2025;Spotify;Belarus;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;24;RUB;1.042942631546
+01/08/2025;01/07/2025;Yandex;Uzbekistan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;5;RUB;0.107136621727
+01/08/2025;01/07/2025;Spotify;Belarus;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;162;RUB;13.950764226974
+01/07/2025;01/06/2025;Spotify;Poland;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;22;RUB;1.044792147404
+01/09/2025;01/08/2025;Spotify;Norway;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.018432970301
+01/08/2025;01/07/2025;Spotify;Romania;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";6;RUB;-0.067583196186
+01/07/2025;01/06/2025;Spotify;Australia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;3;RUB;0.476459811010
+01/08/2025;01/07/2025;Spotify;France;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";2;RUB;-0.102649693965
+01/08/2025;01/07/2025;Spotify;Finland;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";1;RUB;-0.006488424584
+01/08/2025;01/08/2025;"YouTube UGC";Ukraine;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.000757775314
+01/08/2025;01/07/2025;Yandex;"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;784;RUB;16.112464188513
+01/08/2025;01/07/2025;Spotify;Germany;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";2;RUB;-0.104576844461
+01/07/2025;01/06/2025;"UMA (Vkontakte)";Kyrgyzstan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.008400000000
+01/08/2025;01/03/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;20;RUB;6.838083083978
+01/09/2025;01/08/2025;Spotify;Ukraine;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;51;RUB;4.192332374962
+01/09/2025;01/09/2025;"YouTube Official Content";Germany;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.083142507202
+01/09/2025;01/08/2025;Spotify;Nigeria;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;131;RUB;2.090662284293
+01/08/2025;01/07/2025;Spotify;Colombia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.054195327857
+01/08/2025;01/07/2025;NetEase;"China Mainland";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;1;RUB;0.033716300086
+01/08/2025;01/07/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;79;RUB;8.253126475420
+01/08/2025;01/07/2025;Spotify;Canada;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";3;RUB;-0.160879919379
+01/08/2025;01/07/2025;Spotify;Estonia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;5;RUB;1.196481405143
+01/08/2025;01/07/2025;Spotify;Uzbekistan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;12;RUB;0.023610832142
+01/07/2025;01/06/2025;Spotify;Uzbekistan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;1;RUB;0.000982593938
+01/08/2025;01/08/2025;"Apple Music";"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;18;RUB;0.995143519975
+01/08/2025;01/07/2025;Spotify;Thailand;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.015790366668
+01/07/2025;01/06/2025;Spotify;Belarus;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;4;RUB;0.233660838681
+01/08/2025;01/07/2025;Spotify;Turkey;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";4;RUB;-0.048122547766
+01/08/2025;01/07/2025;Spotify;Brazil;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";4;RUB;-0.129567252298
+01/07/2025;01/06/2025;Spotify;Austria;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";7;RUB;-0.580415451536
+01/07/2025;01/06/2025;Spotify;Spain;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;9;RUB;0.664135257350
+01/08/2025;01/08/2025;"YouTube Official Content";Germany;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.114477052905
+01/07/2025;01/07/2025;"Apple Music";"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;55;RUB;5.253689280059
+01/07/2025;01/04/2025;"Facebook / Instagram";Worldwide;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Creation;7;RUB;0.152621561034
+01/09/2025;01/08/2025;Yandex;Uzbekistan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;10;RUB;0.216392988566
+01/09/2025;01/08/2025;Yandex;Belarus;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;70;RUB;1.302389030799
+01/09/2025;01/09/2025;"YouTube UGC";Kazakhstan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.008863394983
+01/09/2025;01/08/2025;Spotify;"South Africa";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;3;RUB;0.008152040851
+01/07/2025;01/06/2025;Spotify;Canada;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;7;RUB;0.800224520755
+01/07/2025;01/06/2025;Spotify;"Moldova, Republic Of";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;9;RUB;0.101698474781
+01/08/2025;01/07/2025;Spotify;Taiwan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.008019713027
+01/07/2025;01/05/2025;TikTok;Japan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Creation;1;RUB;0.069745987130
+01/08/2025;01/07/2025;Spotify;Switzerland;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.199596211956
+01/08/2025;01/08/2025;"YouTube Official Content";Turkey;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.037715054016
+01/09/2025;01/08/2025;Spotify;Lithuania;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.002388497593
+01/07/2025;01/06/2025;Spotify;Germany;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;22;RUB;2.817391675169
+01/07/2025;01/06/2025;Spotify;Belgium;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.531386813393
+01/07/2025;01/06/2025;Spotify;Indonesia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;2;RUB;0.013019369949
+01/07/2025;01/06/2025;Spotify;Estonia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;2;RUB;0.107594038627
+01/09/2025;01/08/2025;Yandex;"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;432;RUB;9.215885263482
+01/07/2025;01/06/2025;Yandex;"Moldova, Republic Of";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;4;RUB;0.069166188574
+01/07/2025;01/07/2025;"Apple Music";Finland;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;3;RUB;0.944911481279
+01/07/2025;01/06/2025;Spotify;Italy;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;3;RUB;0.785682135078
+01/07/2025;01/07/2025;"YouTube UGC";"United States";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;5;RUB;0.020594557584
+01/09/2025;01/08/2025;Spotify;Germany;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;84;RUB;4.765675902117
+01/07/2025;01/06/2025;Spotify;France;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;5;RUB;0.882172852034
+01/07/2025;01/06/2025;Spotify;"United States";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;6;RUB;0.943486729860
+01/07/2025;01/06/2025;Spotify;Morocco;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.001768669132
+01/08/2025;01/07/2025;Yandex;Uzbekistan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;2;RUB;0.042854648691
+01/07/2025;01/06/2025;Spotify;France;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;23;RUB;2.300448948802
+01/07/2025;01/06/2025;Spotify;Lithuania;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";1;RUB;-0.058185424250
+01/07/2025;01/06/2025;Spotify;Finland;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;10;RUB;0.392448007870
+01/07/2025;01/06/2025;Spotify;Denmark;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;20;RUB;0.377905636859
+01/08/2025;01/07/2025;Yandex;Kazakhstan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;16;RUB;0.342837189601
+01/09/2025;01/09/2025;"YouTube Official Content";Ukraine;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;4;RUB;0.315781174109
+01/07/2025;01/06/2025;Spotify;"United Arab Emirates";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";1;RUB;-0.002982242857
+01/09/2025;01/08/2025;Spotify;Mexico;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.173373768572
+01/07/2025;01/06/2025;Spotify;Latvia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;1;RUB;0.002210836414
+01/07/2025;01/06/2025;Spotify;Belgium;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";2;RUB;-0.157765566886
+01/08/2025;01/07/2025;Spotify;Japan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;72;RUB;3.340434731161
+01/07/2025;01/06/2025;Spotify;Romania;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;6;RUB;0.077968830744
+01/09/2025;01/08/2025;Spotify;"United Arab Emirates";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.005555853010
+01/08/2025;01/07/2025;Spotify;Iceland;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;5;RUB;0.001245297082
+01/08/2025;01/07/2025;Spotify;Italy;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.527707079906
+01/09/2025;01/08/2025;Spotify;Switzerland;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;6;RUB;1.240357157753
+01/07/2025;01/06/2025;Spotify;Taiwan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.052126609517
+01/09/2025;01/08/2025;Spotify;Egypt;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;13;RUB;0.460356943022
+01/08/2025;01/06/2025;"Facebook / Instagram";Kazakhstan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Creation;6;RUB;0.054294283619
+01/07/2025;01/07/2025;"YouTube UGC";Canada;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;1;RUB;0.007297966214
+01/07/2025;01/06/2025;Spotify;Austria;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;7;RUB;1.914731709622
+01/07/2025;01/06/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;94;RUB;3.030676672249
+01/07/2025;01/06/2025;Spotify;Colombia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";1;RUB;-0.019767895486
+01/07/2025;01/07/2025;"YouTube Official Content";"United States";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.313349242365
+01/07/2025;01/06/2025;Yandex;Turkmenistan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;2;RUB;0.006364956326
+01/09/2025;01/08/2025;Yandex;Kyrgyzstan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;7;RUB;0.151475091988
+01/09/2025;01/08/2025;Spotify;Austria;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;9;RUB;0.865570751705
+01/08/2025;01/07/2025;Spotify;Austria;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.054095704042
+01/07/2025;01/06/2025;Spotify;"Viet Nam";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";1;RUB;-0.000822431146
+01/07/2025;01/06/2025;Spotify;Colombia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;6;RUB;0.165124924712
+01/08/2025;01/07/2025;Spotify;Ukraine;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";4;RUB;-0.056963160638
+01/07/2025;01/06/2025;Spotify;Indonesia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;3;RUB;0.019504485161
+01/07/2025;01/06/2025;Spotify;"United Kingdom";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";7;RUB;-0.463863454763
+01/08/2025;01/07/2025;Spotify;"Moldova, Republic Of";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.078354090679
+01/08/2025;01/07/2025;Spotify;"Hong Kong";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.003387208047
+01/07/2025;01/06/2025;Spotify;Brazil;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;4;RUB;0.184088978280
+01/08/2025;01/06/2025;"Facebook / Instagram";"United Kingdom";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Creation;6;RUB;0.561776995242
+01/09/2025;01/08/2025;Spotify;Georgia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;15;RUB;2.004572513988
+01/09/2025;01/08/2025;Spotify;Australia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;1;RUB;0.088426333653
+01/07/2025;01/06/2025;Spotify;Malaysia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";1;RUB;-0.024327763131
+01/08/2025;01/07/2025;Spotify;Norway;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.014545069586
+01/08/2025;01/08/2025;"YouTube Official Content";Ukraine;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;10;RUB;0.127137576173
+01/07/2025;01/06/2025;Spotify;Taiwan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";2;RUB;-0.032787475980
+01/09/2025;01/09/2025;"Apple Music";Ukraine;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;3;RUB;0.370840457229
+01/07/2025;01/06/2025;Spotify;"Serbia And Montenegro";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;5;RUB;0.006239471684
+01/07/2025;01/06/2025;Spotify;"United Arab Emirates";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.006976417155
+01/07/2025;01/06/2025;Spotify;Turkey;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;9;RUB;0.101501956038
+01/08/2025;01/07/2025;Spotify;Poland;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;5;RUB;0.351024333765
+01/08/2025;01/07/2025;Yandex;Kazakhstan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;1;RUB;0.003823270455
+01/07/2025;01/05/2025;TikTok;"United Kingdom";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Creation;1;RUB;0.069745987130
+01/07/2025;01/06/2025;Spotify;Denmark;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;3;RUB;0.056695676378
+01/09/2025;01/08/2025;Spotify;Denmark;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;1;RUB;0.014694452370
+01/08/2025;01/07/2025;Spotify;Ukraine;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;47;RUB;1.120468547775
+01/07/2025;01/06/2025;Spotify;India;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;6;RUB;0.267904233273
+01/08/2025;01/07/2025;Spotify;India;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;25;RUB;0.865033156071
+01/07/2025;01/06/2025;Spotify;"Czech Republic";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";1;RUB;-0.008400757211
+01/08/2025;01/06/2025;TikTok;Ukraine;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Creation;1;RUB;0.066265152634
+01/08/2025;01/07/2025;Spotify;Kazakhstan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;4;RUB;0.207167618042
+01/07/2025;01/06/2025;Spotify;"Moldova, Republic Of";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";2;RUB;-0.033042880204
+01/08/2025;01/07/2025;"UMA (Vkontakte)";Ukraine;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;3;RUB;0.012600000038
+01/08/2025;01/07/2025;Spotify;"Serbia And Montenegro";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.003735891174
+01/09/2025;01/08/2025;Spotify;Japan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;1;RUB;0.082922404451
+01/08/2025;01/07/2025;Spotify;Japan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";11;RUB;-0.631077907490
+01/08/2025;01/07/2025;Spotify;India;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";1;RUB;-0.010615054409
+01/07/2025;01/06/2025;"UMA (Vkontakte)";Belarus;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;7;RUB;0.544336181922
+01/07/2025;01/06/2025;Spotify;Latvia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;15;RUB;1.577996784191
+01/07/2025;01/06/2025;Spotify;Poland;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";5;RUB;-0.198021037730
+01/08/2025;01/07/2025;Spotify;Turkey;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;19;RUB;0.123134967774
+01/07/2025;01/06/2025;Spotify;Georgia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";4;RUB;-0.161432411010
+01/08/2025;01/07/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1017;RUB;31.757993600119
+01/09/2025;01/08/2025;Spotify;Spain;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;5;RUB;0.311439312424
+01/09/2025;01/08/2025;Spotify;Netherlands;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;12;RUB;2.112989549246
+01/08/2025;01/07/2025;Spotify;Singapore;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";1;RUB;-0.056678450166
+01/09/2025;01/08/2025;Spotify;"United States";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;84;RUB;11.369144485034
+01/09/2025;01/09/2025;"Apple Music";Turkey;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;9;RUB;0.359317883960
+01/07/2025;01/07/2025;"YouTube UGC";Ukraine;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;3;RUB;0.004218406466
+01/07/2025;01/06/2025;Spotify;Paraguay;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.124199876488
+01/09/2025;01/08/2025;Spotify;Australia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.189677860633
+01/08/2025;01/07/2025;Spotify;Slovakia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";1;RUB;-0.006125722974
+01/08/2025;01/07/2025;Spotify;Denmark;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.017733030078
+01/08/2025;01/07/2025;Spotify;"Viet Nam";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;11;RUB;0.013997163786
+01/07/2025;01/06/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;1;RUB;0.149705663389
+01/08/2025;01/05/2025;SberZvuk;"Czech Republic";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;1;RUB;0.000017901345
+01/08/2025;01/07/2025;Spotify;Austria;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;1;RUB;0.027047852022
+01/07/2025;01/06/2025;Spotify;Canada;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;4;RUB;0.439907315694
+01/08/2025;01/07/2025;Spotify;Netherlands;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;6;RUB;0.762968599498
+01/07/2025;01/06/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1509;RUB;44.487339079223
+01/09/2025;01/08/2025;Spotify;Estonia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;2;RUB;0.477024502052
+01/09/2025;01/07/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;12;RUB;0.680318125990
+01/09/2025;01/08/2025;Spotify;"Moldova, Republic Of";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;1;RUB;0.040500610838
+01/09/2025;01/08/2025;Yandex;"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;3657;RUB;77.355745994266
+01/09/2025;01/08/2025;Spotify;France;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;4;RUB;0.122644157388
+01/07/2025;01/06/2025;Yandex;Uzbekistan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;11;RUB;0.241940271527
+01/09/2025;01/08/2025;Spotify;Canada;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;5;RUB;0.568462419464
+01/09/2025;01/08/2025;Spotify;Netherlands;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;38;RUB;3.316376939498
+01/09/2025;01/08/2025;Spotify;Romania;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;7;RUB;0.492186269086
+01/08/2025;01/07/2025;Spotify;Germany;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;7;RUB;0.402181146788
+01/08/2025;01/08/2025;"Apple Music";"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;11;RUB;1.138633439999
+01/07/2025;01/06/2025;Spotify;Japan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;9;RUB;0.726087806463
+01/08/2025;01/07/2025;"UMA (Vkontakte)";Kyrgyzstan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.008400000000
+01/08/2025;01/07/2025;Spotify;Mexico;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;1;RUB;0.131802240302
+01/08/2025;01/08/2025;"YouTube Official Content";"United States";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;4;RUB;0.824122444132
+01/07/2025;01/06/2025;Spotify;Switzerland;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;10;RUB;3.788096233140
+01/09/2025;01/08/2025;Spotify;"United Kingdom";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;4;RUB;0.563996972658
+01/09/2025;01/08/2025;Spotify;Poland;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;58;RUB;3.776941676589
+01/08/2025;01/07/2025;Spotify;Slovakia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.014296010199
+01/07/2025;01/06/2025;Spotify;"Czech Republic";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;3;RUB;0.058906512793
+01/08/2025;01/07/2025;Spotify;Spain;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";1;RUB;-0.008923371754
+01/09/2025;01/08/2025;Spotify;Germany;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;12;RUB;0.587518496882
+01/08/2025;01/08/2025;"YouTube UGC";Ukraine;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;1;RUB;0.000757775314
+01/08/2025;01/06/2025;"Facebook / Instagram";"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Creation;12;RUB;0.361731139643
+01/09/2025;01/08/2025;Spotify;"United Kingdom";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;6;RUB;0.478374522312
+01/08/2025;01/07/2025;Yandex;Kyrgyzstan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;1;RUB;0.021427324346
+01/08/2025;01/08/2025;"Apple Music";"United States";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;22;RUB;4.141868077090
+01/09/2025;01/08/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;5;RUB;0.021000000039
+01/07/2025;01/06/2025;"UMA (Vkontakte)";"Moldova, Republic Of";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.004200000000
+01/09/2025;01/08/2025;"UMA (Vkontakte)";Belarus;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;13;RUB;0.054600000039
+01/07/2025;01/06/2025;Spotify;Paraguay;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";1;RUB;-0.040258699328
+01/07/2025;01/06/2025;Spotify;India;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";7;RUB;-0.089546244029
+01/09/2025;01/08/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.167122411266
+01/09/2025;01/08/2025;"UMA (Vkontakte)";Ukraine;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;7;RUB;0.029400000039
+01/07/2025;01/06/2025;Spotify;"Czech Republic";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;4;RUB;0.397360997308
+01/09/2025;01/09/2025;"Apple Music";"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;50;RUB;5.024236000098
+01/07/2025;01/06/2025;Yandex;Kyrgyzstan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.043989140298
+01/08/2025;01/05/2025;SberZvuk;"Czech Republic";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.000017901345
+01/09/2025;01/09/2025;"YouTube Official Content";Poland;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.391604584825
+01/07/2025;01/06/2025;Spotify;"United States";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;79;RUB;13.661937363541
+01/09/2025;01/08/2025;Spotify;Philippines;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;4;RUB;0.028610046838
+01/09/2025;01/09/2025;"Apple Music";France;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.311958551052
+01/08/2025;01/07/2025;Spotify;Latvia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";1;RUB;-0.057815513102
+01/08/2025;01/06/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;3;RUB;0.967216707578
+01/08/2025;01/07/2025;Spotify;Nigeria;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;56;RUB;0.882218220576
+01/08/2025;01/07/2025;Spotify;"Korea, Republic Of";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.125974250071
+01/08/2025;01/02/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;15;RUB;4.583418939959
+01/08/2025;01/07/2025;Spotify;Taiwan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";2;RUB;-0.003433319554
+01/09/2025;01/08/2025;Spotify;Switzerland;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;2;RUB;0.413469697385
+01/07/2025;01/06/2025;Yandex;"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;785;RUB;16.906015891861
+01/08/2025;01/07/2025;Spotify;"Czech Republic";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;3;RUB;0.109635952722
+01/08/2025;01/07/2025;Spotify;Nigeria;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;188;RUB;2.889288469266
+01/09/2025;01/09/2025;"Apple Music";Ukraine;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;1;RUB;0.094447253387
+01/08/2025;01/07/2025;Spotify;Colombia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";2;RUB;-0.022477754206
+01/07/2025;01/05/2025;"Facebook / Instagram";Worldwide;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Creation;13;RUB;0.295203417585
+01/08/2025;01/08/2025;"YouTube Official Content";"United States";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;1;RUB;0.055919239746
+01/08/2025;01/07/2025;Spotify;Uzbekistan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";1;RUB;-0.000842532374
+01/07/2025;01/06/2025;Spotify;Kazakhstan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";9;RUB;-0.231203193627
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;714;RUB;23.313239520029
+01/08/2025;01/07/2025;Spotify;"Hong Kong";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";1;RUB;-0.001451802876
+01/07/2025;01/06/2025;Yandex;Turkmenistan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.006364956326
+01/08/2025;01/07/2025;"UMA (Vkontakte)";Kazakhstan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;2;RUB;0.008400000000
+01/09/2025;01/08/2025;Spotify;"Moldova, Republic Of";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.047302636493
+01/09/2025;01/08/2025;Spotify;Brazil;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;3;RUB;0.125915360577
+01/08/2025;01/07/2025;Spotify;"United States";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";27;RUB;-2.041777281037
+01/09/2025;01/08/2025;Spotify;"Czech Republic";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;1;RUB;0.012980965063
+01/07/2025;01/06/2025;Spotify;Uzbekistan;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;18;RUB;0.017490192103
+01/09/2025;01/08/2025;Spotify;"United States";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;37;RUB;5.182364660725
+01/08/2025;01/01/2025;SberZvuk;"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;3;RUB;0.933607239410
+01/09/2025;01/08/2025;Spotify;"South Africa";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;2;RUB;0.005400081430
+01/08/2025;01/07/2025;Spotify;Singapore;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.214988083516
+01/08/2025;01/07/2025;Spotify;Germany;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;109;RUB;6.909306325555
+01/07/2025;01/06/2025;Spotify;Georgia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;7;RUB;0.644139470321
+01/07/2025;01/06/2025;Spotify;"Serbia And Montenegro";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;6;RUB;0.109362707758
+01/07/2025;01/06/2025;Spotify;Nigeria;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;33;RUB;0.512668403426
+01/08/2025;01/07/2025;Yandex;"Moldova, Republic Of";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;2;RUB;0.042854648691
+01/08/2025;01/07/2025;Spotify;France;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;4;RUB;0.390624785135
+01/08/2025;01/07/2025;Spotify;Denmark;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";2;RUB;-0.007598660310
+01/07/2025;01/06/2025;Spotify;Ukraine;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;94;RUB;2.386819095289
+01/08/2025;01/07/2025;Spotify;Malaysia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;2;RUB;0.064257328034
+01/07/2025;01/06/2025;Spotify;Finland;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";4;RUB;-0.141876461041
+01/09/2025;01/08/2025;Spotify;Romania;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;13;RUB;0.655434905802
+01/07/2025;01/06/2025;Spotify;Brazil;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";1;RUB;-0.032665283420
+01/09/2025;01/07/2025;"Facebook / Instagram";"United States";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Creation;6;RUB;0.922243465139
+01/08/2025;01/07/2025;Spotify;"United States";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";KAPLI;3617667208471;DG-A0S-24-57101;;"Music Release";Stream;53;RUB;8.150618728583
+01/07/2025;01/06/2025;Spotify;Norway;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;3;RUB;0.186152425674
+01/09/2025;01/08/2025;Spotify;Peru;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;1;RUB;0.001713487385
+01/07/2025;01/06/2025;Yandex;"Russian Federation";thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";Stream;3959;RUB;89.030944373808
+01/07/2025;01/06/2025;Spotify;Slovakia;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";2;RUB;-0.050283754590
+01/07/2025;01/06/2025;Spotify;Belarus;thqlabel;"athysue, w0rsty";"made it lovely & fairly sadistic";"ТАБЛА -BLA-BLA :3";3617667208471;DG-A0S-24-57098;;"Music Release";"Platform Promotion";10;RUB;-0.215938652606

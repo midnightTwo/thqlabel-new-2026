@@ -1,0 +1,77 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/05/2025;01/04/2025;"UMA (Odnoklassniki)";"Russian Federation";thqlabel;"no life";"step into the abyss";"всему виной";3617665710471;DG-A0R-24-03464;;"Music Release";Stream;1;RUB;0.198849146140
+01/04/2025;01/03/2025;NetEase;"China Mainland";thqlabel;"no life";"step into the abyss";s1lence;3617665710471;DG-A0R-24-03461;;"Music Release";Stream;1;RUB;0.031311999220
+01/04/2025;01/04/2025;"Apple Music";"United States";thqlabel;"no life";"step into the abyss";hard;3617665710471;DG-A0R-24-03467;;"Music Release";Stream;1;RUB;0.199882873079
+01/04/2025;01/04/2025;"YouTube Official Content";Croatia;thqlabel;"no life";"step into the abyss";s1lence;3617665710471;DG-A0R-24-03461;;"Music Release";Stream;1;RUB;0.065022145315
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;"no life";"step into the abyss";"лунное сияние";3617665710471;DG-A0R-24-03462;;"Music Release";Stream;1;RUB;-0.005944331154
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"no life";"step into the abyss";свет;3617665710471;DG-A0R-24-03465;;"Music Release";Stream;1;RUB;0.004200000038
+01/06/2025;01/05/2025;Yandex;"Russian Federation";thqlabel;"no life";"step into the abyss";hard;3617665710471;DG-A0R-24-03467;;"Music Release";Stream;1;RUB;0.020858201942
+01/04/2025;01/11/2024;Yandex;Worldwide;thqlabel;"no life";"step into the abyss";свет;3617665710471;DG-A0R-24-03465;;"Music Release";Stream;-1;RUB;-0.003647874884
+01/04/2025;01/03/2025;Yandex;"Russian Federation";thqlabel;"no life";"step into the abyss";"всему виной";3617665710471;DG-A0R-24-03464;;"Music Release";Stream;2;RUB;0.042580701633
+01/06/2025;01/01/2025;Deezer;France;thqlabel;"no life";"step into the abyss";"лунное сияние";3617665710471;DG-A0R-24-03462;;"Music Release";Stream;0;RUB;-0.006150998226
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"no life";"step into the abyss";s1lence;3617665710471;DG-A0R-24-03461;;"Music Release";Stream;9;RUB;0.413943593259
+01/04/2025;01/03/2025;Yandex;"Russian Federation";thqlabel;"no life";"step into the abyss";"I don't exist";3617665710471;DG-A0R-24-03463;;"Music Release";Stream;1;RUB;0.021290350854
+01/05/2025;01/04/2025;Yandex;"Russian Federation";thqlabel;"no life";"step into the abyss";"I don't exist";3617665710471;DG-A0R-24-03463;;"Music Release";Stream;1;RUB;0.021850258413
+01/04/2025;01/02/2025;Deezer;France;thqlabel;"no life";"step into the abyss";s1lence;3617665710471;DG-A0R-24-03461;;"Music Release";Stream;2;RUB;0.664960045965
+01/05/2025;01/04/2025;Yandex;"Russian Federation";thqlabel;"no life";"step into the abyss";s1lence;3617665710471;DG-A0R-24-03461;;"Music Release";Stream;1;RUB;0.021850258413
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;"no life";"step into the abyss";"point of no return";3617665710471;DG-A0R-24-03466;;"Music Release";Stream;1;RUB;0.080857809133
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;"no life";"step into the abyss";отрава;3617665710471;DG-A0R-24-03468;;"Music Release";Stream;1;RUB;0.080857809133
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"no life";"step into the abyss";reborn;3617665710471;DG-A0R-24-03460;;"Music Release";Stream;1;RUB;0.004200000038
+01/06/2025;01/05/2025;Yandex;"Russian Federation";thqlabel;"no life";"step into the abyss";"всему виной";3617665710471;DG-A0R-24-03464;;"Music Release";Stream;2;RUB;0.041716403884
+01/06/2025;01/01/2025;Deezer;France;thqlabel;"no life";"step into the abyss";s1lence;3617665710471;DG-A0R-24-03461;;"Music Release";Stream;0;RUB;-0.002468407407
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"no life";"step into the abyss";s1lence;3617665710471;DG-A0R-24-03461;;"Music Release";Stream;4;RUB;0.256743380919
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"no life";"step into the abyss";"point of no return";3617665710471;DG-A0R-24-03466;;"Music Release";Stream;2;RUB;0.008400000000
+01/06/2025;01/02/2025;Deezer;France;thqlabel;"no life";"step into the abyss";s1lence;3617665710471;DG-A0R-24-03461;;"Music Release";Stream;1;RUB;-0.007746394412
+01/05/2025;01/03/2025;Deezer;France;thqlabel;"no life";"step into the abyss";"лунное сияние";3617665710471;DG-A0R-24-03462;;"Music Release";Stream;1;RUB;0.139563324213
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"no life";"step into the abyss";"I don't exist";3617665710471;DG-A0R-24-03463;;"Music Release";Stream;1;RUB;0.004200000000
+01/04/2025;01/11/2024;Yandex;Worldwide;thqlabel;"no life";"step into the abyss";"лунное сияние";3617665710471;DG-A0R-24-03462;;"Music Release";Stream;-1;RUB;-0.007295748042
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;"no life";"step into the abyss";отрава;3617665710471;DG-A0R-24-03468;;"Music Release";Stream;1;RUB;-0.000054883054
+01/04/2025;01/03/2025;NetEase;"China Mainland";thqlabel;"no life";"step into the abyss";"всему виной";3617665710471;DG-A0R-24-03464;;"Music Release";Stream;1;RUB;0.031311999220
+01/05/2025;01/04/2025;Yandex;"Russian Federation";thqlabel;"no life";"step into the abyss";hard;3617665710471;DG-A0R-24-03467;;"Music Release";Stream;1;RUB;0.021850258413
+01/04/2025;01/11/2024;Yandex;Worldwide;thqlabel;"no life";"step into the abyss";"всему виной";3617665710471;DG-A0R-24-03464;;"Music Release";Stream;-1;RUB;-0.018239370894
+01/04/2025;01/03/2025;NetEase;"China Mainland";thqlabel;"no life";"step into the abyss";hard;3617665710471;DG-A0R-24-03467;;"Music Release";Stream;1;RUB;0.031311999220
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"no life";"step into the abyss";"I don't exist";3617665710471;DG-A0R-24-03463;;"Music Release";Stream;2;RUB;0.008400000000
+01/04/2025;01/03/2025;NetEase;"China Mainland";thqlabel;"no life";"step into the abyss";reborn;3617665710471;DG-A0R-24-03460;;"Music Release";Stream;1;RUB;0.031311999220
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"no life";"step into the abyss";"point of no return";3617665710471;DG-A0R-24-03466;;"Music Release";Stream;2;RUB;0.008400000000
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;"no life";"step into the abyss";s1lence;3617665710471;DG-A0R-24-03461;;"Music Release";Stream;1;RUB;-0.010944554298
+01/05/2025;01/03/2025;Deezer;Brazil;thqlabel;"no life";"step into the abyss";reborn;3617665710471;DG-A0R-24-03460;;"Music Release";Stream;1;RUB;0.041961904016
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;"no life";"step into the abyss";hard;3617665710471;DG-A0R-24-03467;;"Music Release";Stream;1;RUB;0.080857809133
+01/05/2025;01/03/2025;Deezer;France;thqlabel;"no life";"step into the abyss";s1lence;3617665710471;DG-A0R-24-03461;;"Music Release";Stream;1;RUB;0.139563324213
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;"no life";"step into the abyss";"лунное сияние";3617665710471;DG-A0R-24-03462;;"Music Release";Stream;1;RUB;0.080857809133
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;"no life";"step into the abyss";reborn;3617665710471;DG-A0R-24-03460;;"Music Release";Stream;1;RUB;-0.007241987263
+01/04/2025;01/03/2025;Yandex;"Russian Federation";thqlabel;"no life";"step into the abyss";свет;3617665710471;DG-A0R-24-03465;;"Music Release";Stream;1;RUB;0.021290350854
+01/04/2025;01/03/2025;Yandex;"Russian Federation";thqlabel;"no life";"step into the abyss";"лунное сияние";3617665710471;DG-A0R-24-03462;;"Music Release";Stream;1;RUB;0.021290350854
+01/06/2025;01/01/2025;Deezer;France;thqlabel;"no life";"step into the abyss";reborn;3617665710471;DG-A0R-24-03460;;"Music Release";Stream;0;RUB;-0.008619405634
+01/04/2025;01/11/2024;Yandex;Worldwide;thqlabel;"no life";"step into the abyss";"I don't exist";3617665710471;DG-A0R-24-03463;;"Music Release";Stream;-1;RUB;-0.014591497810
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"no life";"step into the abyss";"point of no return";3617665710471;DG-A0R-24-03466;;"Music Release";Stream;3;RUB;0.012600000038
+01/05/2025;01/04/2025;Yandex;"Russian Federation";thqlabel;"no life";"step into the abyss";"всему виной";3617665710471;DG-A0R-24-03464;;"Music Release";Stream;1;RUB;0.021850258413
+01/04/2025;01/03/2025;Yandex;"Russian Federation";thqlabel;"no life";"step into the abyss";"point of no return";3617665710471;DG-A0R-24-03466;;"Music Release";Stream;1;RUB;0.021290350854
+01/05/2025;01/03/2025;Deezer;France;thqlabel;"no life";"step into the abyss";reborn;3617665710471;DG-A0R-24-03460;;"Music Release";Stream;1;RUB;0.139563324213
+01/04/2025;01/11/2024;Yandex;Worldwide;thqlabel;"no life";"step into the abyss";reborn;3617665710471;DG-A0R-24-03460;;"Music Release";Stream;-1;RUB;-0.018239370894
+01/06/2025;01/05/2025;Yandex;"Russian Federation";thqlabel;"no life";"step into the abyss";"лунное сияние";3617665710471;DG-A0R-24-03462;;"Music Release";Stream;1;RUB;0.020858201942
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;"no life";"step into the abyss";"всему виной";3617665710471;DG-A0R-24-03464;;"Music Release";Stream;2;RUB;0.161715618266
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"no life";"step into the abyss";s1lence;3617665710471;DG-A0R-24-03461;;"Music Release";Stream;5;RUB;0.140822873985
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;"no life";"step into the abyss";свет;3617665710471;DG-A0R-24-03465;;"Music Release";Stream;1;RUB;-0.005683080638
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;"no life";"step into the abyss";reborn;3617665710471;DG-A0R-24-03460;;"Music Release";Stream;1;RUB;0.080857809133
+01/06/2025;01/05/2025;"UMA (Odnoklassniki)";Belarus;thqlabel;"no life";"step into the abyss";"всему виной";3617665710471;DG-A0R-24-03464;;"Music Release";Stream;1;RUB;0.004200000036
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"no life";"step into the abyss";"всему виной";3617665710471;DG-A0R-24-03464;;"Music Release";Stream;4;RUB;0.205058282881
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;"no life";"step into the abyss";"I don't exist";3617665710471;DG-A0R-24-03463;;"Music Release";Stream;1;RUB;-0.003671136314
+01/04/2025;01/04/2025;"YouTube Official Content";Ukraine;thqlabel;"no life";"step into the abyss";"всему виной";3617665710471;DG-A0R-24-03464;;"Music Release";Stream;2;RUB;0.023055277150
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;"no life";"step into the abyss";reborn;3617665710471;DG-A0R-24-03460;;"Music Release";Stream;4;RUB;0.016800000000
+01/04/2025;01/03/2025;NetEase;"China Mainland";thqlabel;"no life";"step into the abyss";"point of no return";3617665710471;DG-A0R-24-03466;;"Music Release";Stream;1;RUB;0.031311999220
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;"no life";"step into the abyss";s1lence;3617665710471;DG-A0R-24-03461;;"Music Release";Stream;1;RUB;0.080857809133
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;"no life";"step into the abyss";hard;3617665710471;DG-A0R-24-03467;;"Music Release";Stream;1;RUB;-0.004821824190
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;"no life";"step into the abyss";"point of no return";3617665710471;DG-A0R-24-03466;;"Music Release";Stream;1;RUB;-0.006543554352
+01/04/2025;01/03/2025;Yandex;"Russian Federation";thqlabel;"no life";"step into the abyss";hard;3617665710471;DG-A0R-24-03467;;"Music Release";Stream;1;RUB;0.021290350854
+01/04/2025;01/11/2024;Yandex;Worldwide;thqlabel;"no life";"step into the abyss";s1lence;3617665710471;DG-A0R-24-03461;;"Music Release";Stream;-1;RUB;-0.021887245778
+01/04/2025;01/03/2025;Yandex;"Russian Federation";thqlabel;"no life";"step into the abyss";s1lence;3617665710471;DG-A0R-24-03461;;"Music Release";Stream;1;RUB;0.021290350854
+01/04/2025;01/03/2025;NetEase;"China Mainland";thqlabel;"no life";"step into the abyss";отрава;3617665710471;DG-A0R-24-03468;;"Music Release";Stream;1;RUB;0.031311999220
+01/04/2025;01/11/2024;Yandex;Worldwide;thqlabel;"no life";"step into the abyss";"point of no return";3617665710471;DG-A0R-24-03466;;"Music Release";Stream;-1;RUB;-0.003647874884
+01/04/2025;01/03/2025;"UMA (Odnoklassniki)";"Russian Federation";thqlabel;"no life";"step into the abyss";"лунное сияние";3617665710471;DG-A0R-24-03462;;"Music Release";Stream;1;RUB;0.004200000038
+01/04/2025;01/03/2025;NetEase;"China Mainland";thqlabel;"no life";"step into the abyss";"I don't exist";3617665710471;DG-A0R-24-03463;;"Music Release";Stream;1;RUB;0.031311999220
+01/04/2025;01/03/2025;NetEase;"China Mainland";thqlabel;"no life";"step into the abyss";"лунное сияние";3617665710471;DG-A0R-24-03462;;"Music Release";Stream;1;RUB;0.031311999220
+01/06/2025;01/06/2025;"YouTube UGC";Argentina;thqlabel;"no life";"step into the abyss";s1lence;3617665710471;DG-A0R-24-03461;;"Music Release";Stream;1;RUB;0.000136266907
+01/06/2025;01/06/2025;"YouTube UGC";Poland;thqlabel;"no life";"step into the abyss";s1lence;3617665710471;DG-A0R-24-03461;;"Music Release";Stream;1;RUB;0.000334041104
+01/04/2025;01/03/2025;NetEase;"China Mainland";thqlabel;"no life";"step into the abyss";свет;3617665710471;DG-A0R-24-03465;;"Music Release";Stream;1;RUB;0.031311999220
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;thqlabel;"no life";"step into the abyss";"всему виной";3617665710471;DG-A0R-24-03464;;"Music Release";Stream;1;RUB;-0.007053300662
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";thqlabel;"no life";"step into the abyss";свет;3617665710471;DG-A0R-24-03465;;"Music Release";Stream;1;RUB;0.080857809133

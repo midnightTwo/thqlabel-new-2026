@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { UserRole } from '../lib/types';
+import { UserRole } from '@/app/cabinet/lib/types';
 
 export interface CabinetState {
   // Вкладки

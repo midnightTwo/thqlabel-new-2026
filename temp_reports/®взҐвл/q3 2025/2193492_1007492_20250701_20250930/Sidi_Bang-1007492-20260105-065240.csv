@@ -1,0 +1,6 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/09/2025;01/08/2025;"Amazon Music Streaming";Spain;"DARKI MUZIK";"Sidi Bang";HG;HG;3618020480060;FR-X87-25-80608;;"Music Release";Stream;1;RUB;0.108041438823
+01/09/2025;01/08/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";"Sidi Bang";HG;HG;3618020480060;FR-X87-25-80608;;"Music Release";Stream;3;RUB;0.517219456338
+01/09/2025;01/08/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";"Sidi Bang";HG;HG;3618020480060;FR-X87-25-80608;;"Music Release";Stream;12;RUB;0.218606485511
+01/09/2025;01/08/2025;Yandex;"Russian Federation";"DARKI MUZIK";"Sidi Bang";HG;HG;3618020480060;FR-X87-25-80608;;"Music Release";Stream;1;RUB;0.021639298911
+01/08/2025;01/08/2025;"YouTube Official Content";Georgia;"DARKI MUZIK";"Sidi Bang";HG;HG;3618020480060;FR-X87-25-80608;;"Music Release";Stream;4;RUB;0.053373247918

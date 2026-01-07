@@ -133,12 +133,6 @@ export default function AudioPlayer({
     try {
       const { data: { session } } = await supabase.auth.getSession();
       const token = session?.access_token;
-      
-      console.log('🔐 AudioPlayer auth:', {
-        hasSession: !!session,
-        hasToken: !!token,
-        userId: session?.user?.id
-      });
 
       const url = `/api/stream-audio?releaseId=${releaseId}&releaseType=${releaseType}&trackIndex=${trackIndex}`;
       
@@ -154,26 +148,17 @@ export default function AudioPlayer({
       // Проверяем тип ответа - если JSON, значит это ошибка
       const contentType = response.headers.get('content-type') || '';
       
-      console.log('Audio response:', {
-        status: response.status,
-        contentType,
-        contentLength: response.headers.get('content-length')
-      });
-      
       if (contentType.includes('application/json')) {
-        const errorData = await response.json();
-        console.error('API Error:', errorData.error || 'Неизвестная ошибка');
+        await response.json();
         return null;
       }
       
       if (!response.ok) {
-        console.error('HTTP Error:', response.status, response.statusText);
         return null;
       }
       
       // Проверяем, что это аудио
       if (!contentType.includes('audio/')) {
-        console.error('Invalid content type:', contentType);
         return null;
       }
 
@@ -182,18 +167,14 @@ export default function AudioPlayer({
       
       // Проверяем размер blob
       if (blob.size === 0) {
-        console.error('Empty audio file received');
         return null;
       }
-      
-      console.log('Audio blob:', { size: blob.size, type: blob.type });
       
       // Создаём blob с правильным типом если он не установлен
       const audioBlob = blob.type ? blob : new Blob([blob], { type: contentType });
       const blobUrl = URL.createObjectURL(audioBlob);
       return blobUrl;
-    } catch (error) {
-      console.error('Error getting audio URL:', error);
+    } catch {
       return null;
     }
   };
@@ -260,14 +241,6 @@ export default function AudioPlayer({
           };
           errorMsg = errorMessages[audioError.code] || audioError.message || `Код ошибки: ${audioError.code}`;
         }
-        
-        // Логируем детали для отладки
-        console.warn('🔊 Audio playback issue:', {
-          errorCode: audioError?.code,
-          errorMessage: audioError?.message,
-          networkState: audio.networkState,
-          readyState: audio.readyState
-        });
         
         setError(errorMsg);
         setLoading(false);

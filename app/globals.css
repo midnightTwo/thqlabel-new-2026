@@ -61,6 +61,36 @@ body[data-mobile-sidebar-open="true"] .header-logo {
   pointer-events: none;
 }
 
+/* Скрытие хедера (включая лого) когда модалка аватара открыта (на мобильных) */
+@media (max-width: 767px) {
+  body[data-avatar-modal-open="true"] header {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: opacity 0.2s ease;
+  }
+  body[data-avatar-modal-open="true"] .header-logo {
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+  
+  /* Модалка аватара - выезжает слева на мобильных */
+  .avatar-modal-panel {
+    transform: translateX(0);
+    animation: slideInFromLeft 0.3s ease-out;
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 /* Светлая тема - ПРЕМИУМ MESH GRADIENT */
 html.light {
   background: linear-gradient(135deg, 
@@ -241,6 +271,7 @@ html.light body {
 }
 
 /* ========================================
+/* ========================================
    СВЕТЛАЯ ТЕМА - PREMIUM GLASSMORPHISM СТИЛИ
    ======================================== */
 
@@ -359,7 +390,9 @@ html.light .from-purple-600 .text-white,
 html.light .from-purple-500 .text-white,
 html.light .from-\[\#0d0d0f\] .text-white,
 html.light [class*="from-[#0d0d0f]"] .text-white,
-html.light .admin-dark-modal .text-white {
+html.light .admin-dark-modal .text-white,
+html.light .news-card .text-white,
+html.light .news-modal .text-white {
   color: #ffffff !important;
 }
 
@@ -872,8 +905,863 @@ html.light [role="tooltip"] {
 }
 
 /* ========================================
+   АДМИН-ПАНЕЛЬ - ПОЛНАЯ СВЕТЛАЯ ТЕМА
+   ======================================== */
+
+/* Статистика ролей в админке */
+html.light .bg-\[\#8b5cf6\]\/5 {
+  background: rgba(139, 92, 246, 0.1) !important;
+  border-color: rgba(139, 92, 246, 0.25) !important;
+}
+
+html.light .bg-\[\#ff4757\]\/5 {
+  background: rgba(255, 71, 87, 0.1) !important;
+  border-color: rgba(255, 71, 87, 0.25) !important;
+}
+
+html.light .bg-\[\#f59e0b\]\/5 {
+  background: rgba(245, 158, 11, 0.1) !important;
+  border-color: rgba(245, 158, 11, 0.25) !important;
+}
+
+html.light .border-\[\#8b5cf6\]\/20 {
+  border-color: rgba(139, 92, 246, 0.3) !important;
+}
+
+html.light .border-\[\#ff4757\]\/20 {
+  border-color: rgba(255, 71, 87, 0.3) !important;
+}
+
+html.light .border-\[\#f59e0b\]\/20 {
+  border-color: rgba(245, 158, 11, 0.3) !important;
+}
+
+/* Цвета текста статистики */
+html.light .text-\[\#a78bfa\] {
+  color: #7c3aed !important;
+}
+
+html.light .text-\[\#ff6b81\] {
+  color: #dc2626 !important;
+}
+
+html.light .text-\[\#fbbf24\] {
+  color: #d97706 !important;
+}
+
+/* Инпуты и селекты в админке */
+html.light .bg-black\/30 {
+  background: rgba(255, 255, 255, 0.7) !important;
+  border-color: rgba(96, 80, 186, 0.2) !important;
+}
+
+html.light .bg-black\/30:focus,
+html.light .bg-black\/30:focus-within {
+  border-color: rgba(96, 80, 186, 0.5) !important;
+  box-shadow: 0 0 0 3px rgba(96, 80, 186, 0.15) !important;
+}
+
+/* Кнопки в админке */
+html.light .bg-white\/5 {
+  background: rgba(96, 80, 186, 0.08) !important;
+}
+
+html.light .bg-white\/5:hover,
+html.light .hover\:bg-white\/10:hover {
+  background: rgba(96, 80, 186, 0.15) !important;
+}
+
+/* Карточки пользователей с цветными бордерами */
+html.light .border-purple-500\/20,
+html.light .border-\[\#8b5cf6\]\/30 {
+  border-color: rgba(139, 92, 246, 0.35) !important;
+}
+
+html.light .border-red-500\/20,
+html.light .border-\[\#ff4757\]\/30 {
+  border-color: rgba(239, 68, 68, 0.35) !important;
+}
+
+html.light .border-amber-500\/20,
+html.light .border-\[\#f59e0b\]\/30 {
+  border-color: rgba(245, 158, 11, 0.35) !important;
+}
+
+html.light .border-zinc-700\/50,
+html.light .border-zinc-600\/30 {
+  border-color: rgba(113, 113, 122, 0.25) !important;
+}
+
+/* Фоны карточек пользователей */
+html.light .bg-purple-500\/5,
+html.light .bg-\[\#8b5cf6\]\/10 {
+  background: rgba(139, 92, 246, 0.1) !important;
+}
+
+html.light .bg-red-500\/5,
+html.light .bg-\[\#ff4757\]\/10 {
+  background: rgba(239, 68, 68, 0.08) !important;
+}
+
+html.light .bg-amber-500\/5,
+html.light .bg-\[\#f59e0b\]\/10 {
+  background: rgba(245, 158, 11, 0.1) !important;
+}
+
+html.light .bg-zinc-800\/30 {
+  background: rgba(113, 113, 122, 0.08) !important;
+}
+
+/* Текст white в карточках */
+html.light .text-white {
+  color: #1f1f23 !important;
+}
+
+/* НО сохраняем белый текст на кнопках с градиентами */
+html.light .bg-gradient-to-r .text-white,
+html.light .bg-gradient-to-br .text-white,
+html.light button.bg-gradient-to-r,
+html.light button.bg-gradient-to-br,
+html.light .bg-\[\#6050ba\],
+html.light .bg-\[\#6050ba\]\/20 .text-\[\#9d8df1\],
+html.light .from-violet-500,
+html.light .from-purple-500,
+html.light .from-purple-600 {
+  color: #ffffff !important;
+}
+
+/* Цвета текста */
+html.light .text-\[\#9d8df1\] {
+  color: #6d28d9 !important;
+}
+
+html.light .text-zinc-700 {
+  color: #52525b !important;
+}
+
+/* Кнопки просмотра профиля */
+html.light .bg-\[\#6050ba\]\/20 {
+  background: rgba(96, 80, 186, 0.15) !important;
+}
+
+html.light .bg-\[\#6050ba\]\/20:hover,
+html.light .hover\:bg-\[\#6050ba\]\/40:hover {
+  background: rgba(96, 80, 186, 0.25) !important;
+}
+
+html.light .border-\[\#6050ba\]\/30 {
+  border-color: rgba(96, 80, 186, 0.35) !important;
+}
+
+/* Карточки релизов */
+html.light .bg-zinc-900\/80 {
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(16px) !important;
+  box-shadow: 0 4px 20px rgba(96, 80, 186, 0.08) !important;
+}
+
+html.light .border-zinc-800 {
+  border-color: rgba(96, 80, 186, 0.15) !important;
+}
+
+html.light .hover\:border-purple-500\/50:hover {
+  border-color: rgba(139, 92, 246, 0.5) !important;
+}
+
+/* Статус бейджи */
+html.light .bg-yellow-400\/10 {
+  background: rgba(250, 204, 21, 0.15) !important;
+}
+
+html.light .bg-emerald-400\/10 {
+  background: rgba(52, 211, 153, 0.15) !important;
+}
+
+html.light .bg-red-400\/10 {
+  background: rgba(248, 113, 113, 0.15) !important;
+}
+
+html.light .bg-blue-400\/10 {
+  background: rgba(96, 165, 250, 0.15) !important;
+}
+
+html.light .bg-zinc-400\/10 {
+  background: rgba(161, 161, 170, 0.15) !important;
+}
+
+/* Текст в бейджах статусов */
+html.light .text-yellow-400 {
+  color: #ca8a04 !important;
+}
+
+html.light .text-emerald-400 {
+  color: #059669 !important;
+}
+
+html.light .text-blue-400 {
+  color: #2563eb !important;
+}
+
+/* Бейджи типа релиза */
+html.light .bg-amber-500\/20 {
+  background: rgba(245, 158, 11, 0.2) !important;
+}
+
+html.light .text-amber-400 {
+  color: #d97706 !important;
+}
+
+html.light .border-amber-500\/30 {
+  border-color: rgba(245, 158, 11, 0.4) !important;
+}
+
+html.light .bg-zinc-500\/20 {
+  background: rgba(113, 113, 122, 0.15) !important;
+}
+
+html.light .text-zinc-400 {
+  color: #52525b !important;
+}
+
+html.light .border-zinc-500\/30 {
+  border-color: rgba(113, 113, 122, 0.35) !important;
+}
+
+/* Жанр бейдж */
+html.light .bg-purple-500\/20 {
+  background: rgba(139, 92, 246, 0.15) !important;
+}
+
+html.light .border-purple-500\/30 {
+  border-color: rgba(139, 92, 246, 0.35) !important;
+}
+
+/* Сайдбар админки */
+html.light aside.backdrop-blur-xl {
+  background: rgba(255, 255, 255, 0.7) !important;
+  border-color: rgba(96, 80, 186, 0.15) !important;
+}
+
+/* Навигация в сайдбаре */
+html.light .bg-gradient-to-r.from-\[\#6050ba\]\/30 {
+  background: linear-gradient(to right, rgba(96, 80, 186, 0.2), rgba(128, 112, 218, 0.15)) !important;
+}
+
+html.light .border-\[\#9d8df1\]\/40 {
+  border-color: rgba(96, 80, 186, 0.35) !important;
+}
+
+html.light .bg-\[\#6050ba\]\/30 {
+  background: rgba(96, 80, 186, 0.2) !important;
+}
+
+html.light .border-\[\#6050ba\]\/40 {
+  border-color: rgba(96, 80, 186, 0.35) !important;
+}
+
+/* Кнопки в навигации */
+html.light .bg-white\/10 {
+  background: rgba(96, 80, 186, 0.1) !important;
+}
+
+html.light .border-white\/10 {
+  border-color: rgba(96, 80, 186, 0.15) !important;
+}
+
+html.light .hover\:border-purple-500\/50:hover {
+  border-color: rgba(139, 92, 246, 0.5) !important;
+}
+
+/* Кнопка домой */
+html.light .from-violet-500\/90 {
+  color: #ffffff !important;
+}
+
+html.light .border-violet-400\/40 {
+  border-color: rgba(167, 139, 250, 0.5) !important;
+}
+
+/* Тикеты */
+html.light .bg-zinc-900 {
+  background: rgba(255, 255, 255, 0.8) !important;
+}
+
+html.light .bg-zinc-900\/50 {
+  background: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Сообщения в тикетах */
+html.light .bg-zinc-800\/50 {
+  background: rgba(255, 255, 255, 0.7) !important;
+}
+
+html.light .bg-zinc-800\/30 {
+  background: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Фильтры тикетов */
+html.light .bg-zinc-800 {
+  background: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Hover эффекты */
+html.light .hover\:bg-zinc-800:hover {
+  background: rgba(96, 80, 186, 0.1) !important;
+}
+
+html.light .hover\:bg-zinc-700\/50:hover {
+  background: rgba(96, 80, 186, 0.12) !important;
+}
+
+/* Транзакции */
+html.light .bg-white\/\[0\.02\] {
+  background: rgba(255, 255, 255, 0.6) !important;
+}
+
+html.light .hover\:bg-white\/\[0\.05\]:hover {
+  background: rgba(96, 80, 186, 0.08) !important;
+}
+
+/* Новости */
+html.light .bg-zinc-900\/90 {
+  background: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Модальные окна */
+html.light .bg-zinc-900\/95 {
+  background: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Чекбоксы */
+html.light .border-zinc-600 {
+  border-color: rgba(96, 80, 186, 0.3) !important;
+}
+
+html.light .bg-zinc-800 {
+  background: rgba(255, 255, 255, 0.8) !important;
+}
+
+html.light .text-purple-500 {
+  color: #7c3aed !important;
+}
+
+/* Лоадеры */
+html.light .border-\[\#6050ba\] {
+  border-color: #7c3aed !important;
+}
+
+html.light .border-b-2.border-\[\#6050ba\] {
+  border-bottom-color: #7c3aed !important;
+}
+
+html.light .border-b-2.border-blue-500 {
+  border-bottom-color: #3b82f6 !important;
+}
+
+/* Пустые состояния */
+html.light .text-zinc-500 {
+  color: #71717a !important;
+}
+
+html.light .text-zinc-600 {
+  color: #52525b !important;
+}
+
+/* Кнопки переключения вида */
+html.light .bg-\[\#6050ba\]\/15 {
+  background: rgba(96, 80, 186, 0.15) !important;
+}
+
+html.light .border-\[\#6050ba\]\/25 {
+  border-color: rgba(96, 80, 186, 0.3) !important;
+}
+
+/* Заголовки секций */
+html.light .text-gray-800 {
+  color: #1f2937 !important;
+}
+
+/* Ошибки */
+html.light .bg-red-500\/10 {
+  background: rgba(239, 68, 68, 0.1) !important;
+}
+
+html.light .border-red-500 {
+  border-color: #ef4444 !important;
+}
+
+html.light .text-red-400 {
+  color: #dc2626 !important;
+}
+
+html.light .text-red-300 {
+  color: #f87171 !important;
+}
+
+/* Успех */
+html.light .bg-emerald-500\/10 {
+  background: rgba(16, 185, 129, 0.1) !important;
+}
+
+html.light .border-emerald-500\/30 {
+  border-color: rgba(16, 185, 129, 0.35) !important;
+}
+
+html.light .text-emerald-300 {
+  color: #10b981 !important;
+}
+
+/* Информация */
+html.light .bg-blue-500\/10 {
+  background: rgba(59, 130, 246, 0.1) !important;
+}
+
+html.light .border-blue-500\/30 {
+  border-color: rgba(59, 130, 246, 0.35) !important;
+}
+
+html.light .text-blue-300 {
+  color: #3b82f6 !important;
+}
+
+/* Баланс пользователя */
+html.light .text-lg.font-black.text-\[\#9d8df1\] {
+  color: #6d28d9 !important;
+}
+
+/* Формы в модальных окнах */
+html.light .bg-white\/5 input,
+html.light .bg-white\/5 textarea,
+html.light .bg-white\/5 select {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-color: rgba(96, 80, 186, 0.2) !important;
+  color: #1f1f23 !important;
+}
+
+/* Кнопки в формах */
+html.light button.bg-emerald-600,
+html.light button.bg-emerald-500 {
+  color: #ffffff !important;
+}
+
+html.light button.bg-red-600,
+html.light button.bg-red-500 {
+  color: #ffffff !important;
+}
+
+/* Разделители */
+html.light .divide-zinc-800 > * + * {
+  border-color: rgba(96, 80, 186, 0.12) !important;
+}
+
+html.light .divide-zinc-700 > * + * {
+  border-color: rgba(96, 80, 186, 0.15) !important;
+}
+
+/* Заголовки вкладок */
+html.light .text-2xl.font-black {
+  color: #1f1f23 !important;
+}
+
+/* Панель массовых действий */
+html.light .bg-gradient-to-r.from-\[\#6050ba\]\/90 {
+  background: linear-gradient(to right, rgba(96, 80, 186, 0.95), rgba(128, 112, 218, 0.95)) !important;
+  color: #ffffff !important;
+}
+
+/* Анимированный спиннер */
+html.light .animate-spin {
+  color: #6d28d9 !important;
+}
+
+/* Обложки без изображения */
+html.light .bg-gradient-to-br.from-purple-600.to-blue-600 {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Теги тикетов */
+html.light .bg-purple-500\/10 {
+  background: rgba(139, 92, 246, 0.12) !important;
+}
+
+html.light .text-purple-300 {
+  color: #7c3aed !important;
+}
+
+html.light .border-purple-500\/20 {
+  border-color: rgba(139, 92, 246, 0.3) !important;
+}
+
+/* Админ Mobile Nav - светлая тема */
+html.light [data-mobile-header="true"] {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85)) !important;
+  border-bottom-color: rgba(139, 92, 246, 0.2) !important;
+}
+
+html.light .bg-purple-100\/80 {
+  background: rgba(139, 92, 246, 0.15) !important;
+}
+
+html.light .text-purple-600 {
+  color: #7c3aed !important;
+}
+
+/* Drawer мобильного меню админки */
+html.light [class*="slide-in-from-left"] {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(250, 248, 255, 0.95)) !important;
+}
+
+/* Кнопки в мобильном меню */
+html.light .bg-gray-100 {
+  background: rgba(96, 80, 186, 0.1) !important;
+}
+
+html.light .text-gray-600 {
+  color: #52525b !important;
+}
+
+html.light .hover\:bg-gray-200:hover {
+  background: rgba(96, 80, 186, 0.15) !important;
+}
+
+/* Активная вкладка в мобильном меню */
+html.light .from-purple-100 {
+  background: linear-gradient(to right, rgba(139, 92, 246, 0.15), rgba(167, 139, 250, 0.1)) !important;
+}
+
+html.light .text-purple-700 {
+  color: #6d28d9 !important;
+}
+
+html.light .border-purple-200\/50 {
+  border-color: rgba(139, 92, 246, 0.3) !important;
+}
+
+/* Скролл в списках */
+html.light .scrollbar-thumb-zinc-700 {
+  scrollbar-color: rgba(96, 80, 186, 0.3) transparent !important;
+}
+
+html.light .hover\:scrollbar-thumb-zinc-600:hover {
+  scrollbar-color: rgba(96, 80, 186, 0.5) transparent !important;
+}
+
+/* Кнопки копирования */
+html.light button[title="Копировать email"] svg,
+html.light button[title="Копировать ID"] svg {
+  color: #71717a !important;
+}
+
+html.light button[title="Копировать email"]:hover svg,
+html.light button[title="Копировать ID"]:hover svg {
+  color: #52525b !important;
+}
+
+/* Toast уведомления */
+html.light .bg-emerald-500\/10.border-emerald-500\/30 {
+  background: rgba(16, 185, 129, 0.12) !important;
+  border-color: rgba(16, 185, 129, 0.35) !important;
+}
+
+html.light .bg-blue-500\/10.border-blue-500\/30 {
+  background: rgba(59, 130, 246, 0.12) !important;
+  border-color: rgba(59, 130, 246, 0.35) !important;
+}
+
+html.light .bg-red-500\/10.border-red-500\/30 {
+  background: rgba(239, 68, 68, 0.12) !important;
+  border-color: rgba(239, 68, 68, 0.35) !important;
+}
+
+/* Выделение в поиске */
+html.light .bg-yellow-500\/30 {
+  background: rgba(234, 179, 8, 0.3) !important;
+}
+
+/* Секция контента админки */
+html.light section.backdrop-blur-xl {
+  background: rgba(255, 255, 255, 0.7) !important;
+  border-color: rgba(96, 80, 186, 0.15) !important;
+}
+
+/* Заголовки в контенте */
+html.light section h2 {
+  color: #1f1f23 !important;
+}
+
+/* Пагинация */
+html.light .bg-white\/10.border-white\/10 {
+  background: rgba(96, 80, 186, 0.08) !important;
+  border-color: rgba(96, 80, 186, 0.15) !important;
+}
+
+html.light .bg-\[\#6050ba\].text-white {
+  color: #ffffff !important;
+}
+
+/* Фильтр по дате */
+html.light input[type="date"] {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-color: rgba(96, 80, 186, 0.2) !important;
+  color: #1f1f23 !important;
+}
+
+/* Сворачиваемый сайдбар */
+html.light button[title="Скрыть панель"] {
+  background: rgba(96, 80, 186, 0.08) !important;
+  border-color: rgba(96, 80, 186, 0.15) !important;
+}
+
+html.light button[title="Скрыть панель"]:hover {
+  background: rgba(96, 80, 186, 0.15) !important;
+  border-color: rgba(139, 92, 246, 0.3) !important;
+}
+
+html.light button[title="Скрыть панель"] svg {
+  color: #6d28d9 !important;
+}
+
+/* Кнопка развернуть сайдбар */
+html.light button[title="Показать панель навигации"] {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(96, 80, 186, 0.15) !important;
+}
+
+html.light button[title="Показать панель навигации"]:hover {
+  background: rgba(255, 255, 255, 1) !important;
+  box-shadow: 0 4px 20px rgba(96, 80, 186, 0.15) !important;
+}
+
+html.light button[title="Показать панель навигации"] svg {
+  color: #6d28d9 !important;
+}
+
+/* Бейдж роли админа */
+html.light .bg-purple-500\/20.text-purple-400 {
+  background: rgba(139, 92, 246, 0.15) !important;
+  color: #7c3aed !important;
+}
+
+html.light .bg-red-500\/20.text-red-400 {
+  background: rgba(239, 68, 68, 0.12) !important;
+  color: #dc2626 !important;
+}
+
+/* Список пользователей - светлая тема */
+html.light .bg-white\/\[0\.02\]:hover {
+  background: rgba(96, 80, 186, 0.05) !important;
+}
+
+/* Дополнительные цвета статусов */
+html.light .text-orange-400 {
+  color: #ea580c !important;
+}
+
+html.light .text-cyan-400 {
+  color: #0891b2 !important;
+}
+
+html.light .text-pink-400 {
+  color: #db2777 !important;
+}
+
+/* Кнопки действий в карточках */
+html.light button.bg-emerald-500\/10 {
+  background: rgba(16, 185, 129, 0.12) !important;
+}
+
+html.light button.bg-emerald-500\/10:hover {
+  background: rgba(16, 185, 129, 0.2) !important;
+}
+
+html.light button.bg-red-500\/10 {
+  background: rgba(239, 68, 68, 0.1) !important;
+}
+
+html.light button.bg-red-500\/10:hover {
+  background: rgba(239, 68, 68, 0.18) !important;
+}
+
+/* Статус pending анимация */
+html.light .animate-spin.h-3.w-3 {
+  color: currentColor !important;
+}
+
+/* Кнопка обновления */
+html.light button[title="Обновить"] {
+  color: #6d28d9 !important;
+}
+
+html.light button[title="Обновить"]:hover {
+  background: rgba(96, 80, 186, 0.12) !important;
+}
+
+/* Withdrawals Tab */
+html.light .from-emerald-500\/5 {
+  background: rgba(16, 185, 129, 0.08) !important;
+}
+
+html.light .from-amber-500\/5 {
+  background: rgba(245, 158, 11, 0.08) !important;
+}
+
+html.light .from-blue-500\/5 {
+  background: rgba(59, 130, 246, 0.08) !important;
+}
+
+/* Reports Tab */
+html.light .bg-gradient-to-br.from-purple-500\/10 {
+  background: rgba(139, 92, 246, 0.1) !important;
+}
+
+/* News Tab */
+html.light .news-card {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-color: rgba(96, 80, 186, 0.15) !important;
+}
+
+/* ========================================
+   АДМИН-ПАНЕЛЬ - СВЕТЛАЯ ТЕМА (РАСШИРЕННЫЕ СТИЛИ)
+   ======================================== */
+
+/* Общие фоны карточек в админке */
+html.light .bg-zinc-900\/80,
+html.light .bg-zinc-900\/50,
+html.light .from-zinc-900\/80,
+html.light .from-zinc-800\/50 {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-color: rgba(96, 80, 186, 0.12) !important;
+}
+
+html.light .bg-zinc-800\/30,
+html.light .bg-zinc-800\/50 {
+  background: rgba(248, 247, 255, 0.9) !important;
+}
+
+/* Поля ввода в админке */
+html.light .bg-black\/40,
+html.light .bg-black\/30,
+html.light .bg-black\/20 {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(96, 80, 186, 0.2) !important;
+}
+
+html.light input.bg-gradient-to-r,
+html.light textarea.bg-black\/40 {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: #1f2937 !important;
+  border-color: rgba(96, 80, 186, 0.2) !important;
+}
+
+/* Карточки заявок */
+html.light .bg-gradient-to-r.from-zinc-900\/80.to-zinc-800\/50 {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(96, 80, 186, 0.1) !important;
+}
+
+/* Модальные окна в админке с сохранением тёмного фона */
+html.light .bg-gradient-to-b.from-zinc-900.to-black {
+  background: linear-gradient(to bottom, #18181b, #09090b) !important;
+  color: #ffffff !important;
+}
+
+/* Фильтры и кнопки */
+html.light .bg-zinc-900\/50 {
+  background: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Empty states */
+html.light .border-dashed.border-white\/10 {
+  border-color: rgba(96, 80, 186, 0.2) !important;
+}
+
+html.light .bg-gradient-to-b.from-zinc-900\/50.to-transparent {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), transparent) !important;
+}
+
+/* Статистика */
+html.light .bg-yellow-500\/10 {
+  background: rgba(251, 191, 36, 0.12) !important;
+}
+
+html.light .bg-blue-500\/10 {
+  background: rgba(59, 130, 246, 0.12) !important;
+}
+
+html.light .bg-emerald-500\/10 {
+  background: rgba(16, 185, 129, 0.12) !important;
+}
+
+html.light .bg-red-500\/10 {
+  background: rgba(239, 68, 68, 0.12) !important;
+}
+
+/* Tooltips и dropdown меню */
+html.light .bg-zinc-900,
+html.light .bg-\[#0d0d0f\]\/40 {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(96, 80, 186, 0.15) !important;
+  box-shadow: 0 4px 20px rgba(96, 80, 186, 0.1) !important;
+}
+
+/* Кнопки с иконками */
+html.light .bg-white\/5 {
+  background: rgba(96, 80, 186, 0.08) !important;
+}
+
+html.light .hover\:bg-white\/10:hover {
+  background: rgba(96, 80, 186, 0.15) !important;
+}
+
+/* Список тикетов в светлой теме */
+html.light .bg-zinc-900\/50 {
+  background: rgba(255, 255, 255, 0.75) !important;
+  border-color: rgba(96, 80, 186, 0.12) !important;
+}
+
+html.light .bg-red-500\/10 {
+  background: rgba(239, 68, 68, 0.1) !important;
+}
+
+html.light .border-red-500\/30 {
+  border-color: rgba(239, 68, 68, 0.25) !important;
+}
+
+html.light .bg-yellow-500\/10 {
+  background: rgba(234, 179, 8, 0.1) !important;
+}
+
+html.light .border-yellow-500\/30 {
+  border-color: rgba(234, 179, 8, 0.25) !important;
+}
+
+html.light .border-zinc-800 {
+  border-color: rgba(96, 80, 186, 0.12) !important;
+}
+
+html.light .border-zinc-700 {
+  border-color: rgba(96, 80, 186, 0.18) !important;
+}
+
+/* Фон карточек тикетов */
+html.light .bg-zinc-800\/50 {
+  background: rgba(248, 247, 255, 0.9) !important;
+}
+
+/* Текст в списках и карточках */
+html.light .text-zinc-700 {
+  color: #3d3660 !important;
+}
+
+/* ========================================
    УТИЛИТАРНЫЕ КЛАССЫ ДЛЯ ТЕМ
    ======================================== */
+
+/* Перенос текста - для длинных строк без пробелов */
+.overflow-wrap-anywhere {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
 
 /* Фоны */
 .theme-bg { background-color: var(--bg-primary); }
@@ -1116,18 +2004,12 @@ html.light .intro-dark-spots {
   visibility: hidden;
 }
 
-/* Звёзды - мягкие голографические с контрастом */
+/* Звёзды - ЧЁРНЫЕ для светлой темы */
 html.light .intro-star {
-  background: linear-gradient(135deg, 
-    rgba(180,140,220,0.9) 0%, 
-    rgba(140,180,220,0.9) 50%, 
-    rgba(200,160,200,0.9) 100%);
-  opacity: 1 !important;
-  border: 1px solid rgba(100,80,140,0.4);
-  box-shadow: 
-    0 0 2px rgba(100,80,140,0.5),
-    0 0 6px rgba(180,140,220,0.4),
-    0 0 12px rgba(140,180,220,0.3);
+  background: #000000 !important;
+  opacity: 0.4 !important;
+  border: none !important;
+  box-shadow: 0 0 2px rgba(0,0,0,0.3) !important;
   animation: sparkle-light 2.5s ease-in-out infinite;
 }
 
@@ -2771,4 +3653,12 @@ a:active {
 .animate-gradient-x {
   background-size: 200% 200%;
   animation: gradient-x 2s ease infinite;
+}
+
+/* Скрытие мобильного хедера админки когда открыт тикет */
+@media (max-width: 1023px) {
+  body[data-ticket-open="true"] [data-mobile-header="true"],
+  body[data-ticket-open="true"] [data-mobile-spacer="true"] {
+    display: none !important;
+  }
 }

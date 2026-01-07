@@ -1,0 +1,6 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/02/2025;01/01/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";Mesha;Клубняк;Клубняк;4641150122202;RU-AEX-22-34170;;"Music Release";Stream;1;RUB;0.004200000000
+01/01/2025;01/12/2024;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";Mesha;Клубняк;Клубняк;4641150122202;RU-AEX-22-34170;;"Music Release";Stream;1;RUB;0.004200000042
+01/03/2025;01/02/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";Mesha;Клубняк;Клубняк;4641150122202;RU-AEX-22-34170;;"Music Release";Stream;10;RUB;0.042000000000
+01/03/2025;01/03/2025;"Apple Music";Ukraine;"DARKI MUZIK";Mesha;Клубняк;Клубняк;4641150122202;RU-AEX-22-34170;;"Music Release";Stream;2;RUB;0.311264340267
+01/01/2025;01/12/2024;"Amazon Music Streaming";India;"DARKI MUZIK";Mesha;"Не обижаюсь";"Не обижаюсь";4631165023151;AE-A2Z-23-08747;;"Music Release";Stream;1;RUB;0.041058519158

@@ -1,0 +1,9 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/05/2025;01/05/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";hydra;"It's a trap";"It's a trap";3617661196415;DG-A08-24-17646;;"Music Release";Stream;4;RUB;0.276189760022
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"DARKI MUZIK";hydra;"It's a trap";"It's a trap";3617661196415;DG-A08-24-17646;;"Music Release";Stream;6;RUB;0.125149211724
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";hydra;"It's a trap";"It's a trap";3617661196415;DG-A08-24-17646;;"Music Release";Stream;11;RUB;1.300011977664
+01/06/2025;01/06/2025;"Apple Music";Spain;"DARKI MUZIK";hydra;"It's a trap";"It's a trap";3617661196415;DG-A08-24-17646;;"Music Release";Stream;1;RUB;0.397202716459
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"DARKI MUZIK";hydra;"It's a trap";"It's a trap";3617661196415;DG-A08-24-17646;;"Music Release";Stream;1;RUB;-0.016428847181
+01/04/2025;01/11/2024;Yandex;Worldwide;"DARKI MUZIK";hydra;"It's a trap";"It's a trap";3617661196415;DG-A08-24-17646;;"Music Release";Stream;-1;RUB;-0.102140482646
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";hydra;"It's a trap";"It's a trap";3617661196415;DG-A08-24-17646;;"Music Release";Stream;2;RUB;0.008400000000
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"DARKI MUZIK";hydra;"It's a trap";"It's a trap";3617661196415;DG-A08-24-17646;;"Music Release";Stream;1;RUB;0.021850258413

@@ -285,8 +285,11 @@ function TrackItem({
           <div className="flex items-baseline gap-1.5 mb-1">
             <span className="text-zinc-500 text-xs font-mono flex-shrink-0 w-5 text-right">{index + 1}.</span>
             <h4 className="text-white text-sm font-medium truncate">{track.title || 'Без названия'}</h4>
-            {(track.hasDrugs || track.explicit) && (
+            {!track.isInstrumental && (track.hasDrugs || track.explicit) && (
               <span className="px-1 py-0.5 bg-red-500/20 text-red-400 rounded text-[9px] font-bold leading-none flex-shrink-0">E</span>
+            )}
+            {track.isInstrumental && (
+              <span className="px-1 py-0.5 bg-amber-500/20 text-amber-400 rounded text-[9px] font-bold leading-none flex-shrink-0">Instrumental</span>
             )}
             {track.version && <span className="text-violet-400 text-[10px] leading-none flex-shrink-0 hidden sm:inline">({track.version})</span>}
           </div>
@@ -382,8 +385,8 @@ function TrackItem({
         </div>
         <div className="bg-white/[0.02] rounded-lg px-2 py-1.5">
           <div className="text-[9px] text-zinc-600 uppercase tracking-wider">Язык</div>
-          <div className={`text-xs truncate ${track.language ? 'text-white' : 'text-zinc-600'}`}>
-            {track.language || 'Не указан'}
+          <div className={`text-xs truncate ${!track.isInstrumental && track.language ? 'text-white' : 'text-zinc-600'}`}>
+            {track.isInstrumental ? 'N/A' : (track.language || 'Не указан')}
           </div>
         </div>
       </div>
@@ -707,25 +710,39 @@ export function UserProfileModal({
     <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-stretch justify-center p-2">
       <div className="admin-dark-modal bg-gradient-to-br from-[#1a1a1f] to-[#0d0d0f] border border-white/10 rounded-2xl sm:rounded-3xl max-w-5xl w-full overflow-hidden flex flex-col">
         {/* Шапка профиля */}
-        <div className="sticky top-0 bg-[#1a1a1f]/95 backdrop-blur border-b border-white/10 p-6 flex items-center justify-between z-10">
-          <div className="flex items-center gap-4">
+        <div className="sticky top-0 bg-[#1a1a1f]/95 backdrop-blur border-b border-white/10 p-4 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0 z-10">
+          <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto">
             <div 
-              className={`w-16 h-16 rounded-2xl flex items-center justify-center text-2xl font-black border-2 overflow-hidden ${user.avatar ? 'bg-cover bg-center' : 'bg-gradient-to-br from-[#6050ba] to-[#4a3d8f]'} border-[#6050ba]/50`}
+              className={`w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl flex items-center justify-center text-xl sm:text-2xl font-black border-2 overflow-hidden flex-shrink-0 ${user.avatar ? 'bg-cover bg-center' : 'bg-gradient-to-br from-[#6050ba] to-[#4a3d8f]'} border-[#6050ba]/50`}
               style={{ backgroundImage: user.avatar ? `url(${user.avatar})` : 'none' }}
             >
               {!user.avatar && (user.nickname?.charAt(0)?.toUpperCase() || '?')}
             </div>
-            <div>
-              <h2 className="text-xl font-black">{user.nickname || 'Без никнейма'}</h2>
-              <p className="text-sm text-zinc-400">{user.email}</p>
-              <div className="flex items-center gap-2 mt-1">
-                <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${roleColorClass}`}>
+            <div className="flex-1 min-w-0">
+              <h2 className="text-lg sm:text-xl font-black truncate">{user.nickname || 'Без никнейма'}</h2>
+              <p className="text-xs sm:text-sm text-zinc-400 truncate">{user.email}</p>
+              {/* Telegram */}
+              {user.telegram && (
+                <a 
+                  href={`https://t.me/${user.telegram.replace('@', '').replace('https://t.me/', '')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-[10px] sm:text-xs text-[#0088cc] hover:text-[#00aadd] transition mt-1"
+                >
+                  <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                  </svg>
+                  <span className="truncate max-w-[100px] sm:max-w-none">{user.telegram.startsWith('@') ? user.telegram : `@${user.telegram}`}</span>
+                </a>
+              )}
+              <div className="flex items-center gap-1.5 sm:gap-2 mt-1 flex-wrap">
+                <span className={`text-[9px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 rounded-full font-bold ${roleColorClass}`}>
                   {user.role?.toUpperCase() || 'BASIC'}
                 </span>
-                <span className="text-[10px] text-zinc-500">{user.member_id}</span>
+                <span className="text-[9px] sm:text-[10px] text-zinc-500 truncate max-w-[80px] sm:max-w-none">{user.member_id}</span>
                 <button
                   onClick={handleCopyMemberId}
-                  className="hover:opacity-70 transition flex-shrink-0"
+                  className="hover:opacity-70 transition flex-shrink-0 min-w-[20px] min-h-[20px] flex items-center justify-center"
                   title="Копировать ID"
                 >
                   {copiedId ? (
@@ -741,12 +758,12 @@ export function UserProfileModal({
               </div>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 self-end sm:self-auto">
             {/* Кнопка редактирования (только для Owner) */}
             {currentUserRole === 'owner' && (
               <button
                 onClick={() => setEditingProfile(!editingProfile)}
-                className={`p-3 rounded-xl transition ${editingProfile ? 'bg-[#8b5cf6]/30 text-[#a78bfa]' : 'hover:bg-white/10'}`}
+                className={`p-2.5 sm:p-3 rounded-xl transition min-w-[40px] min-h-[40px] flex items-center justify-center ${editingProfile ? 'bg-[#8b5cf6]/30 text-[#a78bfa]' : 'hover:bg-white/10'}`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -755,9 +772,9 @@ export function UserProfileModal({
             )}
             <button
               onClick={onClose}
-              className="p-3 hover:bg-white/10 rounded-xl transition"
+              className="p-2.5 sm:p-3 hover:bg-white/10 rounded-xl transition min-w-[40px] min-h-[40px] flex items-center justify-center"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
@@ -767,42 +784,42 @@ export function UserProfileModal({
         {profileLoading ? (
           <div className="p-12 text-center text-zinc-500">Загрузка данных...</div>
         ) : (
-          <div className="p-6 space-y-6 overflow-y-auto custom-scrollbar flex-1">
+          <div className="p-4 sm:p-6 space-y-4 sm:space-y-6 overflow-y-auto custom-scrollbar flex-1">
             {/* Форма редактирования (только для Owner) */}
             {currentUserRole === 'owner' && editingProfile && (
-              <div className="p-4 bg-[#8b5cf6]/10 border border-[#8b5cf6]/30 rounded-xl space-y-4">
-                <h3 className="font-bold text-[#a78bfa] flex items-center gap-2">
+              <div className="p-3 sm:p-4 bg-[#8b5cf6]/10 border border-[#8b5cf6]/30 rounded-xl space-y-3 sm:space-y-4">
+                <h3 className="font-bold text-[#a78bfa] flex items-center gap-2 text-sm sm:text-base">
                   <span>♛</span> Редактирование профиля (Owner)
                 </h3>
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
                   <div>
-                    <label className="text-xs text-zinc-500 block mb-1">Никнейм</label>
+                    <label className="text-[10px] sm:text-xs text-zinc-500 block mb-1">Никнейм</label>
                     <input
                       value={editNickname}
                       onChange={(e) => setEditNickname(e.target.value)}
-                      className="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-2 text-sm"
+                      className="w-full bg-black/30 border border-white/10 rounded-xl px-3 sm:px-4 py-2.5 sm:py-2 text-sm min-h-[44px]"
                     />
                   </div>
                   <div>
-                    <label className="text-xs text-zinc-500 block mb-1">URL аватара</label>
+                    <label className="text-[10px] sm:text-xs text-zinc-500 block mb-1">URL аватара</label>
                     <input
                       value={editAvatar}
                       onChange={(e) => setEditAvatar(e.target.value)}
                       placeholder="https://..."
-                      className="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-2 text-sm"
+                      className="w-full bg-black/30 border border-white/10 rounded-xl px-3 sm:px-4 py-2.5 sm:py-2 text-sm min-h-[44px]"
                     />
                   </div>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex flex-col sm:flex-row gap-2">
                   <button
                     onClick={onSaveProfile}
-                    className="px-4 py-2 bg-[#8b5cf6] hover:bg-[#7c4dff] rounded-xl text-sm font-bold transition"
+                    className="px-4 py-2.5 sm:py-2 bg-[#8b5cf6] hover:bg-[#7c4dff] rounded-xl text-sm font-bold transition min-h-[44px]"
                   >
                     Сохранить изменения
                   </button>
                   <button
                     onClick={() => setEditingProfile(false)}
-                    className="px-4 py-2 bg-white/5 hover:bg-white/10 rounded-xl text-sm transition"
+                    className="px-4 py-2.5 sm:py-2 bg-white/5 hover:bg-white/10 rounded-xl text-sm transition min-h-[44px]"
                   >
                     Отмена
                   </button>
@@ -835,6 +852,72 @@ export function UserProfileModal({
                 )}
               </div>
             </div>
+
+            {/* Привязанные соцсети */}
+            {(user.telegram || user.vk || user.instagram || user.youtube) && (
+              <div className="p-4 bg-white/[0.02] border border-white/5 rounded-xl">
+                <h3 className="font-bold mb-3 flex items-center gap-2 text-sm">
+                  <svg className="w-4 h-4 text-[#9d8df1]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                  </svg>
+                  Соцсети
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {user.telegram && (
+                    <a 
+                      href={`https://t.me/${user.telegram.replace('@', '').replace(/https?:\/\/(t\.me|telegram\.me)\//i, '')}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-3 py-2 bg-[#0088cc]/10 border border-[#0088cc]/30 rounded-xl text-[#0088cc] hover:bg-[#0088cc]/20 transition"
+                    >
+                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                      </svg>
+                      <span className="text-xs font-medium">{user.telegram.startsWith('@') ? user.telegram : `@${user.telegram}`}</span>
+                    </a>
+                  )}
+                  {user.vk && (
+                    <a 
+                      href={user.vk.startsWith('http') ? user.vk : `https://vk.com/${user.vk}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-3 py-2 bg-[#4a76a8]/10 border border-[#4a76a8]/30 rounded-xl text-[#4a76a8] hover:bg-[#4a76a8]/20 transition"
+                    >
+                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.12-5.339-3.202-2.17-3.048-2.763-5.339-2.763-5.814 0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.678.864 2.492 2.303 4.675 2.896 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.744c.373 0 .508.203.508.643v3.473c0 .372.17.508.271.508.22 0 .407-.136.813-.542 1.254-1.406 2.151-3.574 2.151-3.574.119-.254.322-.491.763-.491h1.744c.525 0 .644.27.525.643-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.49-.085.744-.576.744z"/>
+                      </svg>
+                      <span className="text-xs font-medium">VK</span>
+                    </a>
+                  )}
+                  {user.instagram && (
+                    <a 
+                      href={`https://instagram.com/${user.instagram.replace('@', '')}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-[#f09433]/10 to-[#bc1888]/10 border border-[#e6683c]/30 rounded-xl text-[#e6683c] hover:from-[#f09433]/20 hover:to-[#bc1888]/20 transition"
+                    >
+                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                      </svg>
+                      <span className="text-xs font-medium">{user.instagram.startsWith('@') ? user.instagram : `@${user.instagram}`}</span>
+                    </a>
+                  )}
+                  {user.youtube && (
+                    <a 
+                      href={user.youtube.startsWith('http') ? user.youtube : `https://youtube.com/@${user.youtube.replace('@', '')}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-3 py-2 bg-[#ff0000]/10 border border-[#ff0000]/30 rounded-xl text-[#ff0000] hover:bg-[#ff0000]/20 transition"
+                    >
+                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                      </svg>
+                      <span className="text-xs font-medium">YouTube</span>
+                    </a>
+                  )}
+                </div>
+              </div>
+            )}
             
             {/* Релизы пользователя (без черновиков) - ВЫШЕ транзакций */}
             {releases.length > 0 && (

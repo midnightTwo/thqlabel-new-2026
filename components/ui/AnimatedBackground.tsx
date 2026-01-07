@@ -62,9 +62,12 @@ export const FloatingShapes = memo(() => {
             top: `${shape.y}%`,
             width: shape.size,
             height: shape.size,
-            border: themeName === 'light' ? '1px solid rgba(0, 0, 0, 0.08)' : '1px solid rgba(96, 80, 186, 0.15)',
-            background: themeName === 'light' ? 'rgba(0, 0, 0, 0.02)' : 'rgba(96, 80, 186, 0.02)',
-            animation: `float-shape ${shape.duration}s linear infinite`,
+            border: themeName === 'light' ? '1px solid rgba(0, 0, 0, 0.15)' : '1px solid rgba(96, 80, 186, 0.15)',
+            background: themeName === 'light' ? 'rgba(0, 0, 0, 0.04)' : 'rgba(96, 80, 186, 0.02)',
+            animationName: 'float-shape',
+            animationDuration: `${shape.duration}s`,
+            animationTimingFunction: 'linear',
+            animationIterationCount: 'infinite',
             animationDelay: `${shape.delay}s`,
             willChange: 'auto',
             transform: 'translate3d(0,0,0)',
@@ -116,15 +119,18 @@ export const FloatingParticles = memo(() => {
       {particles.map(p => (
         <div
           key={p.id}
-          className={`absolute rounded-full ${themeName === 'light' ? 'bg-gray-600' : 'bg-[#9d8df1]'}`}
+          className={`absolute rounded-full ${themeName === 'light' ? 'bg-black' : 'bg-[#9d8df1]'}`}
           style={{
             left: `${p.x}%`,
             top: `${p.y}%`,
             width: p.size,
             height: p.size,
-            opacity: p.opacity,
-            boxShadow: isMobile ? 'none' : (themeName === 'light' ? '0 0 6px rgba(0,0,0,0.1)' : '0 0 6px rgba(157, 141, 241, 0.4)'),
-            animation: `particle-fly ${p.duration}s linear infinite`,
+            opacity: themeName === 'light' ? p.opacity * 0.5 : p.opacity,
+            boxShadow: isMobile ? 'none' : (themeName === 'light' ? '0 0 4px rgba(0,0,0,0.15)' : '0 0 6px rgba(157, 141, 241, 0.4)'),
+            animationName: 'particle-fly',
+            animationDuration: `${p.duration}s`,
+            animationTimingFunction: 'linear',
+            animationIterationCount: 'infinite',
             animationDelay: `${p.delay}s`,
             willChange: 'auto',
             transform: 'translate3d(0,0,0)',

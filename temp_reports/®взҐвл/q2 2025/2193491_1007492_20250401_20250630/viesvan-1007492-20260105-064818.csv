@@ -1,0 +1,378 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;16804;RUB;356.108604124262
+01/04/2025;01/03/2025;Yandex;Belarus;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ПРОСТИТЕ МИСС";3617390372166;FR-2X4-25-39970;;"Music Release";Stream;55;RUB;1.125008014352
+01/06/2025;01/05/2025;Yandex;Kazakhstan;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ЧЕМ ОБЫЧНО";3617390372166;FR-2X4-25-39968;;"Music Release";Stream;14;RUB;0.274321397319
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ГАД & ЛОХ";3617390372166;FR-2X4-25-39972;;"Music Release";Stream;1;RUB;-0.006208214708
+01/06/2025;01/05/2025;Spotify;Poland;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;1;RUB;0.006842465872
+01/04/2025;01/02/2025;TikTok;Denmark;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Creation;1;RUB;0.094602758506
+01/05/2025;01/04/2025;"UMA (Odnoklassniki)";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ПРОСТИТЕ МИСС";3617390372166;FR-2X4-25-39970;;"Music Release";Stream;1;RUB;0.004200000000
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ЧЕМ ОБЫЧНО";3617390372166;FR-2X4-25-39968;;"Music Release";Stream;656;RUB;13.028323570821
+01/05/2025;01/05/2025;"Apple Music";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ПРОСТИТЕ МИСС";3617390372166;FR-2X4-25-39970;;"Music Release";Stream;4;RUB;0.308854559954
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;24840;RUB;513.728448352599
+01/05/2025;01/05/2025;"Apple Music";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ГАД & ЛОХ";3617390372166;FR-2X4-25-39972;;"Music Release";Stream;1;RUB;0.069047440024
+01/06/2025;01/06/2025;"Apple Music";Spain;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;6;RUB;0.929119512438
+01/06/2025;01/04/2025;TikTok;Germany;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Creation;2;RUB;0.143991354471
+01/04/2025;01/03/2025;NetEase;"China Mainland";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"НОВЫЙ ГАЛСТУК Intro";3617390372166;FR-2X4-25-39966;;"Music Release";Stream;1;RUB;0.013678044973
+01/04/2025;01/03/2025;Yandex;Georgia;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;1;RUB;0.021290350854
+01/06/2025;01/05/2025;Yandex;Kazakhstan;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ГАД & ЛОХ";3617390372166;FR-2X4-25-39972;;"Music Release";Stream;49;RUB;1.004358465650
+01/04/2025;01/03/2025;Spotify;France;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;92;RUB;3.196168049781
+01/05/2025;01/04/2025;Yandex;Uzbekistan;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ГАД & ЛОХ";3617390372166;FR-2X4-25-39972;;"Music Release";Stream;1;RUB;0.021850258413
+01/05/2025;01/04/2025;Spotify;Ukraine;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;2;RUB;0.000048576196
+01/05/2025;01/04/2025;Yandex;Kyrgyzstan;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;13;RUB;0.284053358714
+01/04/2025;01/04/2025;"Apple Music";Turkey;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ОФОРМИЛ;3617390372166;FR-2X4-25-39971;;"Music Release";Stream;1;RUB;0.068707092906
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ОФОРМИЛ;3617390372166;FR-2X4-25-39971;;"Music Release";Stream;8;RUB;0.033600000000
+01/06/2025;01/05/2025;Yandex;Uzbekistan;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;72;RUB;1.466403680591
+01/05/2025;01/04/2025;Yandex;Turkmenistan;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;1;RUB;0.004050734508
+01/04/2025;01/04/2025;"YouTube UGC";Germany;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;3;RUB;0.011839103355
+01/05/2025;01/04/2025;Spotify;France;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;15;RUB;0.416297766054
+01/05/2025;01/12/2024;"Facebook / Instagram";"United States";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Creation;7;RUB;1.193874703497
+01/05/2025;01/04/2025;"UMA (Odnoklassniki)";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ГАД & ЛОХ";3617390372166;FR-2X4-25-39972;;"Music Release";Stream;1;RUB;0.004200000000
+01/06/2025;01/05/2025;Spotify;Poland;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;1;RUB;0.006842465872
+01/04/2025;01/03/2025;Yandex;"Moldova, Republic Of";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;8;RUB;0.170322806532
+01/04/2025;01/04/2025;"Apple Music";Latvia;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ПРОСТИТЕ МИСС";3617390372166;FR-2X4-25-39970;;"Music Release";Stream;1;RUB;0.165712041135
+01/05/2025;01/04/2025;Spotify;"United States";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;12;RUB;1.515042195546
+01/06/2025;01/05/2025;Yandex;Kazakhstan;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;479;RUB;9.336421825282
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ПРОСТИТЕ МИСС";3617390372166;FR-2X4-25-39970;;"Music Release";Stream;1;RUB;-0.002166372956
+01/05/2025;01/04/2025;Spotify;Germany;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;17;RUB;0.786156760674
+01/04/2025;01/04/2025;"Apple Music";Portugal;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ПРОСТИТЕ МИСС";3617390372166;FR-2X4-25-39970;;"Music Release";Stream;1;RUB;0.334373406817
+01/05/2025;01/05/2025;"YouTube UGC";Belarus;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;1;RUB;0.010264346863
+01/06/2025;01/05/2025;Spotify;"United Kingdom";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;5;RUB;0.345520261615
+01/04/2025;01/03/2025;Yandex;Kazakhstan;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ПРОСТИТЕ МИСС";3617390372166;FR-2X4-25-39970;;"Music Release";Stream;20;RUB;0.425807016330
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ЧЕМ ОБЫЧНО";3617390372166;FR-2X4-25-39968;;"Music Release";Stream;5;RUB;0.146381197778
+01/04/2025;01/04/2025;"Apple Music";Ukraine;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ОФОРМИЛ;3617390372166;FR-2X4-25-39971;;"Music Release";Stream;3;RUB;0.272944431691
+01/06/2025;01/05/2025;Spotify;France;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;17;RUB;0.567584969068
+01/06/2025;01/05/2025;Spotify;"United Kingdom";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;4;RUB;0.276416209292
+01/06/2025;01/05/2025;Spotify;Germany;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;17;RUB;1.092804917549
+01/06/2025;01/05/2025;Yandex;Belarus;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ГАД & ЛОХ";3617390372166;FR-2X4-25-39972;;"Music Release";Stream;34;RUB;0.656098576349
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ГОРЫ;3617390372166;FR-2X4-25-39969;;"Music Release";Stream;186;RUB;4.028549007261
+01/04/2025;01/04/2025;"Apple Music";"United Kingdom";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ОФОРМИЛ;3617390372166;FR-2X4-25-39971;;"Music Release";Stream;1;RUB;0.261304181736
+01/05/2025;01/04/2025;Yandex;Ukraine;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;3;RUB;0.012152203598
+01/05/2025;01/04/2025;Spotify;"United States";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;6;RUB;0.699156842209
+01/04/2025;01/03/2025;Yandex;"Moldova, Republic Of";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ГАД & ЛОХ";3617390372166;FR-2X4-25-39972;;"Music Release";Stream;2;RUB;0.042580701633
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"НОВЫЙ ГАЛСТУК Intro";3617390372166;FR-2X4-25-39966;;"Music Release";Stream;1;RUB;-0.002654100284
+01/05/2025;01/05/2025;"YouTube UGC";Denmark;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;1;RUB;0.004522520010
+01/05/2025;01/04/2025;Yandex;Armenia;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;1;RUB;0.004050734508
+01/05/2025;01/04/2025;Yandex;Azerbaijan;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;2;RUB;0.043700516681
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;139;RUB;7.236243684959
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ЧЕМ ОБЫЧНО";3617390372166;FR-2X4-25-39968;;"Music Release";Stream;1;RUB;-0.015089870439
+01/05/2025;01/04/2025;Yandex;Belarus;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ЧЕМ ОБЫЧНО";3617390372166;FR-2X4-25-39968;;"Music Release";Stream;7;RUB;0.152951808527
+01/06/2025;01/04/2025;TikTok;Germany;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Creation;11;RUB;0.791952407083
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"НОВЫЙ ГАЛСТУК Intro";3617390372166;FR-2X4-25-39966;;"Music Release";Stream;3;RUB;0.012600000000
+01/04/2025;01/03/2025;Yandex;Kazakhstan;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"НОВЫЙ ГАЛСТУК Intro";3617390372166;FR-2X4-25-39966;;"Music Release";Stream;1;RUB;0.021290350854
+01/06/2025;01/05/2025;Spotify;Netherlands;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;12;RUB;0.463152421132
+01/05/2025;01/05/2025;"Apple Music";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ОФОРМИЛ;3617390372166;FR-2X4-25-39971;;"Music Release";Stream;3;RUB;0.287612640054
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ОФОРМИЛ;3617390372166;FR-2X4-25-39971;;"Music Release";Stream;1;RUB;0.004200000036
+01/06/2025;01/05/2025;Yandex;Belarus;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;406;RUB;7.973013952770
+01/04/2025;01/04/2025;"YouTube UGC";Canada;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;1;RUB;0.010806623458
+01/05/2025;01/04/2025;Yandex;Belarus;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;348;RUB;7.319097527862
+01/05/2025;01/04/2025;Spotify;Italy;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;1;RUB;0.104244464174
+01/06/2025;01/05/2025;Spotify;Nigeria;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;22;RUB;0.358962533314
+01/06/2025;01/05/2025;Spotify;Nigeria;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;26;RUB;0.249483079582
+01/04/2025;01/04/2025;"YouTube Official Content";"United Kingdom";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;2;RUB;0.632658969455
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ЧЕМ ОБЫЧНО";3617390372166;FR-2X4-25-39968;;"Music Release";Stream;1;RUB;0.080857809133
+01/05/2025;01/05/2025;"YouTube UGC";"United States";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;1;RUB;0.007892240758
+01/05/2025;01/05/2025;"Apple Music";Ukraine;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ОФОРМИЛ;3617390372166;FR-2X4-25-39971;;"Music Release";Stream;5;RUB;0.452682718055
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Belarus;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;3;RUB;0.012600000038
+01/06/2025;01/05/2025;Yandex;Belarus;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ПРОСТИТЕ МИСС";3617390372166;FR-2X4-25-39970;;"Music Release";Stream;20;RUB;0.328696889062
+01/06/2025;01/06/2025;"Apple Music";"United States";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;1;RUB;0.337497192023
+01/04/2025;01/03/2025;Yandex;Ukraine;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;3;RUB;0.017909771893
+01/04/2025;01/04/2025;"YouTube Official Content";Belgium;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;3;RUB;0.461298273014
+01/05/2025;01/04/2025;NetEase;"China Mainland";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"НОВЫЙ ГАЛСТУК Intro";3617390372166;FR-2X4-25-39966;;"Music Release";Stream;3;RUB;0.092141845652
+01/04/2025;01/04/2025;"Apple Music";Ukraine;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ГОРЫ;3617390372166;FR-2X4-25-39969;;"Music Release";Stream;1;RUB;0.090981477255
+01/06/2025;01/06/2025;"Apple Music";"Russian Federation";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;19;RUB;1.791506080022
+01/04/2025;01/04/2025;"Apple Music";"United States";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ОФОРМИЛ;3617390372166;FR-2X4-25-39971;;"Music Release";Stream;1;RUB;0.199882873079
+01/05/2025;01/04/2025;Yandex;Kazakhstan;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;251;RUB;5.021627228498
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ОФОРМИЛ;3617390372166;FR-2X4-25-39971;;"Music Release";Stream;3;RUB;0.372515071342
+01/04/2025;01/03/2025;Spotify;Turkey;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;1;RUB;0.021844996106
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ОФОРМИЛ;3617390372166;FR-2X4-25-39971;;"Music Release";Stream;1582;RUB;33.077660285966
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ГАД & ЛОХ";3617390372166;FR-2X4-25-39972;;"Music Release";Stream;72;RUB;0.302400000000
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ГАД & ЛОХ";3617390372166;FR-2X4-25-39972;;"Music Release";Stream;41;RUB;0.172200000000
+01/04/2025;01/04/2025;"Apple Music";"Russian Federation";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;58;RUB;5.737189360012
+01/04/2025;01/04/2025;"YouTube UGC";Estonia;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;1;RUB;0.027033986827
+01/06/2025;01/04/2025;TikTok;"United States";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Creation;1;RUB;0.071995677163
+01/06/2025;01/06/2025;"Apple Music";Ukraine;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ОФОРМИЛ;3617390372166;FR-2X4-25-39971;;"Music Release";Stream;3;RUB;0.259285831237
+01/04/2025;01/03/2025;Yandex;Kazakhstan;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ЧЕМ ОБЫЧНО";3617390372166;FR-2X4-25-39968;;"Music Release";Stream;15;RUB;0.319355262210
+01/06/2025;01/05/2025;Spotify;France;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;16;RUB;0.534197617985
+01/04/2025;01/03/2025;Yandex;Belarus;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ЧЕМ ОБЫЧНО";3617390372166;FR-2X4-25-39968;;"Music Release";Stream;27;RUB;0.436955630301
+01/04/2025;01/03/2025;Spotify;Poland;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;1;RUB;0.005998625940
+01/05/2025;01/01/2025;"Facebook / Instagram";Ukraine;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Creation;6;RUB;0.036631610992
+01/05/2025;01/05/2025;"YouTube Official Content";"United Kingdom";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;1;RUB;0.005726308442
+01/05/2025;01/05/2025;"YouTube Official Content";Netherlands;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;1;RUB;0.178749277952
+01/05/2025;01/04/2025;Spotify;"Czech Republic";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;3;RUB;0.019381892430
+01/04/2025;01/03/2025;Yandex;Kazakhstan;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ГОРЫ;3617390372166;FR-2X4-25-39969;;"Music Release";Stream;2;RUB;0.042580701633
+01/05/2025;01/04/2025;Spotify;India;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;25;RUB;1.096412768514
+01/04/2025;01/03/2025;Yandex;Belarus;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ГОРЫ;3617390372166;FR-2X4-25-39969;;"Music Release";Stream;7;RUB;0.133712028914
+01/04/2025;01/03/2025;Yandex;Kazakhstan;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ГАД & ЛОХ";3617390372166;FR-2X4-25-39972;;"Music Release";Stream;42;RUB;0.878874307454
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ОФОРМИЛ;3617390372166;FR-2X4-25-39971;;"Music Release";Stream;558;RUB;11.393770077206
+01/04/2025;01/03/2025;Spotify;"Czech Republic";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;11;RUB;0.089429534872
+01/04/2025;01/03/2025;Yandex;Israel;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;1;RUB;0.021290350854
+01/05/2025;01/04/2025;Yandex;Kazakhstan;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ЧЕМ ОБЫЧНО";3617390372166;FR-2X4-25-39968;;"Music Release";Stream;4;RUB;0.087401033434
+01/05/2025;01/04/2025;Yandex;"Moldova, Republic Of";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;9;RUB;0.161053277544
+01/05/2025;01/05/2025;"YouTube Official Content";"United Arab Emirates";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"НОВЫЙ ГАЛСТУК Intro";3617390372166;FR-2X4-25-39966;;"Music Release";Stream;1;RUB;0.269042582601
+01/05/2025;01/01/2025;"Facebook / Instagram";"United States";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Creation;6;RUB;1.096862699402
+01/06/2025;01/05/2025;Spotify;Egypt;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;16;RUB;0.400648213434
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ГОРЫ;3617390372166;FR-2X4-25-39969;;"Music Release";Stream;7;RUB;0.029400000036
+01/06/2025;01/05/2025;Spotify;Egypt;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;16;RUB;0.400648213434
+01/05/2025;01/05/2025;"YouTube UGC";"Czech Republic";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;1;RUB;0.004389504706
+01/04/2025;01/03/2025;Yandex;Turkmenistan;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ОФОРМИЛ;3617390372166;FR-2X4-25-39971;;"Music Release";Stream;1;RUB;0.005969924014
+01/05/2025;01/01/2025;"Facebook / Instagram";Thailand;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Creation;12;RUB;0.023703380246
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ПРОСТИТЕ МИСС";3617390372166;FR-2X4-25-39970;;"Music Release";Stream;12;RUB;0.175781197814
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ГОРЫ;3617390372166;FR-2X4-25-39969;;"Music Release";Stream;543;RUB;11.494004164546
+01/06/2025;01/06/2025;"YouTube UGC";"United States";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;2;RUB;0.010237478478
+01/05/2025;01/12/2024;"Facebook / Instagram";"Russian Federation";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Creation;13;RUB;0.312048566286
+01/04/2025;01/04/2025;"Apple Music";Ukraine;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ПРОСТИТЕ МИСС";3617390372166;FR-2X4-25-39970;;"Music Release";Stream;1;RUB;0.175008956211
+01/05/2025;01/04/2025;Yandex;Armenia;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ПРОСТИТЕ МИСС";3617390372166;FR-2X4-25-39970;;"Music Release";Stream;1;RUB;0.021850258413
+01/04/2025;01/04/2025;"YouTube Official Content";"Russian Federation";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;2;RUB;0.436343921021
+01/05/2025;01/04/2025;Spotify;Netherlands;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;14;RUB;0.543858826594
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Kazakhstan;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;2;RUB;0.008400000000
+01/05/2025;01/04/2025;Yandex;Belarus;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"НОВЫЙ ГАЛСТУК Intro";3617390372166;FR-2X4-25-39966;;"Music Release";Stream;1;RUB;0.021850258413
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ГАД & ЛОХ";3617390372166;FR-2X4-25-39972;;"Music Release";Stream;1250;RUB;25.600232645950
+01/06/2025;01/06/2025;"Apple Music";"Russian Federation";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;55;RUB;3.866041760006
+01/04/2025;01/02/2025;TikTok;Kazakhstan;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ЧЕМ ОБЫЧНО";3617390372166;FR-2X4-25-39968;;"Music Release";Creation;1;RUB;0.094602758506
+01/06/2025;01/06/2025;"YouTube UGC";"Czech Republic";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;1;RUB;0.004880153955
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ПРОСТИТЕ МИСС";3617390372166;FR-2X4-25-39970;;"Music Release";Stream;1762;RUB;36.778217648820
+01/04/2025;01/03/2025;Yandex;Ukraine;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;2;RUB;0.011939847878
+01/06/2025;01/06/2025;"Apple Music";"Russian Federation";"Stars Clique";виесван;Кабриолет;"На бис";3617397190817;FR-X45-25-18658;;"Music Release";Stream;9;RUB;0.890813840052
+01/05/2025;01/04/2025;Yandex;Belarus;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ГАД & ЛОХ";3617390372166;FR-2X4-25-39972;;"Music Release";Stream;64;RUB;1.238220820525
+01/06/2025;01/06/2025;"YouTube Official Content";Ukraine;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;1;RUB;0.038662722446
+01/04/2025;01/03/2025;Yandex;Kyrgyzstan;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;17;RUB;0.331295110089
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;21002;RUB;442.481632483250
+01/04/2025;01/03/2025;Yandex;Uzbekistan;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ЧЕМ ОБЫЧНО";3617390372166;FR-2X4-25-39968;;"Music Release";Stream;3;RUB;0.063871052487
+01/04/2025;01/03/2025;"UMA (Odnoklassniki)";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"НОВЫЙ ГАЛСТУК Intro";3617390372166;FR-2X4-25-39966;;"Music Release";Stream;1;RUB;0.004200000038
+01/06/2025;01/05/2025;Spotify;India;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;13;RUB;0.535944630475
+01/06/2025;01/05/2025;Yandex;Kazakhstan;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ОФОРМИЛ;3617390372166;FR-2X4-25-39971;;"Music Release";Stream;30;RUB;0.625746058549
+01/06/2025;01/06/2025;"Apple Music";Ukraine;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ГАД & ЛОХ";3617390372166;FR-2X4-25-39972;;"Music Release";Stream;4;RUB;0.345714441625
+01/04/2025;01/03/2025;Yandex;Belarus;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"НОВЫЙ ГАЛСТУК Intro";3617390372166;FR-2X4-25-39966;;"Music Release";Stream;1;RUB;0.021290350854
+01/05/2025;01/04/2025;Yandex;Uzbekistan;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ГОРЫ;3617390372166;FR-2X4-25-39969;;"Music Release";Stream;1;RUB;0.004050734508
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ГАД & ЛОХ";3617390372166;FR-2X4-25-39972;;"Music Release";Stream;1363;RUB;29.222744231592
+01/05/2025;01/04/2025;"UMA (Odnoklassniki)";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"НОВЫЙ ГАЛСТУК Intro";3617390372166;FR-2X4-25-39966;;"Music Release";Stream;3;RUB;0.012600000000
+01/04/2025;01/04/2025;"YouTube Official Content";Ukraine;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;3;RUB;0.129596510974
+01/05/2025;01/05/2025;"YouTube Official Content";Kazakhstan;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;4;RUB;0.056867363734
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Moldova, Republic Of";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;1;RUB;0.004200000036
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Azerbaijan;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;6;RUB;0.025200000000
+01/05/2025;01/05/2025;"YouTube Official Content";Kazakhstan;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;1;RUB;0.037546892230
+01/05/2025;01/05/2025;"YouTube Official Content";France;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;10;RUB;1.150056872447
+01/04/2025;01/04/2025;"YouTube Official Content";"United Kingdom";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;4;RUB;0.965358423711
+01/04/2025;01/03/2025;Spotify;"United States";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;2;RUB;0.291083322976
+01/05/2025;01/04/2025;Yandex;Kazakhstan;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ПРОСТИТЕ МИСС";3617390372166;FR-2X4-25-39970;;"Music Release";Stream;2;RUB;0.043700516681
+01/04/2025;01/03/2025;Yandex;Azerbaijan;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;1;RUB;0.021290350854
+01/04/2025;01/04/2025;"Apple Music";Ukraine;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ГАД & ЛОХ";3617390372166;FR-2X4-25-39972;;"Music Release";Stream;1;RUB;0.175008956211
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ЧЕМ ОБЫЧНО";3617390372166;FR-2X4-25-39968;;"Music Release";Stream;1700;RUB;35.611018448437
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;1;RUB;-0.094089716010
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Moldova, Republic Of";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;1;RUB;0.004200000036
+01/04/2025;01/03/2025;Spotify;Ukraine;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;4;RUB;0.001299702337
+01/06/2025;01/06/2025;"YouTube Official Content";Ukraine;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ГАД & ЛОХ";3617390372166;FR-2X4-25-39972;;"Music Release";Stream;2;RUB;0.077325444892
+01/04/2025;01/02/2025;TikTok;"United Kingdom";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Creation;1;RUB;0.094602758506
+01/06/2025;01/05/2025;Yandex;Kazakhstan;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;403;RUB;6.070322627726
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Kazakhstan;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;2;RUB;0.008400000000
+01/06/2025;01/06/2025;"Apple Music";Ukraine;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;3;RUB;0.259285831237
+01/04/2025;01/04/2025;"YouTube UGC";Romania;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;2;RUB;0.003510431817
+01/04/2025;01/03/2025;Spotify;India;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;30;RUB;1.486659478363
+01/04/2025;01/03/2025;Yandex;Kyrgyzstan;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ГАД & ЛОХ";3617390372166;FR-2X4-25-39972;;"Music Release";Stream;4;RUB;0.085161403266
+01/05/2025;01/03/2025;"Facebook / Instagram";Philippines;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Creation;7;RUB;0.008193509835
+01/06/2025;01/05/2025;Yandex;Belarus;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ЧЕМ ОБЫЧНО";3617390372166;FR-2X4-25-39968;;"Music Release";Stream;17;RUB;0.301509143190
+01/04/2025;01/03/2025;Spotify;Germany;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;3;RUB;0.176309618628
+01/05/2025;01/05/2025;"Apple Music";"Russian Federation";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;20;RUB;1.970398079954
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"НОВЫЙ ГАЛСТУК Intro";3617390372166;FR-2X4-25-39966;;"Music Release";Stream;75;RUB;1.458204566509
+01/04/2025;01/04/2025;"YouTube UGC";Estonia;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;1;RUB;0.006952031575
+01/06/2025;01/05/2025;Yandex;Kyrgyzstan;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;24;RUB;0.482903416884
+01/06/2025;01/05/2025;Yandex;Kazakhstan;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ПРОСТИТЕ МИСС";3617390372166;FR-2X4-25-39970;;"Music Release";Stream;8;RUB;0.149172185594
+01/04/2025;01/03/2025;Yandex;Uzbekistan;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;100;RUB;1.945189959275
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Belarus;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;12;RUB;0.235504268829
+01/05/2025;01/04/2025;Spotify;France;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;17;RUB;0.471771763716
+01/05/2025;01/04/2025;Yandex;Kazakhstan;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;228;RUB;4.697066524703
+01/06/2025;01/06/2025;"YouTube UGC";Ukraine;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;1;RUB;0.007817794087
+01/05/2025;01/05/2025;"YouTube Official Content";Ukraine;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;2;RUB;0.080665209867
+01/06/2025;01/05/2025;Yandex;Uzbekistan;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ПРОСТИТЕ МИСС";3617390372166;FR-2X4-25-39970;;"Music Release";Stream;1;RUB;0.020858201942
+01/04/2025;01/03/2025;Yandex;"Moldova, Republic Of";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ЧЕМ ОБЫЧНО";3617390372166;FR-2X4-25-39968;;"Music Release";Stream;1;RUB;0.021290350854
+01/04/2025;01/03/2025;Spotify;Italy;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;5;RUB;0.556972417156
+01/05/2025;01/04/2025;Spotify;India;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;12;RUB;0.322497193342
+01/06/2025;01/06/2025;"YouTube Official Content";Netherlands;"Stars Clique";виесван;Кабриолет;"На бис";3617397190817;FR-X45-25-18658;;"Music Release";Stream;1;RUB;0.264680028862
+01/05/2025;01/04/2025;Spotify;Belarus;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;2;RUB;0.000194304711
+01/05/2025;01/03/2025;TikTok;France;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Creation;1;RUB;0.078127554129
+01/05/2025;01/02/2025;"Facebook / Instagram";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ЧЕМ ОБЫЧНО";3617390372166;FR-2X4-25-39968;;"Music Release";Creation;13;RUB;0.485144475177
+01/06/2025;01/05/2025;Spotify;Kazakhstan;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;5;RUB;0.403608429190
+01/04/2025;01/03/2025;Spotify;"United Kingdom";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;11;RUB;0.981625134093
+01/05/2025;01/05/2025;"YouTube UGC";Netherlands;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;2;RUB;0.005076750400
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Moldova, Republic Of";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;4;RUB;0.016800000000
+01/04/2025;01/02/2025;TikTok;Germany;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Creation;1;RUB;0.094602758506
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;240;RUB;4.273290234556
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ЧЕМ ОБЫЧНО";3617390372166;FR-2X4-25-39968;;"Music Release";Stream;869;RUB;18.720881657298
+01/05/2025;01/04/2025;Spotify;Nigeria;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;1;RUB;0.015738679626
+01/06/2025;01/05/2025;"UMA VK MUSIC";"Russian Federation";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;30;RUB;2.289760755001
+01/04/2025;01/03/2025;Yandex;Uzbekistan;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ГАД & ЛОХ";3617390372166;FR-2X4-25-39972;;"Music Release";Stream;4;RUB;0.085161403266
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ГОРЫ;3617390372166;FR-2X4-25-39969;;"Music Release";Stream;1;RUB;-0.064328230831
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ЧЕМ ОБЫЧНО";3617390372166;FR-2X4-25-39968;;"Music Release";Stream;37;RUB;0.275371690422
+01/06/2025;01/05/2025;Spotify;"United States";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;23;RUB;2.522880227839
+01/04/2025;01/04/2025;"YouTube UGC";Sweden;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;1;RUB;0.005185343707
+01/05/2025;01/04/2025;Spotify;Germany;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;19;RUB;0.878645791324
+01/05/2025;01/04/2025;"UMA VK MUSIC";"Russian Federation";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;64;RUB;6.123766558585
+01/04/2025;01/04/2025;"Apple Music";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ЧЕМ ОБЫЧНО";3617390372166;FR-2X4-25-39968;;"Music Release";Stream;1;RUB;0.099223600019
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ПРОСТИТЕ МИСС";3617390372166;FR-2X4-25-39970;;"Music Release";Stream;4;RUB;0.323431236607
+01/05/2025;01/04/2025;Spotify;"United Kingdom";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;5;RUB;0.332309589665
+01/05/2025;01/04/2025;Yandex;Kazakhstan;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ГОРЫ;3617390372166;FR-2X4-25-39969;;"Music Release";Stream;4;RUB;0.087401033434
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"НОВЫЙ ГАЛСТУК Intro";3617390372166;FR-2X4-25-39966;;"Music Release";Stream;8;RUB;0.033600000000
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"НОВЫЙ ГАЛСТУК Intro";3617390372166;FR-2X4-25-39966;;"Music Release";Stream;140;RUB;2.842765272530
+01/04/2025;01/04/2025;"YouTube Official Content";Lithuania;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ГОРЫ;3617390372166;FR-2X4-25-39969;;"Music Release";Stream;1;RUB;0.066202614089
+01/06/2025;01/04/2025;TikTok;France;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Creation;4;RUB;0.287982691982
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Belarus;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;5;RUB;0.200527530157
+01/04/2025;01/02/2025;TikTok;Spain;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Creation;1;RUB;0.094602758506
+01/06/2025;01/06/2025;"Apple Music";"Russian Federation";"Stars Clique";виесван;Кабриолет;Кабриолет;3617397190817;FR-X45-25-18659;;"Music Release";Stream;2;RUB;0.199837119977
+01/06/2025;01/05/2025;Yandex;Belarus;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ОФОРМИЛ;3617390372166;FR-2X4-25-39971;;"Music Release";Stream;18;RUB;0.340060775146
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;17098;RUB;346.060000429474
+01/06/2025;01/05/2025;Spotify;"South Africa";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;4;RUB;0.013733459822
+01/04/2025;01/04/2025;"YouTube Official Content";Italy;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;3;RUB;0.327833032071
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ГАД & ЛОХ";3617390372166;FR-2X4-25-39972;;"Music Release";Stream;3367;RUB;70.128659718008
+01/04/2025;01/04/2025;"YouTube Official Content";Finland;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;1;RUB;0.211400268776
+01/04/2025;01/03/2025;Spotify;Latvia;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;1;RUB;0.002549416024
+01/04/2025;01/04/2025;"YouTube UGC";Netherlands;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;4;RUB;0.026293822671
+01/06/2025;01/05/2025;Yandex;Kyrgyzstan;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;8;RUB;0.166865615608
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;25;RUB;2.649227322542
+01/04/2025;01/03/2025;Yandex;"Moldova, Republic Of";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;3;RUB;0.063871052487
+01/04/2025;01/02/2025;TikTok;Netherlands;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Creation;1;RUB;0.094602758506
+01/04/2025;01/03/2025;Spotify;Kazakhstan;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;4;RUB;0.255891379281
+01/06/2025;01/05/2025;"UMA (Odnoklassniki)";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"НОВЫЙ ГАЛСТУК Intro";3617390372166;FR-2X4-25-39966;;"Music Release";Stream;4;RUB;0.016800000000
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"НОВЫЙ ГАЛСТУК Intro";3617390372166;FR-2X4-25-39966;;"Music Release";Stream;18;RUB;0.075600000000
+01/05/2025;01/03/2025;TikTok;"United Kingdom";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Creation;1;RUB;0.078127554129
+01/04/2025;01/04/2025;"YouTube Official Content";France;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;1;RUB;0.147100859359
+01/05/2025;01/05/2025;"Apple Music";Ukraine;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ГАД & ЛОХ";3617390372166;FR-2X4-25-39972;;"Music Release";Stream;6;RUB;0.543219261666
+01/04/2025;01/04/2025;"YouTube UGC";Switzerland;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;1;RUB;0.025697278667
+01/04/2025;01/03/2025;Spotify;Nigeria;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;3;RUB;0.036941538104
+01/05/2025;01/03/2025;TikTok;Germany;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Creation;2;RUB;0.156255108258
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Belarus;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ОФОРМИЛ;3617390372166;FR-2X4-25-39971;;"Music Release";Stream;1;RUB;0.004200000038
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ПРОСТИТЕ МИСС";3617390372166;FR-2X4-25-39970;;"Music Release";Stream;1;RUB;0.004200000000
+01/04/2025;01/04/2025;"Apple Music";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ГОРЫ;3617390372166;FR-2X4-25-39969;;"Music Release";Stream;1;RUB;0.099223600019
+01/05/2025;01/04/2025;Yandex;"Moldova, Republic Of";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;6;RUB;0.095502502450
+01/06/2025;01/05/2025;Spotify;Belarus;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;2;RUB;0.000630865599
+01/05/2025;01/03/2025;TikTok;Denmark;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Creation;1;RUB;0.078127554129
+01/06/2025;01/05/2025;Spotify;India;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;19;RUB;0.572486319526
+01/04/2025;01/03/2025;Yandex;"Moldova, Republic Of";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ОФОРМИЛ;3617390372166;FR-2X4-25-39971;;"Music Release";Stream;1;RUB;0.021290350854
+01/05/2025;01/01/2025;"Facebook / Instagram";Kazakhstan;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Creation;6;RUB;0.046075149718
+01/06/2025;01/06/2025;"YouTube Official Content";Poland;"Stars Clique";виесван;Кабриолет;"На бис";3617397190817;FR-X45-25-18658;;"Music Release";Stream;1;RUB;0.152067500998
+01/06/2025;01/05/2025;Spotify;Latvia;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;3;RUB;0.239001028518
+01/04/2025;01/04/2025;"YouTube UGC";"United Kingdom";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;1;RUB;0.004359359759
+01/04/2025;01/03/2025;Yandex;Kazakhstan;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;228;RUB;4.823559132336
+01/05/2025;01/05/2025;"YouTube Official Content";"Czech Republic";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;2;RUB;0.146626084311
+01/05/2025;01/04/2025;Spotify;Nigeria;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;18;RUB;0.246184042363
+01/05/2025;01/03/2025;"Facebook / Instagram";Germany;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Creation;7;RUB;0.522764601450
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ПРОСТИТЕ МИСС";3617390372166;FR-2X4-25-39970;;"Music Release";Stream;835;RUB;18.020183801037
+01/04/2025;01/04/2025;"YouTube UGC";Ukraine;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;54;RUB;0.120985362190
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ГОРЫ;3617390372166;FR-2X4-25-39969;;"Music Release";Stream;30;RUB;0.629260736162
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ОФОРМИЛ;3617390372166;FR-2X4-25-39971;;"Music Release";Stream;518;RUB;11.221045478736
+01/04/2025;01/03/2025;Yandex;Belarus;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;648;RUB;13.229291535058
+01/06/2025;01/05/2025;Spotify;Ukraine;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;1;RUB;0.000242640682
+01/06/2025;01/05/2025;Yandex;Kazakhstan;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ГОРЫ;3617390372166;FR-2X4-25-39969;;"Music Release";Stream;3;RUB;0.062574605898
+01/05/2025;01/04/2025;Yandex;Ukraine;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;5;RUB;0.020253672614
+01/05/2025;01/04/2025;Spotify;Kazakhstan;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;5;RUB;0.380594304201
+01/04/2025;01/04/2025;"Apple Music";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ОФОРМИЛ;3617390372166;FR-2X4-25-39971;;"Music Release";Stream;23;RUB;2.218190240048
+01/05/2025;01/05/2025;"YouTube Official Content";Poland;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ГАД & ЛОХ";3617390372166;FR-2X4-25-39972;;"Music Release";Stream;1;RUB;0.267713542551
+01/06/2025;01/06/2025;"Apple Music";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ОФОРМИЛ;3617390372166;FR-2X4-25-39971;;"Music Release";Stream;3;RUB;0.234636640058
+01/05/2025;01/03/2025;TikTok;"United States";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Creation;1;RUB;0.078127554129
+01/06/2025;01/05/2025;Spotify;"Czech Republic";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;6;RUB;0.884958907535
+01/05/2025;01/03/2025;"Facebook / Instagram";"Russian Federation";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Creation;19;RUB;0.645739182682
+01/05/2025;01/03/2025;"Facebook / Instagram";"United Arab Emirates";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Creation;6;RUB;0.507476132001
+01/05/2025;01/04/2025;Yandex;Belarus;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;432;RUB;8.828533979154
+01/06/2025;01/06/2025;"Apple Music";France;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;1;RUB;0.363669780923
+01/06/2025;01/06/2025;"YouTube UGC";France;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;4;RUB;0.013903016345
+01/04/2025;01/04/2025;"Apple Music";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ПРОСТИТЕ МИСС";3617390372166;FR-2X4-25-39970;;"Music Release";Stream;17;RUB;1.422448159968
+01/05/2025;01/04/2025;Yandex;Kazakhstan;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ГАД & ЛОХ";3617390372166;FR-2X4-25-39972;;"Music Release";Stream;22;RUB;0.480705683922
+01/05/2025;01/03/2025;"Facebook / Instagram";"Russian Federation";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Creation;7;RUB;0.237903909386
+01/06/2025;01/05/2025;Yandex;Turkmenistan;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;18;RUB;0.056965895294
+01/04/2025;01/03/2025;Yandex;Belarus;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ОФОРМИЛ;3617390372166;FR-2X4-25-39971;;"Music Release";Stream;48;RUB;0.945334704844
+01/04/2025;01/03/2025;Yandex;Belarus;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ГАД & ЛОХ";3617390372166;FR-2X4-25-39972;;"Music Release";Stream;63;RUB;1.280010393969
+01/04/2025;01/04/2025;"YouTube UGC";Poland;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;6;RUB;0.020810206887
+01/06/2025;01/05/2025;Yandex;Ukraine;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;4;RUB;0.012659087859
+01/05/2025;01/04/2025;Spotify;"United Arab Emirates";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;9;RUB;0.044592925463
+01/06/2025;01/06/2025;"Apple Music";Israel;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;1;RUB;0.343478465286
+01/06/2025;01/05/2025;Spotify;Finland;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;17;RUB;0.206875399024
+01/06/2025;01/05/2025;Spotify;Netherlands;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;1;RUB;0.038579860694
+01/05/2025;01/04/2025;Spotify;Belarus;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;2;RUB;0.000194304711
+01/05/2025;01/04/2025;Spotify;Latvia;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;4;RUB;0.314870744126
+01/05/2025;01/04/2025;Yandex;Uzbekistan;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;42;RUB;0.917710851091
+01/05/2025;01/04/2025;Yandex;Belarus;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ПРОСТИТЕ МИСС";3617390372166;FR-2X4-25-39970;;"Music Release";Stream;19;RUB;0.415154908829
+01/06/2025;01/06/2025;"YouTube Official Content";Kazakhstan;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;4;RUB;0.110112540002
+01/04/2025;01/02/2025;Deezer;Ukraine;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ЧЕМ ОБЫЧНО";3617390372166;FR-2X4-25-39968;;"Music Release";Stream;1;RUB;0.017349320871
+01/05/2025;01/04/2025;Spotify;Latvia;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;4;RUB;0.314870744126
+01/05/2025;01/04/2025;Yandex;Kyrgyzstan;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;5;RUB;0.109251291774
+01/06/2025;01/05/2025;"UMA (Odnoklassniki)";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ЧЕМ ОБЫЧНО";3617390372166;FR-2X4-25-39968;;"Music Release";Stream;1;RUB;0.004200000036
+01/05/2025;01/04/2025;Spotify;"Czech Republic";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;14;RUB;1.339245035503
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ГОРЫ;3617390372166;FR-2X4-25-39969;;"Music Release";Stream;131;RUB;2.679344165734
+01/05/2025;01/03/2025;TikTok;Sweden;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Creation;1;RUB;0.078127554129
+01/06/2025;01/05/2025;Yandex;Turkmenistan;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;13;RUB;0.041142035506
+01/06/2025;01/06/2025;"Apple Music";Poland;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;1;RUB;0.218944241874
+01/04/2025;01/02/2025;TikTok;Ukraine;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Creation;3;RUB;0.283808275442
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;3;RUB;0.372515071342
+01/04/2025;01/03/2025;Yandex;Kazakhstan;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ОФОРМИЛ;3617390372166;FR-2X4-25-39971;;"Music Release";Stream;24;RUB;0.495647992757
+01/06/2025;01/05/2025;Yandex;"Moldova, Republic Of";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;6;RUB;0.072068921757
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ЧЕМ ОБЫЧНО";3617390372166;FR-2X4-25-39968;;"Music Release";Stream;3;RUB;0.012600000000
+01/05/2025;01/05/2025;"Apple Music";Spain;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;3;RUB;0.466185518520
+01/05/2025;01/04/2025;Yandex;Uzbekistan;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ПРОСТИТЕ МИСС";3617390372166;FR-2X4-25-39970;;"Music Release";Stream;2;RUB;0.043700516681
+01/04/2025;01/03/2025;Yandex;Uzbekistan;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;97;RUB;2.019202748646
+01/05/2025;01/03/2025;"Facebook / Instagram";Nepal;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Creation;7;RUB;0.013377734796
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Belarus;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;6;RUB;0.025200000000
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;21168;RUB;438.635115709183
+01/06/2025;01/05/2025;Yandex;Uzbekistan;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;26;RUB;0.542313250781
+01/04/2025;01/04/2025;"Apple Music";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ГАД & ЛОХ";3617390372166;FR-2X4-25-39972;;"Music Release";Stream;6;RUB;0.613109840052
+01/04/2025;01/03/2025;Yandex;Uzbekistan;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ПРОСТИТЕ МИСС";3617390372166;FR-2X4-25-39970;;"Music Release";Stream;4;RUB;0.069840976502
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;492;RUB;11.526382351257
+01/04/2025;01/03/2025;Yandex;Kyrgyzstan;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;4;RUB;0.085161403266
+01/05/2025;01/04/2025;"UMA (Odnoklassniki)";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ГОРЫ;3617390372166;FR-2X4-25-39969;;"Music Release";Stream;1;RUB;0.004200000000
+01/05/2025;01/04/2025;"UMA VK MUSIC";"Russian Federation";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;17;RUB;1.382496687664
+01/06/2025;01/05/2025;Spotify;Finland;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;32;RUB;0.389438293897
+01/05/2025;01/04/2025;Yandex;Belarus;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ОФОРМИЛ;3617390372166;FR-2X4-25-39971;;"Music Release";Stream;17;RUB;0.371454392075
+01/06/2025;01/06/2025;"YouTube Official Content";Ukraine;"Stars Clique";виесван;Кабриолет;"На бис";3617397190817;FR-X45-25-18658;;"Music Release";Stream;8;RUB;0.357773650282
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;474;RUB;16.518497772722
+01/06/2025;01/05/2025;Yandex;Belarus;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ГОРЫ;3617390372166;FR-2X4-25-39969;;"Music Release";Stream;5;RUB;0.086597579769
+01/05/2025;01/04/2025;Yandex;Uzbekistan;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;38;RUB;0.794710769993
+01/05/2025;01/12/2024;"Facebook / Instagram";Worldwide;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Creation;6;RUB;0.140418716205
+01/06/2025;01/05/2025;Yandex;Belarus;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"НОВЫЙ ГАЛСТУК Intro";3617390372166;FR-2X4-25-39966;;"Music Release";Stream;4;RUB;0.083432807841
+01/05/2025;01/03/2025;TikTok;"United States";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Creation;1;RUB;0.078127554129
+01/04/2025;01/04/2025;"Apple Music";Poland;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ОФОРМИЛ;3617390372166;FR-2X4-25-39971;;"Music Release";Stream;4;RUB;0.704471468154
+01/04/2025;01/03/2025;Yandex;Kazakhstan;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;268;RUB;5.659852738157
+01/04/2025;01/04/2025;"Apple Music";Kyrgyzstan;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ОФОРМИЛ;3617390372166;FR-2X4-25-39971;;"Music Release";Stream;1;RUB;0.071011020713
+01/06/2025;01/05/2025;"UMA VK MUSIC";"Russian Federation";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;22;RUB;2.041399967207
+01/06/2025;01/05/2025;Spotify;"United States";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;2;RUB;0.252249202243
+01/06/2025;01/06/2025;"YouTube Official Content";France;"Stars Clique";виесван;Кабриолет;Кабриолет;3617397190817;FR-X45-25-18659;;"Music Release";Stream;1;RUB;0.123640326655
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;827;RUB;51.330959370294
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ПРОСТИТЕ МИСС";3617390372166;FR-2X4-25-39970;;"Music Release";Stream;4;RUB;0.016800000000
+01/05/2025;01/05/2025;"YouTube Official Content";Ukraine;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;6;RUB;0.241995629529
+01/04/2025;01/04/2025;"YouTube Official Content";Germany;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;4;RUB;0.466020147960
+01/05/2025;01/03/2025;TikTok;"Czech Republic";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Creation;1;RUB;0.078127554129
+01/05/2025;01/04/2025;Yandex;Turkmenistan;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;5;RUB;0.020253672614
+01/06/2025;01/04/2025;TikTok;"United States";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Creation;1;RUB;0.071995677163
+01/04/2025;01/04/2025;"Apple Music";"Russian Federation";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;2;RUB;0.198447200038
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ГОРЫ;3617390372166;FR-2X4-25-39969;;"Music Release";Stream;6;RUB;0.025200000000
+01/05/2025;01/01/2025;"Facebook / Instagram";"Russian Federation";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Creation;13;RUB;0.441424722842
+01/04/2025;01/03/2025;Yandex;Uzbekistan;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ОФОРМИЛ;3617390372166;FR-2X4-25-39971;;"Music Release";Stream;1;RUB;0.021290350854
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Azerbaijan;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;1;RUB;0.004200000036
+01/04/2025;01/03/2025;Yandex;Belarus;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;506;RUB;10.466508975838
+01/05/2025;01/05/2025;"Apple Music";Poland;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ОФОРМИЛ;3617390372166;FR-2X4-25-39971;;"Music Release";Stream;2;RUB;0.459976532754
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ОФОРМИЛ;3617390372166;FR-2X4-25-39971;;"Music Release";Stream;4;RUB;0.016800000000
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ОФОРМИЛ;3617390372166;FR-2X4-25-39971;;"Music Release";Stream;1;RUB;-0.004435535837
+01/05/2025;01/04/2025;Yandex;Kazakhstan;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ОФОРМИЛ;3617390372166;FR-2X4-25-39971;;"Music Release";Stream;3;RUB;0.065550775094
+01/06/2025;01/05/2025;Spotify;Latvia;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;3;RUB;0.239001028518
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;1;RUB;-0.747047207300
+01/06/2025;01/05/2025;Yandex;Belarus;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;494;RUB;9.596214564589
+01/05/2025;01/02/2025;"Facebook / Instagram";Denmark;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Creation;13;RUB;1.995833128609
+01/04/2025;01/04/2025;"Apple Music";Spain;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;7;RUB;1.134440139430
+01/05/2025;01/04/2025;Spotify;"United Kingdom";"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;44;RUB;2.924479774704
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;22694;RUB;459.936706303349
+01/05/2025;01/04/2025;Spotify;Pakistan;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;1;RUB;0.039492427436
+01/05/2025;01/04/2025;Spotify;Italy;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;4;RUB;0.417026432894
+01/06/2025;01/06/2025;"YouTube Official Content";"United Arab Emirates";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;2;RUB;0.105216118811
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"НОВЫЙ ГАЛСТУК Intro";3617390372166;FR-2X4-25-39966;;"Music Release";Stream;59;RUB;1.271365719407
+01/05/2025;01/01/2025;"Facebook / Instagram";Netherlands;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Creation;6;RUB;0.670722074227
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Moldova, Republic Of";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;3;RUB;0.012600000000
+01/04/2025;01/04/2025;"YouTube Official Content";France;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;1;RUB;0.065407604495
+01/06/2025;01/06/2025;"YouTube Official Content";Denmark;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;1;RUB;0.139035585663
+01/06/2025;01/05/2025;Yandex;Ukraine;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;5;RUB;0.015823859788
+01/04/2025;01/02/2025;TikTok;Netherlands;"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Creation;1;RUB;0.094602758506
+01/04/2025;01/04/2025;"YouTube UGC";France;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;11;RUB;0.015533087202
+01/06/2025;01/05/2025;Spotify;Germany;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;11;RUB;0.707103352499
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ГАД & ЛОХ";3617390372166;FR-2X4-25-39972;;"Music Release";Stream;27;RUB;0.113400000036
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"Stars Clique";виесван;spacedisco!;spacedisco!;3617667874973;DG-A0T-24-19839;;"Music Release";Stream;186;RUB;8.312094399289
+01/05/2025;01/04/2025;Spotify;Kazakhstan;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;1;RUB;0.076118860840
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Kazakhstan;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;13;RUB;0.054600000000
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";"ПРОСТИТЕ МИСС";3617390372166;FR-2X4-25-39970;;"Music Release";Stream;690;RUB;14.197531616978
+01/05/2025;01/04/2025;Yandex;Belarus;"Stars Clique";виесван;"НОВЫЙ ГАЛСТУК";ГОРЫ;3617390372166;FR-2X4-25-39969;;"Music Release";Stream;4;RUB;0.087401033434
+01/04/2025;01/04/2025;"YouTube Official Content";Ukraine;"Stars Clique";виесван;"full gaz!";"full gaz!";3617666489642;DG-A0R-24-89057;;"Music Release";Stream;4;RUB;0.172795347916

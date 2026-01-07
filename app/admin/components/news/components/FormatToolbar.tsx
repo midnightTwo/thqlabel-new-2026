@@ -44,17 +44,17 @@ export function FormatToolbar({ content, setContent, onOpenLinkDialog }: FormatT
   ];
 
   return (
-    <div className="mb-2 p-2 bg-black/20 border border-white/5 rounded-xl flex flex-wrap gap-1">
+    <div className="mb-2 p-2 bg-black/20 border border-white/5 rounded-xl flex flex-wrap gap-1 overflow-x-auto">
       {buttons.map((btn, i) => {
         if (btn.type === 'divider') {
-          return <div key={i} className="w-px bg-white/10 mx-1" />;
+          return <div key={i} className="w-px bg-white/10 mx-1 hidden sm:block" />;
         }
         return (
           <button
             key={i}
             type="button"
             onClick={btn.onClick}
-            className={`px-3 py-1.5 bg-white/5 hover:bg-white/10 rounded-lg text-[11px] font-bold transition ${btn.className || ''}`}
+            className={`px-2.5 sm:px-3 py-2 sm:py-1.5 bg-white/5 hover:bg-white/10 active:bg-white/20 rounded-lg text-[11px] font-bold transition min-w-[36px] min-h-[36px] sm:min-w-0 sm:min-h-0 flex items-center justify-center ${btn.className || ''}`}
             title={btn.title}
           >
             {btn.label}

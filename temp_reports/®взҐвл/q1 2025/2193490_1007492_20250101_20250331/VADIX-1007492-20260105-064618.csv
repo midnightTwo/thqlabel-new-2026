@@ -1,0 +1,118 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/01/2025;01/12/2024;Yandex;Belarus;"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Футбольные Бары";3617664392630;DG-A0P-24-22992;;"Music Release";Stream;1;RUB;0.017581382469
+01/01/2025;01/01/2025;"Apple Music";Kazakhstan;"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Абрамович Флоу";3617664392630;DG-A0P-24-22991;;"Music Release";Stream;1;RUB;0.050280718920
+01/03/2025;01/02/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Абрамович Флоу";3617664392630;DG-A0P-24-22991;;"Music Release";Stream;23;RUB;1.262820493727
+01/02/2025;01/01/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";VADIX;"Это была Любовь";"Это была Любовь";3617662278868;DG-A0M-24-08142;;"Music Release";Stream;2;RUB;0.233150640471
+01/01/2025;01/01/2025;"YouTube UGC";Estonia;"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;2;RUB;0.010369288742
+01/01/2025;01/01/2025;"YouTube UGC";"Czech Republic";"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;1;RUB;0.005410063736
+01/03/2025;01/02/2025;Yandex;Kazakhstan;"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;1;RUB;0.021587041761
+01/03/2025;01/11/2024;Yandex;Worldwide;"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Футбольные Бары";3617664392630;DG-A0P-24-22992;;"Music Release";Stream;1;RUB;1.190363880346
+01/03/2025;01/02/2025;Yandex;"Russian Federation";"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Абрамович Флоу";3617664392630;DG-A0P-24-22991;;"Music Release";Stream;19;RUB;0.355168808776
+01/01/2025;01/01/2025;"YouTube UGC";Germany;"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;6;RUB;0.051339244626
+01/03/2025;01/09/2024;Yandex;Worldwide;"DARKI MUZIK";VADIX;"Это была Любовь";"Это была Любовь";3617662278868;DG-A0M-24-08142;;"Music Release";Stream;1;RUB;48.981545931636
+01/01/2025;01/01/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Абрамович Флоу";3617664392630;DG-A0P-24-22991;;"Music Release";Stream;24;RUB;2.556489600058
+01/01/2025;01/12/2024;Yandex;Belarus;"DARKI MUZIK";VADIX;"Люби Любым Меня";"Люби Любым Меня";3617661035806;DG-A07-24-94856;;"Music Release";Stream;1;RUB;0.017581382469
+01/01/2025;01/12/2024;Yandex;"Moldova, Republic Of";"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;1;RUB;0.017581382469
+01/01/2025;01/01/2025;"YouTube UGC";Poland;"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;5;RUB;0.460142620843
+01/02/2025;01/01/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;1;RUB;0.135685419126
+01/02/2025;01/01/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";VADIX;"Это была Любовь";"Это была Любовь";3617662278868;DG-A0M-24-08142;;"Music Release";Stream;7;RUB;0.348958474034
+01/02/2025;01/02/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Абрамович Флоу";3617664392630;DG-A0P-24-22991;;"Music Release";Stream;7;RUB;0.706097279998
+01/03/2025;01/02/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Футбольные Бары";3617664392630;DG-A0P-24-22992;;"Music Release";Stream;14;RUB;1.225020493727
+01/03/2025;01/03/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Абрамович Флоу";3617664392630;DG-A0P-24-22991;;"Music Release";Stream;3;RUB;0.318739120058
+01/01/2025;01/11/2024;SberZvuk;"Russian Federation";"DARKI MUZIK";VADIX;"Люби Любым Меня";"Люби Любым Меня";3617661035806;DG-A07-24-94856;;"Music Release";Stream;1;RUB;0.001016222448
+01/03/2025;01/03/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";VADIX;"Это была Любовь";"Это была Любовь";3617662278868;DG-A0M-24-08142;;"Music Release";Stream;2;RUB;0.201847519959
+01/01/2025;01/01/2025;"YouTube UGC";Ukraine;"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;13;RUB;0.117612530579
+01/01/2025;01/12/2024;"UMA (Odnoklassniki)";"Russian Federation";"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Абрамович Флоу";3617664392630;DG-A0P-24-22991;;"Music Release";Stream;1;RUB;0.004200000042
+01/01/2025;01/12/2024;"UMA (Vkontakte)";Ukraine;"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;1;RUB;0.004200000042
+01/01/2025;01/01/2025;"YouTube UGC";Tunisia;"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;1;RUB;0.004198434836
+01/01/2025;01/12/2024;Yandex;Uzbekistan;"DARKI MUZIK";VADIX;"Это была Любовь";"Это была Любовь";3617662278868;DG-A0M-24-08142;;"Music Release";Stream;2;RUB;0.035162764938
+01/01/2025;01/12/2024;Yandex;"Russian Federation";"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Абрамович Флоу";3617664392630;DG-A0P-24-22991;;"Music Release";Stream;61;RUB;1.412731240850
+01/01/2025;01/12/2024;Yandex;Belarus;"DARKI MUZIK";VADIX;"Это была Любовь";"Это была Любовь";3617662278868;DG-A0M-24-08142;;"Music Release";Stream;4;RUB;0.183747833663
+01/02/2025;01/02/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;5;RUB;0.472838800011
+01/03/2025;01/02/2025;Yandex;Kazakhstan;"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Футбольные Бары";3617664392630;DG-A0P-24-22992;;"Music Release";Stream;1;RUB;0.021587041761
+01/02/2025;01/01/2025;Yandex;Belarus;"DARKI MUZIK";VADIX;"Это была Любовь";"Это была Любовь";3617662278868;DG-A0M-24-08142;;"Music Release";Stream;1;RUB;0.022430687713
+01/03/2025;01/07/2024;Yandex;Worldwide;"DARKI MUZIK";VADIX;"Люби Любым Меня";"Люби Любым Меня";3617661035806;DG-A07-24-94856;;"Music Release";Stream;1;RUB;27.801328295954
+01/01/2025;01/01/2025;"YouTube UGC";Denmark;"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;1;RUB;0.017892658583
+01/02/2025;01/01/2025;"UMA (Vkontakte)";Belarus;"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Футбольные Бары";3617664392630;DG-A0P-24-22992;;"Music Release";Stream;1;RUB;0.004200000000
+01/03/2025;01/02/2025;Yandex;Belarus;"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Футбольные Бары";3617664392630;DG-A0P-24-22992;;"Music Release";Stream;3;RUB;0.064761125356
+01/01/2025;01/12/2024;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Футбольные Бары";3617664392630;DG-A0P-24-22992;;"Music Release";Stream;19;RUB;0.326564410534
+01/02/2025;01/01/2025;Yandex;"Russian Federation";"DARKI MUZIK";VADIX;"Люби Любым Меня";"Люби Любым Меня";3617661035806;DG-A07-24-94856;;"Music Release";Stream;13;RUB;0.291598940422
+01/03/2025;01/11/2024;Yandex;Worldwide;"DARKI MUZIK";VADIX;"Это была Любовь";"Это была Любовь";3617662278868;DG-A0M-24-08142;;"Music Release";Stream;1;RUB;0.918668993116
+01/03/2025;01/03/2025;"YouTube UGC";Finland;"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Абрамович Флоу";3617664392630;DG-A0P-24-22991;;"Music Release";Stream;1;RUB;0.972372484574
+01/03/2025;01/08/2024;Yandex;Worldwide;"DARKI MUZIK";VADIX;"Это была Любовь";"Это была Любовь";3617662278868;DG-A0M-24-08142;;"Music Release";Stream;1;RUB;34.482076089562
+01/01/2025;01/01/2025;"YouTube UGC";"Moldova, Republic Of";"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;4;RUB;0.121895497704
+01/02/2025;01/02/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Футбольные Бары";3617664392630;DG-A0P-24-22992;;"Music Release";Stream;5;RUB;0.504907200012
+01/01/2025;01/12/2024;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";VADIX;"Люби Любым Меня";"Люби Любым Меня";3617661035806;DG-A07-24-94856;;"Music Release";Stream;10;RUB;0.181610902540
+01/03/2025;01/10/2024;Yandex;Worldwide;"DARKI MUZIK";VADIX;"Люби Любым Меня";"Люби Любым Меня";3617661035806;DG-A07-24-94856;;"Music Release";Stream;1;RUB;0.117691827385
+01/01/2025;01/12/2024;"UMA (Vkontakte)";Belarus;"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;1;RUB;0.004200000042
+01/03/2025;01/08/2024;Yandex;Worldwide;"DARKI MUZIK";VADIX;"Люби Любым Меня";"Люби Любым Меня";3617661035806;DG-A07-24-94856;;"Music Release";Stream;1;RUB;49.807443245226
+01/01/2025;01/12/2024;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;1;RUB;0.127582205246
+01/01/2025;01/12/2024;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";VADIX;"Это была Любовь";"Это была Любовь";3617662278868;DG-A0M-24-08142;;"Music Release";Stream;7;RUB;0.558491319413
+01/03/2025;01/03/2025;"Apple Music";Canada;"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;1;RUB;0.130553448846
+01/02/2025;01/01/2025;Yandex;"Russian Federation";"DARKI MUZIK";VADIX;"Это была Любовь";"Это была Любовь";3617662278868;DG-A0M-24-08142;;"Music Release";Stream;33;RUB;0.740212694757
+01/02/2025;01/01/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Абрамович Флоу";3617664392630;DG-A0P-24-22991;;"Music Release";Stream;2;RUB;0.271370838253
+01/02/2025;01/01/2025;Yandex;"Russian Federation";"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Абрамович Флоу";3617664392630;DG-A0P-24-22991;;"Music Release";Stream;30;RUB;0.672920631618
+01/02/2025;01/01/2025;Yandex;"Russian Federation";"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;178;RUB;3.973451690230
+01/01/2025;01/12/2024;Yandex;Belarus;"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;1;RUB;0.017581382469
+01/02/2025;01/02/2025;"Apple Music";"United States";"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Футбольные Бары";3617664392630;DG-A0P-24-22992;;"Music Release";Stream;1;RUB;0.216222615079
+01/01/2025;01/01/2025;"YouTube UGC";Sweden;"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;1;RUB;0.014483191290
+01/02/2025;01/01/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;28;RUB;1.966293199340
+01/01/2025;01/01/2025;"YouTube UGC";France;"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;2;RUB;0.035954381658
+01/01/2025;01/01/2025;"YouTube UGC";Azerbaijan;"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;1;RUB;0.007410660179
+01/01/2025;01/01/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;11;RUB;1.126543040011
+01/03/2025;01/03/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Футбольные Бары";3617664392630;DG-A0P-24-22992;;"Music Release";Stream;2;RUB;0.201847519959
+01/03/2025;01/03/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";VADIX;"Люби Любым Меня";"Люби Любым Меня";3617661035806;DG-A07-24-94856;;"Music Release";Stream;2;RUB;0.201847519959
+01/02/2025;01/01/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Абрамович Флоу";3617664392630;DG-A0P-24-22991;;"Music Release";Stream;33;RUB;0.533056257379
+01/03/2025;01/10/2024;Yandex;Worldwide;"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Футбольные Бары";3617664392630;DG-A0P-24-22992;;"Music Release";Stream;1;RUB;17.207161290972
+01/01/2025;01/12/2024;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;87;RUB;4.063521699034
+01/03/2025;01/03/2025;"Apple Music";Turkey;"DARKI MUZIK";VADIX;"On Me";"On Me";3617392521241;FR-96X-25-02241;;"Music Release";Stream;1;RUB;0.033189101372
+01/02/2025;01/01/2025;Yandex;Kazakhstan;"DARKI MUZIK";VADIX;"Это была Любовь";"Это была Любовь";3617662278868;DG-A0M-24-08142;;"Music Release";Stream;1;RUB;0.022430687713
+01/02/2025;01/01/2025;"UMA (Odnoklassniki)";"Russian Federation";"DARKI MUZIK";VADIX;"Это была Любовь";"Это была Любовь";3617662278868;DG-A0M-24-08142;;"Music Release";Stream;1;RUB;0.004200000000
+01/03/2025;01/02/2025;Soundcloud;"United Kingdom";"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Абрамович Флоу";3617664392630;DG-A0P-24-22991;;"Music Release";Stream;2;RUB;0.413618505667
+01/01/2025;01/01/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";VADIX;"Люби Любым Меня";"Люби Любым Меня";3617661035806;DG-A07-24-94856;;"Music Release";Stream;2;RUB;0.207221840026
+01/01/2025;01/12/2024;Yandex;Azerbaijan;"DARKI MUZIK";VADIX;"Это была Любовь";"Это была Любовь";3617662278868;DG-A0M-24-08142;;"Music Release";Stream;1;RUB;0.017581382469
+01/01/2025;01/12/2024;"UMA (Vkontakte)";Armenia;"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Абрамович Флоу";3617664392630;DG-A0P-24-22991;;"Music Release";Stream;1;RUB;0.004200000042
+01/03/2025;01/02/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";VADIX;"Это была Любовь";"Это была Любовь";3617662278868;DG-A0M-24-08142;;"Music Release";Stream;7;RUB;0.438804849746
+01/01/2025;01/12/2024;"UMA (Vkontakte)";Kazakhstan;"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;1;RUB;0.004200000042
+01/01/2025;01/01/2025;"Apple Music";Kazakhstan;"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Футбольные Бары";3617664392630;DG-A0P-24-22992;;"Music Release";Stream;1;RUB;0.050280718920
+01/01/2025;01/01/2025;"Apple Music";Canada;"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Абрамович Флоу";3617664392630;DG-A0P-24-22991;;"Music Release";Stream;1;RUB;0.224616048234
+01/03/2025;01/09/2024;Yandex;Worldwide;"DARKI MUZIK";VADIX;"Люби Любым Меня";"Люби Любым Меня";3617661035806;DG-A07-24-94856;;"Music Release";Stream;1;RUB;0.271814220234
+01/03/2025;01/02/2025;Yandex;"Russian Federation";"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Футбольные Бары";3617664392630;DG-A0P-24-22992;;"Music Release";Stream;56;RUB;1.172217683160
+01/03/2025;01/01/2025;SNAPCHAT;"Serbia And Montenegro";"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Футбольные Бары";3617664392630;DG-A0P-24-22992;;"Music Release";Creation;1;RUB;0.059709749942
+01/01/2025;01/12/2024;"Amazon Music Streaming";France;"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Футбольные Бары";3617664392630;DG-A0P-24-22992;;"Music Release";Stream;1;RUB;0.648619616350
+01/03/2025;01/02/2025;Yandex;"Russian Federation";"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;50;RUB;1.042695432448
+01/02/2025;01/01/2025;Yandex;Belarus;"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;3;RUB;0.067292063138
+01/01/2025;01/01/2025;"YouTube UGC";"United Kingdom";"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;3;RUB;0.025359673508
+01/03/2025;01/03/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;5;RUB;0.504618799972
+01/01/2025;01/12/2024;Yandex;"Russian Federation";"DARKI MUZIK";VADIX;"Люби Любым Меня";"Люби Любым Меня";3617661035806;DG-A07-24-94856;;"Music Release";Stream;21;RUB;0.482631335291
+01/02/2025;01/01/2025;Yandex;Kazakhstan;"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Футбольные Бары";3617664392630;DG-A0P-24-22992;;"Music Release";Stream;2;RUB;0.044861375503
+01/02/2025;01/01/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";VADIX;"Люби Любым Меня";"Люби Любым Меня";3617661035806;DG-A07-24-94856;;"Music Release";Stream;1;RUB;0.135685419126
+01/02/2025;01/01/2025;Yandex;Belarus;"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Футбольные Бары";3617664392630;DG-A0P-24-22992;;"Music Release";Stream;2;RUB;0.044861375503
+01/02/2025;01/01/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Футбольные Бары";3617664392630;DG-A0P-24-22992;;"Music Release";Stream;3;RUB;0.407056257379
+01/03/2025;01/11/2024;Yandex;Worldwide;"DARKI MUZIK";VADIX;"Люби Любым Меня";"Люби Любым Меня";3617661035806;DG-A07-24-94856;;"Music Release";Stream;1;RUB;0.108041250702
+01/03/2025;01/02/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;11;RUB;0.413690196710
+01/02/2025;01/01/2025;Yandex;"Russian Federation";"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Футбольные Бары";3617664392630;DG-A0P-24-22992;;"Music Release";Stream;94;RUB;2.070063197600
+01/01/2025;01/12/2024;Yandex;Kazakhstan;"DARKI MUZIK";VADIX;"Это была Любовь";"Это была Любовь";3617662278868;DG-A0M-24-08142;;"Music Release";Stream;10;RUB;0.175813824432
+01/02/2025;01/01/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Футбольные Бары";3617664392630;DG-A0P-24-22992;;"Music Release";Stream;10;RUB;0.173485419126
+01/01/2025;01/12/2024;Yandex;"Russian Federation";"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;191;RUB;3.358044047524
+01/03/2025;01/10/2024;Yandex;Worldwide;"DARKI MUZIK";VADIX;"Это была Любовь";"Это была Любовь";3617662278868;DG-A0M-24-08142;;"Music Release";Stream;1;RUB;3.393687896217
+01/02/2025;01/02/2025;"Apple Music";Canada;"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;1;RUB;0.128337002578
+01/01/2025;01/01/2025;"YouTube UGC";Netherlands;"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;1;RUB;0.018794335872
+01/01/2025;01/01/2025;"Apple Music";Germany;"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Абрамович Флоу";3617664392630;DG-A0P-24-22991;;"Music Release";Stream;13;RUB;7.492540012562
+01/01/2025;01/12/2024;Yandex;"Russian Federation";"DARKI MUZIK";VADIX;"Это была Любовь";"Это была Любовь";3617662278868;DG-A0M-24-08142;;"Music Release";Stream;188;RUB;13.513307246530
+01/01/2025;01/01/2025;"YouTube UGC";Turkey;"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;2;RUB;0.025472383254
+01/03/2025;01/02/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";VADIX;"Люби Любым Меня";"Люби Любым Меня";3617661035806;DG-A07-24-94856;;"Music Release";Stream;1;RUB;0.004200000000
+01/02/2025;01/02/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";VADIX;"Люби Любым Меня";"Люби Любым Меня";3617661035806;DG-A07-24-94856;;"Music Release";Stream;3;RUB;0.302944320038
+01/01/2025;01/01/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Футбольные Бары";3617664392630;DG-A0P-24-22992;;"Music Release";Stream;4;RUB;0.408624720000
+01/03/2025;01/10/2024;Yandex;Worldwide;"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Абрамович Флоу";3617664392630;DG-A0P-24-22991;;"Music Release";Stream;1;RUB;13.383300660829
+01/03/2025;01/03/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";VADIX;"On Me";"On Me";3617392521241;FR-96X-25-02241;;"Music Release";Stream;1;RUB;0.100923760054
+01/03/2025;01/02/2025;"UMA (Odnoklassniki)";"Russian Federation";"DARKI MUZIK";VADIX;"Люби Любым Меня";"Люби Любым Меня";3617661035806;DG-A07-24-94856;;"Music Release";Stream;4;RUB;0.016800000000
+01/01/2025;01/12/2024;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Абрамович Флоу";3617664392630;DG-A0P-24-22991;;"Music Release";Stream;26;RUB;1.235868544506
+01/01/2025;01/12/2024;Yandex;"Russian Federation";"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Футбольные Бары";3617664392630;DG-A0P-24-22992;;"Music Release";Stream;90;RUB;2.262858243468
+01/03/2025;01/02/2025;Yandex;"Russian Federation";"DARKI MUZIK";VADIX;"Люби Любым Меня";"Люби Любым Меня";3617661035806;DG-A07-24-94856;;"Music Release";Stream;12;RUB;0.259044501425
+01/01/2025;01/01/2025;"YouTube UGC";Bulgaria;"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;2;RUB;0.004677450938
+01/03/2025;01/11/2024;Yandex;Worldwide;"DARKI MUZIK";VADIX;"Лазер Ва Дим 72";"Абрамович Флоу";3617664392630;DG-A0P-24-22991;;"Music Release";Stream;1;RUB;0.524771792761
+01/03/2025;01/03/2025;"YouTube UGC";Germany;"DARKI MUZIK";VADIX;"АЛЬБОМ 2 (Спокойной ночи)";"АЛЬБОМ 2 (Спокойной ночи)";3617668006700;DG-A0T-24-32710;;"Music Release";Stream;1;RUB;0.014084100053
+01/03/2025;01/02/2025;Yandex;"Russian Federation";"DARKI MUZIK";VADIX;"Это была Любовь";"Это была Любовь";3617662278868;DG-A0M-24-08142;;"Music Release";Stream;41;RUB;0.870207909071
+01/01/2025;01/01/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";VADIX;"Это была Любовь";"Это была Любовь";3617662278868;DG-A0M-24-08142;;"Music Release";Stream;1;RUB;0.106520399995
+01/02/2025;01/02/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";VADIX;"Это была Любовь";"Это была Любовь";3617662278868;DG-A0M-24-08142;;"Music Release";Stream;1;RUB;0.100981439987

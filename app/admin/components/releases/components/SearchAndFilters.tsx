@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useTheme } from '@/contexts/ThemeContext';
 
 interface SearchAndFiltersProps {
   viewMode: 'moderation' | 'archive' | 'create';
@@ -29,6 +30,8 @@ export default function SearchAndFilters({
   loading,
   onRefresh
 }: SearchAndFiltersProps) {
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
   const [showFilters, setShowFilters] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
   const [calendarMonth, setCalendarMonth] = useState(new Date().getMonth());
@@ -38,16 +41,20 @@ export default function SearchAndFilters({
 
   return (
     <div className="w-full lg:w-96 relative">
-      <div className="space-y-3">
+      <div className="space-y-2 sm:space-y-3">
         {/* Кнопка обновления и поиск */}
         <div className="flex gap-2">
           <button
             onClick={onRefresh}
             disabled={loading}
-            className="px-4 py-2 bg-white/5 hover:bg-white/10 rounded-xl transition flex items-center gap-2 disabled:opacity-50 flex-shrink-0"
+            className={`p-2.5 sm:px-4 sm:py-2 rounded-xl transition flex items-center justify-center gap-2 disabled:opacity-50 flex-shrink-0 min-w-[44px] min-h-[44px] ${
+              isLight 
+                ? 'bg-gray-100 hover:bg-gray-200 text-gray-600' 
+                : 'bg-white/5 hover:bg-white/10'
+            }`}
             title="Обновить список релизов"
           >
-            <svg className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className={`w-5 h-5 sm:w-4 sm:h-4 ${loading ? 'animate-spin' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
             </svg>
           </button>
@@ -65,10 +72,14 @@ export default function SearchAndFilters({
                 }
               }}
               placeholder="Поиск..."
-              className="w-full bg-black/30 border border-white/10 rounded-xl pl-9 sm:pl-11 pr-4 py-2.5 sm:py-3 text-xs sm:text-sm placeholder:text-zinc-500 focus:border-[#6050ba]/50 focus:outline-none transition"
+              className={`w-full rounded-xl pl-9 sm:pl-11 pr-4 py-2.5 sm:py-3 text-sm focus:outline-none transition min-h-[44px] ${
+                isLight 
+                  ? 'bg-gray-100 border border-gray-200 placeholder:text-gray-400 focus:border-[#6050ba]/50 text-gray-800' 
+                  : 'bg-black/30 border border-white/10 placeholder:text-zinc-500 focus:border-[#6050ba]/50'
+              }`}
             />
             <svg 
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" 
+              className={`absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-4 h-4 ${isLight ? 'text-gray-400' : 'text-zinc-500'}`}
               fill="none" 
               viewBox="0 0 24 24" 
               stroke="currentColor"
@@ -79,7 +90,9 @@ export default function SearchAndFilters({
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition"
+                className={`absolute right-3 top-1/2 -translate-y-1/2 w-7 h-7 sm:w-6 sm:h-6 rounded-lg flex items-center justify-center transition ${
+                  isLight ? 'bg-gray-200 hover:bg-gray-300' : 'bg-white/5 hover:bg-white/10'
+                }`}
               >
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                   <line x1="18" y1="6" x2="6" y2="18" strokeWidth="2"/>
@@ -93,7 +106,11 @@ export default function SearchAndFilters({
         {/* Кнопка показать фильтры */}
         <button
           onClick={() => setShowFilters(!showFilters)}
-          className="w-full flex items-center justify-between px-4 py-3 bg-black/30 border border-white/10 rounded-xl text-sm hover:border-[#6050ba]/50 transition"
+          className={`w-full flex items-center justify-between px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl text-sm hover:border-[#6050ba]/50 transition min-h-[44px] ${
+            isLight 
+              ? 'bg-gray-100 border border-gray-200 text-gray-700' 
+              : 'bg-black/30 border border-white/10'
+          }`}
         >
           <div className="flex items-center gap-2">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -130,6 +147,7 @@ export default function SearchAndFilters({
           setCalendarMonth={setCalendarMonth}
           calendarYear={calendarYear}
           setCalendarYear={setCalendarYear}
+          isLight={isLight}
         />
       )}
     </div>
@@ -152,6 +170,7 @@ interface FiltersPanelProps {
   setCalendarMonth: (month: number) => void;
   calendarYear: number;
   setCalendarYear: (year: number) => void;
+  isLight: boolean;
 }
 
 function FiltersPanel({
@@ -169,22 +188,27 @@ function FiltersPanel({
   calendarMonth,
   setCalendarMonth,
   calendarYear,
-  setCalendarYear
+  setCalendarYear,
+  isLight
 }: FiltersPanelProps) {
   const hasFilters = searchQuery || filterDate || filterUserRole !== 'all' || (viewMode === 'archive' && statusFilter !== 'all');
 
   return (
-    <div className="admin-dark-modal absolute top-full left-0 right-0 mt-3 space-y-4 p-5 bg-gradient-to-br from-[#0d0d0f] to-[#1a1a1f] border border-white/10 rounded-2xl shadow-2xl backdrop-blur-xl z-50">
+    <div className={`admin-dark-modal absolute top-full left-0 right-0 mt-3 space-y-3 sm:space-y-4 p-3 sm:p-5 rounded-2xl shadow-2xl backdrop-blur-xl z-50 max-h-[70vh] overflow-y-auto ${
+      isLight 
+        ? 'bg-white border border-gray-200' 
+        : 'bg-gradient-to-br from-[#0d0d0f] to-[#1a1a1f] border border-white/10'
+    }`}>
       {/* Фильтр по статусу (только в архиве) */}
       {viewMode === 'archive' && (
         <div className="space-y-2">
-          <label className="text-xs text-zinc-400 uppercase tracking-wider font-bold flex items-center gap-2">
+          <label className={`text-xs uppercase tracking-wider font-bold flex items-center gap-2 ${isLight ? 'text-gray-500' : 'text-zinc-400'}`}>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             Статус релиза
           </label>
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-1.5 sm:gap-2">
             {[
               { value: 'all', label: 'Все', icon: 'M4 6h16M4 10h16M4 14h16M4 18h16' },
               { value: 'published', label: 'Выложен', icon: 'M5 13l4 4L19 7', color: 'green' },
@@ -194,20 +218,22 @@ function FiltersPanel({
               <button
                 key={status.value}
                 onClick={() => setStatusFilter(status.value)}
-                className={`group relative px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+                className={`group relative px-3 sm:px-4 py-2.5 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all min-h-[44px] ${
                   statusFilter === status.value
                     ? status.color === 'violet' ? 'bg-gradient-to-r from-violet-500 to-violet-600 text-white shadow-lg shadow-violet-500/30'
                     : status.color === 'green' ? 'bg-gradient-to-r from-green-500 to-green-600 text-white shadow-lg shadow-green-500/30'
                     : status.color === 'red' ? 'bg-gradient-to-r from-red-500 to-red-600 text-white shadow-lg shadow-red-500/30'
                     : 'bg-gradient-to-r from-[#6050ba] to-[#8070da] text-white shadow-lg shadow-[#6050ba]/30'
-                    : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white'
+                    : isLight 
+                      ? 'bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-800' 
+                      : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white'
                 }`}
               >
-                <div className="flex items-center justify-center gap-2">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-center justify-center gap-1.5 sm:gap-2">
+                  <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={status.icon} />
                   </svg>
-                  {status.label}
+                  <span className="truncate">{status.label}</span>
                 </div>
               </button>
             ))}
@@ -217,13 +243,13 @@ function FiltersPanel({
 
       {/* Фильтр по типу пользователя */}
       <div className="space-y-2">
-        <label className="text-xs text-zinc-400 uppercase tracking-wider font-bold flex items-center gap-2">
+        <label className={`text-xs uppercase tracking-wider font-bold flex items-center gap-2 ${isLight ? 'text-gray-500' : 'text-zinc-400'}`}>
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
           </svg>
           Тип подписки
         </label>
-        <div className="grid grid-cols-3 gap-2">
+        <div className="grid grid-cols-3 gap-1.5 sm:gap-2">
           {[
             { value: 'all', label: 'Все' },
             { value: 'basic', label: 'Basic' },
@@ -232,10 +258,12 @@ function FiltersPanel({
             <button
               key={type.value}
               onClick={() => setFilterUserRole(type.value)}
-              className={`px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+              className={`px-2 sm:px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all min-h-[44px] ${
                 filterUserRole === type.value
                   ? 'bg-gradient-to-r from-[#6050ba] to-[#8070da] text-white shadow-lg shadow-[#6050ba]/30'
-                  : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white'
+                  : isLight 
+                    ? 'bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-800' 
+                    : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white'
               }`}
             >
               {type.label}
@@ -246,7 +274,7 @@ function FiltersPanel({
 
       {/* Фильтр по дате */}
       <div className="space-y-2">
-        <label className="text-xs text-zinc-400 uppercase tracking-wider font-bold flex items-center gap-2">
+        <label className={`text-xs uppercase tracking-wider font-bold flex items-center gap-2 ${isLight ? 'text-gray-500' : 'text-zinc-400'}`}>
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
@@ -261,6 +289,7 @@ function FiltersPanel({
           setCalendarMonth={setCalendarMonth}
           calendarYear={calendarYear}
           setCalendarYear={setCalendarYear}
+          isLight={isLight}
         />
       </div>
 
@@ -273,12 +302,17 @@ function FiltersPanel({
             setFilterUserRole('all');
             if (viewMode === 'archive') setStatusFilter('all');
           }}
-          className="w-full mt-2 px-4 py-2.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-xl font-semibold text-sm transition-all border border-red-500/20 hover:border-red-500/40 flex items-center justify-center gap-2"
+          className={`w-full mt-2 px-4 py-2.5 rounded-xl font-semibold text-sm transition-all flex items-center justify-center gap-2 min-h-[44px] ${
+            isLight 
+              ? 'bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 hover:border-red-300' 
+              : 'bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 hover:border-red-500/40'
+          }`}
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
           </svg>
-          Сбросить все фильтры
+          <span className="hidden sm:inline">Сбросить все фильтры</span>
+          <span className="sm:hidden">Сбросить</span>
         </button>
       )}
     </div>
@@ -294,6 +328,7 @@ interface DatePickerProps {
   setCalendarMonth: (month: number) => void;
   calendarYear: number;
   setCalendarYear: (year: number) => void;
+  isLight: boolean;
 }
 
 function DatePicker({
@@ -304,7 +339,8 @@ function DatePicker({
   calendarMonth,
   setCalendarMonth,
   calendarYear,
-  setCalendarYear
+  setCalendarYear,
+  isLight
 }: DatePickerProps) {
   const safeMonth = Math.max(0, Math.min(11, calendarMonth));
   const safeYear = Math.max(2020, Math.min(2100, calendarYear));
@@ -313,21 +349,27 @@ function DatePicker({
     <div className="relative inline-block w-full">
       <div 
         onClick={() => setShowCalendar(!showCalendar)}
-        className="w-full inline-flex px-4 py-2.5 bg-gradient-to-br from-white/[0.07] to-white/[0.03] rounded-xl border border-white/10 cursor-pointer items-center gap-2 text-sm hover:border-[#6050ba]/50 transition"
+        className={`w-full inline-flex px-3 sm:px-4 py-2.5 sm:py-2.5 rounded-xl border cursor-pointer items-center gap-2 text-sm hover:border-[#6050ba]/50 transition min-h-[44px] ${
+          isLight 
+            ? 'bg-gray-100 border-gray-200' 
+            : 'bg-gradient-to-br from-white/[0.07] to-white/[0.03] border-white/10'
+        }`}
       >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-[#9d8df1]">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-[#9d8df1] flex-shrink-0">
           <rect x="3" y="4" width="18" height="18" rx="2" ry="2" strokeWidth="2"/>
           <line x1="16" y1="2" x2="16" y2="6" strokeWidth="2"/>
           <line x1="8" y1="2" x2="8" y2="6" strokeWidth="2"/>
           <line x1="3" y1="10" x2="21" y2="10" strokeWidth="2"/>
         </svg>
-        <span className={filterDate ? 'text-white' : 'text-zinc-500'}>
+        <span className={`truncate ${filterDate ? (isLight ? 'text-gray-800' : 'text-white') : (isLight ? 'text-gray-400' : 'text-zinc-500')}`}>
           {filterDate ? new Date(filterDate + 'T00:00:00').toLocaleDateString('ru-RU', { day: '2-digit', month: 'short', year: 'numeric' }) : 'Выберите дату релиза'}
         </span>
         {filterDate && (
           <button
             onClick={(e) => { e.stopPropagation(); setFilterDate(''); }}
-            className="ml-auto text-zinc-400 hover:text-white transition"
+            className={`ml-auto transition p-1 -mr-1 min-w-[32px] min-h-[32px] flex items-center justify-center ${
+              isLight ? 'text-gray-400 hover:text-gray-700' : 'text-zinc-400 hover:text-white'
+            }`}
             title="Очистить дату"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -338,7 +380,11 @@ function DatePicker({
       </div>
       
       {showCalendar && (
-        <div className="absolute z-50 mt-1 p-3 bg-[#0d0d0f] border border-[#6050ba]/30 rounded-xl shadow-2xl w-72">
+        <div className={`absolute z-50 mt-1 p-3 rounded-xl shadow-2xl w-full sm:w-72 max-w-[calc(100vw-2rem)] ${
+          isLight 
+            ? 'bg-white border border-gray-200' 
+            : 'bg-[#0d0d0f] border border-[#6050ba]/30'
+        }`}>
           <div className="flex items-center justify-between mb-3">
             <button onClick={() => {
               if (safeMonth === 0) {
@@ -347,10 +393,12 @@ function DatePicker({
               } else {
                 setCalendarMonth(safeMonth - 1);
               }
-            }} className="p-1 hover:bg-white/5 rounded-md">
+            }} className={`p-2 rounded-md min-w-[36px] min-h-[36px] flex items-center justify-center ${
+              isLight ? 'hover:bg-gray-100' : 'hover:bg-white/5'
+            }`}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="15 18 9 12 15 6" strokeWidth="2"/></svg>
             </button>
-            <div className="font-bold text-sm">{new Date(safeYear, safeMonth).toLocaleDateString('ru-RU', { month: 'long', year: 'numeric' })}</div>
+            <div className={`font-bold text-sm ${isLight ? 'text-gray-800' : ''}`}>{new Date(safeYear, safeMonth).toLocaleDateString('ru-RU', { month: 'long', year: 'numeric' })}</div>
             <button onClick={() => {
               if (safeMonth === 11) {
                 setCalendarMonth(0);
@@ -358,13 +406,15 @@ function DatePicker({
               } else {
                 setCalendarMonth(safeMonth + 1);
               }
-            }} className="p-1 hover:bg-white/5 rounded-md">
+            }} className={`p-2 rounded-md min-w-[36px] min-h-[36px] flex items-center justify-center ${
+              isLight ? 'hover:bg-gray-100' : 'hover:bg-white/5'
+            }`}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="9 18 15 12 9 6" strokeWidth="2"/></svg>
             </button>
           </div>
           <div className="grid grid-cols-7 gap-0.5 mb-1">
             {['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'].map(day => (
-              <div key={day} className="text-center text-[10px] text-zinc-500 font-bold py-1">{day}</div>
+              <div key={day} className={`text-center text-[10px] font-bold py-1 ${isLight ? 'text-gray-400' : 'text-zinc-500'}`}>{day}</div>
             ))}
           </div>
           <div className="grid grid-cols-7 gap-0.5">
@@ -375,7 +425,7 @@ function DatePicker({
               const days = [];
               
               for (let i = 0; i < startDay; i++) {
-                days.push(<div key={`empty-${i}`} className="w-8 h-8" />);
+                days.push(<div key={`empty-${i}`} className="aspect-square min-w-[32px]" />);
               }
               
               for (let day = 1; day <= daysInMonth; day++) {
@@ -389,10 +439,12 @@ function DatePicker({
                   <button 
                     key={`day-${day}`} 
                     onClick={() => { setFilterDate(dateStr); setShowCalendar(false); }}
-                    className={`w-8 h-8 rounded-md text-xs font-medium transition-all ${
+                    className={`aspect-square min-w-[32px] min-h-[32px] rounded-md text-xs font-medium transition-all flex items-center justify-center ${
                       isSelected 
                         ? 'bg-gradient-to-br from-[#6050ba] to-[#9d8df1] text-white' 
-                        : 'text-white hover:bg-white/10'
+                        : isLight 
+                          ? 'text-gray-700 hover:bg-gray-100' 
+                          : 'text-white hover:bg-white/10'
                     }`}
                   >
                     {day}
@@ -407,11 +459,11 @@ function DatePicker({
       )}
       
       {filterDate && (
-        <div className="text-xs text-zinc-500 flex items-center gap-1 mt-2">
-          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className={`text-xs flex items-center gap-1 mt-2 ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>
+          <svg className="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          Показаны релизы с датой выхода {new Date(filterDate).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })}
+          <span className="truncate">Показаны релизы с датой выхода {new Date(filterDate).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
         </div>
       )}
     </div>

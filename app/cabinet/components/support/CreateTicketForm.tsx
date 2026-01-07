@@ -5,6 +5,7 @@ import { fetchWithAuth } from '../../lib/fetchWithAuth';
 interface CreateTicketFormProps {
   onCancel: () => void;
   onCreated: (ticket: any) => void;
+  isLight?: boolean;
 }
 
 const categories = [
@@ -16,7 +17,7 @@ const categories = [
   { value: 'other', label: 'Другое' }
 ];
 
-export default function CreateTicketForm({ onCancel, onCreated }: CreateTicketFormProps) {
+export default function CreateTicketForm({ onCancel, onCreated, isLight = false }: CreateTicketFormProps) {
   const [subject, setSubject] = useState('');
   const [category, setCategory] = useState('general');
   const [message, setMessage] = useState('');
@@ -166,17 +167,21 @@ export default function CreateTicketForm({ onCancel, onCreated }: CreateTicketFo
 
   return (
     <div className="flex flex-col h-full">
-      <div className="p-4 border-b border-zinc-800">
+      <div className={`p-4 border-b ${isLight ? 'border-gray-200' : 'border-zinc-800'}`}>
         <button
           onClick={onCancel}
-          className="mb-3 px-3 py-2 flex items-center gap-2 text-zinc-300 bg-zinc-800/50 hover:bg-zinc-700/70 rounded-lg transition-all duration-200 border border-zinc-700/50 hover:border-zinc-600 group"
+          className={`mb-3 px-3 py-2 flex items-center gap-2 rounded-lg transition-all duration-200 border group ${
+            isLight 
+              ? 'text-gray-600 bg-gray-100 hover:bg-gray-200 border-gray-200 hover:border-gray-300' 
+              : 'text-zinc-300 bg-zinc-800/50 hover:bg-zinc-700/70 border-zinc-700/50 hover:border-zinc-600'
+          }`}
         >
           <svg className="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
           </svg>
           <span className="font-medium">Назад</span>
         </button>
-        <h3 className="text-lg font-bold text-white">Новый тикет</h3>
+        <h3 className={`text-lg font-bold ${isLight ? 'text-[#1a1535]' : 'text-white'}`}>Новый тикет</h3>
       </div>
 
       <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-4">
@@ -195,17 +200,17 @@ export default function CreateTicketForm({ onCancel, onCreated }: CreateTicketFo
 
           {/* Тема */}
           <div>
-            <label className="block text-sm font-medium text-zinc-300 mb-2 flex items-center gap-1">
+            <label className={`block text-sm font-medium mb-2 flex items-center gap-1 ${isLight ? 'text-gray-700' : 'text-zinc-300'}`}>
               Тема <span className="text-red-400">*</span>
             </label>
             <input
               type="text"
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
-              className={`w-full px-3 py-2 bg-zinc-800 border rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:ring-2 transition-all ${
-                error && !subject.trim() 
-                  ? 'border-red-500/50 focus:ring-red-500/50 focus:border-red-500' 
-                  : 'border-zinc-700 focus:ring-purple-500 focus:border-purple-500'
+              className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all ${
+                isLight 
+                  ? `bg-white text-[#1a1535] placeholder-gray-400 ${error && !subject.trim() ? 'border-red-400 focus:ring-red-400' : 'border-gray-300 focus:ring-[#6050ba] focus:border-[#6050ba]'}`
+                  : `bg-zinc-800 text-white placeholder-zinc-500 ${error && !subject.trim() ? 'border-red-500/50 focus:ring-red-500/50 focus:border-red-500' : 'border-zinc-700 focus:ring-purple-500 focus:border-purple-500'}`
               }`}
               placeholder="Кратко опишите проблему"
               required
@@ -214,11 +219,15 @@ export default function CreateTicketForm({ onCancel, onCreated }: CreateTicketFo
 
           {/* Категория */}
           <div>
-            <label className="block text-sm font-medium text-zinc-300 mb-2">Категория</label>
+            <label className={`block text-sm font-medium mb-2 ${isLight ? 'text-gray-700' : 'text-zinc-300'}`}>Категория</label>
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="w-full px-3 py-2 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
+                isLight 
+                  ? 'bg-white text-[#1a1535] border-gray-300 focus:ring-[#6050ba]' 
+                  : 'bg-zinc-800 text-white border-zinc-700 focus:ring-purple-500'
+              }`}
             >
               {categories.map(cat => (
                 <option key={cat.value} value={cat.value}>{cat.label}</option>
@@ -326,16 +335,16 @@ export default function CreateTicketForm({ onCancel, onCreated }: CreateTicketFo
 
           {/* Сообщение */}
           <div>
-            <label className="block text-sm font-medium text-zinc-300 mb-2 flex items-center gap-1">
+            <label className={`block text-sm font-medium mb-2 flex items-center gap-1 ${isLight ? 'text-gray-700' : 'text-zinc-300'}`}>
               Сообщение <span className="text-red-400">*</span>
             </label>
             <textarea
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className={`w-full px-3 py-2 bg-zinc-800 border rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:ring-2 min-h-[120px] transition-all ${
-                error && !message.trim() 
-                  ? 'border-red-500/50 focus:ring-red-500/50 focus:border-red-500' 
-                  : 'border-zinc-700 focus:ring-purple-500 focus:border-purple-500'
+              className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 min-h-[120px] transition-all ${
+                isLight
+                  ? `bg-white text-[#1a1535] placeholder-gray-400 ${error && !message.trim() ? 'border-red-400 focus:ring-red-400' : 'border-gray-300 focus:ring-[#6050ba] focus:border-[#6050ba]'}`
+                  : `bg-zinc-800 text-white placeholder-zinc-500 ${error && !message.trim() ? 'border-red-500/50 focus:ring-red-500/50 focus:border-red-500' : 'border-zinc-700 focus:ring-purple-500 focus:border-purple-500'}`
               }`}
               placeholder="Подробно опишите вашу проблему"
               required
@@ -344,31 +353,35 @@ export default function CreateTicketForm({ onCancel, onCreated }: CreateTicketFo
 
           {/* Изображения */}
           <div>
-            <label className="block text-sm font-medium text-zinc-300 mb-2">Изображения</label>
+            <label className={`block text-sm font-medium mb-2 ${isLight ? 'text-gray-700' : 'text-zinc-300'}`}>Изображения</label>
             <input type="file" accept="image/*" multiple onChange={handleImageUpload} disabled={uploading} className="hidden" id="ticket-image-upload" />
             
             {images.length === 0 ? (
-              <label htmlFor="ticket-image-upload" className="block w-full px-4 py-3 bg-zinc-800 hover:bg-zinc-750 border-2 border-dashed border-zinc-700 hover:border-purple-500 rounded-lg text-center cursor-pointer transition-all duration-200 group">
+              <label htmlFor="ticket-image-upload" className={`block w-full px-4 py-3 border-2 border-dashed rounded-lg text-center cursor-pointer transition-all duration-200 group ${
+                isLight 
+                  ? 'bg-gray-50 hover:bg-gray-100 border-gray-300 hover:border-[#6050ba]' 
+                  : 'bg-zinc-800 hover:bg-zinc-750 border-zinc-700 hover:border-purple-500'
+              }`}>
                 <div className="flex flex-col items-center gap-2">
-                  <div className="w-10 h-10 bg-purple-500/20 rounded-full flex items-center justify-center group-hover:bg-purple-500/30 transition-colors">
-                    <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${isLight ? 'bg-[#6050ba]/20 group-hover:bg-[#6050ba]/30' : 'bg-purple-500/20 group-hover:bg-purple-500/30'}`}>
+                    <svg className={`w-5 h-5 ${isLight ? 'text-[#6050ba]' : 'text-purple-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-white group-hover:text-purple-300 transition-colors">
+                    <p className={`text-sm font-medium transition-colors ${isLight ? 'text-gray-700 group-hover:text-[#6050ba]' : 'text-white group-hover:text-purple-300'}`}>
                       {uploading ? 'Загрузка...' : 'Нажмите для выбора фото'}
                     </p>
-                    <p className="text-xs text-zinc-500 mt-0.5">PNG, JPG, GIF, WebP до 10 МБ</p>
+                    <p className={`text-xs mt-0.5 ${isLight ? 'text-gray-400' : 'text-zinc-500'}`}>PNG, JPG, GIF, WebP до 10 МБ</p>
                   </div>
                 </div>
               </label>
             ) : (
-              <div className="border-2 border-dashed border-zinc-700 rounded-lg p-3 bg-zinc-800/50">
+              <div className={`border-2 border-dashed rounded-lg p-3 ${isLight ? 'border-gray-300 bg-gray-50' : 'border-zinc-700 bg-zinc-800/50'}`}>
                 <div className="grid grid-cols-4 gap-2 mb-3">
                   {images.map((url, i) => (
                     <div key={i} className="relative group">
-                      <img src={url} alt="" className="w-full h-20 object-cover rounded-lg border-2 border-zinc-700" />
+                      <img src={url} alt="" className={`w-full h-20 object-cover rounded-lg border-2 ${isLight ? 'border-gray-300' : 'border-zinc-700'}`} />
                       <button
                         type="button"
                         onClick={() => setImages(images.filter((_, idx) => idx !== i))}
@@ -381,7 +394,7 @@ export default function CreateTicketForm({ onCancel, onCreated }: CreateTicketFo
                     </div>
                   ))}
                 </div>
-                <label htmlFor="ticket-image-upload" className="flex items-center justify-center gap-2 px-3 py-2 bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/30 rounded-lg text-sm text-purple-300 cursor-pointer transition-all">
+                <label htmlFor="ticket-image-upload" className={`flex items-center justify-center gap-2 px-3 py-2 border rounded-lg text-sm cursor-pointer transition-all ${isLight ? 'bg-purple-500/10 hover:bg-purple-500/20 border-purple-500/30 text-purple-600' : 'bg-purple-500/10 hover:bg-purple-500/20 border-purple-500/30 text-purple-300'}`}>
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                   </svg>
@@ -393,13 +406,14 @@ export default function CreateTicketForm({ onCancel, onCreated }: CreateTicketFo
         </div>
 
         <div className="mt-4 flex gap-2">
-          <button type="button" onClick={onCancel} className="px-4 py-2 bg-zinc-700 hover:bg-zinc-600 text-white rounded-lg transition-colors text-sm">
+          <button type="button" onClick={onCancel} className={`px-4 py-2 rounded-lg transition-colors text-sm ${isLight ? 'bg-gray-200 hover:bg-gray-300 text-gray-700' : 'bg-zinc-700 hover:bg-zinc-600 text-white'}`}>
             Отмена
           </button>
           <button
             type="submit"
             disabled={creating || uploading}
             className="flex-1 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm font-medium"
+            style={{ color: '#ffffff' }}
           >
             {creating ? (
               <>

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
 import { UserRole } from '../../lib/types';
 import { showSuccessToast, showErrorToast } from '@/lib/utils/showToast';
+import { usePreloadCovers } from '@/components/ui/CoverImage';
 import {
   Release,
   FilterState,
@@ -15,7 +16,6 @@ import {
   CopyToast,
   DraggableReleasesGrid
 } from '../releases';
-import { PaymentModal } from '../modals';
 
 interface UserReleasesProps {
   userId?: string | null;
@@ -61,9 +61,7 @@ export default function UserReleases({ userId, nickname, onOpenUpload, userRole,
   const [draftToDelete, setDraftToDelete] = useState<Release | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
   
-  // Состояние для модального окна оплаты
-  const [showPaymentModal, setShowPaymentModal] = useState(false);
-  const [paymentRelease, setPaymentRelease] = useState<Release | null>(null);
+
 
   // Фильтрованные релизы
   const displayReleases = useFilteredReleases(releases, filters);
@@ -71,6 +69,9 @@ export default function UserReleases({ userId, nickname, onOpenUpload, userRole,
   const filteredReleases = isDraggingDraft && draggingReleaseId
     ? displayReleases.filter(r => r.id !== draggingReleaseId)
     : displayReleases;
+
+  // Предзагрузка обложек для мгновенного отображения
+  usePreloadCovers(releases.map(r => r.cover_url));
 
   // Сохраняем состояние архива в localStorage при изменении
   useEffect(() => {
@@ -85,10 +86,12 @@ export default function UserReleases({ userId, nickname, onOpenUpload, userRole,
 
   // Обработчик клика по релизу
   const handleReleaseClick = async (release: Release) => {
-    // Релизы ожидающие оплаты - открываем модальное окно оплаты
+    // Релизы ожидающие оплаты - перенаправляем на страницу редактирования с шагом оплаты
     if (release.status === 'awaiting_payment') {
-      setPaymentRelease(release);
-      setShowPaymentModal(true);
+      const editPath = release.release_type === 'basic' 
+        ? `/cabinet/release-basic/edit/${release.id}?step=payment`
+        : `/cabinet/release/edit/${release.id}?step=payment`;
+      window.location.href = editPath;
       return;
     }
     
@@ -97,9 +100,6 @@ export default function UserReleases({ userId, nickname, onOpenUpload, userRole,
       const editPath = release.release_type === 'basic' 
         ? `/cabinet/release-basic/edit/${release.id}${release.status === 'draft' ? '?draft=true' : ''}`
         : `/cabinet/release/edit/${release.id}${release.status === 'draft' ? '?draft=true' : ''}`;
-      console.log('Redirecting to edit page:', editPath);
-      console.log('Release type:', release.release_type);
-      console.log('Release status:', release.status);
       window.location.href = editPath;
       return;
     }
@@ -120,6 +120,12 @@ export default function UserReleases({ userId, nickname, onOpenUpload, userRole,
     try {
       const release = releases.find(r => r.id === releaseId);
       if (!release) return;
+
+      // ЗАЩИТА: Оплаченные черновики нельзя удалять!
+      if (release.is_paid) {
+        showErrorToast('Оплаченный релиз нельзя удалить');
+        return;
+      }
 
       const tableName = release.release_type === 'basic' ? 'releases_basic' : 'releases_exclusive';
       
@@ -387,6 +393,12 @@ export default function UserReleases({ userId, nickname, onOpenUpload, userRole,
               onDeleteDraft={async (releaseId) => {
                 const release = releases.find(r => r.id === releaseId);
                 if (release) {
+                  // ЗАЩИТА: Оплаченные черновики нельзя удалять!
+                  if (release.is_paid) {
+                    showErrorToast('Оплаченный релиз нельзя удалить');
+                    return;
+                  }
+                  
                   const tableName = release.release_type === 'basic' ? 'releases_basic' : 'releases_exclusive';
                   const { error } = await supabase!
                     .from(tableName)
@@ -491,18 +503,6 @@ export default function UserReleases({ userId, nickname, onOpenUpload, userRole,
 
       {/* Toast уведомление */}
       <CopyToast show={showCopyToast} message="UPC код скопирован!" />
-      
-      {/* Модальное окно оплаты */}
-      <PaymentModal
-        show={showPaymentModal}
-        release={paymentRelease}
-        userId={userId}
-        onClose={() => {
-          setShowPaymentModal(false);
-          setPaymentRelease(null);
-        }}
-        onPaymentComplete={reloadReleases}
-      />
     </div>
   );
 }

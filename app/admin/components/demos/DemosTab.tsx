@@ -88,36 +88,36 @@ export default function DemosTab() {
   if (loading) return <div className="text-zinc-600">Загрузка демо...</div>;
 
   return (
-    <div className="space-y-4">
-      <div className="flex justify-between items-center mb-6">
-        <p className="text-zinc-500 text-sm">Входящие демо от артистов</p>
-        <span className="text-[10px] bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full font-bold">
+    <div className="space-y-3 sm:space-y-4">
+      <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-2 mb-4 sm:mb-6">
+        <p className="text-zinc-500 text-xs sm:text-sm">Входящие демо от артистов</p>
+        <span className="text-[10px] bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full font-bold self-start sm:self-auto">
           {groups.reduce((s,g)=>s + g.items.filter((i:any)=>i.status==='reviewing').length,0)} на модерации
         </span>
       </div>
 
       {groups.map(group => (
-        <div key={group.batchId} className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:border-[#6050ba]/50 transition-all">
-          <div className="flex justify-between items-start">
-            <div className="flex gap-4">
-              <div className="w-24 h-24 bg-black/20 rounded-lg overflow-hidden flex items-center justify-center">
+        <div key={group.batchId} className="bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl p-3 sm:p-5 hover:border-[#6050ba]/50 transition-all">
+          <div className="flex flex-col sm:flex-row justify-between sm:items-start gap-3 sm:gap-0">
+            <div className="flex gap-3 sm:gap-4">
+              <div className="w-16 h-16 sm:w-24 sm:h-24 bg-black/20 rounded-lg overflow-hidden flex items-center justify-center flex-shrink-0">
                 {group.coverUrl ? <img src={group.coverUrl} className="w-full h-full object-cover" alt="Cover" /> : (
-                  <svg className="w-12 h-12 text-zinc-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-8 h-8 sm:w-12 sm:h-12 text-zinc-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
                   </svg>
                 )}
               </div>
-              <div className="space-y-1">
-                <h3 className="font-bold text-white">{group.releaseTitle || group.items[0].title || group.items[0].track_name}</h3>
-                <p className="text-sm text-zinc-400">{group.items[0].artist_name || group.items[0].artist}</p>
-                <p className="text-xs text-zinc-600">{group.items[0].email}</p>
-                <div className="text-[10px] text-zinc-500 mt-2">{group.type === 'album' ? `${group.items.length} трек(ов)` : 'Single'}</div>
+              <div className="space-y-0.5 sm:space-y-1 flex-1 min-w-0">
+                <h3 className="font-bold text-white text-sm sm:text-base truncate">{group.releaseTitle || group.items[0].title || group.items[0].track_name}</h3>
+                <p className="text-xs sm:text-sm text-zinc-400 truncate">{group.items[0].artist_name || group.items[0].artist}</p>
+                <p className="text-[10px] sm:text-xs text-zinc-600 truncate">{group.items[0].email}</p>
+                <div className="text-[10px] text-zinc-500 mt-1 sm:mt-2">{group.type === 'album' ? `${group.items.length} трек(ов)` : 'Single'}</div>
                 <p className="text-[10px] text-zinc-600">
                   {new Date(group.items[0].created_at).toLocaleDateString('ru-RU')}
                 </p>
               </div>
             </div>
-            <div className="text-right space-y-2">
+            <div className="flex sm:flex-col items-center sm:items-end justify-between sm:justify-start gap-2 sm:text-right sm:space-y-2 pl-[76px] sm:pl-0">
               <div className={`text-[9px] px-2 py-1 rounded-full text-white font-bold ${
                 group.items.some((i:any)=>i.status==='reviewing') ? 'bg-yellow-500' : 
                 group.items.every((i:any)=>i.status==='accepted') ? 'bg-green-500' : 'bg-zinc-500'
@@ -127,16 +127,16 @@ export default function DemosTab() {
               </div>
               {group.items.some((i:any)=>i.status==='reviewing') && (
                 <div className="flex gap-2">
-                  <button onClick={() => acceptGroup(group)} className="px-3 py-1 bg-green-500 hover:bg-green-400 text-black text-xs font-bold rounded-lg transition">✓</button>
-                  <button onClick={() => rejectGroup(group)} className="px-3 py-1 bg-red-500 hover:bg-red-400 text-white text-xs font-bold rounded-lg transition">✗</button>
+                  <button onClick={() => acceptGroup(group)} className="px-4 py-2 sm:px-3 sm:py-1 bg-green-500 hover:bg-green-400 text-black text-xs font-bold rounded-lg transition min-h-[40px] sm:min-h-0">✓</button>
+                  <button onClick={() => rejectGroup(group)} className="px-4 py-2 sm:px-3 sm:py-1 bg-red-500 hover:bg-red-400 text-white text-xs font-bold rounded-lg transition min-h-[40px] sm:min-h-0">✗</button>
                 </div>
               )}
             </div>
           </div>
           {group.items.length > 1 && (
-            <div className="mt-3 pl-28 space-y-1">
+            <div className="mt-3 pl-[76px] sm:pl-28 space-y-1">
               {group.items.map((item: any, idx: number) => (
-                <div key={item.id} className="text-xs text-zinc-500">
+                <div key={item.id} className="text-[10px] sm:text-xs text-zinc-500">
                   {idx + 1}. {item.title || item.track_name}
                 </div>
               ))}

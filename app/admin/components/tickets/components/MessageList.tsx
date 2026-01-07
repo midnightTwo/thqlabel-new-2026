@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import TicketAvatar from '@/components/icons/TicketAvatar';
 import { TicketMessage as TicketMessageType, MessageReaction } from '../types';
+import { useTheme } from '@/contexts/ThemeContext';
 
 interface MessageListProps {
   messages: TicketMessageType[];
@@ -39,6 +40,8 @@ export default function MessageList({
 }: MessageListProps) {
   const [highlightedMessageId, setHighlightedMessageId] = React.useState<string | null>(null);
   const messageRefs = React.useRef<{ [key: string]: HTMLDivElement | null }>({});
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
 
   const scrollToMessage = (messageId: string) => {
     setHighlightedMessageId(messageId);
@@ -56,7 +59,7 @@ export default function MessageList({
   return (
     <div 
       ref={messagesContainerRef} 
-      className="flex-1 overflow-y-auto overflow-x-hidden p-4 space-y-4 scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-zinc-900 hover:scrollbar-thumb-zinc-600"
+      className={`flex-1 min-h-0 overflow-y-auto overflow-x-hidden p-4 space-y-4 scrollbar-thin ${isLight ? 'scrollbar-thumb-gray-400 scrollbar-track-gray-100 hover:scrollbar-thumb-gray-500' : 'scrollbar-thumb-zinc-700 scrollbar-track-zinc-900 hover:scrollbar-thumb-zinc-600'}`}
     >
       {messages.map((msg, idx) => (
         <MessageBubble
@@ -71,20 +74,21 @@ export default function MessageList({
           scrollToMessage={scrollToMessage}
           onReply={onReply}
           onDeleteMessage={onDeleteMessage}
+          isLight={isLight}
         />
       ))}
 
       {/* Индикатор печати */}
       {userTyping && (
         <div className="flex justify-start px-4 py-1 animate-fade-in">
-          <div className="bg-zinc-800/50 rounded-lg px-3 py-1.5 border border-zinc-700/50">
+          <div className={`rounded-lg px-3 py-1.5 border ${isLight ? 'bg-gray-100/80 border-gray-200' : 'bg-zinc-800/50 border-zinc-700/50'}`}>
             <div className="flex items-center gap-2">
-              <span className="text-xs text-zinc-300">{userTypingName}</span>
-              <span className="text-[10px] text-zinc-500">печатает</span>
+              <span className={`text-xs ${isLight ? 'text-gray-700' : 'text-zinc-300'}`}>{userTypingName}</span>
+              <span className={`text-[10px] ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>печатает</span>
               <div className="flex gap-0.5">
-                <span className="w-1 h-1 bg-zinc-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
-                <span className="w-1 h-1 bg-zinc-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
-                <span className="w-1 h-1 bg-zinc-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                <span className={`w-1 h-1 rounded-full animate-bounce ${isLight ? 'bg-gray-400' : 'bg-zinc-500'}`} style={{ animationDelay: '0ms' }}></span>
+                <span className={`w-1 h-1 rounded-full animate-bounce ${isLight ? 'bg-gray-400' : 'bg-zinc-500'}`} style={{ animationDelay: '150ms' }}></span>
+                <span className={`w-1 h-1 rounded-full animate-bounce ${isLight ? 'bg-gray-400' : 'bg-zinc-500'}`} style={{ animationDelay: '300ms' }}></span>
               </div>
             </div>
           </div>
@@ -113,9 +117,10 @@ interface MessageBubbleProps {
   highlightedMessageId: string | null;
   messageRefs: React.MutableRefObject<{ [key: string]: HTMLDivElement | null }>;
   scrollToMessage: (messageId: string) => void;
+  isLight: boolean;
 }
 
-function MessageBubble({ message, currentUserId, isFirstUserMessage, releaseInfo, onToggleReaction, onReply, onDeleteMessage, highlightedMessageId, messageRefs, scrollToMessage }: MessageBubbleProps) {
+function MessageBubble({ message, currentUserId, isFirstUserMessage, releaseInfo, onToggleReaction, onReply, onDeleteMessage, highlightedMessageId, messageRefs, scrollToMessage, isLight }: MessageBubbleProps) {
   const [showActions, setShowActions] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -208,7 +213,9 @@ function MessageBubble({ message, currentUserId, isFirstUserMessage, releaseInfo
               confirmDelete 
                 ? 'bg-gradient-to-r from-red-600 to-red-500 text-white shadow-lg shadow-red-500/50 px-3 py-1.5 scale-105' 
                 : showActions
-                  ? 'bg-zinc-800/80 backdrop-blur-sm hover:bg-red-900/60 border border-zinc-700/50 hover:border-red-500/50 text-zinc-400 hover:text-red-300 px-2 py-1 opacity-70 hover:opacity-100'
+                  ? isLight 
+                    ? 'bg-gray-200/80 backdrop-blur-sm hover:bg-red-100 border border-gray-300/50 hover:border-red-400/50 text-gray-500 hover:text-red-500 px-2 py-1 opacity-70 hover:opacity-100'
+                    : 'bg-zinc-800/80 backdrop-blur-sm hover:bg-red-900/60 border border-zinc-700/50 hover:border-red-500/50 text-zinc-400 hover:text-red-300 px-2 py-1 opacity-70 hover:opacity-100'
                   : 'opacity-0 pointer-events-none'
             }`}
             style={{ zIndex: 15 }}
@@ -242,15 +249,15 @@ function MessageBubble({ message, currentUserId, isFirstUserMessage, releaseInfo
             <span className={`text-xs font-medium ${
               message.is_admin 
                 ? 'bg-gradient-to-r from-green-400 to-emerald-400 text-transparent bg-clip-text' 
-                : 'text-blue-300'
+                : isLight ? 'text-blue-600' : 'text-blue-300'
             }`}>
               {displayName}
             </span>
             {!message.is_admin && message.sender_email && (
-              <span className="text-[10px] text-zinc-500">{message.sender_email}</span>
+              <span className={`text-[10px] ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>{message.sender_email}</span>
             )}
             {message.is_admin && !isSystemMessage && message.sender_email && (
-              <span className="text-[10px] text-zinc-500">{message.sender_email}</span>
+              <span className={`text-[10px] ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>{message.sender_email}</span>
             )}
           </div>
         </div>
@@ -259,8 +266,12 @@ function MessageBubble({ message, currentUserId, isFirstUserMessage, releaseInfo
           ref={(el) => { messageRefs.current[message.id] = el; }}
           className={`rounded-lg p-4 relative transition-all duration-300 ${
             message.is_admin
-              ? 'bg-gradient-to-br from-green-500/20 to-emerald-500/20 border border-green-500/30 hover:from-green-500/25 hover:to-emerald-500/25'
-              : 'bg-gradient-to-br from-blue-500/20 to-indigo-500/20 border border-blue-500/30 hover:from-blue-500/25 hover:to-indigo-500/25'
+              ? isLight 
+                ? 'bg-gradient-to-br from-green-100 to-emerald-100 border border-green-300/50 hover:from-green-200 hover:to-emerald-200'
+                : 'bg-gradient-to-br from-green-500/20 to-emerald-500/20 border border-green-500/30 hover:from-green-500/25 hover:to-emerald-500/25'
+              : isLight
+                ? 'bg-gradient-to-br from-blue-100 to-indigo-100 border border-blue-300/50 hover:from-blue-200 hover:to-indigo-200'
+                : 'bg-gradient-to-br from-blue-500/20 to-indigo-500/20 border border-blue-500/30 hover:from-blue-500/25 hover:to-indigo-500/25'
           } ${highlightedMessageId === message.id ? 'ring-4 ring-amber-400 !bg-amber-400/30 !border-amber-400 shadow-[0_0_30px_rgba(251,191,36,0.5)] animate-pulse' : ''}`}
           onDoubleClick={() => onToggleReaction(message.id, !!hasUserReaction)}
           onTouchEnd={(e) => {
@@ -277,10 +288,12 @@ function MessageBubble({ message, currentUserId, isFirstUserMessage, releaseInfo
           {/* Превью ответа на сообщение */}
           {message.reply_to_message && (
             <div 
-              className="mb-2 p-2 bg-black/30 border-l-2 border-blue-400/50 rounded cursor-pointer hover:bg-black/40 transition-colors"
+              className={`mb-2 p-2 border-l-2 border-blue-400/50 rounded cursor-pointer transition-colors ${isLight ? 'bg-gray-100/80 hover:bg-gray-200/80' : 'bg-black/30 hover:bg-black/40'}`}
               onClick={(e) => {
                 e.stopPropagation();
-                scrollToMessage(message.reply_to_message.id);
+                if (message.reply_to_message?.id) {
+                  scrollToMessage(message.reply_to_message.id);
+                }
               }}
               title="Перейти к сообщению"
             >
@@ -288,15 +301,15 @@ function MessageBubble({ message, currentUserId, isFirstUserMessage, releaseInfo
                 <svg className="w-3 h-3 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
                 </svg>
-                <span className="text-xs text-blue-400 font-medium">
+                <span className={`text-xs font-medium ${isLight ? 'text-blue-600' : 'text-blue-400'}`}>
                   {message.reply_to_message.sender_nickname || message.reply_to_message.sender_username || 'Пользователь'}
                 </span>
               </div>
-              <p className="text-xs text-zinc-400 truncate">{message.reply_to_message.message}</p>
+              <p className={`text-xs truncate ${isLight ? 'text-gray-600' : 'text-zinc-400'}`}>{message.reply_to_message.message}</p>
             </div>
           )}
           
-          <p className="text-white whitespace-pre-wrap break-words">{message.message}</p>
+          <p className={`whitespace-pre-wrap break-words ${isLight ? 'text-gray-900' : 'text-white'}`}>{message.message}</p>
           
           {/* Изображения */}
           {message.images && message.images.length > 0 && (
@@ -315,10 +328,10 @@ function MessageBubble({ message, currentUserId, isFirstUserMessage, releaseInfo
 
           {/* Информация о релизе для первого сообщения */}
           {isFirstUserMessage && releaseInfo && (
-            <ReleaseInfoInMessage release={releaseInfo} />
+            <ReleaseInfoInMessage release={releaseInfo} isLight={isLight} />
           )}
 
-          <div className="text-xs text-zinc-500 mt-2">
+          <div className={`text-xs mt-2 ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>
             {new Date(message.created_at).toLocaleString('ru-RU')}
           </div>
         </div>
@@ -331,13 +344,14 @@ function MessageBubble({ message, currentUserId, isFirstUserMessage, releaseInfo
           isAdmin={message.is_admin}
           onToggle={() => onToggleReaction(message.id, !!hasUserReaction)}
           showOnHover={showActions}
+          isLight={isLight}
         />
       </div>
     </div>
   );
 }
 
-function ReleaseInfoInMessage({ release }: { release: { title: string; artist: string; artwork_url?: string; status: string } }) {
+function ReleaseInfoInMessage({ release, isLight }: { release: { title: string; artist: string; artwork_url?: string; status: string }; isLight: boolean }) {
   const statusLabels: Record<string, string> = {
     pending: '⏳ На модерации',
     distributed: '🚀 На дистрибьюции',
@@ -351,24 +365,24 @@ function ReleaseInfoInMessage({ release }: { release: { title: string; artist: s
         <svg className="w-3 h-3 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
         </svg>
-        <span className="text-[10px] text-purple-300 font-medium">Обращение по релизу:</span>
+        <span className={`text-[10px] font-medium ${isLight ? 'text-purple-600' : 'text-purple-300'}`}>Обращение по релизу:</span>
       </div>
-      <div className="flex items-center gap-2 bg-black/30 rounded-lg p-1.5">
+      <div className={`flex items-center gap-2 rounded-lg p-1.5 ${isLight ? 'bg-purple-50' : 'bg-black/30'}`}>
         {release.artwork_url ? (
           <img src={release.artwork_url} alt={release.title} className="w-10 h-10 rounded object-cover flex-shrink-0" />
         ) : (
           <div className="w-10 h-10 rounded bg-gradient-to-br from-purple-500/30 to-blue-500/30 flex items-center justify-center flex-shrink-0">
-            <svg className="w-5 h-5 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className={`w-5 h-5 ${isLight ? 'text-purple-500' : 'text-purple-300'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
             </svg>
           </div>
         )}
         <div className="flex-1 min-w-0">
-          <div className="text-xs font-medium text-white truncate">{release.title}</div>
-          <div className="text-[10px] text-zinc-400 truncate">{release.artist}</div>
+          <div className={`text-xs font-medium truncate ${isLight ? 'text-gray-900' : 'text-white'}`}>{release.title}</div>
+          <div className={`text-[10px] truncate ${isLight ? 'text-gray-500' : 'text-zinc-400'}`}>{release.artist}</div>
           {release.status && statusLabels[release.status] && (
             <div className="flex items-center gap-1 mt-0.5">
-              <span className="text-[9px] px-1 py-0.5 rounded bg-purple-500/20 text-purple-300">
+              <span className={`text-[9px] px-1 py-0.5 rounded ${isLight ? 'bg-purple-100 text-purple-600' : 'bg-purple-500/20 text-purple-300'}`}>
                 {statusLabels[release.status]}
               </span>
             </div>
@@ -386,9 +400,10 @@ interface ReactionCounterProps {
   isAdmin: boolean;
   onToggle: () => void;
   showOnHover: boolean;
+  isLight: boolean;
 }
 
-function ReactionCounter({ hasUserReaction, reactionsCount, reactions, isAdmin, onToggle, showOnHover }: ReactionCounterProps) {
+function ReactionCounter({ hasUserReaction, reactionsCount, reactions, isAdmin, onToggle, showOnHover, isLight }: ReactionCounterProps) {
   return (
     <div className={`flex items-center gap-1 mt-1 ${isAdmin ? 'justify-start' : 'justify-end'}`}>
       <div className="relative group/reactions">
@@ -401,13 +416,15 @@ function ReactionCounter({ hasUserReaction, reactionsCount, reactions, isAdmin, 
             reactionsCount > 0
               ? hasUserReaction
                 ? 'bg-pink-500/30 border-pink-400/40'
-                : 'bg-zinc-700/50 border-zinc-500/40 hover:bg-pink-500/20 hover:border-pink-400/40'
-              : `bg-zinc-800/60 border-zinc-600/40 ${showOnHover ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'} hover:bg-pink-500/20 hover:border-pink-400/40`
+                : isLight 
+                  ? 'bg-gray-100 border-gray-300 hover:bg-pink-100 hover:border-pink-300'
+                  : 'bg-zinc-700/50 border-zinc-500/40 hover:bg-pink-500/20 hover:border-pink-400/40'
+              : `${isLight ? 'bg-gray-100/60 border-gray-300/40' : 'bg-zinc-800/60 border-zinc-600/40'} ${showOnHover ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'} hover:bg-pink-500/20 hover:border-pink-400/40`
           }`}
         >
           <span>{reactionsCount > 0 || hasUserReaction ? '❤️' : '🤍'}</span>
           {reactionsCount > 0 && (
-            <span className={`font-medium ${hasUserReaction ? 'text-pink-300' : 'text-zinc-400'}`}>
+            <span className={`font-medium ${hasUserReaction ? 'text-pink-300' : isLight ? 'text-gray-600' : 'text-zinc-400'}`}>
               {reactionsCount}
             </span>
           )}
@@ -416,15 +433,15 @@ function ReactionCounter({ hasUserReaction, reactionsCount, reactions, isAdmin, 
         {/* Тултип с именами */}
         {reactionsCount > 0 && (
           <div className={`absolute ${isAdmin ? 'left-0' : 'right-0'} bottom-full mb-1 opacity-0 group-hover/reactions:opacity-100 transition-opacity pointer-events-none z-50`}>
-            <div className="bg-zinc-900/95 backdrop-blur-xl border border-white/20 rounded-lg px-2 py-1.5 shadow-2xl max-w-[180px]">
-              <div className="text-[9px] text-zinc-400 font-semibold mb-1">Понравилось:</div>
+            <div className={`backdrop-blur-xl border rounded-lg px-2 py-1.5 shadow-2xl max-w-[180px] ${isLight ? 'bg-white/95 border-gray-200' : 'bg-zinc-900/95 border-white/20'}`}>
+              <div className={`text-[9px] font-semibold mb-1 ${isLight ? 'text-gray-500' : 'text-zinc-400'}`}>Понравилось:</div>
               <div className="flex flex-col gap-1 max-h-32 overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-700">
                 {reactions?.map((reaction, idx) => (
-                  <div key={idx} className="flex items-center gap-1.5 text-zinc-300">
+                  <div key={idx} className={`flex items-center gap-1.5 ${isLight ? 'text-gray-700' : 'text-zinc-300'}`}>
                     {reaction.user?.avatar ? (
                       <div className="w-3 h-3 rounded-full bg-cover bg-center flex-shrink-0" style={{ backgroundImage: `url(${reaction.user.avatar})` }} />
                     ) : (
-                      <div className="w-3 h-3 rounded-full bg-zinc-700 flex items-center justify-center flex-shrink-0">
+                      <div className={`w-3 h-3 rounded-full flex items-center justify-center flex-shrink-0 ${isLight ? 'bg-gray-200' : 'bg-zinc-700'}`}>
                         <span className="text-[6px]">{reaction.user?.nickname?.charAt(0) || '?'}</span>
                       </div>
                     )}

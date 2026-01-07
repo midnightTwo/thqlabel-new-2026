@@ -595,7 +595,7 @@ export default function FAQPage() {
             onClick={handleSupportClick}
             className={`inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base md:text-xl transition-all hover:scale-105 hover:shadow-2xl ${
               isLight 
-                ? 'bg-gray-800 text-white hover:bg-gray-700 hover:shadow-gray-400/40'
+                ? 'bg-gray-800 !text-white hover:bg-gray-700 hover:shadow-gray-400/40'
                 : 'bg-gradient-to-r from-[#6050ba] to-[#8070da] text-white hover:shadow-[#6050ba]/40'
             }`}
           >

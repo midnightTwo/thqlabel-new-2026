@@ -1,10 +1,12 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { useRouter } from 'next/navigation';
 import AnimatedBackground from '@/components/ui/AnimatedBackground';
 import { supabase } from '../../lib/supabase';
 import { useTheme } from '@/contexts/ThemeContext';
 import { getAllCountries } from '@/components/icons/CountryFlagsSVG';
+import { TrackAuthor } from '@/components/ui/TrackAuthors';
 import {
   ReleaseInfoStep,
   TracklistStep,
@@ -57,7 +59,7 @@ function StepsSidebar({
   // Минимальное количество треков в зависимости от типа релиза
   const getMinTracks = (type: ReleaseType | null): number => {
     if (type === 'ep') return 2;
-    if (type === 'album') return 7;
+    if (type === 'album') return 8;
     return 1; // single
   };
 
@@ -138,7 +140,8 @@ function StepsSidebar({
             }`}>Создание релиза</h3>
             <button
               onClick={onBackToCabinet}
-              className="w-7 h-7 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 flex items-center justify-center transition-all group/back"
+              style={{ top: 'max(0.5rem, env(safe-area-inset-top))', left: '0' }}
+              className="fixed z-[9999] lg:static w-10 h-10 rounded-lg bg-zinc-900/90 hover:bg-zinc-800/90 border border-white/20 hover:border-white/30 flex items-center justify-center transition-all group/back shadow-lg backdrop-blur-sm lg:w-7 lg:h-7 lg:bg-white/5 lg:hover:bg-white/10 lg:border-white/10 lg:shadow-none"
               title="В кабинет"
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-zinc-400 group-hover/back:text-white transition-colors">
@@ -359,24 +362,6 @@ function StepsSidebar({
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                {/* Кнопка назад */}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onBackToCabinet();
-                  }}
-                  className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all ${
-                    isLight 
-                      ? 'bg-purple-500/10 hover:bg-purple-500/20 border border-purple-300/30' 
-                      : 'bg-white/5 hover:bg-white/10 border border-white/10'
-                  }`}
-                  title="В кабинет"
-                >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={isLight ? 'text-purple-600' : 'text-zinc-400'}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                  </svg>
-                </button>
-                
                 {/* Текущий шаг */}
                 <div className="flex items-center gap-2">
                   <div>
@@ -449,18 +434,18 @@ function StepsSidebar({
                       className={`w-full text-left py-2.5 px-3 rounded-xl flex items-center gap-2.5 transition-all ${
                         isCurrent 
                           ? isLight
-                            ? 'bg-purple-500/20 text-purple-700 border border-purple-300/50'
+                            ? 'bg-purple-500/20 text-purple-900 border border-purple-300/50 font-semibold'
                             : 'bg-gradient-to-r from-purple-500/30 to-purple-600/30 text-white border border-white/20'
                           : isLight
-                            ? 'bg-purple-50/50 text-[#5a5580] hover:bg-purple-100/50 border border-transparent'
+                            ? 'bg-purple-50/50 text-gray-900 hover:bg-purple-100/50 border border-transparent'
                             : 'bg-white/5 text-zinc-400 hover:bg-white/10 border border-transparent hover:border-white/10'
                       }`}
                     >
                       <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
-                        isPromoFilled ? 'bg-emerald-500/20 text-emerald-500' :
-                        isPromoSkipped ? 'bg-yellow-500/20 text-yellow-500' :
-                        isComplete ? 'bg-emerald-500/20 text-emerald-500' : 
-                        isLight ? 'bg-purple-200/50 text-purple-600' : 'bg-white/10 text-zinc-400'
+                        isPromoFilled ? (isLight ? 'bg-emerald-500/30 text-emerald-700' : 'bg-emerald-500/20 text-emerald-500') :
+                        isPromoSkipped ? (isLight ? 'bg-yellow-500/30 text-yellow-700' : 'bg-yellow-500/20 text-yellow-500') :
+                        isComplete ? (isLight ? 'bg-emerald-500/30 text-emerald-700' : 'bg-emerald-500/20 text-emerald-500') : 
+                        isLight ? 'bg-purple-200/70 text-purple-800' : 'bg-white/10 text-zinc-400'
                       }`}>
                         {(isComplete || isPromoSkipped || isPromoFilled) && step.id !== 'send' ? (
                           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -475,7 +460,7 @@ function StepsSidebar({
                           step.icon
                         )}
                       </span>
-                      <span className="text-sm font-medium flex-1">{step.label}</span>
+                      <span className={`text-sm font-medium flex-1 ${isLight ? 'text-gray-900' : ''}`}>{step.label}</span>
                       {isCurrent && (
                         <span className={`w-2 h-2 rounded-full animate-pulse ${isLight ? 'bg-purple-500' : 'bg-white'}`} />
                       )}
@@ -511,6 +496,8 @@ export default function CreateReleasePage() {
   const [releaseDate, setReleaseDate] = useState<string | null>(null);
   const [collaborators, setCollaborators] = useState<string[]>([]);
   const [collaboratorInput, setCollaboratorInput] = useState('');
+  const [releaseArtists, setReleaseArtists] = useState<string[]>([]); // Новый массив артистов (объединяет artistName + collaborators)
+  const [contributors, setContributors] = useState<Array<{role: 'composer' | 'lyricist' | 'producer' | 'arranger' | 'performer' | 'mixer' | 'mastering' | 'other'; fullName: string}>>([]);
   
   // Calendar state
   const [showCalendar, setShowCalendar] = useState(false);
@@ -537,19 +524,20 @@ export default function CreateReleasePage() {
     version?: string;
     producers?: string[];
     featuring?: string[];
+    isInstrumental?: boolean;
   }>>([]);
   const [currentTrack, setCurrentTrack] = useState<number | null>(null);
   const [trackTitle, setTrackTitle] = useState('');
   const [trackLink, setTrackLink] = useState('');
   const [trackAudioFile, setTrackAudioFile] = useState<File | null>(null);
   const [trackAudioMetadata, setTrackAudioMetadata] = useState<AudioMetadata | null>(null);
+  const [trackAuthors, setTrackAuthors] = useState<TrackAuthor[]>([]);
   const [trackHasDrugs, setTrackHasDrugs] = useState(false);
   const [trackLyrics, setTrackLyrics] = useState('');
   const [trackLanguage, setTrackLanguage] = useState('');
   const [trackVersion, setTrackVersion] = useState('');
   const [trackProducers, setTrackProducers] = useState<string[]>([]);
   const [trackFeaturing, setTrackFeaturing] = useState<string[]>([]);
-  const [trackIsrc, setTrackIsrc] = useState('');
   const [trackIsInstrumental, setTrackIsInstrumental] = useState(false);
   
   // Countries state - excludedCountries: пустой массив = все страны выбраны
@@ -573,13 +561,20 @@ export default function CreateReleasePage() {
   const [draftId, setDraftId] = useState<string | null>(null);
   const [isSavingDraft, setIsSavingDraft] = useState(false);
   const [prevStepsCompleted, setPrevStepsCompleted] = useState<string[]>([]);
+  const [mounted, setMounted] = useState(false);
+
+  // Mount effect для portal
+  useEffect(() => {
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
 
   // Функция проверки заполненности шага (дублируется из StepsSidebar для использования в эффекте)
   const isStepComplete = (stepId: string): boolean => {
     const allCountries = getAllCountries();
     const getMinTracks = (type: ReleaseType | null): number => {
       if (type === 'ep') return 2;
-      if (type === 'album') return 7;
+      if (type === 'album') return 8;
       return 1;
     };
     switch(stepId) {
@@ -616,6 +611,8 @@ export default function CreateReleasePage() {
       setNickname(displayName);
       // Автозаполнение имени артиста из никнейма
       setArtistName(displayName);
+      // Автозаполнение массива артистов никнеймом пользователя
+      setReleaseArtists([displayName]);
       setLoading(false);
     };
     
@@ -629,14 +626,11 @@ export default function CreateReleasePage() {
     // Сохраняем только если заполнен хотя бы первый шаг (релиз)
     if (!releaseTitle.trim() || !genre || !coverFile || !releaseDate) return null;
     
-    console.log('🔄 Начинаем сохранение черновика...');
-    
     setIsSavingDraft(true);
     try {
       // Загружаем обложку если есть и нет существующего draftId с coverUrl
       let coverUrl = null;
       if (coverFile) {
-        console.log('📤 Загружаем обложку...');
         const fileExt = coverFile.name.split('.').pop();
         // Путь: user_id/draft-timestamp.ext — соответствует политике RLS
         const fileName = `${user.id}/draft-${Date.now()}.${fileExt}`;
@@ -644,40 +638,82 @@ export default function CreateReleasePage() {
           .from('release-covers')
           .upload(fileName, coverFile, { contentType: coverFile.type, upsert: true });
         
-        if (uploadError) {
-          console.error('❌ Ошибка загрузки обложки:', uploadError);
-        } else if (uploadData) {
+        if (!uploadError && uploadData) {
           const { data: { publicUrl } } = supabase.storage
             .from('release-covers')
             .getPublicUrl(fileName);
           coverUrl = publicUrl;
-          console.log('✅ Обложка загружена:', coverUrl);
         }
       }
       
-      // Подготавливаем треки без аудио файлов (только метаданные)
-      const tracksData = tracks.map(track => ({
-        title: track.title,
-        link: track.link || '',
-        hasDrugs: track.hasDrugs,
-        lyrics: track.lyrics,
-        language: track.language,
-        version: track.version,
-        producers: track.producers,
-        featuring: track.featuring,
-        audioMetadata: track.audioMetadata,
+      // Подготавливаем треки - загружаем аудио файлы в storage если есть
+      const tracksData = await Promise.all(tracks.map(async (track, index) => {
+        let audioUrl = track.link || '';
+        let originalFileName = track.originalFileName || '';
+        
+        // Если есть аудио файл - ВСЕГДА загружаем его
+        if (track.audioFile) {
+          try {
+            const audioExt = track.audioFile.name.split('.').pop();
+            const audioFileName = `${user.id}/draft-track-${Date.now()}-${index}.${audioExt}`;
+            
+            const { error: audioError } = await supabase.storage
+              .from('release-audio')
+              .upload(audioFileName, track.audioFile, { contentType: track.audioFile.type, upsert: true });
+            
+            if (!audioError) {
+              const { data: { publicUrl } } = supabase.storage
+                .from('release-audio')
+                .getPublicUrl(audioFileName);
+              audioUrl = publicUrl;
+              originalFileName = track.audioFile.name;
+              
+              // Обновляем track.link в state чтобы не загружать повторно
+              // Сохраняем originalFileName для отображения
+              const updatedTracks = [...tracks];
+              updatedTracks[index] = { 
+                ...track, 
+                link: publicUrl, 
+                audioFile: null,
+                originalFileName: track.audioFile?.name || track.originalFileName || ''
+              };
+              setTracks(updatedTracks);
+            } else {
+              originalFileName = track.audioFile?.name || originalFileName;
+            }
+          } catch {
+            originalFileName = track.audioFile?.name || originalFileName;
+          }
+        }
+        
+        return {
+          title: track.title,
+          link: audioUrl,
+          hasDrugs: track.hasDrugs,
+          lyrics: track.lyrics,
+          language: track.language,
+          version: track.version,
+          producers: track.producers,
+          featuring: track.featuring,
+          isInstrumental: track.isInstrumental,
+          audioMetadata: track.audioMetadata,
+          originalFileName: originalFileName,
+        };
       }));
       
       const draftData: any = {
         user_id: user.id,
         title: releaseTitle || 'Без названия',
-        artist_name: artistName || nickname,
+        artist_name: releaseArtists.length > 0 ? releaseArtists[0] : (artistName || nickname),
+        release_artists: releaseArtists.length > 0 ? releaseArtists : null,
         cover_url: coverUrl,
         genre: genre || null,
         subgenres: subgenres.length > 0 ? subgenres : [],
         release_date: releaseDate,
-        collaborators: collaborators.length > 0 ? collaborators : [],
+        collaborators: releaseArtists.length > 1 ? releaseArtists.slice(1) : (collaborators.length > 0 ? collaborators : []),
+        contributors: contributors.length > 0 ? contributors : null,
         release_type: releaseType,
+        selected_tracks_count: tracks.length,
         tracks: tracksData,
         countries: getAllCountries().filter(c => !excludedCountries.includes(c)),
         contract_agreed: agreedToContract,
@@ -687,29 +723,22 @@ export default function CreateReleasePage() {
         focus_track_promo: focusTrackPromo || null,
         album_description: albumDescription || null,
         promo_photos: promoPhotos || [],
+        is_promo_skipped: promoStatus === 'skipped',
         wizard_step: currentStep,
         status: 'draft',
         updated_at: new Date().toISOString()
       };
       
-      console.log('💾 Данные для сохранения:', draftData);
-      
       if (draftId) {
-        console.log('🔄 Обновляем существующий черновик:', draftId);
         const { error } = await supabase
           .from('releases_exclusive')
           .update(draftData)
           .eq('id', draftId);
         
-        if (error) {
-          console.error('❌ Ошибка обновления:', error);
-          throw error;
-        }
-        console.log('✅ Черновик обновлен!');
+        if (error) throw error;
         if (showNotification) showSaveNotification();
         return draftId;
       } else {
-        console.log('➕ Создаем новый черновик...');
         draftData.created_at = new Date().toISOString();
         const { data, error } = await supabase
           .from('releases_exclusive')
@@ -717,19 +746,15 @@ export default function CreateReleasePage() {
           .select()
           .single();
         
-        if (error) {
-          console.error('❌ Ошибка создания:', error);
-          throw error;
-        }
+        if (error) throw error;
         if (data) {
-          console.log('✅ Черновик создан! ID:', data.id);
           setDraftId(data.id);
           if (showNotification) showSaveNotification();
           return data.id;
         }
       }
-    } catch (error) {
-      console.error('❌ ОШИБКА сохранения черновика:', error);
+    } catch {
+      // Ошибка сохранения черновика
     } finally {
       setIsSavingDraft(false);
     }
@@ -741,20 +766,16 @@ export default function CreateReleasePage() {
     if (!draftId || !supabase) return;
     
     try {
-      console.log('🗑️ Удаляем черновик:', draftId);
       const { error } = await supabase
         .from('releases_exclusive')
         .delete()
         .eq('id', draftId);
       
-      if (error) {
-        console.error('❌ Ошибка удаления черновика:', error);
-      } else {
-        console.log('✅ Черновик удален');
+      if (!error) {
         setDraftId(null);
       }
-    } catch (error) {
-      console.error('❌ Ошибка удаления черновика:', error);
+    } catch {
+      // Ошибка удаления черновика
     }
   };
   
@@ -789,8 +810,6 @@ export default function CreateReleasePage() {
     const newlyCompleted = currentCompleted.filter(step => !prevStepsCompleted.includes(step));
     
     if (newlyCompleted.length > 0 && currentStep !== 'type') {
-      console.log('📌 Новые завершённые шаги:', newlyCompleted);
-      
       // Сохраняем черновик если первый шаг завершён
       if (isStepComplete('release')) {
         saveDraft(true);
@@ -801,11 +820,49 @@ export default function CreateReleasePage() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [releaseTitle, genre, coverFile, releaseDate, tracks.length, excludedCountries.length, agreedToContract, selectedPlatforms, promoStatus]);
   
+  // Ref для отслеживания предыдущего количества треков и авторов
+  const prevTracksCountRef = useRef<number | null>(null);
+  const prevContributorsCountRef = useRef<number | null>(null);
+
+  // Автосохранение при изменении треков
+  useEffect(() => {
+    if (!user || !supabase || !draftId) return;
+    
+    // Пропускаем первую загрузку
+    if (prevTracksCountRef.current === null) {
+      prevTracksCountRef.current = tracks.length;
+      return;
+    }
+    
+    // Если количество треков изменилось - сохраняем
+    if (prevTracksCountRef.current !== tracks.length && tracks.length > 0) {
+      saveDraft(true);
+      prevTracksCountRef.current = tracks.length;
+    }
+  }, [tracks.length, user, draftId]);
+
+  // Автосохранение при изменении авторов
+  useEffect(() => {
+    if (!user || !supabase || !draftId) return;
+    
+    // Пропускаем первую загрузку
+    if (prevContributorsCountRef.current === null) {
+      prevContributorsCountRef.current = contributors.length;
+      return;
+    }
+    
+    // Если количество авторов изменилось - сохраняем
+    if (prevContributorsCountRef.current !== contributors.length) {
+      saveDraft(true);
+      prevContributorsCountRef.current = contributors.length;
+    }
+  }, [contributors.length, user, draftId]);
+
   // Обработчик перехода на следующий шаг с автосохранением черновика
-  const handleNextStep = async (nextStep: string) => {
-    // Сохраняем черновик после прохождения любого шага (кроме выбора типа)
+  const handleNextStep = (nextStep: string) => {
+    // Сохраняем черновик в фоне (не блокируя переход)
     if (currentStep !== 'type' && isStepComplete('release')) {
-      await saveDraft(true);
+      saveDraft(true);
     }
     setCurrentStep(nextStep);
   };
@@ -837,8 +894,41 @@ export default function CreateReleasePage() {
   }
 
   return (
-    <div className="min-h-screen pt-16 sm:pt-20 text-white relative z-10">
-      <AnimatedBackground />
+    <>
+      {/* Мобильная кнопка назад - рендерится через Portal в body */}
+      {mounted && createPortal(
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            router.push('/cabinet');
+          }}
+          style={{ 
+            position: 'fixed',
+            top: 'max(0.5rem, env(safe-area-inset-top))', 
+            left: '0.5rem', 
+            zIndex: 99999,
+            willChange: 'transform',
+            isolation: 'isolate'
+          }}
+          className={`lg:hidden w-10 h-10 rounded-lg flex items-center justify-center transition-all shadow-xl backdrop-blur-sm pointer-events-auto touch-manipulation active:scale-95 ${
+          isLight 
+            ? 'bg-purple-500/90 hover:bg-purple-500 border border-purple-300/50' 
+            : 'bg-zinc-900/90 hover:bg-zinc-800/90 border border-white/20'
+        }`}
+        title="В кабинет"
+        aria-label="Вернуться в кабинет"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={`${isLight ? 'text-purple-600' : 'text-zinc-400'} pointer-events-none`}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>,
+      document.body
+      )}
+      
+      <div className="min-h-screen pt-16 sm:pt-20 text-white relative z-10">
+        <AnimatedBackground />
+      
       <div className="max-w-[1600px] mx-auto p-3 sm:p-6 lg:p-8 flex flex-col lg:flex-row gap-4 lg:gap-8 items-stretch relative z-20">
         
         {/* Боковая панель с шагами (адаптивная) */}
@@ -880,6 +970,8 @@ export default function CreateReleasePage() {
               setCollaborators={setCollaborators}
               collaboratorInput={collaboratorInput}
               setCollaboratorInput={setCollaboratorInput}
+              releaseArtists={releaseArtists}
+              setReleaseArtists={setReleaseArtists}
               genre={genre}
               setGenre={setGenre}
               subgenres={subgenres}
@@ -896,6 +988,8 @@ export default function CreateReleasePage() {
               setCalendarYear={setCalendarYear}
               coverFile={coverFile}
               setCoverFile={setCoverFile}
+              contributors={contributors}
+              setContributors={setContributors}
               onNext={() => handleNextStep('tracklist')}
             />
           )}
@@ -918,6 +1012,8 @@ export default function CreateReleasePage() {
               setTrackAudioFile={setTrackAudioFile}
               trackAudioMetadata={trackAudioMetadata}
               setTrackAudioMetadata={setTrackAudioMetadata}
+              trackAuthors={trackAuthors}
+              setTrackAuthors={setTrackAuthors}
               trackHasDrugs={trackHasDrugs}
               setTrackHasDrugs={setTrackHasDrugs}
               trackLyrics={trackLyrics}
@@ -930,8 +1026,6 @@ export default function CreateReleasePage() {
               setTrackProducers={setTrackProducers}
               trackFeaturing={trackFeaturing}
               setTrackFeaturing={setTrackFeaturing}
-              trackIsrc={trackIsrc}
-              setTrackIsrc={setTrackIsrc}
               trackIsInstrumental={trackIsInstrumental}
               setTrackIsInstrumental={setTrackIsInstrumental}
               onNext={() => handleNextStep('countries')}
@@ -986,7 +1080,7 @@ export default function CreateReleasePage() {
               onNext={() => handleNextStep('send')}
               onBack={() => setCurrentStep('platforms')}
               onSkip={() => { setPromoStatus('skipped'); handleNextStep('send'); }}
-              onFilled={() => setPromoStatus('filled')}
+              onFilled={() => { setPromoStatus('filled'); handleNextStep('send'); }}
               onResetSkip={() => setPromoStatus('not-started')}
               promoStatus={promoStatus}
             />
@@ -1002,6 +1096,7 @@ export default function CreateReleasePage() {
               tracksCount={tracks.length}
               coverFile={coverFile}
               collaborators={collaborators}
+              releaseArtists={releaseArtists}
               subgenres={subgenres}
               releaseDate={releaseDate}
               selectedPlatforms={selectedPlatforms}
@@ -1011,6 +1106,7 @@ export default function CreateReleasePage() {
               albumDescription={albumDescription}
               promoPhotos={promoPhotos}
               promoStatus={promoStatus}
+              contributors={contributors}
               tracks={tracks}
               platforms={selectedPlatformsList}
               countries={getAllCountries().filter(c => !excludedCountries.includes(c))}
@@ -1023,5 +1119,6 @@ export default function CreateReleasePage() {
         </section>
       </div>
     </div>
+    </>
   );
 }

@@ -22,13 +22,7 @@ export default function ResetPasswordPage() {
     const handleAuthChange = async () => {
       // Проверяем есть ли сессия
       const { data: { session } } = await supabase.auth.getSession();
-      
-      if (!session) {
-        console.log('No active session - user needs to use recovery link');
-        // Не перенаправляем сразу, даем возможность работать с формой
-      } else {
-        console.log('Active session found');
-      }
+      // Не перенаправляем сразу, даем возможность работать с формой
     };
 
     handleAuthChange();
@@ -68,8 +62,6 @@ export default function ResetPasswordPage() {
       if (!tokenHash) {
         throw new Error('Токен восстановления не найден в URL. Запросите новую ссылку.');
       }
-
-      console.log('Sending password reset request to server');
       
       // Отправляем запрос на серверный API endpoint
       const response = await fetch('/api/reset-password', {
@@ -89,7 +81,6 @@ export default function ResetPasswordPage() {
         throw new Error(data.error || 'Не удалось обновить пароль');
       }
 
-      console.log('Password updated successfully');
       showNotification('Пароль обновлен успешно', 'success');
       
       setTimeout(() => {
@@ -97,7 +88,6 @@ export default function ResetPasswordPage() {
       }, 2000);
       
     } catch (err: any) {
-      console.error('Ошибка смены пароля:', err);
       showNotification(err.message || 'Не удалось сменить пароль. Запросите новую ссылку.', 'error');
     } finally {
       setLoading(false);

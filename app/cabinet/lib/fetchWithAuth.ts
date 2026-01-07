@@ -2,6 +2,7 @@ import { supabase } from '@/lib/supabase/client';
 
 // Вспомогательная функция для fetch с токеном
 export async function fetchWithAuth(url: string, options: RequestInit = {}) {
+  if (!supabase) throw new Error('Supabase not initialized');
   const { data: { session } } = await supabase.auth.getSession();
   const token = session?.access_token;
   

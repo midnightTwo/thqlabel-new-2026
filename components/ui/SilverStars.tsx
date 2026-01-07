@@ -1,5 +1,6 @@
 "use client";
 import React, { memo, useId } from 'react';
+import { useTheme } from '@/contexts/ThemeContext';
 
 // Компонент четырёхконечной серебряной звезды с 3D эффектом
 export const SilverStar = memo(({ 
@@ -18,6 +19,8 @@ export const SilverStar = memo(({
   // Используем useId для стабильного ID между сервером и клиентом
   const reactId = useId();
   const uniqueId = `star-gradient-${reactId.replace(/:/g, '')}`;
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
   
   return (
     <svg 
@@ -26,7 +29,9 @@ export const SilverStar = memo(({
       viewBox="0 0 100 100" 
       className={`${animate ? 'animate-star-float' : ''} ${className}`}
       style={{ 
-        filter: 'drop-shadow(0 4px 12px rgba(200, 200, 220, 0.4))',
+        filter: isLight 
+          ? 'drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3))'
+          : 'drop-shadow(0 4px 12px rgba(200, 200, 220, 0.4))',
         animationDelay: `${delay}s`,
         ...style 
       }}
@@ -34,24 +39,36 @@ export const SilverStar = memo(({
       <defs>
         {/* Главный градиент для металлического эффекта */}
         <linearGradient id={`${uniqueId}-main`} x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#f8f9fa" />
-          <stop offset="25%" stopColor="#e9ecef" />
-          <stop offset="50%" stopColor="#dee2e6" />
-          <stop offset="75%" stopColor="#ced4da" />
-          <stop offset="100%" stopColor="#adb5bd" />
+          {isLight ? (
+            <>
+              <stop offset="0%" stopColor="#1a1a1a" />
+              <stop offset="25%" stopColor="#2d2d2d" />
+              <stop offset="50%" stopColor="#3d3d3d" />
+              <stop offset="75%" stopColor="#4a4a4a" />
+              <stop offset="100%" stopColor="#5a5a5a" />
+            </>
+          ) : (
+            <>
+              <stop offset="0%" stopColor="#f8f9fa" />
+              <stop offset="25%" stopColor="#e9ecef" />
+              <stop offset="50%" stopColor="#dee2e6" />
+              <stop offset="75%" stopColor="#ced4da" />
+              <stop offset="100%" stopColor="#adb5bd" />
+            </>
+          )}
         </linearGradient>
         
         {/* Блик */}
         <linearGradient id={`${uniqueId}-shine`} x1="0%" y1="0%" x2="50%" y2="50%">
-          <stop offset="0%" stopColor="white" stopOpacity="0.9" />
-          <stop offset="50%" stopColor="white" stopOpacity="0.3" />
+          <stop offset="0%" stopColor={isLight ? "#666" : "white"} stopOpacity="0.9" />
+          <stop offset="50%" stopColor={isLight ? "#444" : "white"} stopOpacity="0.3" />
           <stop offset="100%" stopColor="transparent" stopOpacity="0" />
         </linearGradient>
         
         {/* Тень для объёма */}
         <radialGradient id={`${uniqueId}-shadow`} cx="30%" cy="30%" r="70%">
-          <stop offset="0%" stopColor="#e9ecef" />
-          <stop offset="100%" stopColor="#868e96" />
+          <stop offset="0%" stopColor={isLight ? "#3d3d3d" : "#e9ecef"} />
+          <stop offset="100%" stopColor={isLight ? "#1a1a1a" : "#868e96"} />
         </radialGradient>
       </defs>
       
@@ -63,7 +80,7 @@ export const SilverStar = memo(({
            C48 75, 25 52, 5 50
            C25 48, 48 25, 50 5Z"
         fill={`url(#${uniqueId}-main)`}
-        stroke="rgba(255,255,255,0.6)"
+        stroke={isLight ? "rgba(0,0,0,0.3)" : "rgba(255,255,255,0.6)"}
         strokeWidth="0.5"
       />
       

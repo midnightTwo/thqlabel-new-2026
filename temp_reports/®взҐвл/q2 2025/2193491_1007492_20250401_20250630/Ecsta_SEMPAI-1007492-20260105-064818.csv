@@ -1,0 +1,151 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/04/2025;01/03/2025;Yandex;Belarus;"Million dollar music";"Ecsta, SEMPAI";Miss;Кебаб;3617664702279;DG-A0P-24-51924;;"Music Release";Stream;6;RUB;0.127742104899
+01/05/2025;01/04/2025;Yandex;Tajikistan;"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Stream;1;RUB;0.004050734508
+01/05/2025;01/04/2025;Yandex;Kazakhstan;"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;6;RUB;0.113302026282
+01/06/2025;01/06/2025;"Apple Music";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;Miss;3617664702279;DG-A0P-24-51923;;"Music Release";Stream;10;RUB;0.999185599958
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;Россия;3617664702279;DG-A0P-24-51926;;"Music Release";Stream;17;RUB;0.803534151020
+01/05/2025;01/02/2025;"Facebook / Instagram";Turkey;"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Creation;12;RUB;0.227755348638
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Belarus;"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Stream;2;RUB;0.008400000000
+01/05/2025;01/03/2025;"Facebook / Instagram";Worldwide;"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Creation;18;RUB;0.430148017327
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;Россия;3617664702279;DG-A0P-24-51926;;"Music Release";Stream;25;RUB;0.582054398560
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Stream;852;RUB;18.171432026756
+01/04/2025;01/04/2025;"Apple Music";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;Россия;3617664702279;DG-A0P-24-51926;;"Music Release";Stream;25;RUB;2.382667839998
+01/05/2025;01/04/2025;Yandex;Kazakhstan;"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Stream;4;RUB;0.087401033434
+01/04/2025;01/04/2025;"Apple Music";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Stream;1;RUB;0.066582880034
+01/06/2025;01/05/2025;"UMA VK MUSIC";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;Miss;3617664702279;DG-A0P-24-51923;;"Music Release";Stream;1;RUB;0.129581197778
+01/05/2025;01/04/2025;Yandex;Kazakhstan;"Million dollar music";"Ecsta, SEMPAI";Miss;Miss;3617664702279;DG-A0P-24-51923;;"Music Release";Stream;1;RUB;0.021850258413
+01/04/2025;01/03/2025;Yandex;Kazakhstan;"Million dollar music";"Ecsta, SEMPAI";Miss;Россия;3617664702279;DG-A0P-24-51926;;"Music Release";Stream;1;RUB;0.021290350854
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Belarus;"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Stream;3;RUB;0.012600000038
+01/04/2025;01/03/2025;Yandex;Ukraine;"Million dollar music";"Ecsta, SEMPAI";Miss;Miss;3617664702279;DG-A0P-24-51923;;"Music Release";Stream;1;RUB;0.005969924014
+01/05/2025;01/02/2025;"Facebook / Instagram";Mexico;"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Creation;6;RUB;0.073166491768
+01/04/2025;01/03/2025;Yandex;"Moldova, Republic Of";"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Stream;1;RUB;0.005969924014
+01/05/2025;01/04/2025;Yandex;Tajikistan;"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;1;RUB;0.004050734508
+01/04/2025;01/03/2025;Yandex;Belarus;"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;38;RUB;0.809033331028
+01/04/2025;01/03/2025;Yandex;Uzbekistan;"Million dollar music";"Ecsta, SEMPAI";Miss;"Танцуй Bonus";3617664702279;DG-A0P-24-51927;;"Music Release";Stream;1;RUB;0.021290350854
+01/04/2025;01/03/2025;Yandex;Uzbekistan;"Million dollar music";"Ecsta, SEMPAI";Miss;Miss;3617664702279;DG-A0P-24-51923;;"Music Release";Stream;2;RUB;0.042580701633
+01/04/2025;01/11/2024;Yandex;Worldwide;"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;-1;RUB;-7.238324566004
+01/05/2025;01/05/2025;"Apple Music";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Stream;1;RUB;0.101712239957
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Stream;1874;RUB;38.880791199041
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;Кебаб;3617664702279;DG-A0P-24-51924;;"Music Release";Stream;19;RUB;0.268058282881
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;Россия;3617664702279;DG-A0P-24-51926;;"Music Release";Stream;262;RUB;5.547431060023
+01/04/2025;01/03/2025;Yandex;Kazakhstan;"Million dollar music";"Ecsta, SEMPAI";Miss;Кебаб;3617664702279;DG-A0P-24-51924;;"Music Release";Stream;1;RUB;0.021290350854
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;55;RUB;1.170833616674
+01/05/2025;01/05/2025;"YouTube Official Content";Ireland;"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;1;RUB;0.117156545870
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;"Танцуй Bonus";3617664702279;DG-A0P-24-51927;;"Music Release";Stream;19;RUB;0.581324791073
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;"Танцуй Bonus";3617664702279;DG-A0P-24-51927;;"Music Release";Stream;1;RUB;0.124171690422
+01/05/2025;01/05/2025;"YouTube Official Content";"Czech Republic";"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;2;RUB;0.153376610574
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;2035;RUB;42.738313068962
+01/04/2025;01/04/2025;"YouTube Official Content";Ukraine;"Million dollar music";"Ecsta, SEMPAI";Miss;"Танцуй Bonus";3617664702279;DG-A0P-24-51927;;"Music Release";Stream;1;RUB;0.012961064906
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"Million dollar music";"Ecsta, SEMPAI";Miss;Россия;3617664702279;DG-A0P-24-51926;;"Music Release";Stream;1;RUB;-0.550478344269
+01/04/2025;01/03/2025;Yandex;Belarus;"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Stream;46;RUB;0.826151869013
+01/04/2025;01/03/2025;Yandex;Kazakhstan;"Million dollar music";"Ecsta, SEMPAI";Miss;Miss;3617664702279;DG-A0P-24-51923;;"Music Release";Stream;19;RUB;0.373875811797
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;1;RUB;-0.508957126965
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;27;RUB;0.301658282881
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;"Танцуй Bonus";3617664702279;DG-A0P-24-51927;;"Music Release";Stream;118;RUB;2.481620542519
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;"Танцуй Bonus";3617664702279;DG-A0P-24-51927;;"Music Release";Stream;45;RUB;0.938619087823
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Stream;20;RUB;1.087049582073
+01/06/2025;01/06/2025;"YouTube Official Content";Belgium;"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;1;RUB;0.185335232749
+01/06/2025;01/06/2025;"Apple Music";Japan;"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;1;RUB;0.125343659027
+01/04/2025;01/03/2025;Yandex;Belarus;"Million dollar music";"Ecsta, SEMPAI";Miss;"Танцуй Bonus";3617664702279;DG-A0P-24-51927;;"Music Release";Stream;5;RUB;0.106451754120
+01/06/2025;01/05/2025;Yandex;Uzbekistan;"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;3;RUB;0.062574605898
+01/06/2025;01/06/2025;"YouTube Official Content";Canada;"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;1;RUB;0.008995750428
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;"Танцуй Bonus";3617664702279;DG-A0P-24-51927;;"Music Release";Stream;44;RUB;1.622674488256
+01/04/2025;01/04/2025;"Apple Music";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;"Танцуй Bonus";3617664702279;DG-A0P-24-51927;;"Music Release";Stream;1;RUB;0.066582880034
+01/04/2025;01/03/2025;Yandex;Uzbekistan;"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Stream;6;RUB;0.127742104899
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Belarus;"Million dollar music";"Ecsta, SEMPAI";Miss;"Танцуй Bonus";3617664702279;DG-A0P-24-51927;;"Music Release";Stream;4;RUB;0.016800000000
+01/05/2025;01/04/2025;Yandex;Uzbekistan;"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Stream;4;RUB;0.087401033434
+01/04/2025;01/04/2025;"Apple Music";"Czech Republic";"Million dollar music";"Ecsta, SEMPAI";Miss;"Танцуй Bonus";3617664702279;DG-A0P-24-51927;;"Music Release";Stream;1;RUB;0.544028474727
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;Кебаб;3617664702279;DG-A0P-24-51924;;"Music Release";Stream;17;RUB;0.750207322421
+01/04/2025;01/04/2025;"Apple Music";Japan;"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;1;RUB;0.136934983181
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Belarus;"Million dollar music";"Ecsta, SEMPAI";Miss;Россия;3617664702279;DG-A0P-24-51926;;"Music Release";Stream;3;RUB;0.012600000038
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Stream;18;RUB;0.992059642163
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;1;RUB;0.075185868587
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Stream;837;RUB;17.245993873882
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Stream;1;RUB;-0.572901091901
+01/06/2025;01/06/2025;"Apple Music";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;Кебаб;3617664702279;DG-A0P-24-51924;;"Music Release";Stream;7;RUB;0.699429920029
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Belarus;"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Stream;1;RUB;0.064042510101
+01/05/2025;01/05/2025;"YouTube Official Content";Kazakhstan;"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;2;RUB;0.048277901072
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;Кебаб;3617664702279;DG-A0P-24-51924;;"Music Release";Stream;11;RUB;0.166171690422
+01/06/2025;01/05/2025;"UMA VK MUSIC";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;Россия;3617664702279;DG-A0P-24-51926;;"Music Release";Stream;1;RUB;0.129581197778
+01/05/2025;01/05/2025;"Apple Music";Japan;"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;1;RUB;0.133391615802
+01/05/2025;01/04/2025;"UMA VK MUSIC";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;Россия;3617664702279;DG-A0P-24-51926;;"Music Release";Stream;1;RUB;0.124022873985
+01/04/2025;01/03/2025;Yandex;Ukraine;"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;1;RUB;0.005969924014
+01/04/2025;01/03/2025;Yandex;Belarus;"Million dollar music";"Ecsta, SEMPAI";Miss;Россия;3617664702279;DG-A0P-24-51926;;"Music Release";Stream;7;RUB;0.149032455753
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;Кебаб;3617664702279;DG-A0P-24-51924;;"Music Release";Stream;68;RUB;1.418357732706
+01/04/2025;01/03/2025;Yandex;Kazakhstan;"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;15;RUB;0.273393981691
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"Million dollar music";"Ecsta, SEMPAI";Miss;Кебаб;3617664702279;DG-A0P-24-51924;;"Music Release";Stream;1;RUB;-0.288926327425
+01/06/2025;01/06/2025;"Apple Music";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Stream;6;RUB;0.599511360004
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;Россия;3617664702279;DG-A0P-24-51926;;"Music Release";Stream;203;RUB;4.417802923241
+01/06/2025;01/05/2025;Yandex;Kazakhstan;"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;18;RUB;0.357754205086
+01/06/2025;01/05/2025;Yandex;Armenia;"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Stream;1;RUB;0.003164771929
+01/06/2025;01/06/2025;"Apple Music";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;Россия;3617664702279;DG-A0P-24-51926;;"Music Release";Stream;19;RUB;1.898452640036
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"Million dollar music";"Ecsta, SEMPAI";Miss;Miss;3617664702279;DG-A0P-24-51923;;"Music Release";Stream;1;RUB;-0.527231749624
+01/04/2025;01/03/2025;Yandex;Belarus;"Million dollar music";"Ecsta, SEMPAI";Miss;Miss;3617664702279;DG-A0P-24-51923;;"Music Release";Stream;22;RUB;0.391785583690
+01/06/2025;01/05/2025;Yandex;Uzbekistan;"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Stream;1;RUB;0.020858201942
+01/05/2025;01/04/2025;Yandex;Belarus;"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;27;RUB;0.589956975696
+01/04/2025;01/04/2025;"YouTube Official Content";Germany;"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;1;RUB;0.005300063679
+01/06/2025;01/05/2025;Yandex;Kazakhstan;"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Stream;11;RUB;0.211746791420
+01/04/2025;01/04/2025;"YouTube Official Content";"United Kingdom";"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;1;RUB;0.173287992344
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;852;RUB;18.394435104105
+01/05/2025;01/04/2025;"UMA VK MUSIC";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;1;RUB;0.053350367564
+01/05/2025;01/05/2025;"Apple Music";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;Россия;3617664702279;DG-A0P-24-51926;;"Music Release";Stream;14;RUB;1.423971359975
+01/06/2025;01/06/2025;"Apple Music";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;6;RUB;0.599511360004
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;Miss;3617664702279;DG-A0P-24-51923;;"Music Release";Stream;27;RUB;0.643835327288
+01/04/2025;01/03/2025;Likee;"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;31;RUB;0.667187958808
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;Miss;3617664702279;DG-A0P-24-51923;;"Music Release";Stream;1273;RUB;26.484023175166
+01/04/2025;01/03/2025;Yandex;"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;Кебаб;3617664702279;DG-A0P-24-51924;;"Music Release";Stream;175;RUB;3.776343857960
+01/04/2025;01/04/2025;"Apple Music";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;Кебаб;3617664702279;DG-A0P-24-51924;;"Music Release";Stream;1;RUB;0.066582880034
+01/04/2025;01/11/2024;Yandex;Worldwide;"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Stream;-1;RUB;-15.041693451169
+01/04/2025;01/03/2025;Yandex;Uzbekistan;"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;5;RUB;0.106451754120
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;"Танцуй Bonus";3617664702279;DG-A0P-24-51927;;"Music Release";Stream;14;RUB;0.495372880474
+01/05/2025;01/04/2025;Yandex;Belarus;"Million dollar music";"Ecsta, SEMPAI";Miss;Кебаб;3617664702279;DG-A0P-24-51924;;"Music Release";Stream;1;RUB;0.021850258413
+01/05/2025;01/04/2025;"UMA VK MUSIC";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;Miss;3617664702279;DG-A0P-24-51923;;"Music Release";Stream;3;RUB;0.353279226400
+01/04/2025;01/04/2025;"Apple Music";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;3;RUB;0.279891360010
+01/04/2025;01/03/2025;"UMA VK MUSIC";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;Россия;3617664702279;DG-A0P-24-51926;;"Music Release";Stream;2;RUB;0.248343380919
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;Miss;3617664702279;DG-A0P-24-51923;;"Music Release";Stream;548;RUB;11.271053799798
+01/05/2025;01/04/2025;"UMA (Vkontakte)";Belarus;"Million dollar music";"Ecsta, SEMPAI";Miss;Кебаб;3617664702279;DG-A0P-24-51924;;"Music Release";Stream;1;RUB;0.004200000000
+01/05/2025;01/04/2025;"UMA (Vkontakte)";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Stream;21;RUB;1.040567345154
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;Miss;3617664702279;DG-A0P-24-51923;;"Music Release";Stream;546;RUB;11.731649391402
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;1147;RUB;23.641913111020
+01/06/2025;01/05/2025;Yandex;Belarus;"Million dollar music";"Ecsta, SEMPAI";Miss;Россия;3617664702279;DG-A0P-24-51926;;"Music Release";Stream;1;RUB;0.020858201942
+01/05/2025;01/04/2025;Yandex;Belarus;"Million dollar music";"Ecsta, SEMPAI";Miss;Miss;3617664702279;DG-A0P-24-51923;;"Music Release";Stream;20;RUB;0.383606595673
+01/05/2025;01/05/2025;"YouTube Official Content";"United States";"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;1;RUB;0.142086937406
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;43;RUB;0.944148728785
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;Кебаб;3617664702279;DG-A0P-24-51924;;"Music Release";Stream;50;RUB;1.089716007111
+01/05/2025;01/04/2025;Yandex;Armenia;"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Stream;1;RUB;0.021850258413
+01/04/2025;01/03/2025;"UMA (Vkontakte)";Belarus;"Million dollar music";"Ecsta, SEMPAI";Miss;Miss;3617664702279;DG-A0P-24-51923;;"Music Release";Stream;3;RUB;0.012600000038
+01/05/2025;01/04/2025;Yandex;Uzbekistan;"Million dollar music";"Ecsta, SEMPAI";Miss;Кебаб;3617664702279;DG-A0P-24-51924;;"Music Release";Stream;1;RUB;0.021850258413
+01/06/2025;01/05/2025;Yandex;Uzbekistan;"Million dollar music";"Ecsta, SEMPAI";Miss;Россия;3617664702279;DG-A0P-24-51926;;"Music Release";Stream;1;RUB;0.020858201942
+01/06/2025;01/05/2025;"UMA (Vkontakte)";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;Miss;3617664702279;DG-A0P-24-51923;;"Music Release";Stream;25;RUB;1.211852249251
+01/04/2025;01/11/2024;Yandex;Worldwide;"Million dollar music";"Ecsta, SEMPAI";Miss;"Танцуй Bonus";3617664702279;DG-A0P-24-51927;;"Music Release";Stream;-1;RUB;-4.915381018735
+01/04/2025;01/03/2025;Yandex;Ukraine;"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Stream;1;RUB;0.005969924014
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Belarus;"Million dollar music";"Ecsta, SEMPAI";Miss;Miss;3617664702279;DG-A0P-24-51923;;"Music Release";Stream;1;RUB;0.004200000036
+01/05/2025;01/04/2025;Yandex;Uzbekistan;"Million dollar music";"Ecsta, SEMPAI";Miss;"Танцуй Bonus";3617664702279;DG-A0P-24-51927;;"Music Release";Stream;5;RUB;0.109251291774
+01/05/2025;01/04/2025;Yandex;"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;"Танцуй Bonus";3617664702279;DG-A0P-24-51927;;"Music Release";Stream;61;RUB;1.332865759993
+01/05/2025;01/04/2025;Yandex;Uzbekistan;"Million dollar music";"Ecsta, SEMPAI";Miss;Россия;3617664702279;DG-A0P-24-51926;;"Music Release";Stream;1;RUB;0.021850258413
+01/05/2025;01/01/2025;"Facebook / Instagram";Worldwide;"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Creation;6;RUB;0.153461095368
+01/06/2025;01/05/2025;Yandex;Kazakhstan;"Million dollar music";"Ecsta, SEMPAI";Miss;Miss;3617664702279;DG-A0P-24-51923;;"Music Release";Stream;9;RUB;0.187723817550
+01/05/2025;01/04/2025;Yandex;Belarus;"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Stream;23;RUB;0.413558323102
+01/04/2025;01/03/2025;Yandex;Turkmenistan;"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Stream;1;RUB;0.005969924014
+01/06/2025;01/05/2025;Yandex;Kazakhstan;"Million dollar music";"Ecsta, SEMPAI";Miss;Россия;3617664702279;DG-A0P-24-51926;;"Music Release";Stream;1;RUB;0.020858201942
+01/06/2025;01/06/2025;"YouTube Official Content";Netherlands;"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;1;RUB;0.192531833062
+01/04/2025;01/11/2024;Yandex;Worldwide;"Million dollar music";"Ecsta, SEMPAI";Miss;Кебаб;3617664702279;DG-A0P-24-51924;;"Music Release";Stream;-1;RUB;-6.177545543424
+01/06/2025;01/06/2025;Likee;"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;4;RUB;0.106500123401
+01/04/2025;01/11/2024;Yandex;Worldwide;"Million dollar music";"Ecsta, SEMPAI";Miss;Miss;3617664702279;DG-A0P-24-51923;;"Music Release";Stream;-1;RUB;-16.837952460739
+01/05/2025;01/04/2025;Yandex;Uzbekistan;"Million dollar music";"Ecsta, SEMPAI";Miss;Miss;3617664702279;DG-A0P-24-51923;;"Music Release";Stream;2;RUB;0.043700516681
+01/06/2025;01/05/2025;Yandex;Uzbekistan;"Million dollar music";"Ecsta, SEMPAI";Miss;"Танцуй Bonus";3617664702279;DG-A0P-24-51927;;"Music Release";Stream;1;RUB;0.020858201942
+01/06/2025;01/02/2025;"UMA (Vkontakte)";Worldwide;"Million dollar music";"Ecsta, SEMPAI";Miss;"Танцуй Bonus";3617664702279;DG-A0P-24-51927;;"Music Release";Stream;1;RUB;-0.382098651325
+01/04/2025;01/03/2025;Yandex;"Moldova, Republic Of";"Million dollar music";"Ecsta, SEMPAI";Miss;Miss;3617664702279;DG-A0P-24-51923;;"Music Release";Stream;1;RUB;0.005969924014
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;Miss;3617664702279;DG-A0P-24-51923;;"Music Release";Stream;22;RUB;0.561439049668
+01/06/2025;01/05/2025;Yandex;Belarus;"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;39;RUB;0.795776446158
+01/05/2025;01/04/2025;Yandex;Uzbekistan;"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;4;RUB;0.087401033434
+01/04/2025;01/11/2024;Yandex;Worldwide;"Million dollar music";"Ecsta, SEMPAI";Miss;Россия;3617664702279;DG-A0P-24-51926;;"Music Release";Stream;-1;RUB;-10.363538461371
+01/06/2025;01/05/2025;Yandex;Belarus;"Million dollar music";"Ecsta, SEMPAI";Miss;Miss;3617664702279;DG-A0P-24-51923;;"Music Release";Stream;17;RUB;0.336896003145
+01/04/2025;01/03/2025;"UMA (Vkontakte)";"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;Россия;3617664702279;DG-A0P-24-51926;;"Music Release";Stream;41;RUB;1.122003570082
+01/06/2025;01/05/2025;Yandex;"Russian Federation";"Million dollar music";"Ecsta, SEMPAI";Miss;Россия;3617664702279;DG-A0P-24-51926;;"Music Release";Stream;110;RUB;2.276708784689
+01/04/2025;01/03/2025;Yandex;Kazakhstan;"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Stream;23;RUB;0.489678068742
+01/06/2025;01/05/2025;Yandex;Belarus;"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Stream;32;RUB;0.649769032419
+01/04/2025;01/03/2025;Yandex;Azerbaijan;"Million dollar music";"Ecsta, SEMPAI";Miss;Miss;3617664702279;DG-A0P-24-51923;;"Music Release";Stream;1;RUB;0.021290350854
+01/06/2025;01/05/2025;"UMA (Vkontakte)";Belarus;"Million dollar music";"Ecsta, SEMPAI";Miss;"Танцуй Bonus";3617664702279;DG-A0P-24-51927;;"Music Release";Stream;1;RUB;0.004200000036
+01/04/2025;01/04/2025;"YouTube Official Content";Netherlands;"Million dollar music";"Ecsta, SEMPAI";"Нашла / Money";"Нашла / Money";3617663937788;DG-A0L-24-54436;;"Music Release";Stream;1;RUB;0.085258752267
+01/05/2025;01/04/2025;Yandex;Ukraine;"Million dollar music";"Ecsta, SEMPAI";Miss;"Chivas Cola Intro";3617664702279;DG-A0P-24-51922;;"Music Release";Stream;1;RUB;0.004050734508

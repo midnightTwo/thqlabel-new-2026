@@ -108,14 +108,14 @@ export default function ImageCropModal({ imageSrc, onCropComplete, onCancel }: I
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/80 backdrop-blur-sm p-4 pt-16 pb-8">
-      <div className="admin-dark-modal bg-[#0a0a0f] border border-white/10 rounded-2xl w-full max-w-4xl flex flex-col shadow-2xl">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-start justify-center overflow-y-auto bg-black/80 backdrop-blur-sm p-0 sm:p-4 sm:pt-16 sm:pb-8">
+      <div className="admin-dark-modal bg-[#0a0a0f] border-t sm:border border-white/10 rounded-t-2xl sm:rounded-2xl w-full max-w-4xl flex flex-col shadow-2xl max-h-[90vh] sm:max-h-none">
         {/* Заголовок */}
-        <div className="px-6 py-3.5 border-b border-white/10 flex items-center justify-between flex-shrink-0">
-          <h3 className="text-lg font-bold">Редактирование изображения</h3>
+        <div className="px-4 sm:px-6 py-3 sm:py-3.5 border-b border-white/10 flex items-center justify-between flex-shrink-0">
+          <h3 className="text-base sm:text-lg font-bold">Редактирование изображения</h3>
           <button
             onClick={onCancel}
-            className="w-8 h-8 rounded-lg hover:bg-white/10 flex items-center justify-center transition"
+            className="w-10 h-10 sm:w-8 sm:h-8 rounded-lg hover:bg-white/10 active:bg-white/20 flex items-center justify-center transition min-w-[40px] min-h-[40px] sm:min-w-0 sm:min-h-0"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -124,7 +124,7 @@ export default function ImageCropModal({ imageSrc, onCropComplete, onCancel }: I
         </div>
 
         {/* Область обрезки */}
-        <div className="relative flex-1 bg-black/40 min-h-[300px]">
+        <div className="relative flex-1 bg-black/40 min-h-[250px] sm:min-h-[300px]">
           <Cropper
             image={imageSrc}
             crop={crop}
@@ -142,7 +142,7 @@ export default function ImageCropModal({ imageSrc, onCropComplete, onCancel }: I
         </div>
 
         {/* Управление */}
-        <div className="px-6 py-3.5 space-y-3 flex-shrink-0 border-t border-white/5">
+        <div className="px-4 sm:px-6 py-3 sm:py-3.5 space-y-3 flex-shrink-0 border-t border-white/5 pb-safe">
           {/* Зум */}
           <div>
             <label className="block text-xs font-bold text-zinc-400 mb-2">
@@ -165,8 +165,11 @@ export default function ImageCropModal({ imageSrc, onCropComplete, onCancel }: I
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
               </svg>
             </div>
-            <p className="text-[10px] text-zinc-600 mt-2">
+            <p className="text-[10px] text-zinc-600 mt-2 hidden sm:block">
               Перетаскивайте изображение мышью для позиционирования
+            </p>
+            <p className="text-[10px] text-zinc-600 mt-2 sm:hidden">
+              Перетаскивайте изображение для позиционирования
             </p>
           </div>
 
@@ -175,14 +178,14 @@ export default function ImageCropModal({ imageSrc, onCropComplete, onCancel }: I
             <button
               onClick={onCancel}
               disabled={processing}
-              className="flex-1 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl font-bold transition disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex-1 py-3 bg-white/5 hover:bg-white/10 active:bg-white/15 border border-white/10 rounded-xl font-bold transition disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px]"
             >
               Отмена
             </button>
             <button
               onClick={createCroppedImage}
               disabled={processing}
-              className="flex-1 py-3 bg-gradient-to-r from-[#6050ba] to-[#7060ca] hover:from-[#7060ca] hover:to-[#6050ba] rounded-xl font-bold transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-[#6050ba]/20"
+              className="flex-1 py-3 bg-gradient-to-r from-[#6050ba] to-[#7060ca] hover:from-[#7060ca] hover:to-[#6050ba] active:from-[#8070da] active:to-[#7060ca] rounded-xl font-bold transition disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-[#6050ba]/20 min-h-[44px]"
             >
               {processing ? 'Обработка...' : 'Применить'}
             </button>

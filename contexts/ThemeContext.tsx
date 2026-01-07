@@ -96,6 +96,7 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [themeName, setThemeName] = useState<ThemeName>('dark');
   const [loading, setLoading] = useState(true);
+  const [isChanging, setIsChanging] = useState(false);
 
   // Применяем класс темы на <html> элемент
   useEffect(() => {
@@ -142,13 +143,52 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const handleSetTheme = async (newTheme: ThemeName) => {
-    setThemeName(newTheme);
-    localStorage.setItem('thqlabel_theme', newTheme);
-    // Также сохраняем в cookie для SSR
-    document.cookie = `thqlabel_theme=${newTheme};path=/;max-age=31536000`;
+  const handleSetTheme = useCallback(async (newTheme: ThemeName) => {
+    // Предотвращаем повторное нажатие на ту же тему или во время анимации
+    if (newTheme === themeName || isChanging) return;
+    
+    // Определяем мобильное устройство только по ширине экрана
+    const isMobile = window.innerWidth < 768;
+    
+    // На ПК - быстрый переход, на мобильных - медленнее для корректного рендеринга
+    const fadeTime = isMobile ? 300 : 120;
+    const renderDelay = isMobile ? 150 : 0;
+    
+    // Начинаем анимацию fade-out
+    setIsChanging(true);
+    document.body.style.opacity = '0';
+    document.body.style.transition = `opacity ${fadeTime}ms ease-out`;
+    
+    // Ждём завершения fade-out, затем меняем тему
+    setTimeout(() => {
+      setThemeName(newTheme);
+      localStorage.setItem('thqlabel_theme', newTheme);
+      document.cookie = `thqlabel_theme=${newTheme};path=/;max-age=31536000`;
+      
+      // Задержка для рендеринга на мобильных
+      setTimeout(() => {
+        // Fade-in после смены темы
+        requestAnimationFrame(() => {
+          if (isMobile) {
+            requestAnimationFrame(() => {
+              document.body.style.opacity = '1';
+              setTimeout(() => {
+                document.body.style.transition = '';
+                setIsChanging(false);
+              }, fadeTime);
+            });
+          } else {
+            document.body.style.opacity = '1';
+            setTimeout(() => {
+              document.body.style.transition = '';
+              setIsChanging(false);
+            }, fadeTime);
+          }
+        });
+      }, renderDelay);
+    }, fadeTime);
 
-    // Сохраняем в БД
+    // Сохраняем в БД (не блокируем UI)
     if (supabase) {
       try {
         const { data: { user } } = await supabase.auth.getUser();
@@ -162,7 +202,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         console.error('Ошибка сохранения темы:', error);
       }
     }
-  };
+  }, [themeName, isChanging]);
 
   // Мемоизация темы для предотвращения лишних ререндеров
   const theme = useMemo(() => themes[themeName], [themeName]);
@@ -173,7 +213,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     themeName, 
     setTheme: handleSetTheme, 
     loading 
-  }), [theme, themeName, loading]);
+  }), [theme, themeName, handleSetTheme, loading]);
 
   return (
     <ThemeContext.Provider value={contextValue}>

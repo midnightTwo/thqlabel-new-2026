@@ -1,0 +1,45 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/01/2025;01/01/2025;"YouTube Official Content";Austria;"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;1;RUB;0.007840365773
+01/02/2025;01/02/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;1;RUB;0.068913039986
+01/02/2025;01/01/2025;Yandex;"Moldova, Republic Of";"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;2;RUB;0.025650651450
+01/03/2025;01/03/2025;"Apple Music";Latvia;"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;17;RUB;1.956135425166
+01/03/2025;01/03/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;7;RUB;0.640253600047
+01/01/2025;01/01/2025;"YouTube Official Content";Poland;"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;3;RUB;0.028373248224
+01/01/2025;01/01/2025;"YouTube Official Content";Germany;"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;3;RUB;0.048255232217
+01/01/2025;01/01/2025;"YouTube Official Content";Netherlands;"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;3;RUB;0.021302125791
+01/03/2025;01/02/2025;Yandex;Kazakhstan;"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;39;RUB;0.768581316086
+01/02/2025;01/01/2025;Yandex;Kazakhstan;"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;49;RUB;1.060682250212
+01/03/2025;01/01/2025;TikTok;Germany;"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Creation;5;RUB;0.446375018742
+01/03/2025;01/01/2025;TikTok;"United Kingdom";"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Creation;1;RUB;0.089275003734
+01/01/2025;01/01/2025;"YouTube Official Content";Belarus;"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;2;RUB;0.019201499483
+01/02/2025;01/01/2025;Yandex;Belarus;"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;125;RUB;2.477253656835
+01/02/2025;01/02/2025;"Apple Music";Latvia;"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;1;RUB;0.112576303848
+01/02/2025;01/01/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;7;RUB;0.949797933885
+01/01/2025;01/01/2025;"YouTube Official Content";"United Kingdom";"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;3;RUB;0.190239817878
+01/01/2025;01/01/2025;"Apple Music";"Russian Federation";"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;3;RUB;0.250700240002
+01/01/2025;01/01/2025;"YouTube Official Content";Kazakhstan;"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;9;RUB;0.059202157994
+01/01/2025;01/01/2025;"YouTube Official Content";"Czech Republic";"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;2;RUB;0.464804021974
+01/03/2025;01/01/2025;TikTok;France;"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Creation;1;RUB;0.089275003734
+01/02/2025;01/01/2025;Yandex;Kyrgyzstan;"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;1;RUB;0.022430687713
+01/01/2025;01/01/2025;"YouTube Official Content";Lithuania;"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;4;RUB;0.351857429066
+01/03/2025;01/02/2025;Yandex;Kyrgyzstan;"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;1;RUB;0.021587041761
+01/03/2025;01/02/2025;Yandex;Uzbekistan;"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;3;RUB;0.028104468584
+01/02/2025;01/02/2025;"YouTube Official Content";Sweden;"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;1;RUB;0.007597754505
+01/03/2025;01/01/2025;TikTok;Finland;"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Creation;1;RUB;0.089275003734
+01/01/2025;01/01/2025;"YouTube Official Content";Ukraine;"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;6;RUB;0.096480878128
+01/02/2025;01/01/2025;Yandex;Armenia;"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;2;RUB;0.044861375503
+01/03/2025;01/01/2025;TikTok;"Czech Republic";"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Creation;1;RUB;0.089275003734
+01/02/2025;01/01/2025;Yandex;"Russian Federation";"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;1760;RUB;38.869062836134
+01/01/2025;01/01/2025;"YouTube Official Content";"Moldova, Republic Of";"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;4;RUB;0.032249051568
+01/01/2025;01/01/2025;"YouTube Official Content";Georgia;"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;8;RUB;0.009171771188
+01/03/2025;01/02/2025;Yandex;"Moldova, Republic Of";"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;2;RUB;0.043174083595
+01/03/2025;01/02/2025;Yandex;"Russian Federation";"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;1125;RUB;24.057556311126
+01/02/2025;01/01/2025;Yandex;Uzbekistan;"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;8;RUB;0.102602605724
+01/03/2025;01/01/2025;TikTok;Sweden;"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Creation;1;RUB;0.089275003734
+01/03/2025;01/02/2025;Yandex;Belarus;"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;76;RUB;1.530645205422
+01/02/2025;01/02/2025;"Apple Music";Turkey;"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;1;RUB;0.043595518752
+01/01/2025;01/01/2025;"YouTube Official Content";Denmark;"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;1;RUB;0.118641006174
+01/03/2025;01/02/2025;"UMA VK MUSIC";"Russian Federation";"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;6;RUB;0.724932296222
+01/03/2025;01/02/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;9;RUB;0.940284510043
+01/02/2025;01/01/2025;"UMA (Vkontakte)";"Russian Federation";"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Stream;15;RUB;1.027648560438
+01/03/2025;01/01/2025;TikTok;Netherlands;"DARKI MUZIK";Dimian;Чая;Чая;3617668143054;DG-A0T-24-46135;;"Music Release";Creation;1;RUB;0.089275003734

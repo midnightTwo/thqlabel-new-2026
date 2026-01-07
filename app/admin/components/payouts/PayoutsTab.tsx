@@ -46,9 +46,10 @@ export default function PayoutsTab({ supabase, currentAdmin, currentUserRole }: 
     }
     
     const filtered = allUsers.filter(u => 
-      u.email?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      u.nickname?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      u.member_id?.toLowerCase().includes(searchQuery.toLowerCase())
+      u.id?.toLowerCase().includes(searchQuery.toLowerCase().trim()) ||
+      u.email?.toLowerCase().includes(searchQuery.toLowerCase().trim()) ||
+      u.nickname?.toLowerCase().includes(searchQuery.toLowerCase().trim()) ||
+      u.member_id?.toLowerCase().includes(searchQuery.toLowerCase().trim())
     );
     setSearchResults(filtered.slice(0, 10));
     setShowDropdown(filtered.length > 0);
@@ -128,10 +129,21 @@ export default function PayoutsTab({ supabase, currentAdmin, currentUserRole }: 
   };
 
   const deleteSinglePayout = async (payoutId: number, userId: string, userNickname: string, amount: number, year: number, quarter: number) => {
-    if (!confirm('Вы уверены, что хотите удалить эту выплату?')) return;
+    if (!confirm('Вы уверены, что хотите удалить эту выплату? Баланс пользователя будет уменьшен.')) return;
     
     setLoading(true);
     try {
+      // Получаем текущий баланс пользователя
+      const { data: userProfile } = await supabase
+        .from('profiles')
+        .select('balance')
+        .eq('id', userId)
+        .single();
+      
+      const currentBalance = parseFloat(userProfile?.balance) || 0;
+      const newBalance = currentBalance - amount;
+
+      // Проверяем связанную транзакцию
       const { data: transaction } = await supabase
         .from('transactions')
         .select('*')
@@ -140,36 +152,62 @@ export default function PayoutsTab({ supabase, currentAdmin, currentUserRole }: 
         .eq('type', 'payout')
         .single();
       
-      if (!transaction) {
-        const { error: deleteError } = await supabase
-          .from('payouts')
-          .delete()
-          .eq('id', payoutId);
-          
-        if (deleteError) throw deleteError;
-        
-        showNotification('✓ Выплата удалена (без транзакции)', 'success');
-        await loadUserHistory(userId);
-        const { data: updatedUsers } = await supabase.from('profiles').select('*').order('nickname', { ascending: true });
-        setAllUsers(updatedUsers || []);
-        setLoading(false);
-        return;
-      }
-
       const { data: currentUser } = await supabase.auth.getUser();
-      
-      const { error: cancelError } = await supabase.rpc('cancel_transaction', {
-        p_transaction_id: transaction.id,
-        p_cancelled_by: currentUser.user?.id || null,
-        p_reason: `Отмена выплаты Q${quarter} ${year} администратором`
-      });
 
-      if (cancelError) {
-        showNotification(`❌ ${cancelError.message}`, 'error');
-        setLoading(false);
-        return;
+      // Если есть транзакция - помечаем как отменённую
+      if (transaction) {
+        await supabase
+          .from('transactions')
+          .update({ 
+            status: 'cancelled',
+            metadata: {
+              ...transaction.metadata,
+              cancelled_at: new Date().toISOString(),
+              cancelled_by: currentUser.user?.id,
+              cancel_reason: `Отмена выплаты Q${quarter} ${year} администратором`
+            }
+          })
+          .eq('id', transaction.id);
       }
-      
+
+      // Создаём обратную транзакцию
+      const reversalTransaction = {
+        user_id: userId,
+        type: 'correction',
+        amount: -amount,
+        currency: 'RUB',
+        balance_before: currentBalance,
+        balance_after: newBalance,
+        status: 'completed',
+        description: `Отмена выплаты за Q${quarter} ${year}`,
+        reference_id: payoutId,
+        reference_table: 'payouts',
+        admin_id: currentUser.user?.id || null,
+        metadata: {
+          original_payout_id: payoutId,
+          cancelled_transaction_id: transaction?.id || null,
+          reason: 'admin_cancellation'
+        }
+      };
+
+      await supabase.from('transactions').insert(reversalTransaction);
+
+      // Обновляем баланс в profiles
+      await supabase
+        .from('profiles')
+        .update({ balance: newBalance })
+        .eq('id', userId);
+
+      // Обновляем баланс в user_balances
+      await supabase
+        .from('user_balances')
+        .upsert({
+          user_id: userId,
+          balance: newBalance,
+          updated_at: new Date().toISOString()
+        }, { onConflict: 'user_id' });
+
+      // Удаляем выплату
       const { error: deleteError } = await supabase
         .from('payouts')
         .delete()
@@ -177,13 +215,17 @@ export default function PayoutsTab({ supabase, currentAdmin, currentUserRole }: 
       
       if (deleteError) throw deleteError;
       
-      showNotification(`✓ Выплата отменена через систему транзакций`, 'success');
+      showNotification(`✓ Выплата отменена, баланс уменьшен на ${amount.toLocaleString('ru')} ₽`, 'success');
       
       if (selectedUser) {
         loadUserHistory(selectedUser.id);
       } else {
         loadAllHistory();
       }
+      
+      // Обновляем список пользователей для актуального баланса
+      const { data: updatedUsers } = await supabase.from('profiles').select('*').order('nickname', { ascending: true });
+      setAllUsers(updatedUsers || []);
     } catch (e: any) {
       showNotification('Ошибка: ' + e.message, 'error');
     } finally {
@@ -217,11 +259,24 @@ export default function PayoutsTab({ supabase, currentAdmin, currentUserRole }: 
     
     setLoading(true);
     try {
+      const payoutAmount = Number(amount);
+      
+      // Получаем текущий баланс пользователя
+      const { data: userProfile } = await supabase
+        .from('profiles')
+        .select('balance')
+        .eq('id', selectedUser.id)
+        .single();
+      
+      const currentBalance = parseFloat(userProfile?.balance) || 0;
+      const newBalance = currentBalance + payoutAmount;
+
+      // Создаём выплату
       const payoutPayload = {
         user_id: selectedUser.id,
         year,
         quarter,
-        amount: Number(amount),
+        amount: payoutAmount,
         note: note || null,
         paid_by: currentAdmin,
         is_read: false,
@@ -235,7 +290,50 @@ export default function PayoutsTab({ supabase, currentAdmin, currentUserRole }: 
       
       if (payoutError) throw payoutError;
 
-      showNotification('✓ Выплата сохранена', 'success');
+      // Обновляем баланс в profiles
+      await supabase
+        .from('profiles')
+        .update({ balance: newBalance })
+        .eq('id', selectedUser.id);
+
+      // Обновляем баланс в user_balances
+      await supabase
+        .from('user_balances')
+        .upsert({
+          user_id: selectedUser.id,
+          balance: newBalance,
+          updated_at: new Date().toISOString()
+        }, { onConflict: 'user_id' });
+
+      // Создаём транзакцию
+      const { data: currentUser } = await supabase.auth.getUser();
+      
+      const transactionData = {
+        user_id: selectedUser.id,
+        type: 'payout',
+        amount: payoutAmount,
+        currency: 'RUB',
+        balance_before: currentBalance,
+        balance_after: newBalance,
+        status: 'completed',
+        description: `Роялти за Q${quarter} ${year}${note ? ` — ${note}` : ''}`,
+        reference_id: newPayout.id,
+        reference_table: 'payouts',
+        admin_id: currentUser.user?.id || null,
+        metadata: {
+          quarter,
+          year,
+          note: note || null,
+          paid_by: currentAdmin,
+          created_via: 'admin_panel'
+        }
+      };
+
+      await supabase
+        .from('transactions')
+        .insert(transactionData);
+
+      showNotification(`✓ Выплата ${payoutAmount.toLocaleString('ru')} ₽ начислена!`, 'success');
       setNote('');
       setAmount('');
       await loadUserHistory(selectedUser.id);
@@ -271,25 +369,25 @@ export default function PayoutsTab({ supabase, currentAdmin, currentUserRole }: 
       <div className={`grid grid-cols-1 ${currentUserRole === 'owner' ? 'lg:grid-cols-2' : ''} gap-4 sm:gap-6`}>
         {/* Форма выплаты - только для owner */}
         {currentUserRole === 'owner' && (
-        <div className="p-6 bg-white/[0.02] border border-white/5 rounded-2xl">
-          <h3 className="font-black mb-4">Добавить выплату</h3>
+        <div className="p-4 sm:p-6 bg-white/[0.02] border border-white/5 rounded-xl sm:rounded-2xl">
+          <h3 className="font-black mb-4 text-sm sm:text-base">Добавить выплату</h3>
           
           {/* Выбранный пользователь или поиск */}
           {selectedUser ? (
-            <div className="p-4 bg-[#6050ba]/10 border border-[#6050ba]/30 rounded-xl mb-4 flex items-center gap-3">
+            <div className="p-3 sm:p-4 bg-[#6050ba]/10 border border-[#6050ba]/30 rounded-xl mb-4 flex items-center gap-2 sm:gap-3">
               <div 
-                className={`w-12 h-12 rounded-xl flex items-center justify-center font-bold ${selectedUser.avatar ? 'bg-cover bg-center' : 'bg-[#6050ba]/20'}`}
+                className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center font-bold flex-shrink-0 ${selectedUser.avatar ? 'bg-cover bg-center' : 'bg-[#6050ba]/20'}`}
                 style={{ backgroundImage: selectedUser.avatar ? `url(${selectedUser.avatar})` : 'none' }}
               >
                 {!selectedUser.avatar && (selectedUser.nickname?.charAt(0)?.toUpperCase() || '?')}
               </div>
               <div className="flex-1 min-w-0">
-                <div className="font-bold truncate">{selectedUser.nickname || 'Без никнейма'}</div>
-                <div className="text-xs text-zinc-500 truncate">{selectedUser.email}</div>
+                <div className="font-bold truncate text-sm sm:text-base">{selectedUser.nickname || 'Без никнейма'}</div>
+                <div className="text-[10px] sm:text-xs text-zinc-500 truncate">{selectedUser.email}</div>
               </div>
               <button
                 onClick={clearSelection}
-                className="p-2 hover:bg-white/10 rounded-lg transition"
+                className="p-2 hover:bg-white/10 rounded-lg transition min-w-[40px] min-h-[40px] flex items-center justify-center"
               >
                 <svg className="w-5 h-5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -302,7 +400,7 @@ export default function PayoutsTab({ supabase, currentAdmin, currentUserRole }: 
                 value={searchQuery} 
                 onChange={(e) => setSearchQuery(e.target.value)} 
                 placeholder="Поиск по email, никнейму или ID..." 
-                className="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#6050ba]" 
+                className="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#6050ba] min-h-[44px]" 
               />
               
               {showDropdown && (
@@ -311,18 +409,18 @@ export default function PayoutsTab({ supabase, currentAdmin, currentUserRole }: 
                     <button
                       key={user.id}
                       onClick={() => selectUser(user)}
-                      className="w-full p-3 hover:bg-white/5 flex items-center gap-3 text-left transition"
+                      className="w-full p-3 hover:bg-white/5 flex items-center gap-2 sm:gap-3 text-left transition min-h-[48px]"
                     >
                       {/* Аватарка */}
                       <div 
-                        className={`w-10 h-10 rounded-lg flex items-center justify-center text-sm font-bold flex-shrink-0 ${user.avatar ? 'bg-cover bg-center' : 'bg-[#6050ba]/20'}`}
+                        className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center text-sm font-bold flex-shrink-0 ${user.avatar ? 'bg-cover bg-center' : 'bg-[#6050ba]/20'}`}
                         style={user.avatar ? { backgroundImage: `url(${user.avatar})` } : {}}
                       >
                         {!user.avatar && (user.nickname?.charAt(0)?.toUpperCase() || '?')}
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="font-bold text-sm truncate">{user.nickname || 'Без никнейма'}</div>
-                        <div className="text-xs text-zinc-500 truncate">{user.email}</div>
+                        <div className="text-[10px] sm:text-xs text-zinc-500 truncate">{user.email}</div>
                       </div>
                     </button>
                   ))}
@@ -334,12 +432,12 @@ export default function PayoutsTab({ supabase, currentAdmin, currentUserRole }: 
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Выбор периода */}
             <div className="space-y-2">
-              <label className="text-xs text-zinc-500 font-medium uppercase tracking-wider">Период выплаты</label>
-              <div className="grid grid-cols-2 gap-3">
+              <label className="text-[10px] sm:text-xs text-zinc-500 font-medium uppercase tracking-wider">Период выплаты</label>
+              <div className="grid grid-cols-2 gap-2 sm:gap-3">
                 <select 
                   value={String(year)} 
                   onChange={(e) => setYear(Number(e.target.value))} 
-                  className="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-sm cursor-pointer"
+                  className="w-full bg-black/30 border border-white/10 rounded-xl px-3 sm:px-4 py-3 text-sm cursor-pointer min-h-[44px]"
                 >
                   {Array.from({ length: 5 }).map((_, i) => {
                     const y = new Date().getFullYear() - i;
@@ -349,7 +447,7 @@ export default function PayoutsTab({ supabase, currentAdmin, currentUserRole }: 
                 <select 
                   value={String(quarter)} 
                   onChange={(e) => setQuarter(Number(e.target.value))} 
-                  className="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-sm cursor-pointer"
+                  className="w-full bg-black/30 border border-white/10 rounded-xl px-3 sm:px-4 py-3 text-sm cursor-pointer min-h-[44px]"
                 >
                   <option value="1">Q1 (янв-мар)</option>
                   <option value="2">Q2 (апр-июн)</option>
@@ -361,30 +459,30 @@ export default function PayoutsTab({ supabase, currentAdmin, currentUserRole }: 
             
             {/* Сумма */}
             <div className="space-y-2">
-              <label className="text-xs text-zinc-500 font-medium uppercase tracking-wider">Сумма выплаты</label>
+              <label className="text-[10px] sm:text-xs text-zinc-500 font-medium uppercase tracking-wider">Сумма выплаты</label>
               <input 
                 value={amount} 
                 onChange={(e) => setAmount(e.target.value.replace(/[^0-9.]/g, ''))} 
                 placeholder="Введите сумму" 
-                className="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#6050ba]" 
+                className="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#6050ba] min-h-[44px]" 
               />
             </div>
             
             {/* Примечание */}
             <div className="space-y-2">
-              <label className="text-xs text-zinc-500 font-medium uppercase tracking-wider">Примечание (необязательно)</label>
+              <label className="text-[10px] sm:text-xs text-zinc-500 font-medium uppercase tracking-wider">Примечание (необязательно)</label>
               <input 
                 value={note} 
                 onChange={(e) => setNote(e.target.value)} 
                 placeholder="Например: Роялти за 4 квартал" 
-                className="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#6050ba]" 
+                className="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#6050ba] min-h-[44px]" 
               />
             </div>
             
             <button 
               type="submit"
               disabled={loading || !selectedUser} 
-              className={`w-full py-3 rounded-xl text-sm font-bold transition ${
+              className={`w-full py-3 rounded-xl text-sm font-bold transition min-h-[44px] ${
                 loading || !selectedUser 
                   ? 'bg-zinc-700 text-zinc-500 cursor-not-allowed' 
                   : 'bg-[#6050ba] hover:bg-[#7060ca]'
@@ -397,10 +495,10 @@ export default function PayoutsTab({ supabase, currentAdmin, currentUserRole }: 
         )}
 
         {/* История выплат */}
-        <div className="p-6 bg-white/[0.02] border border-white/5 rounded-2xl">
+        <div className="p-4 sm:p-6 bg-white/[0.02] border border-white/5 rounded-xl sm:rounded-2xl">
           <div className="mb-4">
             <h3 className="font-black text-white text-sm mb-3">
-              {selectedUser ? `История выплат: ${selectedUser.nickname || selectedUser.email}` : 'История выплат'}
+              {selectedUser ? `История: ${selectedUser.nickname || selectedUser.email}` : 'История выплат'}
             </h3>
             
             <div className="flex items-center gap-2">
@@ -410,7 +508,7 @@ export default function PayoutsTab({ supabase, currentAdmin, currentUserRole }: 
                   value={historySearchQuery}
                   onChange={(e) => setHistorySearchQuery(e.target.value)}
                   placeholder="Поиск..."
-                  className="w-full bg-black/30 border border-white/10 rounded-lg px-4 py-2 text-sm outline-none focus:border-[#6050ba] pl-10"
+                  className="w-full bg-black/30 border border-white/10 rounded-lg px-4 py-2 text-sm outline-none focus:border-[#6050ba] pl-10 min-h-[40px]"
                 />
                 <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -418,7 +516,7 @@ export default function PayoutsTab({ supabase, currentAdmin, currentUserRole }: 
               </div>
               <button
                 onClick={() => setSortOrder(prev => prev === 'newest' ? 'oldest' : 'newest')}
-                className="px-3 py-2 text-xs bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-all"
+                className="px-3 py-2 text-xs bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-all min-h-[40px] min-w-[40px]"
               >
                 {sortOrder === 'newest' ? '↓' : '↑'}
               </button>
@@ -430,14 +528,18 @@ export default function PayoutsTab({ supabase, currentAdmin, currentUserRole }: 
               <p className="text-xs text-zinc-500">История выплат пуста</p>
             </div>
           ) : (
-            <div className="space-y-2 max-h-[600px] overflow-y-auto">
+            <div className="space-y-2 max-h-[400px] sm:max-h-[600px] overflow-y-auto -mx-1 px-1">
               {[...history]
                 .filter(h => {
                   if (!historySearchQuery.trim()) return true;
-                  const query = historySearchQuery.toLowerCase();
+                  const query = historySearchQuery.toLowerCase().trim();
+                  if (h.id?.toLowerCase().includes(query)) return true;
                   if (h.profiles?.nickname?.toLowerCase().includes(query)) return true;
                   if (h.profiles?.email?.toLowerCase().includes(query)) return true;
+                  if (h.profiles?.member_id?.toLowerCase().includes(query)) return true;
                   if (h.note?.toLowerCase().includes(query)) return true;
+                  if (String(h.amount).includes(query)) return true;
+                  if (h.transaction_id?.toLowerCase().includes(query)) return true;
                   return false;
                 })
                 .sort((a, b) => {
@@ -449,12 +551,12 @@ export default function PayoutsTab({ supabase, currentAdmin, currentUserRole }: 
                   return (
                     <div 
                       key={h.id} 
-                      className="p-3.5 bg-black/30 border border-white/5 rounded-xl hover:border-white/10 transition-all group"
+                      className="p-2.5 sm:p-3.5 bg-black/30 border border-white/5 rounded-xl hover:border-white/10 transition-all group"
                     >
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-2 sm:gap-3">
                         {!selectedUser && h.profiles && (
                           <div 
-                            className={`w-11 h-11 rounded-xl flex items-center justify-center text-sm font-bold shrink-0 ${h.profiles.avatar ? 'bg-cover bg-center' : 'bg-[#6050ba]/20'}`}
+                            className={`w-9 h-9 sm:w-11 sm:h-11 rounded-lg sm:rounded-xl flex items-center justify-center text-sm font-bold shrink-0 ${h.profiles.avatar ? 'bg-cover bg-center' : 'bg-[#6050ba]/20'}`}
                             style={h.profiles.avatar ? { backgroundImage: `url(${h.profiles.avatar})` } : {}}
                           >
                             {!h.profiles.avatar && (h.profiles.nickname?.charAt(0)?.toUpperCase() || '?')}
@@ -463,18 +565,18 @@ export default function PayoutsTab({ supabase, currentAdmin, currentUserRole }: 
                         
                         <div className="flex-1 min-w-0">
                           {!selectedUser && h.profiles && (
-                            <div className="text-xs text-zinc-400 truncate mb-1">{h.profiles.nickname || h.profiles.email}</div>
+                            <div className="text-[10px] sm:text-xs text-zinc-400 truncate mb-0.5 sm:mb-1">{h.profiles.nickname || h.profiles.email}</div>
                           )}
-                          <div className="text-xs text-zinc-500 space-y-0.5">
-                            <div>
+                          <div className="text-[10px] sm:text-xs text-zinc-500 space-y-0.5">
+                            <div className="truncate">
                               {h.created_at 
-                                ? new Date(h.created_at).toLocaleString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })
-                                : `Квартал ${h.quarter}, ${h.year}`
+                                ? new Date(h.created_at).toLocaleString('ru-RU', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+                                : `Q${h.quarter} ${h.year}`
                               }
                             </div>
                             {h.transactions && h.transactions[0] && (
-                              <div className="text-[10px] text-emerald-400/70 font-mono flex items-center gap-1">
-                                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                              <div className="text-[9px] sm:text-[10px] text-emerald-400/70 font-mono flex items-center gap-1">
+                                <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3" fill="currentColor" viewBox="0 0 20 20">
                                   <path fillRule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z" clipRule="evenodd"/>
                                 </svg>
                                 TX: {h.transactions[0].id.slice(0, 8)}
@@ -483,17 +585,17 @@ export default function PayoutsTab({ supabase, currentAdmin, currentUserRole }: 
                           </div>
                         </div>
                         
-                        <div className="text-right flex items-center gap-2">
-                          <div className="text-base font-black text-white">
+                        <div className="text-right flex items-center gap-1 sm:gap-2 flex-shrink-0">
+                          <div className="text-sm sm:text-base font-black text-white">
                             {isWithdrawal ? '−' : '+'}{Number(h.amount).toLocaleString('ru-RU')} ₽
                           </div>
                           {!isWithdrawal && currentUserRole === 'owner' && (
                             <button
                               onClick={() => deleteSinglePayout(h.id, h.user_id, h.profiles?.nickname || selectedUser?.nickname || 'Пользователь', Number(h.amount), h.year, h.quarter)}
                               disabled={loading}
-                              className="p-1.5 opacity-0 group-hover:opacity-100 hover:bg-red-500/10 rounded transition-all text-red-400"
+                              className="p-1.5 sm:p-1.5 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 hover:bg-red-500/10 rounded transition-all text-red-400 min-w-[28px] min-h-[28px] flex items-center justify-center"
                             >
-                              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                               </svg>
                             </button>

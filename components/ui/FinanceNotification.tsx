@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 export interface FinanceNotification {
   id: string;
-  type: 'payout' | 'withdrawal_approved' | 'withdrawal_rejected' | 'withdrawal_completed' | 'withdrawal_pending';
+  type: 'payout' | 'withdrawal_approved' | 'withdrawal_rejected' | 'withdrawal_completed' | 'withdrawal_pending' | 'refund';
   amount: number;
   message: string;
   timestamp: Date;
@@ -73,6 +73,13 @@ const FinanceNotificationToast: React.FC<FinanceNotificationToastProps> = ({ not
       border: 'border-yellow-500/50',
       text: 'text-yellow-400',
       iconBg: 'bg-yellow-500/30',
+    },
+    refund: {
+      icon: '↩️',
+      bg: 'bg-emerald-500/20',
+      border: 'border-emerald-500/50',
+      text: 'text-emerald-400',
+      iconBg: 'bg-emerald-500/30',
     },
   };
 

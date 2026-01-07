@@ -4,6 +4,7 @@ import React from 'react';
 import { Ticket, statusColors, statusLabels, categoryLabels } from '../types';
 import TicketAvatar from '@/components/icons/TicketAvatar';
 import { fetchWithAuth } from '@/app/cabinet/lib/fetchWithAuth';
+import { useTheme } from '@/contexts/ThemeContext';
 
 interface TicketListProps {
   tickets: Ticket[];
@@ -20,13 +21,16 @@ export default function TicketList({
   onViewProfile,
   searchQuery,
 }: TicketListProps) {
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
+
   if (tickets.length === 0) {
     return (
-      <div className="text-center py-12 bg-zinc-900/50 rounded-xl border border-zinc-800">
-        <svg className="w-12 h-12 mx-auto text-zinc-700 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div className={`text-center py-12 rounded-xl border ${isLight ? 'bg-gray-50 border-gray-200' : 'bg-zinc-900/50 border-zinc-800'}`}>
+        <svg className={`w-12 h-12 mx-auto mb-3 ${isLight ? 'text-gray-400' : 'text-zinc-700'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
         </svg>
-        <p className="text-zinc-500">Тикетов не найдено</p>
+        <p className={isLight ? 'text-gray-500' : 'text-zinc-500'}>Тикетов не найдено</p>
       </div>
     );
   }
@@ -41,6 +45,7 @@ export default function TicketList({
           onSelect={onSelectTicket}
           onViewProfile={onViewProfile}
           searchQuery={searchQuery}
+          isLight={isLight}
         />
       ))}
     </>
@@ -53,9 +58,10 @@ interface TicketCardProps {
   onSelect: (ticket: Ticket) => void;
   onViewProfile: (ticket: Ticket) => void;
   searchQuery: string;
+  isLight: boolean;
 }
 
-function TicketCard({ ticket, isSelected, onSelect, onViewProfile, searchQuery }: TicketCardProps) {
+function TicketCard({ ticket, isSelected, onSelect, onViewProfile, searchQuery, isLight }: TicketCardProps) {
   const handleSelect = () => {
     onSelect(ticket);
     fetchWithAuth(`/api/support/tickets/${ticket.id}/read`, { method: 'POST' });
@@ -73,10 +79,16 @@ function TicketCard({ ticket, isSelected, onSelect, onViewProfile, searchQuery }
       onClick={handleSelect}
       className={`w-full p-4 rounded-xl transition-all text-left ${
         ticket.status === 'in_progress' || ticket.status === 'open'
-          ? 'bg-red-500/10 border-red-500/30 hover:border-red-500/50'
+          ? isLight
+            ? 'bg-red-50 border-red-300/50 hover:border-red-400'
+            : 'bg-red-500/10 border-red-500/30 hover:border-red-500/50'
           : ticket.status === 'pending'
-          ? 'bg-yellow-500/10 border-yellow-500/30 hover:border-yellow-500/50'
-          : 'bg-zinc-900/50 border-zinc-800 hover:border-zinc-700'
+          ? isLight
+            ? 'bg-yellow-50 border-yellow-300/50 hover:border-yellow-400'
+            : 'bg-yellow-500/10 border-yellow-500/30 hover:border-yellow-500/50'
+          : isLight
+            ? 'bg-white/70 border-gray-200 hover:border-gray-300'
+            : 'bg-zinc-900/50 border-zinc-800 hover:border-zinc-700'
       } ${isSelected ? 'border-2 border-blue-500 shadow-lg shadow-blue-500/20' : 'border'}`}
     >
       {/* Код тикета, категория и статус */}
@@ -85,7 +97,9 @@ function TicketCard({ ticket, isSelected, onSelect, onViewProfile, searchQuery }
           <span className={`text-[10px] font-mono px-2 py-0.5 rounded border ${
             searchQuery && ticket.id.toLowerCase().includes(searchQuery.toLowerCase())
               ? 'bg-yellow-500/20 text-yellow-300 border-yellow-500/50 ring-2 ring-yellow-500/30'
-              : 'bg-zinc-800/50 text-zinc-400 border-zinc-700'
+              : isLight 
+                ? 'bg-gray-100 text-gray-600 border-gray-300'
+                : 'bg-zinc-800/50 text-zinc-400 border-zinc-700'
           }`}>
             #{ticket.id.substring(0, 8)}
           </span>
@@ -103,7 +117,7 @@ function TicketCard({ ticket, isSelected, onSelect, onViewProfile, searchQuery }
       </div>
 
       <div className="mb-2">
-        <h3 className={`font-bold text-white text-sm line-clamp-1 ${highlightClass(ticket.subject)}`}>
+        <h3 className={`font-bold text-sm line-clamp-1 ${highlightClass(ticket.subject)} ${isLight ? 'text-gray-900' : 'text-white'}`}>
           {ticket.subject}
         </h3>
       </div>
@@ -118,11 +132,11 @@ function TicketCard({ ticket, isSelected, onSelect, onViewProfile, searchQuery }
           role={ticket.user_role}
         />
         <div className="flex-1 min-w-0">
-          <p className={`text-xs text-white font-medium truncate ${highlightClass(ticket.user_nickname || ticket.user_email)}`}>
+          <p className={`text-xs font-medium truncate ${highlightClass(ticket.user_nickname || ticket.user_email)} ${isLight ? 'text-gray-900' : 'text-white'}`}>
             {ticket.user_nickname || ticket.user_email?.split('@')[0] || 'Пользователь'}
           </p>
           {ticket.user_email && (
-            <p className={`text-[10px] text-zinc-400 truncate ${highlightClass(ticket.user_email)}`}>
+            <p className={`text-[10px] truncate ${highlightClass(ticket.user_email)} ${isLight ? 'text-gray-500' : 'text-zinc-400'}`}>
               {ticket.user_email}
             </p>
           )}
@@ -155,12 +169,12 @@ function TicketCard({ ticket, isSelected, onSelect, onViewProfile, searchQuery }
       </div>
 
       <div className="flex items-center gap-2 mb-2">
-        <span className="text-xs text-zinc-500">
+        <span className={`text-xs ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>
           {ticket.ticket_messages?.length || 0} сообщений
         </span>
       </div>
 
-      <div className="text-xs text-zinc-500">
+      <div className={`text-xs ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>
         {new Date(ticket.created_at).toLocaleString('ru-RU')}
       </div>
     </button>

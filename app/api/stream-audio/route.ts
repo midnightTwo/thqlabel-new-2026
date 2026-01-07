@@ -42,21 +42,9 @@ export async function GET(request: NextRequest) {
     let isOwner = false;
     let isAdmin = false;
 
-    console.log('🔐 Stream audio auth check:', {
-      hasAuthHeader: !!authHeader,
-      releaseUserId: release.user_id,
-      releaseStatus: release.status
-    });
-
     if (authHeader) {
       const token = authHeader.replace('Bearer ', '');
       const { data: { user }, error: authError } = await supabase.auth.getUser(token);
-      
-      console.log('🔐 User from token:', {
-        hasUser: !!user,
-        userId: user?.id,
-        authError: authError?.message
-      });
       
       if (!authError && user) {
         isAuthorized = true;
@@ -70,8 +58,6 @@ export async function GET(request: NextRequest) {
           .single();
 
         isAdmin = profile?.role === 'admin' || profile?.role === 'owner';
-        
-        console.log('🔐 Access check:', { isOwner, isAdmin, userRole: profile?.role });
       }
     }
 
@@ -84,26 +70,16 @@ export async function GET(request: NextRequest) {
     
     if (!isAdmin && !isOwner && !allowPendingForDebug) {
       if (release.status !== 'published') {
-        console.log('❌ Access DENIED:', { isAdmin, isOwner, releaseStatus: release.status });
         return NextResponse.json(
           { error: 'Доступ запрещен. Релиз не опубликован.' },
           { status: 403 }
         );
       }
     }
-    
-    console.log('✅ Access GRANTED (allowPendingForDebug:', allowPendingForDebug, ')');
 
     // Получаем трек
     const tracks = Array.isArray(release.tracks) ? release.tracks : [];
     const trackIdx = parseInt(trackIndex, 10);
-
-    console.log('📊 Release tracks info:', {
-      releaseId,
-      releaseType,
-      totalTracks: tracks.length,
-      requestedIndex: trackIdx
-    });
 
     if (trackIdx < 0 || trackIdx >= tracks.length) {
       return NextResponse.json(
@@ -113,17 +89,6 @@ export async function GET(request: NextRequest) {
     }
 
     const track = tracks[trackIdx];
-    
-    // Логируем все поля трека для диагностики
-    console.log('🎵 Track data for index', trackIdx, ':', {
-      title: track.title,
-      link: track.link,
-      audio_url: track.audio_url,
-      audioFile: typeof track.audioFile,
-      audioUrl: track.audioUrl,
-      url: track.url,
-      allKeys: Object.keys(track)
-    });
     
     // Поддержка разных полей URL аудио - проверяем что это строка
     const getStringUrl = (value: unknown): string | null => {
@@ -139,8 +104,6 @@ export async function GET(request: NextRequest) {
                      getStringUrl(track.audioUrl) ||
                      getStringUrl(track.url);
 
-    console.log('🔗 Resolved Audio URL:', audioUrl ? audioUrl.substring(0, 100) + '...' : 'NULL');
-
     if (!audioUrl) {
       // Проверяем, есть ли audioFile как объект (файл не был загружен)
       if (track.audioFile && typeof track.audioFile === 'object') {
@@ -149,9 +112,8 @@ export async function GET(request: NextRequest) {
           { status: 400 }
         );
       }
-      console.error('❌ No audio URL found in track:', track);
       return NextResponse.json(
-        { error: 'URL аудио не найден', debug: { trackKeys: Object.keys(track), title: track.title } },
+        { error: 'URL аудио не найден' },
         { status: 404 }
       );
     }
@@ -179,19 +141,16 @@ export async function GET(request: NextRequest) {
         if (urlParts.length > 1) {
           const [bucket, ...pathParts] = urlParts[1].split('/');
           const path = decodeURIComponent(pathParts.join('/'));
-          
-          console.log('Supabase storage path:', { bucket, path, originalUrl: audioUrl });
 
-          // Пробуем загрузить файл напрямую через download - это надёжнее
+          // Пробуем загрузить файл напрямую через download
           const { data: fileData, error: downloadError } = await supabase
             .storage
             .from(bucket)
             .download(path);
 
           if (downloadError || !fileData) {
-            console.error('Error downloading file:', downloadError);
             return NextResponse.json(
-              { error: 'Не удалось загрузить аудио файл', details: downloadError?.message },
+              { error: 'Не удалось загрузить аудио файл' },
               { status: 404 }
             );
           }
@@ -199,12 +158,6 @@ export async function GET(request: NextRequest) {
           // Определяем MIME-тип по расширению файла
           const contentType = getMimeType(path);
           const arrayBuffer = await fileData.arrayBuffer();
-          
-          console.log('Serving audio:', { 
-            contentType, 
-            size: arrayBuffer.byteLength,
-            path 
-          });
 
           return new NextResponse(arrayBuffer, {
             headers: {
@@ -217,11 +170,9 @@ export async function GET(request: NextRequest) {
             },
           });
         } else {
-          console.error('Could not parse Supabase URL:', audioUrl);
           // Пробуем получить напрямую через fetch
         }
-      } catch (error) {
-        console.error('Error processing Supabase URL:', error);
+      } catch {
         // Продолжаем и пробуем fetch напрямую
       }
     }
@@ -238,8 +189,7 @@ export async function GET(request: NextRequest) {
 
       const audioBuffer = await audioResponse.arrayBuffer();
       const contentType = audioResponse.headers.get('Content-Type') || getMimeType(audioUrl);
-      console.log('Serving external audio with Content-Type:', contentType, 'Size:', audioBuffer.byteLength);
-      
+
       return new NextResponse(audioBuffer, {
         headers: {
           'Content-Type': contentType,
@@ -250,16 +200,14 @@ export async function GET(request: NextRequest) {
           'Expires': '0',
         },
       });
-    } catch (error) {
-      console.error('Error fetching external audio:', error);
+    } catch {
       return NextResponse.json(
         { error: 'Ошибка загрузки внешнего аудио' },
         { status: 500 }
       );
     }
 
-  } catch (error) {
-    console.error('Error streaming audio:', error);
+  } catch {
     return NextResponse.json(
       { error: 'Ошибка при получении аудио' },
       { status: 500 }

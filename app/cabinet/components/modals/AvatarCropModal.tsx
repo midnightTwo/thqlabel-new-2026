@@ -2,6 +2,7 @@
 import React, { useState, useCallback, useRef } from 'react';
 import Cropper from 'react-easy-crop';
 import { ROLE_CONFIG, UserRole } from '../../lib/types';
+import { useTheme } from '@/contexts/ThemeContext';
 
 type Area = {
   width: number;
@@ -101,15 +102,19 @@ export default function AvatarCropModal({
   const [isCropping, setIsCropping] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
 
   const config = ROLE_CONFIG[role];
 
-  // Сброс при открытии/закрытии и блокировка скролла
+  // Сброс при открытии/закрытии и блокировка скролла + скрытие хедера на мобильных
   React.useEffect(() => {
     if (show) {
       document.body.style.overflow = 'hidden';
+      document.body.setAttribute('data-avatar-modal-open', 'true');
     } else {
       document.body.style.overflow = '';
+      document.body.removeAttribute('data-avatar-modal-open');
       setZoom(1);
       setImageSrc(null);
       setIsCropping(false);
@@ -119,6 +124,7 @@ export default function AvatarCropModal({
     
     return () => {
       document.body.style.overflow = '';
+      document.body.removeAttribute('data-avatar-modal-open');
     };
   }, [show]);
 
@@ -207,50 +213,50 @@ export default function AvatarCropModal({
     <>
       {/* Полноэкранный оверлей загрузки */}
       {isLoading && (
-        <div className="fixed inset-0 bg-black/90 backdrop-blur-md z-[250] flex items-center justify-center animate-in fade-in duration-200">
+        <div className={`fixed inset-0 backdrop-blur-md z-[250] flex items-center justify-center animate-in fade-in duration-200 ${isLight ? 'bg-white/90' : 'bg-black/90'}`}>
           <div className="text-center">
             {/* Анимированный спиннер */}
             <div className="relative w-20 h-20 mx-auto mb-6">
-              <div className="absolute inset-0 rounded-full border-4 border-white/10"></div>
+              <div className={`absolute inset-0 rounded-full border-4 ${isLight ? 'border-gray-200' : 'border-white/10'}`}></div>
               <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-[#6050ba] animate-spin"></div>
               <div className="absolute inset-2 rounded-full border-4 border-transparent border-t-[#9d8df1] animate-spin" style={{ animationDirection: 'reverse', animationDuration: '0.8s' }}></div>
               <div className="absolute inset-0 flex items-center justify-center">
-                <svg className="w-8 h-8 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className={`w-8 h-8 ${isLight ? 'text-[#6050ba]' : 'text-white/80'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
               </div>
             </div>
-            <p className="text-white text-lg font-bold mb-2">
+            <p className={`text-lg font-bold mb-2 ${isLight ? 'text-[#1a1535]' : 'text-white'}`}>
               {deletingAvatar ? 'Удаление аватара...' : isProcessing ? 'Обработка...' : 'Загрузка аватара...'}
             </p>
-            <p className="text-zinc-400 text-sm">Пожалуйста, подождите</p>
+            <p className={`text-sm ${isLight ? 'text-gray-500' : 'text-zinc-400'}`}>Пожалуйста, подождите</p>
           </div>
         </div>
       )}
       
       {/* Backdrop */}
       <div 
-        className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[200] animate-in fade-in duration-200"
+        className={`fixed inset-0 backdrop-blur-sm z-[200] animate-in fade-in duration-200 ${isLight ? 'bg-black/40' : 'bg-black/80'}`}
         onClick={!isLoading ? handleClose : undefined}
       />
       
-      {/* Modal */}
-      <div className="fixed inset-0 z-[210] flex items-center justify-center p-4 pointer-events-none">
+      {/* Modal - на мобильных выезжает слева */}
+      <div className="fixed inset-0 z-[210] flex items-stretch justify-start md:items-center md:justify-center p-0 md:p-6 md:pt-20 pointer-events-none">
         <div 
-          className="bg-[#18181b] border border-white/10 rounded-2xl w-full max-w-[380px] pointer-events-auto animate-in fade-in zoom-in-95 slide-in-from-bottom-4 duration-300 shadow-2xl"
+          className={`avatar-modal-panel border-r md:border md:rounded-2xl w-[85%] max-w-[320px] md:w-full md:max-w-[360px] h-full md:h-auto overflow-hidden pointer-events-auto shadow-2xl ${isLight ? 'bg-white border-[#6050ba]/20' : 'bg-[#18181b] border-white/10'}`}
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
-          <div className="flex justify-between items-center px-5 py-4 border-b border-white/5">
-            <h3 className="text-lg font-bold text-white">
+          <div className={`flex justify-between items-center px-5 py-4 border-b ${isLight ? 'border-gray-100' : 'border-white/5'}`}>
+            <h3 className={`text-lg font-bold ${isLight ? 'text-[#1a1535]' : 'text-white'}`}>
               {isCropping ? 'Настройка фото' : 'Аватар профиля'}
             </h3>
             <button
               onClick={handleClose}
               disabled={isLoading}
-              className="p-2 hover:bg-white/10 rounded-xl transition-all duration-200 group disabled:opacity-50"
+              className={`p-2 rounded-xl transition-all duration-200 group disabled:opacity-50 ${isLight ? 'hover:bg-gray-100' : 'hover:bg-white/10'}`}
             >
-              <svg className="w-5 h-5 text-zinc-400 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className={`w-5 h-5 transition-colors ${isLight ? 'text-gray-400 group-hover:text-gray-700' : 'text-zinc-400 group-hover:text-white'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
@@ -300,7 +306,7 @@ export default function AvatarCropModal({
                   <div className="flex items-center gap-3">
                     <button 
                       onClick={() => setZoom(Math.max(1, zoom - 0.1))}
-                      className="p-2 bg-white/5 hover:bg-white/10 rounded-lg transition-colors"
+                      className={`p-2 rounded-lg transition-colors ${isLight ? 'bg-gray-100 hover:bg-gray-200 text-gray-600' : 'bg-white/5 hover:bg-white/10'}`}
                     >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
@@ -314,21 +320,21 @@ export default function AvatarCropModal({
                         max={3}
                         step={0.01}
                         onChange={(e) => setZoom(parseFloat(e.target.value))}
-                        className="w-full h-2 bg-white/10 rounded-full appearance-none cursor-pointer"
+                        className="w-full h-2 rounded-full appearance-none cursor-pointer"
                         style={{
-                          background: `linear-gradient(to right, #6050ba 0%, #6050ba ${(zoom - 1) * 50}%, rgba(255,255,255,0.1) ${(zoom - 1) * 50}%, rgba(255,255,255,0.1) 100%)`,
+                          background: `linear-gradient(to right, #6050ba 0%, #6050ba ${(zoom - 1) * 50}%, ${isLight ? '#c4c4c4' : 'rgba(255,255,255,0.1)'} ${(zoom - 1) * 50}%, ${isLight ? '#c4c4c4' : 'rgba(255,255,255,0.1)'} 100%)`,
                         }}
                       />
                     </div>
                     <button 
                       onClick={() => setZoom(Math.min(3, zoom + 0.1))}
-                      className="p-2 bg-white/5 hover:bg-white/10 rounded-lg transition-colors"
+                      className={`p-2 rounded-lg transition-colors ${isLight ? 'bg-gray-100 hover:bg-gray-200 text-gray-600' : 'bg-white/5 hover:bg-white/10'}`}
                     >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                       </svg>
                     </button>
-                    <span className="text-xs text-zinc-400 w-12 text-right font-mono">{Math.round(zoom * 100)}%</span>
+                    <span className={`text-xs w-12 text-right font-mono ${isLight ? 'text-gray-500' : 'text-zinc-400'}`}>{Math.round(zoom * 100)}%</span>
                   </div>
                 </div>
 
@@ -349,7 +355,7 @@ export default function AvatarCropModal({
                   <button
                     onClick={handleCancelCrop}
                     disabled={isLoading}
-                    className="flex-1 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl font-semibold text-sm transition-all duration-200 disabled:opacity-50"
+                    className={`flex-1 py-3 border rounded-xl font-semibold text-sm transition-all duration-200 disabled:opacity-50 ${isLight ? 'bg-gray-100 hover:bg-gray-200 border-gray-200 text-gray-700' : 'bg-white/5 hover:bg-white/10 border-white/10 text-white'}`}
                   >
                     Назад
                   </button>
@@ -357,6 +363,7 @@ export default function AvatarCropModal({
                     onClick={handleSaveCroppedImage}
                     disabled={isLoading}
                     className="flex-1 py-3 bg-[#6050ba] hover:bg-[#7060ca] rounded-xl font-semibold text-sm transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                    style={{ color: '#ffffff' }}
                   >
                     Сохранить
                   </button>
@@ -392,7 +399,7 @@ export default function AvatarCropModal({
 
                 {/* Upload Button */}
                 <label className="block w-full mb-4 cursor-pointer group">
-                  <div className="py-5 bg-white/5 hover:bg-white/10 border-2 border-dashed border-white/20 hover:border-[#6050ba]/50 rounded-2xl transition-all duration-200">
+                  <div className={`py-5 border-2 border-dashed rounded-2xl transition-all duration-200 ${isLight ? 'bg-gray-50 hover:bg-gray-100 border-gray-300 hover:border-[#6050ba]/50' : 'bg-white/5 hover:bg-white/10 border-white/20 hover:border-[#6050ba]/50'}`}>
                     <div className="flex flex-col items-center gap-3">
                       <div className="w-12 h-12 rounded-xl bg-[#6050ba]/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
                         <svg className="w-6 h-6 text-[#9d8df1]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -400,8 +407,8 @@ export default function AvatarCropModal({
                         </svg>
                       </div>
                       <div className="text-center">
-                        <p className="text-sm text-white font-medium mb-1">Выбрать фото</p>
-                        <p className="text-xs text-zinc-500">PNG, JPG, GIF • до 5 MB</p>
+                        <p className={`text-sm font-medium mb-1 ${isLight ? 'text-[#6050ba]' : 'text-white'}`}>Выбрать фото</p>
+                        <p className={`text-xs ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>PNG, JPG, GIF • до 5 MB</p>
                       </div>
                     </div>
                   </div>
@@ -429,8 +436,8 @@ export default function AvatarCropModal({
                 )}
 
                 {/* Recommendations */}
-                <div className="mt-4 p-3 bg-zinc-900/50 rounded-xl">
-                  <p className="text-[11px] text-zinc-500 text-center">
+                <div className={`mt-4 p-3 rounded-xl ${isLight ? 'bg-gray-100' : 'bg-zinc-900/50'}`}>
+                  <p className={`text-[11px] text-center ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>
                     Рекомендуемый размер: 400×400 пикселей
                   </p>
                 </div>

@@ -1,32 +1,44 @@
 import React, { ReactNode, useState } from 'react';
-import { Release } from './types';
+import { createPortal } from 'react-dom';
+import { Release, CONTRIBUTOR_ROLES } from './types';
 import { formatDate } from './constants';
 import { PlatformIcon, getPlatformColor } from '@/components/icons/PlatformIconsSVG';
+import { useTheme } from '@/contexts/ThemeContext';
 
 // Секция платформ
 export function PlatformsSection({ platforms }: { platforms: string[] }) {
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
   const [isExpanded, setIsExpanded] = useState(false);
   const displayPlatforms = isExpanded ? platforms : platforms.slice(0, 8);
   const hasMore = platforms.length > 8;
 
   return (
-    <div className="mb-6">
-      <div className="flex items-center gap-3 mb-5">
-        <svg className="w-6 h-6 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <div className="mb-4 sm:mb-6">
+      <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-5">
+        <svg className={`w-5 h-5 sm:w-6 sm:h-6 ${isLight ? 'text-purple-600' : 'text-purple-400'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
         </svg>
-        <h3 className="font-bold text-2xl">Платформы распространения</h3>
-        <span className="ml-auto text-xs text-zinc-500 bg-white/5 px-3 py-1 rounded-full">{platforms.length} платформ</span>
+        <h3 className={`font-bold text-lg sm:text-2xl ${isLight ? 'text-gray-900' : 'text-white'}`}>Платформы</h3>
+        <span className={`ml-auto text-[10px] sm:text-xs px-2 sm:px-3 py-0.5 sm:py-1 rounded-full ${
+          isLight ? 'text-gray-600 bg-gray-100' : 'text-zinc-500 bg-white/5'
+        }`}>{platforms.length}</span>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      <div className="platforms-grid grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-4">
         {displayPlatforms.map((platform, idx) => (
           <div key={idx} className="group relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
-            <div className="relative flex flex-col items-center justify-center gap-3 p-6 bg-white/5 hover:bg-white/10 rounded-2xl transition-all duration-300 border border-white/10 group-hover:border-white/20 group-hover:shadow-xl group-hover:-translate-y-1" title={platform}>
-              <div className="flex items-center justify-center w-12 h-12">
+            <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl sm:rounded-2xl ${
+              isLight ? 'bg-gradient-to-br from-purple-200/50 to-blue-200/50' : 'bg-gradient-to-br from-purple-500/10 to-blue-500/10'
+            }`} />
+            <div className={`relative flex flex-col items-center justify-center gap-1.5 sm:gap-3 p-3 sm:p-6 rounded-xl sm:rounded-2xl transition-all duration-300 border group-hover:shadow-xl group-hover:-translate-y-1 ${
+              isLight 
+                ? 'bg-gray-50 hover:bg-white border-gray-200 group-hover:border-purple-300'
+                : 'bg-white/5 hover:bg-white/10 border-white/10 group-hover:border-white/20'
+            }`} title={platform}>
+              <div className="flex items-center justify-center w-8 h-8 sm:w-12 sm:h-12">
                 <PlatformIcon platform={platform} />
               </div>
-              <span className="text-xs font-semibold text-center leading-tight">{platform}</span>
+              <span className={`text-[9px] sm:text-xs font-semibold text-center leading-tight line-clamp-2 ${isLight ? 'text-gray-700' : 'text-white'}`}>{platform}</span>
             </div>
           </div>
         ))}
@@ -34,10 +46,14 @@ export function PlatformsSection({ platforms }: { platforms: string[] }) {
       {hasMore && (
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="mt-4 w-full px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-sm text-zinc-400 hover:text-white transition-all flex items-center justify-center gap-2"
+          className={`mt-3 sm:mt-4 w-full px-3 sm:px-4 py-1.5 sm:py-2 border rounded-lg text-xs sm:text-sm transition-all flex items-center justify-center gap-2 ${
+            isLight 
+              ? 'bg-gray-50 hover:bg-gray-100 border-gray-200 text-gray-600 hover:text-gray-900'
+              : 'bg-white/5 hover:bg-white/10 border-white/10 text-zinc-400 hover:text-white'
+          }`}
         >
-          <span>{isExpanded ? 'Скрыть' : `Показать все (${platforms.length})`}</span>
-          <svg className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <span>{isExpanded ? 'Скрыть' : `Ещё ${platforms.length - 8}`}</span>
+          <svg className={`w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
         </button>
@@ -47,115 +63,229 @@ export function PlatformsSection({ platforms }: { platforms: string[] }) {
 }
 
 // Аккордеон промо
-export function PromoAccordion({ title, icon, children }: { title: string; icon: string; children: React.ReactNode }) {
+export function PromoAccordion({ title, icon, children, isLight }: { title: string; icon: string; children: React.ReactNode; isLight?: boolean }) {
   const icons: Record<string, ReactNode> = {
     play: <><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></>,
     book: <><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></>,
     image: <><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></>
   };
   return (
-    <details className="p-4 bg-white/5 rounded-xl border border-white/10 hover:border-[#6050ba]/50 transition group">
+    <details className={`p-4 rounded-xl border transition group overflow-hidden ${
+      isLight 
+        ? 'bg-gray-50 border-gray-200 hover:border-purple-400'
+        : 'bg-white/5 border-white/10 hover:border-[#6050ba]/50'
+    }`}>
       <summary className="cursor-pointer font-medium flex items-center justify-between">
-        <span className="flex items-center gap-2">
-          <svg className="w-5 h-5 text-[#6050ba]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">{icons[icon]}</svg>
-          {title}
+        <span className="flex items-center gap-2 min-w-0">
+          <svg className={`w-5 h-5 flex-shrink-0 ${isLight ? 'text-purple-600' : 'text-[#6050ba]'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">{icons[icon]}</svg>
+          <span className={`truncate ${isLight ? 'text-gray-900' : 'text-white'}`}>{title}</span>
         </span>
-        <svg className="w-5 h-5 text-zinc-500 group-open:rotate-180 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
+        <svg className={`w-5 h-5 flex-shrink-0 group-open:rotate-180 transition-transform ${isLight ? 'text-gray-500' : 'text-zinc-500'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
       </summary>
-      <div className="mt-3 pt-3 border-t border-white/10 space-y-3">{children}</div>
+      <div className={`mt-3 pt-3 border-t space-y-3 overflow-hidden ${isLight ? 'border-gray-200' : 'border-white/10'}`}>{children}</div>
     </details>
   );
 }
 
 // Промо секция
 export function PromoSection({ release }: { release: Release }) {
-  if (!release.focus_track && !release.focus_track_promo && !(release.album_description && release.tracks && release.tracks.length > 1)) return null;
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
+  const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
+  
+  if (!release.focus_track && !release.focus_track_promo && !release.album_description && !(release.promo_photos && release.promo_photos.length > 0)) return null;
   return (
-    <div className="mb-6 space-y-3">
-      <h3 className="font-bold text-xl mb-4">Промо-информация</h3>
+    <div className="mb-6 space-y-3 w-full overflow-hidden">
+      <h3 className={`font-bold text-xl mb-4 ${isLight ? 'text-gray-900' : 'text-white'}`}>Промо-информация</h3>
       {(release.focus_track || release.focus_track_promo) && (
-        <PromoAccordion title="Фокус-трек и промо" icon="play">
-          {release.focus_track && <div><div className="text-xs text-zinc-500 mb-1">Фокус-трек</div><div className="font-medium text-white">{release.focus_track}</div></div>}
-          {release.focus_track_promo && <div><div className="text-xs text-zinc-500 mb-1">Промо-текст</div><div className="text-sm text-zinc-300 whitespace-pre-wrap break-words">{release.focus_track_promo}</div></div>}
+        <PromoAccordion title="Фокус-трек и промо" icon="play" isLight={isLight}>
+          {release.focus_track && <div className="w-full overflow-hidden"><div className={`text-xs mb-1 ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>Фокус-трек</div><div className={`font-medium break-words ${isLight ? 'text-gray-900' : 'text-white'}`}>{release.focus_track}</div></div>}
+          {release.focus_track_promo && <div className="w-full overflow-hidden"><div className={`text-xs mb-1 ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>Промо-текст</div><div className={`text-sm whitespace-pre-wrap break-words overflow-wrap-anywhere ${isLight ? 'text-gray-700' : 'text-zinc-300'}`} style={{ wordBreak: 'break-word', overflowWrap: 'anywhere' }}>{release.focus_track_promo}</div></div>}
         </PromoAccordion>
       )}
-      {release.album_description && release.tracks && release.tracks.length > 1 && (
-        <PromoAccordion title="Промо альбома" icon="book">
-          <div className="text-sm text-zinc-300 whitespace-pre-wrap break-words">{release.album_description}</div>
+      {release.album_description && (
+        <PromoAccordion title={release.tracks && release.tracks.length > 1 ? "Описание релиза" : "Описание трека"} icon="book" isLight={isLight}>
+          <div className={`text-sm whitespace-pre-wrap break-words overflow-wrap-anywhere w-full ${isLight ? 'text-gray-700' : 'text-zinc-300'}`} style={{ wordBreak: 'break-word', overflowWrap: 'anywhere' }}>{release.album_description}</div>
         </PromoAccordion>
       )}
       {release.promo_photos && release.promo_photos.length > 0 && (
-        <PromoAccordion title={`Промо-фотографии (${release.promo_photos.length})`} icon="image">
-          {release.promo_photos.map((photo, index) => (
-            <div key={index} className="flex items-center gap-2 p-2 bg-white/5 rounded-lg">
-              <span className="text-xs text-zinc-500 font-mono">#{index + 1}</span>
-              <a href={photo} target="_blank" rel="noopener noreferrer" className="text-sm text-[#6050ba] hover:text-[#9d8df1] transition flex-1 truncate">{photo}</a>
-              <button onClick={() => navigator.clipboard.writeText(photo)} className="px-2 py-1 text-xs bg-white/10 hover:bg-white/20 rounded transition">Копировать</button>
-            </div>
-          ))}
+        <PromoAccordion title={`Промо-фотографии (${release.promo_photos.length})`} icon="image" isLight={isLight}>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+            {release.promo_photos.map((photo, index) => (
+              <div 
+                key={index} 
+                className={`group relative aspect-square rounded-xl overflow-hidden cursor-pointer ring-1 transition-all ${
+                  isLight ? 'ring-gray-200 hover:ring-purple-400' : 'ring-white/10 hover:ring-[#6050ba]/50'
+                }`}
+                onClick={() => setSelectedPhoto(photo)}
+              >
+                <img 
+                  src={photo} 
+                  alt={`Промо фото ${index + 1}`}
+                  className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).style.display = 'none';
+                    const placeholder = (e.target as HTMLImageElement).nextElementSibling;
+                    if (placeholder) (placeholder as HTMLElement).style.display = 'flex';
+                  }}
+                />
+                <div className="hidden w-full h-full bg-zinc-800 items-center justify-center">
+                  <svg className="w-8 h-8 text-zinc-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+                  </svg>
+                </div>
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 flex items-center justify-center transition-all">
+                  <svg className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>
+                  </svg>
+                </div>
+                <div className="absolute bottom-1 right-1 px-1.5 py-0.5 bg-black/60 rounded text-[10px] text-white font-mono">
+                  {index + 1}
+                </div>
+              </div>
+            ))}
+          </div>
         </PromoAccordion>
       )}
+      
+      {/* Photo Modal */}
+      {selectedPhoto && typeof document !== 'undefined' && createPortal(
+        <div 
+          className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/90 backdrop-blur-sm"
+          onClick={() => setSelectedPhoto(null)}
+        >
+          <button 
+            onClick={() => setSelectedPhoto(null)}
+            className="absolute top-4 right-4 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition group z-10"
+          >
+            <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+          <img 
+            src={selectedPhoto} 
+            alt="Промо фото"
+            className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>,
+        document.body
+      )}
+    </div>
+  );
+}
+
+// Секция авторов (контрибьюторов) - упрощённая версия
+export function ContributorsSection({ release }: { release: Release }) {
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
+  
+  if (!release.contributors || release.contributors.length === 0) return null;
+  
+  return (
+    <div className="mb-4 sm:mb-6">
+      <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+        <div className={`w-6 h-6 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center ${isLight ? 'bg-rose-100' : 'bg-rose-500/20'}`}>
+          <svg width="12" height="12" className="sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={isLight ? 'text-rose-600' : 'text-rose-400'}>
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <h3 className={`font-bold text-lg sm:text-xl ${isLight ? 'text-gray-900' : 'text-white'}`}>Авторы</h3>
+        <span className={`ml-auto text-[10px] sm:text-xs px-2 sm:px-3 py-0.5 sm:py-1 rounded-full ${
+          isLight ? 'text-gray-600 bg-gray-100' : 'text-zinc-500 bg-white/5'
+        }`}>{release.contributors.length}</span>
+      </div>
+      <div className="contributors-grid flex flex-wrap gap-1.5 sm:gap-2">
+        {release.contributors.map((contributor, idx) => {
+          const roleInfo = CONTRIBUTOR_ROLES.find(r => r.value === contributor.role);
+          return (
+            <div 
+              key={idx} 
+              className={`flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg transition-colors border ${
+                isLight 
+                  ? 'bg-gray-50 hover:bg-gray-100 border-gray-200 hover:border-rose-300'
+                  : 'bg-white/5 hover:bg-white/10 border-white/5 hover:border-rose-500/30'
+              }`}
+            >
+              <span className={`text-xs sm:text-sm ${isLight ? 'text-gray-900' : 'text-white'}`}>{contributor.fullName}</span>
+              <span className={`px-1.5 sm:px-2 py-0.5 rounded text-[9px] sm:text-[10px] font-medium border ${
+                isLight 
+                  ? 'bg-rose-50 text-rose-600 border-rose-200'
+                  : 'bg-rose-500/15 text-rose-400 border-rose-500/20'
+              }`}>
+                {roleInfo?.label || contributor.role}
+              </span>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
 
 // Секция дополнительной информации
 export function AdditionalInfoSection({ release }: { release: Release }) {
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
+  
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
       {release.description && (
-        <div className="p-4 bg-white/5 rounded-xl md:col-span-2">
-          <div className="text-xs text-zinc-500 mb-2">Дополнительное описание</div>
-          <div className="text-sm whitespace-pre-wrap">{release.description}</div>
+        <div className={`p-4 rounded-xl md:col-span-2 ${isLight ? 'bg-gray-50 border border-gray-200' : 'bg-white/5'}`}>
+          <div className={`text-xs mb-2 ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>Дополнительное описание</div>
+          <div className={`text-sm whitespace-pre-wrap ${isLight ? 'text-gray-700' : 'text-zinc-300'}`}>{release.description}</div>
         </div>
       )}
       {release.price && (
-        <div className="p-4 bg-white/5 rounded-xl">
-          <div className="text-xs text-zinc-500 mb-1">Цена</div>
-          <div className="font-bold text-lg">{release.price} ₽</div>
+        <div className={`p-4 rounded-xl ${isLight ? 'bg-gray-50 border border-gray-200' : 'bg-white/5'}`}>
+          <div className={`text-xs mb-1 ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>Цена</div>
+          <div className={`font-bold text-lg ${isLight ? 'text-gray-900' : 'text-white'}`}>{release.price} ₽</div>
         </div>
       )}
       {release.credits && (
-        <div className="p-4 bg-white/5 rounded-xl md:col-span-2">
-          <div className="text-xs text-zinc-500 mb-2">Участники / Титры</div>
-          <div className="text-sm">{release.credits}</div>
+        <div className={`p-4 rounded-xl md:col-span-2 ${isLight ? 'bg-gray-50 border border-gray-200' : 'bg-white/5'}`}>
+          <div className={`text-xs mb-2 ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>Участники / Титры</div>
+          <div className={`text-sm ${isLight ? 'text-gray-700' : 'text-zinc-300'}`}>{release.credits}</div>
         </div>
       )}
       {release.collaborators && release.collaborators.length > 0 && (
-        <div className="p-4 bg-white/5 rounded-xl">
-          <div className="text-xs text-zinc-500 mb-2">Коллаборации</div>
-          <div className="flex flex-wrap gap-2">{release.collaborators.map((collab, idx) => <span key={idx} className="px-2 py-1 bg-white/5 rounded text-sm">{collab}</span>)}</div>
+        <div className={`p-4 rounded-xl ${isLight ? 'bg-gray-50 border border-gray-200' : 'bg-white/5'}`}>
+          <div className={`text-xs mb-2 ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>Коллаборации</div>
+          <div className="flex flex-wrap gap-2">{release.collaborators.map((collab, idx) => <span key={idx} className={`px-2 py-1 rounded text-sm ${isLight ? 'bg-gray-100 text-gray-700' : 'bg-white/5 text-zinc-300'}`}>{collab}</span>)}</div>
         </div>
       )}
       {release.subgenres && release.subgenres.length > 0 && (
-        <div className="p-4 bg-white/5 rounded-xl">
-          <div className="text-xs text-zinc-500 mb-2">Поджанры</div>
-          <div className="flex flex-wrap gap-2">{release.subgenres.map((subgenre, idx) => <span key={idx} className="px-2 py-1 bg-white/5 rounded text-sm">{subgenre}</span>)}</div>
+        <div className={`p-4 rounded-xl ${isLight ? 'bg-gray-50 border border-gray-200' : 'bg-white/5'}`}>
+          <div className={`text-xs mb-2 ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>Поджанры</div>
+          <div className="flex flex-wrap gap-2">{release.subgenres.map((subgenre, idx) => <span key={idx} className={`px-2 py-1 rounded text-sm ${isLight ? 'bg-gray-100 text-gray-700' : 'bg-white/5 text-zinc-300'}`}>{subgenre}</span>)}</div>
         </div>
       )}
       {release.contract_agreed && (
-        <div className="p-4 bg-white/5 rounded-xl">
-          <div className="text-xs text-zinc-500 mb-1">Договор</div>
+        <div className={`p-4 rounded-xl ${isLight ? 'bg-gray-50 border border-gray-200' : 'bg-white/5'}`}>
+          <div className={`text-xs mb-1 ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>Договор</div>
           <div className="flex items-center gap-2">
-            <svg className="w-5 h-5 text-emerald-400" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
-            <span className="text-emerald-400 font-medium">Согласован</span>
+            <svg className={`w-5 h-5 ${isLight ? 'text-emerald-600' : 'text-emerald-400'}`} fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
+            <span className={`font-medium ${isLight ? 'text-emerald-600' : 'text-emerald-400'}`}>Согласован</span>
           </div>
-          {release.contract_agreed_at && <div className="text-xs text-zinc-500 mt-1">{formatDate(release.contract_agreed_at)}</div>}
+          {release.contract_agreed_at && <div className={`text-xs mt-1 ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>{formatDate(release.contract_agreed_at)}</div>}
         </div>
       )}
       {release.payment_status && (
-        <div className="p-4 bg-white/5 rounded-xl">
-          <div className="text-xs text-zinc-500 mb-1">Статус оплаты</div>
-          <div className={`font-bold ${release.payment_status === 'verified' ? 'text-emerald-400' : 'text-yellow-400'}`}>
+        <div className={`p-4 rounded-xl ${isLight ? 'bg-gray-50 border border-gray-200' : 'bg-white/5'}`}>
+          <div className={`text-xs mb-1 ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>Статус оплаты</div>
+          <div className={`font-bold ${release.payment_status === 'verified' ? (isLight ? 'text-emerald-600' : 'text-emerald-400') : (isLight ? 'text-yellow-600' : 'text-yellow-400')}`}>
             {release.payment_status === 'verified' ? 'Подтверждена' : release.payment_status === 'pending' ? 'Ожидает проверки' : release.payment_status}
           </div>
-          {release.payment_amount && <div className="text-sm mt-1">{release.payment_amount} ₽</div>}
+          {release.payment_amount && <div className={`text-sm mt-1 ${isLight ? 'text-gray-700' : 'text-zinc-300'}`}>{release.payment_amount} ₽</div>}
         </div>
       )}
       {release.payment_receipt_url && (
-        <div className="p-4 bg-white/5 rounded-xl">
-          <div className="text-xs text-zinc-500 mb-2">Чек оплаты</div>
-          <a href={release.payment_receipt_url} target="_blank" rel="noopener noreferrer" className="text-[#6050ba] hover:text-[#7060ca] text-sm underline">Посмотреть чек</a>
+        <div className={`p-4 rounded-xl ${isLight ? 'bg-gray-50 border border-gray-200' : 'bg-white/5'}`}>
+          <div className={`text-xs mb-2 ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>Чек оплаты</div>
+          <a href={release.payment_receipt_url} target="_blank" rel="noopener noreferrer" className={`text-sm underline ${isLight ? 'text-purple-600 hover:text-purple-700' : 'text-[#6050ba] hover:text-[#7060ca]'}`}>Посмотреть чек</a>
         </div>
       )}
     </div>
@@ -176,6 +306,9 @@ function SocialIcon({ name }: { name: string }) {
 
 // Секция социальных ссылок
 export function SocialLinksSection({ release }: { release: Release }) {
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
+  
   const links = [
     { key: 'spotify_link', name: 'Spotify', color: 'green-500' },
     { key: 'apple_music_link', name: 'Apple Music', color: 'pink-500' },
@@ -188,12 +321,16 @@ export function SocialLinksSection({ release }: { release: Release }) {
 
   return (
     <div className="mb-6">
-      <h3 className="font-bold text-xl mb-4">Промо и социальные сети</h3>
+      <h3 className={`font-bold text-xl mb-4 ${isLight ? 'text-gray-900' : 'text-white'}`}>Промо и социальные сети</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {links.map(link => (
-          <a key={link.key} href={release[link.key as keyof Release] as string} target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 rounded-lg hover:bg-white/10 transition flex items-center gap-3">
+          <a key={link.key} href={release[link.key as keyof Release] as string} target="_blank" rel="noopener noreferrer" className={`p-3 rounded-lg transition flex items-center gap-3 ${
+            isLight 
+              ? 'bg-gray-50 hover:bg-gray-100 border border-gray-200'
+              : 'bg-white/5 hover:bg-white/10'
+          }`}>
             <div className={`w-10 h-10 rounded-lg bg-${link.color}/20 flex items-center justify-center`}><SocialIcon name={link.name} /></div>
-            <div className="flex-1 min-w-0"><div className="text-xs text-zinc-500">{link.name}</div><div className="text-sm truncate">Открыть</div></div>
+            <div className="flex-1 min-w-0"><div className={`text-xs ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>{link.name}</div><div className={`text-sm truncate ${isLight ? 'text-gray-700' : 'text-zinc-300'}`}>Открыть</div></div>
           </a>
         ))}
       </div>

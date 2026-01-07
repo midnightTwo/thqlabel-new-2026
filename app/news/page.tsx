@@ -15,11 +15,11 @@ const NewsCard = ({ news, onClick, featured = false, isLight = false }: any) => 
   return (
     <div 
       onClick={onClick}
-      className={`group cursor-pointer ${featured ? 'md:col-span-2 md:row-span-2' : ''}`}
+      className={`group cursor-pointer news-card ${featured ? 'md:col-span-2 md:row-span-2' : ''}`}
     >
       <div className={`relative overflow-hidden rounded-2xl sm:rounded-3xl border-2 transition-all duration-700 transform hover:scale-[1.02] hover:shadow-2xl ${
         isLight 
-          ? 'border-[#6050ba]/40 hover:border-[#6050ba]/70 bg-[rgba(25,25,30,0.7)] backdrop-blur-xl hover:shadow-[#6050ba]/30' 
+          ? 'border-black/20 hover:border-black/40 bg-[rgba(25,25,30,0.7)] backdrop-blur-xl hover:shadow-black/20' 
           : 'border-[#6050ba]/30 hover:border-[#6050ba]/60 hover:shadow-[#6050ba]/30'
       } ${featured ? 'h-[300px] sm:h-[400px] md:h-[550px]' : 'h-[280px] sm:h-[320px]'}`}>
         {news.image ? (
@@ -38,13 +38,13 @@ const NewsCard = ({ news, onClick, featured = false, isLight = false }: any) => 
               }`}>{news.category}</span>
             </div>
           )}
-          <h3 className={`text-white font-black uppercase tracking-tight mb-4 sm:mb-5 transition-all duration-500 leading-tight ${
+          <h3 className={`font-black uppercase tracking-tight mb-4 sm:mb-5 transition-all duration-500 leading-tight ${
             isLight ? 'group-hover:text-[#d4c5fd]' : 'group-hover:text-[#c4b5fd]'
-          } ${featured ? 'text-2xl sm:text-3xl md:text-4xl' : 'text-lg sm:text-xl'}`}>
+          } ${featured ? 'text-2xl sm:text-3xl md:text-4xl' : 'text-lg sm:text-xl'}`} style={{ color: '#ffffff' }}>
             {news.title}
           </h3>
           <div className="flex items-center gap-4 sm:gap-5">
-            <span className="text-[10px] sm:text-[11px] text-white/70 uppercase tracking-widest font-semibold">{date}</span>
+            <span className="text-[10px] sm:text-[11px] uppercase tracking-widest font-semibold" style={{ color: '#ffffff' }}>{date}</span>
             <div className={`flex items-center gap-2 text-[10px] sm:text-[11px] font-black uppercase tracking-widest group-hover:gap-3 transition-all ${
               isLight ? 'text-[#c4b5fd]' : 'text-purple-400'
             }`}>
@@ -57,7 +57,7 @@ const NewsCard = ({ news, onClick, featured = false, isLight = false }: any) => 
         </div>
         <div className={`absolute inset-0 transition-all duration-700 ${
           isLight 
-            ? 'bg-gradient-to-br from-[#8070da]/0 via-[#8070da]/0 to-[#8070da]/20 group-hover:from-[#8070da]/20 group-hover:via-[#8070da]/10 group-hover:to-[#8070da]/30'
+            ? 'bg-gradient-to-br from-black/0 via-black/0 to-black/10 group-hover:from-black/10 group-hover:via-black/5 group-hover:to-black/20'
             : 'bg-gradient-to-br from-[#6050ba]/0 via-[#6050ba]/0 to-[#6050ba]/20 group-hover:from-[#6050ba]/20 group-hover:via-[#6050ba]/10 group-hover:to-[#6050ba]/30'
         }`} />
       </div>
@@ -66,54 +66,54 @@ const NewsCard = ({ news, onClick, featured = false, isLight = false }: any) => 
 };
 
 // Модальное окно новости  
-const NewsModal = ({ news, onClose }: any) => {
+const NewsModal = ({ news, onClose, isLight = false }: any) => {
   const date = new Date(news.created_at).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
   
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 pt-16 sm:pt-20 pb-4 sm:pb-6 animate-fadeIn" onClick={onClose}>
-      <div className="absolute inset-0 bg-black/85 backdrop-blur-2xl" />
-      <div className="relative w-full max-w-4xl h-full overflow-y-auto bg-gradient-to-b from-[#1a1a1f] to-[#0d0d0f] rounded-2xl sm:rounded-3xl border border-white/20 shadow-2xl [&::-webkit-scrollbar]:hidden" onClick={(e) => e.stopPropagation()}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 pt-16 sm:pt-20 pb-4 sm:pb-6 animate-fadeIn news-modal" onClick={onClose}>
+      <div className={`absolute inset-0 backdrop-blur-2xl ${isLight ? 'bg-black/50' : 'bg-black/85'}`} />
+      <div className={`relative w-full max-w-4xl h-full overflow-y-auto rounded-2xl sm:rounded-3xl border shadow-2xl [&::-webkit-scrollbar]:hidden ${isLight ? 'bg-gradient-to-b from-white to-gray-50 border-[#6050ba]/30' : 'bg-gradient-to-b from-[#1a1a1f] to-[#0d0d0f] border-white/20'}`} onClick={(e) => e.stopPropagation()}>
         <div className="relative h-[220px] sm:h-[280px] md:h-[400px]">
           {news.image ? (
             <img src={news.image} alt={news.title} className="w-full h-full object-cover" />
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-[#6050ba]/40 via-[#9d8df1]/30 to-[#0a0a0c]" />
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0f] via-transparent to-transparent" />
+          <div className={`absolute inset-0 bg-gradient-to-t ${isLight ? 'from-white via-transparent to-transparent' : 'from-[#0d0d0f] via-transparent to-transparent'}`} />
           <button onClick={onClose} className="absolute top-4 sm:top-5 md:top-6 right-4 sm:right-5 md:right-6 w-11 h-11 sm:w-12 sm:h-12 bg-gradient-to-br from-[#6050ba] to-[#8b7dd8] backdrop-blur-md rounded-full flex items-center justify-center hover:scale-110 active:scale-95 transition-all duration-200 text-white group shadow-lg">
             <svg className="w-5 h-5 sm:w-6 sm:h-6 group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
           <div className="absolute bottom-4 sm:bottom-5 md:bottom-6 left-4 sm:left-5 md:left-6 flex items-center gap-3 sm:gap-4 flex-wrap">
-            {news.category && <span className="px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 bg-gradient-to-r from-[#6050ba] to-[#8b7dd8] rounded-full text-[10px] sm:text-[11px] md:text-xs font-black uppercase tracking-widest shadow-lg">{news.category}</span>}
-            <span className="text-[10px] sm:text-[11px] md:text-xs text-zinc-300 uppercase tracking-widest font-semibold backdrop-blur-sm bg-black/30 px-3 py-1.5 rounded-full">{date}</span>
+            {news.category && <span className="px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 bg-gradient-to-r from-[#6050ba] to-[#8b7dd8] rounded-full text-[10px] sm:text-[11px] md:text-xs font-black uppercase tracking-widest shadow-lg" style={{ color: '#ffffff' }}>{news.category}</span>}
+            <span className="text-[10px] sm:text-[11px] md:text-xs uppercase tracking-widest font-semibold backdrop-blur-sm bg-black/50 px-3 py-1.5 rounded-full shadow-lg" style={{ color: '#ffffff' }}>{date}</span>
           </div>
         </div>
         <div className="p-5 sm:p-7 md:p-10 lg:p-14">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight mb-8 sm:mb-10 text-white leading-tight bg-gradient-to-r from-white via-[#c4b5fd] to-white bg-clip-text text-transparent">{news.title}</h1>
-          <div className="prose prose-invert prose-sm sm:prose-base lg:prose-lg max-w-none">
+          <h1 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight mb-8 sm:mb-10 leading-tight bg-gradient-to-r bg-clip-text text-transparent ${isLight ? 'from-[#1a1535] via-[#6050ba] to-[#1a1535]' : 'from-white via-[#c4b5fd] to-white'}`}>{news.title}</h1>
+          <div className={`prose prose-sm sm:prose-base lg:prose-lg max-w-none ${isLight ? '' : 'prose-invert'}`}>
             {news.content?.split('\n').map((paragraph: string, i: number) => {
               // Функция для обработки inline-разметки (ссылки, жирный, курсив, код)
               const processInlineMarkdown = (text: string): string => {
                 let processed = text;
                 // Жирный текст
-                processed = processed.replace(/\*\*(.+?)\*\*/g, '<strong class="font-bold text-white">$1</strong>');
+                processed = processed.replace(/\*\*(.+?)\*\*/g, `<strong class="font-bold ${isLight ? 'text-[#1a1535]' : 'text-white'}">$1</strong>`);
                 // Курсив
-                processed = processed.replace(/\*(.+?)\*/g, '<em class="italic text-zinc-300">$1</em>');
+                processed = processed.replace(/\*(.+?)\*/g, `<em class="italic ${isLight ? 'text-[#5c5580]' : 'text-zinc-300'}">$1</em>`);
                 // Код
-                processed = processed.replace(/`(.+?)`/g, '<code class="bg-black/50 px-2 py-1 rounded text-[#c4b5fd] text-xs sm:text-sm font-mono">$1</code>');
+                processed = processed.replace(/`(.+?)`/g, `<code class="${isLight ? 'bg-[#6050ba]/10' : 'bg-black/50'} px-2 py-1 rounded text-[#6050ba] text-xs sm:text-sm font-mono">$1</code>`);
                 // Ссылки [текст](url) - с поддержкой любого регистра
                 processed = processed.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, linkText, url) => {
                   const lowerUrl = url.toLowerCase();
                   const href = lowerUrl.startsWith('http://') || lowerUrl.startsWith('https://') ? url : `https://${url}`;
-                  return `<a href="${href}" target="_blank" rel="noopener noreferrer" class="text-[#c4b5fd] underline underline-offset-2 hover:text-[#b8a8ff] transition-colors normal-case">${linkText}</a>`;
+                  return `<a href="${href}" target="_blank" rel="noopener noreferrer" class="text-[#6050ba] underline underline-offset-2 hover:text-[#8070da] transition-colors normal-case">${linkText}</a>`;
                 });
                 // Обычные URL (без Markdown разметки) - автоматическое определение ссылок
                 // Ищем URL, которые НЕ находятся внутри href="" или уже обработанных тегов <a>
                 processed = processed.replace(
                   /(?<!href="|">)(https?:\/\/[^\s<>"']+)/gi,
-                  '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-[#c4b5fd] underline underline-offset-2 hover:text-[#b8a8ff] transition-colors normal-case break-all">$1</a>'
+                  '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-[#6050ba] underline underline-offset-2 hover:text-[#8070da] transition-colors normal-case break-all">$1</a>'
                 );
                 return processed;
               };
@@ -121,23 +121,23 @@ const NewsModal = ({ news, onClose }: any) => {
               if (paragraph.trim() === '---') return <hr key={i} className="border-t-2 border-[#6050ba]/30 my-8 sm:my-10" />;
               if (paragraph.startsWith('# ')) {
                 const content = processInlineMarkdown(paragraph.replace('# ', ''));
-                return <h1 key={i} className="text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tight text-white mt-10 sm:mt-12 mb-5 sm:mb-6" dangerouslySetInnerHTML={{ __html: content }} />;
+                return <h1 key={i} className={`text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tight mt-10 sm:mt-12 mb-5 sm:mb-6 ${isLight ? 'text-[#1a1535]' : 'text-white'}`} dangerouslySetInnerHTML={{ __html: content }} />;
               }
               if (paragraph.startsWith('## ')) {
                 const content = processInlineMarkdown(paragraph.replace('## ', ''));
-                return <h2 key={i} className="text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tight text-[#c4b5fd] mt-8 sm:mt-10 mb-4 sm:mb-5" dangerouslySetInnerHTML={{ __html: content }} />;
+                return <h2 key={i} className={`text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tight mt-8 sm:mt-10 mb-4 sm:mb-5 ${isLight ? 'text-[#6050ba]' : 'text-[#c4b5fd]'}`} dangerouslySetInnerHTML={{ __html: content }} />;
               }
               if (paragraph.startsWith('> ')) {
                 const content = processInlineMarkdown(paragraph.replace('> ', ''));
-                return <blockquote key={i} className="border-l-4 border-[#6050ba] pl-4 sm:pl-5 py-3 my-5 sm:my-6 text-white/80 italic bg-[#6050ba]/10 rounded-r-xl text-sm sm:text-base" dangerouslySetInnerHTML={{ __html: content }} />;
+                return <blockquote key={i} className={`border-l-4 border-[#6050ba] pl-4 sm:pl-5 py-3 my-5 sm:my-6 italic bg-[#6050ba]/10 rounded-r-xl text-sm sm:text-base ${isLight ? 'text-[#3d3660]' : 'text-white/80'}`} dangerouslySetInnerHTML={{ __html: content }} />;
               }
               if (paragraph.startsWith('- ')) {
                 const content = processInlineMarkdown(paragraph.replace('- ', ''));
-                return <li key={i} className="text-white/90 ml-4 sm:ml-5 text-sm sm:text-base leading-relaxed" dangerouslySetInnerHTML={{ __html: content }} />;
+                return <li key={i} className={`ml-4 sm:ml-5 text-sm sm:text-base leading-relaxed ${isLight ? 'text-[#3d3660]' : 'text-white/90'}`} dangerouslySetInnerHTML={{ __html: content }} />;
               }
               if (paragraph.trim()) {
                 const processed = processInlineMarkdown(paragraph);
-                return <p key={i} className="text-white/85 mb-4 sm:mb-5 text-sm sm:text-base leading-relaxed" dangerouslySetInnerHTML={{ __html: processed }} />;
+                return <p key={i} className={`mb-4 sm:mb-5 text-sm sm:text-base leading-relaxed ${isLight ? 'text-[#3d3660]' : 'text-white/85'}`} dangerouslySetInnerHTML={{ __html: processed }} />;
               }
               return null;
             })}
@@ -392,7 +392,7 @@ export default function NewsPage() {
           </div>
         )}
       </div>
-      {selectedNews && <NewsModal news={selectedNews} onClose={closeNews} />}
+      {selectedNews && <NewsModal news={selectedNews} onClose={closeNews} isLight={isLight} />}
     </main>
   );
 }

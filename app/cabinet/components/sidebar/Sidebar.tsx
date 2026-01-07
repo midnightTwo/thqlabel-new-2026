@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import Link from 'next/link';
-import { UserRole, ROLE_CONFIG } from '../lib/types';
+import { UserRole, ROLE_CONFIG } from '@/app/cabinet/lib/types';
 
 interface SidebarProps {
   nickname: string;
@@ -81,7 +81,7 @@ export default function Sidebar({
               >
                 {!avatar && nickname.charAt(0).toUpperCase()}
                 <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <span className="text-white text-xs font-bold">Изменить</span>
+                  <span className="text-xs font-bold" style={{ color: '#ffffff' }}>Изменить</span>
                 </div>
               </button>
             </div>
@@ -161,7 +161,7 @@ export default function Sidebar({
           {/* Завершающий элемент */}
           <div className="mt-6 pt-4 border-t border-white/5">
             <p className="text-[9px] text-zinc-700 text-center">
-              thqlabel © 2025
+              thqlabel © 2026
             </p>
           </div>
         </>

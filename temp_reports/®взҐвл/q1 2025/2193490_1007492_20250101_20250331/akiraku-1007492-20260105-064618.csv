@@ -1,0 +1,10 @@
+"Reporting Month";"Sales Month";Platform;Country/Region;"Label Name";"Artist Name";"Release title";"Track title";UPC;ISRC;"Release Catalog nb";"Release Type";"Sales Type";Quantity;"Client Payment Currency";"Net Revenue"
+01/02/2025;01/01/2025;Yandex;"Russian Federation";thqlabel;akiraku;"let me sleep";"let me sleep";3617667345800;DG-A0S-24-70680;;"Music Release";Stream;10;RUB;0.205096153230
+01/03/2025;01/02/2025;NetEase;"China Mainland";thqlabel;akiraku;"let me sleep";"let me sleep";3617667345800;DG-A0S-24-70680;;"Music Release";Stream;1;RUB;0.038120461778
+01/01/2025;01/12/2024;"UMA (Vkontakte)";"Russian Federation";thqlabel;akiraku;"let me sleep";"let me sleep";3617667345800;DG-A0S-24-70680;;"Music Release";Stream;61;RUB;1.490022052415
+01/02/2025;01/01/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;akiraku;"let me sleep";"let me sleep";3617667345800;DG-A0S-24-70680;;"Music Release";Stream;27;RUB;1.033797933885
+01/03/2025;01/02/2025;Yandex;"Russian Federation";thqlabel;akiraku;"let me sleep";"let me sleep";3617667345800;DG-A0S-24-70680;;"Music Release";Stream;7;RUB;0.151109292473
+01/02/2025;01/12/2024;TikTok;"United States";thqlabel;akiraku;"let me sleep";"let me sleep";3617667345800;DG-A0S-24-70680;;"Music Release";Creation;1;RUB;0.097145593481
+01/03/2025;01/02/2025;"UMA (Vkontakte)";"Russian Federation";thqlabel;akiraku;"let me sleep";"let me sleep";3617667345800;DG-A0S-24-70680;;"Music Release";Stream;7;RUB;0.029400000000
+01/01/2025;01/12/2024;Yandex;"Russian Federation";thqlabel;akiraku;"let me sleep";"let me sleep";3617667345800;DG-A0S-24-70680;;"Music Release";Stream;50;RUB;0.879069122414
+01/02/2025;01/01/2025;"Amazon Music Streaming";Spain;thqlabel;akiraku;"let me sleep";"let me sleep";3617667345800;DG-A0S-24-70680;;"Music Release";Stream;1;RUB;0.081309668341

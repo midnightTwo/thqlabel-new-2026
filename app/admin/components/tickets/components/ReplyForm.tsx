@@ -40,11 +40,11 @@ export default function ReplyForm({
   const isLight = themeName === 'light';
 
   return (
-    <div className={`${className ? className + ' ' : ''}p-3 sm:p-4 border-t flex-shrink-0 ${isLight ? 'border-gray-200 bg-white/70' : 'border-zinc-800 bg-zinc-900'}`}>
+    <div className={`${className ? className + ' ' : ''}p-3 sm:p-4 border-t flex-shrink-0 ${isLight ? 'border-gray-300 bg-white/90 backdrop-blur-sm' : 'border-zinc-800 bg-zinc-900'}`}>
       <form onSubmit={onSendReply} className="space-y-2 sm:space-y-3">
         {/* Превью ответа на сообщение */}
         {replyToMessage && setReplyToMessage && (
-          <div className={`p-2 border rounded-lg ${isLight ? 'bg-gray-50 border-gray-200' : 'bg-zinc-800/50 border-zinc-700'}`}>
+          <div className={`p-2 border rounded-lg ${isLight ? 'bg-gray-100/90 border-gray-300' : 'bg-zinc-800/50 border-zinc-700'}`}>
             <div className="flex items-start justify-between gap-2">
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
@@ -55,7 +55,7 @@ export default function ReplyForm({
                     Ответ на {replyToMessage.sender_nickname || replyToMessage.sender_username || 'сообщение'}
                   </span>
                 </div>
-                <p className={`text-xs truncate ${isLight ? 'text-gray-600' : 'text-zinc-400'}`}>{replyToMessage.message}</p>
+                <p className={`text-xs truncate ${isLight ? 'text-gray-700' : 'text-zinc-400'}`}>{replyToMessage.message}</p>
               </div>
               <button
                 type="button"

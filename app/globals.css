@@ -6,6 +6,130 @@
 }
 
 /* ========================================
+   🛡️ GPU PROTECTION - НЕ УДАЛЯТЬ ПРИ МИНИФИКАЦИИ!
+   Эти правила критичны для изоляции слоёв рендеринга.
+   Без них GPU перегружается в production.
+   ======================================== */
+
+/* Глобальная изоляция рендеринга - КРИТИЧНО для GPU */
+*,
+*::before,
+*::after {
+  /* stylelint-disable-next-line property-no-unknown */
+  /* cssnano: keep */
+  contain: layout style;
+}
+
+/* Изоляция корневых элементов для предотвращения каскадной перерисовки */
+html, body {
+  /* cssnano: keep - isolation критична для GPU */
+  isolation: isolate;
+  contain: layout style paint;
+}
+
+/* ========================================
+   📦 ELITE CONTAINMENT - Изоляция автономных блоков
+   Браузер НЕ пересчитывает геометрию остального сайта
+   при изменениях внутри этих блоков
+   ======================================== */
+
+/* Карточки - полная изоляция содержимого */
+.release-card,
+.card,
+.ticket-card,
+.news-card,
+.user-card,
+.transaction-card,
+[class*="Card"],
+[class*="-card"] {
+  contain: content;
+  /* cssnano: keep */
+  transform: translateZ(0);
+  will-change: auto;
+}
+
+/* Списки - изоляция перерисовок */
+.releases-list,
+.tickets-list,
+.users-list,
+.transactions-list,
+[class*="-list"],
+[role="list"] {
+  contain: content;
+  /* cssnano: keep */
+  transform: translateZ(0);
+}
+
+/* Модальные окна - строгая изоляция */
+[role="dialog"],
+.modal,
+.modal-content,
+.dialog,
+[class*="Modal"] {
+  contain: strict;
+  /* cssnano: keep */
+  transform: translateZ(0);
+}
+
+/* Боковые панели и сайдбары */
+aside,
+.sidebar,
+.side-panel,
+[class*="Sidebar"],
+[class*="sidebar"] {
+  contain: content;
+  /* cssnano: keep */
+  transform: translateZ(0);
+}
+
+/* Хедер и футер - изоляция layout */
+header,
+footer,
+nav {
+  contain: layout style;
+  /* cssnano: keep */
+  transform: translateZ(0);
+}
+
+/* Табы и вкладки */
+[role="tabpanel"],
+[role="tablist"],
+.tab-content,
+.tabs-container {
+  contain: content;
+  /* cssnano: keep */
+  transform: translateZ(0);
+}
+
+/* Скроллируемые контейнеры - paint изоляция */
+.overflow-auto,
+.overflow-y-auto,
+.overflow-x-auto,
+.overflow-scroll,
+[class*="scroll"] {
+  contain: paint;
+  /* cssnano: keep */
+  transform: translateZ(0);
+}
+
+/* Формы и инпуты */
+form,
+.form-group,
+.input-group {
+  contain: layout style;
+}
+
+/* Виджеты */
+.widget,
+.stat-card,
+.info-block,
+[class*="Widget"] {
+  contain: content;
+  /* cssnano: keep */
+  transform: translateZ(0);
+}
+
+/* ========================================
    КРИТИЧЕСКИЙ CSS ДЛЯ ПРЕДОТВРАЩЕНИЯ МИГАНИЯ
    Цвета должны совпадать с layout.tsx!
    ======================================== */
@@ -25,7 +149,8 @@ html {
   min-height: 100vh;
 }
 
-/* Добавляем анимированный металлический блик для тёмной темы */
+/* ⚠️ ОПТИМИЗИРОВАНО: Статичный металлический блик вместо анимации
+   Бесконечная анимация на ::before грузит GPU в production */
 html::before {
   content: '';
   position: fixed;
@@ -39,13 +164,17 @@ html::before {
     radial-gradient(ellipse 70% 60% at 50% 50%, rgba(157, 141, 241, 0.03) 0%, transparent 60%);
   pointer-events: none;
   z-index: -1;
-  animation: metallic-wave-dark 15s ease-in-out infinite;
-  will-change: transform, opacity;
-  contain: strict;
-  backface-visibility: hidden;
+  /* 🛡️ GPU ISOLATION - cssnano: keep */
   transform: translateZ(0);
+  backface-visibility: hidden;
+  contain: strict;
+  /* ❌ УДАЛЕНА бесконечная анимация - причина 90% GPU в production */
+  /* animation: metallic-wave-dark 15s ease-in-out infinite; */
+  /* will-change: transform, opacity; - удалено, т.к. нет анимации */
 }
 
+/* Анимация сохранена для возможного будущего использования,
+   но НЕ применяется к html::before */
 @keyframes metallic-wave-dark {
   0%, 100% { opacity: 1; transform: translateZ(0) scale(1); }
   50% { opacity: 0.7; transform: translateZ(0) scale(1.02); }
@@ -103,7 +232,8 @@ html.light {
   background-attachment: fixed;
 }
 
-/* Mesh gradient эффект - цветовые пятна */
+/* ⚠️ ОПТИМИЗИРОВАНО: Статичный mesh gradient вместо анимации
+   Бесконечные анимации на ::before/::after грузят GPU в production */
 html.light::before {
   content: '';
   position: fixed;
@@ -119,10 +249,15 @@ html.light::before {
     radial-gradient(ellipse 50% 30% at 50% 50%, rgba(167, 139, 250, 0.08) 0%, transparent 60%);
   pointer-events: none;
   z-index: -1;
-  animation: mesh-float 25s ease-in-out infinite;
+  /* 🛡️ GPU ISOLATION - cssnano: keep */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  contain: strict;
+  /* ❌ УДАЛЕНА бесконечная анимация - причина GPU перегрузки */
+  /* animation: mesh-float 25s ease-in-out infinite; */
 }
 
-/* Второй слой mesh gradient */
+/* ⚠️ ОПТИМИЗИРОВАНО: Второй слой mesh - тоже статичный */
 html.light::after {
   content: '';
   position: fixed;
@@ -135,10 +270,17 @@ html.light::after {
     radial-gradient(circle at 80% 70%, rgba(99, 179, 237, 0.1) 0%, transparent 40%);
   pointer-events: none;
   z-index: -1;
-  animation: mesh-float 20s ease-in-out infinite reverse;
-  animation-delay: -5s;
+  /* 🛡️ GPU ISOLATION - cssnano: keep */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  contain: strict;
+  /* ❌ УДАЛЕНА бесконечная анимация */
+  /* animation: mesh-float 20s ease-in-out infinite reverse; */
+  /* animation-delay: -5s; */
 }
 
+/* Анимация сохранена для возможного использования в hover эффектах,
+   но НЕ применяется к html::before/::after */
 @keyframes mesh-float {
   0%, 100% { 
     opacity: 1; 
@@ -2725,12 +2867,11 @@ html.light .cabinet-sidebar-light .hover\:bg-white\/10:hover {
 }
 
 .interactive-glass {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Только transform и filter для hover - без all */
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s ease, border-radius 0.3s ease;
   cursor: pointer;
-  /* Оптимизация для устранения дерганья */
   transform: translateZ(0);
   backface-visibility: hidden;
-  will-change: transform;
 }
 
 .interactive-glass:hover {
@@ -2739,8 +2880,8 @@ html.light .cabinet-sidebar-light .hover\:bg-white\/10:hover {
 }
 
 .glass-card-hover {
-  animation: glass-pulse 4s ease-in-out infinite;
-  /* Оптимизация для устранения дерганья */
+  /* Убрали бесконечную анимацию для производительности */
+  /* animation: glass-pulse 4s ease-in-out infinite; */
   transform: translateZ(0);
   backface-visibility: hidden;
 }
@@ -2754,7 +2895,8 @@ html.light .cabinet-sidebar-light .hover\:bg-white\/10:hover {
 }
 
 .floating-element {
-  animation: float-gentle 6s ease-in-out infinite;
+  /* Убрали анимацию для производительности */
+  /* animation: float-gentle 6s ease-in-out infinite; */
 }
 
 .glow-element {
@@ -3661,4 +3803,129 @@ a:active {
   body[data-ticket-open="true"] [data-mobile-spacer="true"] {
     display: none !important;
   }
+}
+
+/* ========================================
+   SETTINGS LIQUID GLASS STYLES
+   iPhone-style glassmorphism для настроек
+   ======================================== */
+
+/* Оптимизация GPU для Liquid Glass */
+.liquid-glass-section {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+  contain: layout style paint;
+}
+
+/* Плавные анимации для раскрытия форм */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Glass Input Focus Animation */
+.glass-input-focus {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-input-focus:focus {
+  box-shadow: 0 0 0 3px rgba(157, 141, 241, 0.2), 0 4px 20px rgba(157, 141, 241, 0.1);
+}
+
+html.light .glass-input-focus:focus {
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15), 0 4px 24px rgba(139, 92, 246, 0.12);
+}
+
+/* Settings card hover effect */
+.settings-glass-card {
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.settings-glass-card:hover {
+  transform: translateY(-2px);
+}
+
+html.light .settings-glass-card:hover {
+  box-shadow: 0 12px 40px rgba(139, 92, 246, 0.12);
+}
+
+/* Animated gradient border */
+@keyframes gradient-border {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animated-border {
+  background: linear-gradient(90deg, 
+    rgba(157, 141, 241, 0.3), 
+    rgba(34, 211, 238, 0.3), 
+    rgba(157, 141, 241, 0.3)
+  );
+  background-size: 200% 100%;
+  animation: gradient-border 3s ease infinite;
+}
+
+/* Status badge liquid glass */
+.status-badge-glass {
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  transition: all 0.3s ease;
+}
+
+.status-badge-glass:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile optimizations for Settings */
+@media (max-width: 767px) {
+  .liquid-glass-section {
+    /* Reduce blur on mobile for performance */
+    backdrop-filter: blur(24px) saturate(150%);
+    -webkit-backdrop-filter: blur(24px) saturate(150%);
+  }
+  
+  /* Disable animations on low-power mode */
+  @media (prefers-reduced-motion: reduce) {
+    .liquid-glass-section,
+    .settings-glass-card,
+    .status-badge-glass {
+      transition: none;
+      animation: none;
+    }
+  }
+}
+
+/* Theme selector liquid glass enhancement */
+.theme-option-glass {
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-option-glass:active {
+  transform: scale(0.98);
+}
+
+.theme-option-glass.active {
+  box-shadow: 
+    0 0 40px rgba(157, 141, 241, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+html.light .theme-option-glass.active {
+  box-shadow: 
+    0 8px 32px rgba(139, 92, 246, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }

@@ -4,17 +4,6 @@ import { createClient } from '@supabase/supabase-js';
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
 
-// Доступ к глобальному хранилищу токенов
-declare global {
-  var resetTokensStore: Map<string, { email: string, expiresAt: number }> | undefined;
-}
-
-const resetTokens = globalThis.resetTokensStore ?? new Map<string, { email: string, expiresAt: number }>();
-
-if (process.env.NODE_ENV !== 'production') {
-  globalThis.resetTokensStore = resetTokens;
-}
-
 export async function POST(request: NextRequest) {
   try {
     const { token, newPassword } = await request.json();
@@ -26,14 +15,23 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Проверяем токен в нашем хранилище
+    // Создаем admin клиент
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+    
+    // Получаем токен из базы данных
+    const { data: tokenData, error: tokenError } = await supabase
+      .from('email_tokens')
+      .select('*')
+      .eq('token', token)
+      .eq('token_type', 'password_reset')
+      .eq('used', false)
+      .single();
+    
     console.log('Проверка токена:', token);
-    console.log('Всего токенов в памяти:', resetTokens.size);
-    console.log('Доступные токены:', Array.from(resetTokens.keys()));
+    console.log('Данные токена:', tokenData);
     
-    const tokenData = resetTokens.get(token);
-    
-    if (!tokenData) {
+    if (tokenError || !tokenData) {
+      console.error('Токен не найден:', tokenError);
       return NextResponse.json(
         { error: 'Недействительный или истекший токен восстановления' },
         { status: 400 }
@@ -41,17 +39,15 @@ export async function POST(request: NextRequest) {
     }
     
     // Проверяем не истек ли токен
-    if (tokenData.expiresAt < Date.now()) {
-      resetTokens.delete(token);
+    if (new Date(tokenData.expires_at) < new Date()) {
+      // Удаляем истекший токен
+      await supabase.from('email_tokens').delete().eq('id', tokenData.id);
       return NextResponse.json(
         { error: 'Токен восстановления истек. Запросите новую ссылку.' },
         { status: 400 }
       );
     }
 
-    // Создаем admin клиент для сброса пароля
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
-    
     // Находим пользователя по email
     const { data: { users }, error: listError } = await supabase.auth.admin.listUsers();
     
@@ -80,8 +76,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Удаляем использованный токен
-    resetTokens.delete(token);
+    // Помечаем токен как использованный
+    await supabase.from('email_tokens').update({ used: true }).eq('id', tokenData.id);
     
     console.log('Пароль успешно обновлен для:', tokenData.email);
     return NextResponse.json({ success: true });

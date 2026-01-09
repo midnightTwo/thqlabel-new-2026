@@ -162,11 +162,18 @@ export default function SocialLinksManager({ userId, onShowNotification }: Socia
         return (
           <div
             key={social.id}
-            className={`group rounded-xl overflow-hidden transition-all duration-300 ${
-              isLight 
-                ? 'bg-white/60 border border-white/80 hover:bg-white/80' 
-                : 'bg-white/[0.03] border border-white/10 hover:bg-white/[0.06]'
-            }`}
+            className="group rounded-xl overflow-hidden transition-all duration-300 will-change-transform"
+            style={{
+              background: isLight 
+                ? 'linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.4) 100%)'
+                : 'linear-gradient(135deg, rgba(34,211,238,0.08) 0%, rgba(20,18,35,0.4) 100%)',
+              backdropFilter: 'blur(20px) saturate(150%)',
+              WebkitBackdropFilter: 'blur(20px) saturate(150%)',
+              border: `1px solid ${isLight ? 'rgba(255,255,255,0.8)' : 'rgba(34,211,238,0.15)'}`,
+              boxShadow: isLight 
+                ? '0 4px 16px rgba(139,92,246,0.06)'
+                : '0 4px 16px rgba(0,0,0,0.2), 0 0 20px rgba(34,211,238,0.05)',
+            }}
           >
             {isEditing ? (
               // Режим редактирования
@@ -196,11 +203,14 @@ export default function SocialLinksManager({ userId, onShowNotification }: Socia
                     }
                   }}
                   placeholder={social.placeholder}
-                  className={`w-full px-4 py-3 rounded-xl text-sm transition-all outline-none ${
-                    isLight 
-                      ? 'bg-gray-100 border border-gray-200 text-gray-800 focus:border-[#6050ba] focus:bg-white placeholder-gray-400' 
-                      : 'bg-white/5 border border-white/10 text-white focus:border-[#6050ba] focus:bg-white/10 placeholder-zinc-600'
-                  } ${error ? 'border-red-500!' : ''}`}
+                  className={`w-full px-4 py-3 rounded-xl text-sm transition-all outline-none ${error ? 'border-red-500!' : ''}`}
+                  style={{
+                    background: isLight ? 'rgba(255,255,255,0.65)' : 'rgba(255,255,255,0.04)',
+                    border: `1px solid ${isLight ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.08)'}`,
+                    backdropFilter: 'blur(20px)',
+                    WebkitBackdropFilter: 'blur(20px)',
+                    color: isLight ? '#1a1535' : '#e4e4e7',
+                  }}
                   autoFocus
                 />
 
@@ -217,18 +227,23 @@ export default function SocialLinksManager({ userId, onShowNotification }: Socia
                   <button
                     onClick={handleCancel}
                     disabled={saving}
-                    className={`flex-1 py-2.5 rounded-lg text-xs font-bold transition-all ${
-                      isLight 
-                        ? 'bg-gray-100 hover:bg-gray-200 text-gray-700' 
-                        : 'bg-white/10 hover:bg-white/20 text-white'
-                    }`}
+                    className="flex-1 py-2.5 rounded-xl text-xs font-bold transition-all will-change-transform active:scale-[0.98]"
+                    style={{
+                      background: isLight ? 'rgba(255,255,255,0.6)' : 'rgba(255,255,255,0.06)',
+                      border: `1px solid ${isLight ? 'rgba(255,255,255,0.8)' : 'rgba(255,255,255,0.1)'}`,
+                      color: isLight ? '#3d3660' : 'white',
+                    }}
                   >
                     Отмена
                   </button>
                   <button
                     onClick={() => handleSave(social)}
                     disabled={saving}
-                    className="flex-1 py-2.5 rounded-lg bg-gradient-to-r from-[#6050ba] to-[#8070da] text-white text-xs font-bold hover:shadow-lg hover:shadow-[#6050ba]/30 transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+                    className="flex-1 py-2.5 rounded-xl text-white text-xs font-bold transition-all disabled:opacity-50 flex items-center justify-center gap-2 will-change-transform active:scale-[0.98]"
+                    style={{
+                      background: 'linear-gradient(135deg, #8070da 0%, #9d8df1 100%)',
+                      boxShadow: '0 4px 20px rgba(157,141,241,0.3)',
+                    }}
                   >
                     {saving ? (
                       <>
@@ -303,11 +318,15 @@ export default function SocialLinksManager({ userId, onShowNotification }: Socia
                 ) : (
                   <button
                     onClick={() => handleEdit(social.id)}
-                    className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${
-                      isLight 
-                        ? 'bg-gray-100 hover:bg-gray-200 text-gray-700' 
-                        : 'bg-white/10 hover:bg-white/20 text-white'
-                    }`}
+                    className="px-4 py-2 rounded-xl text-xs font-bold transition-all will-change-transform active:scale-[0.98]"
+                    style={{
+                      background: isLight 
+                        ? 'linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.5) 100%)'
+                        : 'linear-gradient(135deg, rgba(34,211,238,0.15) 0%, rgba(34,211,238,0.08) 100%)',
+                      border: `1px solid ${isLight ? 'rgba(255,255,255,0.9)' : 'rgba(34,211,238,0.25)'}`,
+                      color: isLight ? '#0891b2' : '#22d3ee',
+                      boxShadow: isLight ? '0 2px 8px rgba(34,211,238,0.1)' : '0 0 15px rgba(34,211,238,0.15)',
+                    }}
                   >
                     Привязать
                   </button>
@@ -318,8 +337,19 @@ export default function SocialLinksManager({ userId, onShowNotification }: Socia
         );
       })}
 
-      {/* Инфо блок */}
-      <div className={`p-4 rounded-xl ${isLight ? 'bg-[#6050ba]/5 border border-[#6050ba]/20' : 'bg-[#6050ba]/10 border border-[#6050ba]/20'}`}>
+      {/* Инфо блок - Liquid Glass стиль */}
+      <div 
+        className="p-4 rounded-xl"
+        style={{
+          background: isLight 
+            ? 'linear-gradient(135deg, rgba(96,80,186,0.08) 0%, rgba(139,92,246,0.05) 100%)'
+            : 'linear-gradient(135deg, rgba(96,80,186,0.15) 0%, rgba(157,141,241,0.08) 100%)',
+          backdropFilter: 'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
+          border: `1px solid ${isLight ? 'rgba(96,80,186,0.15)' : 'rgba(157,141,241,0.2)'}`,
+          boxShadow: '0 0 20px rgba(157,141,241,0.08)',
+        }}
+      >
         <div className="flex items-start gap-3">
           <div className="w-8 h-8 rounded-lg bg-[#6050ba]/20 flex items-center justify-center flex-shrink-0">
             <svg className="w-4 h-4 text-[#9d8df1]" fill="currentColor" viewBox="0 0 20 20">

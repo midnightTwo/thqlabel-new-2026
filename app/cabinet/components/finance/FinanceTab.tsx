@@ -54,7 +54,7 @@ export default function FinanceTab({
         .select('*')
         .eq('user_id', userId)
         .order('created_at', { ascending: false })
-        .limit(50);
+        .limit(20);
 
       if (txData) {
         setTransactions(txData);
@@ -76,7 +76,7 @@ export default function FinanceTab({
   };
 
   return (
-    <div className="animate-fade-up space-y-2 sm:space-y-4">
+    <div className="space-y-2 sm:space-y-4">
       {/* Заголовок */}
       <div className="mb-2 sm:mb-6">
         <h2 className={`text-lg sm:text-2xl font-black uppercase tracking-tight ${isLight ? 'text-[#1a1535]' : 'text-white'}`}>Финансы</h2>
@@ -116,20 +116,19 @@ export default function FinanceTab({
       )}
       
       {/* История операций */}
-      <div className="mt-2 sm:mt-6">
+      <div className="mt-2 sm:mt-4">
         <div 
-          className="p-2.5 sm:p-5 rounded-xl sm:rounded-2xl transition-all duration-300"
+          className="p-2.5 sm:p-4 rounded-xl sm:rounded-2xl"
           style={{
             background: isLight 
-              ? 'rgba(255, 255, 255, 0.65)' 
-              : 'rgba(255, 255, 255, 0.02)',
-            backdropFilter: isLight ? 'blur(20px) saturate(180%)' : 'none',
+              ? 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(252, 250, 255, 0.92) 100%)'
+              : 'linear-gradient(135deg, rgba(25, 23, 38, 0.95) 0%, rgba(35, 30, 55, 0.9) 100%)',
             border: isLight 
-              ? '1px solid rgba(255, 255, 255, 0.8)' 
-              : '1px solid rgba(255, 255, 255, 0.05)',
+              ? '1px solid rgba(255, 255, 255, 0.9)' 
+              : '1px solid rgba(255, 255, 255, 0.08)',
             boxShadow: isLight 
-              ? '0 8px 32px rgba(138, 99, 210, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9)' 
-              : 'none'
+              ? '0 4px 20px rgba(157, 141, 241, 0.08)' 
+              : '0 4px 20px rgba(0, 0, 0, 0.25)'
           }}
         >
           
@@ -170,14 +169,14 @@ export default function FinanceTab({
       
       {/* Информационная плашка */}
       <div 
-        className="mt-2 sm:mt-8 p-2.5 sm:p-4 backdrop-blur-sm rounded-lg sm:rounded-2xl"
+        className="mt-2 sm:mt-8 p-2.5 sm:p-4 rounded-lg sm:rounded-2xl"
         style={{
           background: isLight 
-            ? 'linear-gradient(135deg, rgba(138, 99, 210, 0.08) 0%, rgba(167, 139, 250, 0.05) 100%)' 
-            : 'linear-gradient(to right, rgba(24, 24, 27, 0.5), rgba(0, 0, 0, 0.3))',
+            ? 'linear-gradient(135deg, rgba(251, 191, 36, 0.08) 0%, rgba(245, 158, 11, 0.05) 100%)' 
+            : 'linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(245, 158, 11, 0.06) 100%)',
           border: isLight 
-            ? '1px solid rgba(138, 99, 210, 0.2)' 
-            : '1px solid rgba(255, 255, 255, 0.1)'
+            ? '1px solid rgba(251, 191, 36, 0.2)' 
+            : '1px solid rgba(251, 191, 36, 0.15)',
         }}
       >
         <div className="flex items-start gap-2 sm:gap-3">

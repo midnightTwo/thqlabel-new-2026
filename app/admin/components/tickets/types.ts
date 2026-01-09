@@ -27,6 +27,16 @@ export interface Ticket {
     artwork_url?: string;
     status: string;
     created_at: string;
+    release_code?: string;
+  };
+  // Транзакция, связанная с тикетом (для финансовых вопросов)
+  transaction?: {
+    id: string;
+    type: 'deposit' | 'withdrawal' | 'payout' | 'freeze' | 'unfreeze' | 'bonus' | 'refund' | 'purchase';
+    amount: number;
+    status: string;
+    created_at: string;
+    description?: string;
   };
 }
 

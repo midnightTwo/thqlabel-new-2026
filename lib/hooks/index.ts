@@ -11,3 +11,16 @@ export {
   getCachedData,
   hasCachedData
 } from './useDataCache';
+
+// 💎 ELITE PERFORMANCE - продвинутые оптимизации
+export { 
+  useElitePerformance,
+  ElitePerformanceProvider
+} from './useElitePerformance';
+
+export {
+  usePassiveEvent,
+  usePassiveScroll,
+  usePassiveTouch,
+  initGlobalPassiveListeners
+} from './usePassiveEvents';

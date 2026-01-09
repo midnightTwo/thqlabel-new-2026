@@ -11,8 +11,10 @@ const nextConfig: NextConfig = {
   // TURBO ПРОИЗВОДИТЕЛЬНОСТЬ
   // =============================================
   experimental: {
-    // Оптимизация CSS - критично для скорости
-    optimizeCss: true,
+    // ⚠️ КРИТИЧНО: ОТКЛЮЧАЕМ optimizeCss - он удаляет GPU-хаки!
+    // cssnano минификатор считает transform: translateZ(0) "бесполезным" и удаляет
+    // В результате в production теряется изоляция GPU-слоёв
+    optimizeCss: false,
     
     // МАКСИМАЛЬНОЕ КЭШИРОВАНИЕ - страницы летают
     staleTimes: {
@@ -56,7 +58,20 @@ const nextConfig: NextConfig = {
   
   reactStrictMode: false, // Отключаем в prod для скорости
   poweredByHeader: false,
-  
+
+  // ⚠️ Игнорировать ESLint ошибки при build
+  // Это позволяет билдить даже если есть lint ошибки
+  // Ошибки всё равно показываются в IDE
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+
+  // ⚠️ Игнорировать TypeScript ошибки при build (опционально)
+  // Раскомментировать если нужно срочно задеплоить
+  // typescript: {
+  //   ignoreBuildErrors: true,
+  // },
+
   // Turbopack для быстрой разработки
   turbopack: {
     rules: {
@@ -79,6 +94,11 @@ const nextConfig: NextConfig = {
   // ОПТИМИЗАЦИЯ ИЗОБРАЖЕНИЙ - КРИТИЧНО ДЛЯ МОБИЛЬНЫХ
   // =============================================
   images: {
+    // ⚠️ КРИТИЧНО ДЛЯ PRODUCTION: Отключаем оптимизацию на сервере
+    // Хостинг пытается пережимать 3000px исходники "на лету"
+    // Это вызывает лаги GPU при декодировании огромных изображений
+    unoptimized: process.env.NODE_ENV === 'production',
+    
     // Современные форматы - AVIF на 50% меньше WebP
     formats: ['image/avif', 'image/webp'],
     

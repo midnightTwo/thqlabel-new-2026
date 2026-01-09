@@ -19,8 +19,8 @@ BEGIN
   -- Генерируем уникальный member_id
   new_member_id := 'THQ-' || LPAD(FLOOR(1000 + RANDOM() * 9000)::TEXT, 4, '0');
   
-  -- Создаём профиль с полными данными
-  INSERT INTO public.profiles (id, email, nickname, member_id, role, balance, created_at, updated_at)
+  -- Создаём профиль с полными данными (включая telegram если указан)
+  INSERT INTO public.profiles (id, email, nickname, member_id, role, balance, telegram, created_at, updated_at)
   VALUES (
     NEW.id,
     NEW.email,
@@ -33,6 +33,7 @@ BEGIN
     new_member_id,
     'basic',
     0,
+    NEW.raw_user_meta_data->>'telegram',
     NOW(),
     NOW()
   )
@@ -40,6 +41,7 @@ BEGIN
     email = EXCLUDED.email,
     nickname = COALESCE(profiles.nickname, EXCLUDED.nickname),
     member_id = COALESCE(profiles.member_id, EXCLUDED.member_id),
+    telegram = COALESCE(EXCLUDED.telegram, profiles.telegram),
     updated_at = NOW();
   
   RETURN NEW;

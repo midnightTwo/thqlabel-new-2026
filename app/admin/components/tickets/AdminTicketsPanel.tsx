@@ -171,9 +171,9 @@ export default function AdminTicketsPanel({
           {!selectedTicket ? (
             <EmptyState />
           ) : (
-            <div className={`hidden lg:flex flex-col h-full overflow-hidden rounded-xl border ${
+            <div className={`hidden lg:flex flex-col h-full overflow-hidden rounded-xl border backdrop-blur-sm ${
               isLight 
-                ? 'bg-white/70 border-gray-200' 
+                ? 'bg-white/90 border-gray-300 shadow-sm' 
                 : 'bg-zinc-900/50 border-zinc-800'
             }`}>
               {/* Desktop inline panel */}
@@ -334,12 +334,12 @@ function EmptyState() {
   const isLight = themeName === 'light';
   
   return (
-    <div className={`h-full flex items-center justify-center rounded-xl border ${isLight ? 'bg-white/50 border-gray-200' : 'bg-zinc-900/50 border-zinc-800'}`}>
+    <div className={`h-full flex items-center justify-center rounded-xl border backdrop-blur-sm ${isLight ? 'bg-white/80 border-gray-300 shadow-sm' : 'bg-zinc-900/50 border-zinc-800'}`}>
       <div className="text-center">
-        <svg className={`w-16 h-16 mx-auto mb-4 ${isLight ? 'text-gray-400' : 'text-zinc-700'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className={`w-16 h-16 mx-auto mb-4 ${isLight ? 'text-gray-500' : 'text-zinc-700'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
         </svg>
-        <p className={isLight ? 'text-gray-500' : 'text-zinc-400'}>Выберите тикет</p>
+        <p className={isLight ? 'text-gray-600' : 'text-zinc-400'}>Выберите тикет</p>
       </div>
     </div>
   );

@@ -26,11 +26,11 @@ export default function TicketList({
 
   if (tickets.length === 0) {
     return (
-      <div className={`text-center py-12 rounded-xl border ${isLight ? 'bg-gray-50 border-gray-200' : 'bg-zinc-900/50 border-zinc-800'}`}>
-        <svg className={`w-12 h-12 mx-auto mb-3 ${isLight ? 'text-gray-400' : 'text-zinc-700'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div className={`text-center py-12 rounded-xl border backdrop-blur-sm ${isLight ? 'bg-white/80 border-gray-300 shadow-sm' : 'bg-zinc-900/50 border-zinc-800'}`}>
+        <svg className={`w-12 h-12 mx-auto mb-3 ${isLight ? 'text-gray-500' : 'text-zinc-700'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
         </svg>
-        <p className={isLight ? 'text-gray-500' : 'text-zinc-500'}>Тикетов не найдено</p>
+        <p className={isLight ? 'text-gray-600' : 'text-zinc-500'}>Тикетов не найдено</p>
       </div>
     );
   }
@@ -77,17 +77,17 @@ function TicketCard({ ticket, isSelected, onSelect, onViewProfile, searchQuery, 
   return (
     <button
       onClick={handleSelect}
-      className={`w-full p-4 rounded-xl transition-all text-left ${
+      className={`w-full p-4 rounded-xl transition-all text-left backdrop-blur-sm ${
         ticket.status === 'in_progress' || ticket.status === 'open'
           ? isLight
-            ? 'bg-red-50 border-red-300/50 hover:border-red-400'
+            ? 'bg-red-100/80 border-red-400 hover:border-red-500 shadow-sm shadow-red-100'
             : 'bg-red-500/10 border-red-500/30 hover:border-red-500/50'
           : ticket.status === 'pending'
           ? isLight
-            ? 'bg-yellow-50 border-yellow-300/50 hover:border-yellow-400'
+            ? 'bg-amber-100/80 border-amber-400 hover:border-amber-500 shadow-sm shadow-amber-100'
             : 'bg-yellow-500/10 border-yellow-500/30 hover:border-yellow-500/50'
           : isLight
-            ? 'bg-white/70 border-gray-200 hover:border-gray-300'
+            ? 'bg-white/90 border-gray-300 hover:border-gray-400 shadow-sm'
             : 'bg-zinc-900/50 border-zinc-800 hover:border-zinc-700'
       } ${isSelected ? 'border-2 border-blue-500 shadow-lg shadow-blue-500/20' : 'border'}`}
     >
@@ -96,9 +96,11 @@ function TicketCard({ ticket, isSelected, onSelect, onViewProfile, searchQuery, 
         <div className="flex items-center gap-2">
           <span className={`text-[10px] font-mono px-2 py-0.5 rounded border ${
             searchQuery && ticket.id.toLowerCase().includes(searchQuery.toLowerCase())
-              ? 'bg-yellow-500/20 text-yellow-300 border-yellow-500/50 ring-2 ring-yellow-500/30'
+              ? isLight
+                ? 'bg-yellow-200 text-yellow-800 border-yellow-500 ring-2 ring-yellow-400/50'
+                : 'bg-yellow-500/20 text-yellow-300 border-yellow-500/50 ring-2 ring-yellow-500/30'
               : isLight 
-                ? 'bg-gray-100 text-gray-600 border-gray-300'
+                ? 'bg-gray-200/80 text-gray-700 border-gray-400'
                 : 'bg-zinc-800/50 text-zinc-400 border-zinc-700'
           }`}>
             #{ticket.id.substring(0, 8)}
@@ -182,7 +184,15 @@ function TicketCard({ ticket, isSelected, onSelect, onViewProfile, searchQuery, 
 }
 
 function UserRoleBadge({ role }: { role?: string }) {
-  const config = {
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
+  
+  const config = isLight ? {
+    owner: { bg: 'bg-purple-200 text-purple-800 border-purple-400', label: 'OWNER' },
+    admin: { bg: 'bg-red-200 text-red-800 border-red-400', label: 'ADMIN' },
+    exclusive: { bg: 'bg-amber-200 text-amber-800 border-amber-400', label: 'EXCLUSIVE' },
+  }[role || ''] || { bg: 'bg-gray-200 text-gray-700 border-gray-400', label: 'BASIC' }
+  : {
     owner: { bg: 'bg-purple-500/20 text-purple-300 border-purple-500/30', label: 'OWNER' },
     admin: { bg: 'bg-red-500/20 text-red-300 border-red-500/30', label: 'ADMIN' },
     exclusive: { bg: 'bg-amber-500/20 text-amber-300 border-amber-500/30', label: 'EXCLUSIVE' },

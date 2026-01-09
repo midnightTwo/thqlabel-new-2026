@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import ThemeSelector from './ThemeSelector';
 import AccountManager from './AccountManager';
@@ -19,7 +19,65 @@ interface SettingsTabProps {
   onShowAvatarModal: () => void;
   showToast: () => void;
   onShowNotification?: (message: string, type: 'success' | 'error') => void;
+  onSupportToggle?: () => void;
 }
+
+// Стили "Liquid Glass" - мемоизированные для производительности
+const useGlassStyles = (isLight: boolean) => useMemo(() => ({
+  // Основная стеклянная карточка - более прозрачная
+  glassCard: {
+    background: isLight 
+      ? 'linear-gradient(135deg, rgba(255, 255, 255, 0.55) 0%, rgba(250, 248, 255, 0.45) 100%)'
+      : 'linear-gradient(135deg, rgba(30, 27, 45, 0.6) 0%, rgba(45, 40, 70, 0.5) 100%)',
+    border: isLight 
+      ? '1px solid rgba(255, 255, 255, 0.7)' 
+      : '1px solid rgba(255, 255, 255, 0.08)',
+    boxShadow: isLight 
+      ? '0 8px 32px rgba(157, 141, 241, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9)' 
+      : '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.04)',
+    backdropFilter: 'blur(24px)',
+    WebkitBackdropFilter: 'blur(24px)',
+  },
+  // Инпуты в стиле glass
+  glassInput: {
+    background: isLight 
+      ? 'linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(252, 250, 255, 0.4) 100%)'
+      : 'linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%)',
+    border: isLight 
+      ? '1px solid rgba(200, 180, 255, 0.25)' 
+      : '1px solid rgba(255, 255, 255, 0.06)',
+    boxShadow: isLight 
+      ? 'inset 0 2px 4px rgba(157, 141, 241, 0.04)' 
+      : 'inset 0 2px 4px rgba(0, 0, 0, 0.15)',
+  },
+  // Кнопка primary
+  glassPrimaryBtn: {
+    background: 'linear-gradient(135deg, rgba(128, 112, 218, 0.85) 0%, rgba(160, 144, 234, 0.8) 100%)',
+    border: '1px solid rgba(255, 255, 255, 0.15)',
+    boxShadow: '0 4px 20px rgba(128, 112, 218, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15)',
+  },
+  // Кнопка secondary
+  glassSecondaryBtn: {
+    background: isLight 
+      ? 'linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(248, 246, 255, 0.5) 100%)'
+      : 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%)',
+    border: isLight 
+      ? '1px solid rgba(200, 180, 255, 0.3)' 
+      : '1px solid rgba(255, 255, 255, 0.08)',
+    boxShadow: isLight 
+      ? '0 2px 8px rgba(157, 141, 241, 0.06)' 
+      : '0 2px 8px rgba(0, 0, 0, 0.15)',
+  },
+  // Секция внутри карточки
+  glassSection: {
+    background: isLight 
+      ? 'linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(248, 246, 255, 0.3) 100%)'
+      : 'linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.01) 100%)',
+    border: isLight 
+      ? '1px solid rgba(200, 180, 255, 0.15)' 
+      : '1px solid rgba(255, 255, 255, 0.04)',
+  },
+}), [isLight]);
 
 export default function SettingsTab({
   user,
@@ -32,10 +90,12 @@ export default function SettingsTab({
   onShowAvatarModal,
   showToast,
   onShowNotification,
+  onSupportToggle,
 }: SettingsTabProps) {
   const config = ROLE_CONFIG[role];
   const { themeName } = useTheme();
   const isLight = themeName === 'light';
+  const glassStyles = useGlassStyles(isLight);
   
   // Fallback для onShowNotification
   const handleShowNotification = onShowNotification || ((message: string, type: 'success' | 'error') => {
@@ -143,7 +203,20 @@ export default function SettingsTab({
 
   return (
     <>
-      <div className="animate-fade-up">
+      {/* GPU-optimized fade-in animation */}
+      <div className="will-change-transform" style={{ animation: 'glassSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards' }}>
+        <style>{`
+          @keyframes glassSlideUp {
+            from { opacity: 0; transform: translate3d(0, 12px, 0); }
+            to { opacity: 1; transform: translate3d(0, 0, 0); }
+          }
+          @keyframes glassPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+          }
+        `}</style>
+        
+        {/* Заголовок */}
         <div className="mb-4 sm:mb-6 lg:mb-8">
           <h2 className={`text-2xl sm:text-3xl font-black uppercase tracking-tight mb-1 sm:mb-2 bg-gradient-to-r bg-clip-text text-transparent ${isLight ? 'from-[#1a1535] to-[#5c5580]' : 'from-white to-zinc-400'}`}>
             Настройки
@@ -151,351 +224,449 @@ export default function SettingsTab({
           <p className={`text-xs sm:text-sm ${isLight ? 'text-[#5c5580]' : 'text-zinc-500'}`}>Управление профилем и настройками</p>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-          {/* Левая колонка - основные настройки */}
-          <div className="space-y-4 sm:space-y-6">
-        {/* Аватарка */}
-        <div className="group">
-          <label className={`text-[10px] uppercase tracking-[0.2em] mb-2 sm:mb-3 block font-bold ${isLight ? 'text-[#5c5580]' : 'text-zinc-400'}`}>
-            Аватар профиля
-          </label>
-          <div className="flex items-center gap-3 sm:gap-4">
-            <button 
-              onClick={onShowAvatarModal}
-              className={`relative w-20 h-20 sm:w-28 sm:h-28 rounded-xl sm:rounded-2xl ${avatar ? 'bg-cover bg-center' : `bg-gradient-to-br ${config.color}`} flex items-center justify-center text-3xl sm:text-4xl font-black border-2 ${config.borderColor} overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300 group/avatar`}
+        {/* ═══════════════════════════════════════════════════════════════════
+            МОБИЛКА: Профиль → Telegram → Статус&Тема → Email → Admin
+            ДЕСКТОП: [Профиль, Telegram, Admin] | [Статус&Тема, Email]
+        ═══════════════════════════════════════════════════════════════════ */}
+        
+        {/* === 1. ПРОФИЛЬ - Glass Card === */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
+          <div 
+            className="p-4 sm:p-5 rounded-2xl sm:rounded-3xl relative overflow-hidden lg:row-span-2"
+            style={glassStyles.glassCard}
+          >
+            {/* Декоративное свечение */}
+            <div 
+              className="absolute -top-20 -right-20 w-40 h-40 rounded-full pointer-events-none"
               style={{ 
-                boxShadow: `0 0 30px ${config.glowColor}, 0 8px 16px rgba(0,0,0,0.4)`,
-                backgroundImage: avatar ? `url(${avatar})` : 'none'
+                background: 'radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%)',
+                animation: 'glassPulse 4s ease-in-out infinite'
+              }}
+            />
+            
+            {/* Аватарка */}
+            <div className="relative z-10 mb-5">
+              <label className={`text-[10px] uppercase tracking-[0.2em] mb-3 block font-bold ${isLight ? 'text-[#5c5580]' : 'text-zinc-400'}`}>
+                Аватар профиля
+              </label>
+              <div className="flex items-center gap-4">
+                <button 
+                  onClick={onShowAvatarModal}
+                  className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-2xl ${avatar ? 'bg-cover bg-center' : `bg-gradient-to-br ${config.color}`} flex items-center justify-center text-3xl sm:text-4xl font-black overflow-hidden cursor-pointer transition-all duration-300 group/avatar hover:scale-[1.03]`}
+                  style={{ 
+                    boxShadow: `0 0 30px ${config.glowColor}, 0 8px 24px rgba(0,0,0,0.3)`,
+                    backgroundImage: avatar ? `url(${avatar})` : 'none',
+                    border: `2px solid ${isLight ? 'rgba(255,255,255,0.8)' : 'rgba(255,255,255,0.15)'}`,
+                  }}
+                >
+                  {!avatar && <span className="text-white drop-shadow-lg">{nickname.charAt(0).toUpperCase()}</span>}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover/avatar:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-end pb-2">
+                    <svg className="w-5 h-5 text-white mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span className="text-white text-[10px] font-bold">Изменить</span>
+                  </div>
+                </button>
+                <div className="flex-1">
+                  <p className={`text-sm mb-1 font-medium ${isLight ? 'text-[#3d3660]' : 'text-zinc-300'}`}>Нажмите на аватар</p>
+                  <p className={`text-[10px] ${isLight ? 'text-[#7a7596]' : 'text-zinc-500'}`}>PNG, JPG до 2MB • 400×400px</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Никнейм */}
+            <div className="relative z-10 mb-4">
+              <label className={`text-[10px] uppercase tracking-[0.2em] mb-2 block font-bold ${isLight ? 'text-[#5c5580]' : 'text-zinc-400'}`}>
+                Никнейм артиста
+              </label>
+              <input 
+                value={nickname}
+                disabled
+                className={`w-full px-4 py-3 rounded-xl text-sm cursor-not-allowed font-medium transition-all ${isLight ? 'text-[#3d3660]' : 'text-zinc-300'}`}
+                style={glassStyles.glassInput}
+              />
+              <p className={`text-[10px] mt-2 flex items-center gap-1 ${isLight ? 'text-[#7a7596]' : 'text-zinc-500'}`}>
+                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                </svg>
+                Никнейм нельзя изменить
+              </p>
+            </div>
+            
+            {/* ID участника */}
+            <div className="relative z-10">
+              <label className={`text-[10px] uppercase tracking-[0.2em] mb-2 block font-bold ${isLight ? 'text-[#5c5580]' : 'text-zinc-400'}`}>
+                ID участника (тег)
+              </label>
+              <div className="flex items-center gap-2">
+                <input 
+                  value={memberId}
+                  disabled
+                  className={`flex-1 px-4 py-3 rounded-xl text-sm font-mono cursor-not-allowed ${isLight ? 'text-[#3d3660]' : 'text-zinc-300'}`}
+                  style={glassStyles.glassInput}
+                />
+                <button 
+                  onClick={() => copyToClipboard(memberId)}
+                  className="group/copy px-3.5 py-3 rounded-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                  style={glassStyles.glassSecondaryBtn}
+                  title="Copy ID"
+                >
+                  <svg className={`w-5 h-5 transition-colors ${isLight ? 'text-[#6050ba] group-hover/copy:text-[#8070da]' : 'text-zinc-400 group-hover/copy:text-purple-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* === 2. TELEGRAM - Glass Card (только на десктопе в правой колонке, на мобилке после профиля) === */}
+          <div 
+            className="p-4 sm:p-5 rounded-2xl sm:rounded-3xl relative overflow-hidden lg:hidden"
+            style={glassStyles.glassCard}
+          >
+            <div className="relative z-10">
+              <label className={`text-[10px] uppercase tracking-[0.2em] mb-3 block font-bold flex items-center gap-2 ${isLight ? 'text-[#5c5580]' : 'text-zinc-400'}`}>
+                <svg className="w-4 h-4 text-[#0088cc]" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                </svg>
+                Привязка Telegram
+              </label>
+              <SocialLinksManager 
+                userId={user?.id} 
+                onShowNotification={handleShowNotification}
+              />
+            </div>
+          </div>
+
+          {/* === 3. СТАТУС & ТЕМА - Glass Card (на мобилке после Telegram) === */}
+          <div 
+            className="p-5 sm:p-6 rounded-2xl sm:rounded-3xl relative overflow-hidden"
+            style={glassStyles.glassCard}
+          >
+            {/* Статус */}
+            <div className="relative z-10 mb-6 sm:mb-8">
+              <label className={`text-[10px] uppercase tracking-[0.2em] mb-3 block font-bold ${isLight ? 'text-[#5c5580]' : 'text-zinc-400'}`}>
+                Статус аккаунта
+              </label>
+              <div 
+                className={`group inline-flex items-center gap-3 px-5 py-4 rounded-xl transition-all duration-300 hover:scale-[1.02] ${isLight && role === 'basic' ? 'bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400' : `bg-gradient-to-br ${config.color}`}`}
+                style={{ 
+                  boxShadow: `0 0 25px ${config.glowColor}, 0 4px 16px rgba(0,0,0,0.25)`,
+                  border: `1px solid ${isLight ? 'rgba(255,255,255,0.6)' : 'rgba(255,255,255,0.15)'}`,
+                }}
+              >
+                <span className={`text-2xl ${isLight && role === 'basic' ? 'opacity-80' : ''}`}>{config.icon}</span>
+                <div>
+                  <div className={`text-sm font-bold uppercase tracking-wider ${isLight && role === 'basic' ? 'text-gray-700' : 'text-white'}`}>{config.shortLabel}</div>
+                  <div className={`text-[10px] ${isLight && role === 'basic' ? 'text-gray-600' : 'text-white/70'}`}>{config.label}</div>
+                </div>
+              </div>
+              {role === 'basic' && (
+                <div 
+                  className="mt-4 p-3 rounded-xl"
+                  style={{
+                    background: isLight 
+                      ? 'linear-gradient(135deg, rgba(251, 191, 36, 0.08) 0%, rgba(245, 158, 11, 0.05) 100%)'
+                      : 'linear-gradient(135deg, rgba(251, 191, 36, 0.12) 0%, rgba(245, 158, 11, 0.08) 100%)',
+                    border: '1px solid rgba(251, 191, 36, 0.2)',
+                  }}
+                >
+                  <p className={`text-xs leading-relaxed ${isLight ? 'text-[#5c5580]' : 'text-zinc-300'}`}>
+                    ✨ Хотите стать <span className="text-[#fbbf24] font-bold">Exclusive</span>?{' '}
+                    <button 
+                      onClick={onSupportToggle}
+                      className={`font-bold underline decoration-2 underline-offset-2 transition-colors ${isLight ? 'text-[#6050ba] hover:text-[#8070da]' : 'text-[#a090ea] hover:text-[#c4b5fd]'}`}
+                    >
+                      Напишите нам
+                    </button>
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* Тема */}
+            <div className="relative z-10">
+              <label className={`text-[10px] uppercase tracking-[0.2em] mb-4 block font-bold ${isLight ? 'text-[#5c5580]' : 'text-zinc-400'}`}>
+                Тема интерфейса
+              </label>
+              <ThemeSelector />
+            </div>
+          </div>
+        </div>
+
+        {/* === Второй ряд: Telegram (десктоп) + Email === */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
+          {/* TELEGRAM - только для десктопа (на мобилке показан выше) */}
+          <div 
+            className="hidden lg:block p-4 sm:p-5 rounded-2xl sm:rounded-3xl relative overflow-hidden"
+            style={glassStyles.glassCard}
+          >
+            <div className="relative z-10">
+              <label className={`text-[10px] uppercase tracking-[0.2em] mb-3 block font-bold flex items-center gap-2 ${isLight ? 'text-[#5c5580]' : 'text-zinc-400'}`}>
+                <svg className="w-4 h-4 text-[#0088cc]" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                </svg>
+                Привязка Telegram
+              </label>
+              <SocialLinksManager 
+                userId={user?.id} 
+                onShowNotification={handleShowNotification}
+              />
+            </div>
+          </div>
+
+          {/* === 4. EMAIL & БЕЗОПАСНОСТЬ - Glass Card === */}
+          <div 
+            className="p-4 sm:p-5 rounded-2xl sm:rounded-3xl relative overflow-hidden"
+            style={glassStyles.glassCard}
+          >
+              {/* Email */}
+              <div className="relative z-10 mb-4">
+                <label className={`text-[10px] uppercase tracking-[0.2em] mb-2 block font-bold ${isLight ? 'text-[#5c5580]' : 'text-zinc-400'}`}>
+                  Email
+                </label>
+                <div className="flex items-center gap-2 mb-2">
+                  <input 
+                    value={user?.email || ''}
+                    disabled
+                    className={`flex-1 px-4 py-3 rounded-xl text-sm ${isLight ? 'text-[#5c5580]' : 'text-zinc-400'}`}
+                    style={glassStyles.glassInput}
+                  />
+                  <button 
+                    onClick={() => copyToClipboard(user?.email || '')}
+                    className="group px-3.5 py-3 rounded-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                    style={glassStyles.glassSecondaryBtn}
+                    title="Скопировать email"
+                  >
+                    <svg className={`w-5 h-5 transition ${isLight ? 'text-[#6050ba] group-hover:text-[#8070da]' : 'text-zinc-400 group-hover:text-purple-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                  </button>
+                </div>
+
+                {!showEmailChange ? (
+                  <button
+                    onClick={() => setShowEmailChange(true)}
+                    className={`text-xs font-semibold transition-all flex items-center gap-1.5 hover:gap-2 ${isLight ? 'text-[#6050ba] hover:text-[#8070da]' : 'text-[#a090ea] hover:text-[#c4b5fd]'}`}
+                  >
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                    </svg>
+                    Изменить email
+                  </button>
+                ) : (
+                  <div 
+                    className="space-y-3 p-4 rounded-xl will-change-transform"
+                    style={{ 
+                      ...glassStyles.glassSection,
+                      animation: 'glassSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards'
+                    }}
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className={`text-sm font-bold ${isLight ? 'text-[#1a1535]' : 'text-white'}`}>Смена email</span>
+                      <button
+                        onClick={() => {
+                          setShowEmailChange(false);
+                          setNewEmail('');
+                          setEmailError('');
+                          setEmailSuccess('');
+                        }}
+                        className={`p-1 rounded-lg transition-all hover:scale-110 ${isLight ? 'text-gray-400 hover:text-gray-700 hover:bg-gray-100' : 'text-zinc-500 hover:text-white hover:bg-white/10'}`}
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    </div>
+
+                    {emailError && (
+                      <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-xs font-medium">
+                        {emailError}
+                      </div>
+                    )}
+
+                    {emailSuccess && (
+                      <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-emerald-400 text-xs font-medium">
+                        {emailSuccess}
+                      </div>
+                    )}
+
+                    <input 
+                      type="email"
+                      value={newEmail}
+                      onChange={(e) => setNewEmail(e.target.value)}
+                      placeholder="Новый email"
+                      className={`w-full px-4 py-3 rounded-xl text-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#8070da]/50 ${isLight ? 'text-[#1a1535] placeholder:text-[#7a7596]' : 'text-white placeholder:text-zinc-500'}`}
+                      style={glassStyles.glassInput}
+                    />
+
+                    <button
+                      onClick={handleChangeEmail}
+                      disabled={emailLoading || !newEmail}
+                      className={`w-full py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-200 ${
+                        emailLoading || !newEmail ? 'opacity-50 cursor-not-allowed' : 'hover:scale-[1.01] hover:shadow-lg hover:shadow-[#8070da]/30 active:scale-[0.99]'
+                      }`}
+                      style={emailLoading || !newEmail ? { background: 'rgba(128,112,218,0.2)', color: isLight ? '#9ca3af' : '#71717a' } : glassStyles.glassPrimaryBtn}
+                    >
+                      {emailLoading ? (
+                        <span className="flex items-center justify-center gap-2 text-inherit">
+                          <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          Сохранение...
+                        </span>
+                      ) : <span className="text-white">Изменить email</span>}
+                    </button>
+
+                    <p className={`text-[10px] ${isLight ? 'text-[#7a7596]' : 'text-zinc-500'}`}>
+                      На новый email будет отправлено письмо с подтверждением
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {/* Безопасность */}
+              <div className="relative z-10 pt-4 mt-4" style={{ borderTop: isLight ? '1px solid rgba(200, 180, 255, 0.2)' : '1px solid rgba(255, 255, 255, 0.05)' }}>
+                <label className={`text-[10px] uppercase tracking-[0.2em] mb-3 block font-bold ${isLight ? 'text-[#5c5580]' : 'text-zinc-400'}`}>
+                  Безопасность
+                </label>
+                
+                {!showPasswordChange ? (
+                  <button
+                    onClick={() => setShowPasswordChange(true)}
+                    className="w-full py-3 px-4 text-sm font-semibold rounded-xl transition-all duration-200 flex items-center justify-center gap-2.5 hover:scale-[1.01] active:scale-[0.98]"
+                    style={glassStyles.glassSecondaryBtn}
+                  >
+                    <svg className={`w-5 h-5 ${isLight ? 'text-[#6050ba]' : 'text-zinc-300'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                    <span className={isLight ? 'text-[#3d3660]' : 'text-zinc-200'}>Изменить пароль</span>
+                  </button>
+                ) : (
+                  <div 
+                    className="space-y-3 p-4 rounded-xl will-change-transform"
+                    style={{ 
+                      ...glassStyles.glassSection,
+                      animation: 'glassSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards'
+                    }}
+                  >
+                    <div className="flex items-center justify-between">
+                      <h3 className={`text-sm font-bold ${isLight ? 'text-[#1a1535]' : 'text-white'}`}>Смена пароля</h3>
+                      <button
+                        onClick={() => {
+                          setShowPasswordChange(false);
+                          setPasswordError('');
+                          setPasswordSuccess('');
+                        }}
+                        className={`p-1 rounded-lg transition-all hover:scale-110 ${isLight ? 'text-gray-400 hover:text-gray-700 hover:bg-gray-100' : 'text-zinc-500 hover:text-white hover:bg-white/10'}`}
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    </div>
+
+                    {passwordError && (
+                      <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-xs font-medium">
+                        {passwordError}
+                      </div>
+                    )}
+
+                    {passwordSuccess && (
+                      <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-emerald-400 text-xs font-medium">
+                        {passwordSuccess}
+                      </div>
+                    )}
+
+                    <p className={`text-xs leading-relaxed ${isLight ? 'text-[#5c5580]' : 'text-zinc-400'}`}>
+                      На вашу почту <span className={`font-semibold ${isLight ? 'text-[#1a1535]' : 'text-white'}`}>{user?.email}</span> будет отправлено письмо.
+                    </p>
+
+                    <button
+                      onClick={handleChangePassword}
+                      disabled={passwordLoading}
+                      className={`w-full py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-200 ${
+                        passwordLoading ? 'opacity-50 cursor-not-allowed' : 'hover:scale-[1.01] hover:shadow-lg hover:shadow-[#8070da]/30 active:scale-[0.99]'
+                      }`}
+                      style={passwordLoading ? { background: 'rgba(128,112,218,0.2)', color: isLight ? '#9ca3af' : '#71717a' } : glassStyles.glassPrimaryBtn}
+                    >
+                      {passwordLoading ? (
+                        <span className="flex items-center justify-center gap-2 text-inherit">
+                          <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          Отправка...
+                        </span>
+                      ) : <span className="text-white">Отправить письмо</span>}
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+        </div>
+
+        {/* === Admin/Owner секции === */}
+        {(role === 'admin' || role === 'owner' || originalRole === 'admin' || originalRole === 'owner') && (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
+            {/* Account Management - Glass Card */}
+            <div 
+              className="p-4 sm:p-5 rounded-2xl sm:rounded-3xl relative overflow-hidden group/card"
+              style={{
+                ...glassStyles.glassCard,
+                background: isLight 
+                  ? 'linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(236, 254, 255, 0.45) 100%)'
+                  : 'linear-gradient(135deg, rgba(30, 27, 45, 0.6) 0%, rgba(22, 78, 99, 0.25) 100%)',
               }}
             >
-              {!avatar && nickname.charAt(0).toUpperCase()}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover/avatar:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-end pb-2 sm:pb-3">
-                <svg className="w-4 h-4 sm:w-6 sm:h-6 text-white mb-0.5 sm:mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                <span className="text-white text-[10px] sm:text-xs font-bold">Изменить</span>
-              </div>
-              {/* Анимированная рамка */}
-              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover/avatar:opacity-100 transition-opacity duration-300" 
-                   style={{ 
-                     background: `linear-gradient(45deg, ${config.glowColor} 0%, transparent 50%, ${config.glowColor} 100%)`,
-                     filter: 'blur(8px)',
-                     transform: 'scale(1.1)'
-                   }}></div>
-            </button>
-            <div className="flex-1">
-              <p className={`text-xs sm:text-sm mb-1 sm:mb-2 font-medium ${isLight ? 'text-[#3d3660]' : 'text-zinc-300'}`}>Нажмите на аватар для изменения</p>
-              <p className={`text-[9px] sm:text-[10px] ${isLight ? 'text-[#7a7596]' : 'text-zinc-600'}`}>PNG, JPG до 2MB<br className="sm:hidden" /><span className="hidden sm:inline"> • </span>400x400px</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Никнейм */}
-        <div>
-          <label className={`text-[10px] uppercase tracking-[0.2em] mb-2 block font-bold ${isLight ? 'text-[#5c5580]' : 'text-zinc-400'}`}>
-            Никнейм артиста
-          </label>
-          <input 
-            value={nickname}
-            disabled
-            className={`w-full px-3 sm:px-4 py-2.5 sm:py-3.5 rounded-lg sm:rounded-xl text-xs sm:text-sm cursor-not-allowed font-medium transition-all ${
-              isLight 
-                ? 'bg-white/60 border border-white/80 text-[#5c5580] hover:bg-white/70' 
-                : 'bg-white/[0.03] border border-white/10 text-zinc-400 hover:bg-white/[0.05]'
-            }`}
-          />
-          <p className="text-[10px] text-zinc-600 mt-2 flex items-center gap-1">
-            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
-            </svg>
-            Никнейм нельзя изменить
-          </p>
-        </div>
-        
-        {/* ID участника */}
-        <div>
-          <label className={`text-[10px] uppercase tracking-[0.2em] mb-2 block font-bold ${isLight ? 'text-[#5c5580]' : 'text-zinc-400'}`}>
-            ID участника (тег)
-          </label>
-          <div className="flex items-center gap-2">
-            <input 
-              value={memberId}
-              disabled
-              className={`flex-1 px-3 sm:px-4 py-2.5 sm:py-3.5 border rounded-lg sm:rounded-xl text-xs sm:text-sm font-mono cursor-not-allowed transition-all ${isLight ? 'bg-white/60 border-white/80 text-[#5c5580] hover:bg-white/70' : 'bg-white/[0.03] border-white/10 text-zinc-300 hover:bg-white/[0.05]'}`}
-            />
-            <button 
-              onClick={() => copyToClipboard(memberId)}
-              className={`group/copy px-3 sm:px-4 py-2.5 sm:py-3.5 border rounded-lg sm:rounded-xl transition-all duration-300 ${isLight ? 'bg-white/60 border-white/80 hover:bg-gradient-to-br hover:from-purple-100 hover:to-blue-100 hover:border-purple-300' : 'bg-white/[0.03] border-white/10 hover:bg-gradient-to-br hover:from-purple-600/20 hover:to-blue-600/20 hover:border-purple-500/50'}`}
-              title="Copy ID"
-            >
-              <svg className={`w-4 h-4 sm:w-5 sm:h-5 transition-colors ${isLight ? 'text-[#5c5580] group-hover/copy:text-purple-600' : 'text-zinc-400 group-hover/copy:text-purple-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        {/* Привязка Telegram */}
-        <div>
-          <label className={`text-[10px] uppercase tracking-[0.2em] mb-3 block font-bold flex items-center gap-2 ${isLight ? 'text-[#5c5580]' : 'text-zinc-400'}`}>
-            <svg className="w-4 h-4 text-[#0088cc]" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-            </svg>
-            Привязка Telegram
-          </label>
-          <SocialLinksManager 
-            userId={user?.id} 
-            onShowNotification={handleShowNotification}
-          />
-        </div>
-
-        {/* Email */}
-        <div>
-          <label className={`text-[10px] uppercase tracking-widest mb-2 block ${isLight ? 'text-[#5c5580]' : 'text-zinc-500'}`}>Email</label>
-          <div className="flex items-center gap-2 mb-2">
-            <input 
-              value={user?.email || ''}
-              disabled
-              className={`flex-1 px-3 sm:px-4 py-2.5 sm:py-3 border rounded-lg sm:rounded-xl text-xs sm:text-sm ${isLight ? 'bg-white/60 border-white/80 text-[#5c5580]' : 'bg-white/5 border-white/10 text-zinc-500'}`}
-            />
-            <button 
-              onClick={() => copyToClipboard(user?.email || '')}
-              className={`px-3 sm:px-4 py-2.5 sm:py-3 border rounded-lg sm:rounded-xl transition group ${isLight ? 'bg-white/60 border-white/80 hover:bg-purple-100 hover:border-purple-300' : 'bg-white/5 border-white/10 hover:bg-purple-600/20 hover:border-purple-500/50'}`}
-              title="Скопировать email"
-            >
-              <svg className={`w-4 h-4 sm:w-5 sm:h-5 transition ${isLight ? 'text-[#5c5580] group-hover:text-purple-600' : 'text-zinc-400 group-hover:text-purple-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-              </svg>
-            </button>
-          </div>
-
-          {!showEmailChange ? (
-            <button
-              onClick={() => setShowEmailChange(true)}
-              className="text-xs text-[#a090ea] hover:text-[#c4b5fd] transition flex items-center gap-1 font-semibold"
-            >
-              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-              </svg>
-              Изменить email
-            </button>
-          ) : (
-            <div className={`space-y-2 sm:space-y-3 p-2.5 sm:p-3 border rounded-lg animate-[fadeIn_0.3s_ease-in-out] ${isLight ? 'bg-white/60 border-white/80' : 'bg-white/[0.03] border-white/10'}`}>
-              <div className="flex items-center justify-between">
-                <span className={`text-xs sm:text-sm font-bold ${isLight ? 'text-[#1a1535]' : 'text-white'}`}>Смена email</span>
-                <button
-                  onClick={() => {
-                    setShowEmailChange(false);
-                    setNewEmail('');
-                    setEmailError('');
-                    setEmailSuccess('');
-                  }}
-                  className={`transition ${isLight ? 'text-gray-400 hover:text-gray-700' : 'text-zinc-500 hover:text-white'}`}
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-
-              {emailError && (
-                <div className="p-2 bg-red-500/10 border border-red-500/30 rounded text-red-400 text-xs">
-                  {emailError}
-                </div>
-              )}
-
-              {emailSuccess && (
-                <div className="p-2 bg-emerald-500/10 border border-emerald-500/30 rounded text-emerald-400 text-xs">
-                  {emailSuccess}
-                </div>
-              )}
-
-              <input
-                type="email"
-                value={newEmail}
-                onChange={(e) => setNewEmail(e.target.value)}
-                placeholder="Новый email"
-                className={`w-full px-3 py-2 border rounded text-xs sm:text-sm outline-none transition ${isLight ? 'bg-white border-gray-200 text-[#1a1535] focus:border-[#6050ba] focus:bg-white placeholder-gray-400' : 'bg-white/5 border-white/10 text-white focus:border-[#6050ba] focus:bg-white/10 placeholder-zinc-600'}`}
+              <div 
+                className="absolute -top-16 -right-16 w-32 h-32 rounded-full pointer-events-none opacity-0 group-hover/card:opacity-100 transition-opacity duration-500"
+                style={{ background: 'radial-gradient(circle, rgba(34, 211, 238, 0.15) 0%, transparent 70%)' }}
               />
-
-              <button
-                onClick={handleChangeEmail}
-                disabled={emailLoading || !newEmail}
-                className={`w-full py-2 sm:py-2.5 rounded text-[10px] sm:text-xs font-bold uppercase tracking-widest transition-all ${
-                  emailLoading || !newEmail
-                    ? 'bg-[#8070da]/30 cursor-not-allowed text-zinc-400'
-                    : 'bg-gradient-to-r from-[#8070da] to-[#a090ea] hover:shadow-lg hover:shadow-[#8070da]/40 text-white'
-                }`}
-              >
-                {emailLoading ? (
-                  <span className="flex items-center justify-center gap-2">
-                    <svg className="animate-spin h-3 w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    Отправка...
-                  </span>
-                ) : 'Отправить подтверждение'}
-              </button>
-
-              <p className={`text-[9px] ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>
-                На новый email будет отправлено письмо с подтверждением
-              </p>
-            </div>
-          )}
-        </div>
-
-        {/* Секция смены пароля */}
-        <div>
-          <label className={`text-[10px] uppercase tracking-widest mb-3 block ${isLight ? 'text-[#5c5580]' : 'text-zinc-500'}`}>Безопасность</label>
-          
-          {!showPasswordChange ? (
-            <button
-              onClick={() => setShowPasswordChange(true)}
-              className={`w-full py-3 px-4 border text-sm font-medium rounded-xl transition-all flex items-center justify-center gap-2 ${isLight ? 'bg-white/60 border-white/80 text-[#5c5580] hover:bg-white/80 hover:border-purple-200' : 'bg-white/5 border-white/10 text-zinc-300 hover:bg-white/10 hover:border-white/20'}`}
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-              Изменить пароль
-            </button>
-          ) : (
-            <div className={`space-y-3 sm:space-y-4 p-3 sm:p-4 border rounded-lg sm:rounded-xl animate-[fadeIn_0.3s_ease-in-out] ${isLight ? 'bg-white/60 border-white/80' : 'bg-white/[0.03] border-white/10'}`}>
-              <div className="flex items-center justify-between mb-1 sm:mb-2">
-                <h3 className={`text-xs sm:text-sm font-bold ${isLight ? 'text-[#1a1535]' : 'text-white'}`}>Смена пароля</h3>
-                <button
-                  onClick={() => {
-                    setShowPasswordChange(false);
-                    setPasswordError('');
-                    setPasswordSuccess('');
-                  }}
-                  className={`transition ${isLight ? 'text-gray-400 hover:text-gray-700' : 'text-zinc-500 hover:text-white'}`}
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-
-              {passwordError && (
-                <div className="p-2 sm:p-3 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 text-[10px] sm:text-xs">
-                  {passwordError}
-                </div>
-              )}
-
-              {passwordSuccess && (
-                <div className="p-2 sm:p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-lg text-emerald-400 text-[10px] sm:text-xs">
-                  {passwordSuccess}
-                </div>
-              )}
-
-              <p className={`text-[10px] sm:text-xs leading-relaxed ${isLight ? 'text-[#5c5580]' : 'text-zinc-400'}`}>
-                На вашу почту <span className={`font-medium ${isLight ? 'text-[#1a1535]' : 'text-white'}`}>{user?.email}</span> будет отправлено письмо со ссылкой для смены пароля.
-              </p>
-
-              <button
-                onClick={handleChangePassword}
-                disabled={passwordLoading}
-                className={`w-full py-2.5 sm:py-3 rounded-lg text-[10px] sm:text-xs font-bold uppercase tracking-widest transition-all ${
-                  passwordLoading
-                    ? 'bg-[#8070da]/30 cursor-not-allowed text-zinc-400'
-                    : 'bg-gradient-to-r from-[#8070da] to-[#a090ea] hover:shadow-lg hover:shadow-[#8070da]/40 text-white'
-                }`}
-              >
-                {passwordLoading ? (
-                  <span className="flex items-center justify-center gap-2">
-                    <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    Отправка...
-                  </span>
-                ) : 'Отправить письмо для смены пароля'}
-              </button>
-            </div>
-          )}
-        </div>
-        
-        {/* Статус */}
-        <div>
-          <label className={`text-[10px] uppercase tracking-[0.2em] mb-3 block font-bold ${isLight ? 'text-[#5c5580]' : 'text-zinc-400'}`}>
-            Статус аккаунта
-          </label>
-          <div 
-            className={`group inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-5 py-2.5 sm:py-3.5 rounded-lg sm:rounded-xl border-2 ${config.borderColor} transition-all duration-300 hover:scale-105 ${isLight && role === 'basic' ? 'bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400' : `bg-gradient-to-br ${config.color}`}`}
-            style={{ boxShadow: `0 0 25px ${config.glowColor}, 0 4px 12px rgba(0,0,0,0.3)` }}
-          >
-            <span className={`text-xl sm:text-2xl ${isLight && role === 'basic' ? 'opacity-80' : ''}`}>{config.icon}</span>
-            <div>
-              <div className={`text-xs sm:text-sm font-bold uppercase tracking-wider ${isLight && role === 'basic' ? 'text-gray-700' : 'text-white'}`}>{config.shortLabel}</div>
-              <div className={`text-[9px] sm:text-[10px] ${isLight && role === 'basic' ? 'text-gray-600' : 'text-white/70'}`}>{config.label}</div>
-            </div>
-          </div>
-          {role === 'basic' && (
-            <div className={`mt-3 p-3 bg-gradient-to-r from-[#f59e0b]/10 to-[#fbbf24]/10 border border-[#fbbf24]/30 rounded-xl`}>
-              <p className={`text-xs leading-relaxed ${isLight ? 'text-[#5c5580]' : 'text-zinc-300'}`}>
-                ✨ Want to become <span className="text-[#fbbf24] font-bold">Exclusive</span>?{' '}
-                <Link href="/contacts" className="text-[#6050ba] hover:text-[#7060ca] font-bold underline decoration-2 underline-offset-2">
-                  Contact us
-                </Link>
-              </p>
-            </div>
-          )}
-        </div>
-
-        {/* Настройка темы */}
-        <div>
-          <label className={`text-[10px] uppercase tracking-[0.2em] mb-3 block font-bold ${isLight ? 'text-[#5c5580]' : 'text-zinc-400'}`}>
-            Тема интерфейса
-          </label>
-          <ThemeSelector />
-        </div>
-
-        {/* Кнопка выхода */}
-        <button 
-          onClick={onSignOut}
-          className={`group w-full py-2.5 sm:py-3.5 px-3 sm:px-4 border text-xs sm:text-sm font-bold uppercase tracking-wider rounded-lg sm:rounded-xl transition-all duration-300 flex items-center justify-center gap-2 ${isLight ? 'bg-gradient-to-r from-gray-100 to-gray-200 border-gray-300 text-gray-600 hover:from-gray-200 hover:to-gray-300 hover:border-gray-400 hover:text-gray-800' : 'bg-gradient-to-r from-zinc-700/30 to-zinc-800/30 border-zinc-600/30 text-zinc-300 hover:from-zinc-600/40 hover:to-zinc-700/40 hover:border-zinc-500/50 hover:text-white hover:shadow-lg hover:shadow-zinc-900/30'}`}
-        >
-          <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-          </svg>
-          Выйти
-        </button>
-        </div>
-        
-        {/* Правая колонка - управление для Admin/Owner */}
-        {(role === 'admin' || role === 'owner' || originalRole === 'admin' || originalRole === 'owner') && (
-          <div className="space-y-4 sm:space-y-6">
-            {/* Account Management */}
-            <div className="group/card">
-              <label className="text-[10px] text-zinc-400 uppercase tracking-[0.2em] mb-3 block font-bold flex items-center gap-2">
-                <svg className="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              
+              <label className={`text-[10px] uppercase tracking-[0.2em] mb-4 block font-bold flex items-center gap-2 ${isLight ? 'text-cyan-700' : 'text-cyan-400'}`}>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
                 Управление учетной записью
               </label>
-              <div className="p-4 sm:p-6 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 border border-cyan-500/20 rounded-xl sm:rounded-2xl hover:border-cyan-500/40 transition-all duration-300 group-hover/card:shadow-lg group-hover/card:shadow-cyan-500/10">
-                <AccountManager 
-                  userId={user?.id} 
-                  currentEmail={user?.email || ''} 
-                />
-              </div>
+              <AccountManager 
+                userId={user?.id} 
+                currentEmail={user?.email || ''} 
+              />
             </div>
 
-            {/* Developer Info */}
+            {/* Developer Info - Glass Card */}
             {originalRole === 'owner' && (
-              <div className="p-3 sm:p-4 bg-gradient-to-br from-purple-500/5 to-pink-500/5 border border-purple-500/20 rounded-xl sm:rounded-2xl">
-                <div className="flex items-start gap-2 sm:gap-3">
-                  <div className="flex-shrink-0">
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
+              <div 
+                className="p-4 rounded-2xl relative overflow-hidden"
+                style={{
+                  ...glassStyles.glassCard,
+                  background: isLight 
+                    ? 'linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(250, 245, 255, 0.45) 100%)'
+                    : 'linear-gradient(135deg, rgba(30, 27, 45, 0.6) 0%, rgba(88, 28, 135, 0.15) 100%)',
+                }}
+              >
+                <div className="flex items-start gap-3">
+                  <div 
+                    className="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center"
+                    style={{
+                      background: isLight 
+                        ? 'linear-gradient(135deg, rgba(168, 85, 247, 0.12) 0%, rgba(236, 72, 153, 0.08) 100%)'
+                        : 'linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(236, 72, 153, 0.12) 100%)',
+                      border: '1px solid rgba(168, 85, 247, 0.2)',
+                    }}
+                  >
+                    <svg className={`w-5 h-5 ${isLight ? 'text-purple-600' : 'text-purple-400'}`} fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
                     </svg>
                   </div>
                   <div className="flex-1">
-                    <h4 className="text-xs font-bold text-purple-300 mb-1">Доступ Owner</h4>
-                    <p className="text-[9px] sm:text-[10px] text-zinc-400 leading-relaxed">
-                      Как owner, у вас есть полный доступ ко всем ролям и функциям. Панель тестирования появляется в правом нижнем углу для быстрого переключения.
+                    <h4 className={`text-sm font-bold mb-1.5 ${isLight ? 'text-purple-700' : 'text-purple-300'}`}>Доступ Owner</h4>
+                    <p className={`text-xs leading-relaxed ${isLight ? 'text-[#5c5580]' : 'text-zinc-400'}`}>
+                      У вас полный доступ ко всем ролям и функциям.
                     </p>
                   </div>
                 </div>
@@ -503,8 +674,43 @@ export default function SettingsTab({
             )}
           </div>
         )}
+
+        {/* ═══════════════════════════════════════════════════════════════════
+            5. КНОПКА ВЫХОДА - Красиво по центру снизу
+        ═══════════════════════════════════════════════════════════════════ */}
+        <div className="mt-8 sm:mt-10 flex justify-center">
+          <button 
+            onClick={onSignOut}
+            className="group relative w-full max-w-md px-8 sm:px-16 py-4 sm:py-5 text-sm sm:text-base font-bold uppercase tracking-wider rounded-2xl transition-all duration-300 flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-[0.98] overflow-hidden"
+            style={{
+              background: isLight 
+                ? 'linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(220, 38, 38, 0.06) 100%)'
+                : 'linear-gradient(135deg, rgba(239, 68, 68, 0.18) 0%, rgba(220, 38, 38, 0.12) 100%)',
+              border: isLight 
+                ? '1.5px solid rgba(239, 68, 68, 0.25)' 
+                : '1.5px solid rgba(239, 68, 68, 0.3)',
+              backdropFilter: 'blur(20px)',
+              WebkitBackdropFilter: 'blur(20px)',
+              boxShadow: isLight 
+                ? '0 4px 24px rgba(239, 68, 68, 0.12), inset 0 1px 0 rgba(255,255,255,0.3)'
+                : '0 4px 30px rgba(239, 68, 68, 0.2), inset 0 1px 0 rgba(255,255,255,0.08)',
+            }}
+          >
+            {/* Hover glow effect */}
+            <div 
+              className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+              style={{
+                background: 'radial-gradient(circle at center, rgba(239, 68, 68, 0.2) 0%, transparent 70%)',
+              }}
+            />
+            <svg className={`relative z-10 w-5 h-5 sm:w-6 sm:h-6 group-hover:rotate-12 transition-all duration-300 ${isLight ? 'text-red-500' : 'text-red-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+            <span className={`relative z-10 whitespace-nowrap ${isLight ? 'text-red-600' : 'text-red-400'}`}>Выйти из аккаунта</span>
+          </button>
+        </div>
       </div>
-    </div>
     </>
   );
 }
+

@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { useTheme } from '@/contexts/ThemeContext';
 
 interface ReleaseModalProps {
   release: {
@@ -15,26 +16,72 @@ interface ReleaseModalProps {
 }
 
 export default function ReleaseModal({ release, onClose }: ReleaseModalProps) {
-  const statusConfig: Record<string, { label: string; color: string; emoji: string }> = {
-    pending: { label: 'На модерации', color: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/40', emoji: '⏳' },
-    distributed: { label: 'На дистрибьюции', color: 'bg-blue-500/20 text-blue-300 border-blue-500/40', emoji: '🚀' },
-    rejected: { label: 'Отклонен', color: 'bg-red-500/20 text-red-300 border-red-500/40', emoji: '❌' },
-    published: { label: 'Опубликован', color: 'bg-purple-500/20 text-purple-300 border-purple-500/40', emoji: '🎵' },
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
+  
+  const statusConfig: Record<string, { label: string; color: string; bgColor: string }> = {
+    pending: { label: 'На модерации', color: '#fbbf24', bgColor: 'rgba(251, 191, 36, 0.15)' },
+    distributed: { label: 'На дистрибьюции', color: '#60a5fa', bgColor: 'rgba(96, 165, 250, 0.15)' },
+    rejected: { label: 'Отклонен', color: '#f87171', bgColor: 'rgba(248, 113, 113, 0.15)' },
+    published: { label: 'Опубликован', color: '#c4b5fd', bgColor: 'rgba(196, 181, 253, 0.15)' },
+    approved: { label: 'Одобрен', color: '#34d399', bgColor: 'rgba(52, 211, 153, 0.15)' },
   };
   
-  const status = statusConfig[release.status] || { label: release.status, color: 'bg-zinc-500/20 text-zinc-300 border-zinc-500/40', emoji: '📀' };
+  const status = statusConfig[release.status] || { label: release.status, color: '#9d8df1', bgColor: 'rgba(157, 141, 241, 0.15)' };
+
+  // SVG иконки для статусов
+  const StatusIcon = () => {
+    switch (release.status) {
+      case 'pending':
+        return (
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        );
+      case 'approved':
+        return (
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+        );
+      case 'rejected':
+        return (
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        );
+      case 'published':
+        return (
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z" />
+          </svg>
+        );
+      case 'distributed':
+        return (
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+          </svg>
+        );
+      default:
+        return (
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12-3v13" />
+          </svg>
+        );
+    }
+  };
 
   return (
     <div 
-      className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-start justify-center overflow-y-auto p-4 pt-16 pb-8" 
+      className={`fixed inset-0 backdrop-blur-sm z-50 flex items-start justify-center overflow-y-auto p-4 pt-16 pb-8 ${isLight ? 'bg-black/40' : 'bg-black/80'}`} 
       onClick={onClose}
     >
       <div 
-        className="admin-dark-modal bg-zinc-900 border border-purple-500/30 rounded-2xl shadow-2xl max-w-2xl w-full overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-zinc-900" 
+        className={`admin-dark-modal border rounded-2xl shadow-2xl max-w-2xl w-full overflow-y-auto scrollbar-thin ${isLight ? 'bg-white border-purple-400/50 scrollbar-thumb-gray-400 scrollbar-track-gray-100' : 'bg-zinc-900 border-purple-500/30 scrollbar-thumb-zinc-700 scrollbar-track-zinc-900'}`} 
         onClick={(e) => e.stopPropagation()}
       >
         {/* Хедер */}
-        <div className="sticky top-0 bg-gradient-to-r from-purple-900/50 to-blue-900/50 backdrop-blur-sm border-b border-purple-500/30 p-6 flex items-center justify-between z-10">
+        <div className={`sticky top-0 backdrop-blur-sm border-b p-6 flex items-center justify-between z-10 ${isLight ? 'bg-gradient-to-r from-purple-100 to-blue-100 border-purple-300/50' : 'bg-gradient-to-r from-purple-900/50 to-blue-900/50 border-purple-500/30'}`}>
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center">
               <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -42,8 +89,8 @@ export default function ReleaseModal({ release, onClose }: ReleaseModalProps) {
               </svg>
             </div>
             <div>
-              <h3 className="text-xl font-black text-white">Информация о релизе</h3>
-              <p className="text-sm text-purple-300">Полные данные</p>
+              <h3 className={`text-xl font-black ${isLight ? 'text-gray-900' : 'text-white'}`}>Информация о релизе</h3>
+              <p className={`text-sm ${isLight ? 'text-purple-600' : 'text-purple-300'}`}>Полные данные</p>
             </div>
           </div>
           <button
@@ -77,11 +124,18 @@ export default function ReleaseModal({ release, onClose }: ReleaseModalProps) {
             </div>
 
             <div className="flex-1 min-w-0">
-              <h2 className="text-3xl font-black text-white mb-2">{release.title}</h2>
-              <p className="text-xl text-purple-300 mb-4">{release.artist}</p>
+              <h2 className={`text-3xl font-black mb-2 ${isLight ? 'text-gray-900' : 'text-white'}`}>{release.title}</h2>
+              <p className={`text-xl mb-4 ${isLight ? 'text-purple-600' : 'text-purple-300'}`}>{release.artist}</p>
               
-              <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl border-2 ${status.color} mb-4`}>
-                <span className="text-2xl">{status.emoji}</span>
+              <div 
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl mb-4"
+                style={{ 
+                  background: status.bgColor, 
+                  color: status.color,
+                  border: `2px solid ${status.color}40`
+                }}
+              >
+                <StatusIcon />
                 <span className="font-bold">{status.label}</span>
               </div>
             </div>
@@ -89,15 +143,17 @@ export default function ReleaseModal({ release, onClose }: ReleaseModalProps) {
 
           {/* Детали */}
           <div className="grid grid-cols-2 gap-4">
-            <div className="p-4 bg-zinc-800/50 border border-zinc-700 rounded-xl">
-              <p className="text-xs text-zinc-500 mb-1">ID Релиза</p>
-              <p className="text-sm font-mono text-white break-all">{release.id}</p>
-            </div>
+            {(release as any).release_code && (
+              <div className={`p-4 border rounded-xl ${isLight ? 'bg-gray-100 border-gray-300' : 'bg-zinc-800/50 border-zinc-700'}`}>
+                <p className={`text-xs mb-1 ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>Код релиза</p>
+                <p className="text-sm font-mono text-purple-400 font-bold">{(release as any).release_code}</p>
+              </div>
+            )}
             
             {release.created_at && (
-              <div className="p-4 bg-zinc-800/50 border border-zinc-700 rounded-xl">
-                <p className="text-xs text-zinc-500 mb-1">Дата создания</p>
-                <p className="text-sm text-white">
+              <div className={`p-4 border rounded-xl ${isLight ? 'bg-gray-100 border-gray-300' : 'bg-zinc-800/50 border-zinc-700'}`}>
+                <p className={`text-xs mb-1 ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>Дата создания</p>
+                <p className={`text-sm ${isLight ? 'text-gray-900' : 'text-white'}`}>
                   {new Date(release.created_at).toLocaleDateString('ru-RU', {
                     day: 'numeric',
                     month: 'long',
@@ -111,18 +167,18 @@ export default function ReleaseModal({ release, onClose }: ReleaseModalProps) {
           </div>
 
           {/* Дополнительная информация */}
-          <div className="p-6 bg-gradient-to-br from-purple-900/10 to-blue-900/10 border border-purple-500/20 rounded-xl">
-            <h4 className="text-sm font-bold text-purple-300 mb-3 flex items-center gap-2">
+          <div className={`p-6 border rounded-xl ${isLight ? 'bg-gradient-to-br from-purple-100/50 to-blue-100/50 border-purple-300/50' : 'bg-gradient-to-br from-purple-900/10 to-blue-900/10 border-purple-500/20'}`}>
+            <h4 className={`text-sm font-bold mb-3 flex items-center gap-2 ${isLight ? 'text-purple-600' : 'text-purple-300'}`}>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               Дополнительная информация
             </h4>
-            <div className="text-sm text-zinc-300 space-y-2">
+            <div className={`text-sm space-y-2 ${isLight ? 'text-gray-700' : 'text-zinc-300'}`}>
               <p>• Этот релиз был выбран пользователем при создании тикета</p>
               <p>• Вы можете посмотреть полную информацию о релизе в разделе модерации</p>
               {release.status === 'pending' && (
-                <p className="text-yellow-300">• Релиз находится на модерации и ожидает проверки</p>
+                <p className={isLight ? 'text-yellow-600' : 'text-yellow-300'}>• Релиз находится на модерации и ожидает проверки</p>
               )}
             </div>
           </div>

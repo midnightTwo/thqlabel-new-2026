@@ -11,6 +11,7 @@ export interface User {
   created_at: string;
   email_confirmed: boolean;
   last_sign_in: string;
+  last_active?: string | null;
   telegram?: string;
 }
 
@@ -25,6 +26,7 @@ export interface Profile {
   role: 'admin' | 'exclusive' | 'basic' | 'owner' | null;
   avatar: string | null;
   created_at: string | null;
+  last_active?: string | null;
   telegram?: string | null;
   vk?: string | null;
   instagram?: string | null;
@@ -64,6 +66,12 @@ export interface Release {
   language?: string;
   copyright?: string;
   tracks?: any[];
+  // Payment info for basic releases
+  is_paid?: boolean;
+  payment_amount?: number;
+  payment_id?: string;
+  payment_date?: string;
+  payment_receipt_url?: string;
 }
 
 export interface Payout {

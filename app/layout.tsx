@@ -10,6 +10,7 @@ import { ThemeProvider, useTheme } from '../contexts/ThemeContext';
 import { NotificationProvider } from '../contexts/NotificationContext';
 import { SilverStar } from '../components/ui/SilverStars';
 import { UserRole, ROLE_CONFIG } from './cabinet/lib/types';
+import { useElitePerformance } from '@/lib/hooks/useElitePerformance';
 
 // ============================================
 // LAZY LOADING ТЯЖЁЛЫХ КОМПОНЕНТОВ
@@ -283,6 +284,9 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
   const updateTimeoutRef = useRef<NodeJS.Timeout>(undefined);
   const pathnameRef = useRef(pathname);
   
+  // 💎 ELITE PERFORMANCE - инициализация всех оптимизаций
+  useElitePerformance();
+  
   // Состояние для данных пользователя (мобильное меню)
   const [mobileUserData, setMobileUserData] = useState<{
     nickname: string;
@@ -334,6 +338,57 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
     };
   }, []);
 
+  // Отслеживание активности пользователя
+  useEffect(() => {
+    if (!supabase) return;
+    
+    let activityTimeout: NodeJS.Timeout;
+    let lastUpdate = 0;
+    const UPDATE_INTERVAL = 60000; // Обновляем каждую минуту при активности
+    
+    const updateActivity = async () => {
+      if (!supabase) return;
+      const now = Date.now();
+      if (now - lastUpdate < UPDATE_INTERVAL) return;
+      lastUpdate = now;
+      
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (session?.access_token) {
+          fetch('/api/user/activity', {
+            method: 'POST',
+            headers: { 'Authorization': `Bearer ${session.access_token}` }
+          }).catch(() => {}); // Игнорируем ошибки
+        }
+      } catch {}
+    };
+    
+    // Обновляем активность при загрузке
+    updateActivity();
+    
+    // Обновляем при активности пользователя
+    const events = ['mousedown', 'keydown', 'scroll', 'touchstart'];
+    const handleActivity = () => {
+      clearTimeout(activityTimeout);
+      activityTimeout = setTimeout(updateActivity, 1000);
+    };
+    
+    events.forEach(event => {
+      window.addEventListener(event, handleActivity, { passive: true });
+    });
+    
+    // Периодическое обновление каждые 5 минут
+    const interval = setInterval(updateActivity, 5 * 60 * 1000);
+    
+    return () => {
+      events.forEach(event => {
+        window.removeEventListener(event, handleActivity);
+      });
+      clearInterval(interval);
+      clearTimeout(activityTimeout);
+    };
+  }, []);
+
   // Синхронизируем ref с prop
   useEffect(() => {
     pathnameRef.current = pathname;
@@ -342,7 +397,8 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
   useEffect(() => {
     setMounted(true);
     const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
+    // 🔇 PASSIVE listener для мгновенного скролла
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -875,8 +931,8 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
         </ModalProvider>
       </div>
 
-      {/* Глобальный виджет поддержки - скрыт на странице feed */}
-      {pathname !== '/feed' && <GlobalSupportWidget />}
+      {/* Глобальный виджет поддержки - только в кабинете */}
+      {pathname.startsWith('/cabinet') && <GlobalSupportWidget />}
     </>
   );
 }

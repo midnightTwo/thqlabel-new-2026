@@ -18,34 +18,66 @@ export default function BalanceCard({ balance, onWithdrawClick, onDepositClick, 
   const isLight = themeName === 'light';
 
   return (
-    <div className="glass-panel p-3 sm:p-5 rounded-xl sm:rounded-2xl">
-      <div className="flex flex-col gap-3 sm:gap-4">
-        {/* Balance Display */}
-        <div>
-          <div className="text-[9px] sm:text-xs uppercase tracking-wider mb-0.5 sm:mb-1 text-caption">
-            Доступно
+    <div 
+      className="p-3 sm:p-4 rounded-xl sm:rounded-2xl"
+      style={{
+        background: isLight 
+          ? 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(250, 248, 255, 0.9) 100%)'
+          : 'linear-gradient(135deg, rgba(30, 27, 45, 0.95) 0%, rgba(45, 40, 70, 0.9) 100%)',
+        border: isLight 
+          ? '1px solid rgba(255, 255, 255, 0.9)' 
+          : '1px solid rgba(255, 255, 255, 0.1)',
+        boxShadow: isLight 
+          ? '0 4px 24px rgba(157, 141, 241, 0.1), inset 0 1px 0 rgba(255, 255, 255, 1)' 
+          : '0 4px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08)',
+      }}
+    >
+      {/* Desktop: row layout with buttons on right | Mobile: column layout */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
+        {/* Balance Display - компактнее */}
+        <div className="flex items-center gap-3">
+          <div 
+            className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center flex-shrink-0"
+            style={{
+              background: isLight 
+                ? 'linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(34, 197, 94, 0.1) 100%)'
+                : 'linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(34, 197, 94, 0.15) 100%)',
+              border: isLight ? '1px solid rgba(16, 185, 129, 0.2)' : '1px solid rgba(16, 185, 129, 0.25)',
+            }}
+          >
+            <svg className="w-5 h-5 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+              <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/>
+              <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/>
+              <path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/>
+            </svg>
           </div>
-          <div className="text-xl sm:text-3xl font-black text-emerald-500">
-            {balance.toFixed(2)} ₽
-          </div>
-          <div className="text-[8px] sm:text-[10px] mt-0.5 sm:mt-1 text-hint">
-            Мин. для вывода: 1000 ₽
+          <div>
+            <div className={`text-[9px] sm:text-[10px] uppercase tracking-wider ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>
+              Баланс
+            </div>
+            <div className="text-xl sm:text-2xl font-black text-emerald-500">
+              {balance.toFixed(2)} ₽
+            </div>
           </div>
         </div>
 
-        {/* Action Buttons - в столбик на мобилках, в ряд на десктопе */}
+        {/* Action Buttons - справа на ПК */}
         {!showWithdrawalForm && (
-          <div className="grid grid-cols-2 sm:flex sm:flex-row gap-2 w-full sm:w-auto">
+          <div className="flex gap-2">
             {/* Deposit Button */}
             <button 
               onClick={onDepositClick}
-              className={`group w-full sm:w-auto px-3 py-2.5 sm:py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 flex items-center justify-center gap-1.5 sm:gap-2 min-h-[44px] active:scale-[0.98] ${
-                isLight
-                  ? 'bg-zinc-100 hover:bg-zinc-200/80 text-zinc-700 border border-zinc-200/80'
-                  : 'bg-white/[0.06] hover:bg-white/[0.1] text-zinc-300 border border-white/[0.08]'
-              }`}
+              className="group flex-1 sm:flex-none px-3 sm:px-4 py-2 sm:py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold transition-all duration-150 flex items-center justify-center gap-1.5 active:scale-[0.97]"
+              style={{
+                background: isLight 
+                  ? 'linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(167, 139, 250, 0.08) 100%)'
+                  : 'linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(167, 139, 250, 0.15) 100%)',
+                border: isLight ? '1px solid rgba(139, 92, 246, 0.25)' : '1px solid rgba(139, 92, 246, 0.3)',
+                color: isLight ? '#7c3aed' : '#a78bfa',
+              }}
             >
-              <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-violet-500 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+              {/* Wallet Icon - Кошелёк */}
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/>
                 <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/>
                 <path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/>
@@ -57,23 +89,35 @@ export default function BalanceCard({ balance, onWithdrawClick, onDepositClick, 
             <button 
               onClick={onWithdrawClick}
               disabled={balance < 1000}
-              className={`group w-full sm:w-auto px-3 py-2.5 sm:py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 flex items-center justify-center gap-1.5 sm:gap-2 min-h-[44px] active:scale-[0.98] ${
-                balance >= 1000 
-                  ? isLight
-                    ? 'bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200/80'
-                    : 'bg-emerald-500/10 hover:bg-emerald-500/15 text-emerald-400 border border-emerald-500/20'
-                  : isLight 
-                    ? 'bg-zinc-100 text-zinc-400 border border-zinc-200/60 cursor-not-allowed'
-                    : 'bg-white/[0.04] text-zinc-600 border border-white/[0.06] cursor-not-allowed'
+              className={`group flex-1 sm:flex-none px-3 sm:px-4 py-2 sm:py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold transition-all duration-150 flex items-center justify-center gap-1.5 active:scale-[0.97] ${
+                balance < 1000 ? 'opacity-50 cursor-not-allowed' : ''
               }`}
+              style={{
+                background: balance >= 1000
+                  ? isLight 
+                    ? 'linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(34, 197, 94, 0.08) 100%)'
+                    : 'linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(34, 197, 94, 0.15) 100%)'
+                  : isLight 
+                    ? 'rgba(0, 0, 0, 0.03)'
+                    : 'rgba(255, 255, 255, 0.03)',
+                border: balance >= 1000
+                  ? isLight ? '1px solid rgba(16, 185, 129, 0.25)' : '1px solid rgba(16, 185, 129, 0.3)'
+                  : isLight ? '1px solid rgba(0, 0, 0, 0.06)' : '1px solid rgba(255, 255, 255, 0.06)',
+                color: balance >= 1000
+                  ? isLight ? '#059669' : '#34d399'
+                  : isLight ? '#9ca3af' : '#52525b',
+              }}
             >
-              <svg className={`w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0 ${balance >= 1000 ? 'text-emerald-500' : isLight ? 'text-zinc-400' : 'text-zinc-600'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-                <line x1="3" x2="21" y1="22" y2="22"/>
-                <line x1="6" x2="6" y1="18" y2="11"/>
-                <line x1="10" x2="10" y1="18" y2="11"/>
-                <line x1="14" x2="14" y1="18" y2="11"/>
-                <line x1="18" x2="18" y1="18" y2="11"/>
-                <polygon points="12 2 20 7 4 7"/>
+              {/* Bank Icon - Банк */}
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+                <path d="M3 21h18"/>
+                <path d="M3 10h18"/>
+                <path d="M5 6l7-3 7 3"/>
+                <path d="M4 10v11"/>
+                <path d="M20 10v11"/>
+                <path d="M8 14v3"/>
+                <path d="M12 14v3"/>
+                <path d="M16 14v3"/>
               </svg>
               <span>Вывести</span>
             </button>

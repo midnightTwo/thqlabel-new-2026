@@ -62,7 +62,7 @@ export function UserList({
           <p className={`text-xs mt-2 ${isLight ? 'text-gray-400' : 'text-zinc-600'}`}>Всего в базе: {totalCount}</p>
         </div>
       ) : (
-        <div className="max-h-[calc(100vh-300px)] sm:max-h-[600px] overflow-y-auto space-y-2 pr-1 sm:pr-2 -mr-1 sm:-mr-2" style={{ scrollbarWidth: 'thin' }}>
+        <div className="max-h-[calc(100vh-300px)] sm:max-h-[600px] overflow-y-auto space-y-2 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           {users.map(user => (
             <UserListItem
               key={user.id}

@@ -1,17 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 
-// Доступ к глобальному хранилищу токенов верификации
-declare global {
-  var verificationTokensStore: Map<string, { email: string, password: string, nickname: string, expiresAt: number }> | undefined;
-}
-
-const verificationTokens = globalThis.verificationTokensStore ?? new Map<string, { email: string, password: string, nickname: string, expiresAt: number }>();
-
-if (process.env.NODE_ENV !== 'production') {
-  globalThis.verificationTokensStore = verificationTokens;
-}
-
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
 
@@ -24,43 +13,53 @@ export async function GET(request: NextRequest) {
       return NextResponse.redirect(new URL('/auth?error=invalid_token', request.url));
     }
 
-    // Проверяем токен
-    const userData = verificationTokens.get(token);
+    // Создаем admin клиент
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
     
-    if (!userData) {
+    // Получаем токен из базы данных
+    const { data: tokenData, error: tokenError } = await supabase
+      .from('email_tokens')
+      .select('*')
+      .eq('token', token)
+      .eq('token_type', 'verification')
+      .eq('used', false)
+      .single();
+    
+    if (tokenError || !tokenData) {
+      console.error('Токен не найден:', tokenError);
       return NextResponse.redirect(new URL('/auth?error=token_expired', request.url));
     }
 
     // Проверяем не истек ли токен
-    if (userData.expiresAt < Date.now()) {
-      verificationTokens.delete(token);
+    if (new Date(tokenData.expires_at) < new Date()) {
+      // Удаляем истекший токен
+      await supabase.from('email_tokens').delete().eq('id', tokenData.id);
       return NextResponse.redirect(new URL('/auth?error=token_expired', request.url));
     }
 
     // Создаем пользователя в Supabase
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
-    
     const { data: authData, error: authError } = await supabase.auth.admin.createUser({
-      email: userData.email,
-      password: userData.password,
+      email: tokenData.email,
+      password: tokenData.password_hash,
       email_confirm: true, // Email сразу подтвержден
       user_metadata: {
-        nickname: userData.nickname,
-        display_name: userData.nickname,
-        full_name: userData.nickname
+        nickname: tokenData.nickname,
+        display_name: tokenData.nickname,
+        full_name: tokenData.nickname
       }
     });
 
     if (authError) {
       console.error('Ошибка создания пользователя:', authError);
-      verificationTokens.delete(token);
+      // Помечаем токен как использованный даже при ошибке
+      await supabase.from('email_tokens').update({ used: true }).eq('id', tokenData.id);
       return NextResponse.redirect(new URL('/auth?error=registration_failed', request.url));
     }
 
-    // Удаляем использованный токен
-    verificationTokens.delete(token);
+    // Помечаем токен как использованный
+    await supabase.from('email_tokens').update({ used: true }).eq('id', tokenData.id);
     
-    console.log('Пользователь успешно создан:', userData.email);
+    console.log('Пользователь успешно создан:', tokenData.email);
     
     // Перенаправляем на страницу входа с сообщением об успехе
     return NextResponse.redirect(new URL('/auth?verified=true', request.url));

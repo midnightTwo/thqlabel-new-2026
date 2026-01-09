@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo, useCallback, useRef, useEffect } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
 
 interface Transaction {
@@ -45,6 +45,85 @@ export default function OperationsHistory({ payouts, withdrawalRequests, transac
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [activeFilter, setActiveFilter] = useState<'all' | 'income' | 'withdrawal' | 'frozen' | 'purchase'>('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [visibleCount, setVisibleCount] = useState(6); // Показываем только 6 операций изначально
+  const listRef = useRef<HTMLDivElement>(null);
+
+  // Мемоизированные стили для карточек операций - создаются 1 раз при смене темы
+  const cardStyles = useMemo(() => ({
+    deposit: {
+      card: {
+        background: isLight ? 'rgba(255, 255, 255, 0.7)' : 'rgba(139, 92, 246, 0.08)',
+        border: isLight ? '1px solid rgba(139, 92, 246, 0.12)' : '1px solid rgba(139, 92, 246, 0.15)',
+      },
+      icon: {
+        background: isLight ? 'rgba(138, 99, 210, 0.15)' : 'rgba(96, 80, 186, 0.2)'
+      }
+    },
+    purchase: {
+      card: {
+        background: isLight ? 'rgba(255, 255, 255, 0.7)' : 'rgba(168, 85, 247, 0.08)',
+        border: isLight ? '1px solid rgba(168, 85, 247, 0.12)' : '1px solid rgba(168, 85, 247, 0.15)',
+      },
+      icon: {
+        background: isLight ? 'rgba(168, 85, 247, 0.15)' : 'rgba(168, 85, 247, 0.2)'
+      }
+    },
+    payout: {
+      card: {
+        background: isLight ? 'rgba(255, 255, 255, 0.7)' : 'rgba(232, 121, 249, 0.08)',
+        border: isLight ? '1px solid rgba(232, 121, 249, 0.12)' : '1px solid rgba(232, 121, 249, 0.15)',
+      },
+      icon: {
+        background: isLight 
+          ? 'linear-gradient(135deg, rgba(232, 121, 249, 0.15) 0%, rgba(192, 132, 252, 0.12) 100%)' 
+          : 'linear-gradient(135deg, rgba(232, 121, 249, 0.2) 0%, rgba(192, 132, 252, 0.15) 100%)'
+      }
+    },
+    withdrawal: {
+      card: {
+        background: isLight ? 'rgba(255, 255, 255, 0.7)' : 'rgba(251, 146, 60, 0.08)',
+        border: isLight ? '1px solid rgba(251, 146, 60, 0.12)' : '1px solid rgba(251, 146, 60, 0.15)',
+      },
+      icon: {
+        background: isLight ? 'rgba(251, 146, 60, 0.15)' : 'rgba(251, 146, 60, 0.2)'
+      }
+    },
+    bonus: {
+      card: {
+        background: isLight ? 'rgba(255, 255, 255, 0.7)' : 'rgba(34, 197, 94, 0.08)',
+        border: isLight ? '1px solid rgba(34, 197, 94, 0.12)' : '1px solid rgba(34, 197, 94, 0.15)',
+      },
+      icon: {
+        background: isLight ? 'rgba(34, 197, 94, 0.15)' : 'rgba(34, 197, 94, 0.2)'
+      }
+    },
+    default: {
+      card: {
+        background: isLight ? 'rgba(255, 255, 255, 0.6)' : 'rgba(255, 255, 255, 0.03)',
+        border: isLight ? '1px solid rgba(157, 141, 241, 0.1)' : '1px solid rgba(255, 255, 255, 0.08)',
+      },
+      icon: {
+        background: isLight ? 'rgba(157, 141, 241, 0.1)' : 'rgba(157, 141, 241, 0.15)'
+      }
+    }
+  }), [isLight]);
+
+  // Сброс visibleCount при смене фильтра
+  useEffect(() => {
+    setVisibleCount(6);
+  }, [activeFilter, searchQuery]);
+
+  // Infinite scroll - подгрузка при скролле
+  const handleScroll = useCallback(() => {
+    const container = listRef.current;
+    if (!container) return;
+    
+    const { scrollTop, scrollHeight, clientHeight } = container;
+    // Если доскроллили почти до конца (за 50px)
+    if (scrollHeight - scrollTop - clientHeight < 50) {
+      setVisibleCount(prev => prev + 6);
+    }
+  }, []);
 
   // Функция копирования ID транзакции
   const copyTransactionId = useCallback(async (id: string) => {
@@ -62,13 +141,21 @@ export default function OperationsHistory({ payouts, withdrawalRequests, transac
     setActiveFilter(filterId);
   }, []);
 
-  // Форматирование даты и времени
-  const formatDateTime = (dateStr: string) => {
+  // Кеш для форматированных дат - чтобы не создавать Date объекты многократно
+  const dateCache = useRef<Map<string, { day: string; time: string; full: string }>>(new Map());
+  
+  // Форматирование даты и времени с кешированием
+  const formatDateTime = useCallback((dateStr: string) => {
+    if (dateCache.current.has(dateStr)) {
+      return dateCache.current.get(dateStr)!;
+    }
     const date = new Date(dateStr);
     const day = date.toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric' });
     const time = date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
-    return { day, time, full: `${day} в ${time}` };
-  };
+    const result = { day, time, full: `${day} в ${time}` };
+    dateCache.current.set(dateStr, result);
+    return result;
+  }, []);
 
   // Объединяем payouts, withdrawals и transactions в одну ленту (мемоизировано)
   const allOperations = useMemo<Operation[]>(() => [
@@ -292,14 +379,14 @@ export default function OperationsHistory({ payouts, withdrawalRequests, transac
   if (allOperations.length === 0) {
     return (
       <div 
-        className="text-center py-12 rounded-2xl transition-all duration-300"
+        className="text-center py-12 rounded-2xl"
         style={{
-          border: isLight 
-            ? '1px dashed rgba(138, 99, 210, 0.3)' 
-            : '1px dashed rgba(255, 255, 255, 0.1)',
           background: isLight 
-            ? 'rgba(255, 255, 255, 0.4)' 
-            : 'transparent'
+            ? 'rgba(255, 255, 255, 0.6)'
+            : 'rgba(255, 255, 255, 0.03)',
+          border: isLight 
+            ? '1px dashed rgba(157, 141, 241, 0.2)' 
+            : '1px dashed rgba(255, 255, 255, 0.1)',
         }}
       >
         <div 
@@ -366,11 +453,14 @@ export default function OperationsHistory({ payouts, withdrawalRequests, transac
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Поиск..."
-          className={`w-full px-2.5 py-1.5 sm:px-3 sm:py-2 pl-8 sm:pl-9 rounded-lg sm:rounded-xl text-xs sm:text-sm outline-none transition min-h-[36px] sm:min-h-[40px] ${
-            isLight 
-              ? 'bg-white/70 border border-[#8a63d2]/20 text-[#1a1535] placeholder:text-[#7a7596] focus:border-[#8a63d2]/50'
-              : 'bg-black/30 border border-white/10 text-white placeholder:text-zinc-500 focus:border-[#6050ba]/50'
-          }`}
+          className="w-full px-2.5 py-1.5 sm:px-3 sm:py-2 pl-8 sm:pl-9 rounded-lg sm:rounded-xl text-xs sm:text-sm outline-none transition min-h-[36px] sm:min-h-[40px]"
+          style={{
+            background: isLight 
+              ? 'rgba(255, 255, 255, 0.7)' 
+              : 'rgba(255, 255, 255, 0.05)',
+            border: isLight ? '1px solid rgba(157, 141, 241, 0.15)' : '1px solid rgba(255, 255, 255, 0.08)',
+            color: isLight ? '#1a1535' : 'white',
+          }}
         />
         <svg className={`w-3.5 h-3.5 sm:w-4 sm:h-4 absolute left-2.5 sm:left-3 top-1/2 -translate-y-1/2 ${isLight ? 'text-[#8a63d2]' : 'text-[#9d8df1]'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -409,22 +499,37 @@ export default function OperationsHistory({ payouts, withdrawalRequests, transac
             <button
               key={btn.id}
               onClick={() => handleFilterChange(btn.id)}
-              className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 rounded-md sm:rounded-lg text-[10px] sm:text-xs font-bold transition-all whitespace-nowrap border min-h-[32px] sm:min-h-[36px] ${
-                activeFilter === btn.id
-                  ? `bg-gradient-to-r ${buttonColor} ${isLight ? '!text-gray-800' : 'text-white'} shadow-lg`
+              className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 rounded-md sm:rounded-lg text-[10px] sm:text-xs font-bold transition-all whitespace-nowrap min-h-[32px] sm:min-h-[36px]`}
+              style={{
+                background: activeFilter === btn.id
+                  ? isLight 
+                    ? 'linear-gradient(135deg, rgba(157, 141, 241, 0.2) 0%, rgba(139, 92, 246, 0.15) 100%)'
+                    : 'linear-gradient(135deg, rgba(157, 141, 241, 0.25) 0%, rgba(139, 92, 246, 0.2) 100%)'
                   : isLight 
-                    ? 'bg-white/50 text-[#5c5580] border-white/50 hover:bg-white/70'
-                    : 'bg-white/5 text-zinc-400 border-white/5 hover:bg-white/10'
-              }`}
+                    ? 'rgba(255, 255, 255, 0.6)'
+                    : 'rgba(255, 255, 255, 0.05)',
+                border: activeFilter === btn.id
+                  ? isLight ? '1px solid rgba(139, 92, 246, 0.25)' : '1px solid rgba(139, 92, 246, 0.3)'
+                  : isLight ? '1px solid rgba(255, 255, 255, 0.6)' : '1px solid rgba(255, 255, 255, 0.08)',
+                color: activeFilter === btn.id
+                  ? isLight ? '#1a1535' : 'white'
+                  : isLight ? '#5c5580' : '#a1a1aa',
+              }}
             >
-              <span className={activeFilter === btn.id ? (isLight ? '!text-gray-700' : 'text-white') : buttonIconColor}>{btn.icon}</span>
+              <span className={activeFilter === btn.id ? (isLight ? 'text-[#6050ba]' : 'text-[#c4b5fd]') : buttonIconColor}>{btn.icon}</span>
               <span className="hidden sm:inline">{btn.label}</span>
               {count > 0 && (
-                <span className={`sm:ml-1 px-1 sm:px-1.5 py-0.5 rounded-full text-[9px] sm:text-[10px] ${
-                  activeFilter === btn.id 
-                    ? (isLight ? 'bg-gray-800/20 !text-gray-800' : 'bg-white/20')
-                    : isLight ? 'bg-[#8a63d2]/10 text-[#8a63d2]' : 'bg-white/10'
-                }`}>
+                <span 
+                  className="sm:ml-1 px-1 sm:px-1.5 py-0.5 rounded-full text-[9px] sm:text-[10px]"
+                  style={{
+                    background: activeFilter === btn.id 
+                      ? isLight ? 'rgba(96, 80, 186, 0.15)' : 'rgba(255, 255, 255, 0.15)'
+                      : isLight ? 'rgba(157, 141, 241, 0.1)' : 'rgba(255, 255, 255, 0.08)',
+                    color: activeFilter === btn.id
+                      ? isLight ? '#6050ba' : 'white'
+                      : isLight ? '#8a63d2' : '#a1a1aa',
+                  }}
+                >
                   {count}
                 </span>
               )}
@@ -434,19 +539,26 @@ export default function OperationsHistory({ payouts, withdrawalRequests, transac
       </div>
 
       {/* Список операций */}
-      <div className="space-y-1.5 sm:space-y-2 max-h-52 sm:max-h-96 overflow-y-auto pr-0.5 sm:pr-2" 
-           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-        <style jsx>{`
-          div::-webkit-scrollbar {
-            display: none;
-          }
-        `}</style>
+      <div 
+        ref={listRef}
+        onScroll={handleScroll}
+        className="space-y-1.5 sm:space-y-2 max-h-52 sm:max-h-96 overflow-y-auto pr-0.5 sm:pr-2 [&::-webkit-scrollbar]:hidden" 
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      >
         
         {filteredOperations.length === 0 ? (
-          <div className={`text-center py-8 rounded-xl ${isLight ? 'bg-white/30' : 'bg-white/5'}`}>
+          <div 
+            className="text-center py-8 rounded-xl"
+            style={{
+              background: isLight 
+                ? 'rgba(255, 255, 255, 0.5)' 
+                : 'rgba(255, 255, 255, 0.03)',
+              border: isLight ? '1px solid rgba(157, 141, 241, 0.15)' : '1px solid rgba(255, 255, 255, 0.05)',
+            }}
+          >
             <p className={isLight ? 'text-[#5c5580]' : 'text-zinc-500'}>Нет операций в этой категории</p>
           </div>
-        ) : filteredOperations.map((op) => {
+        ) : filteredOperations.slice(0, visibleCount).map((op) => {
         if (op.type === 'deposit') {
           const statusBadge = op.status === 'completed' 
             ? { bg: 'bg-emerald-500/20', lightBg: 'bg-emerald-100', text: 'text-emerald-400', lightText: 'text-emerald-600', label: 'Успешно', icon: <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/></svg> }
@@ -466,15 +578,12 @@ export default function OperationsHistory({ payouts, withdrawalRequests, transac
           return (
             <div
               key={`deposit-${op.id}`}
-              className="group p-2 sm:p-3 rounded-lg sm:rounded-xl hover:border-[#6050ba]/50 transition-all flex items-center gap-2 sm:gap-3"
+              className="group p-2 sm:p-3 rounded-lg sm:rounded-xl flex items-center gap-2 sm:gap-3"
               style={{
                 background: isLight 
-                  ? 'rgba(255, 255, 255, 0.6)' 
-                  : 'rgba(0, 0, 0, 0.2)',
-                border: isLight 
-                  ? '1px solid rgba(138, 99, 210, 0.2)' 
-                  : '1px solid rgba(255, 255, 255, 0.05)',
-                boxShadow: isLight ? '0 2px 8px rgba(138, 99, 210, 0.08)' : 'none'
+                  ? 'rgba(255, 255, 255, 0.7)'
+                  : 'rgba(139, 92, 246, 0.08)',
+                border: isLight ? '1px solid rgba(139, 92, 246, 0.12)' : '1px solid rgba(139, 92, 246, 0.15)',
               }}
             >
               <div 
@@ -549,15 +658,12 @@ export default function OperationsHistory({ payouts, withdrawalRequests, transac
           return (
             <div
               key={`purchase-${op.id}`}
-              className="group p-2 sm:p-3 rounded-lg sm:rounded-xl hover:border-orange-500/50 transition-all flex items-center gap-2 sm:gap-3"
+              className="group p-2 sm:p-3 rounded-lg sm:rounded-xl flex items-center gap-2 sm:gap-3"
               style={{
                 background: isLight 
-                  ? 'rgba(255, 255, 255, 0.6)' 
-                  : 'rgba(0, 0, 0, 0.2)',
-                border: isLight 
-                  ? '1px solid rgba(138, 99, 210, 0.2)' 
-                  : '1px solid rgba(255, 255, 255, 0.05)',
-                boxShadow: isLight ? '0 2px 8px rgba(138, 99, 210, 0.08)' : 'none'
+                  ? 'rgba(255, 255, 255, 0.7)'
+                  : 'rgba(249, 115, 22, 0.08)',
+                border: isLight ? '1px solid rgba(249, 115, 22, 0.12)' : '1px solid rgba(249, 115, 22, 0.15)',
               }}
             >
               <div 
@@ -573,10 +679,10 @@ export default function OperationsHistory({ payouts, withdrawalRequests, transac
                 </svg>
               </div>
               <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-1 sm:gap-2 sm:mb-1">
+                <div className="flex items-center gap-1.5 sm:gap-2 sm:mb-1">
                   <span className={`text-[11px] sm:text-sm font-bold ${isLight ? 'text-[#1a1535]' : 'text-white'}`}>Покупка</span>
-                  <span className={`hidden sm:inline text-[10px] px-2 py-0.5 rounded-full flex items-center gap-1 ${isLight ? 'bg-orange-100 text-orange-600' : 'bg-orange-500/20 text-orange-400'}`}>
-                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <span className={`text-[9px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 rounded-full inline-flex items-center gap-0.5 sm:gap-1 ${isLight ? 'bg-orange-100 text-orange-600' : 'bg-orange-500/20 text-orange-400'}`}>
+                    <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
                     Оплачено
@@ -635,15 +741,12 @@ export default function OperationsHistory({ payouts, withdrawalRequests, transac
           return (
             <div
               key={`payout-${op.id}`}
-              className="group p-2 sm:p-3 rounded-lg sm:rounded-xl hover:border-[#e879f9]/50 transition-all flex items-center gap-2 sm:gap-3"
+              className="group p-2 sm:p-3 rounded-lg sm:rounded-xl flex items-center gap-2 sm:gap-3"
               style={{
                 background: isLight 
-                  ? 'rgba(255, 255, 255, 0.6)' 
-                  : 'rgba(0, 0, 0, 0.2)',
-                border: isLight 
-                  ? '1px solid rgba(138, 99, 210, 0.2)' 
-                  : '1px solid rgba(255, 255, 255, 0.05)',
-                boxShadow: isLight ? '0 2px 8px rgba(138, 99, 210, 0.08)' : 'none'
+                  ? 'rgba(255, 255, 255, 0.7)'
+                  : 'rgba(232, 121, 249, 0.08)',
+                border: isLight ? '1px solid rgba(232, 121, 249, 0.12)' : '1px solid rgba(232, 121, 249, 0.15)',
               }}
             >
               <div 
@@ -798,15 +901,12 @@ export default function OperationsHistory({ payouts, withdrawalRequests, transac
           return (
             <div
               key={`${op.type}-${op.id}`}
-              className="group p-2 sm:p-3 rounded-lg sm:rounded-xl hover:border-emerald-500/50 transition-all flex items-center gap-2 sm:gap-3"
+              className="group p-2 sm:p-3 rounded-lg sm:rounded-xl flex items-center gap-2 sm:gap-3"
               style={{
                 background: isLight 
-                  ? 'rgba(255, 255, 255, 0.6)' 
-                  : 'rgba(0, 0, 0, 0.2)',
-                border: isLight 
-                  ? '1px solid rgba(138, 99, 210, 0.2)' 
-                  : '1px solid rgba(255, 255, 255, 0.05)',
-                boxShadow: isLight ? '0 2px 8px rgba(138, 99, 210, 0.08)' : 'none'
+                  ? 'rgba(255, 255, 255, 0.7)'
+                  : 'rgba(16, 185, 129, 0.08)',
+                border: isLight ? '1px solid rgba(16, 185, 129, 0.12)' : '1px solid rgba(16, 185, 129, 0.15)',
               }}
             >
               <div 
@@ -882,15 +982,12 @@ export default function OperationsHistory({ payouts, withdrawalRequests, transac
           return (
             <div
               key={`withdrawal-${op.id}`}
-              className="group p-2 sm:p-3 rounded-lg sm:rounded-xl hover:border-red-500/50 transition-all flex items-center gap-2 sm:gap-3"
+              className="group p-2 sm:p-3 rounded-lg sm:rounded-xl flex items-center gap-2 sm:gap-3"
               style={{
                 background: isLight 
-                  ? 'rgba(255, 255, 255, 0.6)' 
-                  : 'rgba(0, 0, 0, 0.2)',
-                border: isLight 
-                  ? '1px solid rgba(138, 99, 210, 0.2)' 
-                  : '1px solid rgba(255, 255, 255, 0.05)',
-                boxShadow: isLight ? '0 2px 8px rgba(138, 99, 210, 0.08)' : 'none'
+                  ? 'rgba(255, 255, 255, 0.7)'
+                  : 'rgba(239, 68, 68, 0.08)',
+                border: isLight ? '1px solid rgba(239, 68, 68, 0.12)' : '1px solid rgba(239, 68, 68, 0.15)',
               }}
             >
               <div 
@@ -983,7 +1080,7 @@ export default function OperationsHistory({ payouts, withdrawalRequests, transac
                         <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd"/>
                       </svg>
                       <div>
-                        <span className="font-semibold">Причина:</span> 
+                        <span className="font-semibold">Причина: </span>
                         <span className="sm:hidden">{op.admin_comment.slice(0, 30)}{op.admin_comment.length > 30 ? '...' : ''}</span>
                         <span className="hidden sm:inline">{op.admin_comment}</span>
                       </div>
@@ -999,6 +1096,13 @@ export default function OperationsHistory({ payouts, withdrawalRequests, transac
           );
         }
       })}
+        
+        {/* Индикатор подгрузки при скролле */}
+        {filteredOperations.length > visibleCount && (
+          <div className={`text-center py-3 text-xs ${isLight ? 'text-[#8a63d2]' : 'text-[#9d8df1]'}`}>
+            ↓ Листайте для загрузки ещё
+          </div>
+        )}
       </div>
     </div>
   );

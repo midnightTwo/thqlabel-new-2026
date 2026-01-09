@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { supabase } from '@/lib/supabase/client';
 import { 
@@ -75,7 +75,7 @@ const PAYMENT_METHODS = [
   },
 ];
 
-export default function BalancePage() {
+function BalancePageContent() {
   const searchParams = useSearchParams();
   const [user, setUser] = useState<any>(null);
   const [balance, setBalance] = useState<any>(null);
@@ -600,5 +600,17 @@ export default function BalancePage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function BalancePage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin w-10 h-10 border-4 border-[#6050ba] border-t-transparent rounded-full" />
+      </div>
+    }>
+      <BalancePageContent />
+    </Suspense>
   );
 }

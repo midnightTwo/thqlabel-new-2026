@@ -213,11 +213,9 @@ export default function TicketsTab({ supabase }: { supabase: any }) {
               <button
                 key={f}
                 onClick={() => setFilter(f)}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition ${
-                  filter === f 
-                    ? 'bg-[#6050ba] text-white' 
-                    : 'bg-white/5 text-zinc-400 hover:bg-white/10'
-                }`}
+                className={`px-4 py-2 rounded-xl text-xs font-bold transition ${filter === f 
+                  ? 'bg-[#6050ba] text-white' 
+                  : 'bg-zinc-800/80 text-zinc-300 hover:bg-zinc-700'}`}
               >
                 {f === 'all' ? 'Все' : statusColors[f].label}
                 <span className="ml-2 opacity-50">
@@ -227,7 +225,7 @@ export default function TicketsTab({ supabase }: { supabase: any }) {
             ))}
             <button
               onClick={loadTickets}
-              className="ml-auto px-4 py-2 bg-white/5 hover:bg-white/10 rounded-xl text-xs text-zinc-400 transition"
+              className="ml-auto px-4 py-2 bg-zinc-800/80 hover:bg-zinc-700 rounded-xl text-xs text-zinc-300 transition"
             >
               ↻ Обновить
             </button>
@@ -350,7 +348,7 @@ export default function TicketsTab({ supabase }: { supabase: any }) {
           </div>
 
           {/* Сообщения */}
-          <div className="bg-black/20 rounded-xl p-4 max-h-96 overflow-y-auto space-y-3">
+          <div className="bg-zinc-900/80 rounded-xl p-4 max-h-96 overflow-y-auto space-y-3">
             {messages.length === 0 ? (
               <div className="text-zinc-600 text-center py-8">
                 <p>Нет сообщений</p>
@@ -380,11 +378,9 @@ export default function TicketsTab({ supabase }: { supabase: any }) {
                   
                   {/* Сообщение */}
                   <div
-                    className={`p-3 rounded-xl max-w-[80%] ${
-                      msg.is_admin 
-                        ? 'bg-[#6050ba]/20 border border-[#6050ba]/30' 
-                        : 'bg-white/5 border border-white/10'
-                    }`}
+                    className={`p-3 rounded-xl max-w-[80%] ${msg.is_admin 
+                      ? 'bg-[#6050ba]/20 border border-[#6050ba]/30' 
+                      : 'bg-zinc-800/80 border border-zinc-700'}`}
                   >
                     <div className="flex items-center gap-2 mb-1">
                       <span className={`text-[10px] font-bold ${msg.is_admin ? 'text-[#9d8df1]' : 'text-zinc-400'}`}>
@@ -422,7 +418,7 @@ export default function TicketsTab({ supabase }: { supabase: any }) {
                 value={replyText}
                 onChange={(e) => setReplyText(e.target.value)}
                 placeholder="Напишите ответ..."
-                className="w-full p-4 bg-black/30 border border-white/10 rounded-xl text-sm resize-none h-24 focus:border-[#6050ba]/50 transition"
+                className="w-full p-4 bg-zinc-900/80 border border-zinc-700 rounded-xl text-sm resize-none h-24 focus:border-[#6050ba]/50 transition"
               />
               <button
                 onClick={sendReply}

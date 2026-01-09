@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, Suspense } from 'react';
 import { createPortal } from 'react-dom';
 import { useRouter, useParams, useSearchParams } from 'next/navigation';
 import AnimatedBackground from '@/components/ui/AnimatedBackground';
@@ -81,8 +81,8 @@ function FullscreenLoadingOverlay({ message = "Сохраняем релиз" }:
   );
 }
 
-// Компонент для редактирования Basic релиза
-export default function EditBasicReleasePage() {
+// Внутренний компонент (использует useSearchParams)
+function EditBasicReleasePageContent() {
   const router = useRouter();
   const params = useParams();
   const searchParams = useSearchParams();
@@ -1756,5 +1756,18 @@ export default function EditBasicReleasePage() {
       )}
       </div>
     </>
+  );
+}
+
+// Экспорт с Suspense boundary для useSearchParams
+export default function EditBasicReleasePage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-[#08080a]">
+        <div className="animate-spin w-10 h-10 border-4 border-[#6050ba] border-t-transparent rounded-full" />
+      </div>
+    }>
+      <EditBasicReleasePageContent />
+    </Suspense>
   );
 }

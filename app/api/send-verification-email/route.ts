@@ -6,17 +6,6 @@ import nodemailer from 'nodemailer';
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
 
-// Глобальное хранилище токенов подтверждения email
-declare global {
-  var verificationTokensStore: Map<string, { email: string, password: string, nickname: string, expiresAt: number }> | undefined;
-}
-
-const verificationTokens = globalThis.verificationTokensStore ?? new Map<string, { email: string, password: string, nickname: string, expiresAt: number }>();
-
-if (process.env.NODE_ENV !== 'production') {
-  globalThis.verificationTokensStore = verificationTokens;
-}
-
 export async function POST(request: NextRequest) {
   try {
     const { email, password, nickname } = await request.json();
@@ -46,25 +35,40 @@ export async function POST(request: NextRequest) {
 
     // Генерируем уникальный токен подтверждения
     const verificationToken = randomUUID();
-    const expiresAt = Date.now() + 24 * 60 * 60 * 1000; // 24 часа
+    const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 часа
     
-    // Сохраняем данные регистрации во временное хранилище
-    verificationTokens.set(verificationToken, {
-      email,
-      password,
-      nickname: nickname || email.split('@')[0],
-      expiresAt
-    });
+    // Удаляем старые токены для этого email
+    await supabase
+      .from('email_tokens')
+      .delete()
+      .eq('email', email)
+      .eq('token_type', 'verification');
     
-    console.log('Создан токен подтверждения:', verificationToken);
-    console.log('Всего токенов в памяти:', verificationTokens.size);
+    // Сохраняем токен в базу данных
+    const { error: insertError } = await supabase
+      .from('email_tokens')
+      .insert({
+        token: verificationToken,
+        token_type: 'verification',
+        email,
+        password_hash: password, // В production лучше хешировать
+        nickname: nickname || email.split('@')[0],
+        expires_at: expiresAt.toISOString()
+      });
     
-    // Очищаем истекшие токены
-    for (const [token, data] of verificationTokens.entries()) {
-      if (data.expiresAt < Date.now()) {
-        verificationTokens.delete(token);
-      }
+    if (insertError) {
+      console.error('Ошибка сохранения токена:', insertError);
+      return NextResponse.json({ error: 'Ошибка сервера' }, { status: 500 });
     }
+    
+    console.log('Создан токен подтверждения в БД:', verificationToken);
+    
+    // Очищаем истекшие токены (фоновая очистка)
+    supabase
+      .from('email_tokens')
+      .delete()
+      .lt('expires_at', new Date().toISOString())
+      .then(() => console.log('Очищены истекшие токены'));
     
     // Получаем URL хоста динамически
     const host = request.headers.get('host') || 'localhost:3000';

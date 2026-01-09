@@ -10,17 +10,60 @@ interface ReleaseInfoModalProps {
 export default function ReleaseInfoModal({ release, onClose }: ReleaseInfoModalProps) {
   if (!release) return null;
 
-  const statusConfig: Record<string, { label: string; color: string; emoji: string }> = {
-    pending: { label: 'На модерации', color: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/40', emoji: '⏳' },
-    distributed: { label: 'На дистрибьюции', color: 'bg-blue-500/20 text-blue-300 border-blue-500/40', emoji: '🚀' },
-    rejected: { label: 'Отклонен', color: 'bg-red-500/20 text-red-300 border-red-500/40', emoji: '❌' },
-    published: { label: 'Опубликован', color: 'bg-purple-500/20 text-purple-300 border-purple-500/40', emoji: '🎵' }
+  const statusConfig: Record<string, { label: string; color: string; bgColor: string }> = {
+    pending: { label: 'На модерации', color: '#fbbf24', bgColor: 'rgba(251, 191, 36, 0.15)' },
+    distributed: { label: 'На дистрибьюции', color: '#60a5fa', bgColor: 'rgba(96, 165, 250, 0.15)' },
+    rejected: { label: 'Отклонен', color: '#f87171', bgColor: 'rgba(248, 113, 113, 0.15)' },
+    published: { label: 'Опубликован', color: '#c4b5fd', bgColor: 'rgba(196, 181, 253, 0.15)' },
+    approved: { label: 'Одобрен', color: '#34d399', bgColor: 'rgba(52, 211, 153, 0.15)' }
   };
 
   const status = statusConfig[release.status] || { 
     label: release.status, 
-    color: 'bg-zinc-500/20 text-zinc-300 border-zinc-500/40', 
-    emoji: '📀' 
+    color: '#9d8df1',
+    bgColor: 'rgba(157, 141, 241, 0.15)'
+  };
+
+  // SVG иконки для статусов
+  const StatusIcon = () => {
+    switch (release.status) {
+      case 'pending':
+        return (
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        );
+      case 'approved':
+        return (
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+        );
+      case 'rejected':
+        return (
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        );
+      case 'published':
+        return (
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z" />
+          </svg>
+        );
+      case 'distributed':
+        return (
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+          </svg>
+        );
+      default:
+        return (
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12-3v13" />
+          </svg>
+        );
+    }
   };
 
   return (
@@ -74,8 +117,15 @@ export default function ReleaseInfoModal({ release, onClose }: ReleaseInfoModalP
               <p className="text-xl text-purple-300 mb-4">{release.artist}</p>
               
               {/* Статус */}
-              <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl border-2 ${status.color} mb-4`}>
-                <span className="text-2xl">{status.emoji}</span>
+              <div 
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl"
+                style={{ 
+                  background: status.bgColor, 
+                  color: status.color,
+                  border: `2px solid ${status.color}40`
+                }}
+              >
+                <StatusIcon />
                 <span className="font-bold">{status.label}</span>
               </div>
             </div>
@@ -84,8 +134,8 @@ export default function ReleaseInfoModal({ release, onClose }: ReleaseInfoModalP
           {/* Детали */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <div className="p-4 bg-zinc-800/50 border border-zinc-700 rounded-xl">
-              <p className="text-xs text-zinc-500 mb-1">ID Релиза</p>
-              <p className="text-sm font-mono text-white break-all">{release.id}</p>
+              <p className="text-xs text-zinc-500 mb-1">Код релиза</p>
+              <p className="text-sm font-mono text-purple-400 font-bold">{release.release_code || `thqrel-${release.id?.slice(0, 8)}`}</p>
             </div>
             
             {release.created_at && (

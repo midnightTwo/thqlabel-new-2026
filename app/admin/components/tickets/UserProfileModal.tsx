@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { useTheme } from '@/contexts/ThemeContext';
 
 interface UserProfileModalProps {
   viewingUser: any;
@@ -21,13 +22,16 @@ export default function UserProfileModal({
   userTransactions,
   onClose
 }: UserProfileModalProps) {
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
+  
   if (!viewingUser) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-start justify-center overflow-y-auto p-4 pt-16 pb-8" onClick={onClose}>
-      <div className="admin-dark-modal bg-zinc-900 border border-blue-500/30 rounded-xl sm:rounded-2xl shadow-2xl max-w-4xl w-full overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+    <div className={`fixed inset-0 backdrop-blur-sm z-50 flex items-start justify-center overflow-y-auto p-4 pt-16 pb-8 ${isLight ? 'bg-black/40' : 'bg-black/80'}`} onClick={onClose}>
+      <div className={`admin-dark-modal border rounded-xl sm:rounded-2xl shadow-2xl max-w-4xl w-full overflow-y-auto ${isLight ? 'bg-white border-gray-300' : 'bg-zinc-900 border-blue-500/30'}`} onClick={(e) => e.stopPropagation()}>
         {/* Хедер профиля */}
-        <div className="sticky top-0 bg-gradient-to-r from-blue-900/50 to-purple-900/50 backdrop-blur-sm border-b border-blue-500/30 p-6 flex items-center justify-between z-10">
+        <div className={`sticky top-0 backdrop-blur-sm border-b p-6 flex items-center justify-between z-10 ${isLight ? 'bg-gradient-to-r from-blue-100 to-purple-100 border-gray-300' : 'bg-gradient-to-r from-blue-900/50 to-purple-900/50 border-blue-500/30'}`}>
           <div className="flex items-center gap-4">
             {viewingUser.avatar_url ? (
               <img src={viewingUser.avatar_url} alt="" className="w-16 h-16 rounded-full object-cover border-2 border-blue-500/30" />
@@ -37,16 +41,16 @@ export default function UserProfileModal({
               </div>
             )}
             <div>
-              <h3 className="text-xl font-black text-white">{viewingUser.nickname || 'Без никнейма'}</h3>
-              <p className="text-sm text-blue-300">{viewingUser.email}</p>
+              <h3 className={`text-xl font-black ${isLight ? 'text-gray-900' : 'text-white'}`}>{viewingUser.nickname || 'Без никнейма'}</h3>
+              <p className={`text-sm ${isLight ? 'text-blue-600' : 'text-blue-300'}`}>{viewingUser.email}</p>
               {viewingUser.telegram && (
-                <p className="text-xs text-zinc-400">@{viewingUser.telegram}</p>
+                <p className={`text-xs ${isLight ? 'text-gray-500' : 'text-zinc-400'}`}>@{viewingUser.telegram}</p>
               )}
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-3 hover:bg-white/10 rounded-xl transition"
+            className={`p-3 rounded-xl transition ${isLight ? 'hover:bg-gray-200 text-gray-600' : 'hover:bg-white/10 text-white'}`}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -84,20 +88,20 @@ export default function UserProfileModal({
             <TransactionsList transactions={userTransactions} />
             
             {/* Дополнительная информация */}
-            <div className="p-4 bg-white/[0.02] border border-white/5 rounded-xl">
-              <h3 className="font-bold mb-4">Информация о профиле</h3>
+            <div className={`p-4 border rounded-xl ${isLight ? 'bg-gray-50 border-gray-300' : 'bg-white/[0.02] border-white/5'}`}>
+              <h3 className={`font-bold mb-4 ${isLight ? 'text-gray-900' : 'text-white'}`}>Информация о профиле</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-sm">
                 <div>
-                  <span className="text-zinc-500">ID пользователя:</span>
-                  <span className="ml-2 text-zinc-300 font-mono text-xs">{viewingUser.id}</span>
+                  <span className={isLight ? 'text-gray-500' : 'text-zinc-500'}>ID пользователя:</span>
+                  <span className={`ml-2 font-mono text-xs ${isLight ? 'text-gray-700' : 'text-zinc-300'}`}>{viewingUser.id}</span>
                 </div>
                 <div>
-                  <span className="text-zinc-500">Дата регистрации:</span>
-                  <span className="ml-2 text-zinc-300">{viewingUser.created_at ? new Date(viewingUser.created_at).toLocaleDateString('ru-RU') : '—'}</span>
+                  <span className={isLight ? 'text-gray-500' : 'text-zinc-500'}>Дата регистрации:</span>
+                  <span className={`ml-2 ${isLight ? 'text-gray-700' : 'text-zinc-300'}`}>{viewingUser.created_at ? new Date(viewingUser.created_at).toLocaleDateString('ru-RU') : '—'}</span>
                 </div>
                 <div>
-                  <span className="text-zinc-500">Роль:</span>
-                  <span className="ml-2 text-zinc-300">{viewingUser.role || 'basic'}</span>
+                  <span className={isLight ? 'text-gray-500' : 'text-zinc-500'}>Роль:</span>
+                  <span className={`ml-2 ${isLight ? 'text-gray-700' : 'text-zinc-300'}`}>{viewingUser.role || 'basic'}</span>
                 </div>
               </div>
             </div>
@@ -110,16 +114,19 @@ export default function UserProfileModal({
 
 // Компонент списка транзакций
 function TransactionsList({ transactions }: { transactions: any[] }) {
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
+  
   return (
-    <div className="p-4 bg-white/[0.02] border border-white/5 rounded-xl">
-      <h3 className="font-bold mb-4 flex items-center gap-2">
+    <div className={`p-4 border rounded-xl ${isLight ? 'bg-gray-50 border-gray-300' : 'bg-white/[0.02] border-white/5'}`}>
+      <h3 className={`font-bold mb-4 flex items-center gap-2 ${isLight ? 'text-gray-900' : 'text-white'}`}>
         <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
         </svg>
         Все транзакции ({transactions.length})
       </h3>
       {transactions.length === 0 ? (
-        <p className="text-zinc-500 text-sm">Нет транзакций</p>
+        <p className={isLight ? 'text-gray-500 text-sm' : 'text-zinc-500 text-sm'}>Нет транзакций</p>
       ) : (
         <div className="space-y-2 max-h-96 overflow-y-auto">
           {transactions.map((tx: any) => (
@@ -133,6 +140,9 @@ function TransactionsList({ transactions }: { transactions: any[] }) {
 
 // Компонент одной транзакции
 function TransactionItem({ tx }: { tx: any }) {
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
+  
   const isWithdrawalRequest = tx.source === 'withdrawal_request';
   
   const typeConfig: Record<string, { bg: string; text: string; label: string; icon: string }> = {
@@ -154,7 +164,7 @@ function TransactionItem({ tx }: { tx: any }) {
   const status = statusConfig[tx.status] || statusConfig.pending;
   
   return (
-    <div className="p-3 bg-black/30 rounded-lg border border-white/5 hover:border-white/10 transition">
+    <div className={`p-3 rounded-lg border transition ${isLight ? 'bg-gray-100 border-gray-300 hover:border-gray-400' : 'bg-black/30 border-white/5 hover:border-white/10'}`}>
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
           <span className={`text-sm px-2 py-1 rounded ${type.bg} ${type.text} font-bold`}>

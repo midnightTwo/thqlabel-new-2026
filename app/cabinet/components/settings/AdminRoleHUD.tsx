@@ -135,13 +135,13 @@ export default function AdminRoleHUD({ currentRole, originalRole, userId, onRole
         }}
       >
         <div className="flex items-center gap-2">
-          <span className="text-lg">{currentConfig.icon}</span>
+          <span className="text-lg text-white">{currentConfig.icon}</span>
           <span className="text-xs font-bold text-white">Тест</span>
         </div>
         
         {/* Индикатор что это тестовая роль */}
         {currentRole !== originalRole && (
-          <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full animate-pulse border-2 border-[#0d0d0f]"></div>
+          <div className={`absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full animate-pulse border-2 ${isLight ? 'border-white' : 'border-[#0d0d0f]'}`}></div>
         )}
       </button>
     </div>
@@ -165,12 +165,12 @@ export default function AdminRoleHUD({ currentRole, originalRole, userId, onRole
           >
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2">
-                <span className="text-xl">{currentConfig.icon}</span>
+                <span className="text-xl text-white">{currentConfig.icon}</span>
                 <div className="text-left">
                   <div className="text-xs font-bold text-white uppercase tracking-wider">
                     Режим тестирования
                   </div>
-                  <div className={`text-[10px] ${currentConfig.textColor} font-medium`}>
+                  <div className="text-[10px] text-white/70 font-medium">
                     {currentConfig.shortLabel}
                   </div>
                 </div>
@@ -178,7 +178,7 @@ export default function AdminRoleHUD({ currentRole, originalRole, userId, onRole
               
               {/* Индикатор что это тестовая роль */}
               {currentRole !== originalRole && (
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full animate-pulse border-2 border-[#0d0d0f]"></div>
+                <div className={`absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full animate-pulse border-2 ${isLight ? 'border-white' : 'border-[#0d0d0f]'}`}></div>
               )}
             </div>
           </button>

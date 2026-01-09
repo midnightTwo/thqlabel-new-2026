@@ -6,17 +6,6 @@ import nodemailer from 'nodemailer';
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
 
-// Глобальное хранилище токенов (переживает hot reload в dev режиме)
-declare global {
-  var resetTokensStore: Map<string, { email: string, expiresAt: number }> | undefined;
-}
-
-const resetTokens = globalThis.resetTokensStore ?? new Map<string, { email: string, expiresAt: number }>();
-
-if (process.env.NODE_ENV !== 'production') {
-  globalThis.resetTokensStore = resetTokens;
-}
-
 export async function POST(request: NextRequest) {
   try {
     const { email } = await request.json();
@@ -48,25 +37,43 @@ export async function POST(request: NextRequest) {
 
     // Генерируем уникальный токен восстановления
     const resetToken = randomUUID();
-    const expiresAt = Date.now() + 60 * 60 * 1000; // 1 час
+    const expiresAt = new Date(Date.now() + 60 * 60 * 1000); // 1 час
     
-    // Сохраняем токен во временное хранилище
-    resetTokens.set(resetToken, {
-      email: email,
-      expiresAt: expiresAt
-    });
+    // Удаляем старые токены для этого email
+    await supabase
+      .from('email_tokens')
+      .delete()
+      .eq('email', email)
+      .eq('token_type', 'password_reset');
     
-    console.log('Создан токен восстановления:', resetToken);
-    console.log('Всего токенов в памяти:', resetTokens.size);
+    // Сохраняем токен в базу данных
+    const { error: insertError } = await supabase
+      .from('email_tokens')
+      .insert({
+        token: resetToken,
+        token_type: 'password_reset',
+        email,
+        expires_at: expiresAt.toISOString()
+      });
     
-    // Очищаем истекшие токены
-    for (const [token, data] of resetTokens.entries()) {
-      if (data.expiresAt < Date.now()) {
-        resetTokens.delete(token);
-      }
+    if (insertError) {
+      console.error('Ошибка сохранения токена:', insertError);
+      return NextResponse.json({ error: 'Ошибка сервера' }, { status: 500 });
     }
     
-    const resetLink = `http://localhost:3000/reset-password?token=${resetToken}`;
+    console.log('Создан токен восстановления в БД:', resetToken);
+    
+    // Очищаем истекшие токены (фоновая очистка)
+    supabase
+      .from('email_tokens')
+      .delete()
+      .lt('expires_at', new Date().toISOString())
+      .then(() => console.log('Очищены истекшие токены'));
+    
+    // Получаем URL хоста динамически
+    const host = request.headers.get('host') || 'localhost:3000';
+    const protocol = host.includes('localhost') ? 'http' : 'https';
+    const resetLink = `${protocol}://${host}/reset-password?token=${resetToken}`;
     
     // Отправляем email через Brevo
     const transporter = nodemailer.createTransport({

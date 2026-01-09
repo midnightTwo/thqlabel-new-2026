@@ -209,10 +209,10 @@ function MessageBubble({ message, currentUserId, isFirstUserMessage, releaseInfo
                 e.stopPropagation();
                 onReply(message);
               }}
-              className="p-1.5 bg-zinc-800 hover:bg-zinc-700 border border-zinc-600 rounded-lg transition-colors"
+              className={`p-1.5 border rounded-lg transition-colors ${isLight ? 'bg-white hover:bg-gray-100 border-gray-300' : 'bg-zinc-800 hover:bg-zinc-700 border-zinc-600'}`}
               title="Ответить"
             >
-              <svg className={`w-3.5 h-3.5 text-zinc-400 ${!message.is_admin ? 'transform scale-x-[-1]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className={`w-3.5 h-3.5 ${!message.is_admin ? 'transform scale-x-[-1]' : ''} ${isLight ? 'text-gray-600' : 'text-zinc-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
               </svg>
             </button>
@@ -281,10 +281,10 @@ function MessageBubble({ message, currentUserId, isFirstUserMessage, releaseInfo
           className={`rounded-lg p-4 relative transition-all duration-300 ${
             message.is_admin
               ? isLight 
-                ? 'bg-gradient-to-br from-green-100 to-emerald-100 border border-green-300/50 hover:from-green-200 hover:to-emerald-200'
+                ? 'bg-gradient-to-br from-green-100 to-emerald-100 border border-green-400/60 hover:from-green-150 hover:to-emerald-150 shadow-sm'
                 : 'bg-gradient-to-br from-green-500/20 to-emerald-500/20 border border-green-500/30 hover:from-green-500/25 hover:to-emerald-500/25'
               : isLight
-                ? 'bg-gradient-to-br from-blue-100 to-indigo-100 border border-blue-300/50 hover:from-blue-200 hover:to-indigo-200'
+                ? 'bg-gradient-to-br from-blue-100 to-indigo-100 border border-blue-400/60 hover:from-blue-150 hover:to-indigo-150 shadow-sm'
                 : 'bg-gradient-to-br from-blue-500/20 to-indigo-500/20 border border-blue-500/30 hover:from-blue-500/25 hover:to-indigo-500/25'
           } ${highlightedMessageId === message.id ? 'ring-4 ring-amber-400 !bg-amber-400/30 !border-amber-400 shadow-[0_0_30px_rgba(251,191,36,0.5)] animate-pulse' : ''}`}
           onDoubleClick={() => onToggleReaction(message.id, !!hasUserReaction)}
@@ -302,7 +302,7 @@ function MessageBubble({ message, currentUserId, isFirstUserMessage, releaseInfo
           {/* Превью ответа на сообщение */}
           {message.reply_to_message && (
             <div 
-              className={`mb-2 p-2 border-l-2 border-blue-400/50 rounded cursor-pointer transition-colors ${isLight ? 'bg-gray-100/80 hover:bg-gray-200/80' : 'bg-black/30 hover:bg-black/40'}`}
+              className={`mb-2 p-2 border-l-2 border-blue-400/50 rounded cursor-pointer transition-colors ${isLight ? 'bg-gray-200/80 hover:bg-gray-300/80' : 'bg-black/30 hover:bg-black/40'}`}
               onClick={(e) => {
                 e.stopPropagation();
                 if (message.reply_to_message?.id) {

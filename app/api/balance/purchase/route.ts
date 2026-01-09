@@ -202,12 +202,19 @@ export async function POST(request: NextRequest) {
     // Если есть releaseId - помечаем релиз как оплаченный
     if (releaseId && transaction?.id) {
       const table = releaseType === 'basic' ? 'releases_basic' : 'releases';
+      
+      // Генерируем URL чека (ссылка на транзакцию)
+      const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://thqlabel.ru';
+      const receiptUrl = `${baseUrl}/api/receipt/${transaction.id}`;
+      
       await supabaseAdmin
         .from(table)
         .update({
           is_paid: true,
           payment_transaction_id: transaction.id,
           payment_amount: amount,
+          payment_receipt_url: receiptUrl,
+          payment_date: new Date().toISOString(),
           paid_at: new Date().toISOString()
         })
         .eq('id', releaseId)

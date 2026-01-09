@@ -6,4 +6,5 @@ export { UserListItem } from './UserListItem';
 export { UserList } from './UserList';
 export { UserProfileModal } from './UserProfileModal';
 export { TransactionList } from './TransactionList';
+export { RoleDropdown } from './RoleDropdown';
 export * from './types';

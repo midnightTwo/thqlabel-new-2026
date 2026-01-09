@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase/client';
 import AnimatedBackground from '@/components/ui/AnimatedBackground';
@@ -160,7 +160,7 @@ const NewsModal = ({ news, onClose, isLight = false }: any) => {
   );
 };
 
-export default function NewsPage() {
+function NewsPageContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { themeName } = useTheme();
@@ -408,5 +408,17 @@ export default function NewsPage() {
       </div>
       {selectedNews && <NewsModal news={selectedNews} onClose={closeNews} isLight={isLight} />}
     </main>
+  );
+}
+
+export default function NewsPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin w-10 h-10 border-4 border-[#6050ba] border-t-transparent rounded-full" />
+      </div>
+    }>
+      <NewsPageContent />
+    </Suspense>
   );
 }

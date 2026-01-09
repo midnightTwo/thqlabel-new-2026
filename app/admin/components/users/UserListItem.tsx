@@ -2,6 +2,33 @@
 
 import { useTheme } from '@/contexts/ThemeContext';
 import { Profile, RoleColors, roleColors, roleColorsLight, getUserRole } from './types';
+import { RoleDropdown } from './RoleDropdown';
+
+// Функция форматирования времени активности
+function formatLastActive(lastActive: string | null | undefined): { text: string; color: string; isOnline: boolean } {
+  if (!lastActive) {
+    return { text: 'Неизвестно', color: 'text-zinc-600', isOnline: false };
+  }
+
+  const now = new Date();
+  const lastActiveDate = new Date(lastActive);
+  const diffMs = now.getTime() - lastActiveDate.getTime();
+  const diffMinutes = Math.floor(diffMs / 60000);
+  const diffHours = Math.floor(diffMs / 3600000);
+  const diffDays = Math.floor(diffMs / 86400000);
+
+  if (diffMinutes < 5) {
+    return { text: 'Онлайн', color: 'text-emerald-400', isOnline: true };
+  } else if (diffMinutes < 60) {
+    return { text: `${diffMinutes} мин назад`, color: 'text-emerald-400/70', isOnline: false };
+  } else if (diffHours < 24) {
+    return { text: `${diffHours} ч назад`, color: 'text-amber-400/70', isOnline: false };
+  } else if (diffDays < 7) {
+    return { text: `${diffDays} д назад`, color: 'text-zinc-500', isOnline: false };
+  } else {
+    return { text: lastActiveDate.toLocaleDateString('ru-RU'), color: 'text-zinc-600', isOnline: false };
+  }
+}
 
 interface UserListItemProps {
   user: Profile;
@@ -26,6 +53,9 @@ export function UserListItem({
   const rc = isLight 
     ? (roleColorsLight[role] || roleColorsLight.basic)
     : (roleColors[role] || roleColors.basic);
+  
+  // Информация об активности
+  const activityInfo = formatLastActive(user.last_active);
 
   return (
     <div className={`p-3 sm:p-4 ${rc.bg} border ${rc.border} rounded-xl sm:rounded-2xl flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 transition-all active:scale-[0.99] ${
@@ -33,35 +63,30 @@ export function UserListItem({
     }`}>
       {/* Верхняя строка на мобильных: аватар + инфо + кнопка */}
       <div className="flex items-center gap-3 sm:contents">
-        {/* Аватар */}
-        <div 
-          className={`w-11 h-11 sm:w-12 sm:h-12 rounded-xl ${!user.avatar && rc.bg} flex items-center justify-center text-lg sm:text-xl ${rc.text} font-black border ${rc.border} ${user.avatar ? 'bg-cover bg-center' : ''} shrink-0`}
-          style={user.avatar ? { backgroundImage: `url(${user.avatar})` } : {}}
-        >
-          {!user.avatar && (user.nickname?.charAt(0)?.toUpperCase() || user.email?.charAt(0)?.toUpperCase() || '?')}
+        {/* Аватар с индикатором онлайн */}
+        <div className="relative shrink-0">
+          <div 
+            className={`w-11 h-11 sm:w-12 sm:h-12 rounded-xl ${!user.avatar && rc.bg} flex items-center justify-center text-lg sm:text-xl ${rc.text} font-black border ${rc.border} ${user.avatar ? 'bg-cover bg-center' : ''}`}
+            style={user.avatar ? { backgroundImage: `url(${user.avatar})` } : {}}
+          >
+            {!user.avatar && (user.nickname?.charAt(0)?.toUpperCase() || user.email?.charAt(0)?.toUpperCase() || '?')}
+          </div>
+          {/* Индикатор онлайн */}
+          {activityInfo.isOnline && (
+            <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-[#1a1a1f] animate-pulse" />
+          )}
         </div>
         
         {/* Инфо - мобильная и десктоп версия */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
             <span className={`font-bold text-sm sm:text-base truncate max-w-[140px] sm:max-w-none ${isLight ? 'text-gray-800' : 'text-white'}`}>{user.nickname || 'Без никнейма'}</span>
-            <select 
-              value={role}
-              onChange={(e) => onRoleChange(user.id, e.target.value as 'admin' | 'exclusive' | 'basic' | 'owner')}
-              className={`text-[9px] px-2 py-1 rounded-full font-bold cursor-pointer transition min-h-[28px] ${
-                isLight 
-                  ? 'bg-white/70 border border-purple-200/50 text-gray-700 hover:bg-white'
-                  : 'bg-black/30 border border-white/20 hover:bg-black/50'
-              }`}
-              disabled={currentUserRole === 'admin' && (role === 'admin' || role === 'owner')}
-            >
-              <option value="basic">○ BASIC</option>
-              <option value="exclusive">◆ EXCLUSIVE</option>
-              {currentUserRole === 'owner' && <option value="admin">★ ADMIN</option>}
-              {currentUserRole === 'owner' && <option value="owner">♛ OWNER</option>}
-              {currentUserRole === 'admin' && role === 'admin' && <option value="admin">★ ADMIN</option>}
-              {currentUserRole === 'admin' && role === 'owner' && <option value="owner">♛ OWNER</option>}
-            </select>
+            <RoleDropdown
+              currentRole={role as 'basic' | 'exclusive' | 'admin' | 'owner'}
+              currentUserRole={currentUserRole}
+              onRoleChange={(newRole) => onRoleChange(user.id, newRole)}
+              isLight={isLight}
+            />
           </div>
           
           {/* Email с кнопкой копирования */}
@@ -131,14 +156,18 @@ export function UserListItem({
         </div>
       </div>
       
-      {/* Баланс - десктоп */}
-      <div className="hidden sm:block text-right">
+      {/* Баланс и активность - десктоп */}
+      <div className="hidden sm:block text-right min-w-[100px]">
         <div className={`text-[10px] uppercase tracking-widest ${isLight ? 'text-gray-400' : 'text-zinc-500'}`}>Баланс</div>
         <div className={`text-lg font-black ${isLight ? 'text-purple-600' : 'text-[#9d8df1]'}`}>
           {Number(user.balance || 0).toLocaleString('ru-RU', {minimumFractionDigits: 2}).replace(/\s/g, '.')} ₽
         </div>
-        <div className={`text-[9px] mt-0.5 ${isLight ? 'text-gray-400' : 'text-zinc-700'}`}>
-          {user.created_at && new Date(user.created_at).toLocaleDateString('ru-RU')}
+        {/* Статус активности */}
+        <div className={`text-[9px] mt-0.5 flex items-center justify-end gap-1 ${activityInfo.color}`}>
+          {activityInfo.isOnline && (
+            <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full"></span>
+          )}
+          {activityInfo.text}
         </div>
       </div>
       

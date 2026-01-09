@@ -86,11 +86,11 @@ export async function GET(request: Request) {
       const [basicReleases, exclusiveReleases] = await Promise.all([
         supabase
           .from('releases_basic')
-          .select('id, artist_name, title, cover_url, status, created_at')
+          .select('id, artist_name, title, cover_url, status, created_at, custom_id')
           .in('id', releaseIds),
         supabase
           .from('releases_exclusive')
-          .select('id, artist_name, title, cover_url, status, created_at')
+          .select('id, artist_name, title, cover_url, status, created_at, custom_id')
           .in('id', releaseIds)
       ]);
       
@@ -102,7 +102,8 @@ export async function GET(request: Request) {
           title: release.title,
           artwork_url: release.cover_url,
           status: release.status,
-          created_at: release.created_at
+          created_at: release.created_at,
+          release_code: release.custom_id
         });
       });
       
@@ -114,8 +115,26 @@ export async function GET(request: Request) {
           title: release.title,
           artwork_url: release.cover_url,
           status: release.status,
-          created_at: release.created_at
+          created_at: release.created_at,
+          release_code: release.custom_id
         });
+      });
+    }
+
+    // Получаем информацию о транзакциях для тикетов
+    const transactionIds = tickets
+      .filter(t => t.transaction_id)
+      .map(t => t.transaction_id);
+    
+    const transactionsMap = new Map();
+    if (transactionIds.length > 0) {
+      const { data: transactions } = await supabase
+        .from('transactions')
+        .select('id, type, amount, status, description, created_at')
+        .in('id', transactionIds);
+      
+      transactions?.forEach(tx => {
+        transactionsMap.set(tx.id, tx);
       });
     }
 
@@ -242,7 +261,8 @@ export async function GET(request: Request) {
         user_avatar: profile?.avatar || ticket.user_avatar,
         user_role: profile?.role || ticket.user_role,
         ticket_messages: messages,
-        release: ticket.release_id ? releasesMap.get(ticket.release_id) : null
+        release: ticket.release_id ? releasesMap.get(ticket.release_id) : null,
+        transaction: ticket.transaction_id ? transactionsMap.get(ticket.transaction_id) : null
       };
     });
 
@@ -286,7 +306,7 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const { subject, category, message, images, release_id } = body;
+    const { subject, category, message, images, release_id, transaction_id } = body;
 
     if (!subject || !message) {
       return NextResponse.json(
@@ -313,6 +333,7 @@ export async function POST(request: Request) {
     // Добавляем опциональные поля только если они есть
     if (category) ticketData.category = category;
     if (release_id) ticketData.release_id = release_id;
+    if (transaction_id) ticketData.transaction_id = transaction_id;
     if (profile?.email) ticketData.user_email = profile.email;
     if (profile?.nickname) ticketData.user_nickname = profile.nickname;
     if (profile?.telegram) ticketData.user_telegram = profile.telegram;

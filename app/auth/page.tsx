@@ -59,6 +59,7 @@ export default function AuthPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [nickname, setNickname] = useState('');
+  const [telegram, setTelegram] = useState('');
   const [loading, setLoading] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [resendLoading, setResendLoading] = useState(false);
@@ -66,9 +67,47 @@ export default function AuthPage() {
   const [notification, setNotification] = useState<{show: boolean; message: string; type: 'success' | 'error'}>({show: false, message: '', type: 'success'});
   const router = useRouter();
 
+  // Очистка невалидных сессий при загрузке страницы авторизации
   useEffect(() => {
     setMounted(true);
-  }, []);
+    
+    // Проверяем и очищаем проблемные сессии
+    const checkSession = async () => {
+      if (!supabase) return;
+      
+      try {
+        const { data: { session }, error } = await supabase.auth.getSession();
+        
+        // Если есть ошибка с refresh token - очищаем всё
+        if (error?.message?.includes('Refresh Token') || error?.message?.includes('Invalid')) {
+          console.log('Очистка невалидной сессии при загрузке...');
+          await supabase.auth.signOut();
+          // Очистка localStorage
+          const keys = Object.keys(localStorage);
+          keys.forEach(key => {
+            if (key.includes('supabase') || key.includes('sb-')) {
+              localStorage.removeItem(key);
+            }
+          });
+        }
+        
+        // Если пользователь уже авторизован и email подтверждён - редирект в кабинет
+        if (session?.user?.email_confirmed_at) {
+          router.push('/cabinet');
+        }
+      } catch (e) {
+        console.error('Ошибка проверки сессии:', e);
+        // При любой ошибке очищаем сессию
+        try {
+          await supabase.auth.signOut();
+        } catch (signOutError) {
+          console.error('Ошибка выхода:', signOutError);
+        }
+      }
+    };
+    
+    checkSession();
+  }, [router]);
 
   // Таймер для повторной отправки
   useEffect(() => {
@@ -166,12 +205,18 @@ export default function AuthPage() {
             data: { 
               nickname: nickname || email.split('@')[0],
               display_name: nickname || email.split('@')[0],
-              full_name: nickname || email.split('@')[0]
+              full_name: nickname || email.split('@')[0],
+              telegram: telegram ? telegram.replace('@', '').trim() : null
             } 
           } 
         });
         
         if (authError) {
+          // Если ошибка "Database error saving new user" - пробуем создать профиль вручную
+          if (authError.message?.includes('Database error')) {
+            console.error('Database trigger error, trying manual profile creation...');
+            throw new Error('Ошибка базы данных. Пожалуйста, обратитесь в поддержку.');
+          }
           // Если ошибка говорит что пользователь уже существует
           if (authError.message?.includes('User already registered') || 
               authError.message?.includes('already registered')) {
@@ -188,6 +233,27 @@ export default function AuthPage() {
             showNotification('Письмо с подтверждением отправлено повторно. Проверьте почту.', 'success');
           } else {
             throw authError;
+          }
+        }
+        
+        // Если пользователь создан - создаём профиль вручную (триггер отключён)
+        if (authData?.user) {
+          try {
+            const memberId = 'THQ-' + Math.floor(1000 + Math.random() * 9000);
+            await supabase.from('profiles').upsert({
+              id: authData.user.id,
+              email: authData.user.email,
+              nickname: nickname || email.split('@')[0],
+              member_id: memberId,
+              role: 'basic',
+              balance: 0,
+              telegram: telegram ? telegram.replace('@', '').trim() : null,
+              created_at: new Date().toISOString(),
+              updated_at: new Date().toISOString()
+            }, { onConflict: 'id' });
+          } catch (profileErr) {
+            console.warn('Profile creation error (non-critical):', profileErr);
+            // Не блокируем регистрацию если профиль не создался
           }
         }
         
@@ -226,7 +292,18 @@ export default function AuthPage() {
     } catch (err: any) {
       console.error('Ошибка авторизации:', err);
       
-      if (err.message?.includes('Invalid login credentials')) {
+      // Обработка ошибки невалидного refresh token - очищаем сессию
+      if (err.message?.includes('Refresh Token') || err.message?.includes('Invalid Refresh Token')) {
+        console.log('Очистка невалидной сессии...');
+        try {
+          await supabase.auth.signOut();
+          localStorage.removeItem('supabase.auth.token');
+          localStorage.removeItem('sb-' + process.env.NEXT_PUBLIC_SUPABASE_URL?.split('//')[1]?.split('.')[0] + '-auth-token');
+        } catch (e) {
+          console.error('Ошибка очистки сессии:', e);
+        }
+        showNotification('Сессия устарела. Пожалуйста, войдите снова.', 'error');
+      } else if (err.message?.includes('Invalid login credentials')) {
         showNotification('Неверный email или пароль. Проверьте данные и попробуйте снова.', 'error');
       } else if (err.message?.includes('Email not confirmed')) {
         showNotification('Email не подтверждён. Проверьте почту!', 'error');
@@ -492,21 +569,60 @@ export default function AuthPage() {
 
                 <form onSubmit={handleSubmit} className="space-y-5">
                   {mode === 'signup' && (
-                    <div className="animate-[fadeIn_0.3s_ease-in-out]">
-                      <label className="text-[10px] text-zinc-400 uppercase tracking-widest block mb-2">Никнейм</label>
+                    <>
+                    <div className="animate-[fadeIn_0.3s_ease-in-out] group/nick">
+                      <div className="flex items-center gap-2 mb-2">
+                        <label className="text-[10px] text-zinc-400 uppercase tracking-widest">Никнейм</label>
+                        {/* Иконка с подсказкой */}
+                        <div className="relative">
+                          <svg className="w-3.5 h-3.5 text-amber-400 cursor-help animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                          </svg>
+                          {/* Тултип при наведении на иконку ИЛИ при фокусе на инпуте */}
+                          <div className="absolute left-0 bottom-full mb-2 w-64 p-2.5 bg-zinc-900 border border-amber-500/30 rounded-lg shadow-xl opacity-0 invisible hover:opacity-100 hover:visible group-focus-within/nick:opacity-100 group-focus-within/nick:visible transition-all duration-200 z-50">
+                            <p className="text-[11px] text-zinc-300 leading-relaxed">
+                              <span className="text-amber-400 font-semibold">Важно!</span> Укажите настоящий артистический никнейм — он будет использоваться для выплат и релизов.
+                            </p>
+                            <div className="absolute left-3 -bottom-1.5 w-2.5 h-2.5 bg-zinc-900 border-r border-b border-amber-500/30 rotate-45"></div>
+                          </div>
+                        </div>
+                      </div>
                       <input 
                         value={nickname} 
                         onChange={(e) => setNickname(e.target.value)}
                         onKeyDown={(e) => {
-                          if (e.key === 'Enter' || e.key === 'Escape') {
+                          if (e.key === 'Escape') {
                             e.currentTarget.blur();
                           }
                         }}
-                        onBlur={(e) => e.target.blur()}
                         placeholder="Твой псевдоним" 
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white outline-none focus:border-[#6050ba] focus:bg-white/10 transition placeholder-zinc-500"
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white outline-none focus:border-[#6050ba] focus:bg-white/10 transition placeholder-zinc-500 peer"
                       />
                     </div>
+                    
+                    {/* Telegram поле - сразу после никнейма */}
+                    <div className="animate-[fadeIn_0.3s_ease-in-out]">
+                      <div className="flex items-center gap-2 mb-2">
+                        <label className="text-[10px] text-zinc-400 uppercase tracking-widest">Telegram</label>
+                        <span className="text-[9px] text-zinc-500">(необязательно)</span>
+                      </div>
+                      <div className="relative">
+                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500 text-sm">@</span>
+                        <input 
+                          value={telegram} 
+                          onChange={(e) => setTelegram(e.target.value.replace('@', ''))}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Escape') {
+                              e.currentTarget.blur();
+                            }
+                          }}
+                          placeholder="username" 
+                          className="w-full bg-white/5 border border-white/10 rounded-xl pl-8 pr-4 py-3.5 text-sm text-white outline-none focus:border-[#6050ba] focus:bg-white/10 transition placeholder-zinc-500"
+                        />
+                      </div>
+                      <p className="mt-1.5 text-[10px] text-zinc-500">Для связи по вопросам выплат и релизов</p>
+                    </div>
+                    </>
                   )}
                   
                   <div>
@@ -516,11 +632,10 @@ export default function AuthPage() {
                       value={email} 
                       onChange={(e) => setEmail(e.target.value)}
                       onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === 'Escape') {
+                        if (e.key === 'Escape') {
                           e.currentTarget.blur();
                         }
                       }}
-                      onBlur={(e) => e.target.blur()}
                       placeholder="email@example.com" 
                       type="email" 
                       className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white outline-none focus:border-[#6050ba] focus:bg-white/10 transition placeholder-zinc-500"
@@ -534,11 +649,13 @@ export default function AuthPage() {
                       value={password} 
                       onChange={(e) => setPassword(e.target.value)}
                       onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === 'Escape') {
+                        if (e.key === 'Enter' && !loading) {
+                          e.preventDefault();
+                          handleSubmit(e as unknown as React.FormEvent);
+                        } else if (e.key === 'Escape') {
                           e.currentTarget.blur();
                         }
                       }}
-                      onBlur={(e) => e.target.blur()}
                       placeholder="••••••••" 
                       type="password" 
                       className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white outline-none focus:border-[#6050ba] focus:bg-white/10 transition placeholder-zinc-500"

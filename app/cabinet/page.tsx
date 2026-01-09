@@ -45,7 +45,6 @@ const KeepAliveTabPanel = memo(function KeepAliveTabPanel({
   
   return (
     <div
-      className="transition-all duration-300 ease-out"
       style={{ 
         display: isActive ? 'block' : 'none',
         // CSS containment для скрытых вкладок - экономит память и CPU
@@ -534,11 +533,11 @@ export default function CabinetPage() {
     <div className="min-h-screen relative z-10 text-heading" style={{ paddingTop: '70px' }}>
       <AnimatedBackground />
       
-      {/* Декоративные элементы */}
+      {/* Декоративные элементы - без blur для производительности */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-20 left-10 w-32 h-32 rounded-full blur-xl floating-element floating-orb" style={{animationDelay: '0s'}}></div>
-        <div className="absolute top-60 right-20 w-24 h-24 rounded-full blur-lg floating-element floating-orb-alt" style={{animationDelay: '2s'}}></div>
-        <div className="absolute bottom-40 left-1/4 w-16 h-16 rounded-full blur-md floating-element floating-orb" style={{animationDelay: '4s'}}></div>
+        <div className="absolute top-20 left-10 w-32 h-32 rounded-full floating-element floating-orb opacity-30" style={{animationDelay: '0s'}}></div>
+        <div className="absolute top-60 right-20 w-24 h-24 rounded-full floating-element floating-orb-alt opacity-30" style={{animationDelay: '2s'}}></div>
+        <div className="absolute bottom-40 left-1/4 w-16 h-16 rounded-full floating-element floating-orb opacity-30" style={{animationDelay: '4s'}}></div>
       </div>
       
       <div 
@@ -564,7 +563,7 @@ export default function CabinetPage() {
             minHeight: 'calc(100vh - 70px)',
             maxHeight: 'calc(100vh - 70px)',
             boxSizing: 'border-box',
-            transition: 'border-radius 0.3s ease, border-color 0.3s ease',
+            transition: 'border-radius 0.3s ease',
             willChange: 'transform',
             overflow: 'auto',
             overscrollBehavior: 'contain',
@@ -640,7 +639,7 @@ export default function CabinetPage() {
             minHeight: 'calc(100vh - 70px)',
             marginTop: '0px',
             boxSizing: 'border-box',
-            transition: 'border-radius 0.3s ease, border-color 0.3s ease',
+            transition: 'border-radius 0.3s ease',
           }}
         >
           
@@ -701,6 +700,7 @@ export default function CabinetPage() {
               onSignOut={handleSignOut}
               onShowAvatarModal={() => setShowAvatarModal(true)}
               showToast={handleShowToast}
+              onSupportToggle={() => supportWidget.toggle()}
             />
           </KeepAliveTabPanel>
           

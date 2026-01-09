@@ -226,7 +226,8 @@ AccessDeniedScreen.displayName = 'AccessDeniedScreen';
 
 type Tab = 'releases' | 'contracts' | 'archive' | 'users' | 'news' | 'tickets' | 'withdrawals' | 'reports' | 'transactions';
 
-export default function AdminPage() {
+// Внутренний компонент админки (использует useSearchParams)
+function AdminPageContent() {
   const { themeName } = useTheme();
   const isLight = themeName === 'light';
   const searchParams = useSearchParams();
@@ -612,5 +613,18 @@ export default function AdminPage() {
 
       </div>
     </div>
+  );
+}
+
+// Экспорт с Suspense boundary для useSearchParams
+export default function AdminPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center min-h-screen bg-[#08080a]">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#6050ba]"></div>
+      </div>
+    }>
+      <AdminPageContent />
+    </Suspense>
   );
 }

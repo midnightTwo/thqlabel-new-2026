@@ -45,9 +45,9 @@ const nextConfig: NextConfig = {
   // GZIP/Brotli сжатие - уменьшает трафик на 70%
   compress: true,
   
-  // Стабильный build ID для кэширования
+  // Уникальный build ID при каждом деплое - форсирует обновление кэша у всех клиентов
   generateBuildId: async () => {
-    return process.env.BUILD_ID || `build-${Date.now()}`;
+    return `v${Date.now()}`;
   },
   
   // Dev server оптимизация - БОЛЬШЕ страниц в памяти

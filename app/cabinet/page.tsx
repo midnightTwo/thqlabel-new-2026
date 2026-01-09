@@ -105,13 +105,13 @@ export default function CabinetPage() {
     });
   }, []);
   
-  // Обработчик скролла с улучшенными эффектами и дебаунсингом
+  // Обработчик скролла с улучшенными эффектами
+  // ИСПРАВЛЕНО: Убран debounce для состояния scrolled чтобы панели магнитились с первого раза
   useEffect(() => {
     let ticking = false;
-    let lastScrollY = 0;
-    let lastUpdateTime = 0;
+    let lastAnimationCheckTime = 0;
     const scrollThreshold = 10;
-    const minUpdateInterval = 50; // Ограничиваем обновления до 20fps для плавности
+    const animationCheckInterval = 100; // Только для анимаций, не для scrolled состояния
     
     const handleScroll = () => {
       if (!ticking) {
@@ -119,40 +119,30 @@ export default function CabinetPage() {
           const now = Date.now();
           const scrollY = window.scrollY;
           
-          // Проверяем, прошло ли достаточно времени с последнего обновления
-          if (now - lastUpdateTime < minUpdateInterval) {
-            ticking = false;
-            return;
-          }
-          
-          // Проверяем изменение больше порога, чтобы избежать частых обновлений
-          if (Math.abs(scrollY - lastScrollY) < 10) {
-            ticking = false;
-            return;
-          }
-          
-          lastScrollY = scrollY;
-          lastUpdateTime = now;
-          
-          // В архиве черновиков скролл не должен разделять панели
+          // КРИТИЧНО: Состояние scrolled обновляем ВСЕГДА без debounce
+          // Это гарантирует что панели "схлопнутся" с первого раза
           const isScrolled = showArchive ? false : scrollY > scrollThreshold;
           
           if (isScrolled !== scrolled) {
             setScrolled(isScrolled);
           }
           
-          // Триггеры для анимаций при скролле
-          const sections = document.querySelectorAll('[data-animate]');
-          sections.forEach((section) => {
-            const rect = section.getBoundingClientRect();
-            const id = section.getAttribute('data-animate');
+          // Триггеры для анимаций при скролле - с debounce для производительности
+          if (now - lastAnimationCheckTime > animationCheckInterval) {
+            lastAnimationCheckTime = now;
             
-            if (rect.top < window.innerHeight * 0.8 && rect.bottom > 0) {
-              if (id && !animationTriggers.has(id)) {
-                setAnimationTriggers(prev => new Set([...prev, id]));
+            const sections = document.querySelectorAll('[data-animate]');
+            sections.forEach((section) => {
+              const rect = section.getBoundingClientRect();
+              const id = section.getAttribute('data-animate');
+              
+              if (rect.top < window.innerHeight * 0.8 && rect.bottom > 0) {
+                if (id && !animationTriggers.has(id)) {
+                  setAnimationTriggers(prev => new Set([...prev, id]));
+                }
               }
-            }
-          });
+            });
+          }
           
           ticking = false;
         });

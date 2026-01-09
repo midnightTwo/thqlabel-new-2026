@@ -514,6 +514,7 @@ export default function FeedPage() {
   
   // Капибара пасхалка
   const [kapibaraHovered, setKapibaraHovered] = useState(false);
+  const kapibaraRef = useRef<HTMLDivElement>(null);
 
   // Оптимизированная проверка размера экрана
   const checkMobile = useCallback(() => {
@@ -573,6 +574,25 @@ export default function FeedPage() {
       }
     };
   }, [checkMobile]);
+
+  // Закрытие тултипа капибары при клике вне неё
+  useEffect(() => {
+    if (!isMobile || !kapibaraHovered) return;
+    
+    const handleClickOutside = (e: MouseEvent | TouchEvent) => {
+      if (kapibaraRef.current && !kapibaraRef.current.contains(e.target as Node)) {
+        setKapibaraHovered(false);
+      }
+    };
+    
+    document.addEventListener('click', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+    
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [isMobile, kapibaraHovered]);
 
   return (
     <>
@@ -1475,21 +1495,43 @@ export default function FeedPage() {
       {/* Капибара - fixed справа внизу (показывается только после загрузки) */}
       {!showIntro && (
       <div 
+        ref={kapibaraRef}
         className="fixed bottom-0 right-4 z-[9999] cursor-pointer group"
-        onMouseEnter={() => setKapibaraHovered(true)}
-        onMouseLeave={() => setKapibaraHovered(false)}
+        onMouseEnter={() => !isMobile && setKapibaraHovered(true)}
+        onMouseLeave={() => !isMobile && setKapibaraHovered(false)}
+        onClick={() => isMobile && setKapibaraHovered(prev => !prev)}
       >
         <div className="relative flex flex-col items-center">
-          {/* Текст сверху */}
-          <div className={`absolute -top-7 right-0 flex items-center gap-1
+          {/* Плашка сверху - десктоп */}
+          <div className={`absolute bottom-full mb-2 left-1/2 -translate-x-1/2
+                          bg-black/80 backdrop-blur-md rounded-lg px-2.5 py-1.5
+                          border border-white/10 shadow-lg
                           transition-all duration-300 pointer-events-none
-                          text-[12px] font-medium text-white/90 whitespace-nowrap
-                          ${kapibaraHovered ? 'opacity-100' : 'opacity-0'}`}>
-            <span>От КВЭЛА</span>
-            <svg className="w-4 h-4 text-red-400" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-            </svg>
+                          hidden md:block
+                          ${kapibaraHovered ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+            <div className="flex items-center gap-1.5 whitespace-nowrap">
+              <span className="text-[11px] font-semibold text-white">От КВЭЛА</span>
+              <svg className="w-3 h-3 text-red-400" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+            </div>
           </div>
+          
+          {/* Плашка сверху - мобилка */}
+          <div className={`absolute bottom-full mb-2 left-1/2 -translate-x-1/2
+                          bg-black/80 backdrop-blur-md rounded-lg px-2.5 py-1.5
+                          border border-white/10 shadow-lg
+                          transition-all duration-300
+                          md:hidden
+                          ${kapibaraHovered ? 'opacity-100 scale-100' : 'opacity-0 scale-90 pointer-events-none'}`}>
+            <div className="flex items-center gap-1.5 whitespace-nowrap">
+              <span className="text-[11px] font-semibold text-white">От КВЭЛА</span>
+              <svg className="w-3 h-3 text-red-400" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+            </div>
+          </div>
+          
           {/* Картинка */}
           <img 
             src="/kapibara.gif" 

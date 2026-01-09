@@ -270,6 +270,30 @@ function AuthPage() {
     } catch (err: any) {
       console.error('Ошибка авторизации:', err);
       
+      // Функция перевода английских ошибок Supabase
+      const translateError = (message: string): string => {
+        const errorTranslations: { [key: string]: string } = {
+          'A user with this email address has already been registered': 'Пользователь с этим email уже зарегистрирован',
+          'User already registered': 'Пользователь уже зарегистрирован. Войдите или восстановите пароль.',
+          'Email not confirmed': 'Email не подтверждён. Проверьте почту!',
+          'Invalid login credentials': 'Неверный email или пароль. Проверьте данные и попробуйте снова.',
+          'Email rate limit exceeded': 'Слишком много запросов. Подождите немного',
+          'Password should be at least 6 characters': 'Пароль должен быть не менее 6 символов',
+          'Unable to validate email address: invalid format': 'Неверный формат email',
+          'Refresh Token': 'Сессия устарела. Пожалуйста, войдите снова.',
+          'Invalid Refresh Token': 'Сессия устарела. Пожалуйста, войдите снова.',
+          'For security purposes, you can only request this once every 60 seconds': 'Можно запрашивать только раз в 60 секунд',
+          'Signups not allowed for this instance': 'Регистрация временно недоступна',
+        };
+        
+        for (const [eng, rus] of Object.entries(errorTranslations)) {
+          if (message.toLowerCase().includes(eng.toLowerCase())) {
+            return rus;
+          }
+        }
+        return message;
+      };
+      
       // Обработка ошибки невалидного refresh token - очищаем сессию
       if (err.message?.includes('Refresh Token') || err.message?.includes('Invalid Refresh Token')) {
         console.log('Очистка невалидной сессии...');
@@ -281,17 +305,17 @@ function AuthPage() {
           console.error('Ошибка очистки сессии:', e);
         }
         showNotification('Сессия устарела. Пожалуйста, войдите снова.', 'error');
-      } else if (err.message?.includes('Invalid login credentials')) {
-        showNotification('Неверный email или пароль. Проверьте данные и попробуйте снова.', 'error');
       } else if (err.message?.includes('Email not confirmed')) {
         showNotification('Email не подтверждён. Проверьте почту!', 'error');
         setMode('waiting-confirmation');
-      } else if (err.message?.includes('User already registered')) {
-        showNotification('Этот email уже зарегистрирован. Войдите или восстановите пароль.', 'error');
-      } else if (err.message?.includes('Password should be at least')) {
-        showNotification('Пароль должен быть не менее 6 символов', 'error');
       } else {
-        showNotification(err.message || 'Произошла ошибка. Попробуйте позже.', 'error');
+        // Используем универсальный перевод для остальных ошибок
+        showNotification(translateError(err.message) || 'Произошла ошибка. Попробуйте позже.', 'error');
+        
+        // Дополнительная логика для waiting-confirmation режима
+        if (err.message?.includes('User already registered')) {
+          // Пользователь мог уже зарегистрироваться, но не подтвердить email
+        }
       }
     } finally {
       setLoading(false);

@@ -115,22 +115,61 @@ export default function SettingsTab({
   const [emailError, setEmailError] = useState('');
   const [emailSuccess, setEmailSuccess] = useState('');
 
+  // Функция для перевода английских ошибок Supabase на русский
+  const translateError = (message: string): string => {
+    const errorTranslations: { [key: string]: string } = {
+      'A user with this email address has already been registered': 'Пользователь с этим email уже зарегистрирован',
+      'User already registered': 'Пользователь уже зарегистрирован',
+      'Email not confirmed': 'Email не подтверждён',
+      'Invalid login credentials': 'Неверный email или пароль',
+      'Email rate limit exceeded': 'Слишком много запросов. Подождите немного',
+      'Password should be at least 6 characters': 'Пароль должен быть не менее 6 символов',
+      'Unable to validate email address: invalid format': 'Неверный формат email',
+      'New email is the same as your current email': 'Новый email совпадает с текущим',
+      'Email link is invalid or has expired': 'Ссылка недействительна или истекла',
+      'Token has expired or is invalid': 'Токен истёк или недействителен',
+      'For security purposes, you can only request this once every 60 seconds': 'Можно запрашивать только раз в 60 секунд',
+      'Signups not allowed for this instance': 'Регистрация временно недоступна',
+    };
+    
+    // Ищем точное совпадение
+    if (errorTranslations[message]) {
+      return errorTranslations[message];
+    }
+    
+    // Ищем частичное совпадение
+    for (const [eng, rus] of Object.entries(errorTranslations)) {
+      if (message.toLowerCase().includes(eng.toLowerCase())) {
+        return rus;
+      }
+    }
+    
+    return message;
+  };
+
   const handleChangePassword = async () => {
     setPasswordError('');
     setPasswordSuccess('');
 
-    if (!supabase || !user?.email) {
+    if (!user?.email) {
       setPasswordError('Ошибка инициализации');
       return;
     }
 
     setPasswordLoading(true);
     try {
-      const { error } = await supabase.auth.resetPasswordForEmail(user.email, {
-        redirectTo: `${window.location.origin}/reset-password`,
+      // Используем наш кастомный API для отправки письма сброса пароля
+      const response = await fetch('/api/send-password-reset', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: user.email })
       });
 
-      if (error) throw error;
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Не удалось отправить письмо');
+      }
 
       setPasswordSuccess('Письмо со ссылкой для смены пароля отправлено на вашу почту!');
       setTimeout(() => {
@@ -139,7 +178,7 @@ export default function SettingsTab({
       }, 3000);
     } catch (err: any) {
       console.error('Ошибка отправки письма:', err);
-      setPasswordError(err.message || 'Не удалось отправить письмо');
+      setPasswordError(translateError(err.message) || 'Не удалось отправить письмо');
     } finally {
       setPasswordLoading(false);
     }
@@ -166,24 +205,27 @@ export default function SettingsTab({
 
     setEmailLoading(true);
     try {
-      const { error } = await supabase.auth.updateUser(
+      const { data, error } = await supabase.auth.updateUser(
         { email: newEmail },
         { emailRedirectTo: `${window.location.origin}/change-email` }
       );
 
       if (error) throw error;
 
+      // Проверяем результат - Supabase может вернуть user с new_email
+      console.log('Email change result:', data);
+      
       setEmailSuccess('Письмо с подтверждением отправлено на новый email! Проверьте почту.');
       setNewEmail('');
+      setEmailLoading(false); // Явно сбрасываем loading сразу
       setTimeout(() => {
         setShowEmailChange(false);
         setEmailSuccess('');
       }, 5000);
     } catch (err: any) {
       console.error('Ошибка смены email:', err);
-      setEmailError(err.message || 'Не удалось отправить письмо');
-    } finally {
-      setEmailLoading(false);
+      setEmailError(translateError(err.message) || 'Не удалось отправить письмо');
+      setEmailLoading(false); // Явно сбрасываем loading при ошибке
     }
   };
 

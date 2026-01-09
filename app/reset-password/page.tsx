@@ -58,7 +58,13 @@ export default function ResetPasswordPage() {
       const searchParams = new URLSearchParams(window.location.search);
       const hashParams = new URLSearchParams(window.location.hash.substring(1));
       
+      console.log('=== Reset Password ===');
+      console.log('Full URL:', window.location.href);
+      console.log('Search params:', window.location.search);
+      console.log('Hash params:', window.location.hash);
+      
       const tokenHash = searchParams.get('token') || hashParams.get('access_token');
+      console.log('Token found:', tokenHash);
       
       if (!tokenHash) {
         throw new Error('Токен восстановления не найден в URL. Запросите новую ссылку.');
@@ -77,18 +83,27 @@ export default function ResetPasswordPage() {
       });
 
       const data = await response.json();
+      console.log('API Response:', response.status, data);
 
       if (!response.ok) {
-        throw new Error(data.error || 'Не удалось обновить пароль');
+        // Переводим английские ошибки
+        let errorMsg = data.error || 'Не удалось обновить пароль';
+        if (errorMsg.includes('expired') || errorMsg.includes('истек')) {
+          errorMsg = 'Ссылка для сброса пароля истекла. Запросите новую.';
+        } else if (errorMsg.includes('invalid') || errorMsg.includes('недействительн')) {
+          errorMsg = 'Недействительная ссылка. Запросите новую.';
+        }
+        throw new Error(errorMsg);
       }
 
-      showNotification('Пароль обновлен успешно', 'success');
+      showNotification('Пароль успешно обновлён!', 'success');
       
       setTimeout(() => {
         router.push('/auth');
       }, 2000);
       
     } catch (err: any) {
+      console.error('Reset password error:', err);
       showNotification(err.message || 'Не удалось сменить пароль. Запросите новую ссылку.', 'error');
     } finally {
       setLoading(false);

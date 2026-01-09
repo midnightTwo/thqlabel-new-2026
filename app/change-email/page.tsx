@@ -11,6 +11,11 @@ export default function ChangeEmailPage() {
   const [newEmail, setNewEmail] = useState('');
   const router = useRouter();
 
+  const showNotification = (message: string, type: 'success' | 'error' = 'success') => {
+    setNotification({show: true, message, type});
+    setTimeout(() => setNotification(prev => ({...prev, show: false})), 4000);
+  };
+
   useEffect(() => {
     setMounted(true);
     
@@ -26,63 +31,142 @@ export default function ChangeEmailPage() {
       }
       
       try {
-        // Проверяем токен в URL
+        console.log('=== Processing email change ===');
+        console.log('Full URL:', window.location.href);
+        console.log('Hash:', window.location.hash);
+        
+        // Проверяем токен в URL hash
         const hashParams = new URLSearchParams(window.location.hash.substring(1));
         const accessToken = hashParams.get('access_token');
+        const refreshToken = hashParams.get('refresh_token');
         const type = hashParams.get('type');
         
-        if (accessToken && type === 'email_change') {
+        console.log('Type:', type);
+        console.log('Has access token:', !!accessToken);
+        
+        if (accessToken && (type === 'email_change' || type === 'email')) {
+          console.log('Setting session with token...');
+          
           // Устанавливаем сессию с токеном
           const { data, error } = await supabase.auth.setSession({
             access_token: accessToken,
-            refresh_token: hashParams.get('refresh_token') || ''
+            refresh_token: refreshToken || ''
           });
           
           if (error) {
+            console.error('Session error:', error);
             throw error;
           }
           
-          if (data.user?.email) {
+          console.log('Session data:', data);
+          console.log('User email:', data.user?.email);
+          console.log('User new_email:', data.user?.new_email);
+          console.log('User metadata:', data.user?.user_metadata);
+          
+          // Получаем новый email - может быть в разных местах
+          const confirmedEmail = data.user?.email || 
+                                 data.user?.new_email || 
+                                 data.user?.user_metadata?.new_email ||
+                                 '';
+          
+          if (confirmedEmail) {
             processed = true;
-            setNewEmail(data.user.email);
+            setNewEmail(confirmedEmail);
             setLoading(false);
             
             // Обновляем email в profiles
-            await supabase
-              .from('profiles')
-              .update({ email: data.user.email })
-              .eq('id', data.user.id);
+            if (data.user?.id) {
+              const { error: profileError } = await supabase
+                .from('profiles')
+                .update({ 
+                  email: confirmedEmail,
+                  updated_at: new Date().toISOString()
+                })
+                .eq('id', data.user.id);
+              
+              if (profileError) {
+                console.error('Profile update error:', profileError);
+              } else {
+                console.log('Profile email updated to:', confirmedEmail);
+              }
+            }
             
-            showNotification(`Email успешно изменён на ${data.user.email}`, 'success');
-            setTimeout(() => router.push('/cabinet'), 2000);
+            showNotification(`Email успешно изменён на ${confirmedEmail}`, 'success');
+            
+            // Очищаем URL от токенов
+            window.history.replaceState({}, '', '/change-email');
+            
+            setTimeout(() => router.push('/cabinet'), 2500);
             return;
           }
         }
         
-        // Если токена нет - пробуем получить текущую сессию
+        // Fallback: проверяем события auth
+        const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+          console.log('Auth event:', event);
+          
+          if (event === 'USER_UPDATED' && session?.user && !processed) {
+            processed = true;
+            const updatedEmail = session.user.email || '';
+            setNewEmail(updatedEmail);
+            setLoading(false);
+            
+            // Обновляем профиль
+            await supabase
+              .from('profiles')
+              .update({ email: updatedEmail })
+              .eq('id', session.user.id);
+            
+            showNotification(`Email успешно изменён на ${updatedEmail}`, 'success');
+            setTimeout(() => router.push('/cabinet'), 2500);
+          }
+        });
+        
+        // Проверяем текущую сессию
         const { data: { session } } = await supabase.auth.getSession();
         
-        if (session?.user) {
-          processed = true;
-          setNewEmail(session.user.email || '');
-          setLoading(false);
-          showNotification('Email подтверждён', 'success');
-          setTimeout(() => router.push('/cabinet'), 2000);
+        if (session?.user && !processed) {
+          // Проверяем, есть ли pending email change
+          const pendingEmail = session.user.new_email || session.user.user_metadata?.new_email;
+          
+          if (pendingEmail) {
+            console.log('Pending email found:', pendingEmail);
+            // Email ещё не подтверждён полностью
+            setLoading(false);
+            showNotification('Ожидаем подтверждение нового email...', 'success');
+          } else {
+            processed = true;
+            setNewEmail(session.user.email || '');
+            setLoading(false);
+            showNotification('Email подтверждён', 'success');
+            setTimeout(() => router.push('/cabinet'), 2500);
+          }
           return;
         }
         
         // Если ничего не найдено после 3 секунд
         await new Promise(resolve => setTimeout(resolve, 3000));
         if (!processed) {
+          setLoading(false);
           showNotification('Ссылка недействительна или истекла', 'error');
-          setTimeout(() => router.push('/cabinet'), 2000);
+          setTimeout(() => router.push('/auth'), 2500);
         }
+        
+        return () => {
+          subscription.unsubscribe();
+        };
         
       } catch (err: any) {
         console.error('Error processing email change:', err);
+        setLoading(false);
         if (!processed) {
-          showNotification('Ошибка: ' + (err.message || 'Неизвестная ошибка'), 'error');
-          setTimeout(() => router.push('/cabinet'), 2000);
+          // Переводим английские ошибки
+          let errorMsg = err.message || 'Неизвестная ошибка';
+          if (errorMsg.includes('invalid') || errorMsg.includes('expired')) {
+            errorMsg = 'Ссылка недействительна или истекла';
+          }
+          showNotification('Ошибка: ' + errorMsg, 'error');
+          setTimeout(() => router.push('/cabinet'), 2500);
         }
       }
     };
@@ -94,7 +178,7 @@ export default function ChangeEmailPage() {
       if (!processed) {
         setLoading(false);
         showNotification('Превышено время ожидания', 'error');
-        setTimeout(() => router.push('/cabinet'), 2000);
+        setTimeout(() => router.push('/cabinet'), 2500);
       }
     }, 10000); // 10 секунд максимум
 
@@ -102,11 +186,6 @@ export default function ChangeEmailPage() {
       clearTimeout(timeoutId);
     };
   }, [router]);
-
-  const showNotification = (message: string, type: 'success' | 'error' = 'success') => {
-    setNotification({show: true, message, type});
-    setTimeout(() => setNotification(prev => ({...prev, show: false})), 4000);
-  };
 
   if (!mounted) {
     return null;

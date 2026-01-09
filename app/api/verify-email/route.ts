@@ -116,8 +116,24 @@ export async function GET(request: NextRequest) {
     
     console.log('Пользователь успешно создан:', tokenData.email);
     
-    // Перенаправляем на страницу входа с сообщением об успехе
-    return NextResponse.redirect(new URL('/auth?verified=true', baseUrl));
+    // Генерируем магическую ссылку для автоматического входа в кабинет
+    const { data: magicLinkData, error: magicLinkError } = await supabase.auth.admin.generateLink({
+      type: 'magiclink',
+      email: tokenData.email,
+      options: {
+        redirectTo: `${baseUrl}/cabinet`
+      }
+    });
+    
+    if (magicLinkError || !magicLinkData?.properties?.action_link) {
+      console.error('Ошибка генерации магической ссылки:', magicLinkError);
+      // Если не удалось создать магическую ссылку - редиректим на авторизацию с сообщением
+      return NextResponse.redirect(new URL('/auth?verified=true', baseUrl));
+    }
+    
+    // Перенаправляем на магическую ссылку, которая автоматически авторизует и переведет в кабинет
+    console.log('Перенаправление на автологин:', magicLinkData.properties.action_link);
+    return NextResponse.redirect(magicLinkData.properties.action_link);
 
   } catch (error: any) {
     console.error('Ошибка верификации email:', error);

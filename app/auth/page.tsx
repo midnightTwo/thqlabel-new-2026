@@ -92,7 +92,6 @@ function AuthPage() {
       showNotification(errorMessages[error] || 'Произошла ошибка', 'error');
       window.history.replaceState({}, '', '/auth');
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
   // Очистка невалидных сессий при загрузке страницы авторизации

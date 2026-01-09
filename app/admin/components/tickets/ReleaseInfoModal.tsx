@@ -24,9 +24,9 @@ export default function ReleaseInfoModal({ release, onClose }: ReleaseInfoModalP
     bgColor: 'rgba(157, 141, 241, 0.15)'
   };
 
-  // SVG иконки для статусов
-  const StatusIcon = () => {
-    switch (release.status) {
+  // Функция для получения иконки статуса
+  const getStatusIcon = (statusKey: string) => {
+    switch (statusKey) {
       case 'pending':
         return (
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -125,7 +125,7 @@ export default function ReleaseInfoModal({ release, onClose }: ReleaseInfoModalP
                   border: `2px solid ${status.color}40`
                 }}
               >
-                <StatusIcon />
+                {getStatusIcon(release.status)}
                 <span className="font-bold">{status.label}</span>
               </div>
             </div>

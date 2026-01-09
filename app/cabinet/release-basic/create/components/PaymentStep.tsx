@@ -178,7 +178,7 @@ export default function PaymentStep({
     
     checkPaymentStatus();
     return () => { isMounted = false; };
-  }, [releaseId, isPaid]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [releaseId, isPaid]);
 
   // Загрузка баланса - только при монтировании и смене userId
   useEffect(() => {

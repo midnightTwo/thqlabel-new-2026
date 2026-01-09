@@ -558,6 +558,7 @@ export default function OperationsHistory({ payouts, withdrawalRequests, transac
           >
             <p className={isLight ? 'text-[#5c5580]' : 'text-zinc-500'}>Нет операций в этой категории</p>
           </div>
+        // eslint-disable-next-line react-hooks/refs
         ) : filteredOperations.slice(0, visibleCount).map((op) => {
         if (op.type === 'deposit') {
           const statusBadge = op.status === 'completed' 

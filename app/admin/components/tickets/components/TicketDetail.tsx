@@ -239,9 +239,9 @@ function ReleaseCard({ release, onClick }: ReleaseCardProps) {
 
   const status = statusConfig[release.status] || { label: release.status, color: '#9d8df1', bgColor: 'rgba(157, 141, 241, 0.15)' };
 
-  // SVG иконки для статусов
-  const StatusIcon = () => {
-    switch (release.status) {
+  // Функция для получения иконки статуса
+  const getStatusIcon = (statusKey: string) => {
+    switch (statusKey) {
       case 'pending':
         return (
           <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -325,7 +325,7 @@ function ReleaseCard({ release, onClick }: ReleaseCardProps) {
               border: `1px solid ${status.color}40`
             }}
           >
-            <StatusIcon />
+            {getStatusIcon(release.status)}
             <span>{status.label}</span>
           </span>
           <svg className="w-3.5 h-3.5 text-purple-400/60 group-hover:text-purple-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">

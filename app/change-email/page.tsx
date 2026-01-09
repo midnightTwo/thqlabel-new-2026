@@ -105,7 +105,7 @@ export default function ChangeEmailPage() {
         const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
           console.log('Auth event:', event);
           
-          if (event === 'USER_UPDATED' && session?.user && !processed) {
+          if (event === 'USER_UPDATED' && session?.user && !processed && supabase) {
             processed = true;
             const updatedEmail = session.user.email || '';
             setNewEmail(updatedEmail);

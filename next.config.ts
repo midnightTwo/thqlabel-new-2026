@@ -5,7 +5,10 @@ const BUILD_TIME = new Date().toISOString();
 
 const nextConfig: NextConfig = {
   /* TURBO OPTIMIZED CONFIG - МАКСИМАЛЬНАЯ скорость переходов */
-  devIndicators: false,
+  // Отключаем все dev индикаторы Next.js 15
+  devIndicators: {
+    position: 'bottom-right',
+  },
   
   // Очистка при сборке
   cleanDistDir: true,

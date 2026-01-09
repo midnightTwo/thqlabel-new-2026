@@ -6,8 +6,17 @@ import { useCallback, useRef, ComponentProps, forwardRef, MouseEvent, TouchEvent
 
 type LinkProps = ComponentProps<typeof Link>;
 
-// Глобальный кэш prefetch для всех ссылок
+// Глобальный кэш prefetch для всех ссылок - с ограничением размера!
 const globalPrefetchCache = new Set<string>();
+const MAX_CACHE_SIZE = 50;
+
+// Ограничение размера кэша для предотвращения утечки памяти
+function limitCache() {
+  if (globalPrefetchCache.size > MAX_CACHE_SIZE) {
+    const arr = Array.from(globalPrefetchCache);
+    arr.slice(0, arr.length - MAX_CACHE_SIZE).forEach(url => globalPrefetchCache.delete(url));
+  }
+}
 
 /**
  * TurboLink - ссылка с МГНОВЕННЫМ переходом
@@ -45,6 +54,7 @@ export const TurboLink = forwardRef<HTMLAnchorElement, LinkProps>(({
     
     prefetchedRef.current = true;
     globalPrefetchCache.add(url);
+    limitCache(); // Ограничиваем размер кэша
     
     // Используем микротаск для мгновенного выполнения
     queueMicrotask(() => {
@@ -128,6 +138,7 @@ export function useInstantLink(href: string) {
     
     prefetchedRef.current = true;
     globalPrefetchCache.add(href);
+    limitCache(); // Ограничиваем размер кэша
     router.prefetch(href);
   }, [href, router]);
   

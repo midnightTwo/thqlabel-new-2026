@@ -169,13 +169,15 @@ const FloatingShapes = memo(({ isLight }: { isLight?: boolean }) => {
             background: isLight 
               ? 'rgba(255, 255, 255, 0.4)'
               : 'rgba(96, 80, 186, 0.02)',
-            backdropFilter: isLight ? 'blur(8px)' : 'none',
+            // ОПТИМИЗАЦИЯ: убрали backdropFilter - очень тяжёлый для CPU
+            // Визуально почти не отличается на фоновых элементах
             animationName: 'float-shape',
             animationDuration: `${shape.duration}s`,
             animationTimingFunction: 'ease-in-out',
             animationIterationCount: 'infinite',
             animationDelay: `${shape.delay}s`,
-            willChange: 'transform',
+            // ОПТИМИЗАЦИЯ: will-change: auto - браузер сам решает
+            contain: 'layout style paint',
             transform: 'translateZ(0)',
           }}
         />
@@ -229,49 +231,30 @@ const FloatingParticles = memo(({ isLight }: { isLight?: boolean }) => {
             height: isLight ? p.size * 1.2 : p.size,
             opacity: isLight ? 0.25 : 1,
             border: undefined,
+            // ОПТИМИЗАЦИЯ: статичный box-shadow вместо анимированного
             boxShadow: isLight 
               ? '0 0 3px rgba(0,0,0,0.2)'
               : '0 0 8px rgba(157, 141, 241, 0.5)',
             background: isLight 
               ? 'rgba(0,0,0,0.6)'
               : undefined,
-            animationName: isLight ? 'sparkle-float' : 'particle-fly',
+            // ОПТИМИЗАЦИЯ: используем только transform анимацию (без box-shadow)
+            animationName: 'particle-fly-optimized',
             animationDuration: `${p.duration}s`,
             animationTimingFunction: 'ease-in-out',
             animationIterationCount: 'infinite',
             animationDelay: `${p.delay}s`,
-            willChange: 'transform, opacity',
+            contain: 'layout style paint',
             transform: 'translateZ(0)',
           }}
         />
       ))}
       <style jsx>{`
-        @keyframes particle-fly {
+        @keyframes particle-fly-optimized {
           0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.3; }
           25% { transform: translate3d(45px, -60px, 0); opacity: 0.7; }
           50% { transform: translate3d(-30px, 45px, 0); opacity: 0.4; }
           75% { transform: translate3d(60px, 30px, 0); opacity: 0.6; }
-        }
-        @keyframes sparkle-float {
-          0%, 100% { 
-            transform: translate3d(0, 0, 0) scale(1); 
-            opacity: 0.5;
-            box-shadow: 0 0 2px rgba(100,80,140,0.4), 0 0 5px rgba(180,140,220,0.3);
-          }
-          25% { 
-            transform: translate3d(20px, -30px, 0) scale(1.2); 
-            opacity: 0.8;
-            box-shadow: 0 0 3px rgba(100,80,140,0.5), 0 0 8px rgba(180,140,220,0.4);
-          }
-          50% { 
-            transform: translate3d(-12px, 20px, 0) scale(1.1); 
-            opacity: 0.6;
-          }
-          75% { 
-            transform: translate3d(25px, 12px, 0) scale(1.3); 
-            opacity: 0.9;
-            box-shadow: 0 0 4px rgba(100,80,140,0.5), 0 0 10px rgba(140,180,220,0.4);
-          }
         }
       `}</style>
     </div>
@@ -328,7 +311,7 @@ const FloatingReleaseCard = memo(({ release, index, isMobile }: { release: any; 
       style={transformStyle}
     >
       <div 
-        className="relative w-20 h-28 sm:w-24 sm:h-32 lg:w-32 lg:h-40 xl:w-36 xl:h-44 rounded-xl sm:rounded-2xl overflow-hidden backdrop-blur-md group"
+        className="relative w-20 h-28 sm:w-24 sm:h-32 lg:w-32 lg:h-40 xl:w-36 xl:h-44 rounded-xl sm:rounded-2xl overflow-hidden group"
         style={{
           animationName: 'float-card',
           animationDuration: `${6 + index}s`,
@@ -343,7 +326,7 @@ const FloatingReleaseCard = memo(({ release, index, isMobile }: { release: any; 
             ? '0 10px 25px -10px rgba(0, 0, 0, 0.15)'
             : '0 15px 50px -15px rgba(96, 80, 186, 0.4)',
           opacity: isMobile ? 0.25 : 1,
-          willChange: 'transform',
+          contain: 'layout style paint',
           transform: 'translateZ(0)',
         }}
       >

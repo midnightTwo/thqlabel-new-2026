@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+/* Скрываем Next.js Dev Toolbar */
+[data-nextjs-dialog-overlay],
+[data-nextjs-toast],
+nextjs-portal,
+#__next-build-indicator,
+[class*="nextjs-portal"],
+[class*="__nextjs"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
 /* ========================================
    INSTANT NAVIGATION STYLES
    Мгновенные переходы - 0ms perceived latency
@@ -33,6 +45,13 @@ main, [role="main"], .page-content {
   will-change: transform;
 }
 
+/* Оптимизация для всех фиксированных фоновых элементов */
+.fixed[style*="z-index: -"] {
+  backface-visibility: hidden;
+  perspective: 1000px;
+  contain: strict;
+}
+
 /* Оптимизация скролла - только для контейнеров */
 .smooth-scroll {
   scroll-behavior: smooth;
@@ -47,6 +66,14 @@ main, [role="main"], .page-content {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* КРИТИЧЕСКАЯ ОПТИМИЗАЦИЯ: Приостановка анимаций когда вкладка не активна */
+/* Это экономит CPU когда пользователь переключился на другую вкладку */
+html.tab-hidden *,
+html.tab-hidden *::before,
+html.tab-hidden *::after {
+  animation-play-state: paused !important;
 }
 
 /* Упрощение на слабых устройствах */

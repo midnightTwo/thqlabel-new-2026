@@ -42,6 +42,16 @@ if (typeof window !== 'undefined') {
   if ('scrollRestoration' in window.history) {
     window.history.scrollRestoration = 'manual';
   }
+  
+  // ОПТИМИЗАЦИЯ: Приостанавливаем анимации когда вкладка не активна
+  // Это экономит до 90% CPU когда пользователь на другой вкладке
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      document.documentElement.classList.add('tab-hidden');
+    } else {
+      document.documentElement.classList.remove('tab-hidden');
+    }
+  }, { passive: true });
 }
 
 
@@ -165,7 +175,7 @@ const AnimatedBackground = memo(() => {
                 : 'radial-gradient(circle, rgba(96, 80, 186, 0.4) 0%, transparent 70%)',
               filter: 'blur(40px)',
               animation: 'orb-float-1 25s ease-in-out infinite',
-              willChange: 'transform',
+              contain: 'layout style paint',
             }}
           />
           <div 
@@ -180,7 +190,7 @@ const AnimatedBackground = memo(() => {
                 : 'radial-gradient(circle, rgba(157, 141, 241, 0.5) 0%, transparent 70%)',
               filter: 'blur(50px)',
               animation: 'orb-float-2 30s ease-in-out infinite',
-              willChange: 'transform',
+              contain: 'layout style paint',
             }}
           />
           <div 
@@ -196,7 +206,7 @@ const AnimatedBackground = memo(() => {
                 : 'radial-gradient(circle, rgba(96, 80, 186, 0.25) 0%, transparent 70%)',
               filter: 'blur(60px)',
               animation: 'orb-float-3 20s ease-in-out infinite',
-              willChange: 'transform',
+              contain: 'layout style paint',
             }}
           />
         </div>

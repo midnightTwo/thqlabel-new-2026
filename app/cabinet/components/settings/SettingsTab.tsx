@@ -362,27 +362,59 @@ export default function SettingsTab({
                   <div className={`text-[10px] ${isLight && role === 'basic' ? 'text-gray-600' : 'text-white/70'}`}>{config.label}</div>
                 </div>
               </div>
-              {role === 'basic' && (
-                <div 
-                  className="mt-4 p-3 rounded-xl"
-                  style={{
-                    background: isLight 
-                      ? 'linear-gradient(135deg, rgba(251, 191, 36, 0.08) 0%, rgba(245, 158, 11, 0.05) 100%)'
-                      : 'linear-gradient(135deg, rgba(251, 191, 36, 0.12) 0%, rgba(245, 158, 11, 0.08) 100%)',
-                    border: '1px solid rgba(251, 191, 36, 0.2)',
-                  }}
-                >
-                  <p className={`text-xs leading-relaxed ${isLight ? 'text-[#5c5580]' : 'text-zinc-300'}`}>
-                    ✨ Хотите стать <span className="text-[#fbbf24] font-bold">Exclusive</span>?{' '}
-                    <button 
-                      onClick={onSupportToggle}
-                      className={`font-bold underline decoration-2 underline-offset-2 transition-colors ${isLight ? 'text-[#6050ba] hover:text-[#8070da]' : 'text-[#a090ea] hover:text-[#c4b5fd]'}`}
-                    >
-                      Напишите нам
-                    </button>
-                  </p>
-                </div>
-              )}
+              {/* Подсказка под статусом - разная для каждой роли */}
+              <div 
+                className="mt-4 p-3 rounded-xl"
+                style={{
+                  background: role === 'basic' 
+                    ? (isLight 
+                        ? 'linear-gradient(135deg, rgba(251, 191, 36, 0.08) 0%, rgba(245, 158, 11, 0.05) 100%)'
+                        : 'linear-gradient(135deg, rgba(251, 191, 36, 0.12) 0%, rgba(245, 158, 11, 0.08) 100%)')
+                    : role === 'exclusive'
+                    ? (isLight 
+                        ? 'linear-gradient(135deg, rgba(168, 85, 247, 0.08) 0%, rgba(139, 92, 246, 0.05) 100%)'
+                        : 'linear-gradient(135deg, rgba(168, 85, 247, 0.12) 0%, rgba(139, 92, 246, 0.08) 100%)')
+                    : (isLight 
+                        ? 'linear-gradient(135deg, rgba(34, 197, 94, 0.08) 0%, rgba(22, 163, 74, 0.05) 100%)'
+                        : 'linear-gradient(135deg, rgba(34, 197, 94, 0.12) 0%, rgba(22, 163, 74, 0.08) 100%)'),
+                  border: role === 'basic' 
+                    ? '1px solid rgba(251, 191, 36, 0.2)'
+                    : role === 'exclusive'
+                    ? '1px solid rgba(168, 85, 247, 0.2)'
+                    : '1px solid rgba(34, 197, 94, 0.2)',
+                }}
+              >
+                <p className={`text-xs leading-relaxed flex items-center gap-2 ${isLight ? 'text-[#5c5580]' : 'text-zinc-300'}`}>
+                  {role === 'basic' ? (
+                    <>
+                      <svg className="w-4 h-4 flex-shrink-0 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                      <span>Хотите стать <span className="text-[#fbbf24] font-bold">Exclusive</span>?{' '}
+                      <button 
+                        onClick={onSupportToggle}
+                        className={`font-bold underline decoration-2 underline-offset-2 transition-colors ${isLight ? 'text-[#6050ba] hover:text-[#8070da]' : 'text-[#a090ea] hover:text-[#c4b5fd]'}`}
+                      >
+                        Напишите нам
+                      </button></span>
+                    </>
+                  ) : role === 'exclusive' ? (
+                    <>
+                      <svg className="w-4 h-4 flex-shrink-0 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M5 2a2 2 0 00-2 2v14l3.5-2 3.5 2 3.5-2 3.5 2V4a2 2 0 00-2-2H5zm2.5 3a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm6.207.293a1 1 0 00-1.414 0l-6 6a1 1 0 101.414 1.414l6-6a1 1 0 000-1.414zM12.5 10a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" clipRule="evenodd" />
+                      </svg>
+                      <span>Вы получаете <span className="text-purple-400 font-bold">приоритетную</span> модерацию и расширенные возможности</span>
+                    </>
+                  ) : (
+                    <>
+                      <svg className="w-4 h-4 flex-shrink-0 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                      <span>У вас <span className="text-emerald-400 font-bold">полный доступ</span> к управлению платформой</span>
+                    </>
+                  )}
+                </p>
+              </div>
             </div>
 
             {/* Тема */}

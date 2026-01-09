@@ -1309,7 +1309,7 @@ export default function ReleaseStatistics({ releaseId, releaseType, coverUrl }: 
                 </svg>
               </div>
               <p className={`text-sm mb-0.5 sm:mb-1 ${isLight ? 'text-gray-500' : 'text-zinc-400'}`}>Статистика пока недоступна</p>
-              <p className={`text-[10px] sm:text-xs ${isLight ? 'text-gray-400' : 'text-zinc-500'}`}>Данные появятся после загрузки отчёта в админ-панели</p>
+              <p className={`text-[10px] sm:text-xs ${isLight ? 'text-gray-400' : 'text-zinc-500'}`}>Данные появятся после первого квартала с момента публикации релиза</p>
             </div>
           )}
         </div>

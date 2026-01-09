@@ -185,7 +185,7 @@ export default function ReleaseArtists({
           onBlur={() => {
             if (newArtist.trim()) addArtist();
           }}
-          placeholder="greyrock, tewiq"
+          placeholder="Введите никнейм артиста"
           disabled={artists.length >= maxArtists}
           className={`flex-1 px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border outline-none transition-all disabled:opacity-50 text-sm sm:text-base ${
             isLight 

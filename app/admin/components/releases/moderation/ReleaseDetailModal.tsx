@@ -184,6 +184,9 @@ export default function ReleaseDetailModal({
   const [editingReleaseUPC, setEditingReleaseUPC] = useState(false);
   const [releaseUPCInput, setReleaseUPCInput] = useState('');
   const [savingReleaseUPC, setSavingReleaseUPC] = useState(false);
+  const [editingBandlink, setEditingBandlink] = useState(false);
+  const [bandlinkInput, setBandlinkInput] = useState('');
+  const [savingBandlink, setSavingBandlink] = useState(false);
   const [downloadingZip, setDownloadingZip] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -249,6 +252,32 @@ export default function ReleaseDetailModal({
       setSavingReleaseUPC(false);
     }
   }, [supabase, release, releaseUPCInput, onRefresh]);
+
+  // Сохранение Bandlink
+  const handleSaveBandlink = useCallback(async () => {
+    if (!supabase || !release) return;
+    
+    setSavingBandlink(true);
+    try {
+      const tableName = release.release_type === 'basic' ? 'releases_basic' : 'releases_exclusive';
+      
+      const { error } = await supabase
+        .from(tableName)
+        .update({ bandlink: bandlinkInput.trim() || null })
+        .eq('id', release.id);
+      
+      if (error) throw error;
+      
+      showSuccessToast('Ссылка на релиз сохранена');
+      setEditingBandlink(false);
+      onRefresh();
+    } catch (error) {
+      console.error('Ошибка сохранения Bandlink:', error);
+      showErrorToast('Ошибка при сохранении ссылки');
+    } finally {
+      setSavingBandlink(false);
+    }
+  }, [supabase, release, bandlinkInput, onRefresh]);
 
   // Скачивание файла
   const handleDownloadFile = useCallback(async (url: string, filename: string) => {
@@ -829,35 +858,77 @@ export default function ReleaseDetailModal({
           {/* Шапка с обложкой */}
           <div className="relative p-4 sm:p-6 pb-0">
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
-              {/* Обложка */}
+              {/* Обложка + тип релиза под ней */}
               {release.cover_url && (
-                <div className="relative group flex-shrink-0 mx-auto sm:mx-0">
-                  <div className={`w-[140px] h-[140px] sm:w-[180px] sm:h-[180px] rounded-2xl overflow-hidden shadow-2xl ${isLight ? 'ring-2 ring-purple-200/50' : 'ring-2 ring-white/10 shadow-black/50'}`}>
-                    <img 
-                      src={release.cover_url} 
-                      alt={release.title} 
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
-                    />
+                <div className="flex-shrink-0 mx-auto sm:mx-0 flex flex-col">
+                  <div className="relative w-[140px] h-[140px] sm:w-[180px] sm:h-[180px]">
+                    <div className={`w-full h-full rounded-2xl overflow-hidden shadow-2xl group ${isLight ? 'ring-2 ring-purple-200/50' : 'ring-2 ring-white/10 shadow-black/50'}`}>
+                      <img 
+                        src={release.cover_url} 
+                        alt={release.title} 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                      />
+                    </div>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDownloadFile(
+                          (release as any).cover_url_original || release.cover_url, 
+                          `${release.title}_cover.jpg`
+                        );
+                      }}
+                      className={`absolute bottom-2 right-2 w-8 h-8 rounded-lg flex items-center justify-center border transition-all duration-200 ${
+                        isLight 
+                          ? 'bg-white/90 hover:bg-white border-gray-200 hover:border-purple-300' 
+                          : 'bg-black/70 hover:bg-black/90 border-white/20 hover:border-white/40'
+                      }`}
+                      title="Скачать обложку (оригинал)"
+                    >
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={`transition-colors ${isLight ? 'text-gray-600 hover:text-purple-600' : 'text-white/80 hover:text-white'}`}>
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                      </svg>
+                    </button>
                   </div>
-                  <button
-                    onClick={() => handleDownloadFile(
-                      // ОПТИМИЗАЦИЯ: Используем оригинал для скачивания, если есть
-                      (release as any).cover_url_original || release.cover_url, 
-                      `${release.title}_cover.jpg`
-                    )}
-                    className={`absolute bottom-2 right-2 w-8 h-8 rounded-lg flex items-center justify-center border transition-all duration-200 group/dl ${
-                      isLight 
-                        ? 'bg-white/90 hover:bg-white border-gray-200 hover:border-purple-300' 
-                        : 'bg-black/70 hover:bg-black/90 border-white/10 hover:border-white/30'
-                    }`}
-                    title="Скачать обложку (оригинал)"
-                  >
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={`transition-colors ${isLight ? 'text-gray-500 group-hover/dl:text-purple-600' : 'text-white/60 group-hover/dl:text-white'}`}>
-                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                      <polyline points="7 10 12 15 17 10"/>
-                      <line x1="12" y1="15" x2="12" y2="3"/>
-                    </svg>
-                  </button>
+                  {/* Тип релиза под обложкой */}
+                  {(() => {
+                    const trackCount = release.tracks?.length || 1;
+                    const releaseType = trackCount === 1 ? 'single' : trackCount <= 7 ? 'ep' : 'album';
+                    return (
+                      <div className={`w-full mt-2 rounded-xl px-3 py-2 flex items-center gap-2.5 ${isLight ? 'bg-gray-100' : 'bg-white/5'}`}>
+                        {/* Иконка типа */}
+                        {releaseType === 'single' ? (
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className={isLight ? 'text-gray-500' : 'text-zinc-400'}>
+                            <circle cx="8" cy="18" r="4" fill="currentColor"/>
+                            <path d="M12 18V4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+                            <path d="M12 4l8 2v4l-8-2" fill="currentColor"/>
+                          </svg>
+                        ) : releaseType === 'ep' ? (
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className={isLight ? 'text-gray-500' : 'text-zinc-400'}>
+                            <circle cx="6" cy="18" r="3" fill="currentColor"/>
+                            <circle cx="18" cy="16" r="3" fill="currentColor"/>
+                            <path d="M9 18V6l12-2v12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                          </svg>
+                        ) : (
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className={isLight ? 'text-gray-500' : 'text-zinc-400'}>
+                            <rect x="3" y="14" width="18" height="3" rx="1" fill="currentColor" opacity="0.3"/>
+                            <rect x="3" y="10" width="18" height="3" rx="1" fill="currentColor" opacity="0.5"/>
+                            <rect x="3" y="6" width="18" height="3" rx="1" fill="currentColor" opacity="0.7"/>
+                            <rect x="3" y="2" width="18" height="3" rx="1" fill="currentColor"/>
+                          </svg>
+                        )}
+                        <div className="flex flex-col">
+                          <span className={`text-sm font-semibold ${isLight ? 'text-gray-800' : 'text-white'}`}>
+                            {releaseType === 'single' ? 'Single' : releaseType === 'ep' ? 'EP' : 'Album'}
+                          </span>
+                          <span className={`text-[10px] ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>
+                            {trackCount} {trackCount === 1 ? 'трек' : trackCount < 5 ? 'трека' : 'треков'}
+                          </span>
+                        </div>
+                      </div>
+                    );
+                  })()}
                 </div>
               )}
 
@@ -947,38 +1018,82 @@ export default function ReleaseDetailModal({
                     </div>
                   </div>
                 </div>
+
+                {/* Bandlink - отдельная строка под мета-инфо, только для published */}
+                {release.status === 'published' && (
+                  <div className={`mt-2 rounded-xl px-3 py-2 flex items-center gap-3 ${isLight ? 'bg-cyan-50 border border-cyan-200' : 'bg-cyan-500/10 border border-cyan-500/20'}`}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={isLight ? 'text-cyan-600' : 'text-cyan-400'}>
+                      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                    </svg>
+                    <div className="flex-1 min-w-0">
+                      {(release as any).bandlink ? (
+                        <a 
+                          href={((release as any).bandlink as string).startsWith('http') ? (release as any).bandlink : `https://${(release as any).bandlink}`}
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-sm font-semibold truncate text-cyan-500 hover:text-cyan-400 transition-colors block"
+                        >
+                          {(release as any).bandlink.replace(/^https?:\/\//, '')}
+                        </a>
+                      ) : (
+                        <span className={`text-sm ${isLight ? 'text-gray-400' : 'text-zinc-500'}`}>Ссылка не указана</span>
+                      )}
+                    </div>
+                    <button 
+                      onClick={() => { setEditingBandlink(true); setBandlinkInput((release as any).bandlink || ''); }}
+                      className={`px-2 py-1 border rounded-lg transition-all flex items-center gap-1.5 flex-shrink-0 ${
+                        isLight 
+                          ? 'bg-white hover:bg-cyan-50 border-cyan-200 hover:border-cyan-400 text-cyan-600'
+                          : 'bg-white/5 hover:bg-white/10 border-cyan-500/30 hover:border-cyan-500/50 text-cyan-400'
+                      }`}
+                    >
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                      </svg>
+                      <span className="text-xs font-bold">{(release as any).bandlink ? 'Изменить' : 'Добавить'}</span>
+                    </button>
+                  </div>
+                )}
+
+                {/* Ссылки на платформы */}
+                {((release as any).spotify_link || (release as any).apple_music_link || (release as any).youtube_link || (release as any).soundcloud_link || (release as any).vk_link) && (
+                  <div className="flex flex-wrap gap-2 mt-3">
+                    {(release as any).spotify_link && (
+                      <a href={(release as any).spotify_link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-2 py-1 bg-green-500/20 hover:bg-green-500/30 rounded-lg text-green-400 text-xs transition-colors">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                        Spotify
+                      </a>
+                    )}
+                    {(release as any).apple_music_link && (
+                      <a href={(release as any).apple_music_link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-2 py-1 bg-pink-500/20 hover:bg-pink-500/30 rounded-lg text-pink-400 text-xs transition-colors">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M23.994 6.124a9.23 9.23 0 00-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043a5.022 5.022 0 00-1.877-.726 10.496 10.496 0 00-1.564-.15c-.04-.003-.083-.01-.124-.013H5.986c-.152.01-.303.017-.455.026-.747.043-1.49.123-2.193.4-1.336.53-2.3 1.452-2.865 2.78-.192.448-.292.925-.363 1.408-.056.392-.088.785-.1 1.18 0 .032-.007.062-.01.093v12.223c.01.14.017.283.027.424.05.815.154 1.624.497 2.373.65 1.42 1.738 2.353 3.234 2.801.42.127.856.187 1.293.228.555.053 1.11.06 1.667.06h11.03c.525 0 1.048-.034 1.57-.1.823-.106 1.597-.35 2.296-.81.84-.553 1.472-1.287 1.88-2.208.186-.42.293-.865.37-1.324.113-.675.138-1.358.137-2.04-.002-3.8 0-7.595-.003-11.393zm-6.423 3.99v5.712c0 .417-.058.827-.244 1.206-.29.59-.76.962-1.388 1.14-.35.1-.706.157-1.07.173-.95.042-1.8-.56-2.1-1.49-.3-.94.15-1.96 1.08-2.4.37-.18.79-.26 1.2-.33.73-.11 1.46-.21 2.18-.35.11-.02.21-.1.28-.18.05-.06.07-.16.07-.24V8.24c0-.15-.04-.19-.18-.17l-4.56.93c-.12.03-.18.08-.18.21v7.05c0 .45-.04.88-.23 1.29-.3.65-.82 1.05-1.52 1.22-.37.08-.74.13-1.12.14-.94.04-1.78-.54-2.08-1.44-.3-.9.1-1.89.98-2.32.39-.2.82-.3 1.26-.38.67-.12 1.34-.2 2-.33.21-.04.42-.13.55-.31.09-.13.12-.31.12-.47V7.82c0-.19.05-.32.23-.37l5.97-1.58c.08-.02.17-.03.25-.03.15 0 .22.08.22.25v4.03z"/></svg>
+                        Apple Music
+                      </a>
+                    )}
+                    {(release as any).youtube_link && (
+                      <a href={(release as any).youtube_link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-2 py-1 bg-red-500/20 hover:bg-red-500/30 rounded-lg text-red-400 text-xs transition-colors">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        YouTube
+                      </a>
+                    )}
+                    {(release as any).soundcloud_link && (
+                      <a href={(release as any).soundcloud_link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-2 py-1 bg-orange-500/20 hover:bg-orange-500/30 rounded-lg text-orange-400 text-xs transition-colors">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M1.175 12.225c-.051 0-.094.046-.101.1l-.233 2.154.233 2.105c.007.058.05.098.101.098.05 0 .09-.04.099-.098l.255-2.105-.27-2.154c-.009-.06-.052-.1-.084-.1zm-.899 1.125c-.051 0-.1.039-.108.098l-.141 1.029.141 1.074c.008.059.057.098.108.098.049 0 .096-.039.105-.098l.159-1.074-.159-1.029c-.009-.059-.056-.098-.105-.098zm1.79-.581c-.058 0-.102.042-.11.103l-.194 1.685.194 1.72c.008.058.052.102.11.102.05 0 .092-.044.103-.103l.229-1.72-.229-1.685c-.011-.061-.053-.103-.103-.103zm.9-.369c-.063 0-.107.049-.118.111l-.167 2.054.167 2.04c.011.059.055.108.118.108.057 0 .103-.049.116-.108l.193-2.04-.193-2.054c-.013-.062-.059-.111-.116-.111zm.901-.163c-.063 0-.112.05-.121.116l-.15 2.217.15 2.188c.009.063.058.116.121.116.063 0 .108-.053.12-.116l.173-2.188-.173-2.217c-.012-.066-.057-.116-.12-.116zm.9-.163c-.063 0-.113.055-.123.12l-.125 2.38.125 2.333c.01.068.06.123.123.123.063 0 .112-.055.123-.123l.147-2.333-.147-2.38c-.011-.065-.06-.12-.123-.12zm.901-.122c-.066 0-.118.056-.127.128l-.102 2.502.102 2.479c.009.068.061.127.127.127.065 0 .118-.059.126-.127l.117-2.479-.117-2.502c-.008-.072-.061-.128-.126-.128zm2.884-.105c-.072 0-.125.063-.136.136l-.078 2.608.078 2.548c.011.073.064.136.136.136.072 0 .123-.063.134-.136l.09-2.548-.09-2.608c-.011-.073-.062-.136-.134-.136zm-.902.024c-.069 0-.12.06-.131.131l-.094 2.584.094 2.564c.011.072.062.131.131.131.071 0 .121-.059.132-.131l.107-2.564-.107-2.584c-.011-.071-.061-.131-.132-.131zm1.803-.011c-.073 0-.127.065-.137.14l-.063 2.595.063 2.574c.01.075.064.14.137.14.073 0 .125-.065.136-.14l.073-2.574-.073-2.595c-.011-.075-.063-.14-.136-.14zm.901-.021c-.074 0-.129.066-.139.143l-.051 2.616.051 2.591c.01.076.065.143.139.143.073 0 .126-.067.138-.143l.058-2.591-.058-2.616c-.012-.077-.065-.143-.138-.143zm1.897.115c-.078 0-.134.069-.144.15l-.036 2.501.036 2.466c.01.081.066.15.144.15.078 0 .133-.069.144-.15l.042-2.466-.042-2.501c-.011-.081-.066-.15-.144-.15zm-.9-.145c-.076 0-.132.068-.142.147l-.048 2.646.048 2.611c.01.079.066.147.142.147.076 0 .131-.068.142-.147l.055-2.611-.055-2.646c-.011-.079-.066-.147-.142-.147zm1.8.27c-.08 0-.137.071-.146.153l-.027 2.376.027 2.336c.009.082.066.153.146.153.079 0 .136-.071.146-.153l.031-2.336-.031-2.376c-.01-.082-.067-.153-.146-.153zm.9-.288c-.08 0-.138.072-.148.156l-.02 2.664.02 2.621c.01.084.068.156.148.156.08 0 .137-.072.147-.156l.023-2.621-.023-2.664c-.01-.084-.067-.156-.147-.156zm1.808.227c-.082 0-.141.074-.151.159l-.01 2.437.01 2.395c.01.085.069.159.151.159.082 0 .139-.074.15-.159l.012-2.395-.012-2.437c-.011-.085-.068-.159-.15-.159zm.9-.306c-.082 0-.142.076-.152.162l-.005 2.743.005 2.685c.01.086.07.162.152.162.081 0 .14-.076.151-.162l.006-2.685-.006-2.743c-.011-.086-.07-.162-.151-.162zm2.643.372c-.107-.473-.398-.91-.792-1.187-.367-.26-.79-.39-1.279-.39h-6.348c-.093 0-.17.076-.18.17v9.531c.01.098.087.17.18.17h6.348c1.54 0 2.788-1.248 2.788-2.788 0-1.129-.673-2.099-1.64-2.542.193-.384.296-.827.296-1.269 0-.577-.126-1.13-.373-1.695z"/></svg>
+                        SoundCloud
+                      </a>
+                    )}
+                    {(release as any).vk_link && (
+                      <a href={(release as any).vk_link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-2 py-1 bg-blue-500/20 hover:bg-blue-500/30 rounded-lg text-blue-400 text-xs transition-colors">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M15.073 2H8.937C3.333 2 2 3.333 2 8.927v6.136C2 20.667 3.333 22 8.927 22h6.136C20.667 22 22 20.667 22 15.073V8.937C22 3.333 20.667 2 15.073 2zm3.073 14.27h-1.459c-.552 0-.718-.439-1.704-1.439-.866-.828-1.229-.927-1.448-.927-.301 0-.386.086-.386.5v1.313c0 .356-.114.553-1.053.553-1.553 0-3.273-.949-4.491-2.692-1.818-2.553-2.321-4.466-2.321-4.855 0-.22.086-.428.5-.428h1.459c.373 0 .515.167.658.553.729 2.104 1.947 3.948 2.449 3.948.189 0 .271-.086.271-.561V9.26c-.057-1-.588-1.083-.588-1.439 0-.167.143-.345.372-.345h2.292c.314 0 .428.173.428.532v2.868c0 .314.143.428.229.428.188 0 .343-.114.686-.457 1.058-1.182 1.815-3.002 1.815-3.002.1-.22.272-.428.658-.428h1.459c.438 0 .531.22.438.532-.172.772-1.839 3.147-1.839 3.147-.147.239-.2.344 0 .611.143.2.615.611 .929.979.577.677 1.017 1.247 1.133 1.637.129.389-.086.588-.486.588z"/></svg>
+                        VK
+                      </a>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
-                      {(release as any).spotify_link && (
-                        <a href={(release as any).spotify_link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-2 py-1 bg-green-500/20 hover:bg-green-500/30 rounded-lg text-green-400 text-xs transition-colors">
-                          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-                          Spotify
-                        </a>
-                      )}
-                      {(release as any).apple_music_link && (
-                        <a href={(release as any).apple_music_link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-2 py-1 bg-pink-500/20 hover:bg-pink-500/30 rounded-lg text-pink-400 text-xs transition-colors">
-                          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M23.994 6.124a9.23 9.23 0 00-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043a5.022 5.022 0 00-1.877-.726 10.496 10.496 0 00-1.564-.15c-.04-.003-.083-.01-.124-.013H5.986c-.152.01-.303.017-.455.026-.747.043-1.49.123-2.193.4-1.336.53-2.3 1.452-2.865 2.78-.192.448-.292.925-.363 1.408-.056.392-.088.785-.1 1.18 0 .032-.007.062-.01.093v12.223c.01.14.017.283.027.424.05.815.154 1.624.497 2.373.65 1.42 1.738 2.353 3.234 2.801.42.127.856.187 1.293.228.555.053 1.11.06 1.667.06h11.03c.525 0 1.048-.034 1.57-.1.823-.106 1.597-.35 2.296-.81.84-.553 1.472-1.287 1.88-2.208.186-.42.293-.865.37-1.324.113-.675.138-1.358.137-2.04-.002-3.8 0-7.595-.003-11.393zm-6.423 3.99v5.712c0 .417-.058.827-.244 1.206-.29.59-.76.962-1.388 1.14-.35.1-.706.157-1.07.173-.95.042-1.8-.56-2.1-1.49-.3-.94.15-1.96 1.08-2.4.37-.18.79-.26 1.2-.33.73-.11 1.46-.21 2.18-.35.11-.02.21-.1.28-.18.05-.06.07-.16.07-.24V8.24c0-.15-.04-.19-.18-.17l-4.56.93c-.12.03-.18.08-.18.21v7.05c0 .45-.04.88-.23 1.29-.3.65-.82 1.05-1.52 1.22-.37.08-.74.13-1.12.14-.94.04-1.78-.54-2.08-1.44-.3-.9.1-1.89.98-2.32.39-.2.82-.3 1.26-.38.67-.12 1.34-.2 2-.33.21-.04.42-.13.55-.31.09-.13.12-.31.12-.47V7.82c0-.19.05-.32.23-.37l5.97-1.58c.08-.02.17-.03.25-.03.15 0 .22.08.22.25v4.03z"/></svg>
-                          Apple Music
-                        </a>
-                      )}
-                      {(release as any).youtube_link && (
-                        <a href={(release as any).youtube_link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-2 py-1 bg-red-500/20 hover:bg-red-500/30 rounded-lg text-red-400 text-xs transition-colors">
-                          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                          YouTube
-                        </a>
-                      )}
-                      {(release as any).soundcloud_link && (
-                        <a href={(release as any).soundcloud_link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-2 py-1 bg-orange-500/20 hover:bg-orange-500/30 rounded-lg text-orange-400 text-xs transition-colors">
-                          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M1.175 12.225c-.051 0-.094.046-.101.1l-.233 2.154.233 2.105c.007.058.05.098.101.098.05 0 .09-.04.099-.098l.255-2.105-.27-2.154c-.009-.06-.052-.1-.084-.1zm-.899 1.125c-.051 0-.1.039-.108.098l-.141 1.029.141 1.074c.008.059.057.098.108.098.049 0 .096-.039.105-.098l.159-1.074-.159-1.029c-.009-.059-.056-.098-.105-.098zm1.79-.581c-.058 0-.102.042-.11.103l-.194 1.685.194 1.72c.008.058.052.102.11.102.05 0 .092-.044.103-.103l.229-1.72-.229-1.685c-.011-.061-.053-.103-.103-.103zm.9-.369c-.063 0-.107.049-.118.111l-.167 2.054.167 2.04c.011.059.055.108.118.108.057 0 .103-.049.116-.108l.193-2.04-.193-2.054c-.013-.062-.059-.111-.116-.111zm.901-.163c-.063 0-.112.05-.121.116l-.15 2.217.15 2.188c.009.063.058.116.121.116.063 0 .108-.053.12-.116l.173-2.188-.173-2.217c-.012-.066-.057-.116-.12-.116zm.9-.163c-.063 0-.113.055-.123.12l-.125 2.38.125 2.333c.01.068.06.123.123.123.063 0 .112-.055.123-.123l.147-2.333-.147-2.38c-.011-.065-.06-.12-.123-.12zm.901-.122c-.066 0-.118.056-.127.128l-.102 2.502.102 2.479c.009.068.061.127.127.127.065 0 .118-.059.126-.127l.117-2.479-.117-2.502c-.008-.072-.061-.128-.126-.128zm2.884-.105c-.072 0-.125.063-.136.136l-.078 2.608.078 2.548c.011.073.064.136.136.136.072 0 .123-.063.134-.136l.09-2.548-.09-2.608c-.011-.073-.062-.136-.134-.136zm-.902.024c-.069 0-.12.06-.131.131l-.094 2.584.094 2.564c.011.072.062.131.131.131.071 0 .121-.059.132-.131l.107-2.564-.107-2.584c-.011-.071-.061-.131-.132-.131zm1.803-.011c-.073 0-.127.065-.137.14l-.063 2.595.063 2.574c.01.075.064.14.137.14.073 0 .125-.065.136-.14l.073-2.574-.073-2.595c-.011-.075-.063-.14-.136-.14zm.901-.021c-.074 0-.129.066-.139.143l-.051 2.616.051 2.591c.01.076.065.143.139.143.073 0 .126-.067.138-.143l.058-2.591-.058-2.616c-.012-.077-.065-.143-.138-.143zm1.897.115c-.078 0-.134.069-.144.15l-.036 2.501.036 2.466c.01.081.066.15.144.15.078 0 .133-.069.144-.15l.042-2.466-.042-2.501c-.011-.081-.066-.15-.144-.15zm-.9-.145c-.076 0-.132.068-.142.147l-.048 2.646.048 2.611c.01.079.066.147.142.147.076 0 .131-.068.142-.147l.055-2.611-.055-2.646c-.011-.079-.066-.147-.142-.147zm1.8.27c-.08 0-.137.071-.146.153l-.027 2.376.027 2.336c.009.082.066.153.146.153.079 0 .136-.071.146-.153l.031-2.336-.031-2.376c-.01-.082-.067-.153-.146-.153zm.9-.288c-.08 0-.138.072-.148.156l-.02 2.664.02 2.621c.01.084.068.156.148.156.08 0 .137-.072.147-.156l.023-2.621-.023-2.664c-.01-.084-.067-.156-.147-.156zm1.808.227c-.082 0-.141.074-.151.159l-.01 2.437.01 2.395c.01.085.069.159.151.159.082 0 .139-.074.15-.159l.012-2.395-.012-2.437c-.011-.085-.068-.159-.15-.159zm.9-.306c-.082 0-.142.076-.152.162l-.005 2.743.005 2.685c.01.086.07.162.152.162.081 0 .14-.076.151-.162l.006-2.685-.006-2.743c-.011-.086-.07-.162-.151-.162zm2.643.372c-.107-.473-.398-.91-.792-1.187-.367-.26-.79-.39-1.279-.39h-6.348c-.093 0-.17.076-.18.17v9.531c.01.098.087.17.18.17h6.348c1.54 0 2.788-1.248 2.788-2.788 0-1.129-.673-2.099-1.64-2.542.193-.384.296-.827.296-1.269 0-.577-.126-1.13-.373-1.695z"/></svg>
-                          SoundCloud
-                        </a>
-                      )}
-                      {(release as any).vk_link && (
-                        <a href={(release as any).vk_link} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 px-2 py-1 bg-blue-500/20 hover:bg-blue-500/30 rounded-lg text-blue-400 text-xs transition-colors">
-                          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M15.073 2H8.937C3.333 2 2 3.333 2 8.927v6.136C2 20.667 3.333 22 8.927 22h6.136C20.667 22 22 20.667 22 15.073V8.937C22 3.333 20.667 2 15.073 2zm3.073 14.27h-1.459c-.552 0-.718-.439-1.704-1.439-.866-.828-1.229-.927-1.448-.927-.301 0-.386.086-.386.5v1.313c0 .356-.114.553-1.053.553-1.553 0-3.273-.949-4.491-2.692-1.818-2.553-2.321-4.466-2.321-4.855 0-.22.086-.428.5-.428h1.459c.373 0 .515.167.658.553.729 2.104 1.947 3.948 2.449 3.948.189 0 .271-.086.271-.561V9.26c-.057-1-.588-1.083-.588-1.439 0-.167.143-.345.372-.345h2.292c.314 0 .428.173.428.532v2.868c0 .314.143.428.229.428.188 0 .343-.114.686-.457 1.058-1.182 1.815-3.002 1.815-3.002.1-.22.272-.428.658-.428h1.459c.438 0 .531.22.438.532-.172.772-1.839 3.147-1.839 3.147-.147.239-.2.344 0 .611.143.2.615.611 .929.979.577.677 1.017 1.247 1.133 1.637.129.389-.086.588-.486.588z"/></svg>
-                          VK
-                        </a>
-                      )}
           </div>
 
           {/* UPC Editor Modal */}
@@ -1033,6 +1148,71 @@ export default function ReleaseDetailModal({
                   </button>
                   <button 
                     onClick={() => setEditingReleaseUPC(false)}
+                    className={`px-4 py-3 rounded-xl transition-colors font-medium ${
+                      isLight 
+                        ? 'bg-gray-100 hover:bg-gray-200 text-gray-700' 
+                        : 'bg-white/10 hover:bg-white/20 text-white'
+                    }`}
+                  >
+                    Отмена
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Bandlink Editor Modal */}
+          {editingBandlink && (
+            <div className={`mx-4 sm:mx-6 mt-4 p-4 rounded-2xl backdrop-blur-sm ${
+              isLight 
+                ? 'bg-gradient-to-br from-cyan-100 to-blue-100 border border-cyan-200' 
+                : 'bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/30'
+            }`}>
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/30">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4 className={`font-bold ${isLight ? 'text-gray-800' : 'text-white'}`}>Bandlink</h4>
+                  <p className={`text-xs ${isLight ? 'text-gray-500' : 'text-zinc-400'}`}>Ссылка на релиз</p>
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                <input
+                  type="url"
+                  value={bandlinkInput}
+                  onChange={(e) => setBandlinkInput(e.target.value)}
+                  placeholder="https://band.link/example"
+                  className={`flex-1 px-4 py-3 border-2 rounded-xl focus:outline-none focus:border-cyan-500 transition-colors ${
+                    isLight 
+                      ? 'bg-white border-gray-200 text-gray-800' 
+                      : 'bg-black/50 border-white/10 text-white'
+                  }`}
+                  disabled={savingBandlink}
+                  autoFocus
+                />
+                <div className="flex gap-2">
+                  <button 
+                    onClick={handleSaveBandlink} 
+                    disabled={savingBandlink || !bandlinkInput.trim()}
+                    className="flex-1 sm:flex-none px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 disabled:from-zinc-700 disabled:to-zinc-700 text-white font-bold rounded-xl transition-all shadow-lg shadow-cyan-500/30 disabled:shadow-none flex items-center justify-center gap-2"
+                  >
+                    {savingBandlink ? (
+                      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    ) : (
+                      <>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                          <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        <span>Сохранить</span>
+                      </>
+                    )}
+                  </button>
+                  <button 
+                    onClick={() => setEditingBandlink(false)}
                     className={`px-4 py-3 rounded-xl transition-colors font-medium ${
                       isLight 
                         ? 'bg-gray-100 hover:bg-gray-200 text-gray-700' 

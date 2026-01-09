@@ -18,6 +18,7 @@ export const CONTRIBUTOR_ROLES = [
 
 export interface Release {
   id: string;
+  user_id: string;
   created_at: string;
   release_type: 'basic' | 'exclusive';
   title: string;
@@ -51,6 +52,7 @@ export interface Release {
   focus_track?: string;
   focus_track_promo?: string;
   album_description?: string;
+  bandlink?: string;
 }
 
 export interface Track {

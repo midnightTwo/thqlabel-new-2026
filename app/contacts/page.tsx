@@ -10,7 +10,7 @@ export default function ContactsPage() {
   const isLight = themeName === 'light'
 
   const copyEmail = () => {
-    navigator.clipboard.writeText('contact@thqlabel.com')
+    navigator.clipboard.writeText('thqlabel@ya.ru')
     setCopiedEmail(true)
     setTimeout(() => setCopiedEmail(false), 2000)
   }
@@ -231,7 +231,7 @@ export default function ContactsPage() {
 
                 <div className="flex-1">
                   <h3 className={`text-xl font-bold mb-2 ${isLight ? 'text-gray-800' : 'text-white'}`}>Email</h3>
-                  <p className="text-purple-500 font-medium group-hover:underline">contact@thqlabel.com</p>
+                  <p className="text-purple-500 font-medium group-hover:underline">thqlabel@ya.ru</p>
                   <p className={`text-sm mt-2 ${isLight ? 'text-gray-600' : 'text-white'}`}>
                     {copiedEmail ? '✓ Скопировано!' : 'Нажмите, чтобы скопировать'}
                   </p>

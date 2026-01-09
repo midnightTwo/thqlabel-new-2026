@@ -157,6 +157,21 @@ export default function ReleasesModeration({ supabase, onSidebarCollapse }: Rele
       
       if (error) throw error;
       
+      // Отправляем уведомление пользователю о причине отклонения
+      if (selectedRelease.user_id) {
+        const notificationTitle = 'Релиз отклонён';
+        const notificationMessage = `Ваш релиз "${selectedRelease.title}" был отклонён модератором.\n\nПричина: ${rejectionReason}`;
+        
+        await supabase.from('notifications').insert({
+          user_id: selectedRelease.user_id,
+          title: notificationTitle,
+          message: notificationMessage,
+          type: 'error',
+          link: `/cabinet?tab=releases&release=${selectedRelease.id}`,
+          is_read: false
+        });
+      }
+      
       showSuccessToast('Релиз отклонён');
       setShowModal(false);
       setSelectedRelease(null);

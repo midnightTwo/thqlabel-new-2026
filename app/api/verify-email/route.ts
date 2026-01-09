@@ -17,17 +17,29 @@ function getBaseUrl(request: NextRequest): string {
 
 export async function GET(request: NextRequest) {
   const baseUrl = getBaseUrl(request);
+  console.log('=== VERIFY-EMAIL API CALLED ===');
+  console.log('Full URL:', request.url);
+  console.log('BaseUrl:', baseUrl);
   
   try {
     const { searchParams } = new URL(request.url);
     const token = searchParams.get('token');
+    console.log('Token from URL:', token);
     
     if (!token) {
+      console.log('ERROR: No token in URL');
       return NextResponse.redirect(new URL('/auth?error=invalid_token', baseUrl));
     }
 
     // Создаем admin клиент
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
+    
+    // Сначала проверим ВСЕ токены в базе для дебага
+    const { data: allTokens } = await supabase
+      .from('email_tokens')
+      .select('token, email, used, expires_at')
+      .eq('token_type', 'verification');
+    console.log('All verification tokens in DB:', JSON.stringify(allTokens, null, 2));
     
     // Получаем токен из базы данных
     const { data: tokenData, error: tokenError } = await supabase
@@ -37,6 +49,9 @@ export async function GET(request: NextRequest) {
       .eq('token_type', 'verification')
       .eq('used', false)
       .single();
+    
+    console.log('Token lookup result:', tokenData ? 'FOUND' : 'NOT FOUND');
+    console.log('Token error:', tokenError);
     
     if (tokenError || !tokenData) {
       console.error('Токен не найден:', tokenError);

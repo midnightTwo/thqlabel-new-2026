@@ -440,6 +440,35 @@ const ReleaseCard = memo(function ReleaseCard({ release, onClick, onDelete, onDr
         </div>
       )}
       
+      {/* Индикатор отклонённого релиза с причиной - привлекает внимание */}
+      {release.status === 'rejected' && release.rejection_reason && (
+        <div className="absolute inset-0 bg-black/90 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-xl sm:rounded-2xl flex flex-col items-center justify-center p-3">
+          <div className="flex items-center gap-2 mb-2">
+            <svg className="w-5 h-5 sm:w-6 sm:h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            <span className="text-sm sm:text-base font-bold text-white">Отклонён</span>
+          </div>
+          <div className="text-xs sm:text-sm text-white font-medium text-center leading-relaxed bg-red-600/80 px-3 py-2 rounded-lg max-w-full">
+            {release.rejection_reason.length > 80 
+              ? release.rejection_reason.slice(0, 80) + '...' 
+              : release.rejection_reason}
+          </div>
+          <div className="mt-2 text-[10px] sm:text-xs text-zinc-400">Нажмите для подробностей</div>
+        </div>
+      )}
+      
+      {/* Маленький индикатор для отклонённых релизов - всегда виден */}
+      {release.status === 'rejected' && release.rejection_reason && (
+        <div className="absolute top-2 sm:top-3 right-2 sm:right-3 group-hover:opacity-0 transition-opacity duration-300">
+          <div className="p-1 sm:p-1.5 bg-red-500/30 backdrop-blur-sm rounded-lg border border-red-400/40 animate-pulse">
+            <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-red-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          </div>
+        </div>
+      )}
+      
       {/* Индикатор перетаскивания для черновиков */}
       {isDraft && (
         <div className="absolute top-2 sm:top-3 right-2 sm:right-3 opacity-0 group-hover:opacity-100 transition-all duration-300">

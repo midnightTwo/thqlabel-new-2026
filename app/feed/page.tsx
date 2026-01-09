@@ -1040,9 +1040,9 @@ export default function FeedPage() {
           </div>
 
           {/* Центральная колонка - Планета Сатурн с логотипом */}
-          <div className="lg:col-span-6 flex flex-col justify-center items-center order-2 lg:order-none pointer-events-none">
+          <div className="lg:col-span-6 flex flex-col justify-center items-center order-2 lg:order-none">
             {/* Контейнер для Сатурна - БЕСКОНЕЧНАЯ АНИМАЦИЯ */}
-            <div className={`relative mb-4 transition-all duration-1000 delay-200 ${mounted ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+            <div className={`relative mb-4 transition-all duration-1000 delay-200 pointer-events-none ${mounted ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
               <div 
                 className="relative flex items-center justify-center overflow-visible"
                 style={{
@@ -1265,7 +1265,7 @@ export default function FeedPage() {
                   }`}>Прослушиваний</div>
                 </div>
               </div>              {/* Футер ссылки */}
-              <div className="flex flex-wrap justify-center gap-2">
+              <div className="flex flex-wrap justify-center gap-2 pointer-events-auto">
                 <Link 
                   href="/faq"
                   className={`group flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all hover:scale-105 backdrop-blur-sm ${

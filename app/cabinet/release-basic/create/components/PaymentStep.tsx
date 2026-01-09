@@ -153,6 +153,7 @@ export default function PaymentStep({
 
   // Проверяем статус оплаты при загрузке (на случай если isPaid не передан)
   useEffect(() => {
+    let isMounted = true;
     const checkPaymentStatus = async () => {
       if (releaseId && !isPaid && supabase) {
         try {
@@ -162,7 +163,7 @@ export default function PaymentStep({
             .eq('id', releaseId)
             .single();
           
-          if (!error && data?.is_paid) {
+          if (!error && data?.is_paid && isMounted) {
             setAlreadyPaid(true);
             setSuccess(true);
             if (data.payment_transaction_id) {
@@ -176,28 +177,67 @@ export default function PaymentStep({
     };
     
     checkPaymentStatus();
-  }, [releaseId, isPaid]);
+    return () => { isMounted = false; };
+  }, [releaseId, isPaid]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Загрузка баланса
+  // Загрузка баланса - только при монтировании и смене userId
   useEffect(() => {
-    loadBalance();
+    let isMounted = true;
+    const fetchBalance = async () => {
+      if (!userId || !supabase) {
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session?.access_token) {
+          console.error('No auth session');
+          if (isMounted) setLoading(false);
+          return;
+        }
+
+        const response = await fetch('/api/balance', {
+          headers: {
+            'Authorization': `Bearer ${session.access_token}`
+          }
+        });
+        const data = await response.json();
+        
+        if (response.ok && isMounted) {
+          setBalance({
+            balance: data.balance,
+            frozen_balance: data.frozen_balance,
+            currency: data.currency || 'RUB'
+          });
+        } else {
+          console.error('Balance load error:', data.error);
+        }
+      } catch (err) {
+        console.error('Failed to load balance:', err);
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    };
+    
+    fetchBalance();
+    return () => { isMounted = false; };
   }, [userId]);
 
+  // Функция для ручного обновления баланса
   const loadBalance = async () => {
     if (!userId || !supabase) {
       setLoading(false);
       return;
     }
-
+    setLoading(true);
     try {
-      // Получаем токен авторизации
       const { data: { session } } = await supabase.auth.getSession();
       if (!session?.access_token) {
         console.error('No auth session');
         setLoading(false);
         return;
       }
-
       const response = await fetch('/api/balance', {
         headers: {
           'Authorization': `Bearer ${session.access_token}`

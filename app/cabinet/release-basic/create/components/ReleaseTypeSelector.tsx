@@ -213,7 +213,7 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
                 {/* Цена */}
                 <div className={`text-center pt-2 border-t ${isLight ? 'border-blue-200' : 'border-blue-500/20'}`}>
                   <div className={`text-2xl font-black ${isLight ? 'text-blue-600' : 'text-blue-400'}`}><AnimatedPrice value={epPrice.total} /></div>
-                  <div className={`text-[10px] mt-0.5 ${isLight ? 'text-blue-500' : 'text-blue-400/70'}`}>300 ₽ × {epTracks} треков</div>
+                  <div className={`text-[10px] mt-0.5 ${isLight ? 'text-blue-500' : 'text-blue-400/70'}`}>150 ₽ × {epTracks} треков</div>
                 </div>
               </div>
 
@@ -233,7 +233,7 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <span className={`font-bold ${isLight ? 'text-blue-600' : 'text-blue-400'}`}>Свободные названия</span>
+                  <span className={`font-bold ${isLight ? 'text-blue-600' : 'text-blue-400'}`}>Идеально для мини-альбома</span>
                 </div>
               </div>
 
@@ -324,7 +324,7 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
                     </div>
                   ) : (
                     <div className={`text-[10px] mt-0.5 ${isLight ? 'text-emerald-500' : 'text-emerald-400/70'}`}>
-                      {albumTracks} треков × 300 ₽
+                      {albumTracks} треков × 150 ₽
                     </div>
                   )}
                 </div>
@@ -346,7 +346,7 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <span className={`font-bold ${isLight ? 'text-emerald-600' : 'text-emerald-400'}`}>Скидки от 21 трека</span>
+                  <span className={`font-bold ${isLight ? 'text-emerald-600' : 'text-emerald-400'}`}>Максимальный охват</span>
                 </div>
               </div>
 

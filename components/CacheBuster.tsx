@@ -1,16 +1,16 @@
 "use client";
 
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 
 /**
- * Компонент для агрессивной очистки кэша в dev режиме
+ * Компонент для агрессивной очистки кэша
  * НЕ трогает localStorage и sessionStorage (чтобы не разлогинивать)
  */
 export default function CacheBuster() {
-  useEffect(() => {
+  const clearAllCaches = useCallback(async () => {
     if (typeof window === 'undefined') return;
     
-    const clearAllCaches = async () => {
+    try {
       // 1. Очищаем Service Worker кэш
       if ('caches' in window) {
         try {
@@ -30,22 +30,47 @@ export default function CacheBuster() {
           // Service worker unregistration failed silently
         }
       }
-    };
-    
+      
+      // 3. Очищаем fetch/HTTP кэш (форсированная перезагрузка ресурсов)
+      if ('performance' in window && (performance as any).clearResourceTimings) {
+        (performance as any).clearResourceTimings();
+      }
+    } catch (e) {
+      // Silent fail
+    }
+  }, []);
+
+  useEffect(() => {
+    // Очищаем при монтировании
     clearAllCaches();
     
-    // Также очищаем при каждом фокусе окна (когда возвращаешься на вкладку)
+    // Очищаем при фокусе окна (когда возвращаешься на вкладку)
     const handleFocus = () => clearAllCaches();
     window.addEventListener('focus', handleFocus);
     
-    return () => window.removeEventListener('focus', handleFocus);
-  }, []);
+    // Очищаем каждые 30 секунд
+    const interval = setInterval(clearAllCaches, 30000);
+    
+    // Очищаем при visibility change
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        clearAllCaches();
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    
+    return () => {
+      window.removeEventListener('focus', handleFocus);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      clearInterval(interval);
+    };
+  }, [clearAllCaches]);
 
   return (
     <>
-      <meta httpEquiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+      <meta httpEquiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0" />
       <meta httpEquiv="Pragma" content="no-cache" />
-      <meta httpEquiv="Expires" content="0" />
+      <meta httpEquiv="Expires" content="-1" />
     </>
   );
 }

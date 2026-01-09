@@ -4,7 +4,7 @@ import { Release } from './types';
 import { STATUS_BADGE_STYLES, formatDate, formatDateFull, getTracksWord, copyToClipboard } from './constants';
 import { SupabaseClient } from '@supabase/supabase-js';
 import { MetadataItem, InfoBadge, CopyrightSection, CountriesSection, TracklistSection } from './ReleaseDetailComponents';
-import { PlatformsSection, PromoSection, ContributorsSection, AdditionalInfoSection, SocialLinksSection } from './ReleaseDetailSections';
+import { PlatformsSection, PromoSection, ContributorsSection, AdditionalInfoSection, SocialLinksSection, BandlinkSection } from './ReleaseDetailSections';
 import ReleaseStatistics from './ReleaseStatistics';
 import { useTheme } from '@/contexts/ThemeContext';
 
@@ -43,6 +43,14 @@ export default function ReleaseDetailView({ release, onBack, showCopyToast, setS
 
       {/* Шапка релиза */}
       <ReleaseHeader release={release} handleCopyUPC={handleCopyUPC} />
+
+      {/* Причина отклонения - для отклонённых релизов */}
+      {release.status === 'rejected' && release.rejection_reason && (
+        <RejectionReasonBlock reason={release.rejection_reason} />
+      )}
+
+      {/* Bandlink для опубликованных релизов - сразу после шапки */}
+      <BandlinkSection release={release} />
 
       {/* Copyright */}
       {release.copyright && <CopyrightSection copyright={release.copyright} />}
@@ -236,4 +244,70 @@ function getStatusText(status: string, short: boolean): string {
     pending: { full: 'На модерации', short: 'Модер.' }
   };
   return texts[status]?.[short ? 'short' : 'full'] || status;
+}
+
+// Блок с причиной отклонения релиза
+function RejectionReasonBlock({ reason }: { reason: string }) {
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
+  
+  return (
+    <div className={`mb-4 sm:mb-6 p-4 sm:p-6 rounded-2xl border-2 animate-pulse-slow ${
+      isLight 
+        ? 'bg-gradient-to-br from-red-50 via-red-100/50 to-orange-50 border-red-300 shadow-lg shadow-red-200/30' 
+        : 'bg-gradient-to-br from-red-950/40 via-red-900/30 to-red-950/20 border-red-500/40 shadow-lg shadow-red-900/20'
+    }`}>
+      {/* Заголовок */}
+      <div className="flex items-start gap-3 mb-3 sm:mb-4">
+        <div className={`flex-shrink-0 p-2 sm:p-2.5 rounded-xl ${
+          isLight ? 'bg-red-200/60' : 'bg-red-500/20'
+        }`}>
+          <svg className={`w-5 h-5 sm:w-6 sm:h-6 ${isLight ? 'text-red-600' : 'text-red-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+        </div>
+        <div className="flex-1 min-w-0">
+          <h3 className={`text-sm sm:text-base font-bold uppercase tracking-wide ${
+            isLight ? 'text-red-700' : 'text-red-400'
+          }`}>
+            Релиз отклонён модератором
+          </h3>
+          <p className={`text-[10px] sm:text-xs mt-0.5 ${
+            isLight ? 'text-red-600/70' : 'text-red-400/60'
+          }`}>
+            Пожалуйста, исправьте указанные замечания и отправьте релиз повторно
+          </p>
+        </div>
+      </div>
+      
+      {/* Причина отклонения */}
+      <div className={`p-3 sm:p-4 rounded-xl ${
+        isLight ? 'bg-white/70 border border-red-200' : 'bg-black/20 border border-red-500/20'
+      }`}>
+        <div className={`flex items-center gap-2 mb-2 ${
+          isLight ? 'text-red-600' : 'text-red-400'
+        }`}>
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+          </svg>
+          <span className="text-xs sm:text-sm font-semibold uppercase tracking-wide">Причина отклонения:</span>
+        </div>
+        <p className={`text-sm sm:text-base leading-relaxed whitespace-pre-wrap break-words ${
+          isLight ? 'text-gray-800' : 'text-gray-200'
+        }`}>
+          {reason}
+        </p>
+      </div>
+      
+      {/* Подсказка */}
+      <div className={`mt-3 sm:mt-4 flex items-center gap-2 text-[10px] sm:text-xs ${
+        isLight ? 'text-red-600/60' : 'text-red-400/50'
+      }`}>
+        <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>Отредактируйте релиз и нажмите «Отправить на модерацию» снова</span>
+      </div>
+    </div>
+  );
 }

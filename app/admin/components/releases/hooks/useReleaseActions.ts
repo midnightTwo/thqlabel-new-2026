@@ -64,6 +64,21 @@ export function useReleaseActions(supabase: SupabaseClient | null): UseReleaseAc
       
       if (error) throw error;
       
+      // Отправляем уведомление пользователю о причине отклонения
+      if (release.user_id) {
+        const notificationTitle = 'Релиз отклонён';
+        const notificationMessage = `Ваш релиз "${release.title}" был отклонён модератором.\n\nПричина: ${reason}`;
+        
+        await supabase.from('notifications').insert({
+          user_id: release.user_id,
+          title: notificationTitle,
+          message: notificationMessage,
+          type: 'error',
+          link: `/cabinet?tab=releases&release=${release.id}`,
+          is_read: false
+        });
+      }
+      
       showSuccessToast('Релиз отклонён');
       onSuccess();
     } catch (error) {

@@ -68,6 +68,7 @@ export interface Release {
   soundcloud_link?: string;
   vk_link?: string;
   instagram_link?: string;
+  bandlink?: string;
 }
 
 export interface Track {

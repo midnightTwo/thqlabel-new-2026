@@ -3,11 +3,8 @@
  * 
  * Тарифы:
  * - Сингл (1 трек): 500 ₽ фиксированно
- * - EP (2-7 треков): 300 ₽ за трек (без скидок)
- * - Альбом (8+ треков):
- *   - Треки 1-20: 300 ₽ за трек
- *   - Треки 21-30: 250 ₽ за трек  
- *   - Треки 31-50: 200 ₽ за трек
+ * - EP (2-7 треков): 150 ₽ за трек (без скидок)
+ * - Альбом (8+ треков): 150 ₽ за трек (без скидок)
  */
 
 export type ReleaseType = 'single' | 'ep' | 'album';
@@ -34,15 +31,13 @@ export function getPriceRange(releaseType: ReleaseType | null | undefined): { mi
     case 'single':
       return { min: 500, max: 500, description: '500 ₽' };
     case 'ep':
-      // EP: 2-7 треков по 300₽
-      return { min: 600, max: 2100, description: '600 - 2 100 ₽' };
+      // EP: 2-7 треков по 150₽
+      return { min: 300, max: 1050, description: '300 - 1 050 ₽' };
     case 'album':
-      // Альбом: 8-50 треков со скидками
-      // Мин (8 треков): 8 × 300 = 2400
-      // Макс (50 треков): 20×300 + 10×250 + 20×200 = 6000 + 2500 + 4000 = 12500
-      return { min: 2400, max: 12500, description: '2 400 - 12 500 ₽' };
+      // Альбом: 8-50 треков по 150₽
+      return { min: 1200, max: 7500, description: '1 200 - 7 500 ₽' };
     default:
-      return { min: 500, max: 12500, description: 'от 500 ₽' };
+      return { min: 150, max: 7500, description: 'от 150 ₽' };
   }
 }
 
@@ -65,71 +60,26 @@ export function calculatePaymentAmount(
     };
   }
 
-  // EP (2-7 треков) - все по 300₽ без скидок
+  // EP (2-7 треков) - все по 150₽ без скидок
   if (releaseType === 'ep' || (tracksCount >= 2 && tracksCount <= 7)) {
-    const total = tracksCount * 300;
+    const total = tracksCount * 150;
     return {
       total,
       breakdown: [
-        { range: 'EP', count: tracksCount, pricePerTrack: 300, subtotal: total }
+        { range: 'EP', count: tracksCount, pricePerTrack: 150, subtotal: total }
       ],
       tracksCount,
       releaseType: 'ep'
     };
   }
 
-  // Альбом (8+ треков) - динамический расчёт со скидками
-  const breakdown: PriceBreakdown[] = [];
-  let total = 0;
-  let remaining = tracksCount;
-
-  // Треки 1-20: 300 ₽ за трек
-  if (remaining > 0) {
-    const count = Math.min(remaining, 20);
-    const pricePerTrack = 300;
-    const subtotal = count * pricePerTrack;
-    breakdown.push({ 
-      range: '1-20', 
-      count, 
-      pricePerTrack, 
-      subtotal 
-    });
-    total += subtotal;
-    remaining -= count;
-  }
-
-  // Треки 21-30: 250 ₽ за трек
-  if (remaining > 0) {
-    const count = Math.min(remaining, 10);
-    const pricePerTrack = 250;
-    const subtotal = count * pricePerTrack;
-    breakdown.push({ 
-      range: '21-30', 
-      count, 
-      pricePerTrack, 
-      subtotal 
-    });
-    total += subtotal;
-    remaining -= count;
-  }
-
-  // Треки 31-50: 200 ₽ за трек
-  if (remaining > 0) {
-    const count = Math.min(remaining, 20);
-    const pricePerTrack = 200;
-    const subtotal = count * pricePerTrack;
-    breakdown.push({ 
-      range: '31-50', 
-      count, 
-      pricePerTrack, 
-      subtotal 
-    });
-    total += subtotal;
-  }
-
+  // Альбом (8+ треков) - все по 150₽ без скидок
+  const total = tracksCount * 150;
   return {
     total,
-    breakdown,
+    breakdown: [
+      { range: 'Альбом', count: tracksCount, pricePerTrack: 150, subtotal: total }
+    ],
     tracksCount,
     releaseType: 'album'
   };

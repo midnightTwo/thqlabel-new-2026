@@ -87,8 +87,18 @@ const FAQ_DATA = [
     questions: [
       {
         q: 'Как загрузить релиз на платформы?',
-        a: 'Войдите в личный кабинет, перейдите в раздел "Релизы" и нажмите "Загрузить демо". Заполните все поля, прикрепите аудиофайлы и обложку. После модерации ваш релиз будет опубликован на всех платформах.',
-        component: null
+        a: '',
+        component: 'uploadRelease'
+      },
+      {
+        q: 'Требования к аудио',
+        a: '',
+        component: 'audioRequirements'
+      },
+      {
+        q: 'Требования к обложке',
+        a: '',
+        component: 'coverRequirements'
       },
       {
         q: 'Сколько времени занимает публикация?',
@@ -102,8 +112,13 @@ const FAQ_DATA = [
       },
       {
         q: 'Могу ли я выбрать дату релиза?',
-        a: 'Да! При загрузке демо укажите желаемую дату релиза. Рекомендуем указывать дату минимум за 2 недели до публикации.',
+        a: 'Да! При загрузке укажите желаемую дату релиза. Рекомендуем указывать дату минимум за 2 недели до публикации для попадания в плейлисты.',
         component: null
+      },
+      {
+        q: 'Что такое ISRC и UPC коды?',
+        a: '',
+        component: 'isrcUpc'
       },
     ]
   },
@@ -112,18 +127,13 @@ const FAQ_DATA = [
     questions: [
       {
         q: 'Как работают выплаты?',
-        a: 'Выплаты производятся ежеквартально. Вы получаете 85% от всех доходов. Минимальная сумма для вывода — 1000 рублей.',
-        component: null
+        a: '',
+        component: 'payouts'
       },
       {
         q: 'Когда я получу отчёты с продаж?',
         a: '',
         component: 'reports'
-      },
-      {
-        q: 'Какие способы вывода доступны?',
-        a: 'Вывод доступен на банковские карты РФ (Сбербанк, Тинькофф, Альфа и др.), а также на ЮMoney и QIWI.',
-        component: null
       },
     ]
   },
@@ -132,7 +142,7 @@ const FAQ_DATA = [
     questions: [
       {
         q: 'Как изменить никнейм артиста?',
-        a: 'Перейдите в раздел "Настройки" в личном кабинете. Там вы можете изменить никнейм, аватар и другие данные профиля.',
+        a: 'Никнейм артиста нельзя изменить самостоятельно после регистрации. Если вы случайно ввели неправильный никнейм, обратитесь в поддержку — мы поможем решить этот вопрос.',
         component: null
       },
       {
@@ -180,10 +190,15 @@ const FAQ_DATA = [
         a: 'Да, мы заключаем неэксклюзивный лицензионный договор. Вы сохраняете все права на музыку и можете выйти из сотрудничества в любой момент.',
         component: null
       },
+    ]
+  },
+  {
+    category: 'Аналитика',
+    questions: [
       {
-        q: 'Что такое Exclusive статус?',
-        a: 'Exclusive артисты получают приоритетную поддержку, продвижение в соцсетях лейбла и повышенный процент выплат (до 90%).',
-        component: null
+        q: 'Где смотреть статистику?',
+        a: '',
+        component: 'analytics'
       },
     ]
   },
@@ -322,11 +337,460 @@ const ReportsComponent = ({ isLight }: { isLight: boolean }) => {
   );
 };
 
+// Компонент для подробного описания загрузки релиза
+const UploadReleaseComponent = ({ isLight }: { isLight: boolean }) => {
+  const Icons = getIcons(isLight);
+  return (
+    <div className="space-y-4">
+      <p className={`font-medium ${isLight ? 'text-gray-800' : 'text-[#c4b5fd]'}`}>Пошаговая инструкция:</p>
+      
+      <div className="space-y-3">
+        <div className={`flex items-start gap-3 ${isLight ? 'text-gray-700' : 'text-white/80'}`}>
+          <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${isLight ? 'bg-[#6050ba] text-white' : 'bg-[#6050ba]/50 text-white'}`}>1</span>
+          <div>
+            <span className={`font-medium ${isLight ? 'text-gray-800' : 'text-[#c4b5fd]'}`}>Войдите в личный кабинет</span>
+            <p className="text-sm mt-0.5">Авторизуйтесь на сайте и перейдите в раздел «Релизы»</p>
+          </div>
+        </div>
+        
+        <div className={`flex items-start gap-3 ${isLight ? 'text-gray-700' : 'text-white/80'}`}>
+          <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${isLight ? 'bg-[#6050ba] text-white' : 'bg-[#6050ba]/50 text-white'}`}>2</span>
+          <div>
+            <span className={`font-medium ${isLight ? 'text-gray-800' : 'text-[#c4b5fd]'}`}>Нажмите «Создать релиз»</span>
+            <p className="text-sm mt-0.5">Выберите тип релиза: сингл, EP или альбом</p>
+          </div>
+        </div>
+        
+        <div className={`flex items-start gap-3 ${isLight ? 'text-gray-700' : 'text-white/80'}`}>
+          <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${isLight ? 'bg-[#6050ba] text-white' : 'bg-[#6050ba]/50 text-white'}`}>3</span>
+          <div>
+            <span className={`font-medium ${isLight ? 'text-gray-800' : 'text-[#c4b5fd]'}`}>Заполните информацию о релизе</span>
+            <p className="text-sm mt-0.5">Название, имя артиста, жанр, дата релиза</p>
+          </div>
+        </div>
+        
+        <div className={`flex items-start gap-3 ${isLight ? 'text-gray-700' : 'text-white/80'}`}>
+          <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${isLight ? 'bg-[#6050ba] text-white' : 'bg-[#6050ba]/50 text-white'}`}>4</span>
+          <div>
+            <span className={`font-medium ${isLight ? 'text-gray-800' : 'text-[#c4b5fd]'}`}>Загрузите обложку</span>
+            <p className="text-sm mt-0.5">Размер не менее 3000×3000 пикселей, формат JPG или PNG</p>
+          </div>
+        </div>
+        
+        <div className={`flex items-start gap-3 ${isLight ? 'text-gray-700' : 'text-white/80'}`}>
+          <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${isLight ? 'bg-[#6050ba] text-white' : 'bg-[#6050ba]/50 text-white'}`}>5</span>
+          <div>
+            <span className={`font-medium ${isLight ? 'text-gray-800' : 'text-[#c4b5fd]'}`}>Добавьте треки</span>
+            <p className="text-sm mt-0.5">Загрузите аудиофайлы в формате WAV, укажите названия, авторов текста и музыки</p>
+          </div>
+        </div>
+        
+        <div className={`flex items-start gap-3 ${isLight ? 'text-gray-700' : 'text-white/80'}`}>
+          <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${isLight ? 'bg-[#6050ba] text-white' : 'bg-[#6050ba]/50 text-white'}`}>6</span>
+          <div>
+            <span className={`font-medium ${isLight ? 'text-gray-800' : 'text-[#c4b5fd]'}`}>Выберите платформы и страны</span>
+            <p className="text-sm mt-0.5">Укажите на какие платформы и в каких странах публиковать</p>
+          </div>
+        </div>
+        
+        <div className={`flex items-start gap-3 ${isLight ? 'text-gray-700' : 'text-white/80'}`}>
+          <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${isLight ? 'bg-[#6050ba] text-white' : 'bg-[#6050ba]/50 text-white'}`}>7</span>
+          <div>
+            <span className={`font-medium ${isLight ? 'text-gray-800' : 'text-[#c4b5fd]'}`}>Отправьте на модерацию</span>
+            <p className="text-sm mt-0.5">Проверьте все данные и нажмите «Отправить». Модерация занимает 1-3 дня</p>
+          </div>
+        </div>
+      </div>
+      
+      <div className={`mt-4 p-3 rounded-xl ${isLight ? 'bg-amber-50 border border-amber-200' : 'bg-amber-500/10 border border-amber-500/20'}`}>
+        <IconItem icon={Icons.lightBulb}>
+          <span className={isLight ? 'text-amber-800' : 'text-amber-300'}>
+            <span className="font-medium">Совет:</span> Отправляйте релиз за 2-3 недели до желаемой даты, чтобы было время на модерацию и попадание в плейлисты!
+          </span>
+        </IconItem>
+      </div>
+    </div>
+  );
+};
+
+// Компонент для описания выплат
+const PayoutsComponent = ({ isLight }: { isLight: boolean }) => {
+  const Icons = getIcons(isLight);
+  return (
+    <div className="space-y-4">
+      <div className={`p-4 rounded-xl ${isLight ? 'bg-green-50 border border-green-200' : 'bg-green-500/10 border border-green-500/20'}`}>
+        <div className="flex items-center gap-3 mb-2">
+          <span className={`text-2xl font-black ${isLight ? 'text-green-600' : 'text-green-400'}`}>80%</span>
+          <span className={isLight ? 'text-green-700' : 'text-green-300'}>— ваша доля от всех доходов</span>
+        </div>
+        <p className={`text-sm ${isLight ? 'text-green-600' : 'text-green-400/80'}`}>
+          Вы получаете 80% от всех роялти со стримингов и продаж
+        </p>
+      </div>
+      
+      <div>
+        <p className={`font-medium mb-3 ${isLight ? 'text-gray-800' : 'text-[#c4b5fd]'}`}>Как это работает:</p>
+        <ul className={`space-y-2 ${isLight ? 'text-gray-700' : 'text-white/80'}`}>
+          <li className="flex items-start gap-2">
+            <span className={`w-1.5 h-1.5 rounded-full mt-2 ${isLight ? 'bg-[#6050ba]' : 'bg-[#9d8df1]'}`}></span>
+            <span>Выплаты производятся <span className="font-medium">ежеквартально</span></span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className={`w-1.5 h-1.5 rounded-full mt-2 ${isLight ? 'bg-[#6050ba]' : 'bg-[#9d8df1]'}`}></span>
+            <span>Минимальная сумма для вывода — <span className="font-medium">1000 рублей</span></span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className={`w-1.5 h-1.5 rounded-full mt-2 ${isLight ? 'bg-[#6050ba]' : 'bg-[#9d8df1]'}`}></span>
+            <span>Доступен вывод на карты РФ и ЮMoney</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className={`w-1.5 h-1.5 rounded-full mt-2 ${isLight ? 'bg-[#6050ba]' : 'bg-[#9d8df1]'}`}></span>
+            <span>Выплаты приходят в течение <span className="font-medium">3-5 рабочих дней</span> после запроса</span>
+          </li>
+        </ul>
+      </div>
+      
+      <IconItem icon={Icons.trendingUp}>
+        <span className={isLight ? 'text-gray-700' : 'text-white/80'}>
+          Чем больше прослушиваний — тем больше ваш доход. Продвигайте свою музыку и зарабатывайте!
+        </span>
+      </IconItem>
+    </div>
+  );
+};
+
+// Компонент для требований к аудио
+const AudioRequirementsComponent = ({ isLight }: { isLight: boolean }) => {
+  return (
+    <div className="space-y-4">
+      <div>
+        <div className="flex items-center gap-2 mb-3">
+          <svg className={`w-5 h-5 ${isLight ? 'text-violet-600' : 'text-[#9d8df1]'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+          </svg>
+          <p className={`font-medium ${isLight ? 'text-gray-800' : 'text-[#c4b5fd]'}`}>Принимаемый формат:</p>
+        </div>
+        <div className={`p-4 rounded-xl ${isLight ? 'bg-green-50 border border-green-200' : 'bg-green-500/10 border border-green-500/20'}`}>
+          <div className="flex items-center gap-3">
+            <svg className={`w-6 h-6 ${isLight ? 'text-green-600' : 'text-green-400'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            <div>
+              <div className={`font-bold text-lg ${isLight ? 'text-green-700' : 'text-green-400'}`}>WAV</div>
+              <div className={`text-sm ${isLight ? 'text-green-600' : 'text-green-400/70'}`}>Рекомендуемый формат для лучшего качества</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div className="flex items-center gap-2 mb-3">
+          <svg className={`w-5 h-5 ${isLight ? 'text-violet-600' : 'text-[#9d8df1]'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          <p className={`font-medium ${isLight ? 'text-gray-800' : 'text-[#c4b5fd]'}`}>Технические параметры:</p>
+        </div>
+        <div className={`rounded-xl overflow-hidden border ${isLight ? 'border-gray-200' : 'border-white/10'}`}>
+          <div className={`grid grid-cols-3 gap-px ${isLight ? 'bg-gray-200' : 'bg-white/10'}`}>
+            <div className={`p-3 ${isLight ? 'bg-white' : 'bg-[#1a1a1f]'}`}>
+              <div className={`text-xs ${isLight ? 'text-gray-500' : 'text-white/50'}`}>Частота</div>
+              <div className={`font-medium ${isLight ? 'text-gray-800' : 'text-white'}`}>44.1 / 48 kHz</div>
+            </div>
+            <div className={`p-3 ${isLight ? 'bg-white' : 'bg-[#1a1a1f]'}`}>
+              <div className={`text-xs ${isLight ? 'text-gray-500' : 'text-white/50'}`}>Битность</div>
+              <div className={`font-medium ${isLight ? 'text-gray-800' : 'text-white'}`}>16 / 24 bit</div>
+            </div>
+            <div className={`p-3 ${isLight ? 'bg-white' : 'bg-[#1a1a1f]'}`}>
+              <div className={`text-xs ${isLight ? 'text-gray-500' : 'text-white/50'}`}>Каналы</div>
+              <div className={`font-medium ${isLight ? 'text-gray-800' : 'text-white'}`}>Стерео</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className={`p-3 rounded-xl ${isLight ? 'bg-amber-50 border border-amber-200' : 'bg-amber-500/10 border border-amber-500/20'}`}>
+        <div className="flex items-start gap-2">
+          <svg className={`w-5 h-5 flex-shrink-0 ${isLight ? 'text-amber-600' : 'text-amber-400'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          </svg>
+          <span className={`text-sm ${isLight ? 'text-amber-800' : 'text-amber-300'}`}>
+            <span className="font-medium">Совет:</span> Не перекомпрессируйте трек — оставьте динамику для качественного звука на стриминге!
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Компонент для требований к обложке
+const CoverRequirementsComponent = ({ isLight }: { isLight: boolean }) => {
+  const Icons = getIcons(isLight);
+  return (
+    <div className="space-y-4">
+      <div>
+        <div className="flex items-center gap-2 mb-3">
+          <svg className={`w-5 h-5 ${isLight ? 'text-violet-600' : 'text-[#9d8df1]'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          <p className={`font-medium ${isLight ? 'text-gray-800' : 'text-[#c4b5fd]'}`}>Технические требования:</p>
+        </div>
+        <div className={`rounded-xl overflow-hidden border ${isLight ? 'border-gray-200' : 'border-white/10'}`}>
+          <div className={`grid grid-cols-2 gap-px ${isLight ? 'bg-gray-200' : 'bg-white/10'}`}>
+            <div className={`p-2.5 ${isLight ? 'bg-white' : 'bg-[#1a1a1f]'}`}>
+              <div className={`text-xs ${isLight ? 'text-gray-500' : 'text-white/50'}`}>Размер</div>
+              <div className={`font-medium ${isLight ? 'text-gray-800' : 'text-white'}`}>3000×3000 px</div>
+            </div>
+            <div className={`p-2.5 ${isLight ? 'bg-white' : 'bg-[#1a1a1f]'}`}>
+              <div className={`text-xs ${isLight ? 'text-gray-500' : 'text-white/50'}`}>Соотношение</div>
+              <div className={`font-medium ${isLight ? 'text-gray-800' : 'text-white'}`}>1:1 (квадрат)</div>
+            </div>
+            <div className={`p-2.5 ${isLight ? 'bg-white' : 'bg-[#1a1a1f]'}`}>
+              <div className={`text-xs ${isLight ? 'text-gray-500' : 'text-white/50'}`}>Формат</div>
+              <div className={`font-medium ${isLight ? 'text-gray-800' : 'text-white'}`}>JPG / PNG</div>
+            </div>
+            <div className={`p-2.5 ${isLight ? 'bg-white' : 'bg-[#1a1a1f]'}`}>
+              <div className={`text-xs ${isLight ? 'text-gray-500' : 'text-white/50'}`}>Цвет</div>
+              <div className={`font-medium ${isLight ? 'text-gray-800' : 'text-white'}`}>RGB</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-3">
+        <div>
+          <div className="flex items-center gap-1.5 mb-2">
+            <svg className={`w-4 h-4 ${isLight ? 'text-green-600' : 'text-green-400'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            <p className={`font-medium text-sm ${isLight ? 'text-green-600' : 'text-green-400'}`}>Можно:</p>
+          </div>
+          <ul className={`space-y-1 ${isLight ? 'text-gray-700' : 'text-white/80'}`}>
+            <li className="flex items-center gap-2 text-xs">
+              <span className={`w-1 h-1 rounded-full ${isLight ? 'bg-green-500' : 'bg-green-400'}`}></span>
+              Имя артиста
+            </li>
+            <li className="flex items-center gap-2 text-xs">
+              <span className={`w-1 h-1 rounded-full ${isLight ? 'bg-green-500' : 'bg-green-400'}`}></span>
+              Название релиза
+            </li>
+            <li className="flex items-center gap-2 text-xs">
+              <span className={`w-1 h-1 rounded-full ${isLight ? 'bg-green-500' : 'bg-green-400'}`}></span>
+              Оригинальные фото
+            </li>
+            <li className="flex items-center gap-2 text-xs">
+              <span className={`w-1 h-1 rounded-full ${isLight ? 'bg-green-500' : 'bg-green-400'}`}></span>
+              Стоки с лицензией
+            </li>
+          </ul>
+        </div>
+        <div>
+          <div className="flex items-center gap-1.5 mb-2">
+            <svg className={`w-4 h-4 ${isLight ? 'text-red-600' : 'text-red-400'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+            <p className={`font-medium text-sm ${isLight ? 'text-red-600' : 'text-red-400'}`}>Нельзя:</p>
+          </div>
+          <ul className={`space-y-1 ${isLight ? 'text-gray-700' : 'text-white/80'}`}>
+            <li className="flex items-center gap-2 text-xs">
+              <span className={`w-1 h-1 rounded-full ${isLight ? 'bg-red-500' : 'bg-red-400'}`}></span>
+              URL и email
+            </li>
+            <li className="flex items-center gap-2 text-xs">
+              <span className={`w-1 h-1 rounded-full ${isLight ? 'bg-red-500' : 'bg-red-400'}`}></span>
+              Логотипы соцсетей
+            </li>
+            <li className="flex items-center gap-2 text-xs">
+              <span className={`w-1 h-1 rounded-full ${isLight ? 'bg-red-500' : 'bg-red-400'}`}></span>
+              QR-коды
+            </li>
+            <li className="flex items-center gap-2 text-xs">
+              <span className={`w-1 h-1 rounded-full ${isLight ? 'bg-red-500' : 'bg-red-400'}`}></span>
+              Чужие фото без прав
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div className={`p-3 rounded-xl ${isLight ? 'bg-amber-50 border border-amber-200' : 'bg-amber-500/10 border border-amber-500/20'}`}>
+        <IconItem icon={Icons.lightBulb}>
+          <span className={`text-sm ${isLight ? 'text-amber-800' : 'text-amber-300'}`}>
+            <span className="font-medium">Совет:</span> Проверьте как обложка смотрится в маленьком размере 50×50 px — так она отображается в плейлистах!
+          </span>
+        </IconItem>
+      </div>
+    </div>
+  );
+};
+
+// Компонент для ISRC и UPC
+const IsrcUpcComponent = ({ isLight }: { isLight: boolean }) => {
+  const Icons = getIcons(isLight);
+  return (
+    <div className="space-y-4">
+      <div className="grid gap-3">
+        <div className={`p-4 rounded-xl ${isLight ? 'bg-violet-50 border border-violet-200' : 'bg-violet-500/10 border border-violet-500/20'}`}>
+          <div className="flex items-center gap-2 mb-2">
+            <span className={`text-lg font-black ${isLight ? 'text-violet-600' : 'text-violet-400'}`}>ISRC</span>
+            <span className={`text-xs px-2 py-0.5 rounded-full ${isLight ? 'bg-violet-200 text-violet-700' : 'bg-violet-500/20 text-violet-300'}`}>для треков</span>
+          </div>
+          <p className={`text-sm ${isLight ? 'text-violet-700' : 'text-violet-300'}`}>
+            International Standard Recording Code — уникальный код для каждого трека
+          </p>
+          <div className={`mt-2 text-xs font-mono ${isLight ? 'text-violet-500' : 'text-violet-400/70'}`}>
+            Пример: RU-AB1-24-00001
+          </div>
+        </div>
+
+        <div className={`p-4 rounded-xl ${isLight ? 'bg-blue-50 border border-blue-200' : 'bg-blue-500/10 border border-blue-500/20'}`}>
+          <div className="flex items-center gap-2 mb-2">
+            <span className={`text-lg font-black ${isLight ? 'text-blue-600' : 'text-blue-400'}`}>UPC</span>
+            <span className={`text-xs px-2 py-0.5 rounded-full ${isLight ? 'bg-blue-200 text-blue-700' : 'bg-blue-500/20 text-blue-300'}`}>для релизов</span>
+          </div>
+          <p className={`text-sm ${isLight ? 'text-blue-700' : 'text-blue-300'}`}>
+            Universal Product Code — штрих-код для всего релиза (12-13 цифр)
+          </p>
+        </div>
+      </div>
+
+      <div className={`p-3 rounded-xl ${isLight ? 'bg-green-50 border border-green-200' : 'bg-green-500/10 border border-green-500/20'}`}>
+        <div className="flex items-center gap-2">
+          <svg className={`w-5 h-5 ${isLight ? 'text-green-600' : 'text-green-400'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+          <span className={`font-medium ${isLight ? 'text-green-700' : 'text-green-300'}`}>Мы генерируем коды автоматически и бесплатно!</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Компонент для аналитики
+const AnalyticsComponent = ({ isLight }: { isLight: boolean }) => {
+  return (
+    <div className="space-y-4">
+      <div>
+        <div className="flex items-center gap-2 mb-3">
+          <svg className={`w-5 h-5 ${isLight ? 'text-violet-600' : 'text-[#9d8df1]'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          </svg>
+          <p className={`font-medium ${isLight ? 'text-gray-800' : 'text-[#c4b5fd]'}`}>Где смотреть статистику:</p>
+        </div>
+        <div className="space-y-2">
+          <div className={`p-3 rounded-xl flex items-center gap-3 ${isLight ? 'bg-white border border-gray-200' : 'bg-white/5 border border-white/10'}`}>
+            <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${isLight ? 'bg-violet-100' : 'bg-violet-500/20'}`}>
+              <svg className={`w-4 h-4 ${isLight ? 'text-violet-600' : 'text-violet-400'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+            </div>
+            <div>
+              <div className={`font-medium text-sm ${isLight ? 'text-gray-800' : 'text-white'}`}>Личный кабинет</div>
+              <div className={`text-xs ${isLight ? 'text-gray-500' : 'text-white/50'}`}>Общая статистика, доходы, география</div>
+            </div>
+          </div>
+          <div className={`p-3 rounded-xl flex items-center gap-3 ${isLight ? 'bg-white border border-gray-200' : 'bg-white/5 border border-white/10'}`}>
+            <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${isLight ? 'bg-green-100' : 'bg-green-500/20'}`}>
+              <svg className={`w-4 h-4 ${isLight ? 'text-green-600' : 'text-green-400'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+              </svg>
+            </div>
+            <div>
+              <div className={`font-medium text-sm ${isLight ? 'text-gray-800' : 'text-white'}`}>Spotify for Artists</div>
+              <div className={`text-xs ${isLight ? 'text-gray-500' : 'text-white/50'}`}>Детальная аналитика Spotify</div>
+            </div>
+          </div>
+          <div className={`p-3 rounded-xl flex items-center gap-3 ${isLight ? 'bg-white border border-gray-200' : 'bg-white/5 border border-white/10'}`}>
+            <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${isLight ? 'bg-red-100' : 'bg-red-500/20'}`}>
+              <svg className={`w-4 h-4 ${isLight ? 'text-red-600' : 'text-red-400'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+              </svg>
+            </div>
+            <div>
+              <div className={`font-medium text-sm ${isLight ? 'text-gray-800' : 'text-white'}`}>Apple Music for Artists</div>
+              <div className={`text-xs ${isLight ? 'text-gray-500' : 'text-white/50'}`}>Статистика Apple Music</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div className="flex items-center gap-2 mb-3">
+          <svg className={`w-5 h-5 ${isLight ? 'text-violet-600' : 'text-[#9d8df1]'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+          </svg>
+          <p className={`font-medium ${isLight ? 'text-gray-800' : 'text-[#c4b5fd]'}`}>Важные метрики:</p>
+        </div>
+        <div className={`rounded-xl overflow-hidden border ${isLight ? 'border-gray-200' : 'border-white/10'}`}>
+          <div className={`grid gap-px ${isLight ? 'bg-gray-200' : 'bg-white/10'}`}>
+            <div className={`p-3 flex items-center gap-3 ${isLight ? 'bg-white' : 'bg-[#1a1a1f]'}`}>
+              <svg className={`w-5 h-5 ${isLight ? 'text-violet-600' : 'text-violet-400'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <span className={`text-sm font-medium ${isLight ? 'text-gray-800' : 'text-white'}`}>Streams</span>
+                <span className={`text-sm ${isLight ? 'text-gray-500' : 'text-white/50'}`}> — прослушивания</span>
+              </div>
+            </div>
+            <div className={`p-3 flex items-center gap-3 ${isLight ? 'bg-white' : 'bg-[#1a1a1f]'}`}>
+              <svg className={`w-5 h-5 ${isLight ? 'text-blue-600' : 'text-blue-400'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+              <div>
+                <span className={`text-sm font-medium ${isLight ? 'text-gray-800' : 'text-white'}`}>Listeners</span>
+                <span className={`text-sm ${isLight ? 'text-gray-500' : 'text-white/50'}`}> — уникальные слушатели</span>
+              </div>
+            </div>
+            <div className={`p-3 flex items-center gap-3 ${isLight ? 'bg-white' : 'bg-[#1a1a1f]'}`}>
+              <svg className={`w-5 h-5 ${isLight ? 'text-green-600' : 'text-green-400'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+              <div>
+                <span className={`text-sm font-medium ${isLight ? 'text-gray-800' : 'text-white'}`}>Save Rate</span>
+                <span className={`text-sm ${isLight ? 'text-gray-500' : 'text-white/50'}`}> — % сохранений в библиотеку</span>
+              </div>
+            </div>
+            <div className={`p-3 flex items-center gap-3 ${isLight ? 'bg-white' : 'bg-[#1a1a1f]'}`}>
+              <svg className={`w-5 h-5 ${isLight ? 'text-amber-600' : 'text-amber-400'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M11.933 12.8a1 1 0 000-1.6L6.6 7.2A1 1 0 005 8v8a1 1 0 001.6.8l5.333-4zM19.933 12.8a1 1 0 000-1.6l-5.333-4A1 1 0 0013 8v8a1 1 0 001.6.8l5.333-4z" />
+              </svg>
+              <div>
+                <span className={`text-sm font-medium ${isLight ? 'text-gray-800' : 'text-white'}`}>Skip Rate</span>
+                <span className={`text-sm ${isLight ? 'text-gray-500' : 'text-white/50'}`}> — % пропусков трека</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className={`p-3 rounded-xl ${isLight ? 'bg-blue-50 border border-blue-200' : 'bg-blue-500/10 border border-blue-500/20'}`}>
+        <div className="flex items-center gap-2 mb-1">
+          <svg className={`w-4 h-4 ${isLight ? 'text-blue-600' : 'text-blue-400'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span className={`font-medium text-sm ${isLight ? 'text-blue-700' : 'text-blue-300'}`}>Когда обновляется:</span>
+        </div>
+        <ul className={`space-y-1 text-xs ${isLight ? 'text-blue-600' : 'text-blue-400/80'}`}>
+          <li>• Личный кабинет — каждый квартал</li>
+          <li>• Spotify for Artists — почти в реальном времени</li>
+          <li>• Финансовые отчёты — каждый квартал</li>
+        </ul>
+      </div>
+    </div>
+  );
+};
+
 // Map of custom components - теперь принимают isLight
 const customComponents: { [key: string]: React.FC<{ isLight: boolean }> } = {
   roles: RolesComponent,
   beats: BeatsComponent,
   reports: ReportsComponent,
+  uploadRelease: UploadReleaseComponent,
+  payouts: PayoutsComponent,
+  audioRequirements: AudioRequirementsComponent,
+  coverRequirements: CoverRequirementsComponent,
+  isrcUpc: IsrcUpcComponent,
+  analytics: AnalyticsComponent,
 };
 
 export default function FAQPage() {

@@ -172,7 +172,7 @@ export default function ReleaseInfoStep({
                   <input 
                     value={collaboratorInput} 
                     onChange={(e) => setCollaboratorInput(e.target.value)} 
-                    placeholder="Например: greyrock, tewiq"
+                    placeholder="Введите никнейм артиста"
                     disabled={collaborators.length >= 10}
                     onKeyDown={(e) => {
                       if(e.key === 'Enter' && collaboratorInput.trim() && collaborators.length < 10) {

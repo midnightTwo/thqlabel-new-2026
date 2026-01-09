@@ -101,26 +101,12 @@ export async function POST(request: NextRequest) {
     // Email отправителя - должен быть верифицирован в SMTP провайдере (Brevo)
     const fromEmail = process.env.SMTP_FROM || process.env.SMTP_USER;
     
+    // ВАЖНО: Формат идентичен письму регистрации (которое НЕ попадает в спам)
     const mailOptions = {
       from: `"thqlabel" <${fromEmail}>`,
       to: email,
       replyTo: fromEmail,
       subject: 'Сменить пароль для thqlabel',
-      // Текстовая версия для лучшей доставляемости
-      text: `Здравствуйте!
-
-Вы запросили смену пароля для вашего аккаунта на thqlabel.
-
-Для установки нового пароля перейдите по ссылке:
-${resetLink}
-
-Ссылка действительна 60 минут.
-
-Если вы не запрашивали смену пароля, просто проигнорируйте это письмо.
-
-С уважением,
-Команда thqlabel
-https://thqlabel.ru`,
       html: `
         <!DOCTYPE html>
         <html lang="ru">
@@ -129,14 +115,13 @@ https://thqlabel.ru`,
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Смена пароля - thqlabel</title>
         </head>
-        <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #ffffff;" bgcolor="#ffffff">
-            <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #ffffff; padding: 40px 20px;" bgcolor="#ffffff">
+        <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #ffffff;">
+            <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #ffffff; padding: 40px 20px;">
                 <tr>
                     <td align="center">
-                        <!-- Черная карточка -->
-                        <table role="presentation" style="max-width: 600px; width: 100%; border-collapse: collapse; background-color: #0c0c0e; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; overflow: hidden; box-shadow: 0 0 80px rgba(96, 80, 186, 0.15);" bgcolor="#0c0c0e">
+                        <table role="presentation" style="max-width: 600px; width: 100%; border-collapse: collapse; background-color: #0c0c0e; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; overflow: hidden; box-shadow: 0 0 80px rgba(96, 80, 186, 0.15);">
                             
-                            <!-- Шапка с фиолетовым градиентом -->
+                            <!-- Шапка -->
                             <tr>
                                 <td style="background: linear-gradient(135deg, #6050ba 0%, #9d8df1 100%); padding: 40px 20px; text-align: center;">
                                     <h1 style="margin: 0; color: white; font-size: 32px; font-weight: 900; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); letter-spacing: -1px;">
@@ -148,7 +133,7 @@ https://thqlabel.ru`,
                                 </td>
                             </tr>
                             
-                            <!-- Контент на черном фоне -->
+                            <!-- Контент -->
                             <tr>
                                 <td style="padding: 40px 30px;">
                                     <h2 style="margin: 0 0 20px 0; color: white; font-size: 24px; font-weight: 800;">

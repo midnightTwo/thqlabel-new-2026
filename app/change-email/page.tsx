@@ -42,11 +42,6 @@ export default function ChangeEmailPage() {
     
     const processEmailChange = async () => {
       if (processed) return;
-      if (!supabase) {
-        showNotification('Ошибка подключения. Перезагрузите страницу.', 'error');
-        setLoading(false);
-        return;
-      }
       
       try {
         console.log('=== Processing email change ===');
@@ -54,8 +49,40 @@ export default function ChangeEmailPage() {
         console.log('Hash:', window.location.hash);
         console.log('Search:', window.location.search);
         
-        // Проверяем ошибку в query параметрах (после ?)
+        // Проверяем query параметры (от нашего кастомного API)
         const urlParams = new URLSearchParams(window.location.search);
+        const success = urlParams.get('success');
+        const email = urlParams.get('email');
+        const error = urlParams.get('error');
+        
+        // Успешная смена через наш API
+        if (success === 'true' && email) {
+          processed = true;
+          setNewEmail(decodeURIComponent(email));
+          setLoading(false);
+          showNotification(`Email успешно изменён на ${decodeURIComponent(email)}!`, 'success');
+          setTimeout(() => router.push('/cabinet'), 2500);
+          return;
+        }
+        
+        // Ошибка от нашего API
+        if (error) {
+          processed = true;
+          let errorMsg = 'Ошибка смены email';
+          if (error === 'invalid_token' || error === 'missing_token') {
+            errorMsg = 'Ссылка недействительна или уже использована';
+          } else if (error === 'expired_token') {
+            errorMsg = 'Срок действия ссылки истёк. Запросите смену email повторно.';
+          } else if (error === 'update_failed') {
+            errorMsg = 'Не удалось обновить email. Попробуйте позже.';
+          }
+          showNotification(errorMsg, 'error');
+          setLoading(false);
+          setTimeout(() => router.push('/cabinet'), 3000);
+          return;
+        }
+        
+        // Проверяем старые ошибки Supabase (для обратной совместимости)
         const queryError = urlParams.get('error');
         const queryErrorCode = urlParams.get('error_code');
         const queryErrorDesc = urlParams.get('error_description');
@@ -76,6 +103,13 @@ export default function ChangeEmailPage() {
           return;
         }
         
+        // Если нет параметров - проверяем hash (старый Supabase flow)
+        if (!supabase) {
+          showNotification('Ошибка подключения. Перезагрузите страницу.', 'error');
+          setLoading(false);
+          return;
+        }
+        
         // Проверяем токен в URL hash (после #)
         const hashParams = new URLSearchParams(window.location.hash.substring(1));
         const accessToken = hashParams.get('access_token');
@@ -83,6 +117,27 @@ export default function ChangeEmailPage() {
         const type = hashParams.get('type');
         const errorCode = hashParams.get('error_code');
         const errorDescription = hashParams.get('error_description');
+        const message = hashParams.get('message');
+        
+        // Проверяем сообщение о необходимости подтвердить на второй почте
+        if (message) {
+          console.log('Message in hash:', message);
+          if (message.includes('proceed to confirm') || message.includes('other email')) {
+            // Supabase требует подтверждение с ОБЕИХ почт (Secure email change)
+            processed = true;
+            setLoading(false);
+            showNotification('Первая почта подтверждена! Теперь подтвердите на второй почте (проверьте входящие).', 'success');
+            setTimeout(() => router.push('/cabinet'), 5000);
+            return;
+          } else if (message.includes('accepted') || message.includes('confirmed')) {
+            // Email подтверждён
+            processed = true;
+            setLoading(false);
+            showNotification('Email успешно подтверждён!', 'success');
+            setTimeout(() => router.push('/cabinet'), 2500);
+            return;
+          }
+        }
         
         // Проверяем ошибку в hash (rate limit и т.д.)
         if (errorCode || errorDescription) {

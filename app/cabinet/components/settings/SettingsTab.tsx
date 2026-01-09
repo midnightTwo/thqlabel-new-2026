@@ -207,38 +207,43 @@ export default function SettingsTab({
     try {
       console.log('Attempting to change email to:', newEmail);
       
-      const { data, error } = await supabase.auth.updateUser(
-        { email: newEmail },
-        { emailRedirectTo: `${window.location.origin}/change-email` }
-      );
-
-      if (error) {
-        console.error('Supabase error:', error);
-        throw error;
+      // Используем кастомный API - письмо придёт ТОЛЬКО на новую почту
+      const response = await fetch('/api/send-change-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          currentEmail: user?.email,
+          newEmail: newEmail,
+          userId: user?.id
+        })
+      });
+      
+      const result = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(result.error || 'Ошибка отправки письма');
       }
 
-      // Проверяем результат - Supabase может вернуть user с new_email
-      console.log('Email change result:', data);
+      console.log('Email change result:', result);
       
-      setEmailSuccess('Письмо с подтверждением отправлено на новый email! Проверьте почту.');
+      setEmailSuccess('Письмо отправлено на новый email! Проверьте почту и подтвердите смену.');
       setNewEmail('');
-      setEmailLoading(false); // Сбрасываем loading сразу после успеха
+      setEmailLoading(false);
       setTimeout(() => {
         setShowEmailChange(false);
         setEmailSuccess('');
       }, 5000);
     } catch (err: any) {
       console.error('Ошибка смены email:', err);
-      // Переводим известные ошибки
       let errorMsg = translateError(err.message);
       if (err.message?.includes('rate limit') || err.message?.includes('exceeded')) {
         errorMsg = 'Превышен лимит запросов. Подождите несколько минут и попробуйте снова.';
-      } else if (err.message?.includes('already registered') || err.message?.includes('already been registered')) {
+      } else if (err.message?.includes('already registered') || err.message?.includes('already been registered') || err.message?.includes('уже используется')) {
         errorMsg = 'Этот email уже используется другим аккаунтом';
       }
       setEmailError(errorMsg || 'Не удалось отправить письмо');
     } finally {
-      setEmailLoading(false); // ВСЕГДА сбрасываем loading
+      setEmailLoading(false);
     }
   };
 
@@ -608,7 +613,7 @@ export default function SettingsTab({
                     </button>
 
                     <p className={`text-[10px] ${isLight ? 'text-[#7a7596]' : 'text-zinc-500'}`}>
-                      На новый email будет отправлено письмо с подтверждением
+                      Письмо придёт на новую почту для подтверждения
                     </p>
                   </div>
                 )}

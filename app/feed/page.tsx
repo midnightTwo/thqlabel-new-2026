@@ -12,8 +12,8 @@ const RELEASES = [
   { id: 3, title: 'МЕХАНИЗМ', artist: 'athysue', cover: 'https://t2.genius.com/unsafe/430x430/https%3A%2F%2Fimages.genius.com%2Fa4b2333f9c0768cf4f07d1252caff125.1000x1000x1.png' },
   { id: 4, title: 'ДЕВЧАЧИЙ РОК-АЛЬБОМ', artist: 'тенденция', cover: 'https://images.genius.com/2fa8d85da644fad7afc1ba3d40d0d513.1000x1000x1.png' },
   { id: 5, title: 'TIRED OF YOU / WHAT PAIN IS', artist: 'breakfall', cover: 'https://cdn-images.dzcdn.net/images/cover/7101d738b828553e74b9f0035a6dfa1a/500x500-000000-80-0-0.jpg' },
-  { id: 6, title: 'hate&love', artist: 'frommee', cover: 'https://t2.genius.com/unsafe/430x430/https%3A%2F%2Fimages.genius.com%2F43f01d20830d2acedb8267d3ea7a21e8.1000x1000x1.png' },
-  { id: 7, title: 'кейон', artist: 'ева киллер', cover: 'https://m.media-amazon.com/images/I/51knFhnMP0L._UX716_FMwebp_QL85_.jpg' },
+  { id: 6, title: 'кейон', artist: 'ева киллер', cover: 'https://m.media-amazon.com/images/I/51knFhnMP0L._UX716_FMwebp_QL85_.jpg' },
+  { id: 7, title: 'hate&love', artist: 'frommee', cover: 'https://t2.genius.com/unsafe/430x430/https%3A%2F%2Fimages.genius.com%2F43f01d20830d2acedb8267d3ea7a21e8.1000x1000x1.png' },
   { id: 8, title: 'Холодно', artist: 'qqdie', cover: 'https://images.genius.com/ece70e671b3422967c2012217763c557.807x807x1.jpg' },
 ];
 

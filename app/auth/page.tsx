@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useTheme } from '@/contexts/ThemeContext';
 import { SilverStarsGroup } from '@/components/ui/SilverStars';
 import { supabase } from '@/lib/supabase/client';
+import { Turnstile } from '@marsidev/react-turnstile';
 
 // Летающие светящиеся частицы
 const FloatingParticles = () => {
@@ -65,6 +66,7 @@ function AuthPage() {
   const [resendLoading, setResendLoading] = useState(false);
   const [resendTimer, setResendTimer] = useState(0);
   const [notification, setNotification] = useState<{show: boolean; message: string; type: 'success' | 'error'}>({show: false, message: '', type: 'success'});
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -215,8 +217,28 @@ function AuthPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!supabase) { alert('Supabase не настроен'); return; }
+    
+    // Проверка капчи
+    if (!captchaToken) {
+      showNotification('Пожалуйста, пройдите проверку капчи', 'error');
+      return;
+    }
+    
     setLoading(true);
     try {
+      // Верификация капчи на сервере
+      const captchaRes = await fetch('/api/verify-captcha', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: captchaToken })
+      });
+      const captchaData = await captchaRes.json();
+      if (!captchaData.success) {
+        showNotification('Проверка капчи не пройдена. Попробуйте снова.', 'error');
+        setCaptchaToken(null);
+        return;
+      }
+      
       if (mode === 'signup') {
         // РЕГИСТРАЦИЯ через наш API с SMTP (Brevo)
         const response = await fetch('/api/send-verification-email', {
@@ -663,11 +685,29 @@ function AuthPage() {
                     />
                   </div>
                   
+                  {/* Cloudflare Turnstile капча */}
+                  <div className="flex justify-center mt-4">
+                    <Turnstile
+                      siteKey={
+                        typeof window !== 'undefined' && window.location.hostname === 'localhost'
+                          ? '1x00000000000000000000AA'
+                          : (process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA')
+                      }
+                      onSuccess={(token) => setCaptchaToken(token)}
+                      onExpire={() => setCaptchaToken(null)}
+                      onError={() => setCaptchaToken(null)}
+                      options={{
+                        theme: 'dark',
+                        size: 'flexible',
+                      }}
+                    />
+                  </div>
+
                   <button 
                     type="submit" 
-                    disabled={loading} 
-                    className={`w-full py-4 rounded-xl text-[12px] font-black uppercase tracking-widest transition-all mt-6 text-white ${
-                      loading 
+                    disabled={loading || !captchaToken} 
+                    className={`w-full py-4 rounded-xl text-[12px] font-black uppercase tracking-widest transition-all mt-4 text-white ${
+                      loading || !captchaToken
                         ? 'bg-[#6050ba]/30 cursor-wait' 
                         : 'bg-[#6050ba] hover:bg-[#7060ca] hover:scale-[1.02] shadow-lg shadow-[#6050ba]/30'
                     }`}

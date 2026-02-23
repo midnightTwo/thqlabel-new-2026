@@ -115,11 +115,8 @@ export default function OfferPage() {
                 Акцепт Оферты.
               </p>
               <p>
-                <span style={{ color: accentColor }}>2.6.</span> <strong>Исполнитель</strong> —{' '}
-                <a href="https://thqlabel.ru" target="_blank" rel="noopener noreferrer" 
-                   className="underline hover:opacity-80" style={{ color: accentColor }}>
-                  https://thqlabel.ru
-                </a>
+                <span style={{ color: accentColor }}>2.6.</span> <strong>Исполнитель</strong> — Гражданин Российской Федерации Плотников Никита Владимирович, физическое лицо, применяющее специальный налоговый режим «Налог на профессиональный доход (НПД)»<br />
+                <strong>ИНН:</strong> 615531925831
               </p>
               <p>
                 <span style={{ color: accentColor }}>2.7.</span> Договор не требует скрепления печатями и/или 
@@ -178,12 +175,12 @@ export default function OfferPage() {
             </h2>
             <div className="text-sm leading-relaxed pl-4 space-y-2">
               <p>
-                <strong>Исполнитель:</strong>{' '}
-                <a href="https://thqlabel.ru" target="_blank" rel="noopener noreferrer" 
-                   className="underline hover:opacity-80" style={{ color: accentColor }}>
-                  https://thqlabel.ru
-                </a>
+                <strong>Исполнитель:</strong> Гражданин Российской Федерации Плотников Никита Владимирович, физическое лицо, применяющее специальный налоговый режим «Налог на профессиональный доход (НПД)»
               </p>
+              <p><strong>ИНН:</strong> 615531925831</p>
+              <p><strong>Номер счёта:</strong> 40817810705892387715</p>
+              <p><strong>БИК:</strong> 044525593</p>
+              <p><strong>Банк получателя:</strong> АО «Альфа-Банк», г. Москва</p>
               <p>
                 <strong>Сайт:</strong>{' '}
                 <a href="https://thqlabel.ru" target="_blank" rel="noopener noreferrer" 

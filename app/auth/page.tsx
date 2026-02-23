@@ -67,6 +67,7 @@ function AuthPage() {
   const [resendTimer, setResendTimer] = useState(0);
   const [notification, setNotification] = useState<{show: boolean; message: string; type: 'success' | 'error'}>({show: false, message: '', type: 'success'});
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [consentAccepted, setConsentAccepted] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -452,7 +453,7 @@ function AuthPage() {
             <div className="w-full max-w-md lg:ml-auto lg:mr-12">
               {/* Форма авторизации/регистрации */}
               <div 
-                className="bg-[#0c0c0e]/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-10"
+                className="bg-[#0c0c0e]/80 backdrop-blur-xl border border-white/10 rounded-3xl p-6 md:p-8"
                 style={{ boxShadow: '0 0 80px rgba(96, 80, 186, 0.15)' }}
               >
                 {mode === 'waiting-confirmation' ? (
@@ -567,10 +568,10 @@ function AuthPage() {
                 ) : (
                   <>
                 {/* Табы */}
-                <div className="flex gap-2 mb-8 bg-white/[0.03] p-1.5 rounded-full">
+                <div className="flex gap-2 mb-5 bg-white/[0.03] p-1 rounded-full">
                   <button 
                     onClick={() => setMode('login')} 
-                    className={`flex-1 py-3 rounded-full text-[11px] font-black uppercase tracking-widest transition-all ${
+                    className={`flex-1 py-2.5 rounded-full text-[11px] font-black uppercase tracking-widest transition-all ${
                       mode === 'login' 
                         ? 'bg-[#6050ba] text-white shadow-lg shadow-[#6050ba]/30' 
                         : 'text-zinc-500 hover:text-white'
@@ -580,7 +581,7 @@ function AuthPage() {
                   </button>
                   <button 
                     onClick={() => setMode('signup')} 
-                    className={`flex-1 py-3 rounded-full text-[11px] font-black uppercase tracking-widest transition-all ${
+                    className={`flex-1 py-2.5 rounded-full text-[11px] font-black uppercase tracking-widest transition-all ${
                       mode === 'signup' 
                         ? 'bg-[#6050ba] text-white shadow-lg shadow-[#6050ba]/30' 
                         : 'text-zinc-500 hover:text-white'
@@ -590,11 +591,11 @@ function AuthPage() {
                   </button>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <form onSubmit={handleSubmit} className="space-y-3">
                   {mode === 'signup' && (
                     <>
                     <div className="animate-[fadeIn_0.3s_ease-in-out] group/nick">
-                      <div className="flex items-center gap-2 mb-2">
+                      <div className="flex items-center gap-2 mb-1">
                         <label className="text-[10px] text-zinc-400 uppercase tracking-widest">Никнейм</label>
                         {/* Иконка с подсказкой */}
                         <div className="relative">
@@ -619,13 +620,13 @@ function AuthPage() {
                           }
                         }}
                         placeholder="Твой псевдоним" 
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white outline-none focus:border-[#6050ba] focus:bg-white/10 transition placeholder-zinc-500 peer"
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white outline-none focus:border-[#6050ba] focus:bg-white/10 transition placeholder-zinc-500 peer"
                       />
                     </div>
                     
                     {/* Telegram поле - сразу после никнейма */}
                     <div className="animate-[fadeIn_0.3s_ease-in-out]">
-                      <div className="flex items-center gap-2 mb-2">
+                      <div className="flex items-center gap-2 mb-1">
                         <label className="text-[10px] text-zinc-400 uppercase tracking-widest">Telegram</label>
                         <span className="text-[9px] text-zinc-500">(необязательно)</span>
                       </div>
@@ -640,16 +641,16 @@ function AuthPage() {
                             }
                           }}
                           placeholder="username" 
-                          className="w-full bg-white/5 border border-white/10 rounded-xl pl-8 pr-4 py-3.5 text-sm text-white outline-none focus:border-[#6050ba] focus:bg-white/10 transition placeholder-zinc-500"
+                          className="w-full bg-white/5 border border-white/10 rounded-xl pl-8 pr-4 py-2.5 text-sm text-white outline-none focus:border-[#6050ba] focus:bg-white/10 transition placeholder-zinc-500"
                         />
                       </div>
-                      <p className="mt-1.5 text-[10px] text-zinc-500">Для связи по вопросам выплат и релизов</p>
+                      <p className="mt-1 text-[10px] text-zinc-500">Для связи по вопросам выплат и релизов</p>
                     </div>
                     </>
                   )}
                   
                   <div>
-                    <label className="text-[10px] text-zinc-400 uppercase tracking-widest block mb-2">Email</label>
+                    <label className="text-[10px] text-zinc-400 uppercase tracking-widest block mb-1">Email</label>
                     <input 
                       required 
                       value={email} 
@@ -661,12 +662,12 @@ function AuthPage() {
                       }}
                       placeholder="email@example.com" 
                       type="email" 
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white outline-none focus:border-[#6050ba] focus:bg-white/10 transition placeholder-zinc-500"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white outline-none focus:border-[#6050ba] focus:bg-white/10 transition placeholder-zinc-500"
                     />
                   </div>
                   
                   <div>
-                    <label className="text-[10px] text-zinc-400 uppercase tracking-widest block mb-2">Пароль</label>
+                    <label className="text-[10px] text-zinc-400 uppercase tracking-widest block mb-1">Пароль</label>
                     <input 
                       required 
                       value={password} 
@@ -681,12 +682,47 @@ function AuthPage() {
                       }}
                       placeholder="••••••••" 
                       type="password" 
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white outline-none focus:border-[#6050ba] focus:bg-white/10 transition placeholder-zinc-500"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white outline-none focus:border-[#6050ba] focus:bg-white/10 transition placeholder-zinc-500"
                     />
                   </div>
                   
+                  {/* Чекбокс согласия на обработку персональных данных (только для регистрации) */}
+                  {mode === 'signup' && (
+                    <div className="flex items-start gap-2.5 mt-1 animate-[fadeIn_0.3s_ease-in-out]">
+                      <input
+                        type="checkbox"
+                        id="consent-checkbox"
+                        checked={consentAccepted}
+                        onChange={(e) => setConsentAccepted(e.target.checked)}
+                        className="mt-0.5 w-3.5 h-3.5 rounded border-white/20 bg-white/5 text-[#6050ba] focus:ring-[#6050ba] focus:ring-offset-0 cursor-pointer flex-shrink-0"
+                      />
+                      <label htmlFor="consent-checkbox" className="text-[11px] text-zinc-400 leading-snug cursor-pointer">
+                        Я даю{' '}
+                        <a
+                          href="/consent"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline hover:opacity-80 text-[#9d8df1]"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          согласие на обработку персональных данных
+                        </a>{' '}
+                        и принимаю условия{' '}
+                        <a
+                          href="/offer"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline hover:opacity-80 text-[#9d8df1]"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          публичной оферты
+                        </a>
+                      </label>
+                    </div>
+                  )}
+
                   {/* Cloudflare Turnstile капча */}
-                  <div className="flex justify-center mt-4">
+                  <div className="flex justify-center mt-2">
                     <Turnstile
                       siteKey={
                         typeof window !== 'undefined' && window.location.hostname === 'localhost'
@@ -705,9 +741,9 @@ function AuthPage() {
 
                   <button 
                     type="submit" 
-                    disabled={loading || !captchaToken} 
-                    className={`w-full py-4 rounded-xl text-[12px] font-black uppercase tracking-widest transition-all mt-4 text-white ${
-                      loading || !captchaToken
+                    disabled={loading || !captchaToken || (mode === 'signup' && !consentAccepted)} 
+                    className={`w-full py-3 rounded-xl text-[12px] font-black uppercase tracking-widest transition-all mt-2 text-white ${
+                      loading || !captchaToken || (mode === 'signup' && !consentAccepted)
                         ? 'bg-[#6050ba]/30 cursor-wait' 
                         : 'bg-[#6050ba] hover:bg-[#7060ca] hover:scale-[1.02] shadow-lg shadow-[#6050ba]/30'
                     }`}

@@ -1042,17 +1042,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta property="og:title" content="thqlabel - Музыкальный лейбл" />
         <meta property="og:description" content="thqlabel - Музыкальный лейбл. Релизы, новости, артисты." />
         <meta property="og:url" content="https://thqlabel.ru" />
-        <meta property="og:image" content="https://thqlabel.ru/api/og" />
+        <meta property="og:image" content="https://thqlabel.ru/og-image.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:type" content="image/jpeg" />
         <meta property="og:locale" content="ru_RU" />
         
         {/* Twitter Card — превью в Twitter/X */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="thqlabel - Музыкальный лейбл" />
         <meta name="twitter:description" content="thqlabel - Музыкальный лейбл. Релизы, новости, артисты." />
-        <meta name="twitter:image" content="https://thqlabel.ru/api/og" />
+        <meta name="twitter:image" content="https://thqlabel.ru/og-image.jpg" />
         
         {/* Telegram специфичные */}
         <meta name="telegram:channel" content="@thqlabel" />

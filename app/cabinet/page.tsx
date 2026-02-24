@@ -112,42 +112,45 @@ export default function CabinetPage() {
     if (!status || (status !== 'success' && status !== 'pending')) return;
 
     const orderId = searchParams.get('orderId');
-    const method = searchParams.get('method');
     handleTabChange('finance');
+
+    // Убираем query-параметры сразу, чтобы уведомление не повторялось
+    router.replace('/cabinet');
 
     // Проверяем реальный статус через API (с повторными попытками)
     const checkPayment = async (attempt = 1): Promise<void> => {
       if (!orderId) {
-        showNotification('Платёж обрабатывается... Баланс обновится автоматически', 'success');
+        showNotification('Не удалось определить платёж', 'error');
         return;
       }
       try {
         const resp = await fetch(`/api/payments/check?orderId=${orderId}`);
         const data = await resp.json();
+
         if (data.status === 'succeeded' || data.status === 'completed' || data.status === 'paid') {
-          showNotification(`Оплата ${data.credited ? 'зачислена' : 'прошла успешно'}! Баланс обновлён.`, 'success');
+          showNotification('Баланс пополнен!', 'success');
+        } else if (data.status === 'refunded') {
+          showNotification('Платёж возвращён', 'error');
         } else if (data.status === 'canceled') {
           showNotification('Оплата отменена', 'error');
         } else if (attempt < 5) {
           // Платёж ещё обрабатывается — повторяем через 3 сек (до 5 попыток)
-          if (attempt === 1) showNotification('Платёж обрабатывается...', 'success');
+          if (attempt === 1) showNotification('Проверяем статус оплаты...', 'success');
           setTimeout(() => checkPayment(attempt + 1), 3000);
-          return; // не убираем URL пока проверяем
+          return;
         } else {
-          showNotification('Платёж обрабатывается. Баланс обновится автоматически.', 'success');
+          // После 5 попыток платёж так и не succeeded — значит не оплачен
+          showNotification('Оплата не завершена. Если вы оплатили — баланс обновится в течение минуты.', 'error');
         }
       } catch {
         if (attempt < 3) {
           setTimeout(() => checkPayment(attempt + 1), 3000);
           return;
         }
-        showNotification('Платёж обрабатывается... Баланс обновится автоматически', 'success');
+        showNotification('Не удалось проверить статус оплаты', 'error');
       }
     };
     checkPayment();
-
-    // Убираем query-параметры, чтобы уведомление не повторялось
-    router.replace('/cabinet');
   }, [searchParams, handleTabChange, showNotification, router]);
   
   // ============================================================================

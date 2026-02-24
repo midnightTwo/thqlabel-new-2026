@@ -68,6 +68,7 @@ function BalancePageContent() {
   const [customAmount, setCustomAmount] = useState<string>('');
   const [selectedMethod, setSelectedMethod] = useState('sbp');
   const [showSuccess, setShowSuccess] = useState(false);
+  const [paymentError, setPaymentError] = useState<string | null>(null);
 
   // Проверяем статус после возврата с оплаты (с повторными попытками)
   useEffect(() => {
@@ -81,19 +82,29 @@ function BalancePageContent() {
             const data = await r.json();
             if (data.status === 'succeeded' || data.status === 'completed' || data.status === 'paid') {
               setShowSuccess(true);
+              setPaymentError(null);
               setTimeout(() => setShowSuccess(false), 5000);
-              // Перезагрузим баланс
               window.location.replace('/cabinet/balance');
+            } else if (data.status === 'refunded') {
+              setPaymentError('Платёж возвращён');
+              setTimeout(() => setPaymentError(null), 5000);
             } else if (data.status === 'canceled') {
-              // отменён
+              setPaymentError('Оплата отменена');
+              setTimeout(() => setPaymentError(null), 5000);
             } else if (attempt < 5) {
               setTimeout(() => checkPayment(attempt + 1), 3000);
+            } else {
+              setPaymentError('Оплата не завершена');
+              setTimeout(() => setPaymentError(null), 7000);
             }
           } catch {
             if (attempt < 3) setTimeout(() => checkPayment(attempt + 1), 3000);
           }
         };
         checkPayment();
+      } else {
+        setPaymentError('Не удалось определить платёж');
+        setTimeout(() => setPaymentError(null), 5000);
       }
     }
   }, [searchParams]);
@@ -313,7 +324,14 @@ function BalancePageContent() {
       {showSuccess && (
         <div className="bg-green-500/20 border border-green-500/50 rounded-xl p-4 flex items-center gap-3 animate-fade-in">
           <CheckCircle className="w-5 h-5 text-green-400" />
-          <span className="text-green-300">Платёж успешно обработан! Баланс обновлён.</span>
+          <span className="text-green-300">Баланс пополнен!</span>
+        </div>
+      )}
+      {/* Уведомление об ошибке оплаты */}
+      {paymentError && (
+        <div className="bg-red-500/20 border border-red-500/50 rounded-xl p-4 flex items-center gap-3 animate-fade-in">
+          <svg className="w-5 h-5 text-red-400 shrink-0" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" /></svg>
+          <span className="text-red-300">{paymentError}</span>
         </div>
       )}
 

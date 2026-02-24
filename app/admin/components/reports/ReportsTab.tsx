@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { createPortal } from 'react-dom';
@@ -1272,7 +1272,7 @@ export default function ReportsTab({ supabase }: ReportsTabProps) {
                   <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
                   <span>Обработка...</span>
                 </div>
-                <div className="text-zinc-600">THQ Label</div>
+                <div className="text-zinc-600">thqlabel</div>
               </div>
             </div>
           </div>

@@ -1,4 +1,4 @@
-// Релизы thq label
+﻿// Релизы thqlabel
 export const RELEASES = [
   { id: 1, title: 'НЕ В СЕТИ', artist: 'angelgrind', cover: 'https://t2.genius.com/unsafe/430x430/https%3A%2F%2Fimages.genius.com%2Fd4892b6202a4051f807a8a847f44adc0.1000x1000x1.png' },
   { id: 2, title: 'ЗАКОЛКИ & КОСТИ', artist: 'kweetee', cover: 'https://t2.genius.com/unsafe/600x600/https%3A%2F%2Fimages.genius.com%2F9fa9951f735a169c17e47baf71ab45c7.1000x1000x1.png' },

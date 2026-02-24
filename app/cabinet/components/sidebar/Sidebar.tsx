@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React from 'react';
 import Link from 'next/link';
 import { UserRole, ROLE_CONFIG } from '@/app/cabinet/lib/types';
@@ -161,7 +161,7 @@ export default function Sidebar({
           {/* Завершающий элемент */}
           <div className="mt-6 pt-4 border-t border-white/5">
             <p className="text-[9px] text-zinc-700 text-center">
-              THQ Label © 2026
+              thqlabel © 2026
             </p>
           </div>
         </>

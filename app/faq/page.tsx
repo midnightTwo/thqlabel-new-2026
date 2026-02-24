@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -181,7 +181,7 @@ const FAQ_DATA = [
     category: 'Сотрудничество',
     questions: [
       {
-        q: 'Кто может присоединиться к THQ Label?',
+        q: 'Кто может присоединиться к thqlabel?',
         a: 'Мы работаем со всеми артистами независимо от уровня. Зарегистрируйтесь, загрузите демо — и мы рассмотрим вашу заявку.',
         component: null
       },

@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+﻿import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { randomUUID } from 'crypto';
 import nodemailer from 'nodemailer';
@@ -103,17 +103,17 @@ export async function POST(request: NextRequest) {
     
     // ВАЖНО: Формат идентичен письму регистрации (которое НЕ попадает в спам)
     const mailOptions = {
-      from: `"THQ Label" <${fromEmail}>`,
+      from: `"thqlabel" <${fromEmail}>`,
       to: email,
       replyTo: fromEmail,
-      subject: 'Сменить пароль для THQ Label',
+      subject: 'Сменить пароль для thqlabel',
       html: `
         <!DOCTYPE html>
         <html lang="ru">
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Смена пароля - THQ Label</title>
+            <title>Смена пароля - thqlabel</title>
         </head>
         <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #ffffff;">
             <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #ffffff; padding: 40px 20px;">
@@ -125,7 +125,7 @@ export async function POST(request: NextRequest) {
                             <tr>
                                 <td style="background: linear-gradient(135deg, #6050ba 0%, #9d8df1 100%); padding: 40px 20px; text-align: center;">
                                     <h1 style="margin: 0; color: white; font-size: 32px; font-weight: 900; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); letter-spacing: -1px;">
-                                        THQ Label
+                                        thqlabel
                                     </h1>
                                     <p style="margin: 10px 0 0 0; color: rgba(255, 255, 255, 0.9); font-size: 14px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;">
                                         Music Label
@@ -186,7 +186,7 @@ export async function POST(request: NextRequest) {
                             <tr>
                                 <td style="background: rgba(255, 255, 255, 0.02); padding: 30px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05);">
                                     <p style="margin: 0 0 10px 0; color: rgba(255, 255, 255, 0.4); font-size: 12px;">
-                                        © 2026 THQ Label. Все права защищены.
+                                        © 2026 thqlabel. Все права защищены.
                                     </p>
                                     <p style="margin: 0; color: rgba(255, 255, 255, 0.3); font-size: 11px;">
                                         Это автоматическое письмо, пожалуйста, не отвечайте на него.

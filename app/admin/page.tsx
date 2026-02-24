@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React, { useState, useEffect, useCallback, useMemo, memo, lazy, Suspense, useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import dynamic from 'next/dynamic';
@@ -436,7 +436,7 @@ function AdminPageContent() {
             <div className="flex items-center justify-between gap-2 sm:gap-3 mb-2">
               <img 
                 src={logoSrc} 
-                alt="THQ Label" 
+                alt="thqlabel" 
                 className="h-10 sm:h-12 md:h-16 w-auto"
                 style={{ 
                   filter: isLight 

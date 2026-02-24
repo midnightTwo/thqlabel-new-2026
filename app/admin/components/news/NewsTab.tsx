@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect, useCallback, memo } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
@@ -276,7 +276,7 @@ const NewsForm = memo(function NewsForm({
         <div className="grid grid-cols-1 gap-4">
           <div>
             <label className="block text-xs font-bold text-zinc-400 mb-2">ЗАГОЛОВОК <span className="text-red-400">*</span></label>
-            <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Например: Новый релиз от THQ Label" 
+            <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Например: Новый релиз от thqlabel" 
               className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#6050ba] focus:bg-black/60 transition min-h-[44px]" />
             <div className="flex justify-between items-center mt-1">
               <p className="text-[10px] text-zinc-600">Главный заголовок - обязательное поле</p>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase/client';
@@ -349,7 +349,7 @@ function NewsPageContent() {
                 ? 'bg-white/60 border border-purple-300/50 text-gray-700' 
                 : 'bg-[#6050ba] text-white'
             }`}>
-              THQ Label updates
+              thqlabel updates
             </span>
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-wide mb-2 leading-none">

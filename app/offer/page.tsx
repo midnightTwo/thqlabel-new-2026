@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRouter } from 'next/navigation';
 import { useTheme } from '@/contexts/ThemeContext';
@@ -215,7 +215,7 @@ export default function OfferPage() {
             Последнее обновление: 9 января 2026 г.
           </p>
           <p className="text-[10px] mt-2" style={{ color: textMuted }}>
-            © 2026 THQ Label. Все права защищены.
+            © 2026 thqlabel. Все права защищены.
           </p>
         </footer>
 

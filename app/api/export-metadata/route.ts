@@ -1,4 +1,4 @@
-'use server';
+﻿'use server';
 
 import { NextRequest, NextResponse } from 'next/server';
 import ExcelJS from 'exceljs';
@@ -36,7 +36,7 @@ export async function GET(request: NextRequest) {
 
     // Создаем Excel файл
     const workbook = new ExcelJS.Workbook();
-    workbook.creator = 'THQ Label';
+    workbook.creator = 'thqlabel';
     workbook.created = new Date();
 
     // Лист с основной информацией о релизе
@@ -85,7 +85,7 @@ export async function GET(request: NextRequest) {
       { field: 'UPC', value: release.upc || '' },
       { field: 'Тип релиза', value: releaseType === 'basic' ? 'Basic' : 'Exclusive' },
       { field: 'Статус', value: getStatusLabel(release.status) },
-      { field: 'Лейбл', value: release.label || 'THQ Label' },
+      { field: 'Лейбл', value: release.label || 'thqlabel' },
       { field: 'Количество треков', value: release.tracks?.length || 0 },
       { field: 'Платформы', value: release.platforms?.join(', ') || '' },
       { field: 'Дата создания', value: release.created_at ? new Date(release.created_at).toLocaleDateString('ru-RU') : '' },

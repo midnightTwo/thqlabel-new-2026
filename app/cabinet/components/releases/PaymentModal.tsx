@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '../../lib/supabase';
@@ -210,7 +210,7 @@ function PaymentDetails() {
 
       <div className="p-4 bg-white/[0.03] border border-white/10 rounded-xl hover:border-purple-500/30 transition group">
         <div className="text-xs text-zinc-500 mb-1">Получатель</div>
-        <div className="text-white font-medium">THQ Label</div>
+        <div className="text-white font-medium">thqlabel</div>
       </div>
 
       <div className="p-4 bg-white/[0.03] border border-white/10 rounded-xl hover:border-purple-500/30 transition group">

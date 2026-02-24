@@ -197,7 +197,7 @@ export async function GET(
 <body>
   <div class="receipt">
     <div class="logo">
-      <h1>THQ Label</h1>
+      <h1>thqlabel</h1>
       <span>Чек об оплате</span>
     </div>
     
@@ -241,7 +241,7 @@ export async function GET(
       </div>
       <div class="detail-row">
         <span class="detail-label">Способ оплаты</span>
-        <span class="detail-value">Баланс THQ Label</span>
+        <span class="detail-value">Баланс thqlabel</span>
       </div>
       ${transaction.metadata?.release_title ? `
       <div class="detail-row">
@@ -265,7 +265,7 @@ export async function GET(
     </button>
     
     <div class="footer">
-      THQ Label • ${new Date().getFullYear()}<br>
+      thqlabel • ${new Date().getFullYear()}<br>
       Электронный чек сформирован автоматически
     </div>
   </div>

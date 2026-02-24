@@ -1,11 +1,11 @@
-"use client";
+﻿"use client";
 import React, { useState, useEffect, useRef, useMemo, useCallback, memo } from 'react';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabase/client';
 import { useTheme } from '@/contexts/ThemeContext';
 import { SilverStarsGroup } from '@/components/ui/SilverStars';
 
-// Релизы thq label
+// Релизы thqlabel
 const RELEASES = [
   { id: 1, title: 'НЕ В СЕТИ', artist: 'angelgrind', cover: 'https://t2.genius.com/unsafe/430x430/https%3A%2F%2Fimages.genius.com%2Fd4892b6202a4051f807a8a847f44adc0.1000x1000x1.png' },
   { id: 2, title: 'ЗАКОЛКИ & КОСТИ', artist: 'kweetee', cover: 'https://t2.genius.com/unsafe/600x600/https%3A%2F%2Fimages.genius.com%2F9fa9951f735a169c17e47baf71ab45c7.1000x1000x1.png' },
@@ -1337,7 +1337,7 @@ export default function FeedPage() {
                 <p className={`text-[9px] font-medium tracking-wider ${
                   isLight ? 'text-gray-400' : 'text-white/30'
                 }`}>
-                  © 2026 <span className={isLight ? 'text-[#6050ba]/50' : 'text-[#9d8df1]/50'}>THQ Label</span>. Все права защищены.
+                  © 2026 <span className={isLight ? 'text-[#6050ba]/50' : 'text-[#9d8df1]/50'}>thqlabel</span>. Все права защищены.
                 </p>
               </div>
             </div>

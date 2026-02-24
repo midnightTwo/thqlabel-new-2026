@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { UserRole, ROLE_CONFIG } from '../../lib/types';
@@ -277,7 +277,7 @@ export default function MobileSidebar({
           {/* Footer */}
           <div className="sidebar-footer mt-4 pt-4">
             <p className="text-[9px] text-center">
-              THQ Label © 2026
+              thqlabel © 2026
             </p>
           </div>
         </div>

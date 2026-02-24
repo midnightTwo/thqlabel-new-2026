@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 interface NewsEditorFormProps {
   editingId: number | null;
@@ -54,7 +54,7 @@ export function NewsEditorForm({
             <input 
               value={title} 
               onChange={(e) => setTitle(e.target.value)} 
-              placeholder="Например: Новый релиз от THQ Label" 
+              placeholder="Например: Новый релиз от thqlabel" 
               className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#6050ba] focus:bg-black/60 transition" 
             />
             <div className="flex justify-between items-center mt-1">

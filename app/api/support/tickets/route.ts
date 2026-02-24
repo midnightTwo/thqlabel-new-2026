@@ -1,4 +1,4 @@
-import { createClient } from '@supabase/supabase-js';
+﻿import { createClient } from '@supabase/supabase-js';
 import { NextResponse } from 'next/server';
 
 // Получить все тикеты пользователя
@@ -392,7 +392,7 @@ export async function POST(request: Request) {
         is_admin: true,
         images: [],
         sender_email: 'support@thqlabel.com',
-        sender_nickname: 'THQ Label Support',
+        sender_nickname: 'thqlabel Support',
         sender_username: 'THQ Support',
         sender_avatar: '/thqsupp logo.png'
       })

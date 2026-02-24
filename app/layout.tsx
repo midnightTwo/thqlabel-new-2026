@@ -12,6 +12,10 @@ import { SilverStar } from '../components/ui/SilverStars';
 import { UserRole, ROLE_CONFIG } from './cabinet/lib/types';
 import { useElitePerformance } from '@/lib/hooks/useElitePerformance';
 
+// Cache-bust для logo.png: статические png в production кэшируются очень надолго.
+// Версия меняется на каждый build (см. next.config.ts -> NEXT_PUBLIC_BUILD_TIME).
+const LOGO_SRC = '/logo.png?v=' + (process.env.NEXT_PUBLIC_BUILD_TIME || '');
+
 // ============================================
 // LAZY LOADING ТЯЖЁЛЫХ КОМПОНЕНТОВ
 // ============================================
@@ -563,7 +567,7 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
               style={{ width: '128px', height: '77px', background: 'transparent', border: 'none' }}
             >
               <img 
-                src="/logo.png" 
+                src={LOGO_SRC} 
                 alt="thqlabel" 
                 className={`absolute left-1/2 top-1/2 h-12 w-auto object-contain transition-all duration-300 ${themeName !== 'light' ? 'group-hover:brightness-125' : ''}`}
                 style={{ 
@@ -1059,7 +1063,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="dns-prefetch" href="https://supabase.co" />
         
         {/* Preload критических ресурсов */}
-        <link rel="preload" href="/logo.png" as="image" />
+        <link rel="preload" href={LOGO_SRC} as="image" />
         
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=2" />
         <link rel="icon" type="image/png" sizes="512x512" href="/icon.png?v=2" />

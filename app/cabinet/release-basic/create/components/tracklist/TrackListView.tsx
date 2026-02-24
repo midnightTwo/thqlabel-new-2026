@@ -14,6 +14,7 @@ export interface Track {
   version?: string;
   producers?: string[];
   featuring?: string[];
+  isrc?: string;
   isInstrumental?: boolean;
   existingAudioUrl?: string; // URL для уже загруженных треков
   originalFileName?: string; // Оригинальное название файла

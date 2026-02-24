@@ -140,6 +140,7 @@ function EditBasicReleasePageContent() {
   }>>([]);
   const [currentTrack, setCurrentTrack] = useState<number | null>(null);
   const [trackTitle, setTrackTitle] = useState('');
+  const [trackIsrc, setTrackIsrc] = useState('');
   const [trackLink, setTrackLink] = useState('');
   const [trackAudioFile, setTrackAudioFile] = useState<File | null>(null);
   const [trackAudioMetadata, setTrackAudioMetadata] = useState<{ format: string; duration?: number; bitrate?: string; sampleRate?: string; size: number } | null>(null);
@@ -1685,6 +1686,8 @@ function EditBasicReleasePageContent() {
               setCurrentTrack={setCurrentTrack}
               trackTitle={trackTitle}
               setTrackTitle={setTrackTitle}
+              trackIsrc={trackIsrc}
+              setTrackIsrc={setTrackIsrc}
               trackLink={trackLink}
               setTrackLink={setTrackLink}
               trackAudioFile={trackAudioFile}

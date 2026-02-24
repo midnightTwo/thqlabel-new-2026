@@ -56,6 +56,7 @@ const FloatingParticles = () => {
 function AuthPage() {
   const { themeName } = useTheme();
   const isLight = themeName === 'light';
+  const logoSrc = '/logo.png?v=' + (process.env.NEXT_PUBLIC_BUILD_TIME || '');
   const [mode, setMode] = useState<'login' | 'signup' | 'waiting-confirmation' | 'forgot-password'>('login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -430,7 +431,7 @@ function AuthPage() {
           {/* Мобильное лого вверху */}
           <div className="lg:hidden w-full pt-24 pb-10 flex items-center justify-center">
             <img 
-              src="/logo.png" 
+              src={logoSrc} 
               alt="thqlabel" 
               className={`h-24 w-auto object-contain drop-shadow-[0_0_50px_rgba(96,80,186,0.7)] ${isLight ? 'invert brightness-0' : ''}`}
             />
@@ -440,7 +441,7 @@ function AuthPage() {
           <div className="hidden lg:block w-[500px] flex-shrink-0 pl-8">
             <div className="flex items-center justify-start">
               <img 
-                src="/logo.png" 
+                src={logoSrc} 
                 alt="thqlabel" 
                 className={`h-40 w-auto object-contain drop-shadow-[0_0_80px_rgba(96,80,186,0.8)] ${isLight ? 'invert brightness-0' : ''}`}
                 style={{ transform: 'scale(4)', transformOrigin: 'left center' }}
@@ -570,6 +571,7 @@ function AuthPage() {
                 {/* Табы */}
                 <div className="flex gap-2 mb-5 bg-white/[0.03] p-1 rounded-full">
                   <button 
+                    type="button"
                     onClick={() => setMode('login')} 
                     className={`flex-1 py-2.5 rounded-full text-[11px] font-black uppercase tracking-widest transition-all ${
                       mode === 'login' 
@@ -580,6 +582,7 @@ function AuthPage() {
                     Войти
                   </button>
                   <button 
+                    type="button"
                     onClick={() => setMode('signup')} 
                     className={`flex-1 py-2.5 rounded-full text-[11px] font-black uppercase tracking-widest transition-all ${
                       mode === 'signup' 
@@ -696,28 +699,26 @@ function AuthPage() {
                         onChange={(e) => setConsentAccepted(e.target.checked)}
                         className="mt-0.5 w-3.5 h-3.5 rounded border-white/20 bg-white/5 text-[#6050ba] focus:ring-[#6050ba] focus:ring-offset-0 cursor-pointer flex-shrink-0"
                       />
-                      <label htmlFor="consent-checkbox" className="text-[11px] text-zinc-400 leading-snug cursor-pointer">
-                        Я даю{' '}
+                      <span className="text-[11px] text-zinc-400 leading-snug">
+                        <span className="cursor-pointer" onClick={() => setConsentAccepted(!consentAccepted)}>Я даю </span>
                         <a
                           href="/consent"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="underline hover:opacity-80 text-[#9d8df1]"
-                          onClick={(e) => e.stopPropagation()}
                         >
                           согласие на обработку персональных данных
-                        </a>{' '}
-                        и принимаю условия{' '}
+                        </a>
+                        <span className="cursor-pointer" onClick={() => setConsentAccepted(!consentAccepted)}> и принимаю условия </span>
                         <a
                           href="/offer"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="underline hover:opacity-80 text-[#9d8df1]"
-                          onClick={(e) => e.stopPropagation()}
                         >
                           публичной оферты
                         </a>
-                      </label>
+                      </span>
                     </div>
                   )}
 

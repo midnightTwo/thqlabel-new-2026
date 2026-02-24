@@ -18,6 +18,8 @@ interface TrackEditorProps {
   releaseTitle: string;
   trackTitle: string;
   setTrackTitle: (value: string) => void;
+  trackIsrc?: string;
+  setTrackIsrc?: (value: string) => void;
   trackLink?: string;
   trackOriginalFileName?: string;
   trackAudioFile?: File | null;
@@ -52,6 +54,8 @@ export function TrackEditor({
   releaseTitle,
   trackTitle,
   setTrackTitle,
+  trackIsrc,
+  setTrackIsrc,
   trackLink,
   trackOriginalFileName,
   trackAudioFile,
@@ -114,6 +118,29 @@ export function TrackEditor({
           className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 ${isLight ? 'bg-white border-gray-300 placeholder:text-gray-400' : 'bg-gradient-to-br from-white/[0.07] to-white/[0.03] placeholder:text-zinc-600 border-white/10'} rounded-xl border outline-none transition-all text-sm sm:text-base ${
             isSingleRelease ? 'opacity-60 cursor-not-allowed ring-2 ring-emerald-500/20' : isLight ? 'hover:border-gray-400 focus:border-[#6050ba] focus:ring-2 focus:ring-[#6050ba]/20' : 'hover:border-white/20 focus:border-[#6050ba] focus:ring-2 focus:ring-[#6050ba]/20'
           } ${isLight ? 'text-gray-900' : 'text-white'}`}
+        />
+      </div>
+
+      {/* ISRC */}
+      <div>
+        <label className={`text-xs sm:text-sm ${isLight ? 'text-gray-600' : 'text-zinc-400'} mb-2 flex items-center gap-2`}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-purple-400/70 w-3.5 h-3.5 sm:w-3.5 sm:h-3.5">
+            <path d="M4 7h16" />
+            <path d="M4 12h10" />
+            <path d="M4 17h16" />
+            <path d="M16 10l4 2-4 2z" />
+          </svg>
+          ISRC (опционально)
+        </label>
+        <input
+          value={trackIsrc || ''}
+          onChange={(e) => setTrackIsrc?.(e.target.value)}
+          placeholder="US-S1Z-99-00001"
+          className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border outline-none transition-all text-sm sm:text-base font-mono ${
+            isLight
+              ? 'bg-white border-gray-300 text-gray-900 placeholder:text-gray-400 hover:border-gray-400 focus:border-[#6050ba] focus:ring-2 focus:ring-[#6050ba]/20'
+              : 'bg-gradient-to-br from-white/[0.07] to-white/[0.03] border-white/10 text-white placeholder:text-zinc-600 hover:border-white/20 focus:border-[#6050ba] focus:ring-2 focus:ring-[#6050ba]/20'
+          }`}
         />
       </div>
 

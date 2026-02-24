@@ -8,7 +8,6 @@ import {
   Plus, 
   CreditCard, 
   QrCode, 
-  Bitcoin, 
   ArrowDownLeft, 
   ArrowUpRight, 
   Clock,
@@ -17,7 +16,6 @@ import {
   Copy,
   ExternalLink,
   Sparkles,
-  Globe
 } from 'lucide-react';
 
 // Форматирование валюты
@@ -32,7 +30,6 @@ const formatMoney = (amount: number) => {
 
 // Предустановленные суммы (RUB для РФ, USD для международных)
 const PRESET_AMOUNTS_RUB = [500, 1000, 2000, 5000, 10000];
-const PRESET_AMOUNTS_USD = [5, 10, 20, 50, 100];
 
 // Методы оплаты
 const PAYMENT_METHODS = [
@@ -55,24 +52,6 @@ const PAYMENT_METHODS = [
     region: 'ru',
     currency: 'RUB',
   },
-  { 
-    id: 'card_intl', 
-    name: 'International Card', 
-    icon: Globe, 
-    provider: 'stripe',
-    description: 'Visa, Mastercard worldwide',
-    region: 'intl',
-    currency: 'USD',
-  },
-  { 
-    id: 'crypto', 
-    name: 'Криптовалюта', 
-    icon: Bitcoin, 
-    provider: 'cryptocloud',
-    description: 'BTC, ETH, USDT, TON',
-    region: 'all',
-    currency: 'RUB',
-  },
 ];
 
 function BalancePageContent() {
@@ -89,7 +68,6 @@ function BalancePageContent() {
   const [customAmount, setCustomAmount] = useState<string>('');
   const [selectedMethod, setSelectedMethod] = useState('sbp');
   const [showSuccess, setShowSuccess] = useState(false);
-  const [region, setRegion] = useState<'ru' | 'intl'>('ru'); // Регион пользователя
 
   // Проверяем статус после возврата с оплаты
   useEffect(() => {
@@ -253,7 +231,7 @@ function BalancePageContent() {
       }
 
       // Перенаправляем на страницу оплаты
-      window.location.href = data.paymentUrl;
+      window.location.href = data.confirmationUrl || data.paymentUrl;
 
     } catch (error: any) {
       console.error('Deposit error:', error);
@@ -352,48 +330,11 @@ function BalancePageContent() {
           Пополнить баланс
         </h2>
 
-        {/* Переключатель региона */}
-        <div className="mb-4">
-          <p className="text-sm text-zinc-400 mb-2">Регион</p>
-          <div className="flex gap-2">
-            <button
-              onClick={() => {
-                setRegion('ru');
-                setSelectedMethod('sbp');
-                setAmount(1000);
-                setCustomAmount('');
-              }}
-              className={`flex-1 px-4 py-2 rounded-lg font-medium transition-all flex items-center justify-center gap-2 ${
-                region === 'ru'
-                  ? 'bg-[#6050ba] text-white'
-                  : 'bg-zinc-800 text-zinc-300 hover:bg-zinc-700'
-              }`}
-            >
-              🇷🇺 Россия
-            </button>
-            <button
-              onClick={() => {
-                setRegion('intl');
-                setSelectedMethod('card_intl');
-                setAmount(10);
-                setCustomAmount('');
-              }}
-              className={`flex-1 px-4 py-2 rounded-lg font-medium transition-all flex items-center justify-center gap-2 ${
-                region === 'intl'
-                  ? 'bg-[#6050ba] text-white'
-                  : 'bg-zinc-800 text-zinc-300 hover:bg-zinc-700'
-              }`}
-            >
-              🌍 International
-            </button>
-          </div>
-        </div>
-
         {/* Предустановленные суммы */}
         <div className="mb-4">
           <p className="text-sm text-zinc-400 mb-2">Выберите сумму</p>
           <div className="flex flex-wrap gap-2">
-            {(region === 'ru' ? PRESET_AMOUNTS_RUB : PRESET_AMOUNTS_USD).map((preset) => (
+            {PRESET_AMOUNTS_RUB.map((preset) => (
               <button
                 key={preset}
                 onClick={() => {
@@ -406,7 +347,7 @@ function BalancePageContent() {
                     : 'bg-zinc-800 text-zinc-300 hover:bg-zinc-700'
                 }`}
               >
-                {region === 'ru' ? formatMoney(preset) : `$${preset}`}
+                {formatMoney(preset)}
               </button>
             ))}
           </div>
@@ -418,14 +359,14 @@ function BalancePageContent() {
           <div className="relative">
             <input
               type="number"
-              min={region === 'ru' ? '100' : '5'}
-              placeholder={region === 'ru' ? 'Минимум 100 ₽' : 'Minimum $5'}
+              min={'100'}
+              placeholder={'Минимум 100 ₽'}
               value={customAmount}
               onChange={(e) => setCustomAmount(e.target.value)}
               className="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-white placeholder:text-zinc-500 focus:border-[#6050ba] focus:outline-none"
             />
             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500">
-              {region === 'ru' ? '₽' : '$'}
+              ₽
             </span>
           </div>
         </div>
@@ -435,7 +376,6 @@ function BalancePageContent() {
           <p className="text-sm text-zinc-400 mb-2">Способ оплаты</p>
           <div className="space-y-2">
             {PAYMENT_METHODS
-              .filter(m => m.region === region || m.region === 'all')
               .map((method) => (
               <button
                 key={method.id}

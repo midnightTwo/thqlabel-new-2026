@@ -73,6 +73,31 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Amount mismatch' }, { status: 400 });
     }
 
+    // ========== АТОМАРНАЯ ЗАЩИТА ОТ ДВОЙНОГО ЗАЧИСЛЕНИЯ ==========
+    // Сначала атомарно помечаем ордер как 'paid'.
+    // Если другой webhook уже его пометил — update вернёт 0 строк и мы не зачислим повторно.
+    const { data: updatedOrders, error: updateError } = await supabaseAdmin
+      .from('payment_orders')
+      .update({
+        status: 'paid',
+        paid_at: new Date().toISOString(),
+        provider_data: payment,
+      })
+      .eq('id', orderId)
+      .neq('status', 'paid')        // только если ещё НЕ оплачен
+      .select('id');
+
+    if (updateError) {
+      console.error('Order update error:', updateError);
+      return NextResponse.json({ error: 'Order update failed' }, { status: 500 });
+    }
+
+    // Если ни одной строки не обновилось — значит уже оплачен (другой webhook успел раньше)
+    if (!updatedOrders || updatedOrders.length === 0) {
+      console.log('Order already claimed by another webhook:', orderId);
+      return NextResponse.json({ status: 'already_paid' });
+    }
+
     // Определяем метод оплаты
     const paymentMethodType = payment.payment_method?.type;
     let paymentMethodLabel = 'yookassa';
@@ -80,7 +105,7 @@ export async function POST(request: NextRequest) {
     else if (paymentMethodType === 'bank_card') paymentMethodLabel = 'card_ru';
     else if (paymentMethodType === 'yoo_money') paymentMethodLabel = 'yoomoney';
 
-    // Зачисляем на баланс
+    // Зачисляем на баланс (ордер уже помечен как paid, повторного зачисления не будет)
     const { data: depositResult, error: depositError } = await supabaseAdmin
       .rpc('deposit_balance', {
         p_user_id: order.user_id,
@@ -97,20 +122,12 @@ export async function POST(request: NextRequest) {
 
     if (depositError) {
       console.error('Deposit error:', depositError);
+      // ВАЖНО: ордер уже помечен paid, но баланс не зачислен — логируем для ручного разбора
+      console.error('CRITICAL: Order marked as paid but deposit failed! Order:', orderId, 'User:', order.user_id, 'Amount:', order.amount);
       return NextResponse.json({ error: 'Deposit failed' }, { status: 500 });
     }
 
-    // Обновляем статус ордера
-    await supabaseAdmin
-      .from('payment_orders')
-      .update({
-        status: 'paid',
-        paid_at: new Date().toISOString(),
-        provider_data: payment,
-      })
-      .eq('id', orderId);
-
-    console.log('Payment successful:', orderId, 'Amount:', order.amount);
+    console.log('Payment successful:', orderId, 'Amount:', order.amount, 'Method:', paymentMethodLabel);
 
     return NextResponse.json({ 
       status: 'success',

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useCallback, useMemo, useRef, memo } from 'react';
 import { createPortal } from 'react-dom';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import AnimatedBackground from '@/components/ui/AnimatedBackground';
 import { useTheme } from '@/contexts/ThemeContext';
 
@@ -67,12 +67,24 @@ import { useNotifications } from './hooks/useNotifications';
 
 export default function CabinetPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { theme, themeName } = useTheme();
   
   // Состояние скролла для эффекта слияния с хедером
   const [scrolled, setScrolled] = useState(false);
   const [animationTriggers, setAnimationTriggers] = useState<Set<string>>(new Set());
   
+  // Уведомления (перемещено наверх, т.к. showNotification используется в useEffect ниже)
+  const { 
+    notification, 
+    confirmDialog, 
+    showNotification,
+    hideNotification,
+    confirm,
+    handleConfirm,
+    handleCancel
+  } = useNotifications();
+
   // Основные состояния (перемещено наверх, чтобы showArchive был доступен в useEffect)
   const [tab, setTab] = useState<'releases' | 'finance' | 'settings'>('releases');
   const [creatingRelease, setCreatingRelease] = useState(false);
@@ -93,6 +105,19 @@ export default function CabinetPage() {
       return new Set([...prev, newTab]);
     });
   }, []);
+
+  // Возврат с оплаты (YooKassa): открываем финансы и показываем успех
+  useEffect(() => {
+    const status = searchParams.get('status');
+    if (status !== 'success') return;
+
+    const method = searchParams.get('method');
+    handleTabChange('finance');
+    showNotification(`✅ Оплата успешна${method ? ` (${method})` : ''}`, 'success');
+
+    // Убираем query-параметры, чтобы уведомление не повторялось
+    router.replace('/cabinet');
+  }, [searchParams, handleTabChange, showNotification, router]);
   
   // ============================================================================
   // HOVER PREFETCH: Предзагрузка вкладки при наведении (для сайдбаров)
@@ -179,16 +204,7 @@ export default function CabinetPage() {
   const [uploadingAvatar, setUploadingAvatar] = useState(false);
   const [deletingAvatar, setDeletingAvatar] = useState(false);
   
-  // Уведомления
-  const { 
-    notification, 
-    confirmDialog, 
-    showNotification,
-    hideNotification,
-    confirm,
-    handleConfirm,
-    handleCancel
-  } = useNotifications();
+  // Уведомления — см. выше (перед useEffect, использующим showNotification)
   
   // Виджет поддержки
   const supportWidget = useSupportWidget();

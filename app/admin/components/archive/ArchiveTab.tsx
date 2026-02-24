@@ -48,19 +48,20 @@ function SimpleTrackPlayer({
     try {
       const { data: { session } } = await supabase.auth.getSession();
       const token = session?.access_token;
+      if (!token) throw new Error('Нет сессии');
       
-      const url = `/api/stream-audio?releaseId=${releaseId}&releaseType=${releaseType}&trackIndex=${trackIndex}`;
-      const headers: HeadersInit = {};
-      if (token) headers['Authorization'] = `Bearer ${token}`;
+      const urlRes = await fetch(
+        `/api/stream-audio-url?releaseId=${releaseId}&releaseType=${releaseType}&trackIndex=${trackIndex}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      const urlData = await urlRes.json();
+      if (!urlRes.ok || !urlData?.url) throw new Error(urlData?.error || 'Ошибка загрузки');
 
-      const response = await fetch(url, { headers });
-      if (!response.ok) throw new Error('Ошибка загрузки');
+      const streamUrl = urlData.url as string;
+      setAudioUrl(streamUrl);
 
-      const blob = await response.blob();
-      const blobUrl = URL.createObjectURL(blob);
-      setAudioUrl(blobUrl);
-
-      const audio = new Audio(blobUrl);
+      const audio = new Audio(streamUrl);
+      audio.preload = 'metadata';
       audioRef.current = audio;
       audio.onended = () => setIsPlaying(false);
       audio.onerror = () => setError('Ошибка воспроизведения');
@@ -77,7 +78,7 @@ function SimpleTrackPlayer({
   useEffect(() => {
     return () => {
       if (audioRef.current) audioRef.current.pause();
-      if (audioUrl) URL.revokeObjectURL(audioUrl);
+      // audioUrl теперь обычный URL, revokeObjectURL не нужен
     };
   }, [audioUrl]);
 

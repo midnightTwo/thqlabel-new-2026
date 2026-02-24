@@ -1072,6 +1072,7 @@ export default function SendStep({
                         return {
                           title: track.title,
                           link: track.link || '',
+                          isrc: (track as any).isrc || '',
                           hasDrugs: track.hasDrugs,
                           lyrics: track.lyrics,
                           language: track.language,
@@ -1091,6 +1092,7 @@ export default function SendStep({
                         title: track.title,
                         link: audioUrl, // Записываем URL загруженного файла
                         audio_url: audioUrl, // Дублируем для совместимости
+                        isrc: (track as any).isrc || '',
                         hasDrugs: track.hasDrugs,
                         lyrics: track.lyrics,
                         language: track.language,
@@ -1104,6 +1106,7 @@ export default function SendStep({
                       return {
                         title: track.title,
                         link: track.link || '',
+                        isrc: (track as any).isrc || '',
                         hasDrugs: track.hasDrugs,
                         lyrics: track.lyrics,
                         language: track.language,
@@ -1120,6 +1123,7 @@ export default function SendStep({
                   return {
                     title: track.title,
                     link: track.link || '',
+                    isrc: (track as any).isrc || '',
                     hasDrugs: track.hasDrugs,
                     lyrics: track.lyrics,
                     language: track.language,

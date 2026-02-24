@@ -230,6 +230,7 @@ type Tab = 'releases' | 'contracts' | 'archive' | 'users' | 'news' | 'tickets' |
 function AdminPageContent() {
   const { themeName } = useTheme();
   const isLight = themeName === 'light';
+  const logoSrc = '/logo.png?v=' + (process.env.NEXT_PUBLIC_BUILD_TIME || '');
   const searchParams = useSearchParams();
   const [checkingAuth, setCheckingAuth] = useState(true);
   const [accessDenied, setAccessDenied] = useState<{ type: 'not_authorized' | 'not_admin'; email?: string; role?: string } | null>(null);
@@ -434,7 +435,7 @@ function AdminPageContent() {
           <div className="mb-4 sm:mb-6">
             <div className="flex items-center justify-between gap-2 sm:gap-3 mb-2">
               <img 
-                src="/logo.png" 
+                src={logoSrc} 
                 alt="thqlabel" 
                 className="h-10 sm:h-12 md:h-16 w-auto"
                 style={{ 

@@ -150,6 +150,35 @@ export default function TransactionsTab({ supabase, currentUserRole }: Transacti
     }
   };
 
+  // Скрыть транзакцию (без изменения баланса) — только для owner
+  const handleHideTransaction = async () => {
+    if (!selectedTransaction || currentUserRole !== 'owner') return;
+
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) return;
+
+      const response = await fetch(`/api/admin/transactions/hide?id=${selectedTransaction.id}`, {
+        method: 'PATCH',
+        headers: { 'Authorization': `Bearer ${session.access_token}` }
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        showNotification('Транзакция скрыта (баланс не изменён)', 'success');
+        setSelectedTransaction(null);
+        setShowDeleteConfirm(false);
+        loadTransactions();
+        loadStats();
+      } else {
+        showNotification(data.error || 'Ошибка скрытия', 'error');
+      }
+    } catch (error) {
+      console.error('Hide transaction error:', error);
+      showNotification('Ошибка скрытия транзакции', 'error');
+    }
+  };
+
   // Загрузка транзакций
   const loadTransactions = useCallback(async () => {
     setLoading(true);
@@ -1224,6 +1253,17 @@ export default function TransactionsTab({ supabase, currentUserRole }: Transacti
               {/* Кнопка удаления - только для Owner */}
               {currentUserRole === 'owner' && (
                 <div className="pt-3 border-t border-red-500/20">
+                  {!showDeleteConfirm && (
+                    <button
+                      onClick={handleHideTransaction}
+                      className="w-full mb-2 px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-zinc-300 hover:bg-white/10 transition-all flex items-center justify-center gap-2 font-bold"
+                    >
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M4 4h12v2H4V4zm0 5h8v2H4V9zm0 5h12v2H4v-2z" />
+                      </svg>
+                      Скрыть (без изменения баланса)
+                    </button>
+                  )}
                   {!showDeleteConfirm ? (
                     <button
                       onClick={() => setShowDeleteConfirm(true)}
@@ -1232,7 +1272,7 @@ export default function TransactionsTab({ supabase, currentUserRole }: Transacti
                       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd"/>
                       </svg>
-                      Удалить транзакцию
+                      Отменить транзакцию (реверс)
                     </button>
                   ) : (
                     <div className={`p-4 rounded-xl ${isLight ? 'bg-red-50 border border-red-200' : 'bg-red-500/10 border border-red-500/30'}`}>
@@ -1244,10 +1284,10 @@ export default function TransactionsTab({ supabase, currentUserRole }: Transacti
                         </div>
                         <div>
                           <div className={`font-bold mb-1 ${isLight ? 'text-red-700' : 'text-red-400'}`}>
-                            Подтвердите удаление
+                            Подтвердите отмену
                           </div>
                           <div className={`text-sm ${isLight ? 'text-red-600' : 'text-red-400/80'}`}>
-                            Транзакция будет удалена и баланс пользователя будет скорректирован на{' '}
+                            Транзакция будет отменена (удалена) и баланс пользователя будет скорректирован на{' '}
                             <span className="font-bold">
                               {['deposit', 'payout', 'bonus', 'refund', 'unfreeze'].includes(selectedTransaction.type) 
                                 ? `−${selectedTransaction.amount}` 

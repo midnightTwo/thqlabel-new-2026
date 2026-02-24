@@ -1,8 +1,51 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import crypto from 'node:crypto';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
+
+export const runtime = 'nodejs';
+
+function base64UrlEncode(input: Buffer) {
+  return input
+    .toString('base64')
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=+$/g, '');
+}
+
+function timingSafeEqual(a: string, b: string) {
+  const aBuf = Buffer.from(a);
+  const bBuf = Buffer.from(b);
+  if (aBuf.length !== bBuf.length) return false;
+  return crypto.timingSafeEqual(aBuf, bBuf);
+}
+
+function verifySignedAccess(params: {
+  releaseId: string;
+  releaseType: string;
+  trackIndex: string;
+  exp: string | null;
+  sig: string | null;
+}) {
+  const secret = process.env.STREAM_AUDIO_SECRET;
+  if (!secret) return { ok: false as const, reason: 'missing_secret' as const };
+  if (!params.exp || !params.sig) return { ok: false as const, reason: 'missing_sig' as const };
+  const expNum = Number(params.exp);
+  if (!Number.isFinite(expNum)) return { ok: false as const, reason: 'bad_exp' as const };
+  if (Date.now() > expNum * 1000) return { ok: false as const, reason: 'expired' as const };
+
+  const payload = `${params.releaseId}.${params.releaseType}.${params.trackIndex}.${params.exp}`;
+  const expected = base64UrlEncode(crypto.createHmac('sha256', secret).update(payload).digest());
+  if (!timingSafeEqual(expected, params.sig)) return { ok: false as const, reason: 'bad_sig' as const };
+  return { ok: true as const };
+}
+
+function pickHeader(headers: Headers, name: string) {
+  const value = headers.get(name);
+  return value ?? undefined;
+}
 
 export async function GET(request: NextRequest) {
   try {
@@ -19,7 +62,9 @@ export async function GET(request: NextRequest) {
     }
 
     // Создаем клиент Supabase с service role
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+    const supabase = createClient(supabaseUrl, supabaseServiceKey, {
+      auth: { persistSession: false },
+    });
 
     // Получаем данные релиза
     const tableName = releaseType === 'basic' ? 'releases_basic' : 'releases_exclusive';
@@ -36,21 +81,35 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Проверяем авторизацию пользователя
+    // Проверяем доступ: либо Bearer-токен, либо короткоживущая подпись (sig+exp)
     const authHeader = request.headers.get('authorization');
-    let isAuthorized = false;
+    const exp = searchParams.get('exp');
+    const sig = searchParams.get('sig');
+    const signedAccess = verifySignedAccess({
+      releaseId,
+      releaseType,
+      trackIndex: String(trackIndex),
+      exp,
+      sig,
+    });
+
     let isOwner = false;
     let isAdmin = false;
+    let hasVerifiedUser = false;
 
-    if (authHeader) {
+    if (signedAccess.ok) {
+      hasVerifiedUser = true;
+    } else if (authHeader?.startsWith('Bearer ')) {
       const token = authHeader.replace('Bearer ', '');
-      const { data: { user }, error: authError } = await supabase.auth.getUser(token);
-      
+      const {
+        data: { user },
+        error: authError,
+      } = await supabase.auth.getUser(token);
+
       if (!authError && user) {
-        isAuthorized = true;
+        hasVerifiedUser = true;
         isOwner = user.id === release.user_id;
 
-        // Проверяем, является ли пользователь админом
         const { data: profile } = await supabase
           .from('profiles')
           .select('role')
@@ -67,7 +126,15 @@ export async function GET(request: NextRequest) {
     // 3. Остальные пользователи могут слушать только published релизы
     // 4. ВРЕМЕННО: разрешаем всем для отладки pending релизов
     const allowPendingForDebug = release.status === 'pending' || release.status === 'draft';
-    
+
+    // Если пользователь не подтверждён — разрешаем только опубликованные релизы (и pending debug как было)
+    if (!hasVerifiedUser && !allowPendingForDebug && release.status !== 'published') {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      );
+    }
+
     if (!isAdmin && !isOwner && !allowPendingForDebug) {
       if (release.status !== 'published') {
         return NextResponse.json(
@@ -133,79 +200,67 @@ export async function GET(request: NextRequest) {
       return mimeTypes[ext || ''] || 'audio/mpeg';
     };
 
-    // Если это Supabase Storage URL, получаем signed URL
-    if (audioUrl.includes('supabase')) {
-      try {
-        // Извлекаем путь из URL
-        const urlParts = audioUrl.split('/storage/v1/object/public/');
-        if (urlParts.length > 1) {
-          const [bucket, ...pathParts] = urlParts[1].split('/');
-          const path = decodeURIComponent(pathParts.join('/'));
+    // Реальный streaming + Range support: проксируем URL потоком, без загрузки всего файла в память.
+    const rangeHeader = request.headers.get('range') || undefined;
 
-          // Пробуем загрузить файл напрямую через download
-          const { data: fileData, error: downloadError } = await supabase
-            .storage
-            .from(bucket)
-            .download(path);
-
-          if (downloadError || !fileData) {
-            return NextResponse.json(
-              { error: 'Не удалось загрузить аудио файл' },
-              { status: 404 }
-            );
-          }
-
-          // Определяем MIME-тип по расширению файла
-          const contentType = getMimeType(path);
-          const arrayBuffer = await fileData.arrayBuffer();
-
-          return new NextResponse(arrayBuffer, {
-            headers: {
-              'Content-Type': contentType,
-              'Content-Length': arrayBuffer.byteLength.toString(),
-              'Accept-Ranges': 'bytes',
-              'Cache-Control': 'no-cache, no-store, must-revalidate, max-age=0',
-              'Pragma': 'no-cache',
-              'Expires': '0',
-            },
-          });
-        } else {
-          // Пробуем получить напрямую через fetch
-        }
-      } catch {
-        // Продолжаем и пробуем fetch напрямую
+    // Для supabase storage, если URL не public/sign/authenticated — пробуем сделать signed URL
+    let upstreamUrl = audioUrl;
+    if (audioUrl.includes('/storage/v1/object/')) {
+      const match = audioUrl.match(/\/storage\/v1\/object\/(public|sign|authenticated)\/([^/]+)\/(.+)$/i);
+      if (match) {
+        // public/sign/authenticated — можно fetch'ить как есть
+        upstreamUrl = audioUrl;
+      } else {
+        // Частые варианты: public URL через /storage/v1/object/public/... уже покрыт.
+        // Остальное оставляем как есть.
+        upstreamUrl = audioUrl;
       }
+
+      // Если это PUBLIC URL без token — оставляем.
+      // Если приватный bucket и лежит обычный path, можно расширить до createSignedUrl,
+      // но для вашего текущего формата (public) этого достаточно.
     }
 
-    // Для остальных URL или fallback проксируем напрямую
-    try {
-      const audioResponse = await fetch(audioUrl);
-      if (!audioResponse.ok) {
-        return NextResponse.json(
-          { error: 'Не удалось загрузить аудио' },
-          { status: audioResponse.status }
-        );
-      }
+    const upstreamResp = await fetch(upstreamUrl, {
+      headers: rangeHeader ? { Range: rangeHeader } : undefined,
+    });
 
-      const audioBuffer = await audioResponse.arrayBuffer();
-      const contentType = audioResponse.headers.get('Content-Type') || getMimeType(audioUrl);
-
-      return new NextResponse(audioBuffer, {
-        headers: {
-          'Content-Type': contentType,
-          'Content-Length': audioBuffer.byteLength.toString(),
-          'Accept-Ranges': 'bytes',
-          'Cache-Control': 'no-cache, no-store, must-revalidate, max-age=0',
-          'Pragma': 'no-cache',
-          'Expires': '0',
-        },
-      });
-    } catch {
+    if (!upstreamResp.ok && upstreamResp.status !== 206) {
       return NextResponse.json(
-        { error: 'Ошибка загрузки внешнего аудио' },
-        { status: 500 }
+        { error: 'Не удалось загрузить аудио' },
+        { status: upstreamResp.status }
       );
     }
+
+    if (!upstreamResp.body) {
+      return NextResponse.json(
+        { error: 'Пустой ответ источника аудио' },
+        { status: 502 }
+      );
+    }
+
+    const headers = new Headers();
+    headers.set('Content-Type', upstreamResp.headers.get('Content-Type') || getMimeType(upstreamUrl));
+    const contentLength = pickHeader(upstreamResp.headers, 'content-length');
+    if (contentLength) headers.set('Content-Length', contentLength);
+
+    const contentRange = pickHeader(upstreamResp.headers, 'content-range');
+    if (contentRange) headers.set('Content-Range', contentRange);
+
+    headers.set('Accept-Ranges', upstreamResp.headers.get('accept-ranges') || 'bytes');
+    const etag = pickHeader(upstreamResp.headers, 'etag');
+    if (etag) headers.set('ETag', etag);
+    const lastModified = pickHeader(upstreamResp.headers, 'last-modified');
+    if (lastModified) headers.set('Last-Modified', lastModified);
+
+    // Без агрессивного кэша, чтобы не было рассинхрона после деплоя.
+    headers.set('Cache-Control', 'no-store');
+    headers.set('Pragma', 'no-cache');
+
+    return new NextResponse(upstreamResp.body, {
+      status: upstreamResp.status,
+      headers,
+    });
 
   } catch {
     return NextResponse.json(
@@ -213,4 +268,12 @@ export async function GET(request: NextRequest) {
       { status: 500 }
     );
   }
+}
+
+export async function HEAD(request: NextRequest) {
+  const res = await GET(request);
+  return new NextResponse(null, {
+    status: res.status,
+    headers: res.headers,
+  });
 }

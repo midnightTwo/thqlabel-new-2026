@@ -485,6 +485,7 @@ ServicesModal.displayName = 'ServicesModal';
 export default function FeedPage() {
   const { themeName } = useTheme();
   const isLight = themeName === 'light';
+  const logoSrc = '/logo.png?v=' + (process.env.NEXT_PUBLIC_BUILD_TIME || '');
   
   const [mounted, setMounted] = useState(false);
   const [user, setUser] = useState<any>(null);
@@ -582,7 +583,7 @@ export default function FeedPage() {
       <main className="min-h-screen overflow-hidden relative">
         {showIntro && (
         <div 
-          className={`intro-screen fixed inset-0 z-[100] flex items-center justify-center transition-opacity duration-500 ${
+          className={`intro-screen fixed inset-0 z-[100] flex items-center justify-center transition-opacity duration-500 pointer-events-none ${
             introReady ? 'opacity-100' : 'opacity-0'
           }`}
           style={{
@@ -646,7 +647,7 @@ export default function FeedPage() {
             >
               {/* БОЛЬШОЕ ЛОГО - ПОВЕРХ ВСЕГО */}
               <img 
-                src="/logo.png" 
+                src={logoSrc} 
                 alt="thq" 
                 className={`intro-logo absolute z-30 object-contain ${isLight ? 'invert brightness-0' : ''}`}
                 style={{
@@ -919,7 +920,7 @@ export default function FeedPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4 lg:h-full py-2 pb-8 lg:pb-2">
           
           {/* Левая колонка - Текст, кнопки и релизы (компактно) */}
-          <div className="lg:col-span-3 flex flex-col order-1 lg:order-none">
+          <div className="lg:col-span-3 flex flex-col order-1 lg:order-none relative z-30 pointer-events-auto">
             <div className={`transition-all duration-1000 ${mounted ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
               {/* Текст и кнопки с стеклянным эффектом */}
               <div className={`backdrop-blur-md rounded-2xl p-3 lg:p-4 shadow-2xl transition-all duration-300 ${
@@ -1046,7 +1047,7 @@ export default function FeedPage() {
           </div>
 
           {/* Центральная колонка - Планета Сатурн с логотипом */}
-          <div className="lg:col-span-6 flex flex-col justify-center items-center order-2 lg:order-none">
+          <div className="lg:col-span-6 flex flex-col justify-center items-center order-2 lg:order-none pointer-events-none" style={{ overflow: 'visible', zIndex: 10 }}>
             {/* Контейнер для Сатурна - БЕСКОНЕЧНАЯ АНИМАЦИЯ */}
             <div className={`relative mb-4 transition-all duration-1000 delay-200 pointer-events-none ${mounted ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
               <div 
@@ -1058,9 +1059,9 @@ export default function FeedPage() {
               >
                 {/* БОЛЬШОЕ ЛОГО - ПОВЕРХ ВСЕГО */}
                 <img 
-                  src="/logo.png" 
+                  src={logoSrc} 
                   alt="thq" 
-                  className={`absolute z-30 object-contain ${isLight ? 'invert brightness-0' : ''}`}
+                  className={`absolute z-30 object-contain pointer-events-none ${isLight ? 'invert brightness-0' : ''}`}
                   style={{
                     width: '500px',
                     height: '500px',
@@ -1343,19 +1344,19 @@ export default function FeedPage() {
           </div>
 
           {/* Правая колонка - Новости (скрыты на мобильных) */}
-          <div className="hidden lg:block lg:col-span-3">
+          <div className="hidden lg:block lg:col-span-3" style={{ position: 'relative', zIndex: 9999, pointerEvents: 'auto' }}>
             <div className={`transition-all duration-1000 delay-400 ${mounted ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
               <h2 className={`text-xs font-black mb-1.5 uppercase ${
                 isLight ? 'text-gray-800' : 'text-white'
               }`}>
                 Новости
               </h2>
-              <div className="space-y-2">
+              <div className="space-y-2" style={{ position: 'relative', zIndex: 9999 }}>
                 {news.length > 0 ? news.slice(0, 5).map((item) => (
-                  <Link
+                  <a
                     key={item.id}
                     href={`/news?id=${item.id}`}
-                    className={`group block p-3 rounded-xl transition-all hover:scale-[1.02] backdrop-blur-sm ${
+                    className={`group block p-3 rounded-xl transition-all hover:scale-[1.02] backdrop-blur-sm cursor-pointer ${
                       isLight 
                         ? 'bg-[#e8e4f3]/95 border border-[#c5bde0] shadow-sm hover:bg-[#ddd8ed] hover:border-[#9d8df1]/60'
                         : 'bg-white/5 border border-white/10 hover:bg-[#6050ba]/15 hover:border-[#9d8df1]/40'
@@ -1391,73 +1392,24 @@ export default function FeedPage() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
                     </div>
-                  </Link>
+                  </a>
                 )) : (
-                  <>
-                    <div className={`p-3 rounded-xl backdrop-blur-sm ${
-                      isLight 
-                        ? 'bg-[#e8e4f3]/95 border border-[#c5bde0] shadow-sm'
-                        : 'bg-white/5 border border-white/10'
+                  <div className={`p-5 rounded-xl text-center backdrop-blur-sm ${
+                    isLight 
+                      ? 'bg-[#e8e4f3]/90 border border-[#c5bde0]'
+                      : 'bg-white/10 border border-white/20'
+                  }`}>
+                    <div className={`w-12 h-12 mx-auto mb-3 rounded-xl flex items-center justify-center ${
+                      isLight ? 'bg-[#6050ba]/20' : 'bg-[#6050ba]/40'
                     }`}>
-                      <div className="flex items-center gap-3">
-                        <div className={`flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center ${
-                          isLight 
-                            ? 'bg-gradient-to-br from-[#6050ba] to-[#9d8df1] shadow-sm shadow-violet-400/30'
-                            : 'bg-gradient-to-br from-[#6050ba]/50 to-[#9d8df1]/50'
-                        }`}>
-                          <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                          </svg>
-                        </div>
-                        <div className="flex-1">
-                          <div className={`font-bold text-[10px] mb-0.5 ${isLight ? 'text-[#6050ba]' : 'text-[#9d8df1]'}`}>28 окт</div>
-                          <h3 className={`font-bold text-xs ${isLight ? 'text-[#3d3d5c]' : 'text-white'}`}>Анонс нового альбома</h3>
-                        </div>
-                      </div>
+                      <svg className={`w-6 h-6 ${isLight ? 'text-[#6050ba]/80' : 'text-[#9d8df1]/90'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                      </svg>
                     </div>
-                    <div className={`p-3 rounded-xl backdrop-blur-sm ${
-                      isLight 
-                        ? 'bg-[#e8e4f3]/95 border border-[#c5bde0] shadow-sm'
-                        : 'bg-white/5 border border-white/10'
-                    }`}>
-                      <div className="flex items-center gap-3">
-                        <div className={`flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center ${
-                          isLight 
-                            ? 'bg-gradient-to-br from-[#6050ba] to-[#9d8df1] shadow-sm shadow-violet-400/30'
-                            : 'bg-gradient-to-br from-[#6050ba]/50 to-[#9d8df1]/50'
-                        }`}>
-                          <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                          </svg>
-                        </div>
-                        <div className="flex-1">
-                          <div className={`font-bold text-[10px] mb-0.5 ${isLight ? 'text-[#6050ba]' : 'text-[#9d8df1]'}`}>25 окт</div>
-                          <h3 className={`font-bold text-xs ${isLight ? 'text-[#3d3d5c]' : 'text-white'}`}>"Luna" на премию</h3>
-                        </div>
-                      </div>
-                    </div>
-                    <div className={`p-3 rounded-xl backdrop-blur-sm ${
-                      isLight 
-                        ? 'bg-[#e8e4f3]/95 border border-[#c5bde0] shadow-sm'
-                        : 'bg-white/5 border border-white/10'
-                    }`}>
-                      <div className="flex items-center gap-3">
-                        <div className={`flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center ${
-                          isLight 
-                            ? 'bg-gradient-to-br from-[#6050ba] to-[#9d8df1] shadow-sm shadow-violet-400/30'
-                            : 'bg-gradient-to-br from-[#6050ba]/50 to-[#9d8df1]/50'
-                        }`}>
-                          <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                          </svg>
-                        </div>
-                        <div className="flex-1">
-                          <div className={`font-bold text-[10px] mb-0.5 ${isLight ? 'text-[#6050ba]' : 'text-[#9d8df1]'}`}>20 окт</div>
-                          <h3 className={`font-bold text-xs ${isLight ? 'text-[#3d3d5c]' : 'text-white'}`}>Расширение сети</h3>
-                        </div>
-                      </div>
-                    </div>
-                  </>
+                    <p className={`text-xs font-semibold ${isLight ? 'text-[#5a4a9a]' : 'text-white/70'}`}>
+                      Новостей пока нет
+                    </p>
+                  </div>
                 )}
               </div>
 

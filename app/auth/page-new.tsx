@@ -23,6 +23,7 @@ export default function AuthPage() {
   const [resendTimer, setResendTimer] = useState(0);
   const [notification, setNotification] = useState<{show: boolean; message: string; type: 'success' | 'error'}>({show: false, message: '', type: 'success'});
   const router = useRouter();
+  const logoSrc = '/logo.png?v=' + (process.env.NEXT_PUBLIC_BUILD_TIME || '');
 
   useEffect(() => {
     setMounted(true);
@@ -222,7 +223,7 @@ export default function AuthPage() {
           {/* Мобильное лого вверху */}
           <div className="lg:hidden w-full pt-24 pb-10 flex items-center justify-center">
             <img 
-              src="/logo.png" 
+              src={logoSrc} 
               alt="thqlabel" 
               className="h-24 w-auto object-contain drop-shadow-glow theme-logo"
             />
@@ -232,7 +233,7 @@ export default function AuthPage() {
           <div className="hidden lg:block w-[500px] flex-shrink-0 pl-8">
             <div className="flex items-center justify-start">
               <img 
-                src="/logo.png" 
+                src={logoSrc} 
                 alt="thqlabel" 
                 className="h-40 w-auto object-contain drop-shadow-glow-intense theme-logo"
                 style={{ transform: 'scale(4)', transformOrigin: 'left center' }}

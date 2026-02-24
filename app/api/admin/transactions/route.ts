@@ -53,6 +53,7 @@ export async function GET(request: NextRequest) {
     const dateTo = searchParams.get('dateTo');
     const sortBy = searchParams.get('sortBy') || 'created_at';
     const sortOrder = searchParams.get('sortOrder') || 'desc';
+    const includeHidden = searchParams.get('includeHidden') === 'true';
 
     // Строим запрос
     let query = supabaseAdmin
@@ -76,6 +77,12 @@ export async function GET(request: NextRequest) {
       `, { count: 'exact' });
 
     // Применяем фильтры
+    if (!includeHidden) {
+      // по умолчанию скрытые транзакции не показываем
+      // важно: включаем и NULL (metadata отсутствует)
+      query = query.or('metadata->>hidden.is.null,metadata->>hidden.neq.true');
+    }
+
     if (type && TRANSACTION_TYPES.includes(type as any)) {
       query = query.eq('type', type);
     }

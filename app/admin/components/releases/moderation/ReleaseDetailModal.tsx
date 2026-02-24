@@ -1933,15 +1933,20 @@ function TrackItem({ track, index, releaseId, releaseType, releaseStatus, coverU
     setError(null);
     try {
       const { data: { session } } = await supabase.auth.getSession();
-      const res = await fetch(`/api/stream-audio?releaseId=${releaseId}&releaseType=${releaseType}&trackIndex=${index}`, {
-        headers: session?.access_token ? { Authorization: `Bearer ${session.access_token}` } : {}
-      });
-      if (!res.ok) throw new Error('Ошибка загрузки');
-      const blob = await res.blob();
-      if (!blob.size) throw new Error('Пустой файл');
-      const url = URL.createObjectURL(blob);
-      setAudioUrl(url);
-      const audio = new Audio(url);
+      const token = session?.access_token;
+      if (!token) throw new Error('Нет сессии');
+
+      const urlRes = await fetch(
+        `/api/stream-audio-url?releaseId=${releaseId}&releaseType=${releaseType}&trackIndex=${index}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      const urlData = await urlRes.json();
+      if (!urlRes.ok || !urlData?.url) throw new Error(urlData?.error || 'Ошибка загрузки');
+
+      const streamUrl = urlData.url as string;
+      setAudioUrl(streamUrl);
+      const audio = new Audio(streamUrl);
+      audio.preload = 'metadata';
       audio.volume = isMuted ? 0 : volume * maxVolume;
       audioRef.current = audio;
       audio.onloadedmetadata = () => setDuration(audio.duration);
@@ -2087,7 +2092,7 @@ function TrackItem({ track, index, releaseId, releaseType, releaseStatus, coverU
     if (audioRef.current) {
       audioRef.current.pause();
     }
-    if (audioUrl) URL.revokeObjectURL(audioUrl);
+    // audioUrl теперь обычный URL, revokeObjectURL не нужен
     if (animationRef.current) cancelAnimationFrame(animationRef.current);
   }, [audioUrl]);
 

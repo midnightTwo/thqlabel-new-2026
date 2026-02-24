@@ -3,6 +3,8 @@ import { createClient } from '@supabase/supabase-js';
 import Stripe from 'stripe';
 import crypto from 'crypto';
 
+export const runtime = 'nodejs';
+
 // Supabase admin client (для webhook'ов - без проверки auth)
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -53,16 +55,10 @@ export async function POST(request: NextRequest) {
     // Определяем минимальную сумму и валюту в зависимости от провайдера
     const currencyMap: Record<string, { min: number; currency: string }> = {
       yookassa: { min: 100, currency: 'RUB' },
-      cryptocloud: { min: 10, currency: 'USD' },  // В долларах - минимум $10
-      stripe: { min: 5, currency: 'USD' },
-      liqpay: { min: 50, currency: 'UAH' },
     };
 
     const providerConfig = currencyMap[provider] || { min: 100, currency: 'RUB' };
-    
-    // Для cryptocloud валюта приходит как USDT, но минимум проверяем в USD
-    const checkCurrency = provider === 'cryptocloud' ? 'USD' : providerConfig.currency;
-    const displayCurrency = provider === 'cryptocloud' ? '$' : (providerConfig.currency === 'RUB' ? '₽' : providerConfig.currency === 'UAH' ? '₴' : '$');
+    const displayCurrency = providerConfig.currency === 'RUB' ? '₽' : providerConfig.currency;
 
     // Валидация
     if (!amount || amount < providerConfig.min) {
@@ -72,10 +68,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!provider || !['yookassa', 'cryptocloud', 'stripe', 'liqpay'].includes(provider)) {
+    if (!provider || provider !== 'yookassa') {
       return NextResponse.json(
-        { error: 'Неверный провайдер' },
-        { status: 400 }
+        { error: 'Провайдер временно отключен' },
+        { status: 403 }
       );
     }
 
@@ -86,9 +82,34 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const normalizedPaymentMethod = paymentMethod === 'sbp' ? 'sbp' : paymentMethod === 'card_ru' ? 'card' : paymentMethod;
+
+    if (!['sbp', 'card'].includes(normalizedPaymentMethod)) {
+      return NextResponse.json(
+        { error: 'Метод оплаты временно недоступен' },
+        { status: 400 }
+      );
+    }
+
     // Создаём ордер в БД
-    const currency = requestCurrency || providerConfig.currency;
-    console.log('Creating payment order:', { userId, amount, currency, provider, paymentMethod });
+    const currency = 'RUB';
+    console.log('Creating payment order:', { userId, amount, currency, provider, paymentMethod: normalizedPaymentMethod });
+
+    // Пытаемся получить email пользователя (для чеков/уведомлений YooKassa)
+    let userEmail: string | null = null;
+    try {
+      const { data: profile } = await supabaseAdmin
+        .from('profiles')
+        .select('email')
+        .eq('id', userId)
+        .maybeSingle();
+
+      if (profile?.email && typeof profile.email === 'string') {
+        userEmail = profile.email;
+      }
+    } catch {
+      // ignore
+    }
     
     const { data: order, error: orderError } = await supabaseAdmin
       .from('payment_orders')
@@ -97,7 +118,7 @@ export async function POST(request: NextRequest) {
         amount: amount,
         currency: currency,
         provider: provider,
-        payment_method: paymentMethod || 'card',
+        payment_method: normalizedPaymentMethod,
         status: 'pending',
         expires_at: new Date(Date.now() + 30 * 60 * 1000).toISOString(), // 30 минут
       })
@@ -118,21 +139,9 @@ export async function POST(request: NextRequest) {
     let providerOrderId: string;
 
     if (provider === 'yookassa') {
-      const result = await createYooKassaPayment(order.id, amount, paymentMethod);
+      const result = await createYooKassaPayment(order.id, amount, normalizedPaymentMethod, userEmail);
       confirmationUrl = result.confirmation.confirmation_url;
       providerOrderId = result.id;
-    } else if (provider === 'cryptocloud') {
-      const result = await createCryptoCloudPayment(order.id, amount);
-      confirmationUrl = result.pay_url;
-      providerOrderId = result.uuid;
-    } else if (provider === 'stripe') {
-      const result = await createStripePayment(order.id, amount, userId);
-      confirmationUrl = result.url!;
-      providerOrderId = result.id;
-    } else if (provider === 'liqpay') {
-      const result = await createLiqPayPayment(order.id, amount, currency);
-      confirmationUrl = result.paymentUrl;
-      providerOrderId = result.orderId;
     } else {
       throw new Error('Unknown provider');
     }
@@ -155,8 +164,12 @@ export async function POST(request: NextRequest) {
 
   } catch (error) {
     console.error('Payment creation error:', error);
+    const message = error instanceof Error && error.message
+      ? error.message
+      : 'Ошибка создания платежа';
+
     return NextResponse.json(
-      { error: 'Ошибка создания платежа' },
+      { error: message },
       { status: 500 }
     );
   }
@@ -169,26 +182,19 @@ export async function POST(request: NextRequest) {
 async function createYooKassaPayment(
   orderId: string,
   amount: number,
-  paymentMethod?: string
+  paymentMethod?: string,
+  userEmail?: string | null
 ) {
-  const { shopId, secretKey, testMode } = PROVIDERS.yookassa;
+  const { shopId, secretKey } = PROVIDERS.yookassa;
   
   // Проверяем настройку
   if (!shopId || !secretKey) {
     throw new Error('YooKassa не настроена. Добавьте YOOKASSA_SHOP_ID и YOOKASSA_SECRET_KEY в .env.local');
   }
 
-  // В тестовом режиме с OAuth ключами - возвращаем нашу тестовую страницу
-  // OAuth ключи (с * в начале) не работают с API платежей
-  if (testMode && secretKey.includes('*')) {
-    console.log('YooKassa: Тестовый режим - используем локальную тестовую страницу');
-    return {
-      id: `test_${orderId}`,
-      confirmation: {
-        type: 'redirect',
-        confirmation_url: `${process.env.NEXT_PUBLIC_APP_URL}/test-payment?order_id=${orderId}&amount=${amount}&method=${paymentMethod || 'card'}`
-      }
-    };
+  // OAuth ключи (с * в начале) не работают с Payments API
+  if (secretKey.includes('*')) {
+    throw new Error('YOOKASSA_SECRET_KEY выглядит как OAuth-ключ (начинается с "*"). Нужен Secret key из YooKassa (для API платежей).');
   }
   
   const idempotenceKey = `${orderId}-${Date.now()}`;
@@ -200,7 +206,7 @@ async function createYooKassaPayment(
     },
     confirmation: {
       type: 'redirect',
-      return_url: `${process.env.NEXT_PUBLIC_APP_URL}/cabinet/balance?status=success`,
+      return_url: `${process.env.NEXT_PUBLIC_APP_URL}/cabinet?status=success&provider=yookassa&method=${encodeURIComponent(paymentMethod || 'auto')}`,
     },
     capture: true,
     description: `Пополнение баланса THQ Label #${orderId.slice(0, 8)}`,
@@ -209,32 +215,45 @@ async function createYooKassaPayment(
     },
   };
 
+  // Для чеков/уведомлений (если включено в кабинете YooKassa)
+  if (userEmail) {
+    paymentData.customer = { email: userEmail };
+  }
+
   // Указываем метод оплаты если задан
   if (paymentMethod === 'sbp') {
     paymentData.payment_method_data = { type: 'sbp' };
   } else if (paymentMethod === 'card') {
     paymentData.payment_method_data = { type: 'bank_card' };
-  } else if (paymentMethod === 'yoomoney') {
-    paymentData.payment_method_data = { type: 'yoo_money' };
   }
 
-  const response = await fetch('https://api.yookassa.ru/v3/payments', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Idempotence-Key': idempotenceKey,
-      'Authorization': 'Basic ' + Buffer.from(`${shopId}:${secretKey}`).toString('base64'),
-    },
-    body: JSON.stringify(paymentData),
-  });
+  const doRequest = async (data: any) => {
+    const resp = await fetch('https://api.yookassa.ru/v3/payments', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Idempotence-Key': idempotenceKey,
+        'Authorization': 'Basic ' + Buffer.from(`${shopId}:${secretKey}`).toString('base64'),
+      },
+      body: JSON.stringify(data),
+    });
+    const text = await resp.text();
+    return { resp, text };
+  };
 
-  if (!response.ok) {
-    const error = await response.text();
-    console.error('YooKassa error:', error);
-    throw new Error('YooKassa payment creation failed');
+  // 1) Пробуем с выбранным методом
+  let { resp, text } = await doRequest(paymentData);
+
+  // Метод оплаты (СБП / карта) задаётся явно — НЕ убираем payment_method_data при ошибке,
+  // чтобы пользователь гарантированно оплатил выбранным способом.
+
+  if (!resp.ok) {
+    console.error('YooKassa error:', text);
+    const shortDetails = text.length > 500 ? text.slice(0, 500) + '…' : text;
+    throw new Error(`YooKassa payment creation failed (HTTP ${resp.status}): ${shortDetails}`);
   }
 
-  return await response.json();
+  return JSON.parse(text);
 }
 
 // ============================================

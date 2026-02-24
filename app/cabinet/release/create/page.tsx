@@ -525,10 +525,12 @@ export default function CreateReleasePage() {
     producers?: string[];
     featuring?: string[];
     isInstrumental?: boolean;
+    isrc?: string;
     originalFileName?: string;
   }>>([]);
   const [currentTrack, setCurrentTrack] = useState<number | null>(null);
   const [trackTitle, setTrackTitle] = useState('');
+  const [trackIsrc, setTrackIsrc] = useState('');
   const [trackLink, setTrackLink] = useState('');
   const [trackAudioFile, setTrackAudioFile] = useState<File | null>(null);
   const [trackAudioMetadata, setTrackAudioMetadata] = useState<AudioMetadata | null>(null);
@@ -691,6 +693,7 @@ export default function CreateReleasePage() {
         return {
           title: track.title,
           link: audioUrl,
+          isrc: track.isrc || '',
           hasDrugs: track.hasDrugs,
           lyrics: track.lyrics,
           language: track.language,
@@ -1007,6 +1010,8 @@ export default function CreateReleasePage() {
               setCurrentTrack={setCurrentTrack}
               trackTitle={trackTitle}
               setTrackTitle={setTrackTitle}
+              trackIsrc={trackIsrc}
+              setTrackIsrc={setTrackIsrc}
               trackLink={trackLink}
               setTrackLink={setTrackLink}
               trackAudioFile={trackAudioFile}

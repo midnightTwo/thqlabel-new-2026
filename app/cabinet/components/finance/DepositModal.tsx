@@ -9,7 +9,7 @@ interface DepositModalProps {
   showNotification: (message: string, type: 'success' | 'error') => void;
 }
 
-type PaymentMethod = 'sbp' | 'card_ru' | 'card_int' | 'liqpay' | 'crypto';
+type PaymentMethod = 'sbp' | 'card_ru';
 
 interface PaymentOption {
   id: PaymentMethod;
@@ -49,42 +49,7 @@ const PAYMENT_METHODS: PaymentOption[] = [
     icon: 'card',
     flag: 'ru'
   },
-  {
-    id: 'card_int',
-    title: 'International',
-    subtitle: 'Visa, Mastercard, AMEX',
-    provider: 'stripe',
-    minAmount: 5,
-    currency: 'USD',
-    currencySymbol: '$',
-    gradient: 'from-violet-500 to-purple-400',
-    icon: 'globe',
-    flag: 'int'
-  },
-  {
-    id: 'liqpay',
-    title: 'LiqPay',
-    subtitle: 'Картки України',
-    provider: 'liqpay',
-    minAmount: 50,
-    currency: 'UAH',
-    currencySymbol: '₴',
-    gradient: 'from-green-500 to-lime-400',
-    icon: 'bank',
-    flag: 'ua'
-  },
-  {
-    id: 'crypto',
-    title: 'Криптовалюта',
-    subtitle: 'BTC, ETH, USDT, TON',
-    provider: 'cryptocloud',
-    minAmount: 10,
-    currency: 'USD',
-    currencySymbol: '$',
-    gradient: 'from-orange-500 to-amber-400',
-    icon: 'crypto',
-    flag: 'crypto'
-  }
+  
 ];
 
 // SVG иконки для методов оплаты
@@ -175,8 +140,6 @@ const StarField = () => {
 };
 
 const PRESET_AMOUNTS_RUB = [500, 1000, 2000, 5000, 10000];
-const PRESET_AMOUNTS_USD = [5, 10, 25, 50, 100];
-const PRESET_AMOUNTS_UAH = [200, 500, 1000, 2000, 5000];
 
 export default function DepositModal({ userId, onClose, showNotification }: DepositModalProps) {
   const [amount, setAmount] = useState<number>(1000);
@@ -189,19 +152,10 @@ export default function DepositModal({ userId, onClose, showNotification }: Depo
 
   const selectedPayment = PAYMENT_METHODS.find(m => m.id === selectedMethod)!;
   
-  const presetAmounts = selectedPayment.currency === 'USD' || selectedPayment.currency === 'USDT'
-    ? PRESET_AMOUNTS_USD
-    : selectedPayment.currency === 'UAH'
-      ? PRESET_AMOUNTS_UAH
-      : PRESET_AMOUNTS_RUB;
+  const presetAmounts = PRESET_AMOUNTS_RUB;
 
   useEffect(() => {
-    const newPresets = selectedPayment.currency === 'USD' || selectedPayment.currency === 'USDT'
-      ? PRESET_AMOUNTS_USD
-      : selectedPayment.currency === 'UAH'
-        ? PRESET_AMOUNTS_UAH
-        : PRESET_AMOUNTS_RUB;
-    setAmount(newPresets[1]);
+    setAmount(PRESET_AMOUNTS_RUB[1]);
     setCustomAmount('');
   }, [selectedMethod]);
 
@@ -239,19 +193,27 @@ export default function DepositModal({ userId, onClose, showNotification }: Depo
         })
       });
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Ошибка создания платежа');
+      const rawText = await response.text();
+      let data: any = null;
+      try {
+        data = rawText ? JSON.parse(rawText) : null;
+      } catch {
+        data = null;
       }
 
-      if (data.confirmationUrl) {
+      if (!response.ok) {
+        const apiError = data?.error || (rawText ? rawText.slice(0, 300) : 'Ошибка создания платежа');
+        throw new Error(`(${response.status}) ${apiError}`);
+      }
+
+      if (data?.confirmationUrl) {
         window.location.href = data.confirmationUrl;
       } else {
         throw new Error('Не получена ссылка на оплату');
       }
     } catch (error: any) {
-      showNotification(error.message || 'Ошибка при создании платежа', 'error');
+      console.error('DepositModal payment error:', error);
+      showNotification(error?.message || 'Ошибка при создании платежа', 'error');
       setIsLoading(false);
     }
   };

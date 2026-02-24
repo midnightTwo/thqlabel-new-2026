@@ -7,6 +7,7 @@ export default function HomePage() {
   const router = useRouter();
   const { themeName } = useTheme();
   const isLight = themeName === 'light';
+  const logoSrc = '/logo.png?v=' + (process.env.NEXT_PUBLIC_BUILD_TIME || '');
   const [introReady, setIntroReady] = useState(false);
   
   useEffect(() => {
@@ -88,7 +89,7 @@ export default function HomePage() {
           >
             {/* БОЛЬШОЕ ЛОГО - ПОВЕРХ ВСЕГО */}
             <img 
-              src="/logo.png" 
+              src={logoSrc} 
               alt="thq" 
               className={`intro-logo absolute z-30 object-contain ${isLight ? 'invert brightness-0' : ''}`}
               style={{

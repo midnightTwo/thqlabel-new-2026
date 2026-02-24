@@ -21,6 +21,7 @@ export default function AdminMobileNav({
   isLight = false
 }: AdminMobileNavProps) {
   const router = useRouter();
+  const logoSrc = '/logo.png?v=' + (process.env.NEXT_PUBLIC_BUILD_TIME || '');
   const [isOpen, setIsOpen] = useState(false);
   const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(null);
   
@@ -83,7 +84,7 @@ export default function AdminMobileNav({
         {/* Center: Logo & Title */}
         <div className="flex items-center gap-2">
           <img 
-            src="/logo.png" 
+            src={logoSrc} 
             alt="thqlabel" 
             className="h-8 w-auto"
             style={{ filter: isLight ? 'brightness(0) saturate(100%)' : 'drop-shadow(0 0 15px rgba(160,141,241,0.6))' }}
@@ -163,7 +164,7 @@ export default function AdminMobileNav({
         <div className={`p-5 pt-6 border-b ${isLight ? 'border-gray-200' : 'border-white/10'}`}>
           <div className="flex items-center gap-3 mb-3">
             <img 
-              src="/logo.png" 
+              src={logoSrc} 
               alt="thqlabel" 
               className="h-12 w-auto"
               style={{ filter: isLight ? 'brightness(0) saturate(100%)' : 'drop-shadow(0 0 20px rgba(160,141,241,0.8))' }}

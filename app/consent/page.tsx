@@ -8,6 +8,14 @@ export default function ConsentPage() {
   const { themeName } = useTheme();
   const isLight = themeName === 'light';
 
+  const handleBack = () => {
+    if (typeof window !== 'undefined' && window.history.length > 1) {
+      router.back();
+      return;
+    }
+    router.push('/auth');
+  };
+
   const accentColor = isLight ? '#6050ba' : '#a78bfa';
   const textPrimary = isLight ? '#1f1f1f' : '#f4f4f5';
   const textSecondary = isLight ? '#374151' : '#d4d4d8';
@@ -160,7 +168,7 @@ export default function ConsentPage() {
         <footer className="mt-12 pt-6 text-center" style={{ borderTop: `1px solid ${isLight ? '#e5e7eb' : '#27272a'}` }}>
           {/* Кнопка назад */}
           <button
-            onClick={() => router.back()}
+            onClick={handleBack}
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-200 hover:opacity-80"
             style={{ 
               background: isLight ? '#f3f4f6' : '#27272a',

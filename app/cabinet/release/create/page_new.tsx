@@ -109,9 +109,11 @@ export default function CreateReleasePage() {
     hasDrugs: boolean;
     lyrics: string;
     language: string;
+    isrc?: string;
   }>>([]);
   const [currentTrack, setCurrentTrack] = useState<number | null>(null);
   const [trackTitle, setTrackTitle] = useState('');
+  const [trackIsrc, setTrackIsrc] = useState('');
   const [trackLink, setTrackLink] = useState('');
   const [trackHasDrugs, setTrackHasDrugs] = useState(false);
   const [trackLyrics, setTrackLyrics] = useState('');
@@ -235,6 +237,8 @@ export default function CreateReleasePage() {
               setCurrentTrack={setCurrentTrack}
               trackTitle={trackTitle}
               setTrackTitle={setTrackTitle}
+              trackIsrc={trackIsrc}
+              setTrackIsrc={setTrackIsrc}
               trackLink={trackLink}
               setTrackLink={setTrackLink}
               trackHasDrugs={trackHasDrugs}

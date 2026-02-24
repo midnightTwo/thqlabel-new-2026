@@ -23,6 +23,8 @@ interface TracklistStepProps {
   setCurrentTrack: (index: number | null) => void;
   trackTitle: string;
   setTrackTitle: (value: string) => void;
+  trackIsrc: string;
+  setTrackIsrc: (value: string) => void;
   trackLink: string;
   setTrackLink: (value: string) => void;
   trackAudioFile?: File | null;
@@ -45,6 +47,7 @@ interface TracklistStepProps {
   setTrackFeaturing?: (value: string[]) => void;
   trackIsInstrumental?: boolean;
   setTrackIsInstrumental?: (value: boolean) => void;
+  audioOptional?: boolean;
   onNext: () => void;
   onBack: () => void;
 }
@@ -52,11 +55,13 @@ interface TracklistStepProps {
 export default function TracklistStep({
   releaseTitle, releaseType, coverFile, existingCoverUrl, tracks, setTracks,
   currentTrack, setCurrentTrack, trackTitle, setTrackTitle, trackLink, setTrackLink,
+  trackIsrc, setTrackIsrc,
   trackAudioFile, setTrackAudioFile, trackAudioMetadata, setTrackAudioMetadata,
   trackAuthors, setTrackAuthors,
   trackHasDrugs, setTrackHasDrugs, trackLyrics, setTrackLyrics, trackLanguage, setTrackLanguage,
   trackVersion, setTrackVersion, trackProducers, setTrackProducers, trackFeaturing, setTrackFeaturing,
   trackIsInstrumental, setTrackIsInstrumental,
+  audioOptional = false,
   onNext, onBack,
 }: TracklistStepProps) {
   const { themeName } = useTheme();
@@ -126,6 +131,7 @@ export default function TracklistStep({
     const track = tracks[index];
     setCurrentTrack(index);
     setTrackTitle(track.title);
+    setTrackIsrc(track.isrc || '');
     setTrackLink(track.link);
     if (setTrackAudioFile) setTrackAudioFile(track.audioFile || null);
     if (setTrackAudioMetadata) setTrackAudioMetadata(track.audioMetadata || null);
@@ -156,6 +162,7 @@ export default function TracklistStep({
 
   const resetTrackForm = () => {
     setCurrentTrack(null); setTrackTitle(''); setTrackLink('');
+    setTrackIsrc('');
     if (setTrackAudioFile) setTrackAudioFile(null);
     if (setTrackAudioMetadata) setTrackAudioMetadata(null);
     if (setTrackAuthors) setTrackAuthors([]);
@@ -181,7 +188,7 @@ export default function TracklistStep({
     const existingTrack = currentTrack !== null && currentTrack < tracks.length ? tracks[currentTrack] : null;
     const existingTrackLink = existingTrack?.link || '';
     const existingOriginalFileName = existingTrack?.originalFileName || '';
-    if (!trackAudioFile && !existingTrackLink) { 
+    if (!audioOptional && !trackAudioFile && !existingTrackLink) { 
       showErrorToast('Загрузите аудиофайл (WAV или FLAC)'); 
       return; 
     }
@@ -198,6 +205,7 @@ export default function TracklistStep({
     
     const newTrack: Track = { 
       title: finalTitle,
+      isrc: trackIsrc?.trim() || undefined,
       // Сохраняем существующий link если нет нового файла
       link: trackAudioFile ? '' : existingTrackLink,
       audioFile: trackAudioFile || undefined,
@@ -292,6 +300,8 @@ export default function TracklistStep({
           releaseTitle={releaseTitle}
           trackTitle={trackTitle}
           setTrackTitle={setTrackTitle}
+          trackIsrc={trackIsrc}
+          setTrackIsrc={setTrackIsrc}
           trackLink={trackLink}
           trackOriginalFileName={currentTrack !== null && currentTrack < tracks.length ? tracks[currentTrack]?.originalFileName : undefined}
           trackAudioFile={trackAudioFile}

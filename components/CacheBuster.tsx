@@ -1,9 +1,13 @@
 "use client";
 
-import { useEffect, useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 
-// ⚡ ВЕРСИЯ БИЛДА — меняй это значение при каждом деплое чтобы форсировать обновление у всех
-const BUILD_VERSION = '2026-02-16-v2';
+// Авто-версия билда: Next.js подставляет это значение на этапе сборки.
+// Меняется при каждом `next build`, что устраняет рассинхрон чанков/Server Actions у части клиентов.
+const BUILD_VERSION =
+  process.env.NEXT_PUBLIC_BUILD_TIME ||
+  (process.env.NEXT_PUBLIC_BUILD_ID as string | undefined) ||
+  'unknown';
 
 /**
  * Компонент для одноразовой очистки кэша при обновлении версии
@@ -14,7 +18,13 @@ export default function CacheBuster() {
     if (typeof window === 'undefined') return;
 
     const STORAGE_KEY = 'thqlabel_build_version';
-    const savedVersion = localStorage.getItem(STORAGE_KEY);
+    let savedVersion: string | null = null;
+    try {
+      savedVersion = window.localStorage.getItem(STORAGE_KEY);
+    } catch {
+      // Если localStorage заблокирован (редкие браузеры/режимы) — не рискуем зациклить reload.
+      return;
+    }
 
     // Если версия совпадает — ничего не делаем
     if (savedVersion === BUILD_VERSION) return;
@@ -43,7 +53,11 @@ export default function CacheBuster() {
     }
 
     // Сохраняем новую версию ПЕРЕД перезагрузкой (чтобы не зациклиться)
-    localStorage.setItem(STORAGE_KEY, BUILD_VERSION);
+    try {
+      window.localStorage.setItem(STORAGE_KEY, BUILD_VERSION);
+    } catch {
+      // ignore
+    }
 
     // Жёсткая перезагрузка — браузер заново скачает все JS/CSS
     window.location.reload();

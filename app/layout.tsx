@@ -1033,14 +1033,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta httpEquiv="X-Cache" content="MISS" />
         <meta name="cache-control" content="no-cache, no-store, must-revalidate" />
         
-        <title>thqlabel</title>
-        <meta name="description" content="thqlabel - Современный музыкальный лейбл" />
+        <title>thqlabel - Музыкальный лейбл</title>
+        <meta name="description" content="thqlabel - Музыкальный лейбл. Релизы, новости, артисты." />
         
         {/* Open Graph — превью ссылок в Telegram, VK, Discord, Facebook и т.д. */}
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="thqlabel" />
-        <meta property="og:title" content="thqlabel — музыкальный лейбл" />
-        <meta property="og:description" content="Современный музыкальный лейбл. Релизы, новости, артисты." />
+        <meta property="og:title" content="thqlabel - Музыкальный лейбл" />
+        <meta property="og:description" content="thqlabel - Музыкальный лейбл. Релизы, новости, артисты." />
         <meta property="og:url" content="https://thqlabel.ru" />
         <meta property="og:image" content="https://thqlabel.ru/api/og" />
         <meta property="og:image:width" content="1200" />
@@ -1050,8 +1050,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         
         {/* Twitter Card — превью в Twitter/X */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="thqlabel — музыкальный лейбл" />
-        <meta name="twitter:description" content="Современный музыкальный лейбл. Релизы, новости, артисты." />
+        <meta name="twitter:title" content="thqlabel - Музыкальный лейбл" />
+        <meta name="twitter:description" content="thqlabel - Музыкальный лейбл. Релизы, новости, артисты." />
         <meta name="twitter:image" content="https://thqlabel.ru/api/og" />
         
         {/* Telegram специфичные */}
@@ -1070,6 +1070,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" type="image/png" sizes="512x512" href="/icon.png?v=4" />
         <link rel="apple-touch-icon" sizes="512x512" href="/icon.png?v=4" />
         <link rel="shortcut icon" href="/favicon.png?v=4" />
+        <link rel="manifest" href="/manifest.json" />
         {/* CSS fallback для тем - если JS отключён */}
         <style dangerouslySetInnerHTML={{ __html: `
           html { background: #08080a; }

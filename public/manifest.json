@@ -1,0 +1,21 @@
+{
+  "name": "thqlabel",
+  "short_name": "thqlabel",
+  "description": "thqlabel - Музыкальный лейбл",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#08080a",
+  "theme_color": "#6050ba",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

@@ -400,7 +400,7 @@ export default function DepositModal({ userId, onClose, showNotification }: Depo
                     inputMode="numeric"
                     value={customAmount || amount.toString()}
                     onChange={(e) => handleCustomAmountChange(e.target.value)}
-                    className={`bg-transparent text-5xl sm:text-6xl font-black text-center outline-none w-40 ${
+                    className={`bg-transparent text-4xl sm:text-5xl font-black text-center outline-none w-full max-w-[280px] ${
                       isLight ? 'text-[#1a1535]' : 'text-white'
                     }`}
                     style={{ caretColor: isLight ? '#8a63d2' : '#9d8df1' }}

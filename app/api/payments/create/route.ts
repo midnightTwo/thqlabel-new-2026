@@ -192,8 +192,8 @@ async function createYooKassaPayment(
     throw new Error('YooKassa не настроена. Добавьте YOOKASSA_SHOP_ID и YOOKASSA_SECRET_KEY в .env.local');
   }
 
-  // OAuth ключи (с * в начале) не работают с Payments API
-  if (secretKey.includes('*')) {
+  // OAuth ключи (начинаются с *) не работают с Payments API
+  if (secretKey.startsWith('*')) {
     throw new Error('YOOKASSA_SECRET_KEY выглядит как OAuth-ключ (начинается с "*"). Нужен Secret key из YooKassa (для API платежей).');
   }
   

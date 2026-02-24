@@ -227,12 +227,12 @@ async function createYooKassaPayment(
     paymentData.payment_method_data = { type: 'bank_card' };
   }
 
-  const doRequest = async (data: any) => {
+  const doRequest = async (data: any, customIdempotenceKey?: string) => {
     const resp = await fetch('https://api.yookassa.ru/v3/payments', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Idempotence-Key': idempotenceKey,
+        'Idempotence-Key': customIdempotenceKey || idempotenceKey,
         'Authorization': 'Basic ' + Buffer.from(`${shopId}:${secretKey}`).toString('base64'),
       },
       body: JSON.stringify(data),
@@ -244,8 +244,15 @@ async function createYooKassaPayment(
   // 1) Пробуем с выбранным методом
   let { resp, text } = await doRequest(paymentData);
 
-  // Метод оплаты (СБП / карта) задаётся явно — НЕ убираем payment_method_data при ошибке,
-  // чтобы пользователь гарантированно оплатил выбранным способом.
+  // 2) Если метод недоступен (400) — пробуем без указания метода (YooKassa покажет доступные)
+  if (!resp.ok && resp.status === 400 && paymentData.payment_method_data) {
+    console.warn('YooKassa: payment method not available, retrying without payment_method_data');
+    const fallbackData = { ...paymentData };
+    delete fallbackData.payment_method_data;
+    const retryResult = await doRequest({ ...fallbackData }, `${idempotenceKey}-fallback`);
+    resp = retryResult.resp;
+    text = retryResult.text;
+  }
 
   if (!resp.ok) {
     console.error('YooKassa error:', text);

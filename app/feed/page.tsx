@@ -1337,7 +1337,7 @@ export default function FeedPage() {
                 <p className={`text-[9px] font-medium tracking-wider ${
                   isLight ? 'text-gray-400' : 'text-white/30'
                 }`}>
-                  © 2026 <span className={isLight ? 'text-[#6050ba]/50' : 'text-[#9d8df1]/50'}>thqlabel</span>. Все права защищены.
+                  © 2026 <span className={isLight ? 'text-[#6050ba]/50' : 'text-[#9d8df1]/50'}>THQ Label</span>. Все права защищены.
                 </p>
               </div>
             </div>

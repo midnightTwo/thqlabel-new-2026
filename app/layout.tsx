@@ -568,7 +568,7 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
             >
               <img 
                 src={LOGO_SRC} 
-                alt="thqlabel" 
+                alt="THQ Label" 
                 className={`absolute left-1/2 top-1/2 h-12 w-auto object-contain transition-all duration-300 ${themeName !== 'light' ? 'group-hover:brightness-125' : ''}`}
                 style={{ 
                   transform: 'translate(-50%, -50%) scale(1.6)', 
@@ -961,7 +961,7 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
               {/* Footer */}
               <div className="sidebar-footer mt-4 pt-4">
                 <p className="text-[9px] text-center text-zinc-500">
-                  thqlabel © 2026
+                  THQ Label © 2026
                 </p>
               </div>
             </div>
@@ -1033,13 +1033,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta httpEquiv="X-Cache" content="MISS" />
         <meta name="cache-control" content="no-cache, no-store, must-revalidate" />
         
-        <title>thqlabel</title>
+        <title>THQ Label</title>
         <meta name="description" content="thq label - Современный музыкальный лейбл" />
         
         {/* Open Graph — превью ссылок в Telegram, VK, Discord, Facebook и т.д. */}
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="thqlabel" />
-        <meta property="og:title" content="thqlabel — музыкальный лейбл" />
+        <meta property="og:site_name" content="THQ Label" />
+        <meta property="og:title" content="THQ Label — музыкальный лейбл" />
         <meta property="og:description" content="Современный музыкальный лейбл. Релизы, новости, артисты." />
         <meta property="og:url" content="https://thqlabel.ru" />
         <meta property="og:image" content="https://thqlabel.ru/api/og" />
@@ -1050,7 +1050,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         
         {/* Twitter Card — превью в Twitter/X */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="thqlabel — музыкальный лейбл" />
+        <meta name="twitter:title" content="THQ Label — музыкальный лейбл" />
         <meta name="twitter:description" content="Современный музыкальный лейбл. Релизы, новости, артисты." />
         <meta name="twitter:image" content="https://thqlabel.ru/api/og" />
         

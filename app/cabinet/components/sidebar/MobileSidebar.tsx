@@ -277,7 +277,7 @@ export default function MobileSidebar({
           {/* Footer */}
           <div className="sidebar-footer mt-4 pt-4">
             <p className="text-[9px] text-center">
-              thqlabel © 2026
+              THQ Label © 2026
             </p>
           </div>
         </div>

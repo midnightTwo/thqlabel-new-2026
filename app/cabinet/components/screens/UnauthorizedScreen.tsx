@@ -40,7 +40,7 @@ export default function UnauthorizedScreen() {
             <span className="text-[#9d8df1]">авторизация</span>
           </h1>
           <p className="text-zinc-400 text-base md:text-lg max-w-xl mx-auto">
-            Войдите в свой аккаунт или создайте новый, чтобы получить доступ к личному кабинету артиста thqlabel
+            Войдите в свой аккаунт или создайте новый, чтобы получить доступ к личному кабинету артиста THQ Label
           </p>
         </div>
 

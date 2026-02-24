@@ -69,12 +69,32 @@ function BalancePageContent() {
   const [selectedMethod, setSelectedMethod] = useState('sbp');
   const [showSuccess, setShowSuccess] = useState(false);
 
-  // Проверяем статус после возврата с оплаты
+  // Проверяем статус после возврата с оплаты (с повторными попытками)
   useEffect(() => {
     const status = searchParams.get('status');
-    if (status === 'success') {
-      setShowSuccess(true);
-      setTimeout(() => setShowSuccess(false), 5000);
+    if (status === 'success' || status === 'pending') {
+      const orderId = searchParams.get('orderId');
+      if (orderId) {
+        const checkPayment = async (attempt = 1): Promise<void> => {
+          try {
+            const r = await fetch(`/api/payments/check?orderId=${orderId}`);
+            const data = await r.json();
+            if (data.status === 'succeeded' || data.status === 'completed' || data.status === 'paid') {
+              setShowSuccess(true);
+              setTimeout(() => setShowSuccess(false), 5000);
+              // Перезагрузим баланс
+              window.location.replace('/cabinet/balance');
+            } else if (data.status === 'canceled') {
+              // отменён
+            } else if (attempt < 5) {
+              setTimeout(() => checkPayment(attempt + 1), 3000);
+            }
+          } catch {
+            if (attempt < 3) setTimeout(() => checkPayment(attempt + 1), 3000);
+          }
+        };
+        checkPayment();
+      }
     }
   }, [searchParams]);
 

@@ -206,10 +206,10 @@ async function createYooKassaPayment(
     },
     confirmation: {
       type: 'redirect',
-      return_url: `${process.env.NEXT_PUBLIC_APP_URL}/cabinet?status=success&provider=yookassa&method=${encodeURIComponent(paymentMethod || 'auto')}`,
+      return_url: `${process.env.NEXT_PUBLIC_APP_URL}/cabinet?status=pending&provider=yookassa&method=${encodeURIComponent(paymentMethod || 'auto')}&orderId=${orderId}`,
     },
     capture: true,
-    description: `Пополнение баланса THQ Label #${orderId.slice(0, 8)}`,
+    description: `Пополнение баланса thqlabel #${orderId.slice(0, 8)}`,
     metadata: {
       order_id: orderId,
     },
@@ -337,7 +337,7 @@ async function createStripePayment(orderId: string, amount: number, userId: stri
         price_data: {
           currency: 'usd',
           product_data: {
-            name: 'THQ Label Balance Top-up',
+            name: 'thqlabel Balance Top-up',
             description: `Adding $${amount} to your account balance`,
           },
           unit_amount: amount * 100, // Stripe принимает в центах
@@ -374,7 +374,7 @@ async function createLiqPayPayment(orderId: string, amount: number, currency: st
     action: 'pay',
     amount: amount,
     currency: currency,
-    description: `Поповнення балансу THQ Label #${orderId.slice(0, 8)}`,
+    description: `Поповнення балансу thqlabel #${orderId.slice(0, 8)}`,
     order_id: orderId,
     result_url: `${process.env.NEXT_PUBLIC_APP_URL}/cabinet/balance?status=success`,
     server_url: `${process.env.NEXT_PUBLIC_APP_URL}/api/payments/webhook/liqpay`,

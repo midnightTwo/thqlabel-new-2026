@@ -349,7 +349,7 @@ function NewsPageContent() {
                 ? 'bg-white/60 border border-purple-300/50 text-gray-700' 
                 : 'bg-[#6050ba] text-white'
             }`}>
-              thqlabel updates
+              THQ Label updates
             </span>
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-wide mb-2 leading-none">

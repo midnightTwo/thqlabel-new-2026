@@ -432,7 +432,7 @@ function AuthPage() {
           <div className="lg:hidden w-full pt-24 pb-10 flex items-center justify-center">
             <img 
               src={logoSrc} 
-              alt="thqlabel" 
+              alt="THQ Label" 
               className={`h-24 w-auto object-contain drop-shadow-[0_0_50px_rgba(96,80,186,0.7)] ${isLight ? 'invert brightness-0' : ''}`}
             />
           </div>

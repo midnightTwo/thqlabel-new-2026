@@ -106,14 +106,45 @@ export default function CabinetPage() {
     });
   }, []);
 
-  // Возврат с оплаты (YooKassa): открываем финансы и показываем успех
+  // Возврат с оплаты (YooKassa): проверяем реальный статус платежа
   useEffect(() => {
     const status = searchParams.get('status');
-    if (status !== 'success') return;
+    if (!status || (status !== 'success' && status !== 'pending')) return;
 
+    const orderId = searchParams.get('orderId');
     const method = searchParams.get('method');
     handleTabChange('finance');
-    showNotification(`✅ Оплата успешна${method ? ` (${method})` : ''}`, 'success');
+
+    // Проверяем реальный статус через API (с повторными попытками)
+    const checkPayment = async (attempt = 1): Promise<void> => {
+      if (!orderId) {
+        showNotification('Платёж обрабатывается... Баланс обновится автоматически', 'success');
+        return;
+      }
+      try {
+        const resp = await fetch(`/api/payments/check?orderId=${orderId}`);
+        const data = await resp.json();
+        if (data.status === 'succeeded' || data.status === 'completed' || data.status === 'paid') {
+          showNotification(`Оплата ${data.credited ? 'зачислена' : 'прошла успешно'}! Баланс обновлён.`, 'success');
+        } else if (data.status === 'canceled') {
+          showNotification('Оплата отменена', 'error');
+        } else if (attempt < 5) {
+          // Платёж ещё обрабатывается — повторяем через 3 сек (до 5 попыток)
+          if (attempt === 1) showNotification('Платёж обрабатывается...', 'success');
+          setTimeout(() => checkPayment(attempt + 1), 3000);
+          return; // не убираем URL пока проверяем
+        } else {
+          showNotification('Платёж обрабатывается. Баланс обновится автоматически.', 'success');
+        }
+      } catch {
+        if (attempt < 3) {
+          setTimeout(() => checkPayment(attempt + 1), 3000);
+          return;
+        }
+        showNotification('Платёж обрабатывается... Баланс обновится автоматически', 'success');
+      }
+    };
+    checkPayment();
 
     // Убираем query-параметры, чтобы уведомление не повторялось
     router.replace('/cabinet');

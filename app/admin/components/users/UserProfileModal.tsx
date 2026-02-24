@@ -641,7 +641,7 @@ function ReleaseDetailView({ release, onClose, supabase }: { release: Release; o
                     <div className="bg-gradient-to-br from-violet-500/10 to-purple-600/5 rounded-xl px-3 py-2 border border-violet-500/20">
                       <div className="text-[10px] text-violet-400 uppercase tracking-wider font-medium">Лейбл</div>
                       <div className="text-sm font-bold text-white truncate">
-                        {release.label || 'thqlabel'}
+                        {release.label || 'THQ Label'}
                       </div>
                     </div>
                     <div className="bg-white/[0.03] rounded-xl px-3 py-2">

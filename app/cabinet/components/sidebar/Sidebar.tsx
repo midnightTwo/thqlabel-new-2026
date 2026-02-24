@@ -161,7 +161,7 @@ export default function Sidebar({
           {/* Завершающий элемент */}
           <div className="mt-6 pt-4 border-t border-white/5">
             <p className="text-[9px] text-zinc-700 text-center">
-              thqlabel © 2026
+              THQ Label © 2026
             </p>
           </div>
         </>

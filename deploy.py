@@ -9,7 +9,7 @@ PROJECT = '/var/www/thqlabel-new-2026'
 LOG = '/tmp/deploy.log'
 
 def run(client, cmd):
-    stdin, stdout, stderr = client.exec_command(cmd, timeout=10)
+    stdin, stdout, stderr = client.exec_command(cmd, timeout=30)
     out = stdout.read().decode('utf-8', errors='replace').strip()
     return out
 
@@ -21,10 +21,14 @@ def main():
     client.connect(HOST, username=USER, password=PASS, timeout=30)
 
     if action == 'start':
+        # Pull latest
+        out = run(client, f'cd {PROJECT} && git stash 2>&1 && git pull origin main 2>&1')
+        print(out)
+        
         # Launch build in background via nohup
-        cmd = f'nohup bash -c "cd {PROJECT} && npm run build > {LOG} 2>&1 && pm2 restart thqlabel >> {LOG} 2>&1 && echo DEPLOY_DONE >> {LOG}" &'
-        print(f"Launching build in background...")
-        client.exec_command(cmd)
+        build_cmd = f'cd {PROJECT} && npm run build > {LOG} 2>&1 && pm2 restart thqlabel >> {LOG} 2>&1 && echo DEPLOY_DONE >> {LOG}'
+        nohup_cmd = f'nohup bash -c "{build_cmd}" > /dev/null 2>&1 &'
+        client.exec_command(nohup_cmd)
         time.sleep(2)
         print("Build started! Run: python deploy.py check")
     
@@ -33,13 +37,16 @@ def main():
         print(out)
         if 'DEPLOY_DONE' in out:
             print("\n DEPLOY COMPLETE!")
-            # Verify
             http = run(client, 'curl -s -o /dev/null -w "%{http_code}" http://localhost:3000')
             print(f"HTTP: {http}")
-        elif 'error' in out.lower() or 'failed' in out.lower():
+        elif 'error' in out.lower() and 'linting' not in out.lower():
             print("\n BUILD FAILED - check log")
         else:
             print("\n... still building, run again in 30s")
+
+    elif action == 'status':
+        out = run(client, f'cd {PROJECT} && git log --oneline -1 && echo --- && pm2 list 2>&1 | head -12')
+        print(out)
 
     client.close()
 

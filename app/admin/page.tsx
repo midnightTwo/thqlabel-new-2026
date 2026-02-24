@@ -436,7 +436,7 @@ function AdminPageContent() {
             <div className="flex items-center justify-between gap-2 sm:gap-3 mb-2">
               <img 
                 src={logoSrc} 
-                alt="thqlabel" 
+                alt="THQ Label" 
                 className="h-10 sm:h-12 md:h-16 w-auto"
                 style={{ 
                   filter: isLight 

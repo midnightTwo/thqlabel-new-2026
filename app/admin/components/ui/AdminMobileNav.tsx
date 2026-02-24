@@ -85,7 +85,7 @@ export default function AdminMobileNav({
         <div className="flex items-center gap-2">
           <img 
             src={logoSrc} 
-            alt="thqlabel" 
+            alt="THQ Label" 
             className="h-8 w-auto"
             style={{ filter: isLight ? 'brightness(0) saturate(100%)' : 'drop-shadow(0 0 15px rgba(160,141,241,0.6))' }}
           />
@@ -165,7 +165,7 @@ export default function AdminMobileNav({
           <div className="flex items-center gap-3 mb-3">
             <img 
               src={logoSrc} 
-              alt="thqlabel" 
+              alt="THQ Label" 
               className="h-12 w-auto"
               style={{ filter: isLight ? 'brightness(0) saturate(100%)' : 'drop-shadow(0 0 20px rgba(160,141,241,0.8))' }}
             />

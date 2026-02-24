@@ -69,7 +69,7 @@ export async function GET() {
             letterSpacing: '6px',
           }}
         >
-          thqlabel
+          THQ Label
         </span>
 
         {/* Подзаголовок */}

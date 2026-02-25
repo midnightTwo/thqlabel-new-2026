@@ -202,16 +202,18 @@ export default function PaymentStep({
             'Authorization': `Bearer ${session.access_token}`
           }
         });
-        const data = await response.json();
+        const contentType = response.headers.get('content-type') || '';
+        const data = contentType.includes('application/json') ? await response.json() : null;
+        const errorMessage = data?.error || `HTTP ${response.status}`;
         
         if (response.ok && isMounted) {
           setBalance({
-            balance: data.balance,
-            frozen_balance: data.frozen_balance,
-            currency: data.currency || 'RUB'
+            balance: Number(data?.balance ?? 0),
+            frozen_balance: Number(data?.frozen_balance ?? 0),
+            currency: data?.currency || 'RUB'
           });
         } else {
-          console.error('Balance load error:', data.error);
+          console.error('Balance load error:', errorMessage);
         }
       } catch (err) {
         console.error('Failed to load balance:', err);
@@ -243,16 +245,18 @@ export default function PaymentStep({
           'Authorization': `Bearer ${session.access_token}`
         }
       });
-      const data = await response.json();
+      const contentType = response.headers.get('content-type') || '';
+      const data = contentType.includes('application/json') ? await response.json() : null;
+      const errorMessage = data?.error || `HTTP ${response.status}`;
       
       if (response.ok) {
         setBalance({
-          balance: data.balance,
-          frozen_balance: data.frozen_balance,
-          currency: data.currency || 'RUB'
+          balance: Number(data?.balance ?? 0),
+          frozen_balance: Number(data?.frozen_balance ?? 0),
+          currency: data?.currency || 'RUB'
         });
       } else {
-        console.error('Balance load error:', data.error);
+        console.error('Balance load error:', errorMessage);
       }
     } catch (err) {
       console.error('Failed to load balance:', err);
@@ -347,6 +351,23 @@ export default function PaymentStep({
       
       if (balance) {
         setBalance({ ...balance, balance: data.newBalance });
+      }
+
+      // Верификация: перезагружаем баланс с сервера для подтверждения списания
+      try {
+        const verifyRes = await fetch('/api/balance', {
+          headers: { 'Authorization': `Bearer ${session.access_token}` }
+        });
+        if (verifyRes.ok) {
+          const verifyData = await verifyRes.json();
+          setBalance({
+            balance: verifyData.balance,
+            frozen_balance: verifyData.frozen_balance,
+            currency: verifyData.currency || 'RUB'
+          });
+        }
+      } catch {
+        // Некритично — UI уже обновлён из ответа purchase
       }
 
       onPaymentComplete(data.transactionId, false);
@@ -577,7 +598,6 @@ export default function PaymentStep({
         <div className={`text-xs ${isLight ? 'text-gray-600' : 'text-zinc-400'} space-y-1`}>
           <p>• Единоразовый платёж за дистрибуцию релиза</p>
           <p>• Размещение на всех выбранных площадках</p>
-          <p>• Без роялти и скрытых платежей</p>
         </div>
       </div>
 

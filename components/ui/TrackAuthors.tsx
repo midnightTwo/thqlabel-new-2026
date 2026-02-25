@@ -102,28 +102,28 @@ export default function TrackAuthors({
   return (
     <div>
       <div className="flex items-center justify-between mb-2">
-        <label className="text-sm text-gray-600 dark:text-zinc-400 flex items-center gap-2">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-amber-500 dark:text-amber-400/70">
+        <label className={`text-sm flex items-center gap-2 ${isLight ? 'text-gray-600' : 'text-zinc-400'}`}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={isLight ? 'text-amber-500' : 'text-amber-400/70'}>
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
             <circle cx="12" cy="7" r="4"/>
           </svg>
           Авторы (ФИО)
-          {authors.length > 0 && <span className="text-gray-400 dark:text-zinc-600 text-xs">({authors.length})</span>}
+          {authors.length > 0 && <span className={`text-xs ${isLight ? 'text-gray-400' : 'text-zinc-600'}`}>({authors.length})</span>}
         </label>
       </div>
 
       {/* Пояснение */}
       {!compact && (
-        <div className="mb-3 px-3 py-2 bg-amber-50 dark:bg-amber-500/5 border border-amber-200 dark:border-amber-500/10 rounded-lg">
-          <p className="text-xs text-gray-600 dark:text-zinc-400 flex items-start gap-2">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="flex-shrink-0 mt-0.5 text-amber-500 dark:text-amber-400/50">
+        <div className={`mb-3 px-3 py-2 rounded-lg border ${isLight ? 'bg-amber-50 border-amber-200' : 'bg-amber-500/5 border-amber-500/10'}`}>
+          <p className={`text-xs flex items-start gap-2 ${isLight ? 'text-gray-600' : 'text-zinc-400'}`}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={`flex-shrink-0 mt-0.5 ${isLight ? 'text-amber-500' : 'text-amber-400/50'}`}>
               <circle cx="12" cy="12" r="10"/>
               <line x1="12" y1="16" x2="12" y2="12"/>
               <line x1="12" y1="8" x2="12.01" y2="8"/>
             </svg>
             <span>
               Укажите <strong>ФИО</strong> авторов трека. Выберите роль и добавьте.
-              {showDragDrop && <><br/><span className="text-gray-400 dark:text-zinc-500">Перетаскивайте для изменения порядка.</span></>}
+              {showDragDrop && <><br/><span className={isLight ? 'text-gray-400' : 'text-zinc-500'}>Перетаскивайте для изменения порядка.</span></>}
             </span>
           </p>
         </div>
@@ -155,7 +155,7 @@ export default function TrackAuthors({
               >
                 {/* Иконка перетаскивания - только если больше 1 */}
                 {showDragDrop && (
-                  <div className="text-amber-500 dark:text-amber-400/40 hover:text-amber-600 dark:hover:text-amber-300/60 transition touch-manipulation min-w-[20px] sm:min-w-[16px] flex justify-center">
+                  <div className={`transition touch-manipulation min-w-[20px] sm:min-w-[16px] flex justify-center ${isLight ? 'text-amber-500 hover:text-amber-600' : 'text-amber-400/40 hover:text-amber-300/60'}`}>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4 sm:w-4 sm:h-4">
                       <circle cx="9" cy="5" r="1" fill="currentColor"/>
                       <circle cx="9" cy="12" r="1" fill="currentColor"/>
@@ -223,7 +223,7 @@ export default function TrackAuthors({
           {showRoleDropdown && (
             <>
               <div className="fixed inset-0 z-10" onClick={() => setShowRoleDropdown(false)} />
-              <div className="absolute top-full left-0 right-0 sm:right-auto mt-1 bg-white dark:bg-[#0d0d0f] border border-gray-200 dark:border-amber-500/20 rounded-xl shadow-xl z-20 overflow-hidden min-w-[160px] sm:min-w-[200px] max-h-[50vh] overflow-y-auto">
+              <div className={`role-dropdown-menu absolute top-full left-0 right-0 sm:right-auto mt-1 rounded-xl shadow-xl z-20 overflow-hidden min-w-[160px] sm:min-w-[200px] max-h-[50vh] overflow-y-auto border ${isLight ? 'bg-white border-gray-200' : 'bg-[#0d0d0f] border-amber-500/20'}`}>
                 {TRACK_AUTHOR_ROLES.map((role) => (
                   <button
                     key={role.value}
@@ -232,10 +232,11 @@ export default function TrackAuthors({
                       setNewRole(role.value as TrackAuthor['role']);
                       setShowRoleDropdown(false);
                     }}
-                    className="w-full px-3 py-2.5 sm:py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-white/10 transition flex items-center justify-between gap-4 touch-manipulation"
+                    className={`w-full px-3 py-2.5 sm:py-2 text-left text-sm transition flex items-center justify-between gap-4 touch-manipulation ${isLight ? 'hover:bg-gray-100' : 'hover:bg-white/10'}`}
+                    style={{ color: isLight ? '#1f2937' : '#ffffff' }}
                   >
-                    <span className="text-gray-900 dark:text-white">{role.label}</span>
-                    <span className="text-gray-500 dark:text-zinc-500 text-xs">{role.labelRu}</span>
+                    <span>{role.label}</span>
+                    <span className="text-xs" style={{ color: isLight ? '#6b7280' : '#71717a' }}>{role.labelRu}</span>
                   </button>
                 ))}
               </div>
@@ -288,7 +289,7 @@ export default function TrackAuthors({
       </div>
 
       {authors.length === 0 && (
-        <p className="text-xs text-gray-500 dark:text-zinc-500 mt-2">
+        <p className={`text-xs mt-2 ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>
           Введите ФИО и нажмите Enter или кликните в другое место
         </p>
       )}

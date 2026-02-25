@@ -15,6 +15,7 @@ interface FinanceTabProps {
   withdrawalRequests: any[];
   showNotification: (message: string, type: 'success' | 'error') => void;
   reloadRequests: () => void;
+  isActive?: boolean;
 }
 
 export default function FinanceTab({
@@ -25,6 +26,7 @@ export default function FinanceTab({
   withdrawalRequests,
   showNotification,
   reloadRequests,
+  isActive = true,
 }: FinanceTabProps) {
   const [showWithdrawalForm, setShowWithdrawalForm] = useState(false);
   const [showDepositModal, setShowDepositModal] = useState(false);
@@ -68,6 +70,13 @@ export default function FinanceTab({
   useEffect(() => {
     loadBalanceData();
   }, [userId]);
+
+  // Перезагружаем баланс при переключении на вкладку (KeepAlive не размонтирует компонент)
+  useEffect(() => {
+    if (isActive) {
+      loadBalanceData();
+    }
+  }, [isActive]);
 
   // Обновляем данные после успешного пополнения
   const handleDepositClose = () => {

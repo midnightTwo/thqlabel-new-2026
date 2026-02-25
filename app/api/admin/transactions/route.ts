@@ -231,10 +231,10 @@ export async function POST(request: NextRequest) {
       }, { status: 400 });
     }
 
-    // Получаем текущий баланс пользователя
+    // Получаем профиль пользователя
     const { data: userProfile, error: profileError } = await supabaseAdmin
       .from('profiles')
-      .select('balance, display_name, email')
+      .select('display_name, email')
       .eq('id', userId)
       .single();
 
@@ -242,7 +242,21 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Пользователь не найден' }, { status: 404 });
     }
 
-    const currentBalance = parseFloat(userProfile.balance) || 0;
+    // Получаем АКТУАЛЬНЫЙ баланс из user_balances (это основная таблица)
+    let currentBalance = 0;
+    const { data: balanceRow } = await supabaseAdmin
+      .from('user_balances')
+      .select('balance')
+      .eq('user_id', userId)
+      .single();
+
+    if (balanceRow) {
+      currentBalance = parseFloat(balanceRow.balance) || 0;
+    } else {
+      // Создаём запись если нет
+      await supabaseAdmin.from('user_balances').insert({ user_id: userId, balance: 0 });
+    }
+
     const txAmount = parseFloat(amount);
 
     // Для коррекций/adjustment amount может быть отрицательным
@@ -300,27 +314,46 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Ошибка создания транзакции' }, { status: 500 });
     }
 
-    // Обновляем баланс в profiles
-    const { error: updateProfileError } = await supabaseAdmin
-      .from('profiles')
-      .update({ balance: newBalance })
-      .eq('id', userId);
+    // Обновляем баланс в user_balances АТОМАРНО
+    // Перечитываем баланс непосредственно перед обновлением для защиты от race condition
+    const { data: freshBalance } = await supabaseAdmin
+      .from('user_balances')
+      .select('balance')
+      .eq('user_id', userId)
+      .single();
+    
+    const actualCurrentBalance = freshBalance ? parseFloat(freshBalance.balance) || 0 : 0;
+    const actualNewBalance = actualCurrentBalance + balanceChange;
 
-    if (updateProfileError) {
-      console.error('Profile balance update error:', updateProfileError);
+    const { error: balanceUpdateError } = await supabaseAdmin
+      .from('user_balances')
+      .upsert({
+        user_id: userId,
+        balance: actualNewBalance,
+        updated_at: new Date().toISOString()
+      }, { onConflict: 'user_id' });
+
+    if (balanceUpdateError) {
+      console.error('user_balances update error:', balanceUpdateError);
       // Откатываем транзакцию
       await supabaseAdmin.from('transactions').delete().eq('id', transaction.id);
       return NextResponse.json({ error: 'Ошибка обновления баланса' }, { status: 500 });
     }
 
-    // Обновляем баланс в user_balances
+    // Если баланс изменился между чтением и записью — обновляем транзакцию
+    if (Math.abs(actualCurrentBalance - currentBalance) > 0.01) {
+      console.warn(`Balance changed during transaction! user=${userId}, read=${currentBalance}, actual=${actualCurrentBalance}, newBalance=${actualNewBalance}`);
+      await supabaseAdmin.from('transactions').update({
+        balance_before: actualCurrentBalance,
+        balance_after: actualNewBalance
+      }).eq('id', transaction.id);
+    }
+
+    // Синхронизируем profiles.balance (для обратной совместимости)
     await supabaseAdmin
-      .from('user_balances')
-      .upsert({
-        user_id: userId,
-        balance: newBalance,
-        updated_at: new Date().toISOString()
-      }, { onConflict: 'user_id' });
+      .from('profiles')
+      .update({ balance: actualNewBalance })
+      .eq('id', userId);
 
     return NextResponse.json({
       success: true,
@@ -329,8 +362,8 @@ export async function POST(request: NextRequest) {
         id: userId,
         name: userProfile.display_name,
         email: userProfile.email,
-        balanceBefore: currentBalance,
-        balanceAfter: newBalance
+        balanceBefore: actualCurrentBalance,
+        balanceAfter: actualNewBalance
       }
     });
 

@@ -2,6 +2,7 @@
 import React from 'react';
 import { useDroppable } from '@dnd-kit/core';
 import { createPortal } from 'react-dom';
+import { useTheme } from '@/contexts/ThemeContext';
 
 interface TrashZoneProps {
   isActive: boolean; // Есть ли активное перетаскивание
@@ -12,6 +13,8 @@ export function TrashZone({ isActive, isOver }: TrashZoneProps) {
   const { setNodeRef } = useDroppable({
     id: 'trash-zone',
   });
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
   
   const [mounted, setMounted] = React.useState(false);
   
@@ -46,7 +49,9 @@ export function TrashZone({ isActive, isOver }: TrashZoneProps) {
           flex items-center justify-center
           ${isOver 
             ? 'bg-red-500 shadow-2xl shadow-red-500/60' 
-            : 'bg-red-500/20 backdrop-blur-xl border-2 border-red-500/40'
+            : isLight
+              ? 'bg-red-100 backdrop-blur-xl border-2 border-red-300'
+              : 'bg-red-500/20 backdrop-blur-xl border-2 border-red-500/40'
           }
         `}>
           {/* Свечение при hover */}
@@ -59,7 +64,7 @@ export function TrashZone({ isActive, isOver }: TrashZoneProps) {
             className={`
               w-6 h-6 sm:w-8 sm:h-8
               transition-colors duration-200
-              ${isOver ? 'text-white' : 'text-red-400'}
+              ${isOver ? 'text-white' : isLight ? 'text-red-500' : 'text-red-400'}
             `}
             viewBox="0 0 24 24"
             fill="none"
@@ -86,7 +91,9 @@ export function TrashZone({ isActive, isOver }: TrashZoneProps) {
             text-[11px] sm:text-xs font-bold px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl shadow-lg
             ${isOver 
               ? 'bg-red-500 text-white animate-pulse' 
-              : 'bg-zinc-900/95 text-white backdrop-blur-md border border-white/20'
+              : isLight
+                ? 'bg-white text-red-600 border border-red-200 shadow-red-100'
+                : 'bg-zinc-900/95 text-white backdrop-blur-md border border-white/20'
             }
           `}>
             {isOver ? 'Отпустите!' : 'Удалить'}

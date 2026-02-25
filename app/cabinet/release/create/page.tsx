@@ -552,6 +552,7 @@ export default function CreateReleasePage() {
   
   // Contract state
   const [agreedToContract, setAgreedToContract] = useState(false);
+  const [signatureDataUrl, setSignatureDataUrl] = useState('');
   
   // Promo state
   const [focusTrack, setFocusTrack] = useState('');
@@ -723,6 +724,7 @@ export default function CreateReleasePage() {
         countries: getAllCountries().filter(c => !excludedCountries.includes(c)),
         contract_agreed: agreedToContract,
         contract_agreed_at: agreedToContract ? new Date().toISOString() : null,
+        contract_signature: signatureDataUrl || null,
         platforms: selectedPlatformsList,
         focus_track: focusTrack || null,
         focus_track_promo: focusTrackPromo || null,
@@ -1054,6 +1056,8 @@ export default function CreateReleasePage() {
             <ContractStep
               agreedToContract={agreedToContract}
               setAgreedToContract={setAgreedToContract}
+              signatureDataUrl={signatureDataUrl}
+              setSignatureDataUrl={setSignatureDataUrl}
               onNext={() => handleNextStep('platforms')}
               onBack={() => setCurrentStep('countries')}
             />

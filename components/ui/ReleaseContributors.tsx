@@ -223,7 +223,7 @@ export default function ReleaseContributors({
           {showRoleDropdown && (
             <>
               <div className="fixed inset-0 z-10" onClick={() => setShowRoleDropdown(false)} />
-              <div className={`absolute top-full left-0 right-0 sm:right-auto mt-1 rounded-xl shadow-xl z-20 overflow-hidden min-w-[180px] sm:min-w-[220px] max-h-[50vh] overflow-y-auto ${
+              <div className={`role-dropdown-menu absolute top-full left-0 right-0 sm:right-auto mt-1 rounded-xl shadow-xl z-20 overflow-hidden min-w-[180px] sm:min-w-[220px] max-h-[50vh] overflow-y-auto ${
                 isLight ? 'bg-white border border-gray-200' : 'bg-[#0d0d0f] border border-rose-500/20'
               }`}>
                 {CONTRIBUTOR_ROLES.map((role) => (
@@ -235,11 +235,12 @@ export default function ReleaseContributors({
                       setShowRoleDropdown(false);
                     }}
                     className={`w-full px-3 py-2.5 sm:py-2.5 text-left text-sm transition flex items-center justify-between gap-4 touch-manipulation ${
-                      isLight ? 'hover:bg-gray-100 text-gray-800' : 'hover:bg-white/10 text-white'
+                      isLight ? 'hover:bg-gray-100' : 'hover:bg-white/10'
                     }`}
+                    style={{ color: isLight ? '#1f2937' : '#ffffff' }}
                   >
                     <span>{role.label}</span>
-                    <span className={`text-xs ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>{role.labelRu}</span>
+                    <span className={`text-xs`} style={{ color: isLight ? '#6b7280' : '#71717a' }}>{role.labelRu}</span>
                   </button>
                 ))}
               </div>

@@ -217,10 +217,17 @@ export function TurboNavigation() {
     };
   }, [handleMouseDown, handleMouseOver, handleTouchStart, handleFocus, prefetchAllLinks, processPrefetchQueue]);
 
-  // При смене страницы - prefetch новых ссылок
+  // При смене страницы - prefetch новых ссылок (с увеличенной задержкой чтобы не блокировать рендер)
   useEffect(() => {
-    const timer = setTimeout(prefetchAllLinks, 50);
-    return () => clearTimeout(timer);
+    let cancelled = false;
+    const timer = setTimeout(() => {
+      if (!cancelled && typeof requestIdleCallback !== 'undefined') {
+        requestIdleCallback(() => { if (!cancelled) prefetchAllLinks(); });
+      } else if (!cancelled) {
+        prefetchAllLinks();
+      }
+    }, 1500);
+    return () => { cancelled = true; clearTimeout(timer); };
   }, [pathname, prefetchAllLinks]);
 
   return null;

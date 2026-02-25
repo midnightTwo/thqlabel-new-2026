@@ -259,7 +259,7 @@ export default function ReleaseInfoStep({
                   <button onClick={() => setGenre('')} className={`text-xl ${isLight ? 'text-gray-400 hover:text-gray-600' : 'text-zinc-400 hover:text-white'}`}>×</button>
                 </div>
               ) : (
-                <div className="relative">
+                <div className="relative" style={{ zIndex: 9999 }}>
                   <button
                     type="button"
                     onClick={() => setShowGenreDropdown(!showGenreDropdown)}
@@ -285,20 +285,21 @@ export default function ReleaseInfoStep({
                   {showGenreDropdown && (
                     <>
                       <div 
-                        className="fixed inset-0 z-10" 
+                        className="fixed inset-0 z-[9998]" 
                         onClick={() => setShowGenreDropdown(false)}
                       />
                       <div 
-                        className={`absolute top-full left-0 right-0 mt-2 border rounded-xl overflow-hidden z-20 origin-top ${
+                        data-dropdown="genre"
+                        className={`genre-dropdown-menu absolute bottom-full left-0 right-0 mb-2 border rounded-xl overflow-hidden z-[9999] origin-bottom ${
                           isLight 
-                            ? 'bg-white border-gray-200 shadow-lg' 
+                            ? 'bg-white border-gray-200 shadow-xl' 
                             : 'bg-[#0d0d0f] border-white/10 shadow-2xl shadow-black/50'
                         }`}
                         style={{
-                          animation: 'dropdownExpand 0.2s ease-out'
+                          animation: 'dropdownExpandUp 0.2s ease-out'
                         }}
                       >
-                        <div className="max-h-64 overflow-y-auto scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                        <div className="max-h-80 overflow-y-auto scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                           {genres.map((genreOption) => (
                             <button
                               key={genreOption}
@@ -307,10 +308,10 @@ export default function ReleaseInfoStep({
                                 setGenre(genreOption);
                                 setShowGenreDropdown(false);
                               }}
-                              className={`w-full px-4 py-3 text-left transition-colors border-b last:border-0 ${
+                              className={`genre-option-btn w-full px-4 py-3 text-left transition-colors border-b last:border-0 ${
                                 isLight 
-                                  ? 'text-gray-900 hover:bg-purple-50 border-gray-100' 
-                                  : 'text-white hover:bg-[#6050ba]/20 border-white/5'
+                                  ? 'hover:bg-purple-50 border-gray-100 !text-gray-900' 
+                                  : 'hover:bg-[#6050ba]/20 border-white/5 !text-white'
                               }`}
                             >
                               {genreOption}

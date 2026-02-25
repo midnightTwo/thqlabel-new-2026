@@ -597,7 +597,7 @@ function AdminPageContent() {
           
           {/* Contracts Tab */}
           <KeepAliveTabPanel isActive={activeTab === 'contracts'} hasBeenActive={visitedTabs.has('contracts')}>
-            <ContractsTab />
+            {supabase && <ContractsTab supabase={supabase} />}
           </KeepAliveTabPanel>
           
           {/* Reports Tab */}

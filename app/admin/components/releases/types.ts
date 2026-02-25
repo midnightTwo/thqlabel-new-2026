@@ -53,6 +53,23 @@ export interface Release {
   focus_track_promo?: string;
   album_description?: string;
   bandlink?: string;
+  contract_agreed?: boolean;
+  contract_agreed_at?: string;
+  contract_signature?: string;
+  contract_number?: string;
+  contract_full_name?: string;
+  contract_country?: string;
+  contract_passport?: string;
+  contract_passport_issued_by?: string;
+  contract_passport_code?: string;
+  contract_passport_date?: string;
+  contract_email?: string;
+  contract_bank_account?: string;
+  contract_bank_bik?: string;
+  contract_bank_corr?: string;
+  contract_card_number?: string;
+  contract_signed_at?: string;
+  contract_data?: Record<string, string> | null;
 }
 
 export interface Track {

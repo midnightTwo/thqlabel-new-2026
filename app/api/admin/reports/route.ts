@@ -1047,20 +1047,36 @@ async function processReportFiles(
           });
         
         // Обновляем баланс в ОБЕИХ таблицах (для совместимости)
+        // ВАЖНО: Перечитываем баланс непосредственно перед записью (защита от race condition)
+        const { data: freshBal } = await supabaseAdmin
+          .from('user_balances')
+          .select('balance')
+          .eq('user_id', userId)
+          .single();
+        
+        const actualCurrentBalance = freshBal ? parseFloat(freshBal.balance || '0') : currentBalance;
+        const actualNewBalance = actualCurrentBalance + amount;
+        
         // 1. user_balances (новая система - основная)
         await supabaseAdmin
           .from('user_balances')
           .upsert({ 
             user_id: userId, 
-            balance: newBalance,
+            balance: actualNewBalance,
             updated_at: new Date().toISOString()
           }, { onConflict: 'user_id' });
         
         // 2. profiles (старая система - для совместимости)
         await supabaseAdmin
           .from('profiles')
-          .update({ balance: newBalance })
+          .update({ balance: actualNewBalance })
           .eq('id', userId);
+        
+        // Если баланс изменился — обновляем транзакцию
+        if (Math.abs(actualCurrentBalance - currentBalance) > 0.01) {
+          console.warn(`Payout: balance changed during processing! user=${userId}, read=${currentBalance}, actual=${actualCurrentBalance}`);
+          currentBalance = actualCurrentBalance;
+        }
         
         // Записываем транзакцию для отображения в истории
         const transactionData = {
@@ -1068,8 +1084,8 @@ async function processReportFiles(
           type: 'payout',
           amount: amount,
           currency: 'RUB',
-          balance_before: currentBalance,
-          balance_after: newBalance,
+          balance_before: actualCurrentBalance,
+          balance_after: actualNewBalance,
           status: 'completed',
           description: `Роялти за ${quarter} ${year} (отчёт дистрибьютора)`,
           payment_method: 'royalty',
@@ -1098,7 +1114,7 @@ async function processReportFiles(
           console.log('Transaction created successfully:', txData?.id);
         }
         
-        console.log(`Payout created for user ${userId}: ${amount} RUB, new balance: ${newBalance}`);
+        console.log(`Payout created for user ${userId}: ${amount} RUB, new balance: ${actualNewBalance}`);
         result.stats.payoutsCreated++;
       } catch (payoutError) {
         console.error(`Error creating payout for user ${userId}:`, payoutError);

@@ -6,6 +6,7 @@ import { showSuccessToast, showErrorToast } from '@/lib/utils/showToast';
 import { CONTRIBUTOR_ROLES } from './ReleaseInfoStep';
 import { TrackAuthor, TRACK_AUTHOR_ROLES } from '@/components/ui/TrackAuthors';
 import { useTheme } from '@/contexts/ThemeContext';
+import { getPaymentTotal } from '@/lib/utils/calculatePayment';
 
 // Хелпер для форматирования авторов трека
 const formatTrackAuthors = (authors: string | string[] | TrackAuthor[] | undefined): string => {
@@ -1204,7 +1205,7 @@ export default function SendStep({
                   status: 'pending',
                   payment_status: 'verified', // Оплачено через баланс
                   payment_transaction_id: paymentTransactionId,
-                  payment_amount: 500,
+                  payment_amount: getPaymentTotal(releaseType, tracksCount),
                 };
                 
                 // Если есть draftId — обновляем существующий черновик (убираем статус draft)

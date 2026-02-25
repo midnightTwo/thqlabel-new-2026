@@ -68,11 +68,11 @@ export async function GET(request: NextRequest) {
     }
 
     return NextResponse.json({
-      balance: parseFloat(balance.balance),
-      frozen_balance: parseFloat(balance.frozen_balance),
-      total_deposited: parseFloat(balance.total_deposited),
-      total_spent: parseFloat(balance.total_spent),
-      currency: balance.currency,
+      balance: Number(balance.balance ?? 0),
+      frozen_balance: Number(balance.frozen_balance ?? 0),
+      total_deposited: Number(balance.total_deposited ?? 0),
+      total_spent: Number(balance.total_spent ?? 0),
+      currency: balance.currency || 'RUB',
     });
 
   } catch (error) {

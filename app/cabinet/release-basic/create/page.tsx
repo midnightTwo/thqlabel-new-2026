@@ -22,6 +22,7 @@ import {
   ReleaseTypeSelector,
   getAllPlatforms,
 } from './components';
+import { ContractFormData, getEmptyContractData } from './components/contractUtils';
 
 export type ReleaseType = 'single' | 'ep' | 'album';
 
@@ -678,6 +679,9 @@ export default function CreateReleaseBasicPage() {
   
   // Contract state
   const [agreedToContract, setAgreedToContract] = useState(false);
+  const [signatureDataUrl, setSignatureDataUrl] = useState('');
+  const [contractFormData, setContractFormData] = useState<ContractFormData>(getEmptyContractData());
+  const [contractNumber, setContractNumber] = useState('');
   
   // Promo state
   const [focusTrack, setFocusTrack] = useState('');
@@ -696,6 +700,7 @@ export default function CreateReleaseBasicPage() {
   const [isSavingDraft, setIsSavingDraft] = useState(false);
   const [isPayingLater, setIsPayingLater] = useState(false); // Отдельное состояние для "Оплатить позже"
   const [mounted, setMounted] = useState(false);
+  const [contractFullScreen, setContractFullScreen] = useState(false);
   
   // Состояние завершённости шагов для отслеживания появления галочек
   const [completedSteps, setCompletedSteps] = useState<Set<string>>(new Set());
@@ -1018,6 +1023,21 @@ export default function CreateReleaseBasicPage() {
         platforms: selectedPlatformsList.length > 0 ? selectedPlatformsList : null,
         contract_agreed: agreedToContract,
         contract_agreed_at: agreedToContract ? new Date().toISOString() : null,
+        contract_signature: signatureDataUrl || null,
+        contract_number: contractNumber || null,
+        contract_full_name: contractFormData.fullName || null,
+        contract_country: contractFormData.country || null,
+        contract_passport: contractFormData.passport || null,
+        contract_passport_issued_by: contractFormData.passportIssuedBy || null,
+        contract_passport_code: contractFormData.passportCode || null,
+        contract_passport_date: contractFormData.passportDate || null,
+        contract_email: contractFormData.email || null,
+        contract_bank_account: contractFormData.bankAccount || null,
+        contract_bank_bik: contractFormData.bankBik || null,
+        contract_bank_corr: contractFormData.bankCorr || null,
+        contract_card_number: contractFormData.cardNumber || null,
+        contract_signed_at: agreedToContract && signatureDataUrl ? new Date().toISOString() : null,
+        contract_data: agreedToContract ? contractFormData : null,
         focus_track: focusTrack || null,
         focus_track_promo: focusTrackPromo || null,
         album_description: albumDescription || null,
@@ -1036,6 +1056,7 @@ export default function CreateReleaseBasicPage() {
           .eq('id', draftId);
         
         if (error) {
+          console.error('Draft update error:', error);
           throw error;
         }
         return draftId;
@@ -1043,10 +1064,11 @@ export default function CreateReleaseBasicPage() {
         const { data, error } = await supabase
           .from('releases_basic')
           .insert([draftData])
-          .select()
+          .select('id')
           .single();
         
         if (error) {
+          console.error('Draft save error:', error);
           throw error;
         }
         if (data) {
@@ -1054,8 +1076,15 @@ export default function CreateReleaseBasicPage() {
           return data.id;
         }
       }
-    } catch {
-      alert('Ошибка сохранения черновика. Проверьте консоль.');
+    } catch (err: unknown) {
+      console.error('Draft save caught error:', err);
+      const errorMessage = err && typeof err === 'object' && 'message' in err ? String(err.message) : '';
+      
+      if (errorMessage.includes('Максимум 10 черновиков') || errorMessage.includes('максимум черновиков')) {
+        showErrorToast('Достигнут лимит черновиков (10). Удалите или опубликуйте существующие черновики.');
+      } else {
+        showErrorToast('Ошибка сохранения черновика');
+      }
     } finally {
       setIsSavingDraft(false);
     }
@@ -1167,6 +1196,21 @@ export default function CreateReleaseBasicPage() {
         countries: selectedCountries,
         contract_agreed: agreedToContract,
         contract_agreed_at: agreedToContract ? new Date().toISOString() : null,
+        contract_signature: signatureDataUrl || null,
+        contract_number: contractNumber || null,
+        contract_full_name: contractFormData.fullName || null,
+        contract_country: contractFormData.country || null,
+        contract_passport: contractFormData.passport || null,
+        contract_passport_issued_by: contractFormData.passportIssuedBy || null,
+        contract_passport_code: contractFormData.passportCode || null,
+        contract_passport_date: contractFormData.passportDate || null,
+        contract_email: contractFormData.email || null,
+        contract_bank_account: contractFormData.bankAccount || null,
+        contract_bank_bik: contractFormData.bankBik || null,
+        contract_bank_corr: contractFormData.bankCorr || null,
+        contract_card_number: contractFormData.cardNumber || null,
+        contract_signed_at: agreedToContract && signatureDataUrl ? new Date().toISOString() : null,
+        contract_data: agreedToContract ? contractFormData : null,
         platforms: selectedPlatformsList,
         focus_track: focusTrack,
         focus_track_promo: focusTrackPromo,
@@ -1266,8 +1310,9 @@ export default function CreateReleaseBasicPage() {
       )}
       
       {/* Мобильная кнопка назад - рендерится через Portal в body */}
-      {mounted && createPortal(
+      {mounted && !contractFullScreen && createPortal(
         <button
+          id="mobile-back-to-cabinet"
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -1426,8 +1471,26 @@ export default function CreateReleaseBasicPage() {
             <ContractStep
               agreedToContract={agreedToContract}
               setAgreedToContract={setAgreedToContract}
+              signatureDataUrl={signatureDataUrl}
+              setSignatureDataUrl={setSignatureDataUrl}
+              contractData={contractFormData}
+              setContractData={setContractFormData}
+              contractNumber={contractNumber}
+              setContractNumber={setContractNumber}
+              userEmail={user?.email || ''}
+              nickname={nickname}
+              releaseId={draftId || ''}
+              tracks={tracks}
+              releaseTitle={releaseTitle}
+              artistName={releaseArtists[0] || nickname}
+              genre={genre}
+              coverFile={!!coverFile}
+              releaseDate={releaseDate}
+              tracksCount={tracks.length}
+              countriesCount={selectedCountries.length}
               onNext={() => setCurrentStep('platforms')}
               onBack={() => setCurrentStep('countries')}
+              onFullScreenChange={setContractFullScreen}
             />
           )}
 

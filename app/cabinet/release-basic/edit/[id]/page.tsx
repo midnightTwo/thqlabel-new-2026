@@ -17,6 +17,7 @@ import {
   PromoStep,
   ReleaseTypeSelector,
 } from '../../create/components';
+import { ContractFormData, getEmptyContractData } from '../../create/components/contractUtils';
 import PaymentStep from '../../../release-basic/create/components/PaymentStep';
 import SendStep from '../../../release-basic/create/components/SendStep';
 
@@ -160,6 +161,9 @@ function EditBasicReleasePageContent() {
   
   // Contract state
   const [agreedToContract, setAgreedToContract] = useState(false);
+  const [signatureDataUrl, setSignatureDataUrl] = useState('');
+  const [contractFormData, setContractFormData] = useState<ContractFormData>(getEmptyContractData());
+  const [contractNumber, setContractNumber] = useState('');
   
   // Platforms state
   const [selectedPlatforms, setSelectedPlatforms] = useState(0);
@@ -193,6 +197,7 @@ function EditBasicReleasePageContent() {
   
   // Payment state - через баланс
   const [userId, setUserId] = useState<string | null>(null);
+  const [userEmail, setUserEmail] = useState('');
   const [paymentTransactionId, setPaymentTransactionId] = useState<string | null>(null);
   const [isPaid, setIsPaid] = useState(false); // Флаг оплаченности релиза
   const [showDepositModal, setShowDepositModal] = useState(false);
@@ -478,6 +483,21 @@ function EditBasicReleasePageContent() {
           tracks: tracksForSave,
           countries: selectedCountries,
           contract_agreed: agreedToContract,
+          contract_signature: signatureDataUrl || null,
+          contract_number: contractNumber || null,
+          contract_full_name: contractFormData.fullName || null,
+          contract_country: contractFormData.country || null,
+          contract_passport: contractFormData.passport || null,
+          contract_passport_issued_by: contractFormData.passportIssuedBy || null,
+          contract_passport_code: contractFormData.passportCode || null,
+          contract_passport_date: contractFormData.passportDate || null,
+          contract_email: contractFormData.email || null,
+          contract_bank_account: contractFormData.bankAccount || null,
+          contract_bank_bik: contractFormData.bankBik || null,
+          contract_bank_corr: contractFormData.bankCorr || null,
+          contract_card_number: contractFormData.cardNumber || null,
+          contract_signed_at: agreedToContract && signatureDataUrl ? new Date().toISOString() : null,
+          contract_data: agreedToContract ? contractFormData : null,
           platforms: selectedPlatformsList,
           focus_track: focusTrack,
           focus_track_promo: focusTrackPromo,
@@ -533,6 +553,7 @@ function EditBasicReleasePageContent() {
       
       // Сохраняем userId
       setUserId(user.id);
+      setUserEmail(user.email || '');
 
       // Получаем профиль для nickname и проверяем роль
       const { data: profile } = await supabase
@@ -598,6 +619,25 @@ function EditBasicReleasePageContent() {
       
       setSelectedCountries(release.countries || []);
       setAgreedToContract(release.contract_agreed || false);
+      setSignatureDataUrl(release.contract_signature || '');
+      setContractNumber(release.contract_number || '');
+      if (release.contract_data) {
+        setContractFormData(release.contract_data as ContractFormData);
+      } else if (release.contract_full_name) {
+        setContractFormData({
+          fullName: release.contract_full_name || '',
+          country: release.contract_country || '',
+          passport: release.contract_passport || '',
+          passportIssuedBy: release.contract_passport_issued_by || '',
+          passportCode: release.contract_passport_code || '',
+          passportDate: release.contract_passport_date || '',
+          email: release.contract_email || '',
+          bankAccount: release.contract_bank_account || '',
+          bankBik: release.contract_bank_bik || '',
+          bankCorr: release.contract_bank_corr || '',
+          cardNumber: release.contract_card_number || '',
+        });
+      }
       setSelectedPlatformsList(release.platforms || []);
       setSelectedPlatforms((release.platforms || []).length);
       setFocusTrack(release.focus_track || '');
@@ -784,6 +824,21 @@ function EditBasicReleasePageContent() {
         countries: selectedCountries,
         contract_agreed: agreedToContract,
         contract_agreed_at: agreedToContract ? new Date().toISOString() : null,
+        contract_signature: signatureDataUrl || null,
+        contract_number: contractNumber || null,
+        contract_full_name: contractFormData.fullName || null,
+        contract_country: contractFormData.country || null,
+        contract_passport: contractFormData.passport || null,
+        contract_passport_issued_by: contractFormData.passportIssuedBy || null,
+        contract_passport_code: contractFormData.passportCode || null,
+        contract_passport_date: contractFormData.passportDate || null,
+        contract_email: contractFormData.email || null,
+        contract_bank_account: contractFormData.bankAccount || null,
+        contract_bank_bik: contractFormData.bankBik || null,
+        contract_bank_corr: contractFormData.bankCorr || null,
+        contract_card_number: contractFormData.cardNumber || null,
+        contract_signed_at: agreedToContract && signatureDataUrl ? new Date().toISOString() : null,
+        contract_data: agreedToContract ? contractFormData : null,
         platforms: selectedPlatformsList,
         focus_track: focusTrack,
         focus_track_promo: focusTrackPromo,
@@ -892,6 +947,21 @@ function EditBasicReleasePageContent() {
           tracks: tracks,
           countries: selectedCountries,
           contract_agreed: agreedToContract,
+          contract_signature: signatureDataUrl || null,
+          contract_number: contractNumber || null,
+          contract_full_name: contractFormData.fullName || null,
+          contract_country: contractFormData.country || null,
+          contract_passport: contractFormData.passport || null,
+          contract_passport_issued_by: contractFormData.passportIssuedBy || null,
+          contract_passport_code: contractFormData.passportCode || null,
+          contract_passport_date: contractFormData.passportDate || null,
+          contract_email: contractFormData.email || null,
+          contract_bank_account: contractFormData.bankAccount || null,
+          contract_bank_bik: contractFormData.bankBik || null,
+          contract_bank_corr: contractFormData.bankCorr || null,
+          contract_card_number: contractFormData.cardNumber || null,
+          contract_signed_at: agreedToContract && signatureDataUrl ? new Date().toISOString() : null,
+          contract_data: agreedToContract ? contractFormData : null,
           platforms: selectedPlatformsList,
           focus_track: focusTrack,
           focus_track_promo: focusTrackPromo,
@@ -1728,6 +1798,23 @@ function EditBasicReleasePageContent() {
             <ContractStep
               agreedToContract={agreedToContract}
               setAgreedToContract={setAgreedToContract}
+              signatureDataUrl={signatureDataUrl}
+              setSignatureDataUrl={setSignatureDataUrl}
+              contractData={contractFormData}
+              setContractData={setContractFormData}
+              contractNumber={contractNumber}
+              setContractNumber={setContractNumber}
+              userEmail={userEmail}
+              nickname={artistName}
+              releaseId={releaseId || ''}
+              tracks={tracks}
+              releaseTitle={releaseTitle}
+              artistName={artistName}
+              genre={genre}
+              coverFile={!!(coverFile || existingCoverUrl)}
+              releaseDate={releaseDate}
+              tracksCount={tracks.length}
+              countriesCount={selectedCountries.length}
               onBack={() => setCurrentStep('countries')}
               onNext={() => setCurrentStep('platforms')}
             />

@@ -152,6 +152,11 @@ export default function CabinetPage() {
     };
     checkPayment();
   }, [searchParams, handleTabChange, showNotification, router]);
+
+  // Автоматическая проверка возвратов при открытии кабинета
+  useEffect(() => {
+    fetch('/api/payments/check-refunds').catch(() => {});
+  }, []);
   
   // ============================================================================
   // HOVER PREFETCH: Предзагрузка вкладки при наведении (для сайдбаров)
@@ -330,7 +335,17 @@ export default function CabinetPage() {
           }
         } else {
           // Загружаем данные из существующего профиля
-          setBalance(Number(existingProfile.balance) || 0);
+          // Баланс загружаем из user_balances (актуальная таблица), а НЕ из profiles.balance (устаревшее поле)
+          try {
+            const { data: balData } = await supabase
+              .from('user_balances')
+              .select('balance')
+              .eq('user_id', user.id)
+              .single();
+            setBalance(Number(balData?.balance) || 0);
+          } catch {
+            setBalance(0);
+          }
           if (existingProfile.nickname) setNickname(existingProfile.nickname);
           
           // Устанавливаем member_id из БД
@@ -722,6 +737,7 @@ export default function CabinetPage() {
               withdrawalRequests={withdrawalRequests}
               showNotification={showNotification}
               reloadRequests={loadWithdrawalRequests}
+              isActive={tab === 'finance'}
             />
           </KeepAliveTabPanel>
           

@@ -138,7 +138,7 @@ const AnimatedBackground = memo(() => {
       
       {/* Голографический эффект - только на мощных устройствах и в светлой теме */}
       {!simplified && themeName === 'light' && (
-        <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: -8 }}>
+        <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: -8, contain: 'strict' }}>
           <div 
             className="absolute w-full h-full"
             style={{
@@ -149,6 +149,8 @@ const AnimatedBackground = memo(() => {
                 radial-gradient(ellipse 70% 50% at 20% 70%, rgba(255, 220, 180, 0.3), transparent 50%)
               `,
               animation: 'holographic-shift 15s ease-in-out infinite',
+              willChange: 'transform',
+              contain: 'layout style paint',
             }}
           />
           <div 
@@ -159,6 +161,8 @@ const AnimatedBackground = memo(() => {
                 radial-gradient(ellipse 50% 35% at 40% 60%, rgba(200, 230, 255, 0.25), transparent 50%)
               `,
               animation: 'holographic-shift 20s ease-in-out infinite reverse',
+              willChange: 'transform',
+              contain: 'layout style paint',
             }}
           />
         </div>
@@ -179,6 +183,7 @@ const AnimatedBackground = memo(() => {
                 : 'radial-gradient(circle, rgba(96, 80, 186, 0.4) 0%, transparent 70%)',
               filter: 'blur(40px)',
               animation: 'orb-float-1 25s ease-in-out infinite',
+              willChange: 'transform',
               contain: 'layout style paint',
             }}
           />
@@ -194,6 +199,7 @@ const AnimatedBackground = memo(() => {
                 : 'radial-gradient(circle, rgba(157, 141, 241, 0.5) 0%, transparent 70%)',
               filter: 'blur(50px)',
               animation: 'orb-float-2 30s ease-in-out infinite',
+              willChange: 'transform',
               contain: 'layout style paint',
             }}
           />
@@ -210,6 +216,7 @@ const AnimatedBackground = memo(() => {
                 : 'radial-gradient(circle, rgba(96, 80, 186, 0.25) 0%, transparent 70%)',
               filter: 'blur(60px)',
               animation: 'orb-float-3 20s ease-in-out infinite',
+              willChange: 'transform',
               contain: 'layout style paint',
             }}
           />
@@ -385,8 +392,8 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
     // Обновляем активность при загрузке
     updateActivity();
     
-    // Обновляем при активности пользователя
-    const events = ['mousedown', 'keydown', 'scroll', 'touchstart'];
+    // Обновляем при активности пользователя (scroll убран — слишком частый, остальные достаточны)
+    const events = ['mousedown', 'keydown', 'touchstart'];
     const handleActivity = () => {
       clearTimeout(activityTimeout);
       activityTimeout = setTimeout(updateActivity, 1000);
@@ -415,10 +422,21 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
 
   useEffect(() => {
     setMounted(true);
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    // 🔇 PASSIVE listener для мгновенного скролла
+    let rafId = 0;
+    const handleScroll = () => {
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        rafId = 0;
+        const s = window.scrollY > 20;
+        setScrolled(prev => prev === s ? prev : s);
+      });
+    };
+    // 🔇 PASSIVE listener для мгновенного скролла + rAF throttle
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   // Обновление позиции слайдера - только при изменении pathname

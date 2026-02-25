@@ -86,7 +86,7 @@ export function NewsEditorForm({
               type="datetime-local"
               value={scheduledFor}
               onChange={(e) => setScheduledFor(e.target.value)}
-              className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#6050ba] focus:bg-black/60 transition [color-scheme:dark]"
+              className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#6050ba] focus:bg-black/60 transition"
             />
             <p className="text-[10px] text-zinc-600 mt-1">
               {scheduledFor ? `Новость будет опубликована ${new Date(scheduledFor).toLocaleString('ru-RU')}` : 'Оставьте пустым для немедленной публикации'}

@@ -9,6 +9,7 @@ import { useTheme } from '@/contexts/ThemeContext';
 import { Release } from '../types';
 import { showSuccessToast, showErrorToast } from '@/lib/utils/showToast';
 import { TRACK_AUTHOR_ROLES, TrackAuthor } from '@/components/ui/TrackAuthors';
+import { generateContractHtml, downloadContractAsDoc, downloadContractAsPdf, formatContractDate } from '@/app/cabinet/release-basic/create/components/contractUtils';
 
 // Хелпер для форматирования авторов трека
 const formatTrackAuthors = (authors: string | string[] | TrackAuthor[] | undefined): string => {
@@ -442,6 +443,127 @@ export default function ReleaseDetailModal({
       setDownloadingZip(false);
     }
   }, [supabase, release]);
+
+  // Скачивание полного договора (DOC)
+  const handleDownloadContract = useCallback(async () => {
+    const cd = release.contract_data as Record<string, string> | null;
+    const contractData = {
+      fullName: release.contract_full_name || cd?.fullName || '',
+      country: release.contract_country || cd?.country || '',
+      passport: release.contract_passport || cd?.passport || '',
+      passportIssuedBy: release.contract_passport_issued_by || cd?.passportIssuedBy || '',
+      passportCode: release.contract_passport_code || cd?.passportCode || '',
+      passportDate: release.contract_passport_date || cd?.passportDate || '',
+      email: release.contract_email || cd?.email || '',
+      bankAccount: release.contract_bank_account || cd?.bankAccount || '',
+      bankBik: release.contract_bank_bik || cd?.bankBik || '',
+      bankCorr: release.contract_bank_corr || cd?.bankCorr || '',
+      cardNumber: release.contract_card_number || cd?.cardNumber || '',
+    };
+
+    if (!contractData.fullName) {
+      showErrorToast('Данные договора отсутствуют');
+      return;
+    }
+
+    // Convert rospis.png to base64 for embedding in DOC
+    let plotnikovB64 = '/rospis.png';
+    try {
+      const resp = await fetch('/rospis.png');
+      const blob = await resp.blob();
+      plotnikovB64 = await new Promise<string>((resolve) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result as string);
+        reader.readAsDataURL(blob);
+      });
+    } catch { /* fallback to relative path */ }
+
+    const tracks = (release.tracks || []).map((t: any) => ({
+      title: t.title || '',
+      duration: t.audioMetadata?.duration ? `${Math.floor(t.audioMetadata.duration / 60)}:${String(Math.floor(t.audioMetadata.duration % 60)).padStart(2, '0')}` : '—',
+    }));
+
+    const dateStr = release.contract_signed_at || release.contract_agreed_at
+      ? formatContractDate(new Date(release.contract_signed_at || release.contract_agreed_at || ''))
+      : formatContractDate(new Date());
+
+    const html = generateContractHtml({
+      data: contractData,
+      contractNumber: release.contract_number || '',
+      nickname: release.artist_name || release.title || '',
+      tracks,
+      signatureDataUrl: release.contract_signature || undefined,
+      plotnikovSignatureDataUrl: plotnikovB64,
+      contractDate: dateStr,
+    });
+
+    const safeTitle = (release.title || 'release').replace(/[<>:"/\\|?*]/g, '_');
+    const safeName = (contractData.fullName || 'artist').replace(/\s+/g, '_');
+    downloadContractAsDoc(html, `Договор_${release.contract_number || 'thqlabel'}_${safeName}.doc`);
+    showSuccessToast('Договор скачан');
+  }, [release]);
+
+  // Скачивание полного договора (PDF)
+  const handleDownloadContractPdf = useCallback(async () => {
+    const cd = release.contract_data as Record<string, string> | null;
+    const contractData = {
+      fullName: release.contract_full_name || cd?.fullName || '',
+      country: release.contract_country || cd?.country || '',
+      passport: release.contract_passport || cd?.passport || '',
+      passportIssuedBy: release.contract_passport_issued_by || cd?.passportIssuedBy || '',
+      passportCode: release.contract_passport_code || cd?.passportCode || '',
+      passportDate: release.contract_passport_date || cd?.passportDate || '',
+      email: release.contract_email || cd?.email || '',
+      bankAccount: release.contract_bank_account || cd?.bankAccount || '',
+      bankBik: release.contract_bank_bik || cd?.bankBik || '',
+      bankCorr: release.contract_bank_corr || cd?.bankCorr || '',
+      cardNumber: release.contract_card_number || cd?.cardNumber || '',
+    };
+
+    if (!contractData.fullName) {
+      showErrorToast('Данные договора отсутствуют');
+      return;
+    }
+
+    let plotnikovB64 = '/rospis.png';
+    try {
+      const resp = await fetch('/rospis.png');
+      const blob = await resp.blob();
+      plotnikovB64 = await new Promise<string>((resolve) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result as string);
+        reader.readAsDataURL(blob);
+      });
+    } catch { /* fallback */ }
+
+    const tracks = (release.tracks || []).map((t: any) => ({
+      title: t.title || '',
+      duration: t.audioMetadata?.duration ? `${Math.floor(t.audioMetadata.duration / 60)}:${String(Math.floor(t.audioMetadata.duration % 60)).padStart(2, '0')}` : '—',
+    }));
+
+    const dateStr = release.contract_signed_at || release.contract_agreed_at
+      ? formatContractDate(new Date(release.contract_signed_at || release.contract_agreed_at || ''))
+      : formatContractDate(new Date());
+
+    const html = generateContractHtml({
+      data: contractData,
+      contractNumber: release.contract_number || '',
+      nickname: release.artist_name || release.title || '',
+      tracks,
+      signatureDataUrl: release.contract_signature || undefined,
+      plotnikovSignatureDataUrl: plotnikovB64,
+      contractDate: dateStr,
+    });
+
+    const safeName = (contractData.fullName || 'artist').replace(/\s+/g, '_');
+    try {
+      await downloadContractAsPdf(html, `Договор_${release.contract_number || 'thqlabel'}_${safeName}.pdf`);
+      showSuccessToast('Договор PDF скачан');
+    } catch (err) {
+      console.error('PDF generation error:', err);
+      showErrorToast('Ошибка при генерации PDF');
+    }
+  }, [release]);
 
   // Скачивание метаданных в Excel (красивый формат)
   const handleDownloadMetadata = useCallback(async () => {
@@ -1513,6 +1635,174 @@ export default function ReleaseDetailModal({
               </div>
             )}
           </div>
+
+          {/* Подпись договора */}
+          {release.status !== 'draft' && (
+            <div className="px-4 sm:px-6 pb-3">
+              <div className="flex items-center gap-2 sm:gap-3 mb-3">
+                <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center ${
+                  release.contract_signature 
+                    ? 'bg-violet-500/20 text-violet-400' 
+                    : isLight ? 'bg-gray-100 text-gray-400' : 'bg-zinc-800 text-zinc-500'
+                }`}>
+                  <svg width="14" height="14" className="sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                    <polyline points="10 9 9 9 8 9"/>
+                  </svg>
+                </div>
+                <h3 className={`font-bold text-sm sm:text-base ${isLight ? 'text-gray-800' : 'text-white'}`}>Договор</h3>
+                {release.contract_agreed && (
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-green-500/20 text-green-400 font-bold">
+                    ПОДПИСАН
+                  </span>
+                )}
+                {release.contract_number && (
+                  <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${isLight ? 'bg-gray-100 text-gray-600' : 'bg-zinc-800 text-zinc-400'}`}>
+                    №{release.contract_number}
+                  </span>
+                )}
+              </div>
+              
+              {/* Данные договора — персональные данные */}
+              {(release.contract_full_name || (release.contract_data as any)?.fullName) && (
+                <div className={`rounded-xl border p-4 mb-3 ${
+                  isLight ? 'bg-gray-50 border-gray-200' : 'bg-white/[0.02] border-white/5'
+                }`}>
+                  <div className={`text-xs font-semibold uppercase tracking-wider mb-2 ${isLight ? 'text-gray-400' : 'text-zinc-500'}`}>Данные лицензиара</div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {[
+                      { label: 'ФИО', value: release.contract_full_name || (release.contract_data as any)?.fullName },
+                      { label: 'Страна', value: release.contract_country || (release.contract_data as any)?.country },
+                      { label: 'Паспорт', value: release.contract_passport || (release.contract_data as any)?.passport },
+                      { label: 'Кем выдан', value: release.contract_passport_issued_by || (release.contract_data as any)?.passportIssuedBy },
+                      { label: 'Код подразделения', value: release.contract_passport_code || (release.contract_data as any)?.passportCode },
+                      { label: 'Дата выдачи', value: release.contract_passport_date || (release.contract_data as any)?.passportDate },
+                      { label: 'E-mail', value: release.contract_email || (release.contract_data as any)?.email },
+                    ].filter(f => f.value).map(field => (
+                      <div key={field.label} className={`px-3 py-1.5 rounded-lg ${isLight ? 'bg-white' : 'bg-white/5'}`}>
+                        <div className={`text-[9px] uppercase tracking-wider font-semibold ${isLight ? 'text-gray-400' : 'text-zinc-600'}`}>{field.label}</div>
+                        <div className={`text-xs font-medium ${isLight ? 'text-gray-800' : 'text-white'}`}>{field.value}</div>
+                      </div>
+                    ))}
+                  </div>
+                  {/* Банковские реквизиты */}
+                  {(release.contract_bank_account || release.contract_card_number || (release.contract_data as any)?.bankAccount || (release.contract_data as any)?.cardNumber) && (
+                    <div className="mt-2">
+                      <div className={`text-[9px] font-semibold uppercase tracking-wider mb-1 ${isLight ? 'text-gray-400' : 'text-zinc-500'}`}>Реквизиты для выплат</div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        {[
+                          { label: 'Счёт', value: release.contract_bank_account || (release.contract_data as any)?.bankAccount },
+                          { label: 'БИК', value: release.contract_bank_bik || (release.contract_data as any)?.bankBik },
+                          { label: 'Корр. счёт', value: release.contract_bank_corr || (release.contract_data as any)?.bankCorr },
+                          { label: 'Карта', value: release.contract_card_number || (release.contract_data as any)?.cardNumber },
+                        ].filter(f => f.value).map(field => (
+                          <div key={field.label} className={`px-3 py-1.5 rounded-lg ${isLight ? 'bg-white' : 'bg-white/5'}`}>
+                            <div className={`text-[9px] uppercase tracking-wider font-semibold ${isLight ? 'text-gray-400' : 'text-zinc-600'}`}>{field.label}</div>
+                            <div className={`text-xs font-mono font-medium ${isLight ? 'text-gray-800' : 'text-white'}`}>{field.value}</div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Договор */}
+              {release.contract_signature ? (
+                <div className={`rounded-xl border p-4 ${
+                  isLight 
+                    ? 'bg-gradient-to-br from-violet-50 to-purple-50 border-violet-200' 
+                    : 'bg-gradient-to-br from-violet-500/5 to-purple-500/5 border-violet-500/20'
+                }`}>
+                  <div className="flex items-center gap-4">
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
+                      isLight ? 'bg-violet-100' : 'bg-violet-500/20'
+                    }`}>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={isLight ? 'text-violet-600' : 'text-violet-400'}>
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                        <polyline points="10 9 9 9 8 9"/>
+                      </svg>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className={`text-sm font-bold ${isLight ? 'text-gray-800' : 'text-white'}`}>Лицензионный договор</div>
+                      <div className={`text-xs mt-0.5 flex items-center gap-1 ${isLight ? 'text-green-600' : 'text-green-400'}`}>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        Подписан
+                      </div>
+                    </div>
+                    <div className="flex-shrink-0 space-y-2">
+                      <button
+                        onClick={handleDownloadContract}
+                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all w-full ${
+                          isLight 
+                            ? 'bg-violet-100 text-violet-700 hover:bg-violet-200' 
+                            : 'bg-violet-500/20 text-violet-300 hover:bg-violet-500/30'
+                        }`}
+                      >
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                          <polyline points="7 10 12 15 17 10"/>
+                          <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                        Скачать DOC
+                      </button>
+                      <button
+                        onClick={handleDownloadContractPdf}
+                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all w-full ${
+                          isLight 
+                            ? 'bg-red-100 text-red-700 hover:bg-red-200' 
+                            : 'bg-red-500/20 text-red-300 hover:bg-red-500/30'
+                        }`}
+                      >
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                          <polyline points="7 10 12 15 17 10"/>
+                          <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                        Скачать PDF
+                      </button>
+                    </div>
+                  </div>
+                  {(release.contract_signed_at || release.contract_agreed_at) && (
+                    <div className={`mt-3 flex items-center gap-2 text-xs ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                      </svg>
+                      <span>Подписано: {new Date(release.contract_signed_at || release.contract_agreed_at || '').toLocaleDateString('ru-RU', { 
+                        day: 'numeric', 
+                        month: 'long', 
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                      })}</span>
+                      <span className={`${isLight ? 'text-gray-300' : 'text-zinc-700'}`}>•</span>
+                      <span>{release.user_email}</span>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div className={`rounded-xl border p-4 text-center ${
+                  isLight 
+                    ? 'bg-gray-50 border-gray-200' 
+                    : 'bg-white/[0.02] border-white/5'
+                }`}>
+                  <div className={`text-sm ${isLight ? 'text-gray-400' : 'text-zinc-600'}`}>
+                    {release.contract_agreed 
+                      ? 'Оферта принята без договора (старый формат)' 
+                      : 'Договор не предоставлен'
+                    }
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
 
           {/* Фокус-трек и промо-материалы */}
           {((release as any).focus_track || (release as any).album_description || ((release as any).promo_photos && (release as any).promo_photos.length > 0)) && (

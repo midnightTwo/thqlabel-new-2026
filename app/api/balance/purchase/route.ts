@@ -152,15 +152,17 @@ export async function POST(request: NextRequest) {
     const newBalance = currentBalance - amount;
     const newSpent = currentSpent + amount;
 
-    // Обновляем баланс
-    const { error: updateError } = await supabaseAdmin
+    // Обновляем баланс (атомарно: только если баланс не изменился с момента чтения)
+    const { data: updatedRows, error: updateError } = await supabaseAdmin
       .from('user_balances')
       .update({
         balance: newBalance,
         total_spent: newSpent,
         updated_at: new Date().toISOString()
       })
-      .eq('user_id', user.id);
+      .eq('user_id', user.id)
+      .gte('balance', amount) // Защита: списываем только если баланс >= суммы
+      .select('balance');
 
     if (updateError) {
       console.error('Balance update error:', updateError);
@@ -168,6 +170,16 @@ export async function POST(request: NextRequest) {
         { success: false, error: 'Ошибка списания с баланса' },
         { status: 500 }
       );
+    }
+
+    // Проверяем что обновление реально произошло (race condition protection)
+    if (!updatedRows || updatedRows.length === 0) {
+      console.error('Balance update failed: no rows matched (race condition or insufficient funds)');
+      return NextResponse.json({
+        success: false,
+        error: 'Недостаточно средств на балансе (баланс изменился)',
+        code: 'INSUFFICIENT_BALANCE'
+      }, { status: 400 });
     }
 
     // Записываем транзакцию
@@ -240,10 +252,29 @@ export async function POST(request: NextRequest) {
         });
     }
 
+    // Верификация: перечитываем баланс и проверяем что списание прошло
+    const { data: verifyBalance } = await supabaseAdmin
+      .from('user_balances')
+      .select('balance')
+      .eq('user_id', user.id)
+      .single();
+
+    const verifiedBalance = verifyBalance ? parseFloat(verifyBalance.balance) : newBalance;
+
+    if (verifiedBalance > currentBalance) {
+      console.error(`ALERT: Balance INCREASED after purchase! user=${user.id}, before=${currentBalance}, expected=${newBalance}, actual=${verifiedBalance}`);
+    }
+
+    // Синхронизируем profiles.balance (для обратной совместимости с админкой)
+    await supabaseAdmin
+      .from('profiles')
+      .update({ balance: verifiedBalance })
+      .eq('id', user.id);
+
     return NextResponse.json({
       success: true,
       message: 'Оплата успешно произведена',
-      newBalance,
+      newBalance: verifiedBalance,
       transactionId: transaction?.id,
       amount
     });

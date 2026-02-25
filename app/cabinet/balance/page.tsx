@@ -109,6 +109,11 @@ function BalancePageContent() {
     }
   }, [searchParams]);
 
+  // Автоматическая проверка возвратов при открытии страницы
+  useEffect(() => {
+    fetch('/api/payments/check-refunds').catch(() => {});
+  }, []);
+
   // Загрузка данных - ОДИН РАЗ
   useEffect(() => {
     let mounted = true;

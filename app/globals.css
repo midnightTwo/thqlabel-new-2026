@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+/* ========================================
+   🔴 КРИТИЧЕСКИЕ ИСПРАВЛЕНИЯ ЦВЕТА ТЕКСТА В DROPDOWN 
+   Эти правила должны быть в самом начале с максимальной специфичностью
+   ======================================== */
+html.light .genre-dropdown-menu button,
+html.light .genre-option-btn,
+html.light [data-dropdown="genre"] button,
+html.light div.genre-dropdown-menu > div > button,
+html.light .role-dropdown-menu button {
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+}
+
 @theme {
   --color-brand-main: #6050ba;
   --color-brand-light: #9d8df1;
@@ -649,10 +662,12 @@ html.light .bg-purple-500 {
   color: #ffffff !important;
 }
 
-/* Сохраняем белый текст внутри кнопок */
+/* Сохраняем белый текст внутри кнопок - только для кнопок с реальным bg-purple (не hover:bg-purple) */
 html.light button.bg-gradient-to-r,
 html.light button.bg-\[\#6050ba\],
-html.light button[class*="bg-purple"],
+html.light button.bg-purple-500,
+html.light button.bg-purple-600,
+html.light button.bg-purple-400,
 html.light a.bg-gradient-to-r,
 html.light .btn-primary {
   color: #ffffff !important;
@@ -1641,11 +1656,163 @@ html.light .bg-\[\#6050ba\].text-white {
   color: #ffffff !important;
 }
 
-/* Фильтр по дате */
+/* ========================================
+   📅 DATE INPUT STYLES - Дата ввод для форм
+   Поддержка светлой и тёмной темы
+   ======================================== */
+
+/* Светлая тема: дата */
 html.light input[type="date"] {
   background: rgba(255, 255, 255, 0.8) !important;
   border-color: rgba(96, 80, 186, 0.2) !important;
   color: #1f1f23 !important;
+  cursor: pointer !important;
+}
+
+html.light input[type="date"]:hover {
+  border-color: rgba(96, 80, 186, 0.4) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Светлая тема: иконка календаря - растягиваем на весь инпут */
+html.light input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer !important;
+  opacity: 0.7;
+  filter: invert(20%) sepia(10%) saturate(500%) hue-rotate(220deg) !important;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent;
+}
+
+html.light input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* Тёмная тема: дата */
+html:not(.light) input[type="date"] {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  cursor: pointer !important;
+}
+
+html:not(.light) input[type="date"]:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Тёмная тема: иконка календаря - растягиваем на весь инпут */
+html:not(.light) input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer !important;
+  filter: invert(1) brightness(1.5) !important;
+  opacity: 0.7;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent;
+}
+
+html:not(.light) input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* Фикс для webkit браузеров - весь инпут кликабельный */
+input[type="date"],
+input[type="datetime-local"] {
+  position: relative;
+  cursor: pointer !important;
+}
+
+/* Увеличиваем зону клика на всю область инпута */
+input[type="date"]::-webkit-datetime-edit,
+input[type="datetime-local"]::-webkit-datetime-edit {
+  padding-right: 2em;
+  cursor: pointer;
+}
+
+input[type="date"]::-webkit-datetime-edit-fields-wrapper,
+input[type="datetime-local"]::-webkit-datetime-edit-fields-wrapper {
+  padding: 0;
+  cursor: pointer;
+}
+
+/* Firefox поддержка */
+input[type="date"]::-moz-calendar-picker-indicator,
+input[type="datetime-local"]::-moz-calendar-picker-indicator {
+  cursor: pointer !important;
+}
+
+/* ========================================
+   📅 DATETIME-LOCAL STYLES - Дата + время ввод
+   ======================================== */
+
+/* Светлая тема: datetime-local */
+html.light input[type="datetime-local"] {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-color: rgba(96, 80, 186, 0.2) !important;
+  color: #1f1f23 !important;
+  cursor: pointer !important;
+}
+
+html.light input[type="datetime-local"]:hover {
+  border-color: rgba(96, 80, 186, 0.4) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+}
+
+html.light input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  cursor: pointer !important;
+  opacity: 0.7;
+  filter: invert(20%) sepia(10%) saturate(500%) hue-rotate(220deg) !important;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent;
+}
+
+html.light input[type="datetime-local"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* Тёмная тема: datetime-local */
+html:not(.light) input[type="datetime-local"] {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  cursor: pointer !important;
+}
+
+html:not(.light) input[type="datetime-local"]:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+html:not(.light) input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  cursor: pointer !important;
+  filter: invert(1) brightness(1.5) !important;
+  opacity: 0.7;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent;
+}
+
+html:not(.light) input[type="datetime-local"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
 }
 
 /* Сворачиваемый сайдбар */
@@ -2573,12 +2740,14 @@ html.light .intro-loading-dot {
 /* Но сохраняем белый текст на кнопках с градиентом/цветом */
 .cabinet-content-light .bg-gradient-to-r .text-white,
 .cabinet-content-light .bg-gradient-to-br .text-white,
-.cabinet-content-light [class*="bg-purple"] .text-white,
-.cabinet-content-light [class*="bg-emerald"] .text-white,
+.cabinet-content-light [class*="bg-purple"]:not([class*="hover:"]) .text-white,
+.cabinet-content-light [class*="bg-emerald"]:not([class*="hover:"]) .text-white,
 .cabinet-content-light .bg-\[\#6050ba\] .text-white,
 .cabinet-content-light .bg-\[\#8a63d2\] .text-white,
 .cabinet-content-light button.bg-gradient-to-r,
-.cabinet-content-light button[class*="bg-purple"],
+.cabinet-content-light button.bg-purple-500,
+.cabinet-content-light button.bg-purple-600,
+.cabinet-content-light button.bg-purple-400,
 .cabinet-content-light .from-purple-600,
 .cabinet-content-light .from-purple-500,
 .cabinet-content-light .bg-emerald-500,
@@ -3341,6 +3510,21 @@ body {
   animation: slide-up 0.3s ease-out;
 }
 
+@keyframes scale-up {
+  0% {
+    transform: scale(0.92);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-scale-up {
+  animation: scale-up 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 .neon-active {
   animation: neon-pulse 3s infinite ease-in-out;
 }
@@ -3631,6 +3815,18 @@ html {
   to {
     opacity: 1;
     transform: scaleY(1);
+  }
+}
+
+/* Анимация разворачивания выпадающего списка вверх */
+@keyframes dropdownExpandUp {
+  from {
+    opacity: 0;
+    transform: scaleY(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1) translateY(0);
   }
 }
 
@@ -3928,4 +4124,38 @@ html.light .theme-option-glass.active {
   box-shadow: 
     0 8px 32px rgba(139, 92, 246, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* ========================================
+   GENRE DROPDOWN - Исправление цвета текста в светлой теме
+   ======================================== */
+html.light .genre-dropdown-menu button,
+html.light .genre-dropdown-menu button.genre-option-btn,
+html.light [data-dropdown="genre"] button,
+html.light .genre-option-btn {
+  color: #111827 !important;
+}
+
+html.light .genre-dropdown-menu button:hover,
+html.light .genre-dropdown-menu button.genre-option-btn:hover,
+html.light [data-dropdown="genre"] button:hover,
+html.light .genre-option-btn:hover {
+  color: #111827 !important;
+}
+
+/* ROLE DROPDOWN (Contributors, Authors) - Исправление цвета текста */
+html.light .role-dropdown-menu button {
+  color: #111827 !important;
+}
+
+html.light .role-dropdown-menu button:hover {
+  color: #111827 !important;
+}
+
+html.light .role-dropdown-menu button span:first-child {
+  color: #111827 !important;
+}
+
+html.light .role-dropdown-menu button span:last-child {
+  color: #6b7280 !important;
 }

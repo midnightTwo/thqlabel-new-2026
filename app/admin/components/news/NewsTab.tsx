@@ -304,7 +304,7 @@ const NewsForm = memo(function NewsForm({
               </label>
               <div className="relative">
                 <input type="datetime-local" value={scheduledFor} onChange={(e) => setScheduledFor(e.target.value)}
-                  className="w-full bg-gradient-to-r from-black/40 to-black/30 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#6050ba] transition [color-scheme:dark] min-h-[44px]" />
+                  className="w-full bg-gradient-to-r from-black/40 to-black/30 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#6050ba] transition min-h-[44px]" />
                 {scheduledFor && (
                   <button type="button" onClick={() => setScheduledFor('')}
                     className="absolute right-3 top-1/2 -translate-y-1/2 w-7 h-7 sm:w-6 sm:h-6 bg-red-500/20 hover:bg-red-500/30 rounded-lg flex items-center justify-center transition min-w-[28px] min-h-[28px]">

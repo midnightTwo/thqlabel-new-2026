@@ -1,5 +1,6 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Release } from './types';
 import { STATUS_BADGE_STYLES, formatDate, formatDateFull, getTracksWord, copyToClipboard } from './constants';
 import { SupabaseClient } from '@supabase/supabase-js';
@@ -84,6 +85,11 @@ export default function ReleaseDetailView({ release, onBack, showCopyToast, setS
 
       {/* Дополнительная информация */}
       <AdditionalInfoSection release={release} />
+
+      {/* Подписанный договор */}
+      {release.contract_agreed && release.contract_data && (
+        <ContractViewSection release={release} />
+      )}
 
       {/* Промо ссылки */}
       <SocialLinksSection release={release} />
@@ -466,6 +472,298 @@ function RejectionReasonBlock({ reason, releaseId, releaseType }: { reason: stri
         </svg>
         Редактировать и отправить снова
       </a>
+    </div>
+  );
+}
+
+// Секция просмотра подписанного договора
+function ContractViewSection({ release }: { release: Release }) {
+  const { themeName } = useTheme();
+  const isLight = themeName === 'light';
+  const [expanded, setExpanded] = useState(false);
+  const [showFullContract, setShowFullContract] = useState(false);
+
+  const data = release.contract_data || {};
+  const signedAt = release.contract_signed_at || release.contract_agreed_at;
+
+  const contractFields = [
+    { label: 'ФИО', value: release.contract_full_name || data.fullName },
+    { label: 'Страна', value: release.contract_country || data.country },
+    { label: 'Паспорт', value: release.contract_passport || data.passport },
+    { label: 'Кем выдан', value: release.contract_passport_issued_by || data.passportIssuedBy },
+    { label: 'Код подразделения', value: release.contract_passport_code || data.passportCode },
+    { label: 'Дата выдачи', value: release.contract_passport_date || data.passportDate },
+    { label: 'E-mail', value: release.contract_email || data.email },
+    { label: 'Номер договора', value: release.contract_number },
+  ];
+
+  const bankFields = [
+    { label: 'Расчётный счёт', value: release.contract_bank_account || data.bankAccount },
+    { label: 'БИК', value: release.contract_bank_bik || data.bankBik },
+    { label: 'Корр. счёт', value: release.contract_bank_corr || data.bankCorr },
+    { label: 'Номер карты', value: release.contract_card_number || data.cardNumber },
+  ].filter(f => f.value);
+
+  return (
+    <>
+      <div className={`mb-4 sm:mb-6 rounded-2xl border overflow-hidden ${
+        isLight ? 'bg-white/80 border-gray-200 shadow-sm' : 'bg-zinc-900/60 border-white/10'
+      }`}>
+        {/* Заголовок */}
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className={`w-full flex items-center justify-between p-4 sm:p-5 transition-colors ${
+            isLight ? 'hover:bg-gray-50' : 'hover:bg-white/5'
+          }`}
+        >
+          <div className="flex items-center gap-3">
+            <div className={`p-2 rounded-xl ${isLight ? 'bg-emerald-100' : 'bg-emerald-500/15'}`}>
+              <svg className={`w-5 h-5 ${isLight ? 'text-emerald-600' : 'text-emerald-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            <div className="text-left">
+              <h3 className={`text-sm sm:text-base font-bold ${isLight ? 'text-gray-900' : 'text-white'}`}>
+                Подписанный договор
+              </h3>
+              {signedAt && (
+                <p className={`text-xs mt-0.5 ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>
+                  Подписан {new Date(signedAt).toLocaleDateString('ru-RU')}
+                  {release.contract_number && ` · №${release.contract_number}`}
+                </p>
+              )}
+            </div>
+          </div>
+          <svg className={`w-5 h-5 transition-transform ${expanded ? 'rotate-180' : ''} ${isLight ? 'text-gray-400' : 'text-zinc-500'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+
+        {/* Содержимое */}
+        {expanded && (
+          <div className={`px-4 sm:px-5 pb-4 sm:pb-5 border-t ${isLight ? 'border-gray-100' : 'border-white/5'}`}>
+            {/* Персональные данные */}
+            <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+              {contractFields.filter(f => f.value).map(field => (
+                <div key={field.label} className={`px-3 py-2 rounded-lg ${isLight ? 'bg-gray-50' : 'bg-white/5'}`}>
+                  <div className={`text-[10px] uppercase tracking-wider font-semibold mb-0.5 ${isLight ? 'text-gray-400' : 'text-zinc-500'}`}>{field.label}</div>
+                  <div className={`text-sm font-medium ${isLight ? 'text-gray-800' : 'text-white'}`}>{field.value}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Банковские реквизиты */}
+            {bankFields.length > 0 && (
+              <div className="mt-3">
+                <div className={`text-xs font-semibold uppercase tracking-wider mb-2 ${isLight ? 'text-gray-400' : 'text-zinc-500'}`}>Реквизиты для выплат</div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+                  {bankFields.map(field => (
+                    <div key={field.label} className={`px-3 py-2 rounded-lg ${isLight ? 'bg-gray-50' : 'bg-white/5'}`}>
+                      <div className={`text-[10px] uppercase tracking-wider font-semibold mb-0.5 ${isLight ? 'text-gray-400' : 'text-zinc-500'}`}>{field.label}</div>
+                      <div className={`text-sm font-mono font-medium ${isLight ? 'text-gray-800' : 'text-white'}`}>{field.value}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Подпись */}
+            {release.contract_signature && (
+              <div className="mt-4">
+                <div className={`text-xs font-semibold uppercase tracking-wider mb-2 ${isLight ? 'text-gray-400' : 'text-zinc-500'}`}>Электронная подпись (ПЭП)</div>
+                <div className={`inline-flex items-center gap-2.5 px-4 py-2.5 rounded-xl border ${isLight ? 'bg-green-50 border-green-200' : 'bg-green-500/10 border-green-500/20'}`}>
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={isLight ? 'text-green-600' : 'text-green-400'}>
+                    <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                    <path d="M9 12l2 2 4-4"/>
+                  </svg>
+                  <span className={`text-sm font-semibold ${isLight ? 'text-green-700' : 'text-green-400'}`}>Документ подписан</span>
+                </div>
+              </div>
+            )}
+
+            {/* Кнопка просмотра полного текста */}
+            <button
+              onClick={() => setShowFullContract(true)}
+              className={`mt-4 w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+                isLight
+                  ? 'bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200'
+                  : 'bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/20'
+              }`}
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+              Просмотреть полный текст договора
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* Полноэкранный просмотр договора */}
+      {showFullContract && typeof document !== 'undefined' && createPortal(
+        <div className="fixed inset-0 z-[99999] flex flex-col" style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, width: '100vw', height: '100vh' }}>
+          <div className={`absolute inset-0 ${isLight ? 'bg-gray-100' : 'bg-zinc-950'}`} />
+          
+          {/* Шапка */}
+          <div className={`relative z-10 flex items-center justify-between px-4 sm:px-6 py-3 border-b ${
+            isLight ? 'bg-white border-gray-200' : 'bg-zinc-900 border-zinc-800'
+          }`}>
+            <div>
+              <h2 className={`text-sm sm:text-lg font-bold ${isLight ? 'text-gray-900' : 'text-white'}`}>
+                Договор {release.contract_number ? `№${release.contract_number}` : ''}
+              </h2>
+              {signedAt && (
+                <p className={`text-xs ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>
+                  Подписан {new Date(signedAt).toLocaleDateString('ru-RU')}
+                </p>
+              )}
+            </div>
+            <button
+              onClick={() => setShowFullContract(false)}
+              className={`p-2 rounded-lg transition ${isLight ? 'hover:bg-gray-100 text-gray-500' : 'hover:bg-white/10 text-zinc-400'}`}
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Контент договора */}
+          <div className="relative z-10 flex-1 overflow-y-auto px-4 sm:px-8 py-6">
+            <div className={`max-w-4xl mx-auto rounded-2xl border p-6 sm:p-10 ${
+              isLight ? 'bg-white border-gray-200 shadow-sm' : 'bg-zinc-900 border-zinc-800'
+            }`}>
+              <ContractTemplateView release={release} data={data} isLight={isLight} />
+            </div>
+          </div>
+        </div>,
+        document.body
+      )}
+    </>
+  );
+}
+
+// Упрощённый рендер текста договора для просмотра (без импорта ContractTemplate, чтобы не тянуть зависимости)
+function ContractTemplateView({ release, data, isLight }: { release: Release; data: Record<string, string>; isLight: boolean }) {
+  const fullName = release.contract_full_name || data.fullName || '—';
+  const country = release.contract_country || data.country || '—';
+  const passport = release.contract_passport || data.passport || '—';
+  const passportIssuedBy = release.contract_passport_issued_by || data.passportIssuedBy || '—';
+  const passportCode = release.contract_passport_code || data.passportCode || '—';
+  const passportDate = release.contract_passport_date || data.passportDate || '—';
+  const email = release.contract_email || data.email || '—';
+  const bankAccount = release.contract_bank_account || data.bankAccount || '';
+  const bankBik = release.contract_bank_bik || data.bankBik || '';
+  const bankCorr = release.contract_bank_corr || data.bankCorr || '';
+  const cardNumber = release.contract_card_number || data.cardNumber || '';
+  const contractNumber = release.contract_number || '—';
+  const signedDate = release.contract_signed_at || release.contract_agreed_at;
+
+  const dateStr = signedDate ? new Date(signedDate).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' }) + ' г.' : '—';
+
+  const textClass = isLight ? 'text-gray-800' : 'text-zinc-200';
+  const headingClass = `font-bold text-center ${isLight ? 'text-gray-900' : 'text-white'}`;
+  const highlightClass = `font-semibold ${isLight ? 'text-gray-900' : 'text-white'}`;
+
+  return (
+    <div className={`text-sm leading-relaxed space-y-4 ${textClass}`}>
+      <h2 className={`text-lg sm:text-xl ${headingClass}`}>ЛИЦЕНЗИОННЫЙ ДОГОВОР</h2>
+      <p className={`text-center ${isLight ? 'text-gray-600' : 'text-zinc-400'}`}>
+        №{contractNumber} от {dateStr}
+      </p>
+
+      <p>
+        <span className={highlightClass}>{fullName}</span>, гражданин(ка) <span className={highlightClass}>{country}</span>, 
+        паспорт <span className={highlightClass}>{passport}</span>, выдан <span className={highlightClass}>{passportIssuedBy}</span>, 
+        код подразделения <span className={highlightClass}>{passportCode}</span>, дата выдачи <span className={highlightClass}>{passportDate}</span>, 
+        e-mail: <span className={highlightClass}>{email}</span>, именуемый(ая) в дальнейшем «<strong>Лицензиар</strong>», с одной стороны, и
+      </p>
+      <p>
+        <span className={highlightClass}>Плотников Никита Владимирович</span>, самозанятый, ИНН 615531925831, 
+        именуемый в дальнейшем «<strong>Лицензиат</strong>» (thqlabel), с другой стороны, 
+        заключили настоящий Договор о нижеследующем:
+      </p>
+
+      <h3 className={`text-base font-bold mt-6 ${isLight ? 'text-gray-900' : 'text-white'}`}>1. ПРЕДМЕТ ДОГОВОРА</h3>
+      <p>1.1. Лицензиар предоставляет Лицензиату неисключительную лицензию на использование фонограмм (музыкальных произведений) в целях цифровой дистрибуции на музыкальных платформах.</p>
+      <p>1.2. Лицензиат осуществляет размещение фонограмм на цифровых платформах от своего имени, действуя в интересах Лицензиара.</p>
+      <p>1.3. Территория использования — весь мир, если иное не указано в Приложении.</p>
+
+      <h3 className={`text-base font-bold mt-6 ${isLight ? 'text-gray-900' : 'text-white'}`}>2. ПРАВА И ОБЯЗАННОСТИ СТОРОН</h3>
+      <p>2.1. Лицензиар гарантирует, что обладает исключительными правами на передаваемые фонограммы.</p>
+      <p>2.2. Лицензиат обязуется выплачивать Лицензиару 80% от чистого дохода, полученного от использования фонограмм.</p>
+      <p>2.3. Выплаты производятся ежемесячно на реквизиты, указанные Лицензиаром.</p>
+
+      <h3 className={`text-base font-bold mt-6 ${isLight ? 'text-gray-900' : 'text-white'}`}>3. СРОК ДЕЙСТВИЯ</h3>
+      <p>3.1. Договор вступает в силу с момента его подписания простой электронной подписью (ПЭП) и действует в течение 1 (одного) года.</p>
+      <p>3.2. Договор автоматически продлевается на каждый следующий год, если ни одна из сторон не заявит о его расторжении за 30 дней до окончания срока.</p>
+
+      <h3 className={`text-base font-bold mt-6 ${isLight ? 'text-gray-900' : 'text-white'}`}>4. ПРОСТАЯ ЭЛЕКТРОННАЯ ПОДПИСЬ (ПЭП)</h3>
+      <p>4.1. Стороны признают юридическую силу документов, подписанных электронной подписью в виде графической подписи на сайте thqlabel.</p>
+      <p>4.2. Ключом ПЭП Лицензиара является комбинация: адрес электронной почты + графическая подпись + IP-адрес + временная метка.</p>
+
+      {/* Реквизиты для выплат */}
+      {(bankAccount || cardNumber) && (
+        <div className={`mt-6 p-4 rounded-xl border ${isLight ? 'bg-gray-50 border-gray-200' : 'bg-zinc-800/50 border-zinc-700'}`}>
+          <h4 className={`text-sm font-bold mb-2 ${isLight ? 'text-gray-900' : 'text-white'}`}>Реквизиты для выплат:</h4>
+          {bankAccount && <p>Расчётный счёт: <span className={`font-mono ${highlightClass}`}>{bankAccount}</span></p>}
+          {bankBik && <p>БИК: <span className={`font-mono ${highlightClass}`}>{bankBik}</span></p>}
+          {bankCorr && <p>Корр. счёт: <span className={`font-mono ${highlightClass}`}>{bankCorr}</span></p>}
+          {cardNumber && <p>Номер карты: <span className={`font-mono ${highlightClass}`}>{cardNumber}</span></p>}
+        </div>
+      )}
+
+      {/* Треклист */}
+      {release.tracks && release.tracks.length > 0 && (
+        <div className="mt-6">
+          <h3 className={`text-base font-bold mb-3 ${isLight ? 'text-gray-900' : 'text-white'}`}>Приложение №2 — Перечень фонограмм</h3>
+          <div className={`rounded-xl border overflow-hidden ${isLight ? 'border-gray-200' : 'border-zinc-700'}`}>
+            <table className="w-full text-sm">
+              <thead>
+                <tr className={isLight ? 'bg-gray-100' : 'bg-zinc-800'}>
+                  <th className={`px-3 py-2 text-left text-xs font-semibold uppercase ${isLight ? 'text-gray-600' : 'text-zinc-400'}`}>№</th>
+                  <th className={`px-3 py-2 text-left text-xs font-semibold uppercase ${isLight ? 'text-gray-600' : 'text-zinc-400'}`}>Название</th>
+                  <th className={`px-3 py-2 text-left text-xs font-semibold uppercase hidden sm:table-cell ${isLight ? 'text-gray-600' : 'text-zinc-400'}`}>ISRC</th>
+                </tr>
+              </thead>
+              <tbody>
+                {release.tracks.map((track, i) => (
+                  <tr key={i} className={`border-t ${isLight ? 'border-gray-100' : 'border-zinc-800'}`}>
+                    <td className={`px-3 py-2 ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>{i + 1}</td>
+                    <td className={`px-3 py-2 font-medium ${isLight ? 'text-gray-800' : 'text-white'}`}>{track.title}</td>
+                    <td className={`px-3 py-2 font-mono text-xs hidden sm:table-cell ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>{track.isrc || '—'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {/* Подпись */}
+      {release.contract_signature && (
+        <div className={`mt-8 pt-6 border-t ${isLight ? 'border-gray-200' : 'border-zinc-700'}`}>
+          <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4">
+            <div>
+              <div className={`text-xs font-semibold uppercase tracking-wider mb-2 ${isLight ? 'text-gray-400' : 'text-zinc-500'}`}>Лицензиар (подпись ПЭП)</div>
+              <div className={`inline-flex items-center gap-2.5 px-4 py-2.5 rounded-xl border ${isLight ? 'bg-green-50 border-green-200' : 'bg-green-500/10 border-green-500/20'}`}>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={isLight ? 'text-green-600' : 'text-green-400'}>
+                  <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                  <path d="M9 12l2 2 4-4"/>
+                </svg>
+                <span className={`text-sm font-semibold ${isLight ? 'text-green-700' : 'text-green-400'}`}>Документ подписан</span>
+              </div>
+              <p className={`text-xs mt-1 ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>{fullName}</p>
+            </div>
+            <div className="text-right">
+              <div className={`text-xs font-semibold uppercase tracking-wider mb-2 ${isLight ? 'text-gray-400' : 'text-zinc-500'}`}>Лицензиат</div>
+              <p className={`text-sm font-medium ${isLight ? 'text-gray-800' : 'text-white'}`}>Плотников Н.В.</p>
+              <p className={`text-xs ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>thqlabel</p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

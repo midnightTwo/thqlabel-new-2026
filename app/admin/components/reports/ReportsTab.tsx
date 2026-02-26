@@ -767,6 +767,41 @@ export default function ReportsTab({ supabase }: ReportsTabProps) {
   const [deletingReportId, setDeletingReportId] = useState<string | null>(null);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState<Report | null>(null);
 
+  // Перепроцессинг отчёта
+  const [reprocessingReportId, setReprocessingReportId] = useState<string | null>(null);
+
+  const reprocessReport = async (report: Report, e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!confirm(`Пересчитать матчи и выплаты для «${report.notes || report.quarter + ' ' + report.year}»?\n\nБаланс артистов будет пересчитан автоматически.`)) return;
+    setReprocessingReportId(report.id);
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) return;
+      const response = await fetch('/api/admin/reports', {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${session.access_token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ reportId: report.id })
+      });
+      if (response.ok) {
+        // Запускаем polling как при загрузке нового отчёта
+        setActiveReportId(report.id);
+        setReports(prev => prev.map(r =>
+          r.id === report.id ? { ...r, status: 'processing', processing_progress: 0 } : r
+        ));
+      } else {
+        const err = await response.json();
+        alert('Ошибка перепроцессинга: ' + err.error);
+      }
+    } catch {
+      alert('Ошибка соединения');
+    } finally {
+      setReprocessingReportId(null);
+    }
+  };
+
   // Переименование отчёта
   const [renamingReportId, setRenamingReportId] = useState<string | null>(null);
   const [renameValue, setRenameValue] = useState('');
@@ -1484,6 +1519,22 @@ export default function ReportsTab({ supabase }: ReportsTabProps) {
                       </div>
                       
                       {/* Кнопки */}
+                      {/* Кнопка перепроцессинга */}
+                      <button
+                        onClick={(e) => reprocessReport(report, e)}
+                        disabled={reprocessingReportId === report.id || report.status === 'processing'}
+                        className="p-2 hover:bg-yellow-500/20 rounded-xl transition-colors text-zinc-500 hover:text-yellow-400 disabled:opacity-40 min-w-[40px] min-h-[40px] flex items-center justify-center"
+                        title="Пересчитать матчи и выплаты"
+                      >
+                        {reprocessingReportId === report.id ? (
+                          <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-yellow-400 border-t-transparent rounded-full animate-spin" />
+                        ) : (
+                          <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                          </svg>
+                        )}
+                      </button>
+
                       <button
                         onClick={(e) => startRename(report, e)}
                         className="p-2 hover:bg-blue-500/20 rounded-xl transition-colors text-zinc-500 hover:text-blue-400 min-w-[40px] min-h-[40px] flex items-center justify-center"

@@ -275,10 +275,12 @@ async function findTrackInDatabase(
   };
 
   try {
-    // Ищем по ISRC в releases_basic - во всех статусах кроме draft/rejected
+    // Ищем по ISRC в releases_basic - ТОЛЬКО точное совпадение!
+    // ВАЖНО: никакого prefix-match — у разных артистов одного дистрибьютора
+    // первые 6-8 символов ISRC совпадают, prefix-match приводит к назначению
+    // роялти не тому артисту.
     if (isrc) {
-      console.log(`Searching for ISRC: ${isrc}`);
-      const isrcPrefix = isrc.substring(0, 6); // Первые 6 символов для нечёткого поиска
+      console.log(`Searching for ISRC (exact only): ${isrc}`);
       
       const { data: basicReleases, error: basicError } = await supabaseAdmin
         .from('releases_basic')
@@ -292,15 +294,15 @@ async function findTrackInDatabase(
           const tracks = release.tracks || [];
           for (let i = 0; i < tracks.length; i++) {
             const trackIsrc = tracks[i]?.isrc || '';
-            // Точное совпадение ИЛИ совпадение первых 6 символов
-            if (trackIsrc === isrc || (trackIsrc && isrc && trackIsrc.startsWith(isrcPrefix))) {
-              console.log(`ISRC match found! Release: ${release.id}, Artist: ${release.artist_name}, DB ISRC: ${trackIsrc}`);
+            // ТОЛЬКО точное совпадение ISRC
+            if (trackIsrc && trackIsrc === isrc) {
+              console.log(`ISRC exact match found! Release: ${release.id}, Artist: ${release.artist_name}, DB ISRC: ${trackIsrc}`);
               return {
                 releaseId: release.id,
                 releaseType: 'basic',
                 userId: release.user_id,
                 trackIndex: i,
-                foundBy: trackIsrc === isrc ? 'isrc' : 'isrc_prefix'
+                foundBy: 'isrc'
               };
             }
           }
@@ -318,7 +320,8 @@ async function findTrackInDatabase(
           const tracks = release.tracks || [];
           for (let i = 0; i < tracks.length; i++) {
             const trackIsrc = tracks[i]?.isrc || '';
-            if (trackIsrc === isrc || (trackIsrc && isrc && trackIsrc.startsWith(isrcPrefix))) {
+            // ТОЛЬКО точное совпадение ISRC
+            if (trackIsrc && trackIsrc === isrc) {
               return {
                 releaseId: release.id,
                 releaseType: 'exclusive',
@@ -332,11 +335,14 @@ async function findTrackInDatabase(
       }
     }
     
-    // Ищем по UPC (точное и частичное совпадение)
+    // Ищем по UPC - ТОЛЬКО точное совпадение!
+    // ВАЖНО: никакого prefix-match — несколько релизов одного дистрибьютора
+    // могут начинаться с одинаковых 6-8 цифр UPC, prefix-match назначает
+    // роялти первому найденному, а не реальному владельцу.
     if (upc) {
-      console.log(`Searching for UPC: ${upc}`);
+      console.log(`Searching for UPC (exact only): ${upc}`);
       
-      // Сначала точное совпадение
+      // Только точное совпадение в releases_basic
       const { data: basicByUpc } = await supabaseAdmin
         .from('releases_basic')
         .select('id, user_id, upc, tracks')
@@ -357,26 +363,7 @@ async function findTrackInDatabase(
         };
       }
       
-      // Нечёткий поиск по UPC (первые 6-8 цифр)
-      const upcPrefix = upc.substring(0, 6);
-      const { data: basicByUpcPrefix } = await supabaseAdmin
-        .from('releases_basic')
-        .select('id, user_id, upc, tracks')
-        .ilike('upc', `${upcPrefix}%`)
-        .in('status', ['approved', 'published', 'distributed', 'pending']);
-      
-      if (basicByUpcPrefix && basicByUpcPrefix.length > 0) {
-        const ti = findTrackIndexInRelease(basicByUpcPrefix[0].tracks || [], trackTitle);
-        console.log(`UPC prefix match found! Release: ${basicByUpcPrefix[0].id}, DB UPC: ${basicByUpcPrefix[0].upc}, trackIndex: ${ti}`);
-        return {
-          releaseId: basicByUpcPrefix[0].id,
-          releaseType: 'basic',
-          userId: basicByUpcPrefix[0].user_id,
-          trackIndex: ti,
-          foundBy: 'upc_prefix'
-        };
-      }
-      
+      // Только точное совпадение в releases_exclusive
       const { data: exclusiveByUpc } = await supabaseAdmin
         .from('releases_exclusive')
         .select('id, user_id, upc, tracks')
@@ -394,25 +381,6 @@ async function findTrackInDatabase(
           userId: exclusiveByUpc.user_id,
           trackIndex: ti,
           foundBy: 'upc'
-        };
-      }
-      
-      // Нечёткий поиск в exclusive
-      const { data: exclusiveByUpcPrefix } = await supabaseAdmin
-        .from('releases_exclusive')
-        .select('id, user_id, upc, tracks')
-        .ilike('upc', `${upcPrefix}%`)
-        .in('status', ['approved', 'published', 'distributed', 'pending']);
-      
-      if (exclusiveByUpcPrefix && exclusiveByUpcPrefix.length > 0) {
-        const ti = findTrackIndexInRelease(exclusiveByUpcPrefix[0].tracks || [], trackTitle);
-        console.log(`UPC prefix match found (exclusive)! Release: ${exclusiveByUpcPrefix[0].id}, trackIndex: ${ti}`);
-        return {
-          releaseId: exclusiveByUpcPrefix[0].id,
-          releaseType: 'exclusive',
-          userId: exclusiveByUpcPrefix[0].user_id,
-          trackIndex: ti,
-          foundBy: 'upc_prefix'
         };
       }
     }
@@ -437,10 +405,16 @@ async function findTrackInDatabase(
           const releaseArtist = normalizeForSearch(release.artist_name || '');
           const releaseTitle = normalizeForSearch(release.title || '');
           
-          // Проверяем совпадение артиста (нечёткое)
-          const artistMatch = !normalizedArtist || 
-            fuzzyMatch(releaseArtist, normalizedArtist) ||
-            fuzzyMatch(normalizedArtist, releaseArtist);
+          // Проверяем совпадение артиста — строго:
+          // 1. Поле артиста из CSV обязательно должно быть заполнено
+          // 2. Совпадение должно быть точным ИЛИ одна строка содержит другую
+          //    (не используем Levenshtein для коротких имён — слишком много ложных срабатываний)
+          // НИКАКОГО !normalizedArtist — пустое имя не должно матчить все релизы
+          const artistMatch = normalizedArtist.length > 0 && (
+            releaseArtist === normalizedArtist ||
+            releaseArtist.includes(normalizedArtist) ||
+            normalizedArtist.includes(releaseArtist)
+          );
           
           if (artistMatch) {
             const tracks = release.tracks || [];
@@ -450,12 +424,12 @@ async function findTrackInDatabase(
               const trackName = normalizeForSearch(tracks[i]?.title || '');
               console.log(`  - Track ${i}: "${tracks[i]?.title}" (normalized: "${trackName}") vs searching for "${normalizedTitle}"`);
               
-              // Точное или нечёткое совпадение названия трека
-              if (normalizedTitle && (
-                trackName === normalizedTitle ||
-                fuzzyMatch(trackName, normalizedTitle) ||
-                fuzzyMatch(normalizedTitle, trackName)
-              )) {
+              // Точное или substring совпадение — fuzzyMatch только для длинных строк (>= 15 символов)
+              const titleExact = trackName === normalizedTitle;
+              const titleSubstr = trackName.includes(normalizedTitle) || normalizedArtist.includes(trackName);
+              const titleFuzzy = normalizedTitle.length >= 15 && fuzzyMatch(trackName, normalizedTitle);
+              
+              if (normalizedTitle && (titleExact || titleSubstr || titleFuzzy)) {
                 console.log(`MATCH by title! Release: ${release.id}, Track: ${tracks[i]?.title}`);
                 return {
                   releaseId: release.id,
@@ -480,20 +454,23 @@ async function findTrackInDatabase(
         for (const release of exclusiveReleases) {
           const releaseArtist = normalizeForSearch(release.artist_name || '');
           
-          const artistMatch = !normalizedArtist || 
-            fuzzyMatch(releaseArtist, normalizedArtist) ||
-            fuzzyMatch(normalizedArtist, releaseArtist);
+          // Та же строгая логика для exclusive
+          const artistMatch = normalizedArtist.length > 0 && (
+            releaseArtist === normalizedArtist ||
+            releaseArtist.includes(normalizedArtist) ||
+            normalizedArtist.includes(releaseArtist)
+          );
           
           if (artistMatch) {
             const tracks = release.tracks || [];
             for (let i = 0; i < tracks.length; i++) {
               const trackName = normalizeForSearch(tracks[i]?.title || '');
               
-              if (normalizedTitle && (
-                trackName === normalizedTitle ||
-                fuzzyMatch(trackName, normalizedTitle) ||
-                fuzzyMatch(normalizedTitle, trackName)
-              )) {
+              const titleExact = trackName === normalizedTitle;
+              const titleSubstr = trackName.includes(normalizedTitle) || normalizedTitle.includes(trackName);
+              const titleFuzzy = normalizedTitle.length >= 15 && fuzzyMatch(trackName, normalizedTitle);
+              
+              if (normalizedTitle && (titleExact || titleSubstr || titleFuzzy)) {
                 console.log(`MATCH by title! Release: ${release.id}, Track: ${tracks[i]?.title}`);
                 return {
                   releaseId: release.id,
@@ -528,10 +505,19 @@ async function findTrackInDatabase(
           const releaseArtist = normalizeForSearch(release.artist_name || '');
           const releaseTitleNorm = normalizeForSearch(release.title || '');
           
-          const artistMatch = fuzzyMatch(releaseArtist, normalizedArtist) || 
-            fuzzyMatch(normalizedArtist, releaseArtist);
-          const titleMatch = fuzzyMatch(releaseTitleNorm, normalizedReleaseTitle) || 
-            fuzzyMatch(normalizedReleaseTitle, releaseTitleNorm);
+          // Строгая проверка артиста: substring, не fuzzy
+          const artistMatch = normalizedArtist.length > 0 && (
+            releaseArtist === normalizedArtist ||
+            releaseArtist.includes(normalizedArtist) ||
+            normalizedArtist.includes(releaseArtist)
+          );
+          // Строгая проверка названия релиза: substring + fuzzy только для длинных
+          const titleMatch = (
+            releaseTitleNorm === normalizedReleaseTitle ||
+            releaseTitleNorm.includes(normalizedReleaseTitle) ||
+            normalizedReleaseTitle.includes(releaseTitleNorm) ||
+            (normalizedReleaseTitle.length >= 15 && fuzzyMatch(releaseTitleNorm, normalizedReleaseTitle))
+          );
           
           if (artistMatch && titleMatch) {
             const ti = findTrackIndexInRelease(release.tracks || [], trackTitle);
@@ -558,10 +544,17 @@ async function findTrackInDatabase(
           const releaseArtist = normalizeForSearch(release.artist_name || '');
           const releaseTitleNorm = normalizeForSearch(release.title || '');
           
-          const artistMatch = fuzzyMatch(releaseArtist, normalizedArtist) || 
-            fuzzyMatch(normalizedArtist, releaseArtist);
-          const titleMatch = fuzzyMatch(releaseTitleNorm, normalizedReleaseTitle) || 
-            fuzzyMatch(normalizedReleaseTitle, releaseTitleNorm);
+          const artistMatch = normalizedArtist.length > 0 && (
+            releaseArtist === normalizedArtist ||
+            releaseArtist.includes(normalizedArtist) ||
+            normalizedArtist.includes(releaseArtist)
+          );
+          const titleMatch = (
+            releaseTitleNorm === normalizedReleaseTitle ||
+            releaseTitleNorm.includes(normalizedReleaseTitle) ||
+            normalizedReleaseTitle.includes(releaseTitleNorm) ||
+            (normalizedReleaseTitle.length >= 15 && fuzzyMatch(releaseTitleNorm, normalizedReleaseTitle))
+          );
           
           if (artistMatch && titleMatch) {
             const ti = findTrackIndexInRelease(release.tracks || [], trackTitle);
@@ -1424,6 +1417,218 @@ export async function GET(request: NextRequest) {
   } catch (error: any) {
     console.error('Error in GET /api/admin/reports:', error);
     return NextResponse.json({ error: error.message || 'Internal server error' }, { status: 500 });
+  }
+}
+
+// PUT - Перепроцессинг существующего отчёта (исправление неверных матчей)
+export async function PUT(request: NextRequest) {
+  try {
+    const authHeader = request.headers.get('authorization');
+    if (!authHeader?.startsWith('Bearer ')) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+    const token = authHeader.split(' ')[1];
+    const { data: { user }, error: authError } = await supabaseAdmin.auth.getUser(token);
+    if (authError || !user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+
+    const { data: profile } = await supabaseAdmin
+      .from('profiles').select('role').eq('id', user.id).single();
+    if (!profile || !['admin', 'owner'].includes(profile.role)) {
+      return NextResponse.json({ error: 'Access denied' }, { status: 403 });
+    }
+
+    const { reportId } = await request.json();
+    if (!reportId) return NextResponse.json({ error: 'reportId required' }, { status: 400 });
+
+    // Получаем отчёт
+    const { data: report } = await supabaseAdmin
+      .from('royalty_reports').select('*').eq('id', reportId).single();
+    if (!report) return NextResponse.json({ error: 'Report not found' }, { status: 404 });
+
+    // Помечаем как processing
+    await supabaseAdmin
+      .from('royalty_reports')
+      .update({ status: 'processing', processing_progress: 0 })
+      .eq('id', reportId);
+
+    // Запускаем перепроцессинг асинхронно
+    reprocessReport(reportId, report.quarter, report.year).catch(err => {
+      console.error('Reprocess error:', err);
+    });
+
+    return NextResponse.json({ success: true, message: 'Reprocessing started' });
+  } catch (error) {
+    console.error('Error in PUT /api/admin/reports:', error);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
+}
+
+async function reprocessReport(reportId: string, quarter: string, year: number): Promise<void> {
+  console.log(`[REPROCESS] Starting reprocess for report ${reportId}`);
+
+  try {
+    // 1. Загружаем все track_statistics для этого отчёта
+    const { data: allTracks, error: tracksError } = await supabaseAdmin
+      .from('track_statistics')
+      .select('*')
+      .eq('report_id', reportId);
+
+    if (tracksError || !allTracks) {
+      throw new Error(`Failed to load track_statistics: ${tracksError?.message}`);
+    }
+
+    console.log(`[REPROCESS] Found ${allTracks.length} tracks to reprocess`);
+
+    // 2. Откатываем старые выплаты: убираем начисления с балансов
+    const { data: oldPayouts } = await supabaseAdmin
+      .from('royalty_payouts')
+      .select('id, user_id, amount')
+      .eq('report_id', reportId);
+
+    if (oldPayouts && oldPayouts.length > 0) {
+      for (const payout of oldPayouts) {
+        const { data: balData } = await supabaseAdmin
+          .from('user_balances').select('balance').eq('user_id', payout.user_id).single();
+        if (balData) {
+          const newBal = Math.max(0, parseFloat(balData.balance) - payout.amount);
+          await supabaseAdmin
+            .from('user_balances')
+            .update({ balance: newBal, updated_at: new Date().toISOString() })
+            .eq('user_id', payout.user_id);
+          await supabaseAdmin
+            .from('profiles')
+            .update({ balance: newBal })
+            .eq('id', payout.user_id);
+        }
+      }
+      // Удаляем старые транзакции и выплаты
+      await supabaseAdmin
+        .from('transactions')
+        .delete()
+        .eq('metadata->>report_id', reportId);
+      await supabaseAdmin
+        .from('royalty_payouts')
+        .delete()
+        .eq('report_id', reportId);
+      console.log(`[REPROCESS] Rolled back ${oldPayouts.length} old payouts`);
+    }
+
+    // 3. Перематчиваем каждый трек с новым алгоритмом
+    const userPayouts = new Map<string, number>();
+    let matched = 0;
+    let unmatched = 0;
+
+    for (let i = 0; i < allTracks.length; i++) {
+      const track = allTracks[i];
+
+      const match = await findTrackInDatabase(
+        track.isrc || null,
+        track.upc || null,
+        track.track_title || '',
+        track.artist_name || '',
+        track.release_title || ''
+      );
+
+      const isMatched = !!match.releaseId;
+      if (isMatched) {
+        matched++;
+        if (match.userId) {
+          const cur = userPayouts.get(match.userId) || 0;
+          userPayouts.set(match.userId, cur + parseFloat(track.net_revenue || '0'));
+        }
+      } else {
+        unmatched++;
+      }
+
+      // Обновляем track_statistics
+      await supabaseAdmin
+        .from('track_statistics')
+        .update({
+          release_id: match.releaseId,
+          release_type: match.releaseType,
+          user_id: match.userId,
+          track_index: match.trackIndex,
+          is_matched: isMatched
+        })
+        .eq('id', track.id);
+
+      // Обновляем прогресс каждые 5 треков
+      if (i % 5 === 0) {
+        const progress = Math.round((i / allTracks.length) * 90);
+        await supabaseAdmin
+          .from('royalty_reports')
+          .update({ processing_progress: progress })
+          .eq('id', reportId);
+      }
+    }
+
+    console.log(`[REPROCESS] Matched: ${matched}, Unmatched: ${unmatched}`);
+
+    // 4. Создаём новые выплаты
+    let payoutsCreated = 0;
+    for (const [userId, amount] of userPayouts) {
+      try {
+        const { data: freshBal } = await supabaseAdmin
+          .from('user_balances').select('balance').eq('user_id', userId).single();
+
+        let currentBalance = 0;
+        if (!freshBal) {
+          await supabaseAdmin.from('user_balances').insert({ user_id: userId, balance: 0 });
+        } else {
+          currentBalance = parseFloat(freshBal.balance || '0');
+        }
+        const newBalance = currentBalance + amount;
+
+        await supabaseAdmin.from('royalty_payouts').insert({
+          report_id: reportId, user_id: userId, quarter, year, amount, status: 'credited'
+        });
+
+        await supabaseAdmin
+          .from('user_balances')
+          .upsert({ user_id: userId, balance: newBalance, updated_at: new Date().toISOString() }, { onConflict: 'user_id' });
+        await supabaseAdmin
+          .from('profiles')
+          .update({ balance: newBalance })
+          .eq('id', userId);
+
+        await supabaseAdmin.from('transactions').insert({
+          user_id: userId,
+          type: 'payout',
+          amount,
+          currency: 'RUB',
+          balance_before: currentBalance,
+          balance_after: newBalance,
+          status: 'completed',
+          description: `Роялти за ${quarter} ${year} (перерасчёт)`,
+          payment_method: 'royalty',
+          reference_id: reportId,
+          metadata: { report_id: reportId, quarter, year, source: 'royalty_report_reprocess' }
+        });
+
+        payoutsCreated++;
+      } catch (e) {
+        console.error(`[REPROCESS] Payout error for ${userId}:`, e);
+      }
+    }
+
+    // 5. Финализируем
+    await supabaseAdmin
+      .from('royalty_reports')
+      .update({
+        status: 'completed',
+        processing_progress: 100,
+        matched_tracks: matched,
+        unmatched_tracks: unmatched
+      })
+      .eq('id', reportId);
+
+    console.log(`[REPROCESS] Done! Matched=${matched}, Payouts=${payoutsCreated}`);
+  } catch (error) {
+    console.error('[REPROCESS] Fatal error:', error);
+    await supabaseAdmin
+      .from('royalty_reports')
+      .update({ status: 'failed', error_log: `Reprocess error: ${error}` })
+      .eq('id', reportId);
   }
 }
 

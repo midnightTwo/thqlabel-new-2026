@@ -5,6 +5,19 @@ const BUILD_TIME = new Date().toISOString();
 
 const nextConfig: NextConfig = {
   /* TURBO OPTIMIZED CONFIG - МАКСИМАЛЬНАЯ скорость переходов */
+
+  // Node.js-only пакеты: не бандлить webpack-ом, использовать как нативный require()
+  // Без этого API роуты с docxtemplater/libreoffice падают с 500
+  serverExternalPackages: [
+    'pizzip',
+    'docxtemplater',
+    'docxtemplater-image-module-free',
+    'libreoffice-convert',
+    'mammoth',
+    '@react-pdf/renderer',
+    '@fontsource/pt-sans',
+  ],
+
   // Отключаем все dev индикаторы Next.js 15
   devIndicators: {
     position: 'bottom-right',

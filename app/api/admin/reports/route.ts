@@ -1397,11 +1397,69 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
     
-    console.log('Returning reports:', reports?.length);
     return NextResponse.json(reports);
+  } catch (error: any) {
+    console.error('Error in GET /api/admin/reports:', error);
+    return NextResponse.json({ error: error.message || 'Internal server error' }, { status: 500 });
+  }
+}
+
+// PATCH - Переименование отчёта (добавление/изменение имени)
+export async function PATCH(request: NextRequest) {
+  try {
+    const authHeader = request.headers.get('authorization');
+    if (!authHeader) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+    
+    const token = authHeader.replace('Bearer ', '');
+    const { data: { user }, error: authError } = await supabaseAdmin.auth.getUser(token);
+    
+    if (authError || !user) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+    
+    // Проверяем, что пользователь - админ
+    const { data: profile } = await supabaseAdmin
+      .from('profiles')
+      .select('role')
+      .eq('id', user.id)
+      .single();
+    
+    if (!profile || !['admin', 'owner'].includes(profile.role)) {
+      return NextResponse.json({ error: 'Access denied' }, { status: 403 });
+    }
+    
+    const body = await request.json();
+    const { id, name } = body;
+    
+    if (!id) {
+      return NextResponse.json({ error: 'Report ID required' }, { status: 400 });
+    }
+    
+    if (typeof name !== 'string') {
+      return NextResponse.json({ error: 'Name must be a string' }, { status: 400 });
+    }
+    
+    const { data: updated, error: updateError } = await supabaseAdmin
+      .from('royalty_reports')
+      .update({ 
+        notes: name.trim() || null,
+        updated_at: new Date().toISOString()
+      })
+      .eq('id', id)
+      .select()
+      .single();
+    
+    if (updateError) {
+      console.error('Error renaming report:', updateError);
+      return NextResponse.json({ error: updateError.message }, { status: 500 });
+    }
+    
+    return NextResponse.json({ success: true, report: updated });
     
   } catch (error) {
-    console.error('Error in GET reports:', error);
+    console.error('Error in PATCH report:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

@@ -38,6 +38,9 @@ apt install -y nginx
 
 # Установка Git
 apt install -y git
+
+# Установка LibreOffice (для генерации PDF договоров)
+apt install -y libreoffice
 ```
 
 ---

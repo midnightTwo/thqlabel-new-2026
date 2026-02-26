@@ -213,7 +213,7 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
                 {/* Цена */}
                 <div className={`text-center pt-2 border-t ${isLight ? 'border-blue-200' : 'border-blue-500/20'}`}>
                   <div className={`text-2xl font-black ${isLight ? 'text-blue-600' : 'text-blue-400'}`}><AnimatedPrice value={epPrice.total} /></div>
-                  <div className={`text-[10px] mt-0.5 ${isLight ? 'text-blue-500' : 'text-blue-400/70'}`}>150 ₽ × {epTracks} треков</div>
+                  <div className={`text-[10px] mt-0.5 ${isLight ? 'text-blue-500' : 'text-blue-400/70'}`}>500 ₽ + {epTracks - 1} × 150 ₽</div>
                 </div>
               </div>
 
@@ -324,7 +324,7 @@ export default function ReleaseTypeSelector({ onSelectType, onBack }: ReleaseTyp
                     </div>
                   ) : (
                     <div className={`text-[10px] mt-0.5 ${isLight ? 'text-emerald-500' : 'text-emerald-400/70'}`}>
-                      {albumTracks} треков × 150 ₽
+                      500 ₽ + {albumTracks - 1} × 150 ₽
                     </div>
                   )}
                 </div>

@@ -150,7 +150,7 @@ export default function PaymentModal({ show, release, userId, onClose, onPayment
             <div className="flex items-center justify-between">
               <div>
                 <div className="text-sm text-zinc-400 mb-1">К оплате</div>
-                <div className="text-3xl font-black text-orange-400">500 ₽</div>
+                <div className="text-3xl font-black text-orange-400">от 500 ₽</div>
               </div>
               <div className="w-12 h-12 rounded-full bg-orange-500/20 flex items-center justify-center">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-orange-400">

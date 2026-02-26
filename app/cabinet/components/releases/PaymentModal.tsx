@@ -60,7 +60,7 @@ export default function PaymentModal({ isOpen, onClose, userId }: PaymentModalPr
       
       // Сохраняем информацию о чеке в localStorage
       localStorage.setItem('basic_payment_receipt', publicUrl);
-      localStorage.setItem('basic_payment_amount', '500');
+      localStorage.setItem('basic_payment_amount', '500'); // минимум, реальная сумма рассчитывается по кол-ву треков
       
       setPaymentLoading(false);
       onClose();
@@ -105,7 +105,7 @@ export default function PaymentModal({ isOpen, onClose, userId }: PaymentModalPr
             </svg>
           </div>
           <h3 className="text-2xl font-black bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent mb-2">Оплата релиза</h3>
-          <p className="text-sm text-zinc-500">Переведите 500₽ и прикрепите чек оплаты</p>
+          <p className="text-sm text-zinc-500">Переведите нужную сумму и прикрепите чек оплаты</p>
         </div>
 
         {/* Информация о стоимости */}
@@ -113,7 +113,7 @@ export default function PaymentModal({ isOpen, onClose, userId }: PaymentModalPr
           <div className="flex items-center justify-between">
             <div>
               <span className="text-zinc-400 text-sm block mb-1">Стоимость публикации</span>
-              <span className="text-3xl font-black text-amber-400">500 ₽</span>
+              <span className="text-3xl font-black text-amber-400">от 500 ₽</span>
             </div>
             <div className="w-14 h-14 rounded-xl bg-amber-500/20 flex items-center justify-center ring-1 ring-amber-500/30">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-amber-400">

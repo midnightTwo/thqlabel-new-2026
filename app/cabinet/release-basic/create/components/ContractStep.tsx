@@ -16,6 +16,7 @@ import {
   formatBik,
   formatCorrAccount,
   generateContractNumber,
+  toInstrumentalCase,
 } from './contractUtils';
 
 // Module-level cache для подписи Плотникова — конвертируем /rospis.png → base64 только один раз
@@ -59,7 +60,7 @@ interface ContractStepProps {
   userEmail?: string;
   nickname?: string;
   releaseId?: string;
-  tracks?: Array<{ title: string; audioMetadata?: { duration?: number } | null; authors?: Array<{ fullName: string }> }>;
+  tracks?: Array<{ title: string; audioMetadata?: { duration?: number } | null; authors?: Array<{ role: string; fullName: string }> }>;
   releaseTitle?: string;
   artistName?: string;
   genre?: string;
@@ -290,380 +291,138 @@ export default function ContractStep({
     );
   }, []);
 
-  /* ---------- DOCX download (HTML→DOC) ---------- */
-  const handleDownloadDocx = useCallback(async () => {
-    const el = contractPdfRef.current;
-    if (!el) return;
+    /* ---------- DOCX download via API ---------- */
+  const handleDownloadDocx = async () => {
     setIsGeneratingDocx(true);
-    try {
-      // Clone content
-      const clone = el.cloneNode(true) as HTMLElement;
 
-      // Convert ALL images to inline base64 for Word compatibility
-      const imgs = clone.querySelectorAll('img');
-      for (const img of Array.from(imgs)) {
-        const src = img.getAttribute('src') || '';
-        // Plotnikov signature
-        if ((src.includes('rospis') || src.includes('signature-plotnikov')) && plotnikovDataUrl) {
-          img.setAttribute('src', plotnikovDataUrl);
-        }
-        // User signature (already base64 data URL from SignaturePad)
-        // — no change needed, it's already data:image/png;base64,...
+    try {
+      const response = await fetch('/api/contracts/generate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          format: 'docx',
+          data: {
+            orderId: contractNum || 'thqlabel',
+            date: new Date().toLocaleDateString('ru-RU'),
+            country: formData.country || '',
+            fio: formData.fullName || '',
+            fio_tvor: toInstrumentalCase(formData.fullName) || formData.fullName || '',
+            nickname: nickname || '',
+            releaseTitle: releaseTitle || '',
+            tracks: buildContractTracks(),
+            passport_number: formData.passport || '',
+            passport_issued_by: formData.passportIssuedBy || '',
+            passport_code: formData.passportCode || '',
+            passport_date: formData.passportDate || '',
+            email: formData.email || '',
+            bank_account: formData.bankAccount || '',
+            bik: formData.bankBik || '',
+            corr_account: formData.bankCorr || '',
+            card_number: formData.cardNumber || '',
+          },
+          signatureBase64: signatureDataUrl,
+          plotnikovSignatureBase64: plotnikovDataUrl,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to generate DOCX');
       }
 
-      const htmlContent = `<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
-<head><meta charset="utf-8">
-<!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View></w:WordDocument></xml><![endif]-->
-<style>
-  @page { size: A4; margin: 2cm; }
-  body { font-family: 'Times New Roman', serif; font-size: 12pt; color: #000000; line-height: 1.5; }
-  table { border-collapse: collapse; width: 100%; }
-  th, td { border: 1px solid #000000; padding: 4px 8px; font-size: 11pt; }
-  th { background-color: #f0f0f0; font-weight: bold; }
-  h2, h3, h4 { font-weight: bold; color: #000000; }
-  p { margin: 4px 0; }
-  img { max-height: 50px; }
-</style>
-</head>
-<body>${clone.innerHTML}</body>
-</html>`;
-
-      const blob = new Blob(['\ufeff', htmlContent], { type: 'application/msword' });
-      const url = URL.createObjectURL(blob);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `Договор_${contractNum || 'thqlabel'}_${(formData.fullName || 'artist').replace(/\s+/g, '_')}.doc`;
+      a.download = `Договор_${contractNum || 'thqlabel'}_${(formData.fullName || 'artist').replace(/\s+/g, '_')}.docx`;
       document.body.appendChild(a);
       a.click();
+      window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
-      URL.revokeObjectURL(url);
+
     } catch (err) {
       console.error('DOCX generation error:', err);
-      alert('Не удалось сгенерировать DOC. Попробуйте ещё раз.');
+      alert('Не удалось сгенерировать DOCX. Попробуйте ещё раз.');
     } finally {
       setIsGeneratingDocx(false);
     }
-  }, [contractNum, formData.fullName, plotnikovDataUrl]);
+  };
 
-  /* ---------- Helper: draw a data-URL or /path img into an offscreen <canvas> ---------- */
-  const dataUrlToRenderedCanvas = (src: string, displayW: number, displayH: number): Promise<HTMLCanvasElement> =>
-    new Promise((resolve) => {
-      const tempImg = new Image();
-      tempImg.onload = () => {
-        const c = document.createElement('canvas');
-        // 3× scale to match html2canvas capture scale
-        c.width = Math.max(tempImg.naturalWidth, displayW * 3);
-        c.height = Math.max(tempImg.naturalHeight, displayH * 3);
-        c.style.width = `${displayW}px`;
-        c.style.height = `${displayH}px`;
-        const ctx = c.getContext('2d');
-        if (ctx) ctx.drawImage(tempImg, 0, 0, c.width, c.height);
-        resolve(c);
-      };
-      tempImg.onerror = () => {
-        const c = document.createElement('canvas');
-        c.width = displayW * 3; c.height = displayH * 3;
-        c.style.width = `${displayW}px`; c.style.height = `${displayH}px`;
-        resolve(c);
-      };
-      tempImg.crossOrigin = 'anonymous';
-      tempImg.src = src;
-    });
+// Seconds → "M:SS" string
+  const fmtDur = (sec?: number): string => {
+    if (!sec || sec <= 0) return '-';
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60);
+    return `${m}:${String(s).padStart(2, '0')}`;
+  };
 
-  /* ---------- PDF download — uses iframe isolation to avoid oklch color parsing errors ---------- */
+  const buildContractTracks = () =>
+    (tracks || []).map(t => ({
+      title: t.title || '-',
+      duration: fmtDur(t.audioMetadata?.duration),
+      composer: (t.authors || []).filter(a => a.role === 'composer').map(a => a.fullName).join(', ') || '-',
+      lyricist: (t.authors || []).filter(a => a.role === 'lyricist').map(a => a.fullName).join(', ') || '-',
+    }));
+
+/* ---------- PDF download via API ---------- */
   const handleDownloadPdf = async () => {
-    const el = contractPdfRef.current;
-    if (!el) return;
     setIsGeneratingPdf(true);
-    
+
     try {
-      const { jsPDF } = await import('jspdf');
-      const html2canvas = (await import('html2canvas-pro')).default;
-      
-      // Create an isolated iframe - MUCH taller for long contracts
-      const iframe = document.createElement('iframe');
-      iframe.style.cssText = 'position:absolute;left:-9999px;top:0;width:794px;height:15000px;border:none;';
-      document.body.appendChild(iframe);
-      
-      const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
-      if (!iframeDoc) throw new Error('Cannot access iframe document');
-      
-      // Write clean HTML with safe CSS that overrides oklch colors but preserves layout
-      iframeDoc.open();
-      iframeDoc.write(`<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <style>
-    /* Reset and base */
-    * { 
-      margin: 0; 
-      padding: 0; 
-      box-sizing: border-box;
-      /* Force safe colors - override any oklch */
-      color: #000000 !important;
-      border-color: #000000 !important;
-      background-color: transparent !important;
-      outline-color: #000000 !important;
-      text-decoration-color: #000000 !important;
-    }
-    
-    body {
-      font-family: 'Times New Roman', Georgia, serif !important;
-      font-size: 12px !important;
-      line-height: 1.6 !important;
-      color: #000000 !important;
-      background: #ffffff !important;
-      padding: 40px 50px !important;
-      width: 794px !important;
-    }
-    
-    /* Typography */
-    h1, h2, h3, h4, h5, h6 { 
-      color: #000000 !important; 
-      margin-bottom: 10px !important;
-    }
-    p { 
-      margin-bottom: 6px !important; 
-      color: #000000 !important; 
-    }
-    
-    /* Tables */
-    table { 
-      border-collapse: collapse !important; 
-      width: 100% !important; 
-    }
-    td, th { 
-      padding: 4px 8px !important; 
-      border: 1px solid #000000 !important; 
-      color: #000000 !important;
-      background-color: transparent !important;
-    }
-    th {
-      background-color: #f0f0f0 !important;
-    }
-    
-    /* Images */
-    img { 
-      max-width: 100% !important; 
-      height: auto !important; 
-    }
-    
-    /* Layout helpers - preserve grid/flex from inline styles */
-    .ct-two-col { 
-      display: grid !important; 
-      grid-template-columns: 1fr 1fr !important; 
-      gap: 16px !important; 
-    }
-    
-    /* Contract-specific inline styles preserved via style attr */
-    strong, b { font-weight: bold !important; }
-    
-    /* Spacing */
-    .space-y-2 > * + * { margin-top: 8px !important; }
-    .space-y-4 > * + * { margin-top: 16px !important; }
-    
-    /* Page break hints */
-    .page-break-before { page-break-before: always; }
-    .page-break-after { page-break-after: always; }
-    
-    /* Signature images specific */
-    img[data-sig] {
-      height: 40px !important;
-      object-fit: contain !important;
-      display: block !important;
-    }
-  </style>
-</head>
-<body></body>
-</html>`);
-      iframeDoc.close();
-      
-      // Clone content - KEEP classes and inline styles, just fix colors
-      const clone = el.cloneNode(true) as HTMLElement;
-      
-      // Fix signature images
-      const sigImgs = clone.querySelectorAll<HTMLImageElement>('img[data-sig]');
-      for (const img of Array.from(sigImgs)) {
-        const sigType = img.getAttribute('data-sig');
-        if (sigType === 'plotnikov' && plotnikovDataUrl) {
-          img.src = plotnikovDataUrl;
-        } else if (sigType === 'user' && signatureDataUrl) {
-          img.src = signatureDataUrl;
-        }
-        img.style.height = '40px';
-        img.style.display = 'block';
-      }
-      
-      // Convert external images to base64
-      const allImgs = clone.querySelectorAll<HTMLImageElement>('img');
-      for (const img of Array.from(allImgs)) {
-        const src = img.getAttribute('src') || '';
-        if (src && !src.startsWith('data:')) {
-          try {
-            const response = await fetch(src);
-            const blob = await response.blob();
-            const base64 = await new Promise<string>((resolve) => {
-              const reader = new FileReader();
-              reader.onloadend = () => resolve(reader.result as string);
-              reader.onerror = () => resolve('');
-              reader.readAsDataURL(blob);
-            });
-            if (base64) img.src = base64;
-          } catch { /* skip */ }
-        }
-      }
-      
-      // Remove any style tags that might contain oklch
-      const styleTags = clone.querySelectorAll('style');
-      for (const s of Array.from(styleTags)) {
-        s.remove();
-      }
-      
-      // Append clone to iframe body
-      iframeDoc.body.appendChild(clone);
-      
-      // Wait for rendering
-      await new Promise(resolve => setTimeout(resolve, 500));
-      
-      // Get actual content height
-      const actualHeight = iframeDoc.body.scrollHeight;
-      iframe.style.height = `${actualHeight + 100}px`;
-      
-      // Wait again for resize
-      await new Promise(resolve => setTimeout(resolve, 200));
-      
-      // Capture with html2canvas inside iframe (no oklch styles!)
-      const canvas = await html2canvas(iframeDoc.body, {
-        scale: 2,
-        useCORS: true,
-        allowTaint: true,
-        backgroundColor: '#ffffff',
-        logging: false,
-        width: 794,
-        height: actualHeight,
-        windowWidth: 794,
-        windowHeight: actualHeight,
+      const response = await fetch('/api/contracts/generate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          data: {
+            orderId: contractNum || 'thqlabel',
+            date: new Date().toLocaleDateString('ru-RU'),
+            country: formData.country || '',
+            fio: formData.fullName || '',
+            fio_tvor: toInstrumentalCase(formData.fullName) || formData.fullName || '',
+            nickname: nickname || '',
+            releaseTitle: releaseTitle || '',
+            tracks: buildContractTracks(),
+            passport_number: formData.passport || '',
+            passport_issued_by: formData.passportIssuedBy || '',
+            passport_code: formData.passportCode || '',
+            passport_date: formData.passportDate || '',
+            email: formData.email || '',
+            bank_account: formData.bankAccount || '',
+            bik: formData.bankBik || '',
+            corr_account: formData.bankCorr || '',
+            card_number: formData.cardNumber || '',
+          },
+          signatureBase64: signatureDataUrl,
+          plotnikovSignatureBase64: plotnikovDataUrl,
+        }),
       });
-      
-      // Remove iframe
-      document.body.removeChild(iframe);
-      
-      // Create PDF from canvas
-      const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-      
-      const pdfW = 210;
-      const pdfH = 297;
-      const margin = 10;
-      const contentW = pdfW - margin * 2;
-      
-      const imgW = canvas.width;
-      const imgH = canvas.height;
-      const ratio = contentW / imgW;
-      const scaledH = imgH * ratio;
-      const pageContentH = pdfH - margin * 2;
-      
-      // If fits on one page
-      if (scaledH <= pageContentH) {
-        pdf.addImage(canvas.toDataURL('image/jpeg', 0.92), 'JPEG', margin, margin, contentW, scaledH);
-      } else {
-        // Multi-page with SMART page breaks - find white gaps between paragraphs
-        const pagePixelH = pageContentH / ratio;
-        let srcY = 0;
-        let pageNum = 0;
-        const canvasCtx = canvas.getContext('2d');
-        
-        // Helper: check if a row is mostly white (empty space)
-        const isRowWhite = (y: number): boolean => {
-          if (!canvasCtx || y < 0 || y >= imgH) return false;
-          const rowData = canvasCtx.getImageData(0, Math.floor(y), imgW, 1).data;
-          let whiteCount = 0;
-          const step = Math.max(1, Math.floor(imgW / 50)); // sample 50 points
-          for (let x = 0; x < imgW; x += step) {
-            const idx = x * 4;
-            if (rowData[idx] > 245 && rowData[idx+1] > 245 && rowData[idx+2] > 245) {
-              whiteCount++;
-            }
-          }
-          return whiteCount / (imgW / step) > 0.95;
-        };
-        
-        // Helper: check if there's a white band (multiple white rows = paragraph gap)
-        const isWhiteBand = (y: number, minRows: number): boolean => {
-          for (let i = 0; i < minRows; i++) {
-            if (!isRowWhite(y + i)) return false;
-          }
-          return true;
-        };
-        
-        // Find best break point - search for white band (paragraph gap)
-        const findBreakPoint = (targetY: number): number => {
-          const searchRangeBack = Math.floor(pagePixelH * 0.25); // search 25% back
-          const minBandHeight = 8; // need 8 consecutive white rows for a paragraph gap
-          
-          // Search backward from target for a white band
-          for (let offset = 0; offset <= searchRangeBack; offset++) {
-            const y = Math.floor(targetY - offset);
-            if (y <= srcY + 100) break; // don't go too close to start
-            
-            if (isWhiteBand(y, minBandHeight)) {
-              return y + minBandHeight / 2; // break in middle of white band
-            }
-          }
-          
-          // If no paragraph gap found, search for ANY white row
-          for (let offset = 0; offset <= searchRangeBack; offset++) {
-            const y = Math.floor(targetY - offset);
-            if (y <= srcY + 100) break;
-            
-            if (isRowWhite(y) && isRowWhite(y - 1) && isRowWhite(y + 1)) {
-              return y;
-            }
-          }
-          
-          // Last resort: break 20% earlier to avoid cutting text
-          return Math.floor(targetY - pagePixelH * 0.1);
-        };
-        
-        while (srcY < imgH && pageNum < 20) {
-          if (pageNum > 0) pdf.addPage();
-          
-          let nextBreak: number;
-          const targetEnd = srcY + pagePixelH;
-          
-          if (targetEnd >= imgH) {
-            // Last page - take whatever is left
-            nextBreak = imgH;
-          } else {
-            // Find safe break point
-            nextBreak = findBreakPoint(targetEnd);
-          }
-          
-          const sliceH = Math.max(1, nextBreak - srcY);
-          
-          // Create page canvas with full page height (add white space at bottom if needed)
-          const pageCanvas = document.createElement('canvas');
-          pageCanvas.width = imgW;
-          pageCanvas.height = Math.ceil(pagePixelH);
-          const ctx = pageCanvas.getContext('2d');
-          if (ctx) {
-            // Fill with white first
-            ctx.fillStyle = '#ffffff';
-            ctx.fillRect(0, 0, pageCanvas.width, pageCanvas.height);
-            // Draw content slice at top
-            ctx.drawImage(canvas, 0, srcY, imgW, sliceH, 0, 0, imgW, sliceH);
-            // White space remains at bottom if sliceH < pagePixelH
-            pdf.addImage(pageCanvas.toDataURL('image/jpeg', 0.92), 'JPEG', margin, margin, contentW, pageContentH);
-          }
-          
-          srcY = nextBreak;
-          pageNum++;
-        }
+
+      if (!response.ok) {
+        const errText = await response.text().catch(() => '');
+        throw new Error(`Failed to generate PDF: ${errText}`);
       }
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
       
-      const fileName = `Договор_${contractNum || 'thqlabel'}_${(formData.fullName || 'artist').replace(/\s+/g, '_')}.pdf`;
-      pdf.save(fileName);
+      const isDocx = response.headers.get('X-Conversion-Error') === 'true';
+      const extension = isDocx ? 'docx' : 'pdf';
       
+      a.download = `Договор_${contractNum || 'thqlabel'}_${(formData.fullName || 'artist').replace(/\s+/g, '_')}.${extension}`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+
+      if (isDocx) {
+        alert('Внимание: LibreOffice не установлен на сервере. Скачан формат DOCX вместо PDF.');
+      }
+
     } catch (err) {
       console.error('PDF generation error:', err);
       alert('Не удалось сгенерировать PDF. Попробуйте ещё раз.');
@@ -672,7 +431,7 @@ export default function ContractStep({
     }
   };
 
-  /* ---------- renderField ---------- */
+/* ---------- renderField ---------- */
   const renderField = (
     field: keyof ContractFormData,
     label: string,

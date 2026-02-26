@@ -33,6 +33,7 @@ interface Report {
   total_streams: number;
   created_at: string;
   error_log: string | null;
+  notes: string | null;
 }
 
 interface ReportDetails {
@@ -766,6 +767,50 @@ export default function ReportsTab({ supabase }: ReportsTabProps) {
   const [deletingReportId, setDeletingReportId] = useState<string | null>(null);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState<Report | null>(null);
 
+  // Переименование отчёта
+  const [renamingReportId, setRenamingReportId] = useState<string | null>(null);
+  const [renameValue, setRenameValue] = useState('');
+  const renameInputRef = useRef<HTMLInputElement>(null);
+
+  const startRename = (report: Report, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setRenamingReportId(report.id);
+    setRenameValue(report.notes || `${report.quarter} ${report.year}`);
+    setTimeout(() => renameInputRef.current?.focus(), 50);
+  };
+
+  const saveRename = async (reportId: string) => {
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) return;
+
+      const response = await fetch('/api/admin/reports', {
+        method: 'PATCH',
+        headers: {
+          'Authorization': `Bearer ${session.access_token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id: reportId, name: renameValue.trim() })
+      });
+
+      if (response.ok) {
+        // Обновляем локальный список
+        setReports(prev => prev.map(r => 
+          r.id === reportId ? { ...r, notes: renameValue.trim() || null } : r
+        ));
+      }
+    } catch {
+      // Ошибка переименования
+    } finally {
+      setRenamingReportId(null);
+    }
+  };
+
+  const cancelRename = () => {
+    setRenamingReportId(null);
+    setRenameValue('');
+  };
+
   const deleteReport = async (report: Report) => {
     setDeletingReportId(report.id);
     try {
@@ -1352,7 +1397,51 @@ export default function ReportsTab({ supabase }: ReportsTabProps) {
                       
                       <div className="min-w-0">
                         <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-                          <h3 className="text-base sm:text-xl font-bold text-white whitespace-nowrap">{report.quarter} {report.year}</h3>
+                          {renamingReportId === report.id ? (
+                            <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
+                              <input
+                                ref={renameInputRef}
+                                type="text"
+                                value={renameValue}
+                                onChange={(e) => setRenameValue(e.target.value)}
+                                onKeyDown={(e) => {
+                                  if (e.key === 'Enter') saveRename(report.id);
+                                  if (e.key === 'Escape') cancelRename();
+                                }}
+                                className="px-2 py-1 text-sm sm:text-base font-bold bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-emerald-500/50 w-40 sm:w-56"
+                                placeholder="Название отчёта"
+                              />
+                              <button
+                                onClick={(e) => { e.stopPropagation(); saveRename(report.id); }}
+                                className="p-1.5 bg-emerald-500/20 rounded-lg hover:bg-emerald-500/30 transition-colors"
+                                title="Сохранить"
+                              >
+                                <svg className="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                </svg>
+                              </button>
+                              <button
+                                onClick={(e) => { e.stopPropagation(); cancelRename(); }}
+                                className="p-1.5 bg-white/10 rounded-lg hover:bg-white/20 transition-colors"
+                                title="Отмена"
+                              >
+                                <svg className="w-4 h-4 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                              </button>
+                            </div>
+                          ) : (
+                            <>
+                              <h3 className="text-base sm:text-xl font-bold text-white whitespace-nowrap">
+                                {report.notes || `${report.quarter} ${report.year}`}
+                              </h3>
+                              {report.notes && (
+                                <span className="px-1.5 py-0.5 text-[10px] bg-white/10 text-zinc-400 rounded-full font-medium whitespace-nowrap">
+                                  {report.quarter} {report.year}
+                                </span>
+                              )}
+                            </>
+                          )}
                           {report.status === 'processing' && (
                             <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[10px] sm:text-xs bg-yellow-500/20 text-yellow-400 rounded-full animate-pulse font-medium whitespace-nowrap">
                               ⏳ <span className="hidden sm:inline">Обработка</span>
@@ -1395,6 +1484,15 @@ export default function ReportsTab({ supabase }: ReportsTabProps) {
                       </div>
                       
                       {/* Кнопки */}
+                      <button
+                        onClick={(e) => startRename(report, e)}
+                        className="p-2 hover:bg-blue-500/20 rounded-xl transition-colors text-zinc-500 hover:text-blue-400 min-w-[40px] min-h-[40px] flex items-center justify-center"
+                        title="Переименовать отчёт"
+                      >
+                        <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                        </svg>
+                      </button>
                       <button 
                         onClick={(e) => { e.stopPropagation(); setShowDeleteConfirm(report); }}
                         disabled={deletingReportId === report.id}

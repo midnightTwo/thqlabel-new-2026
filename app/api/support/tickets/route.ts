@@ -7,6 +7,11 @@ export async function GET(request: Request) {
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
     const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
     
+    const url = new URL(request.url);
+    const page = parseInt(url.searchParams.get('page') || '1', 10);
+    const limit = Math.min(parseInt(url.searchParams.get('limit') || '100', 10), 200);
+    const offset = (page - 1) * limit;
+    
     // Получаем токен из заголовка Authorization
     const authHeader = request.headers.get('authorization');
     const token = authHeader?.replace('Bearer ', '');
@@ -47,7 +52,8 @@ export async function GET(request: Request) {
     let query = supabase
       .from('support_tickets')
       .select('*')
-      .order('updated_at', { ascending: false});
+      .order('updated_at', { ascending: false})
+      .range(offset, offset + limit - 1);
 
     // Если не админ, показываем только свои тикеты БЕЗ архивных
     if (!isAdmin) {
@@ -73,7 +79,8 @@ export async function GET(request: Request) {
       .from('ticket_messages')
       .select('*')
       .in('ticket_id', ticketIds)
-      .order('created_at', { ascending: true });
+      .order('created_at', { ascending: true })
+      .limit(2000);
 
     // Получаем информацию о релизах для тикетов из ОБЕИХ таблиц
     const releaseIds = tickets

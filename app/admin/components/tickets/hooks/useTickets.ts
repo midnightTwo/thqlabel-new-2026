@@ -141,10 +141,10 @@ export function useTickets(
     }
   };
 
-  // Автообновление каждые 5 секунд
+  // Автообновление каждые 15 секунд (не 5, чтобы не перегружать сервер)
   useEffect(() => {
     loadTickets();
-    const interval = setInterval(() => loadTickets(), 5000);
+    const interval = setInterval(() => loadTickets(), 15000);
     return () => clearInterval(interval);
   }, []);
 

@@ -581,8 +581,9 @@ function AdminSendStep({ supabase, selectedUser, releaseType, releaseTitle, arti
 
       let coverUrl = '';
       if (coverFile) {
-        const fileName = `${userPath}_cover.${coverFile.name.split('.').pop()}`;
-        const { error: uploadError } = await supabase.storage.from('release-covers').upload(fileName, coverFile);
+        const fileExt = coverFile.name.split('.').pop();
+        const fileName = `${userPath}_${Date.now()}_cover.${fileExt}`;
+        const { error: uploadError } = await supabase.storage.from('release-covers').upload(fileName, coverFile, { contentType: coverFile.type, upsert: true });
         if (uploadError) throw uploadError;
         const { data: urlData } = supabase.storage.from('release-covers').getPublicUrl(fileName);
         coverUrl = urlData.publicUrl;

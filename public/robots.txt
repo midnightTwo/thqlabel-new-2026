@@ -21,4 +21,13 @@ Allow: /feed/
 Allow: /offer/
 Allow: /consent/
 
+# Yandex
+User-agent: Yandex
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /cabinet/
+Disallow: /auth/
+Clean-param: v
+
 Sitemap: https://thqlabel.ru/sitemap.xml

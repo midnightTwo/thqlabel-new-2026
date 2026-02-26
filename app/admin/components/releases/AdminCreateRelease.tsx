@@ -43,6 +43,7 @@ interface Track {
   hasDrugs: boolean;
   lyrics: string;
   language: string;
+  isInstrumental?: boolean;
   version?: string;
   producers?: string[];
   featuring?: string[];
@@ -567,8 +568,9 @@ function AdminSendStep({ supabase, selectedUser, releaseType, releaseTitle, arti
           title: track.title,
           artists: artistName,
           hasDrugs: track.hasDrugs,
-          lyrics: track.lyrics,
-          language: track.language,
+          isInstrumental: track.isInstrumental || false,
+          lyrics: track.isInstrumental ? '' : track.lyrics,
+          language: track.isInstrumental ? '' : track.language,
           version: track.version || '',
           producers: track.producers || [],
           featuring: track.featuring || [],
@@ -1267,6 +1269,7 @@ export default function AdminCreateRelease({ supabase, onSuccess, onCancel }: Ad
   const [trackFeaturing, setTrackFeaturing] = useState<string[]>([]);
   const [trackAuthors, setTrackAuthors] = useState<TrackAuthor[]>([]);
   const [trackIsrc, setTrackIsrc] = useState('');
+  const [trackIsInstrumental, setTrackIsInstrumental] = useState(false);
 
   // Countries & Platforms
   const [excludedCountries, setExcludedCountries] = useState<string[]>([]);
@@ -1298,7 +1301,7 @@ export default function AdminCreateRelease({ supabase, onSuccess, onCancel }: Ad
         {currentStep === 'user' && <UserSelectStep supabase={supabase} selectedUser={selectedUser} onSelectUser={setSelectedUser} onNext={() => setCurrentStep('type')} />}
         {currentStep === 'type' && <ReleaseTypeStep releaseType={releaseType} onSelectType={setReleaseType} onNext={() => setCurrentStep('release')} onBack={() => setCurrentStep('user')} />}
         {currentStep === 'release' && <ReleaseInfoStep releaseTitle={releaseTitle} setReleaseTitle={setReleaseTitle} artistName={artistName} setArtistName={setArtistName} collaborators={collaborators} setCollaborators={setCollaborators} collaboratorInput={collaboratorInput} setCollaboratorInput={setCollaboratorInput} genre={genre} setGenre={setGenre} subgenres={subgenres} setSubgenres={setSubgenres} subgenreInput={subgenreInput} setSubgenreInput={setSubgenreInput} releaseDate={releaseDate} setReleaseDate={setReleaseDate} showCalendar={showCalendar} setShowCalendar={setShowCalendar} calendarMonth={calendarMonth} setCalendarMonth={setCalendarMonth} calendarYear={calendarYear} setCalendarYear={setCalendarYear} coverFile={coverFile} setCoverFile={setCoverFile} upc={upc} setUpc={setUpc} onNext={() => setCurrentStep('tracklist')} />}
-        {currentStep === 'tracklist' && <TracklistStep releaseTitle={releaseTitle} releaseType={releaseType} coverFile={coverFile} tracks={tracks} setTracks={setTracks} currentTrack={currentTrack} setCurrentTrack={setCurrentTrack} trackTitle={trackTitle} setTrackTitle={setTrackTitle} trackIsrc={trackIsrc} setTrackIsrc={setTrackIsrc} trackLink={trackLink} setTrackLink={setTrackLink} trackAudioFile={trackAudioFile} setTrackAudioFile={setTrackAudioFile} trackAudioMetadata={trackAudioMetadata} setTrackAudioMetadata={setTrackAudioMetadata} trackHasDrugs={trackHasDrugs} setTrackHasDrugs={setTrackHasDrugs} trackLyrics={trackLyrics} setTrackLyrics={setTrackLyrics} trackLanguage={trackLanguage} setTrackLanguage={setTrackLanguage} trackVersion={trackVersion} setTrackVersion={setTrackVersion} trackProducers={trackProducers} setTrackProducers={setTrackProducers} trackFeaturing={trackFeaturing} setTrackFeaturing={setTrackFeaturing} trackAuthors={trackAuthors} setTrackAuthors={setTrackAuthors} audioOptional={true} onNext={() => setCurrentStep('countries')} onBack={() => setCurrentStep('release')} />}
+        {currentStep === 'tracklist' && <TracklistStep releaseTitle={releaseTitle} releaseType={releaseType} coverFile={coverFile} tracks={tracks} setTracks={setTracks} currentTrack={currentTrack} setCurrentTrack={setCurrentTrack} trackTitle={trackTitle} setTrackTitle={setTrackTitle} trackIsrc={trackIsrc} setTrackIsrc={setTrackIsrc} trackLink={trackLink} setTrackLink={setTrackLink} trackAudioFile={trackAudioFile} setTrackAudioFile={setTrackAudioFile} trackAudioMetadata={trackAudioMetadata} setTrackAudioMetadata={setTrackAudioMetadata} trackHasDrugs={trackHasDrugs} setTrackHasDrugs={setTrackHasDrugs} trackLyrics={trackLyrics} setTrackLyrics={setTrackLyrics} trackLanguage={trackLanguage} setTrackLanguage={setTrackLanguage} trackIsInstrumental={trackIsInstrumental} setTrackIsInstrumental={setTrackIsInstrumental} trackVersion={trackVersion} setTrackVersion={setTrackVersion} trackProducers={trackProducers} setTrackProducers={setTrackProducers} trackFeaturing={trackFeaturing} setTrackFeaturing={setTrackFeaturing} trackAuthors={trackAuthors} setTrackAuthors={setTrackAuthors} audioOptional={true} onNext={() => setCurrentStep('countries')} onBack={() => setCurrentStep('release')} />}
         {currentStep === 'countries' && <CountriesStep excludedCountries={excludedCountries} setExcludedCountries={setExcludedCountries} onNext={() => setCurrentStep('platforms')} onBack={() => setCurrentStep('tracklist')} />}
         {currentStep === 'platforms' && <PlatformsStep selectedPlatforms={selectedPlatforms} setSelectedPlatforms={setSelectedPlatforms} selectedPlatformsList={selectedPlatformsList} setSelectedPlatformsList={setSelectedPlatformsList} onNext={() => setCurrentStep('send')} onBack={() => setCurrentStep('countries')} />}
         {currentStep === 'send' && (

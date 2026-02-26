@@ -1052,28 +1052,47 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="cache-control" content="no-cache, no-store, must-revalidate" />
         
         <title>thqlabel - Музыкальный лейбл</title>
-        <meta name="description" content="thqlabel - Музыкальный лейбл. Релизы, новости, артисты." />
+        <meta name="description" content="Продвигаем вашу музыку на новый уровень. Полный спектр услуг для артистов: дистрибуция, маркетинг, PR и синхронизация." />
+        <meta name="keywords" content="музыкальный лейбл, дистрибуция музыки, thqlabel, релиз музыки, артисты" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="thqlabel" />
         
         {/* Open Graph — превью ссылок в Telegram, VK, Discord, Facebook и т.д. */}
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="thqlabel" />
-        <meta property="og:title" content="thqlabel - Музыкальный лейбл" />
-        <meta property="og:description" content="thqlabel - Музыкальный лейбл. Релизы, новости, артисты." />
-        <meta property="og:url" content="https://thqlabel.ru" />
+        <meta property="og:title" content="thqlabel — Музыкальный лейбл" />
+        <meta property="og:description" content="Продвигаем вашу музыку на новый уровень. Полный спектр услуг для артистов: дистрибуция, маркетинг, PR и синхронизация." />
+        <meta property="og:url" content="https://thqlabel.ru/" />
         <meta property="og:image" content="https://thqlabel.ru/og-image.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:alt" content="thqlabel — Музыкальный лейбл" />
         <meta property="og:locale" content="ru_RU" />
         
         {/* Twitter Card — превью в Twitter/X */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="thqlabel - Музыкальный лейбл" />
-        <meta name="twitter:description" content="thqlabel - Музыкальный лейбл. Релизы, новости, артисты." />
+        <meta name="twitter:title" content="thqlabel — Музыкальный лейбл" />
+        <meta name="twitter:description" content="Продвигаем вашу музыку на новый уровень. Полный спектр услуг для артистов: дистрибуция, маркетинг, PR и синхронизация." />
         <meta name="twitter:image" content="https://thqlabel.ru/og-image.jpg" />
+        
+        {/* Yandex — ускоренная индексация */}
+        <meta name="yandex" content="noarchive" />
         
         {/* Telegram специфичные */}
         <meta name="telegram:channel" content="@thqlabel" />
+        
+        {/* JSON-LD структурированные данные для Google */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "thqlabel",
+          "url": "https://thqlabel.ru/",
+          "logo": "https://thqlabel.ru/icon.png",
+          "image": "https://thqlabel.ru/og-image.jpg",
+          "description": "Продвигаем вашу музыку на новый уровень. Полный спектр услуг для артистов: дистрибуция, маркетинг, PR и синхронизация.",
+          "contactPoint": { "@type": "ContactPoint", "email": "thqlabel@ya.ru", "contactType": "customer service" }
+        })}} />
         
         {/* Preconnect для ускорения загрузки внешних ресурсов */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1083,12 +1102,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Preload критических ресурсов */}
         <link rel="preload" href={LOGO_SRC} as="image" />
         
-        <link rel="icon" type="image/png" href="/favicon.png?v=5" />
-        <link rel="icon" type="image/png" sizes="192x192" href="/icon.png?v=5" />
-        <link rel="icon" type="image/png" sizes="512x512" href="/icon.png?v=5" />
-        <link rel="apple-touch-icon" sizes="192x192" href="/icon.png?v=5" />
-        <link rel="shortcut icon" href="/favicon.png?v=5" />
-        <link rel="manifest" href="/manifest.json" />
+        {/* Иконки — v6 для сброса кэша */}
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=6" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/icon.png?v=6" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/icon.png?v=6" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/icon.png?v=6" />
+        <link rel="apple-touch-icon" sizes="192x192" href="/icon.png?v=6" />
+        <link rel="shortcut icon" href="/favicon.png?v=6" />
+        <link rel="manifest" href="/manifest.json?v=6" />
         {/* CSS fallback для тем - если JS отключён */}
         <style dangerouslySetInnerHTML={{ __html: `
           html { background: #08080a; }

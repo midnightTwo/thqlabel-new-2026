@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useCallback } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
-import { generateContractHtml, downloadContractAsDoc, downloadContractAsPdf, formatContractDate } from '@/app/cabinet/release-basic/create/components/contractUtils';
+import { toInstrumentalCase, formatContractDate } from '@/app/cabinet/release-basic/create/components/contractUtils';
 
 interface ContractRelease {
   id: string;
@@ -110,89 +110,102 @@ export default function ContractsTab({ supabase }: ContractsTabProps) {
 
   const signedCount = contracts.filter(c => !!c.contract_signature).length;
 
-  // Build contract HTML for selected release
-  const buildContractHtml = useCallback(async (contract: ContractRelease) => {
+  // Helper: format seconds to M:SS
+  const fmtDur = (sec?: number) => {
+    if (!sec || sec <= 0) return '-';
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60);
+    return `${m}:${String(s).padStart(2, '0')}`;
+  };
+
+  // Download contract via /api/contracts/generate (new PDF renderer)
+  const downloadContractViaApi = useCallback(async (contract: ContractRelease, format: 'pdf' | 'docx') => {
     const cd = contract.contract_data as Record<string, string> | null;
-    const contractData = {
-      fullName: contract.contract_full_name || cd?.fullName || '',
-      country: contract.contract_country || cd?.country || '',
-      passport: contract.contract_passport || cd?.passport || '',
-      passportIssuedBy: contract.contract_passport_issued_by || cd?.passportIssuedBy || '',
-      passportCode: contract.contract_passport_code || cd?.passportCode || '',
-      passportDate: contract.contract_passport_date || cd?.passportDate || '',
-      email: contract.contract_email || cd?.email || contract.user_email || '',
-      bankAccount: contract.contract_bank_account || cd?.bankAccount || '',
-      bankBik: contract.contract_bank_bik || cd?.bankBik || '',
-      bankCorr: contract.contract_bank_corr || cd?.bankCorr || '',
-      cardNumber: contract.contract_card_number || cd?.cardNumber || '',
-    };
+    const fio = contract.contract_full_name || cd?.fullName || '';
+    if (!fio) throw new Error('Данные договора отсутствуют');
 
-    if (!contractData.fullName) return null;
-
-    // Convert rospis.png to base64 for embedding
-    let plotnikovB64 = '/rospis.png';
+    let plotnikovSignatureBase64 = '';
     try {
       const resp = await fetch('/rospis.png');
       const blob = await resp.blob();
-      plotnikovB64 = await new Promise<string>((resolve) => {
+      plotnikovSignatureBase64 = await new Promise<string>((resolve) => {
         const reader = new FileReader();
         reader.onloadend = () => resolve(reader.result as string);
         reader.readAsDataURL(blob);
       });
     } catch { /* fallback */ }
 
-    const tracks = (contract.tracks || []).map((t: any) => ({
-      title: t.title || '',
-      duration: t.audioMetadata?.duration ? `${Math.floor(t.audioMetadata.duration / 60)}:${String(Math.floor(t.audioMetadata.duration % 60)).padStart(2, '0')}` : '—',
-    }));
-
     const dateStr = contract.contract_signed_at || contract.contract_agreed_at
       ? formatContractDate(new Date(contract.contract_signed_at || contract.contract_agreed_at || ''))
       : formatContractDate(new Date());
 
-    return {
-      html: generateContractHtml({
-        data: contractData,
-        contractNumber: contract.contract_number || '',
-        nickname: contract.artist_name || contract.title || '',
-        tracks,
-        signatureDataUrl: contract.contract_signature || undefined,
-        plotnikovSignatureDataUrl: plotnikovB64,
-        contractDate: dateStr,
-      }),
-      contractData,
+    const tracks = (contract.tracks || []).map((t: any) => ({
+      title: t.title || '-',
+      duration: fmtDur(t.audioMetadata?.duration),
+      composer: (t.authors || []).filter((a: any) => a.role === 'composer').map((a: any) => a.fullName).join(', ') || '-',
+      lyricist: (t.authors || []).filter((a: any) => a.role === 'lyricist').map((a: any) => a.fullName).join(', ') || '-',
+    }));
+
+    const data = {
+      orderId: contract.contract_number || contract.id,
+      date: dateStr,
+      country: contract.contract_country || cd?.country || '',
+      fio,
+      fio_tvor: toInstrumentalCase(fio),
+      nickname: contract.artist_name || contract.title || '',
+      releaseTitle: contract.title || '',
+      tracks,
+      passport_number: contract.contract_passport || cd?.passport || '',
+      passport_issued_by: contract.contract_passport_issued_by || cd?.passportIssuedBy || '',
+      passport_code: contract.contract_passport_code || cd?.passportCode || '',
+      passport_date: contract.contract_passport_date || cd?.passportDate || '',
+      email: contract.contract_email || cd?.email || contract.user_email || '',
+      bank_account: contract.contract_bank_account || cd?.bankAccount || '',
+      bik: contract.contract_bank_bik || cd?.bankBik || '',
+      corr_account: contract.contract_bank_corr || cd?.bankCorr || '',
+      card_number: contract.contract_card_number || cd?.cardNumber || '',
     };
+
+    const apiResp = await fetch('/api/contracts/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ data, signatureBase64: contract.contract_signature || null, plotnikovSignatureBase64, format }),
+    });
+    if (!apiResp.ok) throw new Error(`API error: ${apiResp.status}`);
+
+    const blob = await apiResp.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    const safeName = fio.replace(/\s+/g, '_');
+    a.download = `Договор_${contract.contract_number || 'thqlabel'}_${safeName}.${format === 'pdf' ? 'pdf' : 'docx'}`;
+    a.click();
+    URL.revokeObjectURL(url);
   }, []);
 
   const handleDownloadDoc = useCallback(async (contract: ContractRelease) => {
     setDownloadingDoc(true);
     try {
-      const result = await buildContractHtml(contract);
-      if (!result) { alert('Данные договора отсутствуют'); return; }
-      const safeName = (result.contractData.fullName || 'artist').replace(/\s+/g, '_');
-      downloadContractAsDoc(result.html, `Договор_${contract.contract_number || 'thqlabel'}_${safeName}.doc`);
+      await downloadContractViaApi(contract, 'docx');
     } catch (err) {
       console.error('DOC generation error:', err);
-      alert('Ошибка при генерации DOC');
+      alert('Ошибка при генерации DOCX');
     } finally {
       setDownloadingDoc(false);
     }
-  }, [buildContractHtml]);
+  }, [downloadContractViaApi]);
 
   const handleDownloadPdf = useCallback(async (contract: ContractRelease) => {
     setDownloadingPdf(true);
     try {
-      const result = await buildContractHtml(contract);
-      if (!result) { alert('Данные договора отсутствуют'); return; }
-      const safeName = (result.contractData.fullName || 'artist').replace(/\s+/g, '_');
-      await downloadContractAsPdf(result.html, `Договор_${contract.contract_number || 'thqlabel'}_${safeName}.pdf`);
+      await downloadContractViaApi(contract, 'pdf');
     } catch (err) {
       console.error('PDF generation error:', err);
       alert('Ошибка при генерации PDF');
     } finally {
       setDownloadingPdf(false);
     }
-  }, [buildContractHtml]);
+  }, [downloadContractViaApi]);
 
   const hasContractData = (contract: ContractRelease): boolean => {
     const cd = contract.contract_data as Record<string, string> | null;

@@ -9,7 +9,7 @@ import { useTheme } from '@/contexts/ThemeContext';
 import { Release } from '../types';
 import { showSuccessToast, showErrorToast } from '@/lib/utils/showToast';
 import { TRACK_AUTHOR_ROLES, TrackAuthor } from '@/components/ui/TrackAuthors';
-import { generateContractHtml, downloadContractAsDoc, downloadContractAsPdf, formatContractDate } from '@/app/cabinet/release-basic/create/components/contractUtils';
+import { toInstrumentalCase, formatContractDate } from '@/app/cabinet/release-basic/create/components/contractUtils';
 
 // Хелпер для форматирования авторов трека
 const formatTrackAuthors = (authors: string | string[] | TrackAuthor[] | undefined): string => {
@@ -444,126 +444,99 @@ export default function ReleaseDetailModal({
     }
   }, [supabase, release]);
 
-  // Скачивание полного договора (DOC)
-  const handleDownloadContract = useCallback(async () => {
+  // Скачивание договора (DOC или PDF) через новый API
+  const downloadReleaseContractViaApi = useCallback(async (format: 'pdf' | 'docx') => {
     const cd = release.contract_data as Record<string, string> | null;
-    const contractData = {
-      fullName: release.contract_full_name || cd?.fullName || '',
-      country: release.contract_country || cd?.country || '',
-      passport: release.contract_passport || cd?.passport || '',
-      passportIssuedBy: release.contract_passport_issued_by || cd?.passportIssuedBy || '',
-      passportCode: release.contract_passport_code || cd?.passportCode || '',
-      passportDate: release.contract_passport_date || cd?.passportDate || '',
-      email: release.contract_email || cd?.email || '',
-      bankAccount: release.contract_bank_account || cd?.bankAccount || '',
-      bankBik: release.contract_bank_bik || cd?.bankBik || '',
-      bankCorr: release.contract_bank_corr || cd?.bankCorr || '',
-      cardNumber: release.contract_card_number || cd?.cardNumber || '',
-    };
+    const fio = release.contract_full_name || cd?.fullName || '';
+    if (!fio) { showErrorToast('Данные договора отсутствуют'); return; }
 
-    if (!contractData.fullName) {
-      showErrorToast('Данные договора отсутствуют');
-      return;
-    }
-
-    // Convert rospis.png to base64 for embedding in DOC
-    let plotnikovB64 = '/rospis.png';
+    let plotnikovSignatureBase64 = '';
     try {
       const resp = await fetch('/rospis.png');
       const blob = await resp.blob();
-      plotnikovB64 = await new Promise<string>((resolve) => {
-        const reader = new FileReader();
-        reader.onloadend = () => resolve(reader.result as string);
-        reader.readAsDataURL(blob);
-      });
-    } catch { /* fallback to relative path */ }
-
-    const tracks = (release.tracks || []).map((t: any) => ({
-      title: t.title || '',
-      duration: t.audioMetadata?.duration ? `${Math.floor(t.audioMetadata.duration / 60)}:${String(Math.floor(t.audioMetadata.duration % 60)).padStart(2, '0')}` : '—',
-    }));
-
-    const dateStr = release.contract_signed_at || release.contract_agreed_at
-      ? formatContractDate(new Date(release.contract_signed_at || release.contract_agreed_at || ''))
-      : formatContractDate(new Date());
-
-    const html = generateContractHtml({
-      data: contractData,
-      contractNumber: release.contract_number || '',
-      nickname: release.artist_name || release.title || '',
-      tracks,
-      signatureDataUrl: release.contract_signature || undefined,
-      plotnikovSignatureDataUrl: plotnikovB64,
-      contractDate: dateStr,
-    });
-
-    const safeTitle = (release.title || 'release').replace(/[<>:"/\\|?*]/g, '_');
-    const safeName = (contractData.fullName || 'artist').replace(/\s+/g, '_');
-    downloadContractAsDoc(html, `Договор_${release.contract_number || 'thqlabel'}_${safeName}.doc`);
-    showSuccessToast('Договор скачан');
-  }, [release]);
-
-  // Скачивание полного договора (PDF)
-  const handleDownloadContractPdf = useCallback(async () => {
-    const cd = release.contract_data as Record<string, string> | null;
-    const contractData = {
-      fullName: release.contract_full_name || cd?.fullName || '',
-      country: release.contract_country || cd?.country || '',
-      passport: release.contract_passport || cd?.passport || '',
-      passportIssuedBy: release.contract_passport_issued_by || cd?.passportIssuedBy || '',
-      passportCode: release.contract_passport_code || cd?.passportCode || '',
-      passportDate: release.contract_passport_date || cd?.passportDate || '',
-      email: release.contract_email || cd?.email || '',
-      bankAccount: release.contract_bank_account || cd?.bankAccount || '',
-      bankBik: release.contract_bank_bik || cd?.bankBik || '',
-      bankCorr: release.contract_bank_corr || cd?.bankCorr || '',
-      cardNumber: release.contract_card_number || cd?.cardNumber || '',
-    };
-
-    if (!contractData.fullName) {
-      showErrorToast('Данные договора отсутствуют');
-      return;
-    }
-
-    let plotnikovB64 = '/rospis.png';
-    try {
-      const resp = await fetch('/rospis.png');
-      const blob = await resp.blob();
-      plotnikovB64 = await new Promise<string>((resolve) => {
+      plotnikovSignatureBase64 = await new Promise<string>((resolve) => {
         const reader = new FileReader();
         reader.onloadend = () => resolve(reader.result as string);
         reader.readAsDataURL(blob);
       });
     } catch { /* fallback */ }
 
-    const tracks = (release.tracks || []).map((t: any) => ({
-      title: t.title || '',
-      duration: t.audioMetadata?.duration ? `${Math.floor(t.audioMetadata.duration / 60)}:${String(Math.floor(t.audioMetadata.duration % 60)).padStart(2, '0')}` : '—',
-    }));
-
     const dateStr = release.contract_signed_at || release.contract_agreed_at
       ? formatContractDate(new Date(release.contract_signed_at || release.contract_agreed_at || ''))
       : formatContractDate(new Date());
 
-    const html = generateContractHtml({
-      data: contractData,
-      contractNumber: release.contract_number || '',
-      nickname: release.artist_name || release.title || '',
-      tracks,
-      signatureDataUrl: release.contract_signature || undefined,
-      plotnikovSignatureDataUrl: plotnikovB64,
-      contractDate: dateStr,
-    });
+    const fmtDur = (sec?: number) => {
+      if (!sec || sec <= 0) return '-';
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      return `${m}:${String(s).padStart(2, '0')}`;
+    };
 
-    const safeName = (contractData.fullName || 'artist').replace(/\s+/g, '_');
+    const tracks = (release.tracks || []).map((t: any) => ({
+      title: t.title || '-',
+      duration: fmtDur(t.audioMetadata?.duration),
+      composer: (t.authors || []).filter((a: any) => a.role === 'composer').map((a: any) => a.fullName).join(', ') || '-',
+      lyricist: (t.authors || []).filter((a: any) => a.role === 'lyricist').map((a: any) => a.fullName).join(', ') || '-',
+    }));
+
+    const data = {
+      orderId: release.contract_number || release.id,
+      date: dateStr,
+      country: release.contract_country || cd?.country || '',
+      fio,
+      fio_tvor: toInstrumentalCase(fio),
+      nickname: release.artist_name || release.title || '',
+      releaseTitle: release.title || '',
+      tracks,
+      passport_number: release.contract_passport || cd?.passport || '',
+      passport_issued_by: release.contract_passport_issued_by || cd?.passportIssuedBy || '',
+      passport_code: release.contract_passport_code || cd?.passportCode || '',
+      passport_date: release.contract_passport_date || cd?.passportDate || '',
+      email: release.contract_email || cd?.email || '',
+      bank_account: release.contract_bank_account || cd?.bankAccount || '',
+      bik: release.contract_bank_bik || cd?.bankBik || '',
+      corr_account: release.contract_bank_corr || cd?.bankCorr || '',
+      card_number: release.contract_card_number || cd?.cardNumber || '',
+    };
+
+    const apiResp = await fetch('/api/contracts/generate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ data, signatureBase64: release.contract_signature || null, plotnikovSignatureBase64, format }),
+    });
+    if (!apiResp.ok) throw new Error(`API error: ${apiResp.status}`);
+
+    const blob = await apiResp.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    const safeName = fio.replace(/\s+/g, '_');
+    a.download = `Договор_${release.contract_number || 'thqlabel'}_${safeName}.${format === 'pdf' ? 'pdf' : 'docx'}`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }, [release]);
+
+  // Скачивание полного договора (DOC)
+  const handleDownloadContract = useCallback(async () => {
     try {
-      await downloadContractAsPdf(html, `Договор_${release.contract_number || 'thqlabel'}_${safeName}.pdf`);
+      await downloadReleaseContractViaApi('docx');
+      showSuccessToast('Договор скачан');
+    } catch (err) {
+      console.error('DOC generation error:', err);
+      showErrorToast('Ошибка при генерации DOCX');
+    }
+  }, [downloadReleaseContractViaApi]);
+
+  // Скачивание полного договора (PDF)
+  const handleDownloadContractPdf = useCallback(async () => {
+    try {
+      await downloadReleaseContractViaApi('pdf');
       showSuccessToast('Договор PDF скачан');
     } catch (err) {
       console.error('PDF generation error:', err);
       showErrorToast('Ошибка при генерации PDF');
     }
-  }, [release]);
+  }, [downloadReleaseContractViaApi]);
 
   // Скачивание метаданных в Excel (красивый формат)
   const handleDownloadMetadata = useCallback(async () => {

@@ -88,9 +88,9 @@ export default function OfferPage() {
               <p>
                 <span style={{ color: accentColor }}>2.1.</span> <strong>Договор</strong> — документ «Договор о релизе 
                 музыкального контента», опубликованный на сайте Исполнителя{' '}
-                <a href="https://thqlabel.ru" target="_blank" rel="noopener noreferrer" 
+                <a href="https://thqlabel.ru/" target="_blank" rel="noopener noreferrer" 
                    className="underline hover:opacity-80" style={{ color: accentColor }}>
-                  https://thqlabel.ru
+                  https://thqlabel.ru/
                 </a>
               </p>
               <p>
@@ -101,17 +101,17 @@ export default function OfferPage() {
                 <span style={{ color: accentColor }}>2.3.</span> <strong>Акцепт Оферты</strong> — принятие Оферты 
                 Заказчиком, когда он обращается к Исполнителю за оказанием услуг. Акцептом Оферты считается нажатие 
                 Заказчиком кнопки «Оплатить» под сформированным заказом на сайте{' '}
-                <a href="https://thqlabel.ru" target="_blank" rel="noopener noreferrer" 
+                <a href="https://thqlabel.ru/" target="_blank" rel="noopener noreferrer" 
                    className="underline hover:opacity-80" style={{ color: accentColor }}>
-                  https://thqlabel.ru
+                  https://thqlabel.ru/
                 </a>
               </p>
               <p>
                 <span style={{ color: accentColor }}>2.4.</span> <strong>Тарифы</strong> — перечень услуг Исполнителя 
                 с ценами, указанными в Прайс-листе на сайте{' '}
-                <a href="https://thqlabel.ru" target="_blank" rel="noopener noreferrer" 
+                <a href="https://thqlabel.ru/" target="_blank" rel="noopener noreferrer" 
                    className="underline hover:opacity-80" style={{ color: accentColor }}>
-                  https://thqlabel.ru
+                  https://thqlabel.ru/
                 </a>
               </p>
               <p>
@@ -142,9 +142,9 @@ export default function OfferPage() {
               <p>
                 <span style={{ color: accentColor }}>3.1.</span> Исполнитель оказывает Заказчику услуги в соответствии 
                 с условиями Договора Оферты и текущими Тарифами, опубликованными на сайте{' '}
-                <a href="https://thqlabel.ru" target="_blank" rel="noopener noreferrer" 
+                <a href="https://thqlabel.ru/" target="_blank" rel="noopener noreferrer" 
                    className="underline hover:opacity-80" style={{ color: accentColor }}>
-                  https://thqlabel.ru
+                  https://thqlabel.ru/
                 </a>
               </p>
               <p>
@@ -236,9 +236,9 @@ export default function OfferPage() {
               <p><strong>Банк получателя:</strong> АО «Альфа-Банк», г. Москва</p>
               <p>
                 <strong>Сайт:</strong>{' '}
-                <a href="https://thqlabel.ru" target="_blank" rel="noopener noreferrer" 
+                <a href="https://thqlabel.ru/" target="_blank" rel="noopener noreferrer" 
                    className="underline hover:opacity-80" style={{ color: accentColor }}>
-                  https://thqlabel.ru
+                  https://thqlabel.ru/
                 </a>
               </p>
             </div>
@@ -276,3 +276,5 @@ export default function OfferPage() {
     </div>
   );
 }
+
+

@@ -1482,6 +1482,39 @@ export default function FeedPage() {
         </div>
       </div>
       )}
+
+      {/* SEO Content Section */}
+      <section className="relative z-10 px-4 pb-16 pt-8 max-w-4xl mx-auto">
+        <div className="bg-white/[0.03] border border-white/[0.07] rounded-2xl p-8 md:p-10">
+          <h2 className="text-xl md:text-2xl font-bold text-white mb-4">
+            Дистрибуция и продвижение музыки — thqlabel
+          </h2>
+          <div className="space-y-4 text-sm md:text-base text-zinc-400 leading-relaxed">
+            <p>
+              <strong className="text-zinc-200">thqlabel</strong> — российский музыкальный лейбл, который помогает артистам <strong className="text-zinc-300">выгрузить музыку на платформы</strong> по всему миру. Мы предоставляем полный цикл услуг: от загрузки трека до глобального распространения.
+            </p>
+            <p>
+              С нами вы можете <strong className="text-zinc-300">загрузить трек на Spotify, Apple Music, Яндекс Музыку, ВКонтакте, Deezer, Tidal</strong> и более 100 других стриминговых платформ. <strong className="text-zinc-300">Дистрибуция музыки</strong> доступна для синглов, EP и альбомов — любой формат, любой жанр.
+            </p>
+            <p>
+              Наша платформа позволяет <strong className="text-zinc-300">выгрузить музыку</strong> быстро и без лишних сложностей. Заполните данные о релизе, загрузите аудиофайлы и обложку — остальное мы берём на себя. <strong className="text-zinc-300">Распространение треков</strong> начинается в течение 3–5 рабочих дней.
+            </p>
+            <p>
+              Помимо дистрибуции, thqlabel предлагает <strong className="text-zinc-300">продвижение музыки</strong>: питчинг в редакционные плейлисты Spotify и Apple Music, PR-поддержку, синхронизацию треков с кино и рекламой, а также маркетинг в социальных сетях. Мы помогаем артистам строить карьеру и выходить на международный рынок.
+            </p>
+            <p>
+              Зарегистрируйтесь на thqlabel уже сегодня и начните <strong className="text-zinc-300">распространять свою музыку</strong> по всему миру. <strong className="text-zinc-300">Дистрибуция треков</strong> без скрытых комиссий — только прозрачные условия и профессиональная поддержка.
+            </p>
+          </div>
+          <div className="mt-6 flex flex-wrap gap-2">
+            {['Дистрибуция музыки', 'Выгрузить трек', 'Spotify & Apple Music', 'Загрузить музыку', 'Музыкальный лейбл', 'Продвижение артистов', 'Распространение треков', 'Питчинг плейлистов'].map((tag) => (
+              <span key={tag} className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-zinc-400">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
     </main>
     </>
   );

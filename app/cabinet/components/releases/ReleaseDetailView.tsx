@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { Release } from './types';
 import { STATUS_BADGE_STYLES, formatDate, formatDateFull, getTracksWord, copyToClipboard } from './constants';
@@ -8,6 +8,7 @@ import { MetadataItem, InfoBadge, CopyrightSection, CountriesSection, TracklistS
 import { PlatformsSection, PromoSection, ContributorsSection, AdditionalInfoSection, SocialLinksSection } from './ReleaseDetailSections';
 import ReleaseStatistics from './ReleaseStatistics';
 import { useTheme } from '@/contexts/ThemeContext';
+import { toInstrumentalCase, formatContractDate } from '@/app/cabinet/release-basic/create/components/contractUtils';
 
 interface ReleaseDetailViewProps {
   release: Release;
@@ -482,6 +483,84 @@ function ContractViewSection({ release }: { release: Release }) {
   const isLight = themeName === 'light';
   const [expanded, setExpanded] = useState(false);
   const [showFullContract, setShowFullContract] = useState(false);
+  const [downloadingPdf, setDownloadingPdf] = useState(false);
+
+  const handleDownloadPdf = useCallback(async () => {
+    setDownloadingPdf(true);
+    try {
+      const cd = (release as any).contract_data as Record<string, string> | null;
+      const fio = (release as any).contract_full_name || cd?.fullName || '';
+      if (!fio) { alert('Данные договора отсутствуют'); return; }
+
+      let plotnikovSignatureBase64 = '';
+      try {
+        const resp = await fetch('/rospis.png');
+        const blob = await resp.blob();
+        plotnikovSignatureBase64 = await new Promise<string>((resolve) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result as string);
+          reader.readAsDataURL(blob);
+        });
+      } catch { /* fallback */ }
+
+      const signedAt = (release as any).contract_signed_at || (release as any).contract_agreed_at;
+      const dateStr = signedAt ? formatContractDate(new Date(signedAt)) : formatContractDate(new Date());
+
+      const fmtDur = (sec?: number) => {
+        if (!sec || sec <= 0) return '-';
+        const m = Math.floor(sec / 60);
+        const s = Math.floor(sec % 60);
+        return `${m}:${String(s).padStart(2, '0')}`;
+      };
+
+      const tracks = ((release as any).tracks || []).map((t: any) => ({
+        title: t.title || '-',
+        duration: fmtDur(t.audioMetadata?.duration),
+        composer: (t.authors || []).filter((a: any) => a.role === 'composer').map((a: any) => a.fullName).join(', ') || '-',
+        lyricist: (t.authors || []).filter((a: any) => a.role === 'lyricist').map((a: any) => a.fullName).join(', ') || '-',
+      }));
+
+      const data = {
+        orderId: (release as any).contract_number || release.id,
+        date: dateStr,
+        country: (release as any).contract_country || cd?.country || '',
+        fio,
+        fio_tvor: toInstrumentalCase(fio),
+        nickname: release.artist_name || release.title || '',
+        releaseTitle: release.title || '',
+        tracks,
+        passport_number: (release as any).contract_passport || cd?.passport || '',
+        passport_issued_by: (release as any).contract_passport_issued_by || cd?.passportIssuedBy || '',
+        passport_code: (release as any).contract_passport_code || cd?.passportCode || '',
+        passport_date: (release as any).contract_passport_date || cd?.passportDate || '',
+        email: (release as any).contract_email || cd?.email || '',
+        bank_account: (release as any).contract_bank_account || cd?.bankAccount || '',
+        bik: (release as any).contract_bank_bik || cd?.bankBik || '',
+        corr_account: (release as any).contract_bank_corr || cd?.bankCorr || '',
+        card_number: (release as any).contract_card_number || cd?.cardNumber || '',
+      };
+
+      const apiResp = await fetch('/api/contracts/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ data, signatureBase64: (release as any).contract_signature || null, plotnikovSignatureBase64, format: 'pdf' }),
+      });
+      if (!apiResp.ok) throw new Error(`API error: ${apiResp.status}`);
+
+      const blob = await apiResp.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Договор_${(release as any).contract_number || 'thqlabel'}_${fio.replace(/\s+/g, '_')}.pdf`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error('PDF error:', err);
+      alert('Ошибка при генерации PDF');
+    } finally {
+      setDownloadingPdf(false);
+    }
+  }, [release]);
 
   const data = release.contract_data || {};
   const signedAt = release.contract_signed_at || release.contract_agreed_at;
@@ -580,6 +659,28 @@ function ContractViewSection({ release }: { release: Release }) {
                 </div>
               </div>
             )}
+
+            {/* Кнопка скачивания PDF */}
+            <button
+              onClick={handleDownloadPdf}
+              disabled={downloadingPdf}
+              className={`mt-2 w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+                downloadingPdf ? 'opacity-50 cursor-wait' :
+                isLight
+                  ? 'bg-violet-50 hover:bg-violet-100 text-violet-700 border border-violet-200'
+                  : 'bg-violet-500/10 hover:bg-violet-500/20 text-violet-400 border border-violet-500/20'
+              }`}
+            >
+              {downloadingPdf ? (
+                <div className="w-4 h-4 border-2 border-current/30 border-t-current rounded-full animate-spin" />
+              ) : (
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13l-3 3m0 0l-3-3m3 3V10" />
+                </svg>
+              )}
+              {downloadingPdf ? 'Генерация...' : 'Скачать PDF'}
+            </button>
 
             {/* Кнопка просмотра полного текста */}
             <button

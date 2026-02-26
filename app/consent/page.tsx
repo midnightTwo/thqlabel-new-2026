@@ -154,9 +154,9 @@ export default function ConsentPage() {
               <p><strong>Банк получателя:</strong> АО «Альфа-Банк», г. Москва</p>
               <p>
                 <strong>Сайт:</strong>{' '}
-                <a href="https://thqlabel.ru" target="_blank" rel="noopener noreferrer" 
+                <a href="https://thqlabel.ru/" target="_blank" rel="noopener noreferrer" 
                    className="underline hover:opacity-80" style={{ color: accentColor }}>
-                  https://thqlabel.ru
+                  https://thqlabel.ru/
                 </a>
               </p>
             </div>
@@ -194,3 +194,5 @@ export default function ConsentPage() {
     </div>
   );
 }
+
+

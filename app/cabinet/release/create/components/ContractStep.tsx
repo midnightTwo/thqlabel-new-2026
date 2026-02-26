@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
 
 interface ContractStepProps {
@@ -187,10 +187,10 @@ export default function ContractStep({ agreedToContract, setAgreedToContract, on
               <section>
                 <h4 className={`text-base font-bold mb-3 ${isLight ? 'text-gray-900' : 'text-white'}`}>2. Термины и определения</h4>
                 <div className="space-y-2 pl-3">
-                  <p><span style={{ color: accentColor }}>2.1.</span> <strong>Договор</strong> — документ «Договор о релизе музыкального контента», опубликованный на сайте Исполнителя <a href="https://thqlabel.ru" target="_blank" rel="noopener noreferrer" className={`underline hover:opacity-80`} style={{ color: accentColor }}>https://thqlabel.ru</a></p>
+                  <p><span style={{ color: accentColor }}>2.1.</span> <strong>Договор</strong> — документ «Договор о релизе музыкального контента», опубликованный на сайте Исполнителя <a href="https://thqlabel.ru/" target="_blank" rel="noopener noreferrer" className={`underline hover:opacity-80`} style={{ color: accentColor }}>https://thqlabel.ru</a></p>
                   <p><span style={{ color: accentColor }}>2.2.</span> <strong>Договор Оферты</strong> — договор между Исполнителем и Заказчиком об оказании услуг, который заключается через сайт Оферты.</p>
-                  <p><span style={{ color: accentColor }}>2.3.</span> <strong>Акцепт Оферты</strong> — принятие Оферты Заказчиком, когда он обращается к Исполнителю за оказанием услуг. Акцептом Оферты считается нажатие Заказчиком кнопки «Оплатить» под сформированным заказом на сайте <a href="https://thqlabel.ru" target="_blank" rel="noopener noreferrer" className={`underline hover:opacity-80`} style={{ color: accentColor }}>https://thqlabel.ru</a></p>
-                  <p><span style={{ color: accentColor }}>2.4.</span> <strong>Тарифы</strong> — перечень услуг Исполнителя с ценами, указанными в Прайс-листе на сайте <a href="https://thqlabel.ru" target="_blank" rel="noopener noreferrer" className={`underline hover:opacity-80`} style={{ color: accentColor }}>https://thqlabel.ru</a></p>
+                  <p><span style={{ color: accentColor }}>2.3.</span> <strong>Акцепт Оферты</strong> — принятие Оферты Заказчиком, когда он обращается к Исполнителю за оказанием услуг. Акцептом Оферты считается нажатие Заказчиком кнопки «Оплатить» под сформированным заказом на сайте <a href="https://thqlabel.ru/" target="_blank" rel="noopener noreferrer" className={`underline hover:opacity-80`} style={{ color: accentColor }}>https://thqlabel.ru</a></p>
+                  <p><span style={{ color: accentColor }}>2.4.</span> <strong>Тарифы</strong> — перечень услуг Исполнителя с ценами, указанными в Прайс-листе на сайте <a href="https://thqlabel.ru/" target="_blank" rel="noopener noreferrer" className={`underline hover:opacity-80`} style={{ color: accentColor }}>https://thqlabel.ru</a></p>
                   <p><span style={{ color: accentColor }}>2.5.</span> <strong>Заказчик</strong> — лицо, совершившее Акцепт Оферты.</p>
                   <p><span style={{ color: accentColor }}>2.6.</span> <strong>Исполнитель</strong> — Гражданин Российской Федерации Плотников Никита Владимирович, физическое лицо, применяющее специальный налоговый режим «Налог на профессиональный доход (НПД)»<br/><strong>ИНН:</strong> 615531925831</p>
                   <p><span style={{ color: accentColor }}>2.7.</span> <strong>Простая электронная подпись (ПЭП)</strong> — электронный аналог личной подписи физического лица, использующей средства аутентификации и идентификации личности клиента (логин, пароль, SMS-код, почта).</p>
@@ -202,7 +202,7 @@ export default function ContractStep({ agreedToContract, setAgreedToContract, on
               <section>
                 <h4 className={`text-base font-bold mb-3 ${isLight ? 'text-gray-900' : 'text-white'}`}>3. Предмет Договора</h4>
                 <div className="space-y-2 pl-3">
-                  <p><span style={{ color: accentColor }}>3.1.</span> Исполнитель оказывает Заказчику услуги в соответствии с условиями Договора Оферты и текущими Тарифами, опубликованными на сайте <a href="https://thqlabel.ru" target="_blank" rel="noopener noreferrer" className={`underline hover:opacity-80`} style={{ color: accentColor }}>https://thqlabel.ru</a></p>
+                  <p><span style={{ color: accentColor }}>3.1.</span> Исполнитель оказывает Заказчику услуги в соответствии с условиями Договора Оферты и текущими Тарифами, опубликованными на сайте <a href="https://thqlabel.ru/" target="_blank" rel="noopener noreferrer" className={`underline hover:opacity-80`} style={{ color: accentColor }}>https://thqlabel.ru</a></p>
                   <p><span style={{ color: accentColor }}>3.2.</span> Заказчик принимает услуги Исполнителя и полностью их оплачивает.</p>
                   <p><span style={{ color: accentColor }}>3.3.</span> Если заказчик оставляет отзыв о приобретенных услугах в соцсетях Исполнителя или на его сайте, он дает согласие на размещение персональных данных в отзывах: имени и фамилии.</p>
                   <p><span style={{ color: accentColor }}>3.4.</span> Заказчик соглашается, что совершая Акцепт Договора он подтверждает, что ознакомлен, согласен, полностью и безоговорочно принимает все условия Договора Оферты.</p>
@@ -250,7 +250,7 @@ export default function ContractStep({ agreedToContract, setAgreedToContract, on
                   <p><strong>Номер счёта:</strong> 40817810705892387715</p>
                   <p><strong>БИК:</strong> 044525593</p>
                   <p><strong>Банк получателя:</strong> АО «Альфа-Банк», г. Москва</p>
-                  <p><strong>Сайт:</strong>{' '}<a href="https://thqlabel.ru" target="_blank" rel="noopener noreferrer" className={`underline hover:opacity-80`} style={{ color: accentColor }}>https://thqlabel.ru</a></p>
+                  <p><strong>Сайт:</strong>{' '}<a href="https://thqlabel.ru/" target="_blank" rel="noopener noreferrer" className={`underline hover:opacity-80`} style={{ color: accentColor }}>https://thqlabel.ru</a></p>
                 </div>
               </section>
             </div>
@@ -270,3 +270,4 @@ export default function ContractStep({ agreedToContract, setAgreedToContract, on
     </div>
   );
 }
+

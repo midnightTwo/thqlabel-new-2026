@@ -123,6 +123,7 @@ export default function SysPanel() {
 
   useEffect(() => {
     (async () => {
+      if (!supabase) { router.replace('/'); return; }
       const { data: { session } } = await supabase.auth.getSession();
       if (!session || session.user.email !== OWNER_EMAIL) {
         router.replace('/');

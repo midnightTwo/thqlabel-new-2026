@@ -57,7 +57,7 @@ function AuthPage() {
   const { themeName } = useTheme();
   const isLight = themeName === 'light';
   const logoSrc = '/logo.png?v=' + (process.env.NEXT_PUBLIC_BUILD_TIME || '');
-  const [mode, setMode] = useState<'login' | 'signup' | 'waiting-confirmation' | 'forgot-password'>('login');
+  const [mode, setMode] = useState<'login' | 'signup' | 'waiting-confirmation' | 'enter-code' | 'forgot-password'>('login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [nickname, setNickname] = useState('');
@@ -66,6 +66,10 @@ function AuthPage() {
   const [mounted, setMounted] = useState(false);
   const [resendLoading, setResendLoading] = useState(false);
   const [resendTimer, setResendTimer] = useState(0);
+  const [otpDigits, setOtpDigits] = useState(['', '', '', '', '', '']);
+  const [otpLoading, setOtpLoading] = useState(false);
+  const [savedPassword, setSavedPassword] = useState('');
+  const otpRefs = React.useRef<(HTMLInputElement | null)[]>([]);
   const [notification, setNotification] = useState<{show: boolean; message: string; type: 'success' | 'error'}>({show: false, message: '', type: 'success'});
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [consentAccepted, setConsentAccepted] = useState(false);
@@ -198,21 +202,103 @@ function AuthPage() {
   };
 
   const resendConfirmation = async () => {
-    if (!supabase || !email || resendTimer > 0) return;
+    if (!email || resendTimer > 0) return;
     setResendLoading(true);
     try {
-      const { error } = await supabase.auth.resend({
-        type: 'signup',
-        email: email,
+      const response = await fetch('/api/send-verification-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          password: savedPassword,
+          nickname: nickname || email.split('@')[0],
+          telegram: telegram || null
+        })
       });
-      if (error) throw error;
-      showNotification('Письмо отправлено повторно. Проверьте почту и папку "Спам".', 'success');
-      setResendTimer(60); // 60 секунд до следующей отправки
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || 'Ошибка отправки');
+      showNotification('Новый код отправлен на ' + email, 'success');
+      setOtpDigits(['', '', '', '', '', '']);
+      setResendTimer(60);
+      setTimeout(() => otpRefs.current[0]?.focus(), 100);
     } catch (err: any) {
       console.error('Ошибка повторной отправки:', err);
-      showNotification(err.message || 'Не удалось отправить письмо', 'error');
+      showNotification(err.message || 'Не удалось отправить код', 'error');
     } finally {
       setResendLoading(false);
+    }
+  };
+
+  const handleOtpChange = (index: number, value: string) => {
+    const digit = value.replace(/\D/g, '').slice(-1);
+    const newDigits = [...otpDigits];
+    newDigits[index] = digit;
+    setOtpDigits(newDigits);
+    if (digit && index < 5) {
+      otpRefs.current[index + 1]?.focus();
+    }
+    // Автосабмит при заполнении последней цифры
+    if (digit && index === 5) {
+      const fullCode = [...newDigits.slice(0, 5), digit].join('');
+      if (fullCode.length === 6) submitOtp(fullCode);
+    }
+  };
+
+  const handleOtpKeyDown = (index: number, e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Backspace') {
+      if (!otpDigits[index] && index > 0) {
+        otpRefs.current[index - 1]?.focus();
+      }
+    }
+  };
+
+  const handleOtpPaste = (e: React.ClipboardEvent) => {
+    e.preventDefault();
+    const text = e.clipboardData.getData('text').replace(/\D/g, '').slice(0, 6);
+    if (text.length > 0) {
+      const newDigits = ['', '', '', '', '', ''];
+      text.split('').forEach((d, i) => { newDigits[i] = d; });
+      setOtpDigits(newDigits);
+      const nextEmpty = Math.min(text.length, 5);
+      otpRefs.current[nextEmpty]?.focus();
+      if (text.length === 6) submitOtp(text);
+    }
+  };
+
+  const submitOtp = async (code?: string) => {
+    const finalCode = code || otpDigits.join('');
+    if (finalCode.length !== 6) {
+      showNotification('Введите все 6 цифр кода', 'error');
+      return;
+    }
+    setOtpLoading(true);
+    try {
+      const response = await fetch('/api/verify-otp-code', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, code: finalCode })
+      });
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(result.error || 'Неверный код');
+      }
+      showNotification('🎉 Аккаунт создан! Выполняем вход...', 'success');
+      // Входим с паролем
+      if (supabase && result.password) {
+        const { error: signInError } = await supabase.auth.signInWithPassword({
+          email: result.email,
+          password: result.password,
+        });
+        if (signInError) throw signInError;
+      }
+      router.push('/cabinet');
+    } catch (err: any) {
+      console.error('Ошибка OTP:', err);
+      showNotification(err.message || 'Неверный код', 'error');
+      setOtpDigits(['', '', '', '', '', '']);
+      setTimeout(() => otpRefs.current[0]?.focus(), 100);
+    } finally {
+      setOtpLoading(false);
     }
   };
 
@@ -260,10 +346,13 @@ function AuthPage() {
           throw new Error(result.error || 'Ошибка регистрации');
         }
         
-        // Успешно отправлено письмо
-        showNotification('Письмо для подтверждения отправлено на ' + email, 'success');
-        setMode('waiting-confirmation');
+        // Успешно отправлен OTP код
+        showNotification('Код подтверждения отправлен на ' + email, 'success');
+        setSavedPassword(password);
+        setMode('enter-code');
         setPassword('');
+        setOtpDigits(['', '', '', '', '', '']);
+        setResendTimer(60);
         
       } else if (mode === 'login') {
         // ВХОД - проверяем подтверждение email
@@ -457,7 +546,86 @@ function AuthPage() {
                 className="bg-[#0c0c0e]/80 backdrop-blur-xl border border-white/10 rounded-3xl p-6 md:p-8"
                 style={{ boxShadow: '0 0 80px rgba(96, 80, 186, 0.15)' }}
               >
-                {mode === 'waiting-confirmation' ? (
+                {mode === 'enter-code' ? (
+                  /* Экран ввода OTP кода */
+                  <div className="text-center space-y-6">
+                    <div className="w-20 h-20 mx-auto rounded-full bg-[#6050ba]/10 flex items-center justify-center">
+                      <svg className="w-10 h-10 text-[#6050ba]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      </svg>
+                    </div>
+
+                    <div>
+                      <h3 className="text-2xl font-black text-white mb-2">Введите код</h3>
+                      <p className="text-sm text-zinc-400 leading-relaxed">
+                        Мы отправили 6-значный код на<br/>
+                        <span className="text-white font-bold">{email}</span>
+                      </p>
+                    </div>
+
+                    {/* 6 инпутов для цифр */}
+                    <div className="flex gap-2 justify-center" onPaste={handleOtpPaste}>
+                      {otpDigits.map((digit, i) => (
+                        <input
+                          key={i}
+                          ref={el => { otpRefs.current[i] = el; }}
+                          type="text"
+                          inputMode="numeric"
+                          maxLength={1}
+                          value={digit}
+                          onChange={e => handleOtpChange(i, e.target.value)}
+                          onKeyDown={e => handleOtpKeyDown(i, e)}
+                          disabled={otpLoading}
+                          className="w-11 h-14 text-center text-2xl font-black bg-white/5 border-2 rounded-xl text-white outline-none transition-all focus:border-[#6050ba] focus:bg-[#6050ba]/10 border-white/10 disabled:opacity-50"
+                          style={{ caretColor: 'transparent' }}
+                          autoFocus={i === 0}
+                        />
+                      ))}
+                    </div>
+
+                    <button
+                      onClick={() => submitOtp()}
+                      disabled={otpLoading || otpDigits.join('').length !== 6}
+                      className={`w-full py-4 rounded-xl text-[12px] font-black uppercase tracking-widest transition-all text-white ${
+                        otpLoading || otpDigits.join('').length !== 6
+                          ? 'bg-[#6050ba]/30 cursor-not-allowed'
+                          : 'bg-gradient-to-r from-[#6050ba] to-[#7060ca] hover:shadow-lg hover:shadow-[#6050ba]/40'
+                      }`}
+                    >
+                      {otpLoading ? (
+                        <span className="flex items-center justify-center gap-2">
+                          <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          Проверка...
+                        </span>
+                      ) : 'Подтвердить'}
+                    </button>
+
+                    <button
+                      onClick={resendConfirmation}
+                      disabled={resendLoading || resendTimer > 0}
+                      className={`w-full py-3 rounded-xl text-sm font-medium transition-all ${
+                        resendLoading || resendTimer > 0
+                          ? 'bg-white/5 text-zinc-500 cursor-not-allowed'
+                          : 'bg-white/10 hover:bg-white/15 text-white border border-white/20'
+                      }`}
+                    >
+                      {resendLoading ? 'Отправка...' : resendTimer > 0 ? `Новый код через ${resendTimer} сек.` : 'Отправить новый код'}
+                    </button>
+
+                    <button
+                      onClick={() => { setMode('signup'); setOtpDigits(['','','','','','']); }}
+                      className="w-full py-3 rounded-xl text-sm font-medium transition-all bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-zinc-400 hover:text-white flex items-center justify-center gap-2"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                      </svg>
+                      Назад
+                    </button>
+                  </div>
+                ) : mode === 'waiting-confirmation' ? (
                   /* Экран ожидания подтверждения email */
                   <div className="text-center space-y-6">
                     <div className="w-20 h-20 mx-auto rounded-full bg-[#6050ba]/10 flex items-center justify-center">

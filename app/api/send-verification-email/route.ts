@@ -3,6 +3,11 @@ import { createClient } from '@supabase/supabase-js';
 import { randomUUID } from 'crypto';
 import nodemailer from 'nodemailer';
 
+// Генерация 6-значного OTP кода
+function generateOTP(): string {
+  return Math.floor(100000 + Math.random() * 900000).toString();
+}
+
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
 
@@ -40,9 +45,10 @@ export async function POST(request: NextRequest) {
       }, { status: 400 });
     }
 
-    // Генерируем уникальный токен подтверждения
-    const verificationToken = randomUUID();
-    const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 часа
+    // Генерируем 6-значный OTP код
+    const otpCode = generateOTP();
+    const verificationToken = randomUUID(); // оставляем для совместимости
+    const expiresAt = new Date(Date.now() + 15 * 60 * 1000); // 15 минут
     
     // Удаляем старые токены для этого email
     await supabase
@@ -51,17 +57,18 @@ export async function POST(request: NextRequest) {
       .eq('email', email)
       .eq('token_type', 'verification');
     
-    // Сохраняем токен в базу данных
+    // Сохраняем токен + OTP код в базу данных
     const { error: insertError } = await supabase
       .from('email_tokens')
       .insert({
         token: verificationToken,
         token_type: 'verification',
         email,
-        password_hash: password, // В production лучше хешировать
+        password_hash: password,
         nickname: nickname || email.split('@')[0],
         telegram: telegram || null,
-        expires_at: expiresAt.toISOString()
+        expires_at: expiresAt.toISOString(),
+        otp_code: otpCode,
       });
     
     if (insertError) {
@@ -69,7 +76,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Ошибка сервера' }, { status: 500 });
     }
     
-    console.log('Создан токен подтверждения в БД:', verificationToken);
+    console.log('Создан OTP код для:', email);
     
     // Очищаем истекшие токены (фоновая очистка)
     supabase
@@ -80,8 +87,6 @@ export async function POST(request: NextRequest) {
     
     // Получаем URL хоста динамически
     const host = request.headers.get('host') || 'localhost:3000';
-    const protocol = host.includes('localhost') ? 'http' : 'https';
-    const verificationLink = `${protocol}://${host}/api/verify-email?token=${verificationToken}`;
     
     // Проверяем наличие SMTP настроек
     if (!process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASS) {
@@ -100,21 +105,23 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    // Email отправителя - должен быть верифицирован в SMTP провайдере (Brevo)
     const fromEmail = process.env.SMTP_FROM || process.env.SMTP_USER;
+    
+    // Разбиваем код на цифры для красивого отображения
+    const codeDigits = otpCode.split('');
     
     const mailOptions = {
       from: `"thqlabel" <${fromEmail}>`,
       to: email,
       replyTo: fromEmail,
-      subject: 'Подтвердите email для thqlabel',
+      subject: `${otpCode} — код подтверждения thqlabel`,
       html: `
         <!DOCTYPE html>
         <html lang="ru">
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Подтверждение регистрации - thqlabel</title>
+            <title>Код подтверждения — thqlabel</title>
         </head>
         <body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #ffffff;">
             <table role="presentation" style="width: 100%; border-collapse: collapse; background-color: #ffffff; padding: 40px 20px;">
@@ -136,43 +143,39 @@ export async function POST(request: NextRequest) {
                             
                             <!-- Контент -->
                             <tr>
-                                <td style="padding: 40px 30px;">
-                                    <h2 style="margin: 0 0 20px 0; color: white; font-size: 24px; font-weight: 800;">
-                                        Добро пожаловать!
+                                <td style="padding: 40px 30px; text-align: center;">
+                                    <p style="margin: 0 0 8px 0; color: rgba(255,255,255,0.5); font-size: 13px; text-transform: uppercase; letter-spacing: 2px;">Ваш код подтверждения</p>
+                                    <h2 style="margin: 0 0 30px 0; color: white; font-size: 20px; font-weight: 700;">
+                                        Введите его на странице регистрации
                                     </h2>
                                     
-                                    <p style="margin: 0 0 20px 0; color: rgba(255, 255, 255, 0.7); font-size: 15px; line-height: 1.6;">
-                                        Спасибо за регистрацию в thqlabel!
-                                    </p>
-                                    
-                                    <p style="margin: 0 0 30px 0; color: rgba(255, 255, 255, 0.7); font-size: 15px; line-height: 1.6;">
-                                        Чтобы завершить регистрацию и подтвердить email, нажмите на кнопку ниже:
-                                    </p>
-                                    
-                                    <!-- Кнопка -->
-                                    <table role="presentation" style="width: 100%; border-collapse: collapse; margin: 0 0 30px 0;">
+                                    <!-- Блок с кодом -->
+                                    <table role="presentation" style="border-collapse: separate; border-spacing: 8px; margin: 0 auto 30px auto;">
                                         <tr>
-                                            <td align="center">
-                                                <a href="${verificationLink}" style="display: inline-block; padding: 16px 40px; background: linear-gradient(135deg, #6050ba 0%, #7060ca 100%); color: white; text-decoration: none; border-radius: 12px; font-weight: 700; font-size: 15px; letter-spacing: 0.5px; box-shadow: 0 4px 15px rgba(96, 80, 186, 0.3);">
-                                                    Подтвердить email
-                                                </a>
-                                            </td>
+                                            ${codeDigits.map(d => `
+                                            <td style="
+                                                width: 60px; height: 70px;
+                                                background: linear-gradient(135deg, rgba(96,80,186,0.3) 0%, rgba(157,141,241,0.2) 100%);
+                                                border: 2px solid rgba(157,141,241,0.5);
+                                                border-radius: 14px;
+                                                text-align: center;
+                                                vertical-align: middle;
+                                                font-size: 36px;
+                                                font-weight: 900;
+                                                color: #fff;
+                                                font-family: 'Courier New', monospace;
+                                                box-shadow: 0 4px 20px rgba(96,80,186,0.3);
+                                            ">${d}</td>`).join('')}
                                         </tr>
                                     </table>
                                     
                                     <!-- Информация -->
-                                    <table role="presentation" style="width: 100%; border-collapse: collapse; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 20px; margin: 0 0 20px 0;">
+                                    <table role="presentation" style="width: 100%; border-collapse: collapse; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; margin: 0 0 20px 0;">
                                         <tr>
-                                            <td style="color: rgba(255, 255, 255, 0.6); font-size: 13px; line-height: 1.6;">
-                                                <p style="margin: 0 0 10px 0;">
-                                                    • Ссылка действительна в течение 24 часов
-                                                </p>
-                                                <p style="margin: 0 0 10px 0;">
-                                                    • После подтверждения вы сможете войти в систему
-                                                </p>
-                                                <p style="margin: 0;">
-                                                    • Если вы не регистрировались, проигнорируйте это письмо
-                                                </p>
+                                            <td style="padding: 20px; color: rgba(255, 255, 255, 0.6); font-size: 13px; line-height: 1.6; text-align: left;">
+                                                <p style="margin: 0 0 8px 0;">⏱ Код действителен <strong style="color: #9d8df1;">15 минут</strong></p>
+                                                <p style="margin: 0 0 8px 0;">🔒 Никому не сообщайте этот код</p>
+                                                <p style="margin: 0;">✉️ Если вы не регистрировались — проигнорируйте письмо</p>
                                             </td>
                                         </tr>
                                     </table>
@@ -184,9 +187,6 @@ export async function POST(request: NextRequest) {
                                 <td style="background: rgba(255, 255, 255, 0.02); padding: 30px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05);">
                                     <p style="margin: 0 0 10px 0; color: rgba(255, 255, 255, 0.4); font-size: 12px;">
                                         © 2026 thqlabel. Все права защищены.
-                                    </p>
-                                    <p style="margin: 0; color: rgba(255, 255, 255, 0.3); font-size: 11px;">
-                                        Это автоматическое письмо, пожалуйста, не отвечайте на него.
                                     </p>
                                 </td>
                             </tr>
@@ -202,11 +202,11 @@ export async function POST(request: NextRequest) {
 
     await transporter.sendMail(mailOptions);
     
-    console.log('Письмо подтверждения отправлено:', email);
+    console.log('OTP код отправлен на:', email);
     
     return NextResponse.json({ 
       success: true,
-      message: 'Письмо для подтверждения email отправлено' 
+      message: 'Код подтверждения отправлен на почту' 
     });
 
   } catch (error: any) {

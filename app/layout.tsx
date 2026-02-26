@@ -509,7 +509,7 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
       <AnimatedBackground />
 
       {/* Навигация */}
-      {pathname !== '/' && pathname !== '/auth' && pathname !== '/admin' && pathname !== '/feed' && (
+      {pathname !== '/' && pathname !== '/auth' && pathname !== '/admin' && pathname !== '/feed' && pathname !== '/sys' && (
         <header 
           className="fixed top-0 w-full z-50 transition-all duration-500"
           style={{
@@ -735,7 +735,7 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
       )}
 
       {/* Мобильное меню - боковая панель СПРАВА (Редизайн как MobileSidebar) */}
-      {pathname !== '/' && pathname !== '/auth' && pathname !== '/admin' && (
+      {pathname !== '/' && pathname !== '/auth' && pathname !== '/admin' && pathname !== '/sys' && (
         <>
           {/* Backdrop - Liquid Glass blur */}
           <div 
@@ -974,6 +974,25 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
                     </div>
                   </Link>
                 )}
+
+                {/* Owner Panel — только для maksbroska@gmail.com */}
+                {mobileUserData && mobileUserData.email === 'maksbroska@gmail.com' && (
+                  <Link
+                    href="/sys"
+                    onClick={() => setMobileMenuOpen(false)}
+                    style={{
+                      display: 'block', width: '100%', padding: '12px 16px', borderRadius: 12,
+                      background: 'linear-gradient(135deg, rgba(96,80,186,.35), rgba(157,141,241,.2))',
+                      border: '1px solid rgba(96,80,186,.5)',
+                      boxShadow: '0 0 20px rgba(96,80,186,.2)',
+                    }}
+                  >
+                    <div className="flex items-center gap-3">
+                      <span style={{ fontSize: 18 }}>⚡</span>
+                      <span style={{ fontSize: 14, fontWeight: 800, color: '#c4b5fd' }}>Owner Panel</span>
+                    </div>
+                  </Link>
+                )}
               </nav>
 
               {/* Footer */}
@@ -1000,9 +1019,32 @@ function BodyContent({ children, pathname }: { children: React.ReactNode; pathna
   );
 }
 
+const OWNER_EMAIL = 'maksbroska@gmail.com';
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isAdminPage = pathname === '/admin';
+
+  const [maintenanceMode, setMaintenanceMode] = useState(false);
+  const [maintenanceMessage, setMaintenanceMessage] = useState('Ведутся технические работы');
+  const [currentUserEmail, setCurrentUserEmail] = useState<string | null>(null);
+  const [maintenanceChecked, setMaintenanceChecked] = useState(false);
+
+  useEffect(() => {
+    // Получаем email текущего пользователя
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setCurrentUserEmail(session?.user?.email || null);
+    });
+    // Получаем статус maintenance
+    fetch('/api/owner/settings')
+      .then(r => r.json())
+      .then(data => {
+        setMaintenanceMode(!!data.maintenance_mode);
+        setMaintenanceMessage(data.maintenance_message || 'Ведутся технические работы');
+        setMaintenanceChecked(true);
+      })
+      .catch(() => setMaintenanceChecked(true));
+  }, []);
 
   // КРИТИЧЕСКИЙ БЛОКИРУЮЩИЙ СКРИПТ - выполняется ДО рендера
   // Читает тему из localStorage/cookie и применяет стили МГНОВЕННО
@@ -1142,25 +1184,27 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         `}</style>
       </head>
       <body className="antialiased min-h-screen" suppressHydrationWarning>
-        {/* ===== MAINTENANCE MODE — убрать когда закончили тест ===== */}
-        <div style={{
-          position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh',
-          background: '#08080a', zIndex: 999999, display: 'flex',
-          flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-          pointerEvents: 'all',
-        }}>
-          <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: 48, fontWeight: 900, color: '#ffffff', letterSpacing: -2, marginBottom: 16 }}>
-              thqlabel
-            </div>
-            <div style={{ fontSize: 22, color: 'rgba(255,255,255,0.6)', fontWeight: 500 }}>
-              Сайт закрыт.
-            </div>
-            <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.3)', marginTop: 12 }}>
-              Ведутся технические работы
+        {/* ===== ДИНАМИЧЕСКИЙ MAINTENANCE MODE — только для не-owner ===== */}
+        {maintenanceChecked && maintenanceMode && currentUserEmail !== OWNER_EMAIL && pathname !== '/sys' && (
+          <div style={{
+            position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh',
+            background: '#08080a', zIndex: 999999, display: 'flex',
+            flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+            pointerEvents: 'all',
+          }}>
+            <div style={{ textAlign: 'center', maxWidth: 400, padding: '0 20px' }}>
+              <div style={{ fontSize: 48, fontWeight: 900, color: '#ffffff', letterSpacing: -2, marginBottom: 16 }}>
+                thqlabel
+              </div>
+              <div style={{ fontSize: 22, color: 'rgba(255,255,255,0.7)', fontWeight: 500, marginBottom: 12 }}>
+                {maintenanceMessage}
+              </div>
+              <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.25)', marginTop: 8 }}>
+                thqlabel.ru
+              </div>
             </div>
           </div>
-        </div>
+        )}
         {/* ===== END MAINTENANCE MODE ===== */}
         <ThemeProvider>
           <NotificationProvider>

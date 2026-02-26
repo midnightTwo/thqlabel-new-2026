@@ -1142,6 +1142,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         `}</style>
       </head>
       <body className="antialiased min-h-screen" suppressHydrationWarning>
+        {/* ===== MAINTENANCE MODE — убрать когда закончили тест ===== */}
+        <div style={{
+          position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh',
+          background: '#08080a', zIndex: 999999, display: 'flex',
+          flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+          pointerEvents: 'all',
+        }}>
+          <div style={{ textAlign: 'center' }}>
+            <div style={{ fontSize: 48, fontWeight: 900, color: '#ffffff', letterSpacing: -2, marginBottom: 16 }}>
+              thqlabel
+            </div>
+            <div style={{ fontSize: 22, color: 'rgba(255,255,255,0.6)', fontWeight: 500 }}>
+              Сайт закрыт.
+            </div>
+            <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.3)', marginTop: 12 }}>
+              Ведутся технические работы
+            </div>
+          </div>
+        </div>
+        {/* ===== END MAINTENANCE MODE ===== */}
         <ThemeProvider>
           <NotificationProvider>
             <SupportWidgetProvider>

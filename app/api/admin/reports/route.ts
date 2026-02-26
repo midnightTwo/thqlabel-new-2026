@@ -257,6 +257,23 @@ async function findTrackInDatabase(
   trackIndex: number | null;
   foundBy: string | null;
 }> {
+  // Helper: find the best matching track index in a release by title
+  const findTrackIndexInRelease = (tracks: any[], title: string): number => {
+    if (!title || !tracks || tracks.length === 0) return 0;
+    const normalizedSearchTitle = normalizeForSearch(title);
+    for (let i = 0; i < tracks.length; i++) {
+      const trackName = normalizeForSearch(tracks[i]?.title || '');
+      if (
+        trackName === normalizedSearchTitle ||
+        fuzzyMatch(trackName, normalizedSearchTitle) ||
+        fuzzyMatch(normalizedSearchTitle, trackName)
+      ) {
+        return i;
+      }
+    }
+    return 0; // fallback to first track
+  };
+
   try {
     // Ищем по ISRC в releases_basic - во всех статусах кроме draft/rejected
     if (isrc) {
@@ -322,19 +339,20 @@ async function findTrackInDatabase(
       // Сначала точное совпадение
       const { data: basicByUpc } = await supabaseAdmin
         .from('releases_basic')
-        .select('id, user_id, upc')
+        .select('id, user_id, upc, tracks')
         .eq('upc', upc)
         .in('status', ['approved', 'published', 'distributed', 'pending'])
         .limit(1)
         .maybeSingle();
       
       if (basicByUpc) {
-        console.log(`UPC exact match found! Release: ${basicByUpc.id}`);
+        const ti = findTrackIndexInRelease(basicByUpc.tracks || [], trackTitle);
+        console.log(`UPC exact match found! Release: ${basicByUpc.id}, trackIndex: ${ti}`);
         return {
           releaseId: basicByUpc.id,
           releaseType: 'basic',
           userId: basicByUpc.user_id,
-          trackIndex: 0,
+          trackIndex: ti,
           foundBy: 'upc'
         };
       }
@@ -343,36 +361,38 @@ async function findTrackInDatabase(
       const upcPrefix = upc.substring(0, 6);
       const { data: basicByUpcPrefix } = await supabaseAdmin
         .from('releases_basic')
-        .select('id, user_id, upc')
+        .select('id, user_id, upc, tracks')
         .ilike('upc', `${upcPrefix}%`)
         .in('status', ['approved', 'published', 'distributed', 'pending']);
       
       if (basicByUpcPrefix && basicByUpcPrefix.length > 0) {
-        console.log(`UPC prefix match found! Release: ${basicByUpcPrefix[0].id}, DB UPC: ${basicByUpcPrefix[0].upc}`);
+        const ti = findTrackIndexInRelease(basicByUpcPrefix[0].tracks || [], trackTitle);
+        console.log(`UPC prefix match found! Release: ${basicByUpcPrefix[0].id}, DB UPC: ${basicByUpcPrefix[0].upc}, trackIndex: ${ti}`);
         return {
           releaseId: basicByUpcPrefix[0].id,
           releaseType: 'basic',
           userId: basicByUpcPrefix[0].user_id,
-          trackIndex: 0,
+          trackIndex: ti,
           foundBy: 'upc_prefix'
         };
       }
       
       const { data: exclusiveByUpc } = await supabaseAdmin
         .from('releases_exclusive')
-        .select('id, user_id, upc')
+        .select('id, user_id, upc, tracks')
         .eq('upc', upc)
         .in('status', ['approved', 'published', 'distributed', 'pending'])
         .limit(1)
         .maybeSingle();
       
       if (exclusiveByUpc) {
-        console.log(`UPC exact match found (exclusive)! Release: ${exclusiveByUpc.id}`);
+        const ti = findTrackIndexInRelease(exclusiveByUpc.tracks || [], trackTitle);
+        console.log(`UPC exact match found (exclusive)! Release: ${exclusiveByUpc.id}, trackIndex: ${ti}`);
         return {
           releaseId: exclusiveByUpc.id,
           releaseType: 'exclusive',
           userId: exclusiveByUpc.user_id,
-          trackIndex: 0,
+          trackIndex: ti,
           foundBy: 'upc'
         };
       }
@@ -380,17 +400,18 @@ async function findTrackInDatabase(
       // Нечёткий поиск в exclusive
       const { data: exclusiveByUpcPrefix } = await supabaseAdmin
         .from('releases_exclusive')
-        .select('id, user_id, upc')
+        .select('id, user_id, upc, tracks')
         .ilike('upc', `${upcPrefix}%`)
         .in('status', ['approved', 'published', 'distributed', 'pending']);
       
       if (exclusiveByUpcPrefix && exclusiveByUpcPrefix.length > 0) {
-        console.log(`UPC prefix match found (exclusive)! Release: ${exclusiveByUpcPrefix[0].id}`);
+        const ti = findTrackIndexInRelease(exclusiveByUpcPrefix[0].tracks || [], trackTitle);
+        console.log(`UPC prefix match found (exclusive)! Release: ${exclusiveByUpcPrefix[0].id}, trackIndex: ${ti}`);
         return {
           releaseId: exclusiveByUpcPrefix[0].id,
           releaseType: 'exclusive',
           userId: exclusiveByUpcPrefix[0].user_id,
-          trackIndex: 0,
+          trackIndex: ti,
           foundBy: 'upc_prefix'
         };
       }
@@ -513,12 +534,13 @@ async function findTrackInDatabase(
             fuzzyMatch(normalizedReleaseTitle, releaseTitleNorm);
           
           if (artistMatch && titleMatch) {
-            console.log(`MATCH by RELEASE title! Release: ${release.id}, Title: ${release.title}`);
+            const ti = findTrackIndexInRelease(release.tracks || [], trackTitle);
+            console.log(`MATCH by RELEASE title! Release: ${release.id}, Title: ${release.title}, trackIndex: ${ti}`);
             return {
               releaseId: release.id,
               releaseType: 'basic',
               userId: release.user_id,
-              trackIndex: 0, // Первый трек
+              trackIndex: ti,
               foundBy: 'release_title'
             };
           }
@@ -542,12 +564,13 @@ async function findTrackInDatabase(
             fuzzyMatch(normalizedReleaseTitle, releaseTitleNorm);
           
           if (artistMatch && titleMatch) {
-            console.log(`MATCH by RELEASE title! Release: ${release.id}, Title: ${release.title}`);
+            const ti = findTrackIndexInRelease(release.tracks || [], trackTitle);
+            console.log(`MATCH by RELEASE title! Release: ${release.id}, Title: ${release.title}, trackIndex: ${ti}`);
             return {
               releaseId: release.id,
               releaseType: 'exclusive',
               userId: release.user_id,
-              trackIndex: 0,
+              trackIndex: ti,
               foundBy: 'release_title'
             };
           }

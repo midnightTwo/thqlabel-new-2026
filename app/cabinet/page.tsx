@@ -333,6 +333,14 @@ export default function CabinetPage() {
           if (insertedProfile?.member_id) {
             setMemberId(insertedProfile.member_id);
           }
+          // Привязываем зарезервированные релизы созданные для этого ника
+          try {
+            fetch('/api/claim-reserved-releases', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ userId: user.id, nickname: displayName }),
+            }).catch(() => {/* non-critical */});
+          } catch (e) {/* non-critical */}
         } else {
           // Загружаем данные из существующего профиля
           // Баланс загружаем из user_balances (актуальная таблица), а НЕ из profiles.balance (устаревшее поле)
@@ -366,6 +374,15 @@ export default function CabinetPage() {
             setRole((recheckProfile?.role as UserRole) || 'basic');
           } else {
             setRole(dbRole);
+          }
+          // Проверяем зарезервированные релизы (на случай если релиз был создан уже после регистрации)
+          const profileNickname = existingProfile.nickname || displayName;
+          if (profileNickname) {
+            fetch('/api/claim-reserved-releases', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ userId: user.id, nickname: profileNickname }),
+            }).catch(() => {/* non-critical */});
           }
         }
       } catch (e) {

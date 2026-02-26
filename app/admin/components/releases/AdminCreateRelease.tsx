@@ -223,13 +223,64 @@ const UserSelectStep = memo(function UserSelectStep({ supabase, selectedUser, on
         )}
         
         {showResults && searchError && userSearch.length >= 2 && (
-          <div className="absolute z-50 w-full mt-2 bg-zinc-900 border border-white/10 rounded-2xl p-6 shadow-2xl">
-            <p className="text-zinc-400 text-center">{searchError}</p>
+          <div className="absolute z-50 w-full mt-2 bg-zinc-900 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+            <div className="p-4 border-b border-white/5">
+              <p className="text-zinc-400 text-center text-sm">{searchError}</p>
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                const pendingUser: User = {
+                  id: '__PENDING__',
+                  email: '',
+                  nickname: userSearch,
+                  display_name: userSearch,
+                };
+                onSelectUser(pendingUser);
+                setUserSearch('');
+                setShowResults(false);
+                setSearchError('');
+              }}
+              className="w-full px-4 py-4 flex items-center gap-3 hover:bg-amber-500/10 transition text-left"
+            >
+              <div className="w-10 h-10 rounded-xl bg-amber-500/20 flex items-center justify-center flex-shrink-0">
+                <svg className="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                </svg>
+              </div>
+              <div>
+                <p className="text-white font-semibold text-sm">Создать релиз для «{userSearch}»</p>
+                <p className="text-amber-400/80 text-xs">Исполнитель ещё не зарегистрирован — релиз будет привязан при регистрации</p>
+              </div>
+            </button>
           </div>
         )}
       </div>
       
-      {selectedUser && (
+      {selectedUser && selectedUser.id === '__PENDING__' && (
+        <div className="p-3 sm:p-6 bg-gradient-to-br from-amber-500/10 to-orange-500/10 border border-amber-500/20 rounded-xl sm:rounded-2xl mb-6 sm:mb-8 animate-fade-in">
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-xl bg-amber-500/20 flex items-center justify-center text-amber-300 font-bold text-xl flex-shrink-0">
+              {selectedUser.nickname?.[0]?.toUpperCase()}
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2">
+                <p className="text-white font-bold truncate">{selectedUser.nickname}</p>
+                <span className="px-2 py-0.5 rounded-lg text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 flex-shrink-0">Новый</span>
+              </div>
+              <p className="text-amber-400/80 text-xs mt-0.5">Зарегистрируется позже — релиз будет автоматически привязан при регистрации</p>
+            </div>
+            <button type="button" onClick={() => onSelectUser(null)}
+              className="p-1.5 hover:bg-red-500/20 rounded-lg transition text-zinc-400 hover:text-red-400 flex-shrink-0">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      )}
+
+      {selectedUser && selectedUser.id !== '__PENDING__' && (
         <div className="p-3 sm:p-6 bg-gradient-to-br from-purple-500/10 to-blue-500/10 border border-purple-500/20 rounded-xl sm:rounded-2xl mb-6 sm:mb-8 animate-fade-in">
           <div className="flex items-start sm:items-center gap-2.5 sm:gap-4">
             {/* Аватар с бейджем */}
@@ -525,9 +576,12 @@ function AdminSendStep({ supabase, selectedUser, releaseType, releaseTitle, arti
     setError('');
 
     try {
+      const isPendingUser = selectedUser.id === '__PENDING__';
+      const userPath = isPendingUser ? `pending-${Date.now()}` : selectedUser.id;
+
       let coverUrl = '';
       if (coverFile) {
-        const fileName = `${selectedUser.id}/${Date.now()}_cover.${coverFile.name.split('.').pop()}`;
+        const fileName = `${userPath}_cover.${coverFile.name.split('.').pop()}`;
         const { error: uploadError } = await supabase.storage.from('release-covers').upload(fileName, coverFile);
         if (uploadError) throw uploadError;
         const { data: urlData } = supabase.storage.from('release-covers').getPublicUrl(fileName);
@@ -542,7 +596,7 @@ function AdminSendStep({ supabase, selectedUser, releaseType, releaseTitle, arti
         if (track.audioFile) {
           try {
             const audioFileExt = track.audioFile.name.split('.').pop();
-            const audioFileName = `${selectedUser.id}/${Date.now()}-track-${index}.${audioFileExt}`;
+            const audioFileName = `${userPath}-track-${index}.${audioFileExt}`;
             
             const { error: audioUploadError } = await supabase.storage
               .from('release-audio')
@@ -589,7 +643,9 @@ function AdminSendStep({ supabase, selectedUser, releaseType, releaseTitle, arti
       }
 
       const { data: newRelease, error: releaseError } = await supabase.from('releases_exclusive').insert({
-        user_id: selectedUser.id, title: releaseTitle, artist_name: artistName,
+        user_id: isPendingUser ? null : selectedUser.id,
+        reserved_nickname: isPendingUser ? (selectedUser.nickname || artistName) : null,
+        title: releaseTitle, artist_name: artistName,
         genre, cover_url: coverUrl, release_date: releaseDate, status: 'published', release_type: releaseType,
         platforms: selectedPlatformsList, countries: selectedCountries, tracks: tracksData, upc: upc || null,
         contract_agreed: true, contract_agreed_at: new Date().toISOString(),
@@ -609,7 +665,7 @@ function AdminSendStep({ supabase, selectedUser, releaseType, releaseTitle, arti
 
   return (
     <div className="animate-fade-up">
-      {/* ===== МОБИЛЬНАЯ ВЕРСИЯ ===== */}
+      {/* ===== МОБИЛЬНАЯ ВЕРСИЯ ===== */
       <div className="lg:hidden">
         {/* Заголовок */}
         <div className="flex items-center gap-3 mb-4">

@@ -665,7 +665,7 @@ function AdminSendStep({ supabase, selectedUser, releaseType, releaseTitle, arti
 
   return (
     <div className="animate-fade-up">
-      {/* ===== МОБИЛЬНАЯ ВЕРСИЯ ===== */
+      {/* ===== МОБИЛЬНАЯ ВЕРСИЯ ===== */}
       <div className="lg:hidden">
         {/* Заголовок */}
         <div className="flex items-center gap-3 mb-4">

@@ -1,0 +1,24 @@
+User-agent: *
+Allow: /
+
+# Запрещаем индексировать служебные страницы
+Disallow: /api/
+Disallow: /admin/
+Disallow: /cabinet/
+Disallow: /auth/
+Disallow: /reset-password/
+Disallow: /change-email/
+Disallow: /test-payment/
+Disallow: /test-roles/
+Disallow: /dashboard/
+
+# Разрешаем публичные страницы
+Allow: /about
+Allow: /contacts
+Allow: /faq
+Allow: /news/
+Allow: /feed/
+Allow: /offer/
+Allow: /consent/
+
+Sitemap: https://thqlabel.ru/sitemap.xml

@@ -1083,11 +1083,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Preload критических ресурсов */}
         <link rel="preload" href={LOGO_SRC} as="image" />
         
-        <link rel="icon" type="image/png" href="/favicon.png?v=4" />
-        <link rel="icon" type="image/png" sizes="192x192" href="/icon.png?v=4" />
-        <link rel="icon" type="image/png" sizes="512x512" href="/icon.png?v=4" />
-        <link rel="apple-touch-icon" sizes="512x512" href="/icon.png?v=4" />
-        <link rel="shortcut icon" href="/favicon.png?v=4" />
+        <link rel="icon" type="image/png" href="/favicon.png?v=5" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/icon.png?v=5" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/icon.png?v=5" />
+        <link rel="apple-touch-icon" sizes="192x192" href="/icon.png?v=5" />
+        <link rel="shortcut icon" href="/favicon.png?v=5" />
         <link rel="manifest" href="/manifest.json" />
         {/* CSS fallback для тем - если JS отключён */}
         <style dangerouslySetInnerHTML={{ __html: `

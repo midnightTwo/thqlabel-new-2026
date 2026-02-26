@@ -580,14 +580,22 @@ export default function FeedPage() {
 
   return (
     <>
-      <main className="min-h-screen overflow-hidden relative">
-        {showIntro && (
+      {showIntro && (
         <div 
-          className={`intro-screen fixed inset-0 z-[100] flex items-center justify-center transition-opacity duration-500 pointer-events-none ${
+          className={`intro-screen transition-opacity duration-500 pointer-events-none ${
             introReady ? 'opacity-100' : 'opacity-0'
           }`}
           style={{
-            animation: introReady ? 'intro-fade-out 0.5s ease-out 1.5s forwards' : 'none'
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            zIndex: 9999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            animation: introReady ? 'intro-fade-out 0.5s ease-out 1.5s forwards' : 'none',
           }}
         >
           {/* Тёмный фон - показывается по умолчанию (тёмная тема) */}
@@ -633,7 +641,7 @@ export default function FeedPage() {
           </div>
 
           {/* Центральный контейнер */}
-          <div className="flex flex-col items-center justify-center relative z-10">
+          <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
             {/* Контейнер для Сатурна */}
             <div 
               className="relative flex items-center justify-center"
@@ -777,7 +785,8 @@ export default function FeedPage() {
           </div>
         </div>
       )}
-      
+
+      <main className="min-h-screen overflow-hidden relative">
       {/* Модальное окно услуг */}
       <ServicesModal isOpen={servicesModalOpen} onClose={() => setServicesModalOpen(false)} />
 

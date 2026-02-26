@@ -1032,9 +1032,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   useEffect(() => {
     // Получаем email текущего пользователя
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setCurrentUserEmail(session?.user?.email || null);
-    });
+    if (supabase) {
+      supabase.auth.getSession().then(({ data: { session } }) => {
+        setCurrentUserEmail(session?.user?.email || null);
+      });
+    }
     // Получаем статус maintenance
     fetch('/api/owner/settings')
       .then(r => r.json())

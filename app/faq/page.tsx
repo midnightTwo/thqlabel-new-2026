@@ -202,6 +202,16 @@ const FAQ_DATA = [
       },
     ]
   },
+  {
+    category: 'Технические проблемы',
+    questions: [
+      {
+        q: 'Не получается добавить релиз / страница не работает корректно',
+        a: '',
+        component: 'browserFix'
+      },
+    ]
+  },
 ];
 
 // Custom rendered components for complex FAQ answers
@@ -780,6 +790,59 @@ const AnalyticsComponent = ({ isLight }: { isLight: boolean }) => {
   );
 };
 
+// Компонент для решения технических проблем с браузером
+const BrowserFixComponent = ({ isLight }: { isLight: boolean }) => {
+  const Icons = getIcons(isLight);
+  return (
+    <div className="space-y-4">
+      <p className={isLight ? 'text-gray-700' : 'text-white/80'}>
+        Если у вас не получается добавить релиз, страница зависает или возникают другие проблемы при работе с сайтом — 
+        скорее всего, что-то в вашем браузере конфликтует с сайтом (расширения, кэш, куки).
+      </p>
+
+      <div>
+        <p className={`font-medium mb-3 ${isLight ? 'text-gray-800' : 'text-[#c4b5fd]'}`}>Как решить:</p>
+        <div className="space-y-3">
+          <div className={`flex items-start gap-3 ${isLight ? 'text-gray-700' : 'text-white/80'}`}>
+            <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${isLight ? 'bg-[#6050ba] text-white' : 'bg-[#6050ba]/50 text-white'}`}>1</span>
+            <div>
+              <span className={`font-medium ${isLight ? 'text-gray-800' : 'text-[#c4b5fd]'}`}>Откройте сайт в режиме инкогнито</span>
+              <p className="text-sm mt-0.5">
+                Chrome: <span className={`font-mono text-xs px-1.5 py-0.5 rounded ${isLight ? 'bg-gray-100' : 'bg-white/10'}`}>Ctrl+Shift+N</span> &nbsp;
+                Firefox: <span className={`font-mono text-xs px-1.5 py-0.5 rounded ${isLight ? 'bg-gray-100' : 'bg-white/10'}`}>Ctrl+Shift+P</span>
+              </p>
+            </div>
+          </div>
+
+          <div className={`flex items-start gap-3 ${isLight ? 'text-gray-700' : 'text-white/80'}`}>
+            <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${isLight ? 'bg-[#6050ba] text-white' : 'bg-[#6050ba]/50 text-white'}`}>2</span>
+            <div>
+              <span className={`font-medium ${isLight ? 'text-gray-800' : 'text-[#c4b5fd]'}`}>Если инкогнито помогло — очистите данные браузера</span>
+              <p className="text-sm mt-0.5">Зайдите в настройки браузера → «Очистить данные» → выберите куки и кэш для нашего сайта</p>
+            </div>
+          </div>
+
+          <div className={`flex items-start gap-3 ${isLight ? 'text-gray-700' : 'text-white/80'}`}>
+            <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${isLight ? 'bg-[#6050ba] text-white' : 'bg-[#6050ba]/50 text-white'}`}>3</span>
+            <div>
+              <span className={`font-medium ${isLight ? 'text-gray-800' : 'text-[#c4b5fd]'}`}>Отключите расширения браузера</span>
+              <p className="text-sm mt-0.5">Блокировщики рекламы и другие расширения могут мешать работе сайта</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className={`p-3 rounded-xl ${isLight ? 'bg-amber-50 border border-amber-200' : 'bg-amber-500/10 border border-amber-500/20'}`}>
+        <IconItem icon={Icons.lightBulb}>
+          <span className={`text-sm ${isLight ? 'text-amber-800' : 'text-amber-300'}`}>
+            <span className="font-medium">Совет:</span> Если ничего не помогло — напишите в поддержку, приложив скриншот ошибки. Мы разберёмся!
+          </span>
+        </IconItem>
+      </div>
+    </div>
+  );
+};
+
 // Map of custom components - теперь принимают isLight
 const customComponents: { [key: string]: React.FC<{ isLight: boolean }> } = {
   roles: RolesComponent,
@@ -791,6 +854,7 @@ const customComponents: { [key: string]: React.FC<{ isLight: boolean }> } = {
   coverRequirements: CoverRequirementsComponent,
   isrcUpc: IsrcUpcComponent,
   analytics: AnalyticsComponent,
+  browserFix: BrowserFixComponent,
 };
 
 export default function FAQPage() {

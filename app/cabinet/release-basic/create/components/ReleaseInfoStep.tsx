@@ -259,10 +259,13 @@ export default function ReleaseInfoStep({
                   <button onClick={() => setGenre('')} className={`text-xl ${isLight ? 'text-gray-400 hover:text-gray-600' : 'text-zinc-400 hover:text-white'}`}>×</button>
                 </div>
               ) : (
-                <div className="relative" style={{ zIndex: 9999 }}>
+                <div className="relative" style={{ zIndex: showGenreDropdown ? 9999 : 'auto' }}>
                   <button
                     type="button"
-                    onClick={() => setShowGenreDropdown(!showGenreDropdown)}
+                    onClick={() => {
+                      setShowCalendar(false);
+                      setShowGenreDropdown(!showGenreDropdown);
+                    }}
                     className={`w-full px-4 py-3 rounded-xl border outline-none transition-all hover:border-amber-400/30 focus:border-amber-400/50 focus:shadow-lg focus:shadow-amber-500/5 text-left flex items-center justify-between ${
                       isLight 
                         ? 'bg-white border-gray-300 text-gray-500' 
@@ -406,7 +409,10 @@ export default function ReleaseInfoStep({
             </label>
             <div className="relative inline-block">
               <div 
-                onClick={() => setShowCalendar(!showCalendar)}
+                onClick={() => {
+                  setShowGenreDropdown(false);
+                  setShowCalendar(!showCalendar);
+                }}
                 className={`inline-flex px-4 py-2.5 rounded-xl border cursor-pointer items-center gap-2 text-sm hover:border-violet-400/30 transition ${
                   isLight 
                     ? 'bg-white border-gray-300' 

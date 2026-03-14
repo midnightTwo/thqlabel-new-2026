@@ -53,25 +53,15 @@ const SIZE_MAP = {
   lg: 512,
 };
 
-// Проверка, является ли URL внешним (Supabase и т.д.)
-function isExternalUrl(src: string): boolean {
-  return src.startsWith('http://') || src.startsWith('https://');
-}
-
-// Генерация оптимизированного URL - БЕЗОПАСНАЯ ВЕРСИЯ
+// Генерация оптимизированного URL - РЕСАЙЗ ЧЕРЕЗ Next.js
 function getOptimizedUrl(src: string, width: number, quality: number = 75): string {
   // Если уже оптимизированный URL или data URL - возвращаем как есть
   if (!src || src.startsWith('data:') || src.includes('/_next/image')) {
     return src;
   }
   
-  // Для внешних URL (Supabase и т.д.) - используем напрямую без Next.js оптимизации
-  // Это избегает ошибок с JSON parse когда Next.js не может обработать URL
-  if (isExternalUrl(src)) {
-    return src;
-  }
-  
-  // Для локальных изображений используем Next.js Image Optimization API
+  // Все URL (включая Supabase) пропускаем через Next.js Image Optimization
+  // Next.js ресайзит, конвертирует в WebP/AVIF и кэширует на год
   const encodedSrc = encodeURIComponent(src);
   return `/_next/image?url=${encodedSrc}&w=${width}&q=${quality}`;
 }

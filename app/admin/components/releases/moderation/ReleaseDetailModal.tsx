@@ -1821,7 +1821,29 @@ export default function ReleaseDetailModal({
                         <span className={`text-sm font-bold truncate flex-1 ${isLight ? 'text-gray-800' : 'text-white'}`}>{(release as any).focus_track}</span>
                       </div>
                       {(release as any).focus_track_promo && (
-                        <div className={`text-xs mt-1 line-clamp-2 pl-5 ${isLight ? 'text-gray-600' : 'text-zinc-400'}`}>{(release as any).focus_track_promo}</div>
+                        <div className={`text-xs mt-1 pl-5 ${isLight ? 'text-gray-600' : 'text-zinc-400'}`}>{(release as any).focus_track_promo}</div>
+                        <button
+                          onClick={() => {
+                            navigator.clipboard.writeText((release as any).focus_track_promo || '');
+                            const btn = document.activeElement as HTMLButtonElement;
+                            if (btn) {
+                              const originalText = btn.innerHTML;
+                              btn.innerHTML = '✓ Скопировано';
+                              setTimeout(() => { btn.innerHTML = originalText; }, 1500);
+                            }
+                          }}
+                          className={`mt-1 flex items-center gap-1 px-2 py-0.5 text-[10px] rounded transition-all ${
+                            isLight 
+                              ? 'text-violet-600 hover:text-violet-800 bg-violet-100 hover:bg-violet-200' 
+                              : 'text-violet-400 hover:text-white bg-violet-500/10 hover:bg-violet-500/20'
+                          }`}
+                        >
+                          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                          </svg>
+                          Копировать промо
+                        </button>
                       )}
                       {/* Текст фокус-трека */}
                       {focusTrackData?.lyrics && (
@@ -1876,7 +1898,29 @@ export default function ReleaseDetailModal({
                       : 'bg-white/5 border-white/10'
                   }`}>
                     <div className={`text-[10px] uppercase tracking-wider mb-1 ${isLight ? 'text-gray-500' : 'text-zinc-500'}`}>Описание</div>
-                    <div className={`text-xs line-clamp-3 ${isLight ? 'text-gray-700' : 'text-zinc-300'}`}>{(release as any).album_description}</div>
+                    <div className={`text-xs ${isLight ? 'text-gray-700' : 'text-zinc-300'}`}>{(release as any).album_description}</div>
+                    <button
+                      onClick={() => {
+                        navigator.clipboard.writeText((release as any).album_description || '');
+                        const btn = document.activeElement as HTMLButtonElement;
+                        if (btn) {
+                          const originalText = btn.innerHTML;
+                          btn.innerHTML = '✓ Скопировано';
+                          setTimeout(() => { btn.innerHTML = originalText; }, 1500);
+                        }
+                      }}
+                      className={`mt-1 flex items-center gap-1 px-2 py-0.5 text-[10px] rounded transition-all ${
+                        isLight 
+                          ? 'text-violet-600 hover:text-violet-800 bg-violet-100 hover:bg-violet-200' 
+                          : 'text-violet-400 hover:text-white bg-violet-500/10 hover:bg-violet-500/20'
+                      }`}
+                    >
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                      </svg>
+                      Копировать описание
+                    </button>
                   </div>
                 )}
                 

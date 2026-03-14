@@ -403,7 +403,7 @@ const ServicesModal = memo(({ isOpen, onClose }: { isOpen: boolean; onClose: () 
         <div className={`absolute -top-20 -right-20 w-40 h-40 rounded-full blur-3xl ${isLight ? 'bg-[#6050ba]/15' : 'bg-[#6050ba]/20'}`} />
         <div className={`absolute -bottom-20 -left-20 w-40 h-40 rounded-full blur-3xl ${isLight ? 'bg-[#9d8df1]/15' : 'bg-[#9d8df1]/20'}`} />
         
-        <div className="relative p-6 md:p-8">
+        <div className="relative p-6 md:p-8 max-h-[90vh] overflow-y-auto">
           {/* Заголовок */}
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#6050ba] to-[#9d8df1] flex items-center justify-center shadow-lg shadow-[#6050ba]/30">
@@ -445,13 +445,6 @@ const ServicesModal = memo(({ isOpen, onClose }: { isOpen: boolean; onClose: () 
                 <p className={`relative text-sm font-semibold transition-colors ${
                   isLight ? 'text-[#2a2550]/90 group-hover:text-[#2a2550]' : 'text-white/90 group-hover:text-white'
                 }`}>{service.name}</p>
-                
-                {/* Стрелка */}
-                <svg className={`relative ml-auto w-4 h-4 group-hover:text-[#6050ba] group-hover:translate-x-1 transition-all ${
-                  isLight ? 'text-[#6050ba]/30' : 'text-white/20'
-                }`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
               </div>
             ))}
           </div>

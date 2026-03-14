@@ -74,7 +74,7 @@ const BLUR_PLACEHOLDER = `data:image/svg+xml;base64,${btoa(
 
 /**
  * Генерация оптимизированного URL через Next.js Image Optimization
- * Возвращает оригинальный URL если уже оптимизирован или внешний
+ * Ресайзит и конвертирует в WebP/AVIF все изображения включая Supabase
  */
 function getOptimizedUrl(src: string, width: number, quality: number = 75): string {
   if (!src) return '';
@@ -84,13 +84,8 @@ function getOptimizedUrl(src: string, width: number, quality: number = 75): stri
     return src;
   }
   
-  // Внешние URL (Supabase) - возвращаем как есть
-  // Next.js Image Optimization может не работать с некоторыми внешними URL
-  if (src.startsWith('http://') || src.startsWith('https://')) {
-    return src;
-  }
-  
-  // Локальные изображения - используем Next.js оптимизацию
+  // Все URL (включая Supabase) пропускаем через Next.js Image Optimization
+  // Next.js ресайзит, конвертирует в WebP/AVIF и кэширует на год
   const encodedSrc = encodeURIComponent(src);
   return `/_next/image?url=${encodedSrc}&w=${width}&q=${quality}`;
 }

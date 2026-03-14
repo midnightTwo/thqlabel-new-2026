@@ -274,6 +274,14 @@ async function findTrackInDatabase(
     return 0; // fallback to first track
   };
 
+  // ВАЖНО: Для поиска по артисту используем ТОЛЬКО первого артиста (до запятой/feat/&)
+  // Это главный артист, на чьём аккаунте загружен релиз.
+  // "oukoo, angelgrind" → ищем только по "oukoo", иначе система найдёт
+  // сольные релизы angelgrind и начислит ему деньги ошибочно.
+  const primaryArtist = artistName
+    ? artistName.split(/,|feat\.|feat |ft\.|ft |&/i)[0].trim()
+    : artistName;
+
   try {
     // Ищем по ISRC в releases_basic - ТОЛЬКО точное совпадение!
     // ВАЖНО: никакого prefix-match — у разных артистов одного дистрибьютора
@@ -385,10 +393,11 @@ async function findTrackInDatabase(
       }
     }
     
-    // Ищем по названию трека и артисту (с нечётким сравнением)
-    if (trackTitle || artistName) {
+    // Ищем по названию трека и ТОЛЬКО первому артисту
+    // primaryArtist уже вычислен выше (до запятой/feat)
+    if (trackTitle || primaryArtist) {
       const normalizedTitle = normalizeForSearch(trackTitle || '');
-      const normalizedArtist = normalizeForSearch(artistName || '');
+      const normalizedArtist = normalizeForSearch(primaryArtist || '');
       
       console.log(`Searching by title/artist. Normalized: "${normalizedTitle}" / "${normalizedArtist}"`);
       
@@ -486,11 +495,11 @@ async function findTrackInDatabase(
       }
     }
     
-    // FALLBACK: Ищем по названию РЕЛИЗА (не трека) + артисту
+    // FALLBACK: Ищем по названию РЕЛИЗА (не трека) + ТОЛЬКО первому артисту
     // Это нужно когда в CSV "Track title" отличается от реального названия трека в базе
-    if (releaseTitle && artistName) {
+    if (releaseTitle && primaryArtist) {
       const normalizedReleaseTitle = normalizeForSearch(releaseTitle);
-      const normalizedArtist = normalizeForSearch(artistName);
+      const normalizedArtist = normalizeForSearch(primaryArtist);
       
       console.log(`FALLBACK: Searching by RELEASE title: "${normalizedReleaseTitle}" / artist: "${normalizedArtist}"`);
       

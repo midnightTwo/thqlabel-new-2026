@@ -255,10 +255,13 @@ export default function ReleaseInfoStep({
                   <button onClick={() => setGenre('')} className={`text-xl ${isLight ? 'text-gray-400 hover:text-gray-600' : 'text-zinc-400 hover:text-white'}`}>×</button>
                 </div>
               ) : (
-                <div className="relative" style={{ zIndex: 9999 }}>
+                <div className="relative" style={{ zIndex: showGenreDropdown ? 9999 : 'auto' }}>
                   <button
                     type="button"
-                    onClick={() => setShowGenreDropdown(!showGenreDropdown)}
+                    onClick={() => {
+                      setShowCalendar(false);
+                      setShowGenreDropdown(!showGenreDropdown);
+                    }}
                     className={`w-full px-4 py-3 rounded-xl border outline-none transition-all hover:border-[#6050ba]/50 focus:border-[#6050ba] focus:shadow-lg focus:shadow-[#6050ba]/20 text-left flex items-center justify-between ${
                       isLight 
                         ? 'bg-white border-gray-300 text-gray-500' 
@@ -418,6 +421,8 @@ export default function ReleaseInfoStep({
               <div 
                 onClick={() => {
                   if (!showCalendar) {
+                    // При открытии календаря закрываем другие дропдауны
+                    setShowGenreDropdown(false);
                     // При открытии календаря устанавливаем месяц/год на выбранную дату или текущую
                     if (releaseDate) {
                       const selectedDate = new Date(releaseDate + 'T00:00:00');

@@ -1821,6 +1821,7 @@ export default function ReleaseDetailModal({
                         <span className={`text-sm font-bold truncate flex-1 ${isLight ? 'text-gray-800' : 'text-white'}`}>{(release as any).focus_track}</span>
                       </div>
                       {(release as any).focus_track_promo && (
+                        <>
                         <div className={`text-xs mt-1 pl-5 ${isLight ? 'text-gray-600' : 'text-zinc-400'}`}>{(release as any).focus_track_promo}</div>
                         <button
                           onClick={() => {
@@ -1844,6 +1845,7 @@ export default function ReleaseDetailModal({
                           </svg>
                           Копировать промо
                         </button>
+                        </>
                       )}
                       {/* Текст фокус-трека */}
                       {focusTrackData?.lyrics && (
